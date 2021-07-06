@@ -1,0 +1,68 @@
+@prefix rdf:           <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:          <http://www.w3.org/2000/01/rdf-schema#> .
+
+@prefix sh:            <http://www.w3.org/ns/shacl#> .
+
+@prefix rico:          <https://www.ica.org/standards/RiC/ontology#> .
+@prefix ric-voc:       <https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#> .
+@prefix ric-sh:        <https://data.archief.amsterdam/shapes#> .
+@prefix xsd:           <http://www.w3.org/2001/XMLSchema#> .
+
+@prefix saa-ont:       <https://data.archief.amsterdam/ontology#> .
+@prefix saa-voc:       <https://data.archief.amsterdam/vocabulary#> .
+
+ric-sh:ArchiefShape a sh:NodeShape ;
+    sh:targetClass        rico:RecordSet ;
+    rdfs:label            "Archief/Collectie"@nl ;
+    rdfs:label            "Fonds/Collection"@en ;
+    rdfs:comment          "Beschrijving van het archief of de collectie als geheel"@nl ;
+    sh:property [
+        sh:path           rico:hasRecordSetType ;
+        rdfs:label        "Archief of collectie?"@nl ;
+        rdfs:comment      "Selecteer een waarde uit de lijst"@nl ;
+        sh:in             (ric-voc:Fonds ric-voc:Collection ) ;
+        sh:minCount       1 ;
+        sh:maxCount       1 ;
+    ] ;
+    sh:property [
+        sh:path           rico:hasOrHadIdentifier ;
+        rdfs:label        "Archiefnummer"@nl ;
+        sh:class          rico:Identifier ;
+        sh:minCount       1 ;
+        # testen op uniciteit: uniek nummer per type Identifier
+        sh:severity       sh:Error ;
+        sh:message        "Een archief of collectie moet ten minste een nummer hebben"@nl ;
+        sh:message        "A fonds or collection must have a number"@en ;
+    ] .
+
+#### IDENTIFIER
+ric-sh:IdentifierShape a sh:NodeShape ;
+    sh:targetClass        rico:Identifier ;
+    rdfs:label            "Identifier"@nl ;
+    sh:property [
+        # rico:Identifier MUST link to 1 Literal with rico:textualValue
+        sh:path           rico:textualValue ;
+        rdfs:label        "identifier"@nl ;
+        sh:minCount       1 ;
+        sh:datatype        xsd:string ;
+    ] ;
+    sh:property [
+        # rico:Identifier MUST link to 1 Literal with rico:hasIdentifierType
+        sh:path           rico:hasIdentifierType ;
+        rdfs:label        "identifier"@nl ;
+        sh:minCount       1 ;
+        sh:maxCount       1 ;
+        sh:class          rico:IdentifierType ;
+    ] .
+
+ric-sh:IdentifierTypeShape a sh:NodeShape ;
+    sh:targetClass        rico:IdentifierType ;
+    rdfs:label            "IdentifierType"@nl ;
+    sh:property [
+        # rico:IdentifierType MUST link to 1 Literal with rico:name
+        sh:path           rico:name ;
+        rdfs:label        "naam van het identifier-type"@nl ;
+        sh:minCount       1 ;
+        sh:maxCount       1 ;
+        sh:datatype        xsd:string ;
+    ] .
