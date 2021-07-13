@@ -1,3 +1,5 @@
+# IO === informatie-object
+
 @prefix rdf:           <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs:          <http://www.w3.org/2000/01/rdf-schema#> .
 
@@ -11,63 +13,71 @@
 @prefix saa-ont:       <https://data.archief.amsterdam/ontology#> .
 @prefix saa-voc:       <https://data.archief.amsterdam/vocabulary#> .
 
-ric-sh:StukShape a sh:NodeShape ;
+ric-sh:IOShape a sh:NodeShape ;
     sh:targetClass        rico:Record ;
-    rdfs:label            "Stuk, oftewel 'document', 'computerbestand', 'akte'"@nl ;
+    rdfs:label            "informatie-object, oftewel 'document', 'computerbestand', 'akte'"@nl ;
     sh:property [
-        # Stuk CAN link to at most one rico:DocumentaryTypeForm with rico:hasDocumentaryFormType
+        # IO CAN link to at most one rico:DocumentaryTypeForm with rico:hasDocumentaryFormType
         sh:path           rico:hasDocumentaryFormType ;
-        rdfs:label        "Documenttype"@nl ;
-        rdfs:comment      "Selecteer een waarde uit de lijst"@nl ;
-        sh:in             ( saa-voc:NotarialDeed saa-voc:BirthCertificate saa-voc:Letter saa-voc:BuildingPermit saa-voc:Machtiging ) ; # etc. etc.
+        sh:in             ( saa-voc:NotarialDeed saa-voc:BirthCertificate saa-voc:Letter saa-voc:BuildingPermit saa-voc:Machtiging saa-voc:Foto) ; # etc. etc.
         sh:minCount       0 ;
         sh:maxCount       1 ;
     ] ;
     sh:property [
-        # Stuk MUST link to 1 or more rico:Identifier with rico:hasOrHadIdentifier
+        # IO MUST link to 1 or more rico:Identifier with rico:hasOrHadIdentifier
         sh:path           rico:hasOrHadIdentifier ;
-        rdfs:label        "identifier"@nl ;
         sh:minCount       1 ;
         sh:class          rico:Identifier ;
     ] ;
     sh:property [
-        # Stuk CAN link exactly 1 rico:Date with rico:isAssociatedWithDate
-        sh:path           rico:isAssociatedWithDate ;
-        rdfs:label        "datum"@nl ;
+        # IO CAN link to 1 rico:Title with rico:hasOrHadTitle
+        sh:path           rico:hasOrHadTitle ;
         sh:minCount       0 ;
         sh:maxCount       1 ;
-        sh:class          rico:Date ;
+        sh:class          rico:Title ;
     ] ;
     sh:property [
-        # Stuk MUST link to exactly 1 rico:RecordSet with rico:isOrWasIncludedIn
-        sh:path           rico:isOrWasIncludedIn ;
-        rdfs:label        "deel van ..."@nl ;
-        sh:minCount       1 ;
+        # IO CAN link to 1 xsd:string with rico:scopeAndContent
+        sh:path           rico:scopeAndContent ;
+        sh:minCount       0 ;
         sh:maxCount       1 ;
+        sh:datatype       xsd:string ;
+    ] ;    
+    sh:property [
+        # IO CAN link exactly 1 rico:Date or rico:DateRange with rico:isAssociatedWithDate
+        sh:path           rico:isAssociatedWithDate ;
+        sh:minCount       0 ;
+        sh:maxCount       1 ;
+        sh:or (
+            [ sh:class          rico:Date ; ]
+            [ sh:class          rico:DateRange ; ]
+        )
+    ] ;
+    sh:property [
+        # IO MUST link to exactly 1 rico:RecordSet with rico:isOrWasIncludedIn
+        sh:path           rico:isOrWasIncludedIn ;
+        sh:minCount       1 ;
+        sh:maxCount       2 ;
         sh:nodeKind       sh:IRI ;    
     ] ;
     sh:property [
-        # Stuk CAN link to 1 or more rico:Thing with rico:hasOrHadSubject
+        # IO CAN link to 1 or more rico:Thing with rico:hasOrHadSubject
         sh:path           rico:hasOrHadSubject ;
-        rdfs:label        "Onderwerp"@nl ;
         sh:nodeKind       sh:IRI ;    
     ] .
 
 #### IDENTIFIER
 ric-sh:IdentifierShape a sh:NodeShape ;
     sh:targetClass        rico:Identifier ;
-    rdfs:label            "Identifier"@nl ;
     sh:property [
         # rico:Identifier MUST link to 1 Literal with rico:textualValue
         sh:path           rico:textualValue ;
-        rdfs:label        "identifier"@nl ;
         sh:minCount       1 ;
-        sh:datatype        xsd:string ;
+        sh:datatype       xsd:string ;
     ] ;
     sh:property [
         # rico:Identifier MUST link to 1 Literal with rico:hasIdentifierType
         sh:path           rico:hasIdentifierType ;
-        rdfs:label        "identifier"@nl ;
         sh:minCount       1 ;
         sh:maxCount       1 ;
         sh:class          rico:IdentifierType ;
@@ -75,25 +85,64 @@ ric-sh:IdentifierShape a sh:NodeShape ;
 
 ric-sh:IdentifierTypeShape a sh:NodeShape ;
     sh:targetClass        rico:IdentifierType ;
-    rdfs:label            "IdentifierType"@nl ;
     sh:property [
         # rico:IdentifierType MUST link to 1 Literal with rico:name
         sh:path           rico:name ;
-        rdfs:label        "naam van het identifier-type"@nl ;
         sh:minCount       1 ;
         sh:maxCount       1 ;
-        sh:datatype        xsd:string ;
+        sh:datatype       xsd:string ;
+    ] .
+
+#### TITLE
+ric-sh:TitleShape a sh:NodeShape ;
+    sh:targetClass        rico:Title ;
+    sh:property [
+        # rico:Title MUST link to 1 Literal with rico:textualValue
+        sh:path           rico:textualValue ;
+        sh:minCount       1 ;
+        sh:maxCount       1 ;
+        sh:datatype       xsd:string ;
     ] .
 
 #### DATE
 ric-sh:DateShape a sh:NodeShape ;
     sh:targetClass        rico:Date ;
-    rdfs:label            "Datum"@nl ;
     sh:property [
         # rico:Date MUST link to 1 xsd:date with rico:hasNormalizedDateValue
         sh:path           rico:hasNormalizedDateValue ;
         rdfs:label        "identifier"@nl ;
         sh:minCount       1 ;
         sh:maxCount       1 ;
-        sh:datatype        xsd:date ;
+        sh:datatype       xsd:date ;
+    ] ;
+    sh:property [
+        # rico:Date CAN link to 1 xsd:string with rico:expressedDate
+        sh:path           rico:expressedDate ;
+        sh:minCount       0 ;
+        sh:maxCount       1 ;
+        sh:datatype       xsd:string ;
+    ] .
+
+ric-sh:DateRangeShape a sh:NodeShape ;
+    sh:targetClass        rico:DateRange ;
+    sh:property [
+        # rico:DateRange MUST link to 1 rico:Date with rico:hasBeginningDate
+        sh:path           rico:hasBeginningDate ;
+        sh:minCount       1 ;
+        sh:maxCount       1 ;
+        sh:class          rico:Date ;
+    ] ;
+    sh:property [
+        # rico:DateRange MUST link to 1 rico:Date with rico:hasBeginningDate
+        sh:path           rico:hasEndDate ;
+        sh:minCount       1 ;
+        sh:maxCount       1 ;
+        sh:class          rico:Date ;
+    ] ;
+    sh:property [
+        # rico:DateRange CAN link to 1 xsd:string with rico:expressedDate
+        sh:path           rico:expressedDate ;
+        sh:minCount       0 ;
+        sh:maxCount       1 ;
+        sh:datatype       xsd:string ;
     ] .

@@ -9,7 +9,7 @@ Obviously, under construction.
 # SHACL validation
 
 '''
-$ shacl validate -s informatie-object/informatie-object-shapes.ttl -d informatie-object-incorrect1.ttl
+$ shacl validate -s informatie-object/informatie-object-shapes.ttl -d informatie-object/incorrect/informatie-object-incorrect1.ttl
 '''
 
 
