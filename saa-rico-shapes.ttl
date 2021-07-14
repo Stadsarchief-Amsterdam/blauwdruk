@@ -13,7 +13,7 @@
 
 # ARCHIEF
 ric-sh:ArchiefShape a sh:NodeShape ;
-    # maps from <https://api.memorix.acc.amsterdam.nl/resources/recordtype/Archiefblok>
+    # maps from <https://example.memorix-test.nl/resources/recordtypes/Archiefblok>
     sh:targetClass        rico:RecordSet ;
     sh:property [
         sh:message        "Archief CAN link to ric-voc:Fonds or ric-voc:Collection with rico:hasRecordSetType" ;
@@ -54,8 +54,8 @@ ric-sh:ArchiefShape a sh:NodeShape ;
 
 # INFORMATIEOBJECT
 ric-sh:IOShape a sh:NodeShape ;
-    # maps from <https://api.memorix.acc.amsterdam.nl/resources/recordtype/Akte>
-    # maps from <https://api.memorix.acc.amsterdam.nl/resources/recordtype/Afbeelding>
+    # maps from <https://example.memorix-test.nl/resources/recordtypes/Akte>
+    # maps from <https://example.memorix-test.nl/resources/recordtypes/Afbeelding>
     sh:targetClass        rico:Record ;
     sh:property [
         sh:message        "Informatieobject CAN link to at most 1 saa-voc:* with rico:hasDocumentaryFormType" ;
