@@ -27,6 +27,7 @@ ric-sh:ArchiefShape a sh:NodeShape ;
         sh:class          rico:Identifier ;
         sh:minCount       1 ;
         # TODO: testen op uniciteit: uniek nummer per type Identifier
+        # ISSUE: onderscheid numeriek / alfanumeriek?
     ] ;
     sh:property [
         sh:message        "Archief MUST link to exactly 1 rico:Title with rico:hasOrHadTitle" ;
@@ -36,12 +37,6 @@ ric-sh:ArchiefShape a sh:NodeShape ;
         sh:maxCount       1 ;
     ] ;
     sh:property [
-        sh:message        "Archief CAN link to 1 xsd:string with rico:scopeAndContent" ;
-        sh:path           rico:scopeAndContent ;
-        sh:datatype       xsd:string ;
-        sh:maxCount       1 ;
-    ] ;   
-    sh:property [
         sh:message        "Archief MUST link to exactly 1 rico:SingleDate or rico:DateRange with rico:isAssociatedWithDate" ;
         sh:path           rico:isAssociatedWithDate ;
         sh:or (
@@ -50,7 +45,14 @@ ric-sh:ArchiefShape a sh:NodeShape ;
         ) ;
         sh:minCount       1 ;
         sh:maxCount       1 ;
+    ] ;
+    sh:property [
+        sh:message        "Archief CAN link to 1 xsd:string with rico:scopeAndContent" ;
+        sh:path           rico:scopeAndContent ;
+        sh:datatype       xsd:string ;
+        sh:maxCount       1 ;
     ] .
+    # TODO: zie spreadsheet
 
 # INFORMATIEOBJECT
 ric-sh:IOShape a sh:NodeShape ;
