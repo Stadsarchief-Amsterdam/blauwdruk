@@ -35,7 +35,10 @@
         rico:textualValue "ABBB00008000011" ;
         rico:hasIdentifierType [
             a rico:IdentifierType ;
-            rico:name "Afbeeldingsbestand"
+            rico:hasOrHadName [
+                a rico:Name ;
+                rico:textualValue "Afbeeldingsbestand" ;
+            ]
         ]
     ] ;
     rico:hasOrHadIdentifier [ 
@@ -43,7 +46,10 @@
         rico:textualValue "4f3d64b1-a1e2-2edf-474a-620112b1ce3a" ;
         rico:hasIdentifierType [
             a rico:IdentifierType ;
-            rico:name "UUID"
+            rico:hasOrHadName [
+                a rico:Name ;
+                rico:textualValue "UUID" ;
+            ]
         ]
     ] ;
     rico:isOrWasIncludedIn <https://data.archief.amsterdam/UUID-van-toegang-10054> ;

@@ -18,6 +18,6 @@
     rico:hasDocumentaryFormType saa-voc:BirthCertificate ;
     rdfs:label "Geboorteakte Jan Jansen 1898" ;
     rico:isAssociatedWithDate [
-        a rico:Date ;
+        a rico:SingleDate ;
         rico:hasNormalizedDateValue "Twee jaar voor het begin van de twintigste eeuw" ;
     ] .

@@ -8,8 +8,9 @@ Obviously, under construction.
 
 # SHACL validation
 
+eg. 
 '''
-$ shacl validate -s informatie-object/informatie-object-shapes.ttl -d informatie-object/incorrect/informatie-object-incorrect1.ttl
+$ shacl validate -s saa-rico-shapes.ttl -d informatieobject/incorrect/informatieobject-incorrect1.ttl
 '''
 
 

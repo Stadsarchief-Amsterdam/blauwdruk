@@ -1,0 +1,189 @@
+@prefix rdf:           <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:          <http://www.w3.org/2000/01/rdf-schema#> .
+
+@prefix sh:            <http://www.w3.org/ns/shacl#> .
+
+@prefix rico:          <https://www.ica.org/standards/RiC/ontology#> .
+@prefix ric-voc:       <https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#> .
+@prefix ric-sh:        <https://data.archief.amsterdam/shapes#> .
+@prefix xsd:           <http://www.w3.org/2001/XMLSchema#> .
+
+@prefix saa-ont:       <https://data.archief.amsterdam/ontology#> .
+@prefix saa-voc:       <https://data.archief.amsterdam/vocabulary#> .
+
+# ARCHIEF
+ric-sh:ArchiefShape a sh:NodeShape ;
+    # maps from <https://api.memorix.acc.amsterdam.nl/resources/recordtype/Archiefblok>
+    sh:targetClass        rico:RecordSet ;
+    sh:property [
+        sh:message        "Archief CAN link to ric-voc:Fonds or ric-voc:Collection with rico:hasRecordSetType" ;
+        sh:path           rico:hasRecordSetType ;
+        sh:in             (ric-voc:Fonds ric-voc:Collection ) ;
+        sh:maxCount       1 ;
+    ] ;
+    sh:property [
+        sh:message        "Archief MUST link at least 1 rico:Identifier with rico:hasOrHadIdentifier" ;
+        sh:path           rico:hasOrHadIdentifier ;
+        sh:class          rico:Identifier ;
+        sh:minCount       1 ;
+        # TODO: testen op uniciteit: uniek nummer per type Identifier
+    ] ;
+    sh:property [
+        sh:message        "Archief MUST link to exactly 1 rico:Title with rico:hasOrHadTitle" ;
+        sh:path           rico:hasOrHadTitle ;
+        sh:class          rico:Title ;
+        sh:minCount       1 ;
+        sh:maxCount       1 ;
+    ] ;
+    sh:property [
+        sh:message        "Archief CAN link to 1 xsd:string with rico:scopeAndContent" ;
+        sh:path           rico:scopeAndContent ;
+        sh:datatype       xsd:string ;
+        sh:maxCount       1 ;
+    ] ;   
+    sh:property [
+        sh:message        "Archief MUST link to exactly 1 rico:SingleDate or rico:DateRange with rico:isAssociatedWithDate" ;
+        sh:path           rico:isAssociatedWithDate ;
+        sh:or (
+            [ sh:class          rico:SingleDate ; ]
+            [ sh:class          rico:DateRange ; ]
+        ) ;
+        sh:minCount       1 ;
+        sh:maxCount       1 ;
+    ] .
+
+# INFORMATIEOBJECT
+ric-sh:IOShape a sh:NodeShape ;
+    # maps from <https://api.memorix.acc.amsterdam.nl/resources/recordtype/Akte>
+    # maps from <https://api.memorix.acc.amsterdam.nl/resources/recordtype/Afbeelding>
+    sh:targetClass        rico:Record ;
+    sh:property [
+        sh:message        "Informatieobject CAN link to at most 1 saa-voc:* with rico:hasDocumentaryFormType" ;
+        sh:path           rico:hasDocumentaryFormType ;
+        sh:in             ( saa-voc:NotarialDeed saa-voc:BirthCertificate saa-voc:Letter saa-voc:BuildingPermit saa-voc:Machtiging saa-voc:Foto ) ; # etc. etc.
+        sh:maxCount       1 ;
+    ] ;
+    sh:property [
+        sh:message        "Informatieobject MUST link at least 1 rico:Identifier with rico:hasOrHadIdentifier" ;
+        sh:path           rico:hasOrHadIdentifier ;
+        sh:class          rico:Identifier ;
+        sh:minCount       1 ;
+    ] ;
+    sh:property [
+        sh:message        "Informatieobject CAN link to at most 1 rico:Title with rico:hasOrHadTitle" ;
+        sh:path           rico:hasOrHadTitle ;
+        sh:class          rico:Title ;
+        sh:maxCount       1 ;
+    ] ;
+    sh:property [
+        sh:message        "Informatieobject CAN link to at most 1 xsd:string with rico:scopeAndContent" ;
+        sh:path           rico:scopeAndContent ;
+        sh:datatype       xsd:string ;
+        sh:maxCount       1 ;
+    ] ;    
+    sh:property [
+        sh:message        "Informatieobject CAN link to at most 1 rico:SingleDate or rico:DateRange with rico:isAssociatedWith" ;
+        sh:path           rico:isAssociatedWithDate ;
+        sh:or (
+            [ sh:class          rico:SingleDate ; ]
+            [ sh:class          rico:DateRange ; ]
+        ) ;
+        sh:maxCount       1 ;
+    ] ;
+    sh:property [
+        sh:message        "Informatieobject MUST link to 1 (Bestanddeel) or 2 (Bestanddeel en Archief) rico:RecordSet with rico:isOrWasIncludedIn" ;
+        sh:path           rico:isOrWasIncludedIn ;
+        sh:nodeKind       sh:IRI ;    
+        sh:minCount       1 ;
+        sh:maxCount       2 ;
+    ] ;
+    sh:property [
+        sh:message        "IO CAN link to 1 or more owl:Thing with rico:hasOrHadSubject" ;
+        sh:path           rico:hasOrHadSubject ;
+        sh:nodeKind       sh:IRI ;    
+    ] .
+
+# ALGEMEEN
+
+## Identifier
+ric-sh:IdentifierShape a sh:NodeShape ;
+    sh:targetClass        rico:Identifier ;
+    sh:property ric-sh:textualValueShape ;
+    sh:property [
+        sh:message        "rico:Identifier MUST link to exactly 1 rico:IdentifierType with rico:hasIdentifierType" ;
+        sh:path           rico:hasIdentifierType ;
+        sh:class          rico:IdentifierType ;
+        sh:minCount       1 ;
+        sh:maxCount       1 ;
+    ] .
+
+ric-sh:IdentifierTypeShape a sh:NodeShape ;
+    sh:targetClass        rico:IdentifierType ;
+    sh:property [
+        sh:message        "rico:IdentifierType MUST link to exactly 1 rico:Name with rico:hasOrHadName" ;
+        sh:path           rico:hasOrHadName ;
+        sh:class          rico:Name ;
+        sh:minCount       1 ;
+        sh:maxCount       1 ;
+    ] .
+
+## Title
+ric-sh:TitleShape a sh:NodeShape ;
+    sh:targetClass  rico:Title ;
+    sh:property     ric-sh:textualValueShape .
+
+## Date
+ric-sh:DateShape a sh:NodeShape ;
+    sh:targetClass        rico:SingleDate ;
+    sh:property [
+        sh:message        "rico:SingleDate MUST link to exactly 1 xsd:date or xsd:gYear with rico:hasNormalizedDateValue" ;
+        sh:path           rico:hasNormalizedDateValue ;
+        sh:or (
+            [ sh:datatype xsd:date ] 
+            [ sh:datatype xsd:gYear ] 
+        ) ;
+        sh:minCount       1 ;
+        sh:maxCount       1 ;
+    ] ;
+    sh:property [
+        sh:message        "rico:SingleDate CAN link to at most 1 xsd:string with rico:hasNormalizedDateValue" ;
+        sh:path           rico:expressedDate ;
+        sh:datatype       xsd:string ;
+        sh:maxCount       1 ;
+    ] .
+
+ric-sh:DateRangeShape a sh:NodeShape ;
+    sh:targetClass        rico:DateRange ;
+    sh:property [
+        sh:message        "rico:DateRange MUST link to at exactly 1 rico:SingleDate with rico:hasBeginningDate" ;
+        sh:path           rico:hasBeginningDate ;
+        sh:class          rico:SingleDate ;
+        sh:minCount       1 ;
+        sh:maxCount       1 ;
+    ] ;
+    sh:property [
+        sh:message        "rico:DateRange MUST link to at exactly 1 rico:SingleDate with rico:hasEndDate" ;
+        sh:path           rico:hasEndDate ;
+        sh:class          rico:SingleDate ;
+        sh:minCount       1 ;
+        sh:maxCount       1 ;
+    ] ;
+    sh:property [
+        sh:message        "rico:DateRange CAN link to at most 1 xsd:string with rico:expressedDate" ;
+        sh:path           rico:expressedDate ;
+        sh:maxCount       1 ;
+        sh:datatype       xsd:string ;
+    ] .
+
+## Name
+ric-sh:NameShape a sh:NodeShape ;
+    sh:targetClass  rico:Name ;
+    sh:property     ric-sh:textualValueShape .
+
+## textualValue
+ric-sh:textualValueShape a sh:PropertyShape ;
+    sh:message        "This node MUST link to exactly 1 xsd:string with rico:textualValue" ;
+    sh:path           rico:textualValue ;
+    sh:datatype       xsd:string ;
+    sh:minCount       1 ;
+    sh:minCount       1 .
