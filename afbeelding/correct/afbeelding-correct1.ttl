@@ -21,12 +21,12 @@
     rico:isAssociatedWithDate [
         a rico:DateRange ;
         rico:hasBeginningDate [
-            a rico:Date ;
-            rico:hasNormalizedDateValue "1905-01-01"^^xsd:date ;
+            a rico:SingleDate ;
+            rico:hasNormalizedDateValue "1900-01-01"^^xsd:date ;
         ];
         rico:hasEndDate [
-            a rico:Date ;
-            rico:hasNormalizedDateValue "1909-12-31"^^xsd:date ;
+            a rico:SingleDate ;
+            rico:hasNormalizedDateValue "1907-12-31"^^xsd:date ;
         ];
         rico:expressedDate "ca. 1907" ;
     ] ;

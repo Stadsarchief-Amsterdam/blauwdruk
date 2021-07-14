@@ -49,7 +49,7 @@ ric-sh:IOShape a sh:NodeShape ;
         sh:minCount       0 ;
         sh:maxCount       1 ;
         sh:or (
-            [ sh:class          rico:Date ; ]
+            [ sh:class          rico:SingleDate ; ]
             [ sh:class          rico:DateRange ; ]
         )
     ] ;
@@ -106,14 +106,17 @@ ric-sh:TitleShape a sh:NodeShape ;
 
 #### DATE
 ric-sh:DateShape a sh:NodeShape ;
-    sh:targetClass        rico:Date ;
+    sh:targetClass        rico:SingleDate ;
     sh:property [
         # rico:Date MUST link to 1 xsd:date with rico:hasNormalizedDateValue
         sh:path           rico:hasNormalizedDateValue ;
         rdfs:label        "identifier"@nl ;
         sh:minCount       1 ;
         sh:maxCount       1 ;
-        sh:datatype       xsd:date ;
+        sh:or (
+            [ sh:datatype xsd:date ] 
+            [ sh:datatype xsd:gYear ] 
+        ) ;
     ] ;
     sh:property [
         # rico:Date CAN link to 1 xsd:string with rico:expressedDate
@@ -130,14 +133,14 @@ ric-sh:DateRangeShape a sh:NodeShape ;
         sh:path           rico:hasBeginningDate ;
         sh:minCount       1 ;
         sh:maxCount       1 ;
-        sh:class          rico:Date ;
+        sh:class          rico:SingleDate ;
     ] ;
     sh:property [
         # rico:DateRange MUST link to 1 rico:Date with rico:hasBeginningDate
         sh:path           rico:hasEndDate ;
         sh:minCount       1 ;
         sh:maxCount       1 ;
-        sh:class          rico:Date ;
+        sh:class          rico:SingleDate ;
     ] ;
     sh:property [
         # rico:DateRange CAN link to 1 xsd:string with rico:expressedDate

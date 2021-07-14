@@ -12,7 +12,7 @@
     # https://archief.amsterdam/indexen/deeds/b21a5c6d-bb4f-6a83-e053-b784100a6e32
     a rico:Record ;
     rico:isAssociatedWithDate [
-        a rico:Date ;
+        a rico:SingleDate ;
         rico:hasNormalizedDateValue "1749-09-12"^^xsd:date ;
 #        rico:expressedDate "12 september 1749" ;
     ] ;

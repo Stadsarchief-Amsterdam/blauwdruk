@@ -21,7 +21,7 @@ ric-sh:ArchiefShape a sh:NodeShape ;
         rdfs:label        "Archief of collectie?"@nl ;
         rdfs:comment      "Selecteer een waarde uit de lijst"@nl ;
         sh:in             (ric-voc:Fonds ric-voc:Collection ) ;
-        sh:minCount       1 ;
+        sh:minCount       0 ;
         sh:maxCount       1 ;
     ] ;
     sh:property [
@@ -29,7 +29,7 @@ ric-sh:ArchiefShape a sh:NodeShape ;
         rdfs:label        "Archiefnummer"@nl ;
         sh:class          rico:Identifier ;
         sh:minCount       1 ;
-        # testen op uniciteit: uniek nummer per type Identifier
+        # TODO: testen op uniciteit: uniek nummer per type Identifier
         sh:severity       sh:Error ;
         sh:message        "Een archief of collectie moet ten minste een nummer hebben"@nl ;
         sh:message        "A fonds or collection must have a number"@en ;
