@@ -4,7 +4,7 @@
 @prefix sh:            <http://www.w3.org/ns/shacl#> .
 
 @prefix rico:          <https://www.ica.org/standards/RiC/ontology#> .
-@prefix ric-voc:       <https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#> .
+@prefix ric-rst:       <https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#> .
 @prefix ric-sh:        <https://data.archief.amsterdam/shapes#> .
 @prefix xsd:           <http://www.w3.org/2001/XMLSchema#> .
 
@@ -16,9 +16,9 @@ ric-sh:ArchiefShape a sh:NodeShape ;
     # maps from <https://example.memorix-test.nl/resources/recordtypes/Archiefblok>
     sh:targetClass        rico:RecordSet ;
     sh:property [
-        sh:message        "Archief CAN link to ric-voc:Fonds or ric-voc:Collection with rico:hasRecordSetType" ;
+        sh:message        "Archief CAN link to ric-rst:Fonds or ric-rst:Collection with rico:hasRecordSetType" ;
         sh:path           rico:hasRecordSetType ;
-        sh:in             (ric-voc:Fonds ric-voc:Collection ) ;
+        sh:in             (ric-rst:Fonds ric-rst:Collection ) ;
         sh:maxCount       1 ;
     ] ;
     sh:property [
@@ -78,7 +78,10 @@ ric-sh:IOShape a sh:NodeShape ;
     sh:property [
         sh:message        "Informatieobject CAN link to at most 1 xsd:string with rico:scopeAndContent" ;
         sh:path           rico:scopeAndContent ;
-        sh:datatype       xsd:string ;
+        sh:or (
+            [sh:datatype  xsd:string ; ]
+            [sh:datatype  rdf:XMLLiteral ; ]
+    ) ;
         sh:maxCount       1 ;
     ] ;    
     sh:property [
@@ -184,6 +187,9 @@ ric-sh:NameShape a sh:NodeShape ;
 ric-sh:textualValueShape a sh:PropertyShape ;
     sh:message        "This node MUST link to exactly 1 xsd:string with rico:textualValue" ;
     sh:path           rico:textualValue ;
-    sh:datatype       xsd:string ;
+    sh:or (
+        [sh:datatype  xsd:string ; ]
+        [sh:datatype  rdf:XMLLiteral ; ]
+    ) ;
     sh:minCount       1 ;
     sh:minCount       1 .
