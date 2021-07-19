@@ -14,13 +14,15 @@
 # ARCHIEF
 ric-sh:ArchiefShape a sh:NodeShape ;
     # maps from <https://example.memorix-test.nl/resources/recordtypes/Archiefblok>
-    sh:targetClass        rico:RecordSet ;
+    # TODO: zie spreadsheet
+    sh:targetClass        saa-ont:Archief ;
     sh:property [
-        sh:message        "Archief CAN link to ric-rst:Fonds or ric-rst:Collection with rico:hasRecordSetType" ;
+        sh:message        "Archief MUST link to ric-rst:Fonds with rico:hasRecordSetType" ;
         sh:path           rico:hasRecordSetType ;
-        sh:in             (ric-rst:Fonds ric-rst:Collection ) ;
+        sh:in             ( ric-rst:Fonds ) ;
+        sh:minCount       1 ;
         sh:maxCount       1 ;
-    ] ;
+    ];
     sh:property [
         sh:message        "Archief MUST link at least 1 rico:Identifier with rico:hasOrHadIdentifier" ;
         sh:path           rico:hasOrHadIdentifier ;
@@ -37,6 +39,12 @@ ric-sh:ArchiefShape a sh:NodeShape ;
         sh:maxCount       1 ;
     ] ;
     sh:property [
+        sh:message        "Archief MUST link to at least 1 rico:Agent with rico:hasAccumulator" ;
+        sh:path           rico:hasAccumulator ;
+        sh:nodeKind       sh:IRI ;    
+        sh:minCount       1 ;
+    ] ;
+    sh:property [
         sh:message        "Archief MUST link to exactly 1 rico:SingleDate or rico:DateRange with rico:isAssociatedWithDate" ;
         sh:path           rico:isAssociatedWithDate ;
         sh:or (
@@ -51,14 +59,80 @@ ric-sh:ArchiefShape a sh:NodeShape ;
         sh:path           rico:scopeAndContent ;
         sh:datatype       xsd:string ;
         sh:maxCount       1 ;
+    ] ;
+    sh:property [
+        sh:message        "Bestanddeel CAN link to 1 or more owl:Thing with rico:hasOrHadSubject" ;
+        sh:path           rico:hasOrHadSubject ;
+        sh:nodeKind       sh:IRI ;    
     ] .
+
+# BESTANDDEEL
+ric-sh:BestanddeelShape a sh:NodeShape ;
+    # maps from <https://example.memorix-test.nl/resources/recordtypes/Bestanddeel>
     # TODO: zie spreadsheet
+    sh:targetClass        saa-ont:Bestanddeel ;
+    sh:property [
+        sh:message        "Bestanddeel MUST link to ric-rst:File with rico:hasRecordSetType" ;
+        sh:path           rico:hasRecordSetType ;
+        sh:in             ( ric-rst:File ) ;
+        sh:minCount       1 ;
+        sh:maxCount       1 ;
+    ] ;
+    sh:property [
+        sh:message        "Bestanddeel MUST link at least 1 rico:Identifier with rico:hasOrHadIdentifier" ;
+        sh:path           rico:hasOrHadIdentifier ;
+        sh:class          rico:Identifier ;
+        sh:minCount       1 ;
+    ] ;
+    sh:property [
+        sh:message        "Informatieobject MUST link to 1 (Bestanddeel) or 2 (Bestanddeel en Archief) rico:RecordSet with rico:isOrWasIncludedIn" ;
+        sh:path           rico:isOrWasIncludedIn ;
+        sh:nodeKind       sh:IRI ;    
+        sh:minCount       1 ;
+        sh:maxCount       2 ;
+    ] ;
+    sh:or ( 
+        [
+            sh:message        "Bestanddeel MUST link to exactly 1 rico:Title with rico:hasOrHadTitle" ;
+            sh:path           rico:hasOrHadTitle ;
+            sh:class          rico:Title ;
+            sh:minCount       1 ;
+            sh:maxCount       1 ;
+        ] 
+        [
+            sh:message        "Bestanddeel MUST link to exactly 1 rico:SingleDate or rico:DateRange with rico:isAssociatedWithDate" ;
+            sh:path           rico:isAssociatedWithDate ;
+            sh:or (
+                [ sh:class          rico:SingleDate ; ]
+                [ sh:class          rico:DateRange ; ]
+            ) ;
+            sh:minCount       1 ;
+            sh:maxCount       1 ;
+        ] 
+    ) ;   
+    sh:property [
+        sh:message        "Bestanddeel CAN link to at most 1 xsd:string with rico:scopeAndContent" ;
+        sh:path           rico:scopeAndContent ;
+        sh:datatype       xsd:string ;
+        sh:maxCount       1 ;
+    ] ;
+    sh:property [
+        sh:message        "Bestanddeel CAN link to 1 or more rico:Agent with rico:hasAccumulator" ;
+        sh:path           rico:hasAccumulator ;
+        sh:nodeKind       sh:IRI ;    
+    ] ;
+    sh:property [
+        sh:message        "Bestanddeel CAN link to 1 or more owl:Thing with rico:hasOrHadSubject" ;
+        sh:path           rico:hasOrHadSubject ;
+        sh:nodeKind       sh:IRI ;    
+    ] .
+
 
 # INFORMATIEOBJECT
 ric-sh:IOShape a sh:NodeShape ;
     # maps from <https://example.memorix-test.nl/resources/recordtypes/Akte>
     # maps from <https://example.memorix-test.nl/resources/recordtypes/Afbeelding>
-    sh:targetClass        rico:Record ;
+    sh:targetClass        saa:Informatieobject ;
     sh:property [
         sh:message        "Informatieobject CAN link to at most 1 saa-voc:* with rico:hasDocumentaryFormType" ;
         sh:path           rico:hasDocumentaryFormType ;
@@ -142,7 +216,7 @@ ric-sh:DateShape a sh:NodeShape ;
     sh:targetClass        rico:SingleDate ;
     sh:property [
         sh:message        "rico:SingleDate MUST link to exactly 1 xsd:date or xsd:gYear with rico:hasNormalizedDateValue" ;
-        sh:path           rico:hasNormalizedDateValue ;
+        sh:path           rico:normalizedDateValue ;
         sh:or (
             [ sh:datatype xsd:date ] 
             [ sh:datatype xsd:gYear ] 
