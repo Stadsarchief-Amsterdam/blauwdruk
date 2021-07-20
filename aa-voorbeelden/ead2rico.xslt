@@ -111,12 +111,15 @@
                 <xsl:when test="../../@level='fonds'">        
                     <xsl:attribute name="rdf:resource">
                         <xsl:value-of select="$baseUri"/>
+                        <xsl:text>fonds/</xsl:text>
                         <xsl:value-of select="$uuid"/>
                     </xsl:attribute>
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:attribute name="rdf:resource">
                         <xsl:value-of select="$baseUri"/>
+                        <xsl:value-of select="../@level"/>
+                        <xsl:text>/</xsl:text>
                         <xsl:value-of select="../did/unitid/@identifier"/>
                     </xsl:attribute>
                 </xsl:otherwise>
@@ -147,6 +150,7 @@
         <xsl:with-param name="type" select="$type"/>
     </xsl:apply-templates>
     <xsl:apply-templates select="origination"/>
+    <xsl:apply-templates select="repository"/>
     <xsl:apply-templates select="abstract"/>
 </xsl:template>
 
@@ -337,6 +341,58 @@
     </rico:hasAccumulator>
 </xsl:template>
 
+<xsl:template match="repository">
+    <rico:hasOrHadHolder>
+        <xsl:choose>
+            <xsl:when test="persname">
+                <rico:Person>
+                    <rico:hasOrHadAgentName>
+                        <rico:AgentName>
+                            <rico:textualValue>
+                                <xsl:value-of select="persname"/>
+                            </rico:textualValue>
+                        </rico:AgentName>
+                    </rico:hasOrHadAgentName>
+                </rico:Person>
+            </xsl:when>
+            <xsl:when test="corpname">
+                <rico:CorporateBody>
+                    <rico:hasOrHadAgentName>
+                        <rico:AgentName>
+                            <rico:textualValue>
+                                <xsl:value-of select="corpname"/>
+                            </rico:textualValue>
+                        </rico:AgentName>
+                    </rico:hasOrHadAgentName>
+                </rico:CorporateBody>
+            </xsl:when>
+            <xsl:when test="famname">
+                <rico:Family>
+                    <rico:hasOrHadAgentName>
+                        <rico:AgentName>
+                            <rico:textualValue>
+                                <xsl:value-of select="famname"/>
+                            </rico:textualValue>
+                        </rico:AgentName>
+                    </rico:hasOrHadAgentName>
+                </rico:Family>
+            </xsl:when>
+            <xsl:otherwise>
+                <rico:Agent>
+                    <rico:hasOrHadAgentName>
+                        <rico:AgentName>
+                            <rico:textualValue>
+                                <xsl:value-of select="."/>
+                            </rico:textualValue>
+                        </rico:AgentName>
+                    </rico:hasOrHadAgentName>
+                </rico:Agent>
+            </xsl:otherwise>
+        </xsl:choose>
+    </rico:hasOrHadHolder>
+</xsl:template>
+
+
 <!-- named templates -->
 <xsl:template name="set-recordsettype">
     <xsl:param name="type"/>
@@ -373,6 +429,18 @@
             </rico:hasRecordSetType>
         </xsl:when>
         <xsl:when test="$type = 'subseries'">
+            <rdf:type>
+                <xsl:attribute name="rdf:resource">
+                    <xsl:text>https://data.archief.amsterdam/ontology#Verzameling</xsl:text>
+                </xsl:attribute>              
+            </rdf:type>
+            <rico:hasRecordSetType>
+                <xsl:attribute name="rdf:resource">
+                    <xsl:text>https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#Series</xsl:text>
+                </xsl:attribute>
+            </rico:hasRecordSetType>
+        </xsl:when>
+        <xsl:when test="$type = 'otherlevel'">
             <rdf:type>
                 <xsl:attribute name="rdf:resource">
                     <xsl:text>https://data.archief.amsterdam/ontology#Verzameling</xsl:text>

@@ -41,6 +41,7 @@ ric-sh:InventarisShape a sh:NodeShape ;
         sh:maxCount       1 ;
     ] ;
     sh:property [
+        sh:message        "Archiefinventaris MUST link to at exactly 1 rico:CorporateBody with rico:hasPublisher" ;
         sh:path           rico:hasPublisher ;
         sh:or (
             [ sh:nodeKind       sh:IRI ; ]
@@ -51,12 +52,22 @@ ric-sh:InventarisShape a sh:NodeShape ;
     ] ;
     sh:property [
         # LET OP! Deze moet nog een keer netjes met echte rico:Date's
+        sh:message        "Archiefinventaris CAN link to at exactly 1 xsd:date or xsd:gYear with rico:publicationDate" ;
         sh:path           rico:publicationDate ;
         sh:or (
             [ sh:datatype xsd:date ] 
             [ sh:datatype xsd:gYear ] 
         ) ;
         sh:minCount       0 ;
+        sh:maxCount       1 ;
+    ] ;
+    sh:property [
+        sh:message        "Archiefinventaris CAN link to 1 xsd:string or xsd:XMLLiteral with rico:history" ;
+        sh:path           rico:history ;
+        sh:or (
+            [sh:datatype  xsd:string ; ]
+            [sh:datatype  rdf:XMLLiteral ; ]
+        ) ;
         sh:maxCount       1 ;
     ] .
 
@@ -99,8 +110,39 @@ ric-sh:ArchiefShape a sh:NodeShape ;
         sh:maxCount       1 ;
     ] ;
     sh:property [
-        sh:message        "Archief CAN link to 1 xsd:string with rico:scopeAndContent" ;
+        sh:message        "Archief MUST link to at most 1 rico:Agent (Archiefbeheerder) with rico:hasOrHadHolder" ;
+        sh:path           rico:hasOrHadHolder ;
+        sh:or (
+            [ sh:nodeKind       sh:IRI ; ]
+            [ sh:class          rico:Person ; ]
+            [ sh:class          rico:CorporateBody ; ]
+            [ sh:class          rico:Family ; ]
+        ) ;
+        sh:maxCount       1 ;
+    ] ;
+    sh:property [
+        sh:message        "Archief CAN link to at most 1 rico:Agent (Zorgdrager) with rico:isOrWasUnderAuthorityOf" ;
+        sh:path           rico:isOrWasUnderAuthorityOf ;
+        sh:or (
+            [ sh:nodeKind       sh:IRI ; ]
+            [ sh:class          rico:Person ; ]
+            [ sh:class          rico:CorporateBody ; ]
+            [ sh:class          rico:Family ; ]
+        ) ;
+        sh:maxCount       1 ;
+    ] ;
+    sh:property [
+        sh:message        "Archief CAN link to 1 xsd:string or xsd:XMLLiteral with rico:scopeAndContent" ;
         sh:path           rico:scopeAndContent ;
+        sh:or (
+            [sh:datatype  xsd:string ; ]
+            [sh:datatype  rdf:XMLLiteral ; ]
+        ) ;
+        sh:maxCount       1 ;
+    ] ;
+    sh:property [
+        sh:message        "Archief CAN link to 1 xsd:string or xsd:XMLLiteral with rico:history" ;
+        sh:path           rico:history ;
         sh:or (
             [sh:datatype  xsd:string ; ]
             [sh:datatype  rdf:XMLLiteral ; ]
@@ -133,7 +175,6 @@ ric-sh:ArchiefShape a sh:NodeShape ;
 # Verzameling
 ric-sh:VerzamelingShape a sh:NodeShape ;
     # maps from <https://example.memorix-test.nl/resources/recordtypes/Verzameling>
-    # TODO: zie spreadsheet
     sh:targetClass        saa-ont:Verzameling ;
     sh:property [
         sh:message        "Verzameling MUST link to ric-rst:File with rico:hasRecordSetType" ;
@@ -151,7 +192,10 @@ ric-sh:VerzamelingShape a sh:NodeShape ;
     sh:property [
         sh:message        "Verzameling MUST link to 1 (Verzameling) or 2 (Verzameling en Archief) rico:RecordSet with rico:isOrWasIncludedIn" ;
         sh:path           rico:isOrWasIncludedIn ;
-        sh:nodeKind       sh:IRI ;    
+        sh:or (
+            [ sh:class saa-ont:Verzameling ] 
+            [ sh:class saa-ont:Archief ] 
+        ) ;
         sh:minCount       1 ;
         sh:maxCount       2 ;
     ] ;
@@ -181,6 +225,15 @@ ric-sh:VerzamelingShape a sh:NodeShape ;
         sh:maxCount       1 ;
     ] ;
     sh:property [
+        sh:message        "Verzameling CAN link to at most 1 xsd:string or xsd:XMLLiteral with rico:descriptiveNote" ;
+        sh:path           rico:descriptiveNote ;
+        sh:or (
+            [sh:datatype  xsd:string ; ]
+            [sh:datatype  rdf:XMLLiteral ; ]
+        ) ;
+        sh:maxCount       1 ;
+    ] ;
+    sh:property [
         sh:message        "Verzameling CAN link to 1 or more rico:Agent with rico:hasAccumulator" ;
         sh:path           rico:hasAccumulator ;
         sh:or (
@@ -199,7 +252,6 @@ ric-sh:VerzamelingShape a sh:NodeShape ;
 # BESTANDDEEL
 ric-sh:BestanddeelShape a sh:NodeShape ;
     # maps from <https://example.memorix-test.nl/resources/recordtypes/Bestanddeel>
-    # TODO: zie spreadsheet
     sh:targetClass        saa-ont:Bestanddeel ;
     sh:property [
         sh:message        "Bestanddeel MUST link to ric-rst:File with rico:hasRecordSetType" ;
@@ -217,7 +269,10 @@ ric-sh:BestanddeelShape a sh:NodeShape ;
     sh:property [
         sh:message        "Bestanddeel MUST link to 1 (Verzameling) or 2 (Verzameling en Archief) rico:RecordSet with rico:isOrWasIncludedIn" ;
         sh:path           rico:isOrWasIncludedIn ;
-        sh:nodeKind       sh:IRI ;    
+        sh:or (
+            [ sh:class saa-ont:Verzameling ] 
+            [ sh:class saa-ont:Archief ] 
+        ) ;
         sh:minCount       1 ;
         sh:maxCount       2 ;
     ] ;
@@ -315,7 +370,10 @@ ric-sh:IOShape a sh:NodeShape ;
     sh:property [
         sh:message        "Informatieobject MUST link to 1 (Bestanddeel) or 2 (Bestanddeel en Archief) rico:RecordSet with rico:isOrWasIncludedIn" ;
         sh:path           rico:isOrWasIncludedIn ;
-        sh:nodeKind       sh:IRI ;    
+        sh:or (
+            [ sh:class saa-ont:Bestanddeel ] 
+            [ sh:class saa-ont:Archief ] 
+        ) ;
         sh:minCount       1 ;
         sh:maxCount       2 ;
     ] ;

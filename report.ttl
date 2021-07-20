@@ -1,28 +1,10 @@
 Jena:       VERSION: 3.14.0
 Jena:       BUILD_DATE: 2020-01-16T14:55:05+0000
-@prefix schema: <https://schema.org/> .
-@prefix saa-ont: <https://data.archief.amsterdam/ontology#> .
-@prefix isbn:  <urn:isbn:1-931666-22-9> .
-@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
-@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix ric-sh: <https://data.archief.amsterdam/shapes#> .
-@prefix ric-dft: <https://www.ica.org/standards/RiC/vocabularies/documentaryFormTypes#> .
-@prefix ric-rst: <https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#> .
-@prefix xsi:   <http://www.w3.org/2001/XMLSchema-instance> .
-@prefix saa-voc: <https://data.archief.amsterdam/vocabulary#> .
 @prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix sh:    <http://www.w3.org/ns/shacl#> .
-@prefix rico:  <https://www.ica.org/standards/RiC/ontology#> .
-@prefix xlink: <http://www.w3.org/1999/xlink> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
 
 [ a            sh:ValidationReport ;
-  sh:conforms  false ;
-  sh:result    [ a                             sh:ValidationResult ;
-                 sh:focusNode                  <https://data.archief.amsterdam/file/00d655414fd907e4c58f17d86db3aeef> ;
-                 sh:resultMessage              "Or at focusNode <https://data.archief.amsterdam/file/00d655414fd907e4c58f17d86db3aeef>" ;
-                 sh:resultSeverity             sh:Violation ;
-                 sh:sourceConstraintComponent  sh:OrConstraintComponent ;
-                 sh:sourceShape                ric-sh:BestanddeelShape ;
-                 sh:value                      <https://data.archief.amsterdam/file/00d655414fd907e4c58f17d86db3aeef>
-               ]
+  sh:conforms  true
 ] .
