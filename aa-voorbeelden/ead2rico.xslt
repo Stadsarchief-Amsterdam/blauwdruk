@@ -35,7 +35,7 @@
         <xsl:call-template name="set-recordsettype">
             <xsl:with-param name="type" select="@level"/>
         </xsl:call-template>      
-        <rico:isDescribedBy>
+        <rico:isOrWasDescribedBy>
             <rico:Record>
                 <xsl:attribute name="rdf:about">
                     <xsl:value-of select="$baseUri"/>
@@ -69,7 +69,7 @@
                     </rico:CorporateBody>
                 </rico:hasPublisher>
             </rico:Record>
-        </rico:isDescribedBy>
+        </rico:isOrWasDescribedBy>
         <xsl:apply-templates select="did"/>
     </rico:RecordSet>
     <xsl:apply-templates select="dsc">

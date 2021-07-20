@@ -124,8 +124,8 @@ ric-sh:ArchiefShape a sh:NodeShape ;
         sh:nodeKind       sh:IRI ;    
     ];
     sh:property [
-        sh:message        "Archief MUST link to 1 or more saa-ont:Inventaris with rico:isDescribedBy" ;
-        sh:path           rico:isDescribedBy ;
+        sh:message        "Archief MUST link to 1 or more saa-ont:Inventaris with rico:isOrWasDescribedBy" ;
+        sh:path           rico:isOrWasDescribedBy ;
         sh:class          saa-ont:Inventaris ;
         sh:minCount       1 ;
     ].

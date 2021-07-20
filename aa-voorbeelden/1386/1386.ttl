@@ -89259,7 +89259,7 @@
             rico:normalizedDateValue "1997"^^<http://www.w3.org/2001/XMLSchema#gYear>
         ]
     ] ;
-    rico:isDescribedBy <https://data.archief.amsterdam/findingaid/94e9a640f22cb69f6c1d87301b7df264> ;
+    rico:isOrWasDescribedBy <https://data.archief.amsterdam/findingaid/94e9a640f22cb69f6c1d87301b7df264> ;
     rico:scopeAndContent """
       <abstract>
 Hoofdlijnen en hoogtepunten van de ontwikkeling van het bedrijf<lb></lb><lb></lb>Over het ontstaan en de ontwikkeling in de eerste eeuwen van het bestaan van het bedrijf zijn nauwelijks oorspronkelijke bronnen bewaard gebleven. Dit was de aanleiding voor een zekere mythevorming. Historische onderzoekingen gaan terug naar Duitsland en België. Het bedrijf van de Erven Lucas Bols is één van de oudste nog bestaande bedrijven in Amsterdam en Nederland en één van de oudste nog bestaande fabrikanten van gedistilleerde dranken en likeuren in de wereld. Het bedrijf was in Amsterdam vanaf het begin op dezelfde lokatie gevestigd. Dat was aan de Rozengracht in de Jordaan. <lb></lb><lb></lb>Een van de vroegst bekende vermeldingen van het oprichtingsjaar is op een zeventiende eeuws uithangbord volgens de catalogus van de Historische Tentoonstelling in Amsterdam in 1876. Ook is het jaar 1575 vóór 1875 op flessenetiketten vermeld. Bovendien is er uit deze tijd een prent van het eerste fabrieksgebouwtje met bijschrift \"'t Loots

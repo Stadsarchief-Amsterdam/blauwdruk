@@ -53955,7 +53955,7 @@
             rico:normalizedDateValue "1992"^^<http://www.w3.org/2001/XMLSchema#gYear>
         ]
     ] ;
-    rico:isDescribedBy <https://data.archief.amsterdam/findingaid/57c936b8f8a2e8fe7276d6cc1eb36624> ;
+    rico:isOrWasDescribedBy <https://data.archief.amsterdam/findingaid/57c936b8f8a2e8fe7276d6cc1eb36624> ;
     rico:scopeAndContent """
       <abstract>
 De archiefvormer<lb></lb>De familie stamt af van Lucas Bouyssavy, een wijnboer uit het Franse Bergerac, die vanwege zijn protestantse geloof zijn land ontvluchtte en zich in 1687 in Amsterdam vestigde. Rond 1700 noemde hij zich Boissevain. Lucas moest aanvankelijk nog een beroep doen op de diaconie van de Waalse kerk, maar zijn nakomelingen behoorden ruim een eeuw later tot de gegoeden van Amsterdam.<lb></lb>Daniel Boissevain (1772-1834) handelde in onder meer Franse, Duitse en koloniale goederen. Zijn zoon Gideon Jeremie (1796-1875) verlegde het accent naar de handelsvaart en assurantie. Diens zoon Jan (1836-1904) richtte zich op de stoomvaart. Een bekend lid van de familie is Charles (1842-1927), die van 1887 tot 1908 hoofdredacteur van het Algemeen Handelsblad was. Walrave Boissevain (1876-1944) heeft naam gemaakt als liberaal lid van de Tweede Kamer en als lid van de gemeenteraad.<lb></lb><lb></lb>Het archief<lb></lb>Het archief bevat vooral persoonlijke gegevens van leden van de familie, zoals brieven, gedichten en memo

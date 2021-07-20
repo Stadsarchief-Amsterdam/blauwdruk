@@ -3,7 +3,7 @@
   <rico:RecordSet rdf:about="https://data.archief.amsterdam/fonds/2ab843bcdc58542729ac2e5d86a7ecd6">
     <rdf:type rdf:resource="https://data.archief.amsterdam/ontology#Archief"/>
     <rico:hasRecordSetType rdf:resource="https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#Fonds"/>
-    <rico:isDescribedBy>
+    <rico:isOrWasDescribedBy>
       <rico:Record rdf:about="https://data.archief.amsterdam/findingaid/57c936b8f8a2e8fe7276d6cc1eb36624">
         <rdf:type rdf:resource="https://data.archief.amsterdam/ontology#Inventaris"/>
         <rico:hasDocumentaryFormType rdf:resource="https://www.ica.org/standards/RiC/vocabularies/documentaryFormTypes#FindingAid"/>
@@ -22,7 +22,7 @@
           </rico:CorporateBody>
         </rico:hasPublisher>
       </rico:Record>
-    </rico:isDescribedBy>
+    </rico:isOrWasDescribedBy>
     <rico:hasOrHadIdentifier>
       <rico:Identifier>
         <rico:textualValue>394</rico:textualValue>
