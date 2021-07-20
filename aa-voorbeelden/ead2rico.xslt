@@ -125,6 +125,16 @@
                 </xsl:otherwise>
             </xsl:choose>
         </rico:isOrWasIncludedIn>
+        <xsl:if test="following-sibling::c[1]">
+            <rico:precedesOrPreceded>
+                <xsl:attribute name="rdf:resource">
+                    <xsl:value-of select="$baseUri"/>
+                    <xsl:value-of select="following-sibling::c[1]/@level"/>
+                    <xsl:text>/</xsl:text>
+                    <xsl:value-of select="following-sibling::c[1]/did/unitid/@identifier"/>
+                </xsl:attribute>
+            </rico:precedesOrPreceded>
+        </xsl:if>
         <xsl:call-template name="set-recordsettype">
             <xsl:with-param name="type" select="@level"/>
         </xsl:call-template>

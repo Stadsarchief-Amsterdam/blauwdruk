@@ -172,7 +172,7 @@ ric-sh:ArchiefShape a sh:NodeShape ;
         sh:minCount       1 ;
     ].
 
-# Verzameling
+# VERZAMELING
 ric-sh:VerzamelingShape a sh:NodeShape ;
     # maps from <https://example.memorix-test.nl/resources/recordtypes/Verzameling>
     sh:targetClass        saa-ont:Verzameling ;
@@ -198,6 +198,16 @@ ric-sh:VerzamelingShape a sh:NodeShape ;
         ) ;
         sh:minCount       1 ;
         sh:maxCount       2 ;
+    ] ;
+    sh:property [
+        sh:message        "Verzameling MUST link to 1 following rico:RecordSet (Verzameling or Bestanddeel) with rico:precedesOrPreceded" ;
+        sh:path           rico:precedesOrPreceded ;
+        sh:or (
+            [ sh:class saa-ont:Verzameling ] 
+            [ sh:class saa-ont:Bestanddeel ] 
+        ) ;
+        sh:minCount       0 ;
+        sh:maxCount       1 ;
     ] ;
     sh:property [
         sh:message        "Verzameling MUST link to exactly 1 rico:Title with rico:hasOrHadTitle" ;
@@ -275,6 +285,16 @@ ric-sh:BestanddeelShape a sh:NodeShape ;
         ) ;
         sh:minCount       1 ;
         sh:maxCount       2 ;
+    ] ;
+    sh:property [
+        sh:message        "Verzameling MUST link to 1 following rico:RecordSet (Verzameling or Bestanddeel) with rico:precedesOrPreceded" ;
+        sh:path           rico:precedesOrPreceded ;
+        sh:or (
+            [ sh:class saa-ont:Verzameling ] 
+            [ sh:class saa-ont:Bestanddeel ] 
+        ) ;
+        sh:minCount       0 ;
+        sh:maxCount       1 ;
     ] ;
     sh:or ( 
         [
