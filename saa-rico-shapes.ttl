@@ -130,6 +130,71 @@ ric-sh:ArchiefShape a sh:NodeShape ;
         sh:minCount       1 ;
     ].
 
+# Verzameling
+ric-sh:VerzamelingShape a sh:NodeShape ;
+    # maps from <https://example.memorix-test.nl/resources/recordtypes/Verzameling>
+    # TODO: zie spreadsheet
+    sh:targetClass        saa-ont:Verzameling ;
+    sh:property [
+        sh:message        "Verzameling MUST link to ric-rst:File with rico:hasRecordSetType" ;
+        sh:path           rico:hasRecordSetType ;
+        sh:in             ( ric-rst:Series ) ;
+        sh:minCount       1 ;
+        sh:maxCount       1 ;
+    ] ;
+    sh:property [
+        sh:message        "Verzameling MUST link at least 1 rico:Identifier with rico:hasOrHadIdentifier" ;
+        sh:path           rico:hasOrHadIdentifier ;
+        sh:class          rico:Identifier ;
+        sh:minCount       1 ;
+    ] ;
+    sh:property [
+        sh:message        "Verzameling MUST link to 1 (Verzameling) or 2 (Verzameling en Archief) rico:RecordSet with rico:isOrWasIncludedIn" ;
+        sh:path           rico:isOrWasIncludedIn ;
+        sh:nodeKind       sh:IRI ;    
+        sh:minCount       1 ;
+        sh:maxCount       2 ;
+    ] ;
+    sh:property [
+        sh:message        "Verzameling MUST link to exactly 1 rico:Title with rico:hasOrHadTitle" ;
+        sh:path           rico:hasOrHadTitle ;
+        sh:class          rico:Title ;
+        sh:minCount       1 ;
+        sh:maxCount       1 ;
+    ]; 
+    sh:property [
+        sh:message        "Verzameling CAN link to at most 1 rico:SingleDate or rico:DateRange with rico:isAssociatedWithDate" ;
+        sh:path           rico:isAssociatedWithDate ;
+        sh:or (
+            [ sh:class          rico:SingleDate ; ]
+            [ sh:class          rico:DateRange ; ]
+        ) ;
+        sh:maxCount       1 ;
+    ] ;
+    sh:property [
+        sh:message        "Verzameling CAN link to at most 1 xsd:string or xsd:XMLLiteral with rico:scopeAndContent" ;
+        sh:path           rico:scopeAndContent ;
+        sh:or (
+            [sh:datatype  xsd:string ; ]
+            [sh:datatype  rdf:XMLLiteral ; ]
+        ) ;
+        sh:maxCount       1 ;
+    ] ;
+    sh:property [
+        sh:message        "Verzameling CAN link to 1 or more rico:Agent with rico:hasAccumulator" ;
+        sh:path           rico:hasAccumulator ;
+        sh:or (
+            [ sh:nodeKind       sh:IRI ; ]
+            [ sh:class          rico:Person ; ]
+            [ sh:class          rico:CorporateBody ; ]
+            [ sh:class          rico:Family ; ]
+        ) ;
+    ] ;
+    sh:property [
+        sh:message        "Verzameling CAN link to 1 or more owl:Thing with rico:hasOrHadSubject" ;
+        sh:path           rico:hasOrHadSubject ;
+        sh:nodeKind       sh:IRI ;    
+    ] .
 
 # BESTANDDEEL
 ric-sh:BestanddeelShape a sh:NodeShape ;
@@ -150,7 +215,7 @@ ric-sh:BestanddeelShape a sh:NodeShape ;
         sh:minCount       1 ;
     ] ;
     sh:property [
-        sh:message        "Informatieobject MUST link to 1 (Bestanddeel) or 2 (Bestanddeel en Archief) rico:RecordSet with rico:isOrWasIncludedIn" ;
+        sh:message        "Bestanddeel MUST link to 1 (Verzameling) or 2 (Verzameling en Archief) rico:RecordSet with rico:isOrWasIncludedIn" ;
         sh:path           rico:isOrWasIncludedIn ;
         sh:nodeKind       sh:IRI ;    
         sh:minCount       1 ;
@@ -178,7 +243,10 @@ ric-sh:BestanddeelShape a sh:NodeShape ;
     sh:property [
         sh:message        "Bestanddeel CAN link to at most 1 xsd:string with rico:scopeAndContent" ;
         sh:path           rico:scopeAndContent ;
-        sh:datatype       xsd:string ;
+        sh:or (
+            [sh:datatype  xsd:string ; ]
+            [sh:datatype  rdf:XMLLiteral ; ]
+        ) ;
         sh:maxCount       1 ;
     ] ;
     sh:property [
@@ -193,6 +261,11 @@ ric-sh:BestanddeelShape a sh:NodeShape ;
     ] ;
     sh:property [
         sh:message        "Bestanddeel CAN link to 1 or more owl:Thing with rico:hasOrHadSubject" ;
+        sh:path           rico:hasOrHadSubject ;
+        sh:nodeKind       sh:IRI ;    
+    ] ;
+    sh:property [
+        sh:message        "Bestanddeel CAN link to 1 or more rico:Instantiation with rico:hasInstantiation" ;
         sh:path           rico:hasOrHadSubject ;
         sh:nodeKind       sh:IRI ;    
     ] .
@@ -247,7 +320,7 @@ ric-sh:IOShape a sh:NodeShape ;
         sh:maxCount       2 ;
     ] ;
     sh:property [
-        sh:message        "IO CAN link to 1 or more owl:Thing with rico:hasOrHadSubject" ;
+        sh:message        "Informatieobject CAN link to 1 or more owl:Thing with rico:hasOrHadSubject" ;
         sh:path           rico:hasOrHadSubject ;
         sh:nodeKind       sh:IRI ;    
     ] .
@@ -326,7 +399,7 @@ ric-sh:DateRangeShape a sh:NodeShape ;
 
 ## Name
 ric-sh:NameShape a sh:NodeShape ;
-    sh:targetClass  rico:Name ;
+    sh:targetClass  rico:Name, rico:AgentName ;
     sh:property     ric-sh:textualValueShape .
 
 ## textualValue

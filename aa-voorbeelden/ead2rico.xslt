@@ -125,7 +125,9 @@
         <xsl:call-template name="set-recordsettype">
             <xsl:with-param name="type" select="@level"/>
         </xsl:call-template>
-        <xsl:apply-templates select="did"/>
+        <xsl:apply-templates select="did">
+            <xsl:with-param name="type" select="@level"/>
+        </xsl:apply-templates>
     </rico:RecordSet>
     <xsl:apply-templates select="c">
         <xsl:with-param name="archnr" select="$archnr"/>
@@ -134,13 +136,16 @@
 </xsl:template>
 
 <!-- creating predicates and objects -->
-<!-- very preliminary mapping, created in my learning-by-doing way of working! -->
-<!-- super minimal: only four basic fields, most important in Dutch Archival Culture -->
+<!-- preliminary mapping, created in my learning-by-doing way of working! -->
 <xsl:template match="did">
+    <xsl:param name="type"/>
     <xsl:apply-templates select="unitid"/>
     <xsl:apply-templates select="unittitle"/>
     <xsl:apply-templates select="unitdate"/>
-    <xsl:apply-templates select="physdesc"/>
+    <xsl:apply-templates select="physdesc">
+        <xsl:with-param name="uuid" select="unitid/@identifier"/>
+        <xsl:with-param name="type" select="$type"/>
+    </xsl:apply-templates>
     <xsl:apply-templates select="origination"/>
     <xsl:apply-templates select="abstract"/>
 </xsl:template>
@@ -252,9 +257,26 @@
 </xsl:template>
 
 <xsl:template match="physdesc">
-    <rico:recordResourceExtent>
-        <xsl:value-of select="."/>
-    </rico:recordResourceExtent>
+    <xsl:param name="uuid"/>
+    <xsl:param name="type"/>
+    <rico:hasInstantiation>
+        <rico:Instantiation>
+            <xsl:attribute name="rdf:about">
+                <xsl:value-of select="$baseUri"/>
+                <xsl:value-of select="$type"/>
+                <xsl:text>/</xsl:text>
+                <xsl:value-of select="$uuid"/>
+                <xsl:text>#inst-org</xsl:text>
+            </xsl:attribute>
+            <rico:hasExtent>
+                <rico:InstantiationExtent>
+                    <rico:textualValue>
+                        <xsl:value-of select="."/>
+                    </rico:textualValue>
+                </rico:InstantiationExtent>
+            </rico:hasExtent>
+        </rico:Instantiation>
+    </rico:hasInstantiation>
 </xsl:template>
 
 <xsl:template match="abstract">
@@ -339,6 +361,11 @@
             </rico:hasRecordSetType>
         </xsl:when>
         <xsl:when test="$type = 'series'">
+            <rdf:type>
+                <xsl:attribute name="rdf:resource">
+                    <xsl:text>https://data.archief.amsterdam/ontology#Verzameling</xsl:text>
+                </xsl:attribute>              
+            </rdf:type>
             <rico:hasRecordSetType>
                 <xsl:attribute name="rdf:resource">
                     <xsl:text>https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#Series</xsl:text>
@@ -346,6 +373,11 @@
             </rico:hasRecordSetType>
         </xsl:when>
         <xsl:when test="$type = 'subseries'">
+            <rdf:type>
+                <xsl:attribute name="rdf:resource">
+                    <xsl:text>https://data.archief.amsterdam/ontology#Verzameling</xsl:text>
+                </xsl:attribute>              
+            </rdf:type>
             <rico:hasRecordSetType>
                 <xsl:attribute name="rdf:resource">
                     <xsl:text>https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#Series</xsl:text>
