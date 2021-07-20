@@ -257,7 +257,13 @@ ric-sh:VerzamelingShape a sh:NodeShape ;
         sh:message        "Verzameling CAN link to 1 or more owl:Thing with rico:hasOrHadSubject" ;
         sh:path           rico:hasOrHadSubject ;
         sh:nodeKind       sh:IRI ;    
+    ] ;
+    sh:property [
+        sh:message        "Verzameling CAN link to 1 or more rico:Instantiation with rico:hasInstantiation" ;
+        sh:path           rico:hasInstantiation ;
+        sh:nodeKind       sh:IRI ;    
     ] .
+
 
 # BESTANDDEEL
 ric-sh:BestanddeelShape a sh:NodeShape ;
@@ -341,7 +347,7 @@ ric-sh:BestanddeelShape a sh:NodeShape ;
     ] ;
     sh:property [
         sh:message        "Bestanddeel CAN link to 1 or more rico:Instantiation with rico:hasInstantiation" ;
-        sh:path           rico:hasOrHadSubject ;
+        sh:path           rico:hasInstantiation ;
         sh:nodeKind       sh:IRI ;    
     ] .
 
