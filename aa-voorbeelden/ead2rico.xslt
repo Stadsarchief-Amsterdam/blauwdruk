@@ -28,12 +28,49 @@
     <rico:RecordSet>
         <xsl:attribute name="rdf:about">
             <xsl:value-of select="$baseUri"/>
+            <xsl:value-of select="@level"/>
+            <xsl:text>/</xsl:text>
             <xsl:value-of select="did/unitid/@identifier"/>
         </xsl:attribute>
-        <xsl:apply-templates select="did"/>
         <xsl:call-template name="set-recordsettype">
             <xsl:with-param name="type" select="@level"/>
-        </xsl:call-template>
+        </xsl:call-template>      
+        <rico:isDescribedBy>
+            <rico:Record>
+                <xsl:attribute name="rdf:about">
+                    <xsl:value-of select="$baseUri"/>
+                    <xsl:text>findingaid/</xsl:text>
+                    <xsl:value-of select="../eadheader/eadid/@identifier"/>
+                </xsl:attribute>
+                <rdf:type>
+                    <xsl:attribute name="rdf:resource">
+                        <xsl:text>https://data.archief.amsterdam/ontology#Inventaris</xsl:text>
+                    </xsl:attribute>              
+                </rdf:type>
+                <rico:hasDocumentaryFormType>
+                    <xsl:attribute name="rdf:resource">https://www.ica.org/standards/RiC/vocabularies/documentaryFormTypes#FindingAid</xsl:attribute>
+                </rico:hasDocumentaryFormType>
+                <rico:hasOrHadTitle>
+                    <rico:Title>
+                        <rico:textualValue>
+                            <xsl:value-of select="../eadheader/filedesc/titlestmt/titleproper"/>
+                        </rico:textualValue>
+                    </rico:Title>
+                </rico:hasOrHadTitle>
+                <rico:hasPublisher>
+                    <rico:CorporateBody>
+                        <rico:hasOrHadAgentName>
+                            <rico:AgentName>
+                                <rico:textualValue>
+                                    <xsl:value-of select="../eadheader/filedesc/publicationstmt/publisher"/>
+                                </rico:textualValue>
+                            </rico:AgentName>
+                        </rico:hasOrHadAgentName>
+                    </rico:CorporateBody>
+                </rico:hasPublisher>
+            </rico:Record>
+        </rico:isDescribedBy>
+        <xsl:apply-templates select="did"/>
     </rico:RecordSet>
     <xsl:apply-templates select="dsc">
         <xsl:with-param name="archnr" select="did/unitid"/>
@@ -56,6 +93,8 @@
     <rico:RecordSet>
         <xsl:attribute name="rdf:about">
             <xsl:value-of select="$baseUri"/>
+            <xsl:value-of select="@level"/>
+            <xsl:text>/</xsl:text>
             <xsl:value-of select="did/unitid/@identifier"/>
         </xsl:attribute>
         <xsl:if test="@level='file'">
@@ -102,6 +141,8 @@
     <xsl:apply-templates select="unittitle"/>
     <xsl:apply-templates select="unitdate"/>
     <xsl:apply-templates select="physdesc"/>
+    <xsl:apply-templates select="origination"/>
+    <xsl:apply-templates select="abstract"/>
 </xsl:template>
 
 <xsl:template match="unitid">
@@ -214,6 +255,64 @@
     <rico:recordResourceExtent>
         <xsl:value-of select="."/>
     </rico:recordResourceExtent>
+</xsl:template>
+
+<xsl:template match="abstract">
+    <rico:scopeAndContent>
+        <xsl:attribute name="rdf:parseType">Literal</xsl:attribute>
+        <xsl:copy-of select="."/>
+    </rico:scopeAndContent>
+</xsl:template>
+
+<xsl:template match="origination">
+    <rico:hasAccumulator>
+        <xsl:choose>
+            <xsl:when test="persname">
+                <rico:Person>
+                    <rico:hasOrHadAgentName>
+                        <rico:AgentName>
+                            <rico:textualValue>
+                                <xsl:value-of select="persname"/>
+                            </rico:textualValue>
+                        </rico:AgentName>
+                    </rico:hasOrHadAgentName>
+                </rico:Person>
+            </xsl:when>
+            <xsl:when test="corpname">
+                <rico:CorporateBody>
+                    <rico:hasOrHadAgentName>
+                        <rico:AgentName>
+                            <rico:textualValue>
+                                <xsl:value-of select="corpname"/>
+                            </rico:textualValue>
+                        </rico:AgentName>
+                    </rico:hasOrHadAgentName>
+                </rico:CorporateBody>
+            </xsl:when>
+            <xsl:when test="famname">
+                <rico:Family>
+                    <rico:hasOrHadAgentName>
+                        <rico:AgentName>
+                            <rico:textualValue>
+                                <xsl:value-of select="famname"/>
+                            </rico:textualValue>
+                        </rico:AgentName>
+                    </rico:hasOrHadAgentName>
+                </rico:Family>
+            </xsl:when>
+            <xsl:otherwise>
+                <rico:Agent>
+                    <rico:hasOrHadAgentName>
+                        <rico:AgentName>
+                            <rico:textualValue>
+                                <xsl:value-of select="."/>
+                            </rico:textualValue>
+                        </rico:AgentName>
+                    </rico:hasOrHadAgentName>
+                </rico:Agent>
+            </xsl:otherwise>
+        </xsl:choose>
+    </rico:hasAccumulator>
 </xsl:template>
 
 <!-- named templates -->

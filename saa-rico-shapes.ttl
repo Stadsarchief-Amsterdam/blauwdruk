@@ -5,11 +5,61 @@
 
 @prefix rico:          <https://www.ica.org/standards/RiC/ontology#> .
 @prefix ric-rst:       <https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#> .
+@prefix ric-dft:       <https://www.ica.org/standards/RiC/vocabularies/documentaryFormTypes#>
 @prefix ric-sh:        <https://data.archief.amsterdam/shapes#> .
 @prefix xsd:           <http://www.w3.org/2001/XMLSchema#> .
 
 @prefix saa-ont:       <https://data.archief.amsterdam/ontology#> .
 @prefix saa-voc:       <https://data.archief.amsterdam/vocabulary#> .
+
+# ARCHIEFINVENTARIS
+ric-sh:InventarisShape a sh:NodeShape ;
+    sh:targetClass        saa-ont:Inventaris ;
+    sh:property [
+        sh:message        "Archiefinventaris MUST link to ric-dft:FindingAid with rico:hasDocumentaryFormType" ;
+        sh:path           rico:hasDocumentaryFormType ;
+        sh:in             ( ric-dft:FindingAid ) ;
+        sh:minCount       1 ;
+        sh:maxCount       1 ;
+    ];
+    sh:property [
+        sh:message        "Archiefinventaris MUST link to exactly 1 rico:Title with rico:hasOrHadTitle" ;
+        sh:path           rico:hasOrHadTitle ;
+        sh:class          rico:Title ;
+        sh:minCount       1 ;
+        sh:maxCount       1 ;
+    ] ;
+    sh:property [
+        sh:message        "Archiefinventaris CAN link to at most 1 rico:Person or rico:CorporateBody with rico:hasAuthor" ;
+        sh:path           rico:hasAuthor ;
+        sh:or (
+            [ sh:nodeKind       sh:IRI ; ]
+            [ sh:class          rico:Person ; ]
+            [ sh:class          rico:CorporateBody ; ]
+        ) ;
+        sh:minCount       0 ;
+        sh:maxCount       1 ;
+    ] ;
+    sh:property [
+        sh:path           rico:hasPublisher ;
+        sh:or (
+            [ sh:nodeKind       sh:IRI ; ]
+            [ sh:class          rico:CorporateBody ; ]
+        ) ;
+        sh:minCount       1 ;
+        sh:maxCount       1 ;
+    ] ;
+    sh:property [
+        # LET OP! Deze moet nog een keer netjes met echte rico:Date's
+        sh:path           rico:publicationDate ;
+        sh:or (
+            [ sh:datatype xsd:date ] 
+            [ sh:datatype xsd:gYear ] 
+        ) ;
+        sh:minCount       0 ;
+        sh:maxCount       1 ;
+    ] .
+
 
 # ARCHIEF
 ric-sh:ArchiefShape a sh:NodeShape ;
@@ -39,12 +89,6 @@ ric-sh:ArchiefShape a sh:NodeShape ;
         sh:maxCount       1 ;
     ] ;
     sh:property [
-        sh:message        "Archief MUST link to at least 1 rico:Agent with rico:hasAccumulator" ;
-        sh:path           rico:hasAccumulator ;
-        sh:nodeKind       sh:IRI ;    
-        sh:minCount       1 ;
-    ] ;
-    sh:property [
         sh:message        "Archief MUST link to exactly 1 rico:SingleDate or rico:DateRange with rico:isAssociatedWithDate" ;
         sh:path           rico:isAssociatedWithDate ;
         sh:or (
@@ -57,14 +101,35 @@ ric-sh:ArchiefShape a sh:NodeShape ;
     sh:property [
         sh:message        "Archief CAN link to 1 xsd:string with rico:scopeAndContent" ;
         sh:path           rico:scopeAndContent ;
-        sh:datatype       xsd:string ;
+        sh:or (
+            [sh:datatype  xsd:string ; ]
+            [sh:datatype  rdf:XMLLiteral ; ]
+        ) ;
         sh:maxCount       1 ;
     ] ;
     sh:property [
-        sh:message        "Bestanddeel CAN link to 1 or more owl:Thing with rico:hasOrHadSubject" ;
+        sh:message        "Archief MUST link to at least 1 rico:Agent with rico:hasAccumulator" ;
+        sh:path           rico:hasAccumulator ;
+        sh:or (
+            [ sh:nodeKind       sh:IRI ; ]
+            [ sh:class          rico:Person ; ]
+            [ sh:class          rico:CorporateBody ; ]
+            [ sh:class          rico:Family ; ]
+        ) ;
+        sh:minCount       1 ;
+    ] ;
+    sh:property [
+        sh:message        "Archief CAN link to 1 or more owl:Thing with rico:hasOrHadSubject" ;
         sh:path           rico:hasOrHadSubject ;
         sh:nodeKind       sh:IRI ;    
-    ] .
+    ];
+    sh:property [
+        sh:message        "Archief MUST link to 1 or more saa-ont:Inventaris with rico:isDescribedBy" ;
+        sh:path           rico:isDescribedBy ;
+        sh:class          saa-ont:Inventaris ;
+        sh:minCount       1 ;
+    ].
+
 
 # BESTANDDEEL
 ric-sh:BestanddeelShape a sh:NodeShape ;
@@ -119,7 +184,12 @@ ric-sh:BestanddeelShape a sh:NodeShape ;
     sh:property [
         sh:message        "Bestanddeel CAN link to 1 or more rico:Agent with rico:hasAccumulator" ;
         sh:path           rico:hasAccumulator ;
-        sh:nodeKind       sh:IRI ;    
+        sh:or (
+            [ sh:nodeKind       sh:IRI ; ]
+            [ sh:class          rico:Person ; ]
+            [ sh:class          rico:CorporateBody ; ]
+            [ sh:class          rico:Family ; ]
+        ) ;
     ] ;
     sh:property [
         sh:message        "Bestanddeel CAN link to 1 or more owl:Thing with rico:hasOrHadSubject" ;
@@ -132,7 +202,7 @@ ric-sh:BestanddeelShape a sh:NodeShape ;
 ric-sh:IOShape a sh:NodeShape ;
     # maps from <https://example.memorix-test.nl/resources/recordtypes/Akte>
     # maps from <https://example.memorix-test.nl/resources/recordtypes/Afbeelding>
-    sh:targetClass        saa:Informatieobject ;
+    sh:targetClass        saa-ont:Informatieobject ;
     sh:property [
         sh:message        "Informatieobject CAN link to at most 1 saa-voc:* with rico:hasDocumentaryFormType" ;
         sh:path           rico:hasDocumentaryFormType ;

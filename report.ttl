@@ -1,0 +1,93 @@
+Jena:       VERSION: 3.14.0
+Jena:       BUILD_DATE: 2020-01-16T14:55:05+0000
+@prefix schema: <https://schema.org/> .
+@prefix saa-ont: <https://data.archief.amsterdam/ontology#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix sh:    <http://www.w3.org/ns/shacl#> .
+@prefix rico:  <https://www.ica.org/standards/RiC/ontology#> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ric-sh: <https://data.archief.amsterdam/shapes#> .
+@prefix ric-rst: <https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#> .
+@prefix saa-voc: <https://data.archief.amsterdam/vocabulary#> .
+
+[ a            sh:ValidationReport ;
+  sh:conforms  false ;
+  sh:result    [ a                             sh:ValidationResult ;
+                 sh:focusNode                  <https://data.archief.amsterdam/ffa55240c3d30d6d9515909ed0e79949> ;
+                 sh:resultMessage              "Bestanddeel MUST link to ric-rst:File with rico:hasRecordSetType" ;
+                 sh:resultPath                 rico:hasRecordSetType ;
+                 sh:resultSeverity             sh:Violation ;
+                 sh:sourceConstraintComponent  sh:InConstraintComponent ;
+                 sh:sourceShape                _:b0 ;
+                 sh:value                      ric-rst:Series
+               ] ;
+  sh:result    [ a                             sh:ValidationResult ;
+                 sh:focusNode                  <https://data.archief.amsterdam/bf94aacb5c1fa34fc86d913c92e1a21b> ;
+                 sh:resultMessage              "Bestanddeel MUST link to ric-rst:File with rico:hasRecordSetType" ;
+                 sh:resultPath                 rico:hasRecordSetType ;
+                 sh:resultSeverity             sh:Violation ;
+                 sh:sourceConstraintComponent  sh:MaxCountConstraintComponent ;
+                 sh:sourceShape                _:b0
+               ] ;
+  sh:result    [ a                             sh:ValidationResult ;
+                 sh:focusNode                  <https://data.archief.amsterdam/c50b23048eaeb1c524bb99f28b408177> ;
+                 sh:resultMessage              "Bestanddeel MUST link to ric-rst:File with rico:hasRecordSetType" ;
+                 sh:resultPath                 rico:hasRecordSetType ;
+                 sh:resultSeverity             sh:Violation ;
+                 sh:sourceConstraintComponent  sh:MaxCountConstraintComponent ;
+                 sh:sourceShape                _:b0
+               ] ;
+  sh:result    [ a                             sh:ValidationResult ;
+                 sh:focusNode                  <https://data.archief.amsterdam/4aa273d388369674074a379cb3452c4c> ;
+                 sh:resultMessage              "Bestanddeel MUST link to ric-rst:File with rico:hasRecordSetType" ;
+                 sh:resultPath                 rico:hasRecordSetType ;
+                 sh:resultSeverity             sh:Violation ;
+                 sh:sourceConstraintComponent  sh:InConstraintComponent ;
+                 sh:sourceShape                _:b0 ;
+                 sh:value                      ric-rst:Series
+               ] ;
+  sh:result    [ a                             sh:ValidationResult ;
+                 sh:focusNode                  <https://data.archief.amsterdam/bf94aacb5c1fa34fc86d913c92e1a21b> ;
+                 sh:resultMessage              "Bestanddeel MUST link to ric-rst:File with rico:hasRecordSetType" ;
+                 sh:resultPath                 rico:hasRecordSetType ;
+                 sh:resultSeverity             sh:Violation ;
+                 sh:sourceConstraintComponent  sh:InConstraintComponent ;
+                 sh:sourceShape                _:b0 ;
+                 sh:value                      ric-rst:Series
+               ] ;
+  sh:result    [ a                             sh:ValidationResult ;
+                 sh:focusNode                  <https://data.archief.amsterdam/ffa55240c3d30d6d9515909ed0e79949> ;
+                 sh:resultMessage              "Bestanddeel MUST link to ric-rst:File with rico:hasRecordSetType" ;
+                 sh:resultPath                 rico:hasRecordSetType ;
+                 sh:resultSeverity             sh:Violation ;
+                 sh:sourceConstraintComponent  sh:MaxCountConstraintComponent ;
+                 sh:sourceShape                _:b0
+               ] ;
+  sh:result    [ a                             sh:ValidationResult ;
+                 sh:focusNode                  <https://data.archief.amsterdam/4aa273d388369674074a379cb3452c4c> ;
+                 sh:resultMessage              "Bestanddeel MUST link to ric-rst:File with rico:hasRecordSetType" ;
+                 sh:resultPath                 rico:hasRecordSetType ;
+                 sh:resultSeverity             sh:Violation ;
+                 sh:sourceConstraintComponent  sh:MaxCountConstraintComponent ;
+                 sh:sourceShape                _:b0
+               ] ;
+  sh:result    [ a                             sh:ValidationResult ;
+                 sh:focusNode                  <https://data.archief.amsterdam/c50b23048eaeb1c524bb99f28b408177> ;
+                 sh:resultMessage              "Bestanddeel MUST link to ric-rst:File with rico:hasRecordSetType" ;
+                 sh:resultPath                 rico:hasRecordSetType ;
+                 sh:resultSeverity             sh:Violation ;
+                 sh:sourceConstraintComponent  sh:InConstraintComponent ;
+                 sh:sourceShape                _:b0 ;
+                 sh:value                      ric-rst:Series
+               ] ;
+  sh:result    [ a                             sh:ValidationResult ;
+                 sh:focusNode                  <https://data.archief.amsterdam/8e56c11507d700f47f029907ff0b50e3> ;
+                 sh:resultMessage              "Archief MUST link to at least 1 rico:Agent with rico:hasAccumulator" ;
+                 sh:resultPath                 rico:hasAccumulator ;
+                 sh:resultSeverity             sh:Violation ;
+                 sh:sourceConstraintComponent  sh:NodeKindConstraintComponent ;
+                 sh:sourceShape                []  ;
+                 sh:value                      [] 
+               ]
+] .
