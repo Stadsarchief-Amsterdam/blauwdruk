@@ -442,6 +442,41 @@ ric-sh:InformatieobjectShape a sh:NodeShape ;
         sh:nodeKind       sh:IRI ;    
     ] .
 
+# REPRESENTATIE
+ric-sh:RepresentatieShape a sh:NodeShape ;
+    # For now, this works for both Afbeelding (Materiaal/Techniek ...) and Bestanddeel (Uiterlijke Vorm)
+    sh:targetClass        saa-ont:Representatie ;
+    sh:property [
+        sh:message        "Representatie MUST link to rico:Instantiation with rdf:type" ;
+        sh:path           rdf:type ;
+        sh:in             ( rico:Instantiation saa-ont:Representatie ) ;
+        sh:minCount       2 ;
+        sh:maxCount       2 ;
+    ] ;
+    sh:property [
+        sh:message        "Representatie CAN link to rico:CarrierType with rico:hasCarrierType" ;
+        sh:path           rico:hasCarrierType ;
+        sh:class          rico:CarrierType ;
+    ] ;
+    sh:property [
+        sh:message        "Representatie CAN link to rico:ProductionTechniqueType with rico:hasProductionTechniqueType" ;
+        sh:path           rico:hasProductionTechniqueType ;
+        sh:class          rico:ProductionTechniqueType ;
+    ] ;
+    sh:property [
+        sh:message        "Representatie CAN link to xsd:string with rico:physicalCharacteristics" ;
+        sh:path           rico:physicalCharacteristics ;
+        sh:datatype       xsd:string ;
+    ] ;
+    sh:property [
+        sh:message        "Representatie CAN link to rico:CarrierExtent and/or rico:InstantiationExtent with rico:hasExtent" ;
+        sh:path           rico:hasExtent ;
+        sh:or (           
+            [ sh:class rico:CarrierExtent ; ]
+            [ sh:class rico:InstantiationExtent ; ]
+        ) ;
+    ] .
+
 # AFBEELDING
 ric-sh:AfbeeldingShape a sh:NodeShape ;
     # maps from <https://example.memorix-test.nl/resources/recordtypes/Afbeelding>
@@ -467,9 +502,10 @@ ric-sh:AfbeeldingShape a sh:NodeShape ;
         sh:minCount       1 ;
     ] ;
     sh:property [
-        sh:message        "Afbeelding CAN link to at most 1 rico:Title with rico:hasOrHadTitle" ;
+        sh:message        "Afbeelding MUST link to at most 1 rico:Title with rico:hasOrHadTitle" ;
         sh:path           rico:hasOrHadTitle ;
         sh:class          rico:Title ;
+        sh:minCount       1 ;
         sh:maxCount       1 ;
     ] ;
     sh:property [
@@ -494,8 +530,9 @@ ric-sh:AfbeeldingShape a sh:NodeShape ;
         sh:message        "Afbeelding MUST link to 1 (Bestanddeel) or 2 (Bestanddeel en Archief) rico:RecordSet with rico:isOrWasIncludedIn" ;
         sh:path           rico:isOrWasIncludedIn ;
         sh:or (
-            [ sh:class saa-ont:Bestanddeel ] 
-            [ sh:class saa-ont:Archief ] 
+            [ sh:nodeKind sh:IRI ] 
+            [ sh:class    saa-ont:Bestanddeel ] 
+            [ sh:class    saa-ont:Archief ] 
         ) ;
         sh:minCount       1 ;
         sh:maxCount       2 ;
@@ -504,8 +541,23 @@ ric-sh:AfbeeldingShape a sh:NodeShape ;
         sh:message        "Afbeelding CAN link to 1 or more owl:Thing with rico:hasOrHadSubject" ;
         sh:path           rico:hasOrHadSubject ;
         sh:nodeKind       sh:IRI ;    
+    ] ;
+    sh:property [
+        sh:message        "Afbeelding CAN link to at most 1 rico:Agent with rico:hasCreator" ;
+        sh:path           rico:hasCreator ;
+        sh:or (
+            [ sh:nodeKind       sh:IRI ; ]
+            [ sh:class          rico:Person ; ]
+            [ sh:class          rico:CorporateBody ; ]
+            [ sh:class          rico:Family ; ]
+        ) ;
+        sh:maxCount       1 ;
+    ] ;
+    sh:property [
+        sh:message        "Afbeelding CAN link to 1 or more saa-ont:Representatie with rico:hasInstantiation" ;
+        sh:path           rico:hasInstantiation ;
+        sh:class          saa-ont:Representatie ;    
     ] .
-
 
 # ALGEMEEN
 
@@ -521,26 +573,16 @@ ric-sh:IdentifierShape a sh:NodeShape ;
         sh:maxCount       1 ;
     ] .
 
-ric-sh:IdentifierTypeShape a sh:NodeShape ;
-    sh:targetClass        rico:IdentifierType ;
-    sh:property [
-        sh:message        "rico:IdentifierType MUST link to exactly 1 rico:Name with rico:hasOrHadName" ;
-        sh:path           rico:hasOrHadName ;
-        sh:class          rico:Name ;
-        sh:minCount       1 ;
-        sh:maxCount       1 ;
-    ] .
-
 ## Title
 ric-sh:TitleShape a sh:NodeShape ;
     sh:targetClass  rico:Title ;
     sh:property     ric-sh:textualValueShape .
 
 ## Date
-ric-sh:DateShape a sh:NodeShape ;
+ric-sh:SingleDateShape a sh:NodeShape ;
     sh:targetClass        rico:SingleDate ;
     sh:property [
-        sh:message        "rico:SingleDate MUST link to exactly 1 xsd:date or xsd:gYear with rico:hasNormalizedDateValue" ;
+        sh:message        "rico:SingleDate MUST link to exactly 1 xsd:date or xsd:gYear with rico:normalizedDateValue" ;
         sh:path           rico:normalizedDateValue ;
         sh:or (
             [ sh:datatype xsd:date ] 
@@ -550,7 +592,7 @@ ric-sh:DateShape a sh:NodeShape ;
         sh:maxCount       1 ;
     ] ;
     sh:property [
-        sh:message        "rico:SingleDate CAN link to at most 1 xsd:string with rico:hasNormalizedDateValue" ;
+        sh:message        "rico:SingleDate CAN link to at most 1 xsd:string with rico:normalizedDateValue" ;
         sh:path           rico:expressedDate ;
         sh:datatype       xsd:string ;
         sh:maxCount       1 ;
@@ -579,9 +621,25 @@ ric-sh:DateRangeShape a sh:NodeShape ;
         sh:datatype       xsd:string ;
     ] .
 
+## Type
+ric-sh:TypeShape a sh:NodeShape ;
+    sh:targetClass        rico:IdentifierType, rico:CarrierType, rico:ProductionTechniqueType ;
+    sh:property [
+        sh:message        "rico:*Type MUST link to exactly 1 rico:Name with rico:hasOrHadName" ;
+        sh:path           rico:hasOrHadName ;
+        sh:class          rico:Name ;
+        sh:minCount       1 ;
+        sh:maxCount       1 ;
+    ] .
+
 ## Name
 ric-sh:NameShape a sh:NodeShape ;
     sh:targetClass  rico:Name, rico:AgentName ;
+    sh:property     ric-sh:textualValueShape .
+
+## Extent
+ric-sh:ExtentShape a sh:NodeShape ;
+    sh:targetClass  rico:InstantiationExtent, rico:CarrierExtent ;
     sh:property     ric-sh:textualValueShape .
 
 ## textualValue
