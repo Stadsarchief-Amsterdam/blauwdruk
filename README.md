@@ -8,15 +8,15 @@ Obviously, under construction.
 We use Jena to validate data against shacl shapes. After installation we use the CLI command 'shacl'.
 
 eg. 
-'''
+```
 $ shacl validate -s saa-rico-shapes.ttl -d 05-informatieobject/incorrect/informatieobject-incorrect1.ttl
-'''
+```
 
 # Test files
 
 ## Individual, fake test-records per saa-ont Entity
-For every entity in the 'blauwdruk' we create examples to test the shacl-files. In the numbered directories we collect (mostly fake) files to test our shacl-shapes.
+For every (numbered) entity in the 'blauwdruk' we create (mostly fake) examples to test the shacl-files.
 
 ## Complete finding aids
-For testing purposes we created some complete finding aids, based on EAD.
+For testing purposes we created some complete finding aids, based on Encoded Archival Description.
 
