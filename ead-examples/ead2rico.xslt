@@ -287,6 +287,14 @@
                     <xsl:text>https://data.archief.amsterdam/ontology#Representatie</xsl:text>
                 </xsl:attribute>              
             </rdf:type>
+            <rico:isInstantiationOf>
+                <xsl:attribute name="rdf:resource">
+                    <xsl:value-of select="$baseUri"/>
+                    <xsl:value-of select="$type"/>
+                    <xsl:text>/</xsl:text>
+                    <xsl:value-of select="$uuid"/>
+                </xsl:attribute>
+            </rico:isInstantiationOf>
             <rico:hasExtent>
                 <rico:InstantiationExtent>
                     <rico:textualValue>

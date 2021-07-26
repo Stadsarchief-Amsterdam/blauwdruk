@@ -1,0 +1,26 @@
+@prefix rdf:           <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:          <http://www.w3.org/2000/01/rdf-schema#> .
+
+@prefix sh:            <http://www.w3.org/ns/shacl#> .
+
+@prefix rico:          <https://www.ica.org/standards/RiC/ontology#> .
+@prefix ric-rst:       <https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#> .
+@prefix ric-dft:       <https://www.ica.org/standards/RiC/vocabularies/documentaryFormTypes#>
+@prefix xsd:           <http://www.w3.org/2001/XMLSchema#> .
+
+@prefix saa-ont:       <https://data.archief.amsterdam/ontology#> .
+@prefix saa-sh:        <https://data.archief.amsterdam/shapes#> .
+@prefix saa-voc:       <https://data.archief.amsterdam/vocabulary#> .
+
+saa-ont:Archief 		rdfs:subClassOf rico:RecordSet .
+saa-ont:Verzameling 	rdfs:subClassOf rico:RecordSet .
+saa-ont:Bestanddeel 	rdfs:subClassOf rico:RecordSet .
+
+saa-ont:Informatieobject rdfs:subClassOf rico:Record .
+saa-ont:Inventaris 		rdfs:subClassOf rico:Record .
+saa-ont:Afbeelding 		rdfs:subClassOf rico:Record .
+
+saa-ont:InformatieobjectDeel rdfs:subClassOf rico:RecordPart .
+
+saa-ont:Representatie 	rdfs:subClassOf rico:Instantiation .
+
