@@ -1,12 +1,14 @@
 @prefix rdf:           <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs:          <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:           <http://www.w3.org/2001/XMLSchema#> .
 
 @prefix sh:            <http://www.w3.org/ns/shacl#> .
 
 @prefix rico:          <https://www.ica.org/standards/RiC/ontology#> .
 @prefix ric-rst:       <https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#> .
 @prefix ric-dft:       <https://www.ica.org/standards/RiC/vocabularies/documentaryFormTypes#>
-@prefix xsd:           <http://www.w3.org/2001/XMLSchema#> .
+
+@prefix crm:           <http://www.cidoc-crm.org/cidoc-crm/> .
 
 @prefix saa-ont:       <https://data.archief.amsterdam/ontology#> .
 @prefix saa-sh:        <https://data.archief.amsterdam/shapes#> .
@@ -84,12 +86,21 @@ saa-sh:ArchiefShape a sh:NodeShape ;
         sh:maxCount       1 ;
     ];
     sh:property [
-        sh:message        "Archief MUST link at least 1 rico:Identifier with rico:hasOrHadIdentifier" ;
+        sh:message        "Archief MUST link at least 1 saa-ont:Nummer with rico:hasOrHadIdentifier" ;
         sh:path           rico:hasOrHadIdentifier ;
-        sh:class          rico:Identifier ;
-        sh:minCount       1 ;
-        # TBD: testen op uniciteit: uniek nummer per type Identifier
-        # ISSUE: onderscheid numeriek / alfanumeriek?
+        sh:qualifiedValueShape [
+            sh:class          saa-ont:Nummer ;
+        ];
+        sh:qualifiedMinCount 1 ;
+        sh:qualifiedMaxCount 1 ;
+    ] ;
+    sh:property [
+        sh:message        "Archief CAN link to a rico:Identifier with rico:hasOrHadIdentifier" ;
+        sh:path           rico:hasOrHadIdentifier ;
+        sh:qualifiedValueShape [
+            sh:class          rico:Identifier ;
+        ];
+        sh:qualifiedMaxCount 1 ;
     ] ;
     sh:property [
         sh:message        "Archief MUST link to exactly 1 rico:Title with rico:hasOrHadTitle" ;
@@ -205,7 +216,6 @@ saa-sh:VerzamelingShape a sh:NodeShape ;
             [ sh:class saa-ont:Verzameling ] 
             [ sh:class saa-ont:Bestanddeel ] 
         ) ;
-        sh:minCount       0 ;
         sh:maxCount       1 ;
     ] ;
     sh:property [
@@ -276,10 +286,21 @@ saa-sh:BestanddeelShape a sh:NodeShape ;
         sh:maxCount       1 ;
     ] ;
     sh:property [
-        sh:message        "Bestanddeel MUST link at least 1 rico:Identifier with rico:hasOrHadIdentifier" ;
+        sh:message        "Bestanddeel MUST link at least 1 saa-ont:Nummer with rico:hasOrHadIdentifier" ;
         sh:path           rico:hasOrHadIdentifier ;
-        sh:class          rico:Identifier ;
-        sh:minCount       1 ;
+        sh:qualifiedValueShape [
+            sh:class          saa-ont:Nummer ;
+        ];
+        sh:qualifiedMinCount 1 ;
+        sh:qualifiedMaxCount 1 ;
+    ] ;
+    sh:property [
+        sh:message        "Bestanddeel CAN link to a rico:Identifier with rico:hasOrHadIdentifier" ;
+        sh:path           rico:hasOrHadIdentifier ;
+        sh:qualifiedValueShape [
+            sh:class          rico:Identifier ;
+        ];
+        sh:qualifiedMaxCount 1 ;
     ] ;
     sh:property [
         sh:message        "Bestanddeel MUST link to 1 saa-ont:Verzameling or saa-ont:Archief with rico:isOrWasIncludedIn" ;
@@ -298,7 +319,6 @@ saa-sh:BestanddeelShape a sh:NodeShape ;
             [ sh:class saa-ont:Verzameling ] 
             [ sh:class saa-ont:Bestanddeel ] 
         ) ;
-        sh:minCount       0 ;
         sh:maxCount       1 ;
     ] ;
     sh:or ( 
@@ -489,8 +509,8 @@ saa-sh:RepresentatieShape a sh:NodeShape ;
     ] .
 
 # AFBEELDING
+# maps from <https://example.memorix-test.nl/resources/recordtypes/Afbeelding>
 saa-sh:AfbeeldingShape a sh:NodeShape ;
-    # maps from <https://example.memorix-test.nl/resources/recordtypes/Afbeelding>
     sh:targetClass        saa-ont:Afbeelding ;
     sh:property [
         sh:message        "Afbeelding MUST link to exactly 1 saa-voc:* with rico:hasDocumentaryFormType" ;
@@ -533,9 +553,12 @@ saa-sh:AfbeeldingShape a sh:NodeShape ;
     sh:property [
         sh:message        "Afbeelding MUST link to 1 saa-ont:Bestanddeel with rico:isOrWasIncludedIn" ;
         sh:path           rico:isOrWasIncludedIn ;
-        sh:class          saa-ont:Bestanddeel ;
+        sh:or (
+            [ sh:nodeKind       sh:IRI ; ]
+            [ sh:class          saa-ont:Bestanddeel ; ]
+        ) ;
         sh:minCount       1 ;
-        sh:maxCount       2 ;
+        sh:maxCount       1 ;
     ] ;
     sh:property [
         sh:message        "Afbeelding CAN link to 1 or more owl:Thing with rico:hasOrHadSubject" ;
@@ -554,12 +577,70 @@ saa-sh:AfbeeldingShape a sh:NodeShape ;
         sh:maxCount       1 ;
     ] .
 
-# ALGEMEEN
+# KUNSTWERK
+# maps from <https://example.memorix-test.nl/resources/recordtypes/Afbeelding>
+# TBD: mapping van rico:scopeAndContent naar crm
+# TBD: mapping van rico:hasOrHadSubject naar crm
+saa-sh:KunstwerkShape a sh:NodeShape ;
+    sh:targetClass      crm:E22_Human-Made_Object ;  
+    sh:property [
+        sh:message      "Kunstwerk MUST link to exactly 1 specific artwork type" ;
+        sh:path         crm:P2_has_type ;
+        sh:in           ( saa-voc:Foto saa-voc:Tekening saa-voc:Bouwtekening ) ; # etc. etc.
+        sh:minCount     1 ;
+        sh:maxCount     1 ;
+    ] ;
+    sh:property [
+        sh:message      "Kunstwerk MUST link to at least 1 crm:E33_E41_Linguistic_Appellation (titel) with type aat:300404670 and language aat:300388256" ;
+        sh:path         crm:P1_is_identified_by ;
+        sh:qualifiedValueShape [
+            sh:class    crm:E33_E41_Linguistic_Appellation ;
+            sh:property [
+                sh:path     crm:P72_has_language ;
+                sh:hasValue <http://vocab.getty.edu/aat/300388256>
+            ] ;
+            sh:property [
+                sh:path     crm:P2_has_type ;
+                sh:hasValue <http://vocab.getty.edu/aat/300404670>
+            ]            
+        ];
+        sh:qualifiedMinCount 1 ;
+    ] ;
+    sh:property [
+        sh:message      "Kunstwerk MUST link to at least 1 crm:E42_Identifier of type aat:300312355" ;
+        sh:path         crm:P1_is_identified_by ;
+        sh:qualifiedValueShape [
+            sh:class    crm:E42_Identifier ;
+            sh:property [
+                sh:path     crm:P2_has_type ;
+                sh:hasValue <http://vocab.getty.edu/aat/300312355>
+            ]            
+        ];
+        sh:qualifiedMinCount 1 ;
+    ] ;
+    sh:property [
+        sh:message        "Kunstwerk MUST link to 1 saa-ont:Bestanddeel with rico:isOrWasIncludedIn" ;
+        sh:path           rico:isOrWasIncludedIn ;
+        sh:or (
+            [ sh:nodeKind       sh:IRI ; ]
+            [ sh:class          saa-ont:Bestanddeel ; ]
+        ) ;
+        sh:minCount       1 ;
+        sh:maxCount       1 ;
+    ] ;
+    sh:property [
+        sh:message        "Kunstwerk CAN link to at most 1 crm:E12_Production with crm:P108i_was_produced_by" ;
+        sh:path           crm:P108i_was_produced_by ;
+        sh:class          crm:E12_Production ; 
+        sh:maxCount       1 ;
+    ] .
 
-## Identifier
+# ALGEMEEN RICO
+
+## rico:Identifier
 saa-sh:IdentifierShape a sh:NodeShape ;
     sh:targetClass        rico:Identifier ;
-    sh:property saa-sh:textualValueShape ;
+    sh:property           saa-sh:textualValueShape ;
     sh:property [
         sh:message        "rico:Identifier MUST link to exactly 1 rico:IdentifierType with rico:hasIdentifierType" ;
         sh:path           rico:hasIdentifierType ;
@@ -568,12 +649,39 @@ saa-sh:IdentifierShape a sh:NodeShape ;
         sh:maxCount       1 ;
     ] .
 
-## Title
+saa-sh:NummerShape a sh:NodeShape ;
+    sh:targetClass        saa-ont:Nummer ;
+    sh:property [
+        sh:message        "Nummer MUST link to exactly 1 rico:IdentifierType with rico:hasIdentifierType" ;
+        sh:path           rico:hasIdentifierType ;
+        sh:class          rico:IdentifierType ;
+        sh:minCount       1 ;
+        sh:maxCount       1 ;
+    ] ;
+    sh:property [
+        sh:message        "Nummer MUST link to exactly 1 xsd:integer with rico:textualValue" ;
+        sh:path           rico:textualValue ;
+        sh:qualifiedValueShape [
+            sh:datatype   xsd:integer ;
+        ];
+        sh:qualifiedMinCount 1 ;
+        sh:qualifiedMaxCount 1 ;
+    ] ;
+    sh:property [
+        sh:message        "Nummer CAN link to at most 1 xsd:string with rico:textualValue " ;
+        sh:path           rico:textualValue ;
+        sh:qualifiedValueShape [
+            sh:datatype   xsd:string ;
+        ];
+        sh:qualifiedMaxCount 1 ;
+    ] .
+
+## rico:Title
 saa-sh:TitleShape a sh:NodeShape ;
     sh:targetClass  rico:Title ;
     sh:property     saa-sh:textualValueShape .
 
-## Date
+## rico:Date
 saa-sh:SingleDateShape a sh:NodeShape ;
     sh:targetClass        rico:SingleDate ;
     sh:property [
@@ -616,7 +724,7 @@ saa-sh:DateRangeShape a sh:NodeShape ;
         sh:datatype       xsd:string ;
     ] .
 
-## Type
+## rico:Type
 saa-sh:TypeShape a sh:NodeShape ;
     sh:targetClass        rico:IdentifierType, rico:CarrierType, rico:ProductionTechniqueType, rico:DocumentaryFormType ;
     sh:property [
@@ -627,17 +735,17 @@ saa-sh:TypeShape a sh:NodeShape ;
         sh:maxCount       1 ;
     ] .
 
-## Name
+## rico:Name
 saa-sh:NameShape a sh:NodeShape ;
     sh:targetClass  rico:Name, rico:AgentName ;
     sh:property     saa-sh:textualValueShape .
 
-## Extent
+## rico:Extent
 saa-sh:ExtentShape a sh:NodeShape ;
     sh:targetClass  rico:InstantiationExtent, rico:CarrierExtent ;
     sh:property     saa-sh:textualValueShape .
 
-## textualValue
+## rico:textualValue
 saa-sh:textualValueShape a sh:PropertyShape ;
     sh:message        "This node MUST link to exactly 1 xsd:string with rico:textualValue" ;
     sh:path           rico:textualValue ;
@@ -646,4 +754,64 @@ saa-sh:textualValueShape a sh:PropertyShape ;
         [sh:datatype  rdf:XMLLiteral ; ]
     ) ;
     sh:minCount       1 ;
-    sh:minCount       1 .
+    sh:maxCount       1 .
+
+# ALGEMEEN CIDOC-CRM (Linked Art!)
+
+## crm:Production
+saa-sh:ProductionShape a sh:NodeShape ;
+    sh:targetClass  crm:E12_Production ;
+    sh:property [
+        sh:message        "" ;
+        sh:path           crm:P14_carried_out_by ;
+        sh:maxCount       1 ;
+    ] ;
+    sh:property [
+        sh:message        "" ;
+        sh:path           crm:P4_has_time-span ;
+        sh:maxCount       1 ;
+    ] .
+
+## crm:TimeSpan
+saa-sh:TimeSpanShape a sh:NodeShape ;
+    sh:targetClass  crm:E52_Time-Span ;
+    sh:property [
+        sh:message        "" ;
+        sh:path           crm:P82a_begin_of_the_begin ;
+        sh:datatype       xsd:dateTime ;
+        sh:minCount       1 ;
+        sh:maxCount       1 ;
+    ] ;
+    sh:property [
+        sh:message        "" ;
+        sh:path           crm:P82b_end_of_the_end ;
+        sh:datatype       xsd:dateTime ;
+        sh:minCount       1 ;
+        sh:maxCount       1 ;
+    ] ;
+    sh:property [
+        sh:message        "" ;
+        sh:path           crm:P1_is_identified_by ;
+        sh:class          crm:E33_E41_Linguistic_Appellation ;
+        sh:maxCount       1 ;
+    ] .
+
+## crm:Appellation
+saa-sh:AppellationShape a sh:NodeShape ;
+    sh:targetClass  crm:E42_Identifier, crm:E33_E41_Linguistic_Appellation ;
+    sh:property     saa-sh:symbolicContentShape ;
+    sh:property [   
+        sh:path           crm:P2_has_type ;
+        sh:minCount       1 ;        
+    ] .
+
+## crm:symbolicContent
+saa-sh:symbolicContentShape a sh:PropertyShape ;
+    sh:message        "This node MUST link to exactly 1 xsd:string with crm:P190_has_symbolic_content" ;
+    sh:path           crm:P190_has_symbolic_content ;
+    sh:or (
+        [sh:datatype  xsd:string ; ]
+        [sh:datatype  rdf:XMLLiteral ; ]
+    ) ;
+    sh:minCount       1 ;
+    sh:maxCount       1 .

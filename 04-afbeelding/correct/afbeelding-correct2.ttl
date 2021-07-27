@@ -1,0 +1,47 @@
+@prefix rdf:           <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:          <http://www.w3.org/2000/01/rdf-schema#> .
+
+@prefix crm:           <http://www.cidoc-crm.org/cidoc-crm/> .
+@prefix rico:          <https://www.ica.org/standards/RiC/ontology#> .
+
+@prefix saa-ont:       <https://data.archief.amsterdam/ontology#> .
+@prefix saa-voc:       <https://data.archief.amsterdam/vocabulary#> .
+
+@prefix xsd:           <http://www.w3.org/2001/XMLSchema#> .
+
+<https://data.archief.amsterdam/item/4f3d64b1a1e22edf474a620112b1ce3a>
+    # https://archief.amsterdam/beeldbank/detail/4f3d64b1-a1e2-2edf-474a-620112b1ce3a
+    a saa-ont:Kunstwerk, crm:E22_Human-Made_Object ;
+    rdfs:label "Exterieur van een goederenloods op de Oostelijke Handelskade" ;
+    crm:P1_is_identified_by [
+        crm:P190_has_symbolic_content "4f3d64b1-a1e2-2edf-474a-620112b1ce3a" ;
+        crm:P2_has_type <http://vocab.getty.edu/aat/300312355> ;
+        a crm:E42_Identifier
+    ] ;
+    crm:P1_is_identified_by [
+        crm:P190_has_symbolic_content "ABBB00008000011" ;
+        crm:P2_has_type [
+            a crm:E55_Type ;
+            rdfs:label "Afbeeldingsbestand"
+        ] ;
+        a crm:E42_Identifier
+    ] ;
+    crm:P1_is_identified_by [
+        crm:P190_has_symbolic_content "Exterieur van een goederenloods op de Oostelijke Handelskade" ;
+        crm:P2_has_type <http://vocab.getty.edu/aat/300404670> ;
+        crm:P72_has_language <http://vocab.getty.edu/aat/300388256> ;
+        a crm:E33_E41_Linguistic_Appellation
+    ] ;
+    crm:P2_has_type saa-voc:Foto ;
+    crm:P108i_was_produced_by [
+        crm:P4_has_time-span [
+            crm:P82a_begin_of_the_begin "1900-01-01T00:00:00"^^xsd:dateTime ;
+            crm:P82b_end_of_the_end "1907-12-31T23:59:59"^^xsd:dateTime ;
+            a crm:E52_Time-Span
+        ] ;
+        a crm:E12_Production
+    ] ;
+
+    rico:scopeAndContent "Foto uit een losbladig album met 18 foto's van de Amsterdamse haven, aangeboden aan Petrus Wilhelmus Cornelis de Graaf, oud-ingenieur en hoofd van de Afdeling Havenwerken van de Gemeente Amsterdam, ter herinnering aan de 25-jarige ambtsvervulling (1882-1907)." ;
+    rico:isOrWasIncludedIn <https://data.archief.amsterdam/file/UUID-van-invnr-498-van-10054> ;
+    rico:hasOrHadSubject <https://adamlink.nl/geo/street/oostelijke-handelskade/3310> .

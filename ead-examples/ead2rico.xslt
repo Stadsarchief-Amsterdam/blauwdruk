@@ -152,7 +152,9 @@
 <!-- preliminary mapping, created in my learning-by-doing way of working! -->
 <xsl:template match="did">
     <xsl:param name="type"/>
-    <xsl:apply-templates select="unitid"/>
+    <xsl:apply-templates select="unitid">
+        <xsl:with-param name="type" select="$type"/>
+    </xsl:apply-templates>
     <xsl:apply-templates select="unittitle"/>
     <xsl:apply-templates select="unitdate"/>
     <xsl:apply-templates select="physdesc">
@@ -165,9 +167,13 @@
 </xsl:template>
 
 <xsl:template match="unitid">
+    <xsl:param name="type"/>
     <rico:hasOrHadIdentifier>
         <rico:Identifier>
             <rico:textualValue>
+                <xsl:if test="$type='file'">
+                    <xsl:attribute name="rdf:datatype">http://www.w3.org/2001/XMLSchema#integer</xsl:attribute>
+                </xsl:if>
                 <xsl:value-of select="."/>
             </rico:textualValue>
             <rico:hasIdentifierType>
