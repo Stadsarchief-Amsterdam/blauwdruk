@@ -1,0 +1,27 @@
+@prefix rdf:           <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:          <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:           <http://www.w3.org/2001/XMLSchema#> .
+@prefix sh:            <http://www.w3.org/ns/shacl#> .
+
+@prefix rico:          <https://www.ica.org/standards/RiC/ontology#> .
+@prefix ric-rst:       <https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#> .
+@prefix ric-dft:       <https://www.ica.org/standards/RiC/vocabularies/documentaryFormTypes#>
+
+@prefix crm:           <http://www.cidoc-crm.org/cidoc-crm/> .
+
+@prefix saa-ont:       <https://data.archief.amsterdam/ontology#> .
+@prefix saa-sh:        <https://data.archief.amsterdam/shapes#> .
+@prefix saa-voc:       <https://data.archief.amsterdam/vocabulary#> .
+
+@prefix owl: 		   <http://www.w3.org/2002/07/owl#> .
+@prefix dct: 		   <http://purl.org/dc/terms/> .
+
+@prefix skos: 		   <http://www.w3.org/2004/02/skos/core#> .
+
+saa-voc:Foto a skos:Concept, rico:DocumentaryFormType ;
+	skos:exactMatch <http://vocab.getty.edu/aat/300046300> .
+
+saa-voc:NotarieleAkte a skos:Concept, rico:DocumentaryFormType ;
+	skos:narrower saa-voc:Testament .
+
+saa-voc:Testament a skos:Concept, rico:DocumentaryFormType .

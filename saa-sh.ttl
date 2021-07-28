@@ -427,23 +427,23 @@ saa-sh:InformatieobjectShape a sh:NodeShape ;
         sh:nodeKind       sh:IRI ;    
     ] .
 
-# INFORMATIEOBJECTDEEL
-saa-sh:InformatieDeelobjectShape a sh:NodeShape ;
-    sh:targetClass        saa-ont:InformatieobjectDeel ;
+# INFORMATIEOBJECTONDERDEEL
+saa-sh:InformatieonderdeelobjectShape a sh:NodeShape ;
+    sh:targetClass        saa-ont:Informatieobjectonderdeel ;
     sh:property [
-        sh:message        "InformatieobjectDeel MUST link at least 1 rico:Identifier with rico:hasOrHadIdentifier" ;
+        sh:message        "Informatieobjectonderdeel MUST link at least 1 rico:Identifier with rico:hasOrHadIdentifier" ;
         sh:path           rico:hasOrHadIdentifier ;
         sh:class          rico:Identifier ;
         sh:minCount       1 ;
     ] ;
     sh:property [
-        sh:message        "InformatieobjectDeel CAN link to at most 1 rico:Title with rico:hasOrHadTitle" ;
+        sh:message        "Informatieobjectonderdeel CAN link to at most 1 rico:Title with rico:hasOrHadTitle" ;
         sh:path           rico:hasOrHadTitle ;
         sh:class          rico:Title ;
         sh:maxCount       1 ;
     ] ;
     sh:property [
-        sh:message        "InformatieobjectDeel CAN link to at most 1 rico:SingleDate or rico:DateRange with rico:isAssociatedWith" ;
+        sh:message        "Informatieobjectonderdeel CAN link to at most 1 rico:SingleDate or rico:DateRange with rico:isAssociatedWith" ;
         sh:path           rico:isAssociatedWithDate ;
         sh:or (
             [ sh:class          rico:SingleDate ; ]
@@ -452,7 +452,7 @@ saa-sh:InformatieDeelobjectShape a sh:NodeShape ;
         sh:maxCount       1 ;
     ] ;
     sh:property [
-        sh:message        "InformatieobjectDeel CAN link to at most 1 xsd:string with rico:scopeAndContent" ;
+        sh:message        "Informatieobjectonderdeel CAN link to at most 1 xsd:string with rico:scopeAndContent" ;
         sh:path           rico:scopeAndContent ;
         sh:or (
             [sh:datatype  xsd:string ; ]
@@ -461,7 +461,7 @@ saa-sh:InformatieDeelobjectShape a sh:NodeShape ;
         sh:maxCount       1 ;
     ] ;    
     sh:property [
-        sh:message        "InformatieobjectDeel MUST link to 1 saa-ont:Informatieobject with rico:isOrWasIncludedIn" ;
+        sh:message        "Informatieobjectonderdeel MUST link to 1 saa-ont:Informatieobject with rico:isOrWasIncludedIn" ;
         sh:path           rico:isOrWasIncludedIn ;
         sh:class          saa-ont:Informatieobject ;
         sh:minCount       1 ;

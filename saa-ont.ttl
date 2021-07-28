@@ -13,19 +13,72 @@
 @prefix saa-sh:        <https://data.archief.amsterdam/shapes#> .
 @prefix saa-voc:       <https://data.archief.amsterdam/vocabulary#> .
 
-saa-ont:Archief 		rdfs:subClassOf rico:RecordSet .
-saa-ont:Verzameling 	rdfs:subClassOf rico:RecordSet .
-saa-ont:Bestanddeel 	rdfs:subClassOf rico:RecordSet .
+@prefix owl: 		   <http://www.w3.org/2002/07/owl#> .
+@prefix dct: 		   <http://purl.org/dc/terms/> .
 
-saa-ont:Informatieobject rdfs:subClassOf rico:Record .
-saa-ont:Inventaris 		rdfs:subClassOf rico:Record .
-saa-ont:Afbeelding 		rdfs:subClassOf rico:Record .
+<https://data.archief.amsterdam/ontology#> a owl:Ontology ;
+	rdfs:label "Amsterdam City Archives RiC-O extension"@en ;
+	rdfs:label "Stadsarchief Amsterdam RiC-O extensie"@nl ;
+	owl:imports <https://www.ica.org/standards/RiC/ontology> ;
+	rdfs:comment "Formal definitions of entities used for archival description in the Amsterdam City Archives."@en ;
+	rdfs:comment "Formele definities van entiteiten gebruikt voor archiefbeschrijvingen bij Stadsarchief Amsterdam."@nl ;
+	dct:publisher [
+		schema:name "Amsterdam City Archives"@en ;
+		schema:name "Stadsarchief Amsterdam"@nl ;
+		schema:identifier <https://www.amsterdam.nl/stadsarchief/> ;
+  	] ;
+  	dct:creator [
+    	schema:name "Ivo Zandhuis" ;
+    	schema:email <ivo@zandhuis.nl> ;
+  	] ;
+	dct:rights "© 2021-… Amsterdam City Archives, Amsterdam, the Netherlands" ;
+	dct:license <https://creativecommons.org/licenses/by/4.0/> ;
+	dct:created  "2021-07-21T17:00:00+00:00"^^xsd:dateTime ;
+  	dct:modified "2021-07-28T17:00:00+00:00"^^xsd:dateTime ;
+  	dct:description "We introduce this ontology because we require different mandatory properties for different subClasses of entities in the RiC ontology. We have defined shapes in SHACL to validate data according to these requirement."
 
-saa-ont:Kunstwerk       rdfs:subClassOf crm:E22_Human-Made_Object .
+# subClassesOf rico:RecordSet
+saa-ont:Archief a owl:Class ;
+	rdfs:subClassOf rico:RecordSet ;
+	rdf:comment "zie definitie van Archief. Voorbeeld van een specifieke eis: MOET een relatie rico:isOrWasDescribedBy hebben met saa-ont:Inventaris."@nl .
 
-saa-ont:InformatieobjectDeel rdfs:subClassOf rico:RecordPart .
+saa-ont:Verzameling a owl:Class ;
+	rdfs:subClassOf rico:RecordSet ;
+	rdf:comment "Een groep Bestanddelen, die binnen een archief zijn onderscheiden. Meestal van toepassing bij papieren archieven. Beschreven in een verzamelbeschrijving, of aangeduid met een rubriek. Voorbeeld van een specifieke eis"@nl .
 
-saa-ont:Representatie 	rdfs:subClassOf rico:Instantiation .
+saa-ont:Bestanddeel a owl:Class ;
+	rdfs:subClassOf rico:RecordSet ;
+	rdf:comment "Opvraagbare eenheid, alles met een inventarisnummer. Vaak een verzameling Informatieobjecten. Dossier. Voorbeeld van een specifieke eis: MOET een opgesplitst Identificatienummer (saa-ont:Nummer) hebben."@nl .
 
-saa-ont:Nummer 			rdfs:subClassOf rico:Identifier .
+# subClassesOf rico:Record
+saa-ont:Informatieobject a owl:Class ;
+	rdfs:subClassOf rico:Record ;
+	rdf:comment "Logische eenheid van informatie, synoniem met document, akte, archiefstuk. Voorbeelden zijn geboorteakte, testament, brief, rapport, email."@nl .
+
+saa-ont:Inventaris a owl:Class ;
+	rdfs:subClassOf rico:Record ;
+	rdf:comment "Beschrijving van een archief als geheel. Hierbij is vastgelegd wie de inventarisatie heeft uitgevoerd en wanneer."@nl .
+
+saa-ont:Afbeelding a owl:Class ;	
+	rdfs:subClassOf rico:Record ;
+	rdf:comment ""@nl .
+
+saa-ont:Kunstwerk a owl:Class ;  
+    rdfs:subClassOf crm:E22_Human-Made_Object ;
+	rdf:comment ""@nl .
+
+# subClassesOf rico:RecordPart
+saa-ont:Informatieobjectonderdeel a owl:Class ;
+	rdfs:subClassOf rico:RecordPart ;
+	rdf:comment ""@nl .
+
+# subClassesOf rico:Instantiation
+saa-ont:Representatie a owl:Class ;	
+	rdfs:subClassOf rico:Instantiation ;
+	rdf:comment ""@nl .
+
+# subClassesOf rico:Identifier
+saa-ont:Nummer a owl:Class ;			
+	rdfs:subClassOf rico:Identifier ;
+	rdf:comment "Identificatienummer met een (verplicht) numeriek deel en een (mogelijk) niet-numeriek deel."@nl .
 

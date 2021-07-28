@@ -11,8 +11,8 @@
     a saa-ont:Archief, rico:RecordSet ;
     rico:hasRecordSetType ric-voc:Fonds ;
     rico:hasOrHadIdentifier [
-        a rico:Identifier ;
-        rico:textualValue "30920" ;
+        a saa-ont:Nummer ;
+        rico:textualValue 30920 ;
         rico:hasIdentifierType [
             a rico:IdentifierType ;
             rico:hasOrHadName [
