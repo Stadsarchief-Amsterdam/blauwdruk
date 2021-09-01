@@ -119,7 +119,7 @@ saa-sh:ArchiefShape a sh:NodeShape ;
         sh:message        "Archief MUST link to exactly 1 rico:SingleDate or rico:DateRange with rico:isAssociatedWithDate"@en ;
         sh:message        "Archief MOET linken naar precies 1 rico:SingleDate of rico:DateRange met rico:isAssociatedWithDate"@nl ;
         rdfs:label        "Datering"@nl ;
-        rdfs:comment      "De datering kan bestaan uit een losse datum of een begin- en einddatum. De datum mag een jaartal zijn of een complete datum. Er is een apart veld voor textuele invoer, waarin bijvoorbeel 'ca. 1830' kan worden ingevoerd."@nl ;
+        rdfs:comment      "De datering kan bestaan uit een losse datum of een begin- en einddatum. De datum mag een jaartal zijn of een complete datum. Er is een apart veld voor textuele invoer, waarin bijvoorbeeld 'ca. 1830' kan worden ingevoerd."@nl ;
         sh:path           rico:isAssociatedWithDate ;
         sh:or (
             [ sh:class          rico:SingleDate ; ]
@@ -157,7 +157,7 @@ saa-sh:ArchiefShape a sh:NodeShape ;
         sh:message        "Archief MUST link to at least 1 rico:Agent with rico:hasAccumulator"@en ;
         sh:message        "Archief MOET linken naar ten minste 1 rico:Agent met rico:hasAccumulator"@nl ;
         rdfs:label        "Archiefvormer"@nl ;
-        rdfs:comment      ""@nl ;
+        rdfs:comment      "Een archief heeft ten minste een archiefvormer deze is opgenomen in de lijst van personen en instellingen. Met deze property wordt de verwijzing naar deze lijst opgenomen."@nl ;
         sh:path           rico:hasAccumulator ;
         sh:or (
             [ sh:nodeKind       sh:IRI ; ]
@@ -171,7 +171,7 @@ saa-sh:ArchiefShape a sh:NodeShape ;
         sh:message        "Archief MUST link to at least 1 saa-ont:Inventaris with rico:isOrWasDescribedBy"@en ;
         sh:message        "Archief MOET linken naar tenminste 1 saa-ont:Inventaris met rico:isOrWasDescribedBy"@nl ;
         rdfs:label        "Blok Inventarisatie"@nl ;
-        rdfs:comment      ""@nl ;
+        rdfs:comment      "Het blok Inventarisatie bevat data die in RiC-O is vastgelegd in de metadata over de 'Inventaris', gedefinieerd als saa-ont:Inventaris. Als er nieuwe informatie over de inventarisatie is, is er een in RiC-O termen een nieuwe Inventaris aangemaakt. Er zijn dan meerdere 'Inventarissen' aan het Archief gekoppeld."@nl ;
         sh:path           rico:isOrWasDescribedBy ;
         sh:class          saa-ont:Inventaris ;
         sh:minCount       1 ;
@@ -182,29 +182,38 @@ saa-sh:VerzamelingShape a sh:NodeShape ;
     # maps from <[memorix-base-url]/resources/recordtypes/Verzameling>
     sh:targetClass        saa-ont:Verzameling ;
     sh:property [
-        sh:message        "Verzameling MUST link to ric-rst:Series with rico:hasRecordSetType" ;
-        sh:message        ""@nl ;
-        rdfs:label        ""@nl ;
-        rdfs:comment      ""@nl ;
+        sh:message        "Verzameling MUST link to ric-rst:Series with rico:hasRecordSetType"@en ;
+        sh:message        "Verzameling MOET linken naar ric-rst:Series met rico:hasRecordSetType"@nl ;
+        rdfs:comment      "Deze informatie is altijd hetzelfde en wordt daarom niet door beschrijvers in Memorix ingevoerd, maar moet standaard bij een export worden toegevoegd."@nl ;
         sh:path           rico:hasRecordSetType ;
         sh:in             ( ric-rst:Series ) ;
         sh:minCount       1 ;
         sh:maxCount       1 ;
     ] ;
     sh:property [
-        sh:message        "Verzameling MUST link at least 1 rico:Identifier with rico:hasOrHadIdentifier" ;
-        sh:message        ""@nl ;
-        rdfs:label        ""@nl ;
-        rdfs:comment      ""@nl ;
+        sh:message        "Verzameling MUST link at least 1 rico:Identifier with rico:hasOrHadIdentifier"@en ;
+        sh:message        "Verzameling MOET linken naar ten minste 1 rico:Identifier met rico:hasOrHadIdentifier"@nl ;
+        rdfs:label        "Rubriekscode"@nl ;
+        rdfs:comment      "TBD: is dit een 'onderwerp' of het nummer van een Verzameling?"@nl ;
         sh:path           rico:hasOrHadIdentifier ;
         sh:class          rico:Identifier ;
         sh:minCount       1 ;
     ] ;
     sh:property [
-        sh:message        "Verzameling MUST link to 1 saa-ont:Verzameling or saa-ont:Archief with rico:isOrWasIncludedIn" ;
-        sh:message        ""@nl ;
-        rdfs:label        ""@nl ;
-        rdfs:comment      ""@nl ;
+        sh:message        "Verzameling MUST link to exactly 1 rico:Title with rico:hasOrHadTitle"@en ;
+        sh:message        "Verzameling MOET linken naar precies 1 rico:Title with rico:hasOrHadTitle"@nl ;
+        rdfs:label        "Beschrijving"@nl ;
+        rdfs:comment      "Een Verzameling heeft een beknopte beschrijving, die in het geval van een oude inventaris dienst doet als kopje."@nl ;
+        sh:path           rico:hasOrHadTitle ;
+        sh:class          rico:Title ;
+        sh:minCount       1 ;
+        sh:maxCount       1 ;
+    ]; 
+    sh:property [
+        sh:message        "Verzameling MUST link to exactly 1 saa-ont:Verzameling or saa-ont:Archief with rico:isOrWasIncludedIn"@en ;
+        sh:message        "Verzameling MOET linken naar precies 1 saa-ont:Verzameling of saa-ont:Archief met rico:isOrWasIncludedIn"@nl ;
+        rdfs:label        "Parent"@nl ;
+        rdfs:comment      "Een Verzameling maakt onderdeel uit van een Archief of is de 'sub'Verzameling van een andere Verzameling."@nl ;
         sh:path           rico:isOrWasIncludedIn ;
         sh:or (
             [ sh:class saa-ont:Verzameling ] 
@@ -214,10 +223,10 @@ saa-sh:VerzamelingShape a sh:NodeShape ;
         sh:maxCount       1 ;
     ] ;
     sh:property [
-        sh:message        "Verzameling MUST link to 1 following rico:RecordSet (Verzameling or Bestanddeel) with rico:precedesOrPreceded" ;
-        sh:message        ""@nl ;
-        rdfs:label        ""@nl ;
-        rdfs:comment      ""@nl ;
+        sh:message        "Verzameling CAN link to 1 following rico:RecordSet (Verzameling or Bestanddeel) with rico:precedesOrPreceded"@en ;
+        sh:message        "Verzameling KAN linken naar 1 volgende rico:RecordSet (Verzameling of Bestanddeel) met rico:precedesOrPreceded"@nl ;
+        rdfs:label        "Volgende"@nl ;
+        rdfs:comment      "In een oude archiefinventaris is de volgorde waarin de Verzamelingen ('rubrieken, verzamelbeschrijvingen') zijn opgenomen relevant. Deze volgorde kan met deze eigenschap worden vastgelegd door te verwijzen naar de volgende in de reeks."@nl ;
         sh:path           rico:precedesOrPreceded ;
         sh:or (
             [ sh:class saa-ont:Verzameling ] 
@@ -226,20 +235,10 @@ saa-sh:VerzamelingShape a sh:NodeShape ;
         sh:maxCount       1 ;
     ] ;
     sh:property [
-        sh:message        "Verzameling MUST link to exactly 1 rico:Title with rico:hasOrHadTitle" ;
-        sh:message        ""@nl ;
-        rdfs:label        ""@nl ;
-        rdfs:comment      ""@nl ;
-        sh:path           rico:hasOrHadTitle ;
-        sh:class          rico:Title ;
-        sh:minCount       1 ;
-        sh:maxCount       1 ;
-    ]; 
-    sh:property [
-        sh:message        "Verzameling CAN link to at most 1 rico:SingleDate or rico:DateRange with rico:isAssociatedWithDate" ;
-        sh:message        ""@nl ;
-        rdfs:label        ""@nl ;
-        rdfs:comment      ""@nl ;
+        sh:message        "Verzameling CAN link to at most 1 rico:SingleDate or rico:DateRange with rico:isAssociatedWithDate"@en ;
+        sh:message        "Verzameling KAN linken naar maximaal 1 rico:SingleDate of rico:DateRange met rico:isAssociatedWithDate"@nl ;
+        rdfs:label        "Datering"@nl ;
+        rdfs:comment      "De datering kan bestaan uit een losse datum of een begin- en einddatum. De datum mag een jaartal zijn of een complete datum. Er is een apart veld voor textuele invoer, waarin bijvoorbeeld 'ca. 1830' kan worden ingevoerd."@nl ;
         sh:path           rico:isAssociatedWithDate ;
         sh:or (
             [ sh:class          rico:SingleDate ; ]
@@ -248,56 +247,10 @@ saa-sh:VerzamelingShape a sh:NodeShape ;
         sh:maxCount       1 ;
     ] ;
     sh:property [
-        sh:message        "Verzameling CAN link to at most 1 xsd:string or xsd:XMLLiteral with rico:scopeAndContent" ;
-        sh:message        ""@nl ;
-        rdfs:label        ""@nl ;
-        rdfs:comment      ""@nl ;
-        sh:path           rico:scopeAndContent ;
-        sh:or (
-            [sh:datatype  xsd:string ; ]
-            [sh:datatype  rdf:XMLLiteral ; ]
-        ) ;
-        sh:maxCount       1 ;
-    ] ;
-    sh:property [
-        sh:message        "Verzameling CAN link to at most 1 xsd:string or xsd:XMLLiteral with rico:descriptiveNote" ;
-        sh:message        ""@nl ;
-        rdfs:label        ""@nl ;
-        rdfs:comment      ""@nl ;
-        sh:path           rico:descriptiveNote ;
-        sh:or (
-            [sh:datatype  xsd:string ; ]
-            [sh:datatype  rdf:XMLLiteral ; ]
-        ) ;
-        sh:maxCount       1 ;
-    ] ;
-#       Accumulator alleen mogelijk bij archief of bestanddeel !!
-#    sh:property [
-#        sh:message        "Verzameling CAN link to 1 or more rico:Agent with rico:hasAccumulator" ;
-#        sh:message        ""@nl ;
-#        rdfs:label        ""@nl ;
-#        rdfs:comment      ""@nl ;
-#        sh:path           rico:hasAccumulator ;
-#        sh:or (
-#            [ sh:nodeKind       sh:IRI ; ]
-#            [ sh:class          rico:Person ; ]
-#            [ sh:class          rico:CorporateBody ; ]
-#            [ sh:class          rico:Family ; ]
-#        ) ;
-#    ] ;
-    sh:property [
-        sh:message        "Verzameling CAN link to 1 or more owl:Thing with rico:hasOrHadSubject" ;
-        sh:message        ""@nl ;
-        rdfs:label        ""@nl ;
-        rdfs:comment      ""@nl ;
-        sh:path           rico:hasOrHadSubject ;
-        sh:nodeKind       sh:IRI ;    
-    ] ;
-    sh:property [
         sh:message        "Verzameling CAN link to 1 or more rico:Instantiation with rico:hasInstantiation" ;
-        sh:message        ""@nl ;
+        sh:message        "Verzameling KAN linken naar 1 of meer rico:Instantiation met rico:hasInstantiation"@nl ;
         rdfs:label        ""@nl ;
-        rdfs:comment      ""@nl ;
+        rdfs:comment      "De uiterlijke vorm van een verzamelbeschrijving maakt onderdeel uit van de beschrijving van de fysieke, (papieren) representatie. Daarom wordt deze in de data geintroduceerd en wordt deze daar opgenomen."@nl ;
         sh:path           rico:hasInstantiation ;
         sh:nodeKind       sh:IRI ;    
     ] .
