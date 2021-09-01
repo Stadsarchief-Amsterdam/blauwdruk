@@ -56,7 +56,7 @@
 # subClassesOf rico:RecordSet
 saa-ont:Archief a owl:Class ;
 	rdfs:subClassOf rico:RecordSet ;
-	rdf:comment "zie definitie van Archief. Voorbeeld van een specifieke eis: MOET een relatie rico:isOrWasDescribedBy hebben met saa-ont:Inventaris."@nl .
+	rdf:comment ""@nl .
 
 saa-ont:Verzameling a owl:Class ;
 	rdfs:subClassOf rico:RecordSet ;

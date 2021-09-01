@@ -247,7 +247,7 @@ saa-sh:VerzamelingShape a sh:NodeShape ;
         sh:maxCount       1 ;
     ] ;
     sh:property [
-        sh:message        "Verzameling CAN link to 1 or more rico:Instantiation with rico:hasInstantiation" ;
+        sh:message        "Verzameling CAN link to 1 or more rico:Instantiation with rico:hasInstantiation"@en ;
         sh:message        "Verzameling KAN linken naar 1 of meer rico:Instantiation met rico:hasInstantiation"@nl ;
         rdfs:label        ""@nl ;
         rdfs:comment      "De uiterlijke vorm van een verzamelbeschrijving maakt onderdeel uit van de beschrijving van de fysieke, (papieren) representatie. Daarom wordt deze in de data geintroduceerd en wordt deze daar opgenomen."@nl ;
@@ -261,20 +261,19 @@ saa-sh:BestanddeelShape a sh:NodeShape ;
     # maps from <[memorix-base-url]/resources/recordtypes/Bestanddeel>
     sh:targetClass        saa-ont:Bestanddeel ;
     sh:property [
-        sh:message        "Bestanddeel MUST link to ric-rst:File with rico:hasRecordSetType" ;
-        sh:message        ""@nl ;
-        rdfs:label        ""@nl ;
-        rdfs:comment      ""@nl ;
+        sh:message        "Bestanddeel MUST link to ric-rst:File with rico:hasRecordSetType"@en ;
+        sh:message        "Bestanddeel MOET linken naar ric-rst:File met rico:hasRecordSetType"@nl ;
+        rdfs:comment      "Deze informatie is altijd hetzelfde en wordt daarom niet door beschrijvers in Memorix ingevoerd, maar moet standaard bij een export worden toegevoegd."@nl ;
         sh:path           rico:hasRecordSetType ;
         sh:in             ( ric-rst:File ) ;
         sh:minCount       1 ;
         sh:maxCount       1 ;
     ] ;
     sh:property [
-        sh:message        "Bestanddeel MUST link at least 1 saa-ont:Nummer with rico:hasOrHadIdentifier" ;
-        sh:message        ""@nl ;
-        rdfs:label        ""@nl ;
-        rdfs:comment      ""@nl ;
+        sh:message        "Bestanddeel MUST link exactly 1 saa-ont:Nummer with rico:hasOrHadIdentifier"@en ;
+        sh:message        "Bestanddeel MOET linken aan precies 1 saa-ont:Nummer with rico:hasOrHadIdentifier"@nl ;
+        rdfs:label        "Inventarisnummer (eventueel met toevoeging)"@nl ;
+        rdfs:comment      "Dit nummer kan bestaan uit twee onderdelen: een numeriek deel en de 'toevoeging': een alfanumeriek deel. Het numeriek deel is verplicht."@nl ;        
         sh:path           rico:hasOrHadIdentifier ;
         sh:qualifiedValueShape [
             sh:class          saa-ont:Nummer ;
@@ -283,10 +282,10 @@ saa-sh:BestanddeelShape a sh:NodeShape ;
         sh:qualifiedMaxCount 1 ;
     ] ;
     sh:property [
-        sh:message        "Bestanddeel CAN link to a rico:Identifier with rico:hasOrHadIdentifier" ;
-        sh:message        ""@nl ;
-        rdfs:label        ""@nl ;
-        rdfs:comment      ""@nl ;
+        sh:message        "Bestanddeel CAN link to a rico:Identifier with rico:hasOrHadIdentifier"@en ;
+        sh:message        "Bestanddeel KAN linken naar een rico:Identifier met rico:hasOrHadIdentifier"@nl ;
+        rdfs:label        "Alternatieve identifier"@nl ;
+        rdfs:comment      "Met dit veld kunnen allerlei soorten nummers en identifiers aan het Bestanddeel worden gekoppeld. Waaronder het 'oude nummer'."@nl ;
         sh:path           rico:hasOrHadIdentifier ;
         sh:qualifiedValueShape [
             sh:class          rico:Identifier ;
@@ -294,23 +293,22 @@ saa-sh:BestanddeelShape a sh:NodeShape ;
         sh:qualifiedMaxCount 1 ;
     ] ;
     sh:property [
-        sh:message        "Bestanddeel MUST link to 1 saa-ont:Verzameling or saa-ont:Archief with rico:isOrWasIncludedIn" ;
-        sh:message        ""@nl ;
-        rdfs:label        ""@nl ;
-        rdfs:comment      ""@nl ;
+        sh:message        "Bestanddeel MUST link to at least 1 saa-ont:Verzameling or saa-ont:Archief with rico:isOrWasIncludedIn"@en ;
+        sh:message        "Bestanddeel MOET linken naar ten minste 1 saa-ont:Verzameling of saa-ont:Archief met rico:isOrWasIncludedIn"@nl ;
+        rdfs:label        "Parent"@nl ;
+        rdfs:comment      "Een bestanddeel maakt altijd deel uit van ofwel een archief ofwel een Verzameling binnen het archief. Het kan bij meerdere archieven ondergebracht zijn."@nl ;
         sh:path           rico:isOrWasIncludedIn ;
         sh:or (
             [ sh:class saa-ont:Verzameling ] 
             [ sh:class saa-ont:Archief ] 
         ) ;
         sh:minCount       1 ;
-        sh:maxCount       1 ;
     ] ;
     sh:property [
-        sh:message        "Bestanddeel MUST link to 1 following rico:RecordSet (Verzameling or Bestanddeel) with rico:precedesOrPreceded" ;
-        sh:message        ""@nl ;
-        rdfs:label        ""@nl ;
-        rdfs:comment      ""@nl ;
+        sh:message        "Bestanddeel CAN link to 1 following rico:RecordSet (Verzameling or Bestanddeel) with rico:precedesOrPreceded"@en ;
+        sh:message        "Bestanddeel KAN linken naar 1 volgende rico:RecordSet (Verzameling or Bestanddeel) with rico:precedesOrPreceded"@nl ;
+        rdfs:label        "Volgende"@nl ;
+        rdfs:comment      "In een oude archiefinventaris is de volgorde waarin de Bestanddelen zijn opgenomen relevant. Deze volgorde kan met deze eigenschap worden vastgelegd door te verwijzen naar de volgende in de reeks."@nl ;
         sh:path           rico:precedesOrPreceded ;
         sh:or (
             [ sh:class saa-ont:Verzameling ] 
@@ -320,20 +318,20 @@ saa-sh:BestanddeelShape a sh:NodeShape ;
     ] ;
     sh:or ( 
         [
-            sh:message        "Bestanddeel MUST link to exactly 1 rico:Title with rico:hasOrHadTitle" ;
-            sh:message        ""@nl ;
-            rdfs:label        ""@nl ;
-            rdfs:comment      ""@nl ;
+            sh:message        "Bestanddeel MUST link to exactly 1 rico:Title and/or exactly 1 rico:Date"@en ;
+            sh:message        "Bestanddeel MOET linken naar precies 1 rico:Title en/of rico:Date"@nl ;
+            rdfs:label        "Beschrijving"@nl ;
+            rdfs:comment      "In een oude inventaris bevat een deelbeschrijving meestal alleen een datering. Daarom is tenminste een beschrijving of een datering verplicht. Allebei mag ook."@nl ;
             sh:path           rico:hasOrHadTitle ;
             sh:class          rico:Title ;
             sh:minCount       1 ;
             sh:maxCount       1 ;
         ] 
         [
-            sh:message        "Bestanddeel MUST link to exactly 1 rico:SingleDate or rico:DateRange with rico:isAssociatedWithDate" ;
-            sh:message        ""@nl ;
-            rdfs:label        ""@nl ;
-            rdfs:comment      ""@nl ;
+            sh:message        "Bestanddeel MUST link to exactly 1 rico:Title and/or exactly 1 rico:Date"@en ;
+            sh:message        "Bestanddeel MOET linken naar precies 1 rico:Title en/of rico:Date"@nl ;
+            rdfs:label        "Datering"@nl ;
+            rdfs:comment      "In een oude inventaris bevat een deelbeschrijving meestal alleen een datering. Daarom is tenminste een beschrijving of een datering verplicht. Allebei mag ook."@nl ;
             sh:path           rico:isAssociatedWithDate ;
             sh:or (
                 [ sh:class          rico:SingleDate ; ]
@@ -344,10 +342,10 @@ saa-sh:BestanddeelShape a sh:NodeShape ;
         ] 
     ) ;   
     sh:property [
-        sh:message        "Bestanddeel CAN link to at most 1 xsd:string with rico:scopeAndContent" ;
-        sh:message        ""@nl ;
-        rdfs:label        ""@nl ;
-        rdfs:comment      ""@nl ;
+        sh:message        "Bestanddeel CAN link to at most 1 xsd:string with rico:scopeAndContent"@en ;
+        sh:message        "Bestanddeel KAN linken naar maximaal 1 xsd:string met rico:scopeAndContent"@nl ;
+        rdfs:label        "TBD: Nadere beschrijving"@nl ;
+        rdfs:comment      "TBD: dit zou wmb de 'NB' zijn."@nl ;
         sh:path           rico:scopeAndContent ;
         sh:or (
             [sh:datatype  xsd:string ; ]
@@ -356,10 +354,10 @@ saa-sh:BestanddeelShape a sh:NodeShape ;
         sh:maxCount       1 ;
     ] ;
     sh:property [
-        sh:message        "Bestanddeel CAN link to 1 or more rico:Agent with rico:hasAccumulator" ;
-        sh:message        ""@nl ;
-        rdfs:label        ""@nl ;
-        rdfs:comment      ""@nl ;
+        sh:message        "Bestanddeel CAN link to 1 or more rico:Agent with rico:hasAccumulator"@en ;
+        sh:message        "Bestanddeel KAN linken naar 1 of meer rico:Agent met rico:hasAccumulator"@nl ;
+        rdfs:label        "Archiefvormer"@nl ;
+        rdfs:comment      "De archiefvormer van het gehele archief is vastgelegd bij Archief. Soms is een specifiekere archiefvormer bekend. Deze wordt bij het bestanddeel opgenomen."@nl ;
         sh:path           rico:hasAccumulator ;
         sh:or (
             [ sh:nodeKind       sh:IRI ; ]
@@ -369,18 +367,10 @@ saa-sh:BestanddeelShape a sh:NodeShape ;
         ) ;
     ] ;
     sh:property [
-        sh:message        "Bestanddeel CAN link to 1 or more owl:Thing with rico:hasOrHadSubject" ;
-        sh:message        ""@nl ;
+        sh:message        "Bestanddeel CAN link to 1 or more rico:Instantiation with rico:hasInstantiation"@en ;
+        sh:message        "Bestanddeel KAN linken naar 1 of meer rico:Instantiation met rico:hasInstantiation"@nl ;
         rdfs:label        ""@nl ;
-        rdfs:comment      ""@nl ;
-        sh:path           rico:hasOrHadSubject ;
-        sh:nodeKind       sh:IRI ;    
-    ] ;
-    sh:property [
-        sh:message        "Bestanddeel CAN link to 1 or more rico:Instantiation with rico:hasInstantiation" ;
-        sh:message        ""@nl ;
-        rdfs:label        ""@nl ;
-        rdfs:comment      ""@nl ;
+        rdfs:comment      "De uiterlijke vorm van een enkelvoudige of deelbeschrijving maakt onderdeel uit van de beschrijving van de fysieke, (papieren) representatie. Daarom wordt deze in de data geintroduceerd en wordt deze daar opgenomen."@nl ;
         sh:path           rico:hasInstantiation ;
         sh:nodeKind       sh:IRI ;    
     ] .
@@ -391,7 +381,7 @@ saa-sh:InformatieobjectShape a sh:NodeShape ;
     # maps from <[memorix-base-url]/resources/recordtypes/Akte>
     sh:targetClass        saa-ont:Informatieobject ;
     sh:property [
-        sh:message        "Informatieobject CAN link to at most 1 saa-voc:* with rico:hasDocumentaryFormType" ;
+        sh:message        "Informatieobject CAN link to at most 1 saa-voc:* with rico:hasDocumentaryFormType"@en ;
         sh:path           rico:hasDocumentaryFormType ;
         sh:or (
             [ sh:in       ( saa-voc:NotarialDeed saa-voc:BirthCertificate saa-voc:Letter saa-voc:BuildingPermit saa-voc:Machtiging saa-voc:Foto saa-voc:Email saa-voc:Rapportage saa-voc:Brief ) ]
@@ -400,19 +390,19 @@ saa-sh:InformatieobjectShape a sh:NodeShape ;
         sh:maxCount       1 ;
     ] ;
     sh:property [
-        sh:message        "Informatieobject MUST link at least 1 rico:Identifier with rico:hasOrHadIdentifier" ;
+        sh:message        "Informatieobject MUST link at least 1 rico:Identifier with rico:hasOrHadIdentifier"@en ;
         sh:path           rico:hasOrHadIdentifier ;
         sh:class          rico:Identifier ;
         sh:minCount       1 ;
     ] ;
     sh:property [
-        sh:message        "Informatieobject CAN link to at most 1 rico:Title with rico:hasOrHadTitle" ;
+        sh:message        "Informatieobject CAN link to at most 1 rico:Title with rico:hasOrHadTitle"@en ;
         sh:path           rico:hasOrHadTitle ;
         sh:class          rico:Title ;
         sh:maxCount       1 ;
     ] ;
     sh:property [
-        sh:message        "Informatieobject CAN link to at most 1 xsd:string with rico:scopeAndContent" ;
+        sh:message        "Informatieobject CAN link to at most 1 xsd:string with rico:scopeAndContent"@en ;
         sh:path           rico:scopeAndContent ;
         sh:or (
             [sh:datatype  xsd:string ; ]
@@ -421,7 +411,7 @@ saa-sh:InformatieobjectShape a sh:NodeShape ;
         sh:maxCount       1 ;
     ] ;    
     sh:property [
-        sh:message        "Informatieobject CAN link to at most 1 rico:SingleDate or rico:DateRange with rico:isAssociatedWith" ;
+        sh:message        "Informatieobject CAN link to at most 1 rico:SingleDate or rico:DateRange with rico:isAssociatedWith"@en ;
         sh:path           rico:isAssociatedWithDate ;
         sh:or (
             [ sh:class          rico:SingleDate ; ]
@@ -430,14 +420,14 @@ saa-sh:InformatieobjectShape a sh:NodeShape ;
         sh:maxCount       1 ;
     ] ;
     sh:property [
-        sh:message        "Informatieobject MUST link to 1 saa-ont:Bestanddeel with rico:isOrWasIncludedIn" ;
+        sh:message        "Informatieobject MUST link to 1 saa-ont:Bestanddeel with rico:isOrWasIncludedIn"@en ;
         sh:path           rico:isOrWasIncludedIn ;
         sh:class          saa-ont:Bestanddeel ;
         sh:minCount       1 ;
         sh:maxCount       1 ;
     ] ;
     sh:property [
-        sh:message        "Informatieobject CAN link to 1 or more owl:Thing with rico:hasOrHadSubject" ;
+        sh:message        "Informatieobject CAN link to 1 or more owl:Thing with rico:hasOrHadSubject"@en ;
         sh:path           rico:hasOrHadSubject ;
         sh:nodeKind       sh:IRI ;    
     ] .
@@ -446,19 +436,19 @@ saa-sh:InformatieobjectShape a sh:NodeShape ;
 saa-sh:InformatieonderdeelobjectShape a sh:NodeShape ;
     sh:targetClass        saa-ont:Informatieobjectonderdeel ;
     sh:property [
-        sh:message        "Informatieobjectonderdeel MUST link at least 1 rico:Identifier with rico:hasOrHadIdentifier" ;
+        sh:message        "Informatieobjectonderdeel MUST link at least 1 rico:Identifier with rico:hasOrHadIdentifier"@en ;
         sh:path           rico:hasOrHadIdentifier ;
         sh:class          rico:Identifier ;
         sh:minCount       1 ;
     ] ;
     sh:property [
-        sh:message        "Informatieobjectonderdeel CAN link to at most 1 rico:Title with rico:hasOrHadTitle" ;
+        sh:message        "Informatieobjectonderdeel CAN link to at most 1 rico:Title with rico:hasOrHadTitle"@en ;
         sh:path           rico:hasOrHadTitle ;
         sh:class          rico:Title ;
         sh:maxCount       1 ;
     ] ;
     sh:property [
-        sh:message        "Informatieobjectonderdeel CAN link to at most 1 rico:SingleDate or rico:DateRange with rico:isAssociatedWith" ;
+        sh:message        "Informatieobjectonderdeel CAN link to at most 1 rico:SingleDate or rico:DateRange with rico:isAssociatedWith"@en ;
         sh:path           rico:isAssociatedWithDate ;
         sh:or (
             [ sh:class          rico:SingleDate ; ]
@@ -467,7 +457,7 @@ saa-sh:InformatieonderdeelobjectShape a sh:NodeShape ;
         sh:maxCount       1 ;
     ] ;
     sh:property [
-        sh:message        "Informatieobjectonderdeel CAN link to at most 1 xsd:string with rico:scopeAndContent" ;
+        sh:message        "Informatieobjectonderdeel CAN link to at most 1 xsd:string with rico:scopeAndContent"@en ;
         sh:path           rico:scopeAndContent ;
         sh:or (
             [sh:datatype  xsd:string ; ]
@@ -476,7 +466,7 @@ saa-sh:InformatieonderdeelobjectShape a sh:NodeShape ;
         sh:maxCount       1 ;
     ] ;    
     sh:property [
-        sh:message        "Informatieobjectonderdeel MUST link to 1 saa-ont:Informatieobject with rico:isOrWasIncludedIn" ;
+        sh:message        "Informatieobjectonderdeel MUST link to 1 saa-ont:Informatieobject with rico:isOrWasIncludedIn"@en ;
         sh:path           rico:isOrWasIncludedIn ;
         sh:class          saa-ont:Informatieobject ;
         sh:minCount       1 ;
@@ -489,7 +479,7 @@ saa-sh:RepresentatieShape a sh:NodeShape ;
     # For now, this works for both Afbeelding (Materiaal/Techniek ...) and Bestanddeel (Uiterlijke Vorm)
     sh:targetClass        saa-ont:Representatie ;
     sh:property [
-        sh:message        "Representatie MUST link to saa-ont:Informatieobject or saa-ont:Bestanddeel with rico:isInstantiationOf" ;
+        sh:message        "Representatie MUST link to saa-ont:Informatieobject or saa-ont:Bestanddeel with rico:isInstantiationOf"@en ;
         sh:path           rico:isInstantiationOf ;
         sh:or (
             [ sh:class saa-ont:Verzameling ] 
@@ -500,22 +490,22 @@ saa-sh:RepresentatieShape a sh:NodeShape ;
         sh:maxCount       1 ;
     ] ;
     sh:property [
-        sh:message        "Representatie CAN link to rico:CarrierType with rico:hasCarrierType" ;
+        sh:message        "Representatie CAN link to rico:CarrierType with rico:hasCarrierType"@en ;
         sh:path           rico:hasCarrierType ;
         sh:class          rico:CarrierType ;
     ] ;
     sh:property [
-        sh:message        "Representatie CAN link to rico:ProductionTechniqueType with rico:hasProductionTechniqueType" ;
+        sh:message        "Representatie CAN link to rico:ProductionTechniqueType with rico:hasProductionTechniqueType"@en ;
         sh:path           rico:hasProductionTechniqueType ;
         sh:class          rico:ProductionTechniqueType ;
     ] ;
     sh:property [
-        sh:message        "Representatie CAN link to xsd:string with rico:physicalCharacteristics" ;
+        sh:message        "Representatie CAN link to xsd:string with rico:physicalCharacteristics"@en ;
         sh:path           rico:physicalCharacteristics ;
         sh:datatype       xsd:string ;
     ] ;
     sh:property [
-        sh:message        "Representatie CAN link to rico:CarrierExtent and/or rico:InstantiationExtent with rico:hasExtent" ;
+        sh:message        "Representatie CAN link to rico:CarrierExtent and/or rico:InstantiationExtent with rico:hasExtent"@en ;
         sh:path           rico:hasExtent ;
         sh:or (           
             [ sh:class rico:CarrierExtent ; ]
@@ -528,27 +518,27 @@ saa-sh:RepresentatieShape a sh:NodeShape ;
 saa-sh:AfbeeldingShape a sh:NodeShape ;
     sh:targetClass        saa-ont:Afbeelding ;
     sh:property [
-        sh:message        "Afbeelding MUST link to exactly 1 saa-voc:* with rico:hasDocumentaryFormType" ;
+        sh:message        "Afbeelding MUST link to exactly 1 saa-voc:* with rico:hasDocumentaryFormType"@en ;
         sh:path           rico:hasDocumentaryFormType ;
         sh:in             ( saa-voc:Foto saa-voc:Tekening saa-voc:Bouwtekening ) ; # etc. etc.
         sh:minCount       1 ;
         sh:maxCount       1 ;
     ] ;
     sh:property [
-        sh:message        "Afbeelding MUST link at least 1 rico:Identifier with rico:hasOrHadIdentifier" ;
+        sh:message        "Afbeelding MUST link at least 1 rico:Identifier with rico:hasOrHadIdentifier"@en ;
         sh:path           rico:hasOrHadIdentifier ;
         sh:class          rico:Identifier ;
         sh:minCount       1 ;
     ] ;
     sh:property [
-        sh:message        "Afbeelding MUST link to at most 1 rico:Title with rico:hasOrHadTitle" ;
+        sh:message        "Afbeelding MUST link to at most 1 rico:Title with rico:hasOrHadTitle"@en ;
         sh:path           rico:hasOrHadTitle ;
         sh:class          rico:Title ;
         sh:minCount       1 ;
         sh:maxCount       1 ;
     ] ;
     sh:property [
-        sh:message        "Afbeelding CAN link to at most 1 xsd:string or xsd:XMLLiteral with rico:scopeAndContent" ;
+        sh:message        "Afbeelding CAN link to at most 1 xsd:string or xsd:XMLLiteral with rico:scopeAndContent"@en ;
         sh:path           rico:scopeAndContent ;
         sh:or (
             [sh:datatype  xsd:string ; ]
@@ -557,7 +547,7 @@ saa-sh:AfbeeldingShape a sh:NodeShape ;
         sh:maxCount       1 ;
     ] ;    
     sh:property [
-        sh:message        "Afbeelding CAN link to at most 1 rico:SingleDate or rico:DateRange with rico:isAssociatedWith" ;
+        sh:message        "Afbeelding CAN link to at most 1 rico:SingleDate or rico:DateRange with rico:isAssociatedWith"@en ;
         sh:path           rico:isAssociatedWithDate ;
         sh:or (
             [ sh:class          rico:SingleDate ; ]
@@ -566,7 +556,7 @@ saa-sh:AfbeeldingShape a sh:NodeShape ;
         sh:maxCount       1 ;
     ] ;
     sh:property [
-        sh:message        "Afbeelding MUST link to 1 saa-ont:Bestanddeel with rico:isOrWasIncludedIn" ;
+        sh:message        "Afbeelding MUST link to 1 saa-ont:Bestanddeel with rico:isOrWasIncludedIn"@en ;
         sh:path           rico:isOrWasIncludedIn ;
         sh:or (
             [ sh:nodeKind       sh:IRI ; ]
@@ -576,12 +566,12 @@ saa-sh:AfbeeldingShape a sh:NodeShape ;
         sh:maxCount       1 ;
     ] ;
     sh:property [
-        sh:message        "Afbeelding CAN link to 1 or more owl:Thing with rico:hasOrHadSubject" ;
+        sh:message        "Afbeelding CAN link to 1 or more owl:Thing with rico:hasOrHadSubject"@en ;
         sh:path           rico:hasOrHadSubject ;
         sh:nodeKind       sh:IRI ;    
     ] ;
     sh:property [
-        sh:message        "Afbeelding CAN link to at most 1 rico:Agent with rico:hasCreator" ;
+        sh:message        "Afbeelding CAN link to at most 1 rico:Agent with rico:hasCreator"@en ;
         sh:path           rico:hasCreator ;
         sh:or (
             [ sh:nodeKind       sh:IRI ; ]
@@ -599,14 +589,14 @@ saa-sh:AfbeeldingShape a sh:NodeShape ;
 saa-sh:KunstwerkShape a sh:NodeShape ;
     sh:targetClass      crm:E22_Human-Made_Object ;  
     sh:property [
-        sh:message      "Kunstwerk MUST link to exactly 1 specific artwork type" ;
+        sh:message      "Kunstwerk MUST link to exactly 1 specific artwork type"@en ;
         sh:path         crm:P2_has_type ;
         sh:in           ( saa-voc:Foto saa-voc:Tekening saa-voc:Bouwtekening ) ; # etc. etc.
         sh:minCount     1 ;
         sh:maxCount     1 ;
     ] ;
     sh:property [
-        sh:message      "Kunstwerk MUST link to at least 1 crm:E33_E41_Linguistic_Appellation (titel) with type aat:300404670 and language aat:300388256" ;
+        sh:message      "Kunstwerk MUST link to at least 1 crm:E33_E41_Linguistic_Appellation (titel) with type aat:300404670 and language aat:300388256"@en ;
         sh:path         crm:P1_is_identified_by ;
         sh:qualifiedValueShape [
             sh:class    crm:E33_E41_Linguistic_Appellation ;
@@ -622,7 +612,7 @@ saa-sh:KunstwerkShape a sh:NodeShape ;
         sh:qualifiedMinCount 1 ;
     ] ;
     sh:property [
-        sh:message      "Kunstwerk MUST link to at least 1 crm:E42_Identifier of type aat:300312355" ;
+        sh:message      "Kunstwerk MUST link to at least 1 crm:E42_Identifier of type aat:300312355"@en ;
         sh:path         crm:P1_is_identified_by ;
         sh:qualifiedValueShape [
             sh:class    crm:E42_Identifier ;
@@ -634,7 +624,7 @@ saa-sh:KunstwerkShape a sh:NodeShape ;
         sh:qualifiedMinCount 1 ;
     ] ;
     sh:property [
-        sh:message        "Kunstwerk MUST link to 1 saa-ont:Bestanddeel with rico:isOrWasIncludedIn" ;
+        sh:message        "Kunstwerk MUST link to 1 saa-ont:Bestanddeel with rico:isOrWasIncludedIn"@en ;
         sh:path           rico:isOrWasIncludedIn ;
         sh:or (
             [ sh:nodeKind       sh:IRI ; ]
@@ -644,7 +634,7 @@ saa-sh:KunstwerkShape a sh:NodeShape ;
         sh:maxCount       1 ;
     ] ;
     sh:property [
-        sh:message        "Kunstwerk CAN link to at most 1 crm:E12_Production with crm:P108i_was_produced_by" ;
+        sh:message        "Kunstwerk CAN link to at most 1 crm:E12_Production with crm:P108i_was_produced_by"@en ;
         sh:path           crm:P108i_was_produced_by ;
         sh:class          crm:E12_Production ; 
         sh:maxCount       1 ;
@@ -657,7 +647,7 @@ saa-sh:IdentifierShape a sh:NodeShape ;
     sh:targetClass        rico:Identifier ;
     sh:property           saa-sh:textualValueShape ;
     sh:property [
-        sh:message        "rico:Identifier MUST link to exactly 1 rico:IdentifierType with rico:hasIdentifierType" ;
+        sh:message        "rico:Identifier MUST link to exactly 1 rico:IdentifierType with rico:hasIdentifierType"@en ;
         sh:path           rico:hasIdentifierType ;
         sh:class          rico:IdentifierType ;
         sh:minCount       1 ;
@@ -667,14 +657,14 @@ saa-sh:IdentifierShape a sh:NodeShape ;
 saa-sh:NummerShape a sh:NodeShape ;
     sh:targetClass        saa-ont:Nummer ;
     sh:property [
-        sh:message        "Nummer MUST link to exactly 1 rico:IdentifierType with rico:hasIdentifierType" ;
+        sh:message        "Nummer MUST link to exactly 1 rico:IdentifierType with rico:hasIdentifierType"@en ;
         sh:path           rico:hasIdentifierType ;
         sh:class          rico:IdentifierType ;
         sh:minCount       1 ;
         sh:maxCount       1 ;
     ] ;
     sh:property [
-        sh:message        "Nummer MUST link to exactly 1 xsd:integer with rico:textualValue" ;
+        sh:message        "Nummer MUST link to exactly 1 xsd:integer with rico:textualValue"@en ;
         sh:path           rico:textualValue ;
         sh:qualifiedValueShape [
             sh:datatype   xsd:integer ;
@@ -683,7 +673,7 @@ saa-sh:NummerShape a sh:NodeShape ;
         sh:qualifiedMaxCount 1 ;
     ] ;
     sh:property [
-        sh:message        "Nummer CAN link to at most 1 xsd:string with rico:textualValue " ;
+        sh:message        "Nummer CAN link to at most 1 xsd:string with rico:textualValue"@en ;
         sh:path           rico:textualValue ;
         sh:qualifiedValueShape [
             sh:datatype   xsd:string ;
@@ -700,7 +690,7 @@ saa-sh:TitleShape a sh:NodeShape ;
 saa-sh:SingleDateShape a sh:NodeShape ;
     sh:targetClass        rico:SingleDate ;
     sh:property [
-        sh:message        "rico:SingleDate MUST link to exactly 1 xsd:date or xsd:gYear with rico:normalizedDateValue" ;
+        sh:message        "rico:SingleDate MUST link to exactly 1 xsd:date or xsd:gYear with rico:normalizedDateValue"@en ;
         sh:path           rico:normalizedDateValue ;
         sh:or (
             [ sh:datatype xsd:date ] 
@@ -710,7 +700,7 @@ saa-sh:SingleDateShape a sh:NodeShape ;
         sh:maxCount       1 ;
     ] ;
     sh:property [
-        sh:message        "rico:SingleDate CAN link to at most 1 xsd:string with rico:normalizedDateValue" ;
+        sh:message        "rico:SingleDate CAN link to at most 1 xsd:string with rico:normalizedDateValue"@en ;
         sh:path           rico:expressedDate ;
         sh:datatype       xsd:string ;
         sh:maxCount       1 ;
@@ -719,21 +709,21 @@ saa-sh:SingleDateShape a sh:NodeShape ;
 saa-sh:DateRangeShape a sh:NodeShape ;
     sh:targetClass        rico:DateRange ;
     sh:property [
-        sh:message        "rico:DateRange MUST link to at exactly 1 rico:SingleDate with rico:hasBeginningDate" ;
+        sh:message        "rico:DateRange MUST link to at exactly 1 rico:SingleDate with rico:hasBeginningDate"@en ;
         sh:path           rico:hasBeginningDate ;
         sh:class          rico:SingleDate ;
         sh:minCount       1 ;
         sh:maxCount       1 ;
     ] ;
     sh:property [
-        sh:message        "rico:DateRange MUST link to at exactly 1 rico:SingleDate with rico:hasEndDate" ;
+        sh:message        "rico:DateRange MUST link to at exactly 1 rico:SingleDate with rico:hasEndDate"@en ;
         sh:path           rico:hasEndDate ;
         sh:class          rico:SingleDate ;
         sh:minCount       1 ;
         sh:maxCount       1 ;
     ] ;
     sh:property [
-        sh:message        "rico:DateRange CAN link to at most 1 xsd:string with rico:expressedDate" ;
+        sh:message        "rico:DateRange CAN link to at most 1 xsd:string with rico:expressedDate"@en ;
         sh:path           rico:expressedDate ;
         sh:maxCount       1 ;
         sh:datatype       xsd:string ;
@@ -743,7 +733,7 @@ saa-sh:DateRangeShape a sh:NodeShape ;
 saa-sh:TypeShape a sh:NodeShape ;
     sh:targetClass        rico:IdentifierType, rico:CarrierType, rico:ProductionTechniqueType, rico:DocumentaryFormType ;
     sh:property [
-        sh:message        "rico:*Type MUST link to exactly 1 rico:Name with rico:hasOrHadName" ;
+        sh:message        "rico:*Type MUST link to exactly 1 rico:Name with rico:hasOrHadName"@en ;
         sh:path           rico:hasOrHadName ;
         sh:class          rico:Name ;
         sh:minCount       1 ;
@@ -762,7 +752,7 @@ saa-sh:ExtentShape a sh:NodeShape ;
 
 ## rico:textualValue
 saa-sh:textualValueShape a sh:PropertyShape ;
-    sh:message        "This node MUST link to exactly 1 xsd:string with rico:textualValue" ;
+    sh:message        "This node MUST link to exactly 1 xsd:string with rico:textualValue"@en ;
     sh:path           rico:textualValue ;
     sh:or (
         [sh:datatype  xsd:string ; ]
@@ -822,7 +812,7 @@ saa-sh:AppellationShape a sh:NodeShape ;
 
 ## crm:symbolicContent
 saa-sh:symbolicContentShape a sh:PropertyShape ;
-    sh:message        "This node MUST link to exactly 1 xsd:string with crm:P190_has_symbolic_content" ;
+    sh:message        "This node MUST link to exactly 1 xsd:string with crm:P190_has_symbolic_content"@en ;
     sh:path           crm:P190_has_symbolic_content ;
     sh:or (
         [sh:datatype  xsd:string ; ]
