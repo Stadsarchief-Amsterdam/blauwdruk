@@ -30,7 +30,7 @@ saa-sh:InventarisShape a sh:NodeShape ;
         sh:message        "Inventaris CAN link to at most 1 rico:Person or rico:CorporateBody with rico:hasAuthor"@en ;
         sh:message        "Inventaris KAN linken aan maximaal 1 rico:Person or rico:CorporateBody met rico:hasAuthor"@nl ;
         rdfs:label        "Inventarisatie door:"@nl ;
-        rdfs:comment      ""@nl
+        rdfs:comment      ""@nl ;
         sh:path           rico:hasAuthor ;
         sh:or (
             [ sh:nodeKind sh:IRI ; ]
@@ -514,7 +514,7 @@ saa-sh:RepresentatieShape a sh:NodeShape ;
     ] .
 
 # AFBEELDING
-# maps from <[memorix-base-url]/resources/recordtypes/Afbeelding>
+# maps from </resources/recordtypes/Afbeelding>
 saa-sh:AfbeeldingShape a sh:NodeShape ;
     sh:targetClass        saa-ont:Afbeelding ;
     sh:property [
@@ -543,7 +543,7 @@ saa-sh:AfbeeldingShape a sh:NodeShape ;
         sh:or (
             [sh:datatype  xsd:string ; ]
             [sh:datatype  rdf:XMLLiteral ; ]
-    ) ;
+        ) ;
         sh:maxCount       1 ;
     ] ;    
     sh:property [

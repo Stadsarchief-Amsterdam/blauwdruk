@@ -1,0 +1,27 @@
+@prefix memorix: <http://memorix.io/ontology#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix pvm: <https://example.memorix-test.nl/resources/recordtypes/Persoonsvermelding#> .
+@prefix recordtypes: <https://example.memorix-test.nl/resources/recordtypes/> .
+
+@prefix saa-ont:       <https://data.archief.amsterdam/ontology#> .
+@prefix saa-sh:        <https://data.archief.amsterdam/shapes#> .
+@prefix saa-voc:       <https://data.archief.amsterdam/vocabulary#> .
+
+<> a memorix:Record, recordtypes:Persoonsvermelding, saa-ont:Persoonsvermelding ;
+   pvm:firstName "Franciscus Petrus" ;
+   pvm:lastName "Aa" ;
+   pvm:surnamePrefix "van der" ;
+   pvm:alternativeLastName "Hutsefluts" ;
+   pvm:alternativeFirstName "Fransje" ;
+   pvm:age "23" ;
+   pvm:details [
+         a pvm:Details ;
+         pvm:detailDetail  "grijs" ;
+         pvm:detailType  "haarkleur" ;
+     ];
+   pvm:details [
+         a pvm:Details ;
+         pvm:detailDetail  "blauw" ;
+         pvm:detailType  "ogen" ;
+     ];
+   pvm:notes "Veranderd dmv een API call" .
