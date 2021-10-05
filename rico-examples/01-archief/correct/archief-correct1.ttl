@@ -39,7 +39,7 @@
             a rico:Title ;
             rico:textualValue "Inventaris van het Archief van de Familie Boissevain en Aanverwante Families"
         ] ;
-        rico:hasPublisher data:de-UUID-voor-record-SAA ;
+        rico:hasPublisher data:de-UUID-voor-SAA ;
     ] ;
     rico:scopeAndContent """
       <abstract>
