@@ -2,59 +2,28 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix schema: <https://schema.org/> .
 @prefix rico: <https://www.ica.org/standards/RiC/ontology#> .
+@prefix blauwdruk:     <https://example.memorix-test.nl/resources/recordtypes/> .
+@prefix voc:     <https://example.memorix-test.nl/vocabularies/> .
+@prefix data:     <https://example.memorix-test.nl/resources/records/> .
+
 
 <https://data.archief.amsterdam/findingaid/57c936b8f8a2e8fe7276d6cc1eb36624>
-    a <https://data.archief.amsterdam/ontology#Inventaris>, rico:Record ;
+    a blauwdruk:Inventaris ;
     rico:hasDocumentaryFormType <https://www.ica.org/standards/RiC/vocabularies/documentaryFormTypes#FindingAid> ;
     rico:hasOrHadTitle [
         a rico:Title ;
         rico:textualValue "Inventaris van het Archief van de Familie Boissevain en Aanverwante Families"
     ] ;
-    rico:hasPublisher [
-        a rico:CorporateBody ;
-        rico:hasOrHadAgentName [
-            a rico:AgentName ;
-            rico:textualValue "Stadsarchief Amsterdam"
-        ]
-    ] .
+    rico:hasPublisher data:de-UUID-voor-SAA .
 
 <https://data.archief.amsterdam/fonds/2ab843bcdc58542729ac2e5d86a7ecd6>
-    a <https://data.archief.amsterdam/ontology#Archief>, rico:RecordSet ;
+    a blauwdruk:Archief ;
     rdfs:label "Archief van de Familie Boissevain en Aanverwante Families" ;
-    rico:hasAccumulator [
-        a rico:Person ;
-        rico:hasOrHadAgentName [
-            a rico:AgentName ;
-            rico:textualValue "Boissevain, familie"
-        ]
-    ] ;
-    rico:hasOrHadHolder [
-        a rico:CorporateBody ;
-        rico:hasOrHadAgentName [
-            a rico:AgentName ;
-            rico:textualValue "Stadsarchief Amsterdam"
-        ]
-    ] ;
+    rico:hasAccumulator data:de-UUID-voor-fam-boissevain ;
     rico:hasOrHadIdentifier [
-        a <https://data.archief.amsterdam/ontology#Nummer> ;
-        rico:hasIdentifierType [
-            a rico:IdentifierType ;
-            rico:hasOrHadName [
-                a rico:Name ;
-                rico:textualValue "Toegangsnummer"
-            ]
-        ] ;
-        rico:textualValue 394
-    ], [
         a rico:Identifier ;
-        rico:hasIdentifierType [
-            a rico:IdentifierType ;
-            rico:hasOrHadName [
-                a rico:Name ;
-                rico:textualValue "UUID"
-            ]
-        ] ;
-        rico:textualValue "2ab843bcdc58542729ac2e5d86a7ecd6"
+        rico:hasIdentifierType voc:toegangsnummer ; 
+        rico:textualValue "394A"
     ] ;
     rico:hasOrHadTitle [
         a rico:Title ;

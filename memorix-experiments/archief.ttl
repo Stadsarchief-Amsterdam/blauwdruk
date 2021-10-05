@@ -4,6 +4,9 @@
 @prefix xsd:           <http://www.w3.org/2001/XMLSchema#> .
 
 @prefix blauwdruk:     <https://example.memorix-test.nl/resources/recordtypes/> .
+@prefix voc:           <https://example.memorix-test.nl/resources/vocabularies/> .
+@prefix data:          <https://example.memorix-test.nl/resources/records/> .
+
 
 @prefix dc:            <http://purl.org/dc/elements/1.1/> .
 @prefix sh:            <http://www.w3.org/ns/shacl#> .
@@ -21,7 +24,7 @@ blauwdruk:Archief a memorix:Recordtype, sh:NodeShape, owl:Class ;
     rdfs:label "Archief"@nl ;
     rdfs:comment "Standaard Recordtype voor Archiefblok"@nl ;
     dc:identifier "Archief" ;
-    sh:closed true ;
+#    sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
     dash:defaultViewForRole dash:all ;
     sh:property [
@@ -49,24 +52,27 @@ blauwdruk:Archief a memorix:Recordtype, sh:NodeShape, owl:Class ;
         dash:viewer dash:DetailsEditor ;
     ] ;
     sh:property [
-        rdfs:label "Datering oudste stuk"@nl ;
-        sh:path rico:hasBeginningDate ;
+        rdfs:label "Archiefvormer"@nl ;
+        sh:path rico:hasAccumulator ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
-        sh:group blauwdruk:Datering  ;
+        sh:group blauwdruk:Archiefvorming ;
         sh:order 3.0 ;
-        sh:class rico:Date ;
-        sh:nodeKind sh:BlankNode ;
-        dash:viewer dash:DetailsEditor ;
+        dash:editor memorix:LinkedRecordEditor ;
+        sh:nodeKind sh:IRI ;
+        sh:or (
+            [ sh:class blauwdruk:Persoon ]
+            # TBD toevoegen CorporateBody
+        ) ;       
     ] ;
     sh:property [
-        rdfs:label "Datering jongste stuk"@nl ;
-        sh:path rico:hasEndDate ;
+        rdfs:label "Periode van vorming"@nl ;
+        sh:path rico:isAssociatedWithDate ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
-        sh:group blauwdruk:Datering  ;
+        sh:group blauwdruk:Archiefvorming  ;
         sh:order 4.0 ;
-        sh:class rico:Date ;
+        sh:class rico:DateRange ;
         sh:nodeKind sh:BlankNode ;
         dash:viewer dash:DetailsEditor ;
     ] ;
@@ -79,15 +85,80 @@ blauwdruk:Archief a memorix:Recordtype, sh:NodeShape, owl:Class ;
         dash:editor dash:TextAreaEditor ;
     ] ;
     sh:property [
-        rdfs:label "Archiefvormer"@nl ;
-        sh:path rico:hasAccumulator ;
-        sh:group blauwdruk:Vervaardiging ;
-        sh:order 1.0 ;
-        dash:editor memorix:LinkedRecordEditor ;
-        sh:nodeKind sh:IRI ;
+        rdfs:label "Inventarisatie"@nl ;
+        sh:minCount 1 ;
+        sh:path rico:isOrWasDescribedBy ;
+        sh:order 7.0 ;
+        sh:group blauwdruk:Inventarisatie  ;
+        dash:viewer dash:DetailsEditor ;
+        sh:nodeKind sh:BlankNode ;
+        sh:class blauwdruk:Inventaris ;
+    ] .
+
+
+blauwdruk:Inventaris a sh:NodeShape, owl:Class ;
+    sh:targetClass        blauwdruk:Inventaris ;
+    rdfs:equivalentClass  rico:Record ;
+    sh:property [
+        sh:message        "Inventaris MUST link to ric-dft:FindingAid with rico:hasDocumentaryFormType"@en ;
+        sh:message        "Inventaris MOET linken naar ric-dft:FindingAid met rico:hasDocumentaryFormType"@nl ;
+        rdfs:comment      "Deze informatie is altijd hetzelfde en wordt daarom niet door beschrijvers in Memorix ingevoerd, maar moet standaard bij een export worden toegevoegd."@nl ;
+        rdfs:label        "(Niet in te vullen, want standaardwaarde.)"@nl ;
+        sh:path           rico:hasDocumentaryFormType ;
+        sh:order          1.0 ;
+        sh:in             ( ric-dft:FindingAid ) ;
+#        sh:minCount       1 ;
+        sh:maxCount       1 ;
+    ];
+    sh:property [
+        sh:message        "Inventaris CAN link to at most 1 rico:Person or rico:CorporateBody with rico:hasAuthor"@en ;
+        sh:message        "Inventaris KAN linken aan maximaal 1 rico:Person or rico:CorporateBody met rico:hasAuthor"@nl ;
+        rdfs:label        "Inventarisator"@nl ;
+        rdfs:comment      ""@nl ;
+        sh:path           rico:hasAuthor ;
+        sh:order          2.0 ;
+        dash:editor       memorix:LinkedRecordEditor ;
+        sh:nodeKind       sh:IRI ;
         sh:or (
-            sh:class blauwdruk:Persoon
-        )
+            [ sh:class blauwdruk:Persoon ]
+        ) ;     
+        sh:maxCount       1 ;
+    ] ;
+    sh:property [
+        # LET OP! Deze moet nog een keer netjes met echte rico:Date's
+        sh:message        "Inventaris CAN link to at most 1 xsd:date or xsd:gYear with rico:publicationDate"@en ;
+        sh:message        "Inventaris KAN linken naar maximaal 1 xsd:date of xsd:gYear met rico:publicationDate"@nl ;
+        rdfs:label        "Inventarisatiejaar"@nl ;
+        rdfs:comment      ""@nl ;
+        sh:path           rico:publicationDate ;
+        sh:order          3.0 ;
+        sh:datatype       xsd:gYear ; 
+        sh:maxCount       1 ;
+    ] ;
+    sh:property [
+        sh:message        "Inventaris CAN link to 1 xsd:string or xsd:XMLLiteral with rico:history"@en ;
+        sh:message        "Inventaris KAN linken naar 1 xsd:string of xsd:XMLLiteral met rico:history"@nl ;
+        rdfs:label        "Verantwoording van de inventarisatie"@nl ;
+        rdfs:comment      ""@nl ;
+        sh:path           rico:history ;
+        sh:order          4.0 ;
+        sh:datatype       xsd:string ; 
+        sh:maxCount       1 ;
+    ] ;
+    sh:property [
+        sh:message        "Inventaris MUST link to at exactly 1 rico:CorporateBody with rico:hasPublisher"@en ;
+        sh:message        "Inventaris MOET linken aan precies 1 rico:CorporateBody met rico:hasPublisher"@nl ;
+        rdfs:comment      "Deze informatie is altijd hetzelfde (namelijk 'Stadsarchief Amsterdam') en wordt daarom niet door beschrijvers in Memorix ingevoerd, maar moet standaard bij een export worden toegevoegd."@nl ;
+        rdfs:label        "(Niet in te vullen, want standaardwaarde.)"@nl ;
+        sh:path           rico:hasPublisher ;
+        sh:order          5.0 ;
+        dash:editor       memorix:LinkedRecordEditor ;
+        sh:nodeKind       sh:IRI ;
+        sh:or (
+            [ sh:class blauwdruk:Rechtspersoon ]
+        ) ;     
+#        sh:minCount       1 ;
+        sh:maxCount       1 ;
     ] .
 
 
@@ -102,14 +173,13 @@ blauwdruk:Beschrijving a sh:PropertyGroup ;
     rdfs:label "Beschrijving"@nl ;
     sh:order    2.0 .
 
-blauwdruk:Datering a sh:PropertyGroup ;
-    rdfs:label "Datering"@nl ;
+blauwdruk:Archiefvorming a sh:PropertyGroup ;
+    rdfs:label "Archiefvorming"@nl ;
     sh:order    3.0 .
 
-blauwdruk:Vervaardiging a sh:PropertyGroup ;
-    rdfs:label "Archiefvorming"@nl ;
+blauwdruk:Inventarisatie a sh:PropertyGroup ;
+    rdfs:label "Inventarisatie"@nl ;
     sh:order    4.0 .
-
 
 # ==========================================
 # Standard shapes
@@ -132,21 +202,64 @@ rico:Title a sh:NodeShape ;
 ## Identifier
 rico:Identifier a sh:NodeShape ;
     sh:targetClass rico:Identifier ;
-    sh:closed true ;
+    # sh:closed true ;
     sh:ignoredProperties     ( rdf:type ) ;
     sh:property [
         sh:message        "This node MUST link to exactly 1 xsd:string with rico:textualValue"@en ;
         sh:path           rico:textualValue ;
         rdfs:label        "Waarde"@nl ;
-        sh:order          1.0 ;
+        sh:order          2.0 ;
         sh:datatype       xsd:string ; 
+        sh:minCount       1 ;
+        sh:maxCount       1 ;
+    ] ;
+    sh:property [
+        sh:message        "rico:Identifier MUST link to exactly 1 rico:IdentifierType with rico:hasIdentifierType"@en ;
+        sh:path           rico:hasIdentifierType ;
+        rdfs:label        "Type"@nl ;
+        sh:order          1.0 ;
+        dash:editor       memorix:VocabularyEditor ;
+#       sh:class skos:Concept ;
+#       skos:ConceptSchema voc:conceptschemes/uuid-voor-keuzelijst-identifiertypes ;
+        sh:nodeKind       sh:IRI ;
         sh:minCount       1 ;
         sh:maxCount       1 ;
     ] .
 
 ## Date
-rico:Date a sh:NodeShape ;
-    sh:targetClass rico:Date ;
+rico:DateRange a sh:NodeShape ;
+    sh:targetClass rico:DateRange ;
+    sh:closed true ;
+    sh:ignoredProperties     ( rdf:type ) ;
+    sh:property [
+        rdfs:label "Periode (tekst)"@nl ;
+        sh:path rico:expressedDate ;
+        sh:order 1.0 ;
+        sh:datatype xsd:string ;
+    ] ;
+    sh:property [
+        rdfs:label "Begindatum"@nl ;
+        sh:path rico:hasBeginningDate ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:order 2.0 ;
+        sh:class rico:SingleDate ;
+        sh:nodeKind sh:BlankNode ;
+        dash:viewer dash:DetailsEditor ;
+    ] ;
+    sh:property [
+        rdfs:label "Einddatum"@nl ;
+        sh:path rico:hasEndDate ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:order 3.0 ;
+        sh:class rico:SingleDate ;
+        sh:nodeKind sh:BlankNode ;
+        dash:viewer dash:DetailsEditor ;
+    ] .
+
+rico:SingleDate a sh:NodeShape ;
+    sh:targetClass rico:SingleDate ;
     sh:closed true ;
     sh:ignoredProperties     ( rdf:type ) ;
     sh:property [
@@ -158,7 +271,8 @@ rico:Date a sh:NodeShape ;
     sh:property [
         rdfs:label "Datum (genormaliseerd)"@nl ;
         sh:path rico:normalizedDateValue ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
         sh:order 2.0 ;
-        memorix:inSummaryAt 2.0 ;
         sh:datatype xsd:date ;
     ] .

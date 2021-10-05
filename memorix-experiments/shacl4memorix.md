@@ -17,3 +17,7 @@ Dit mapje bevat alleen maar experimenten en schrijft op geen enkele manier voor 
 * Bij het maken van details moet de class mee opgeslagen worden dat gebeurt door de sh:targetClass. 
 
 * Er mag maar e1n memorix:Recordtype in de request zitten. 
+
+* ??? er staat nu in de voorbeelden vaak een owl:equivalentClass relatie met een blanknode van een type en een gestandaardiseerde property. Zou dat niet bestaatvastniet:equivalentIndividual/owl:sameAs moeten zijn? 
+
+* Voor het koppelen van een link is sh:or verplicht, ook als het maar e1n class is die je wilt koppelen.

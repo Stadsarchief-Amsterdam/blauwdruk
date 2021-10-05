@@ -1,0 +1,164 @@
+@prefix rdf:           <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:          <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:           <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:           <http://www.w3.org/2001/XMLSchema#> .
+
+@prefix blauwdruk:     <https://example.memorix-test.nl/resources/recordtypes/> .
+
+@prefix dc:            <http://purl.org/dc/elements/1.1/> .
+@prefix sh:            <http://www.w3.org/ns/shacl#> .
+@prefix dash:          <http://datashapes.org/dash#> .
+@prefix memorix:       <http://memorix.io/ontology#> .
+
+@prefix rico:          <https://www.ica.org/standards/RiC/ontology#> .
+@prefix ric-rst:       <https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#> .
+@prefix ric-dft:       <https://www.ica.org/standards/RiC/vocabularies/documentaryFormTypes#> .
+
+# ==================================================
+blauwdruk:Bestanddeel a memorix:Recordtype, sh:NodeShape, owl:Class ;
+    sh:targetClass blauwdruk:Bestanddeel ;
+    owl:equivalentClass rico:RecordSet ;
+    rdfs:label "Bestanddeel"@nl ;
+    rdfs:comment "Standaard Recordtype voor Bestanddeel"@nl ;
+    dc:identifier "Bestanddeel" ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    dash:defaultViewForRole dash:all ;
+    sh:property [
+        rdfs:label "Beschrijving"@nl ;
+        sh:path rico:hasOrHadTitle ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:group blauwdruk:Identificatie  ;
+        sh:order 1.0 ;
+        memorix:inTitleAt 2.0 ;
+        sh:class rico:Title ;
+        sh:nodeKind sh:BlankNode ;
+        dash:viewer dash:DetailsEditor ;
+    ] ;
+    sh:property [
+        rdfs:label "Inventarisnummer"@nl ;
+        sh:path rico:hasOrHadIdentifier ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:group blauwdruk:Identificatie  ;
+        sh:order 2.0 ;
+        memorix:inTitleAt 1.0 ;
+        sh:class rico:Identifier ;
+        sh:nodeKind sh:BlankNode ;
+        dash:viewer dash:DetailsEditor ;
+    ] ;
+    sh:property [
+        rdfs:label "Datering oudste stuk"@nl ;
+        sh:path rico:hasBeginningDate ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:group blauwdruk:Datering  ;
+        sh:order 3.0 ;
+        sh:class rico:Date ;
+        sh:nodeKind sh:BlankNode ;
+        dash:viewer dash:DetailsEditor ;
+    ] ;
+    sh:property [
+        rdfs:label "Datering jongste stuk"@nl ;
+        sh:path rico:hasEndDate ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:group blauwdruk:Datering  ;
+        sh:order 4.0 ;
+        sh:class rico:Date ;
+        sh:nodeKind sh:BlankNode ;
+        dash:viewer dash:DetailsEditor ;
+    ] ;
+    sh:property [
+        rdfs:label "Nota bene"@nl ;
+        sh:path rico:scopeAndContent ;
+        sh:group blauwdruk:Beschrijving  ;
+        sh:order 5.0 ;
+        sh:datatype xsd:string ;
+        dash:editor dash:TextAreaEditor ;
+    ] ;
+    sh:property [
+        rdfs:label "Archiefvormer"@nl ;
+        sh:path rico:hasAccumulator ;
+        sh:group blauwdruk:Vervaardiging ;
+        sh:order 1.0 ;
+        dash:editor memorix:LinkedRecordEditor ;
+        sh:nodeKind sh:IRI ;
+        sh:or (
+            sh:class blauwdruk:Persoon
+        )
+    ] .
+
+
+# ========================================
+# PropertyGroup's
+
+blauwdruk:Identificatie a sh:PropertyGroup ;
+    rdfs:label "Identificatie"@nl ;
+    sh:order    1.0 .
+
+blauwdruk:Beschrijving a sh:PropertyGroup ;
+    rdfs:label "Beschrijving"@nl ;
+    sh:order    2.0 .
+
+blauwdruk:Datering a sh:PropertyGroup ;
+    rdfs:label "Datering"@nl ;
+    sh:order    3.0 .
+
+blauwdruk:Vervaardiging a sh:PropertyGroup ;
+    rdfs:label "Archiefvorming"@nl ;
+    sh:order    4.0 .
+
+
+# ==========================================
+# Standard shapes
+
+## Title
+rico:Title a sh:NodeShape ;
+    sh:targetClass rico:Title ;
+    sh:closed true ;
+    sh:ignoredProperties     ( rdf:type ) ;
+    sh:property [
+        sh:message        "This node MUST link to exactly 1 xsd:string with rico:textualValue"@en ;
+        sh:path           rico:textualValue ;
+        rdfs:label        "Waarde"@nl ;
+        sh:order          1.0 ;
+        sh:datatype       xsd:string ; 
+        sh:minCount       1 ;
+        sh:maxCount       1 ;
+    ] .
+
+## Identifier
+rico:Identifier a sh:NodeShape ;
+    sh:targetClass rico:Identifier ;
+    sh:closed true ;
+    sh:ignoredProperties     ( rdf:type ) ;
+    sh:property [
+        sh:message        "This node MUST link to exactly 1 xsd:string with rico:textualValue"@en ;
+        sh:path           rico:textualValue ;
+        rdfs:label        "Waarde"@nl ;
+        sh:order          1.0 ;
+        sh:datatype       xsd:string ; 
+        sh:minCount       1 ;
+        sh:maxCount       1 ;
+    ] .
+
+## Date
+rico:Date a sh:NodeShape ;
+    sh:targetClass rico:Date ;
+    sh:closed true ;
+    sh:ignoredProperties     ( rdf:type ) ;
+    sh:property [
+        rdfs:label "Datum (tekst)"@nl ;
+        sh:path rico:expressedDate ;
+        sh:order 1.0 ;
+        sh:datatype xsd:string ;
+    ] ;
+    sh:property [
+        rdfs:label "Datum (genormaliseerd)"@nl ;
+        sh:path rico:normalizedDateValue ;
+        sh:order 2.0 ;
+        memorix:inSummaryAt 2.0 ;
+        sh:datatype xsd:date ;
+    ] .
