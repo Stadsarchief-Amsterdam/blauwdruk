@@ -22,30 +22,41 @@ blauwdruk:Archief a memorix:Recordtype, sh:NodeShape, owl:Class ;
     owl:equivalentClass rico:RecordSet ;
     rdfs:label "Archief"@nl ;
     rdfs:comment "Standaard Recordtype voor Archiefblok"@nl ;
-    dc:identifier "Archief" ;
-#    sh:closed true ;
-    sh:ignoredProperties ( rdf:type ) ;
-    dash:defaultViewForRole dash:all ;
+    dc:identifier "Archief" ; # Waarom niet gebruik gemaakt van de naam zoals hierboven 'blauwdruk:Archief'?
+#    sh:closed true ; # Wanneer gebruiken jullie het feit dat het closed moet zijn? Bij het valideren van imports? Het feit dat een gebruiker alleen invoert via het formulier zorgt ervoor dat de data per definitie closed is.
+    sh:ignoredProperties ( rdf:type ) ; # Weet (nog) niet waarom dit moet
+    dash:defaultViewForRole dash:all ; # Weet (nog) niet waarom dit moet
+    sh:property [ # Deze vaste waarde wordt nu door het formulier niet gegenereerd. Dat lijkt me op te lossen door uit te gaan van 'hasValue': dit veld dan niet renderen en wel de triple in de record toevoegen.
+        sh:message        "Archiefblok MUST link to ric-rst:Fonds with rico:hasRecordSetType"@en ;
+        sh:message        "Inventaris MOET linken naar ric-dft:Fonds met rico:hasRecordSetType"@nl ;
+        rdfs:comment      "Deze informatie is altijd hetzelfde en wordt daarom niet door beschrijvers in Memorix ingevoerd, maar moet standaard bij een export worden toegevoegd."@nl ;
+        rdfs:label        "(Niet in te vullen, want standaard-URI voor 'Fonds')"@nl ;
+        sh:path           rico:hasRecordSetType ;
+        sh:order          1.0 ;
+        sh:hasValue       ric-rst:Fonds ;
+#        sh:minCount       1 ;
+        sh:maxCount       1 ;
+    ];
     sh:property [
-        rdfs:label "Archiefblok naam"@nl ;
-        sh:path rico:hasOrHadTitle ;
-        sh:minCount 1 ;
-        sh:maxCount 1 ;
-        sh:group blauwdruk:Identificatie  ;
-        sh:order 1.0 ;
-        memorix:inTitleAt 2.0 ;
-        sh:class rico:Title ;
-        sh:nodeKind sh:BlankNode ;
-    ] ;
-    sh:property [
-        rdfs:label "Archiefblok nummer"@nl ;
+        rdfs:label "Archiefbloknummer"@nl ;
         sh:path rico:hasOrHadIdentifier ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
-        sh:group blauwdruk:Identificatie  ;
+        sh:group blauwdruk:Identificatie  ; # group is verplicht
         sh:order 2.0 ;
         memorix:inTitleAt 1.0 ;
-        sh:class rico:Identifier ;
+        sh:class rico:Identifier ; # Identifiers moeten in RiC-O genest. Daardoor komt er ook in het formulier per definitie een tussenstap (in dit geval "waarde"). Toch? Dat zou je eigenlijk niet moeten willen. Oplosbaar door hele paden te interpreteren in sh:path?
+        sh:nodeKind sh:BlankNode ;
+    ] ;
+    sh:property [
+        rdfs:label "Archiefbloknaam"@nl ;
+        sh:path rico:hasOrHadTitle ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:group blauwdruk:Identificatie  ; 
+        sh:order 3.0 ;
+        memorix:inTitleAt 2.0 ;
+        sh:class rico:Title ; 
         sh:nodeKind sh:BlankNode ;
     ] ;
     sh:property [
@@ -54,11 +65,10 @@ blauwdruk:Archief a memorix:Recordtype, sh:NodeShape, owl:Class ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:group blauwdruk:Archiefvorming ;
-        sh:order 3.0 ;
+        sh:order 4.0 ;
         dash:editor memorix:LinkedRecordEditor ;
         sh:nodeKind sh:IRI ;
-        sh:or (
-            [ sh:nodeKind sh:IRI ]
+        sh:or ( # deze opsomming roept de juiste recordtypes aan waaruit gekozen mag worden in het formulier met de LinkedRecordEditor. Maar bij het valideren MOET er nu ook in de te valideren graaf/record gedeclareerd zijn dat het een blauwdruk:Persoon moet zijn. Dat zal niet geval zijn en dus valideert een record nooit.
             [ sh:class blauwdruk:Persoon ]
             # TBD toevoegen CorporateBody
         ) ;       
@@ -69,35 +79,56 @@ blauwdruk:Archief a memorix:Recordtype, sh:NodeShape, owl:Class ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:group blauwdruk:Archiefvorming  ;
-        sh:order 4.0 ;
+        sh:order 5.0 ;
         sh:class rico:DateRange ;
         sh:nodeKind sh:BlankNode ;
-        dash:viewer dash:DetailsEditor ;
     ] ;
     sh:property [
         rdfs:label "Inleiding"@nl ;
         sh:path rico:scopeAndContent ;
         sh:group blauwdruk:Beschrijving  ;
-        sh:order 5.0 ;
-        sh:datatype xsd:string ;
+        sh:order 6.0 ;
+        sh:datatype xsd:string ; # ik zou eigenlijk ook rdf:XMLLiteral willen kunnen toestaan. Dan kunnen er html-tags of ouderwetse ead-tags worden gebruikt.
         dash:editor dash:TextAreaEditor ;
     ] ;
     sh:property [
-        rdfs:label "Inventarisatie"@nl ;
-        sh:minCount 1 ;
-        sh:path rico:isOrWasDescribedBy ;
+        rdfs:label "Gerelateerde archieven"@nl ;
+        sh:path rico:RELATIE ;
+        sh:group blauwdruk:Beschrijving  ;
         sh:order 7.0 ;
+        dash:editor memorix:LinkedRecordEditor ;
+        sh:nodeKind sh:IRI ;
+        sh:or ( 
+            [ sh:class blauwdruk:Archief ]
+        ) ;       
+    ] ;
+    sh:property [
+        rdfs:label "Gerelateerde publicaties"@nl ;
+        sh:path rico:RELATIE ;
+        sh:group blauwdruk:Beschrijving  ;
+        sh:order 8.0 ;
+        dash:editor memorix:LinkedRecordEditor ;
+        sh:nodeKind sh:IRI ;
+        sh:or ( 
+            [ sh:class blauwdruk:Boek ]
+            [ sh:class blauwdruk:Artikel ]
+        ) ;       
+    ] ;
+    sh:property [
+        rdfs:label "Inventarisatie"@nl ; # Het vanwege RiC-O verplicht nesten leidt er hier toe dat ik twee keer het woord Inventarisatie krijg op mijn scherm. Een keer vanwege rdfs:label (verplicht) en een keer vanwege sh:group (ook verplicht, maar rdfs:label daar misschien niet?)
+        sh:minCount 1 ; # Omdat maxCount ontbreekt wordt dit veld herhaalbaar
+        sh:path rico:isOrWasDescribedBy ;
+        sh:order 9.0 ;
         sh:group blauwdruk:Inventarisatie  ;
         dash:viewer dash:DetailsEditor ;
         sh:nodeKind sh:BlankNode ;
-        sh:class blauwdruk:Inventaris ;
+        sh:class blauwdruk:Inventaris ; 
     ] .
-
 
 blauwdruk:Inventaris a sh:NodeShape, owl:Class ;
     sh:targetClass        blauwdruk:Inventaris ;
     rdfs:equivalentClass  rico:Record ;
-    sh:property [
+    sh:property [ # Deze vaste waarde wordt nu door het formulier niet gegenereerd. Dat lijkt me op te lossen door uit te gaan van 'hasValue': dit veld dan niet renderen en wel de triple in de record toevoegen.
         sh:message        "Inventaris MUST link to ric-dft:FindingAid with rico:hasDocumentaryFormType"@en ;
         sh:message        "Inventaris MOET linken naar ric-dft:FindingAid met rico:hasDocumentaryFormType"@nl ;
         rdfs:comment      "Deze informatie is altijd hetzelfde en wordt daarom niet door beschrijvers in Memorix ingevoerd, maar moet standaard bij een export worden toegevoegd."@nl ;
@@ -112,31 +143,29 @@ blauwdruk:Inventaris a sh:NodeShape, owl:Class ;
         sh:message        "Inventaris CAN link to at most 1 rico:Person or rico:CorporateBody with rico:hasAuthor"@en ;
         sh:message        "Inventaris KAN linken aan maximaal 1 rico:Person or rico:CorporateBody met rico:hasAuthor"@nl ;
         rdfs:label        "Inventarisator"@nl ;
-        rdfs:comment      ""@nl ;
         sh:path           rico:hasAuthor ;
         sh:order          2.0 ;
         dash:editor       memorix:LinkedRecordEditor ;
-        sh:nodeKind       sh:IRI ;
+        sh:nodeKind       sh:IRI ; 
         sh:or (
-            [ sh:nodeKind sh:IRI ]
             [ sh:class blauwdruk:Persoon ]
+            # TBD toevoegen CorporateBody
         ) ;     
         sh:maxCount       1 ;
     ] ;
     sh:property [
-        # LET OP! Deze moet nog een keer netjes met echte rico:Date's
-        sh:message        "Inventaris CAN link to at most 1 xsd:date or xsd:gYear with rico:publicationDate"@en ;
-        sh:message        "Inventaris KAN linken naar maximaal 1 xsd:date of xsd:gYear met rico:publicationDate"@nl ;
+        # LET OP! Deze moet nog een keer netjes met echte rico:Date's Dat is nog niet goed in RiC-O: ik heb er een issue voor aangemaakt bij de RiC-O ontwikkelaars.
+        sh:message        "Inventaris CAN link to at most 1 xsd:gYear with rico:publicationDate"@en ;
+        sh:message        "Inventaris KAN linken naar maximaal 1 xsd:gYear met rico:publicationDate"@nl ;
         rdfs:label        "Inventarisatiejaar"@nl ;
-        rdfs:comment      ""@nl ;
         sh:path           rico:publicationDate ;
         sh:order          3.0 ;
         sh:datatype       xsd:gYear ; 
         sh:maxCount       1 ;
     ] ;
     sh:property [
-        sh:message        "Inventaris CAN link to 1 xsd:string or xsd:XMLLiteral with rico:history"@en ;
-        sh:message        "Inventaris KAN linken naar 1 xsd:string of xsd:XMLLiteral met rico:history"@nl ;
+        sh:message        "Inventaris CAN link to 1 xsd:string with rico:history"@en ;
+        sh:message        "Inventaris KAN linken naar 1 xsd:string met rico:history"@nl ;
         rdfs:label        "Verantwoording van de inventarisatie"@nl ;
         rdfs:comment      ""@nl ;
         sh:path           rico:history ;
@@ -151,13 +180,7 @@ blauwdruk:Inventaris a sh:NodeShape, owl:Class ;
         rdfs:label        "(Niet in te vullen, want standaard-URI voor 'SAA')"@nl ;
         sh:path           rico:hasPublisher ;
         sh:order          5.0 ;
-#        dash:editor       memorix:LinkedRecordEditor ;
         sh:hasValue       data:de-UUID-voor-SAA ;
-
-#        sh:nodeKind       sh:IRI ;
-#        sh:or (
-#            [ sh:class blauwdruk:Rechtspersoon ]
-#        ) ;     
 #        sh:minCount       1 ;
         sh:maxCount       1 ;
     ] .
@@ -219,8 +242,8 @@ rico:Identifier a sh:NodeShape ;
         sh:path           rico:hasIdentifierType ;
         rdfs:label        "Type"@nl ;
         sh:order          1.0 ;
-        dash:editor       memorix:VocabularyEditor ;
-#       sh:class skos:Concept ;
+        dash:editor       memorix:VocabularyEditor ; # Eigenlijk moet ik hier standaard dezelfde URI krijgen, want een toegangsnummer is verplicht. Hier deze editor nu gebruikt om te laten zien hoe het zou kunnen werken.
+#       sh:class skos:Concept ; # Nu nog niet in staat gebleken om een Concept aan te maken.
 #       skos:ConceptSchema voc:conceptschemes/uuid-voor-keuzelijst-identifiertypes ;
         sh:nodeKind       sh:IRI ;
         sh:minCount       1 ;
