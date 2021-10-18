@@ -20,7 +20,6 @@ blauwdruk:Afbeelding a memorix:Recordtype, sh:NodeShape, owl:Class ;
     rdfs:label            "Akte"@nl ;
     dc:identifier         "Akte" ;
     rdfs:equivalentClass  rico:Record ;
-    dash:defaultViewForRole  dash:all ;
     sh:closed                true ;
     sh:ignoredProperties     ( rdf:type ) ;
     sh:property [

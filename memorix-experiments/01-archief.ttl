@@ -23,12 +23,11 @@ blauwdruk:Archief a memorix:Recordtype, sh:NodeShape, owl:Class ;
     rdfs:label "Archief"@nl ;
     rdfs:comment "Standaard Recordtype voor Archiefblok"@nl ;
     dc:identifier "Archief" ; # Waarom niet gebruik gemaakt van de naam zoals hierboven 'blauwdruk:Archief'?
-#    sh:closed true ; # Wanneer gebruiken jullie het feit dat het closed moet zijn? Bij het valideren van imports? Het feit dat een gebruiker alleen invoert via het formulier zorgt ervoor dat de data per definitie closed is.
-    sh:ignoredProperties ( rdf:type ) ; # Weet (nog) niet waarom dit moet
-    dash:defaultViewForRole dash:all ; # Weet (nog) niet waarom dit moet
+    sh:closed true ; # Wanneer gebruiken jullie het feit dat het closed moet zijn? Bij het valideren van imports? Het feit dat een gebruiker alleen invoert via het formulier zorgt ervoor dat de data per definitie closed is.
+    sh:ignoredProperties ( rdf:type ) ; 
     sh:property [ # Deze vaste waarde wordt nu door het formulier niet gegenereerd. Dat lijkt me op te lossen door uit te gaan van 'hasValue': dit veld dan niet renderen en wel de triple in de record toevoegen.
         sh:message        "Archiefblok MUST link to ric-rst:Fonds with rico:hasRecordSetType"@en ;
-        sh:message        "Inventaris MOET linken naar ric-dft:Fonds met rico:hasRecordSetType"@nl ;
+        sh:message        "Archiefblok MOET linken naar ric-rst:Fonds met rico:hasRecordSetType"@nl ;
         rdfs:comment      "Deze informatie is altijd hetzelfde en wordt daarom niet door beschrijvers in Memorix ingevoerd, maar moet standaard bij een export worden toegevoegd."@nl ;
         rdfs:label        "(Niet in te vullen, want standaard-URI voor 'Fonds')"@nl ;
         sh:path           rico:hasRecordSetType ;
@@ -269,7 +268,6 @@ rico:DateRange a sh:NodeShape ;
         sh:order 2.0 ;
         sh:class rico:SingleDate ;
         sh:nodeKind sh:BlankNode ;
-        dash:viewer dash:DetailsEditor ;
     ] ;
     sh:property [
         rdfs:label "Einddatum"@nl ;
@@ -279,7 +277,6 @@ rico:DateRange a sh:NodeShape ;
         sh:order 3.0 ;
         sh:class rico:SingleDate ;
         sh:nodeKind sh:BlankNode ;
-        dash:viewer dash:DetailsEditor ;
     ] .
 
 rico:SingleDate a sh:NodeShape ;

@@ -1,0 +1,31 @@
+@prefix rdf:        <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:       <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema:     <https://schema.org/> .
+@prefix rico:       <https://www.ica.org/standards/RiC/ontology#> .
+@prefix blauwdruk:  <https://example.memorix-test.nl/resources/recordtypes/> .
+@prefix voc:        <https://example.memorix-test.nl/vocabularies/> .
+@prefix data:       <https://example.memorix-test.nl/resources/records/> .
+@prefix xsd:        <http://www.w3.org/2001/XMLSchema#> .
+
+<>
+    a blauwdruk:Groep ;
+    rico:hasOrHadIdentifier [
+        a rico:Identifier ;
+        rico:hasIdentifierType voc:de-UUID-voor-concept-rubrieksnummer ; 
+        rico:textualValue ""
+    ] ;
+    rico:hasOrHadTitle [
+        a rico:Title ;
+        rico:textualValue ""
+    ] ;
+    rico:hasRecordSetType <https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#Series> ;
+    rico:isAssociatedWithDate [
+        a rico:DateRange ;
+        rico:expressedDate "2005 - " ;
+        rico:hasBeginningDate [
+            a rico:SingleDate ;
+            rico:normalizedDateValue "2005"^^xsd:gYear
+        ] ;
+    ] ;
+    rico:precedesOrPreceded <> ;
+    rico:isOrWasIncludedIn <> .

@@ -15,43 +15,36 @@
 @prefix ric-dft:       <https://www.ica.org/standards/RiC/vocabularies/documentaryFormTypes#> .
 
 # ==================================================
-blauwdruk:Groep a memorix:Recordtype, sh:NodeShape, owl:Class ;
-    sh:targetClass blauwdruk:Groep ;
-    owl:equivalentClass rico:RecordSet ;
-    rdfs:label "Groep"@nl ;
-    rdfs:comment "Standaard Recordtype voor Groep"@nl ;
-    dc:identifier "Groep" ;
+blauwdruk:Informatieobject a memorix:Recordtype, sh:NodeShape, owl:Class ;
+    sh:targetClass blauwdruk:Informatieobject ;
+    owl:equivalentClass rico:Record ;
+    rdfs:label "Informatieobject"@nl ;
+    rdfs:comment "Standaard Recordtype voor Informatieobject"@nl ;
+    dc:identifier "Informatieobject" ;
     sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
-    dash:defaultViewForRole dash:all ;
-    sh:property [
-        rdfs:label "Groep nummer"@nl ;
-        sh:path rico:hasOrHadIdentifier ;
-        sh:minCount 1 ;
-        sh:maxCount 1 ;
-        sh:group blauwdruk:Identificatie  ;
-        sh:order 2.0 ;
-        memorix:inTitleAt 1.0 ;
-        sh:class rico:Identifier ;
-        sh:nodeKind sh:BlankNode ;
-        dash:viewer dash:DetailsEditor ;
-    ] ;
+    sh:property [ 
+        sh:message        "Bestanddeel MUST link to ric-rst:File with rico:hasRecordSetType"@en ;
+        sh:message        "Bestanddeel MOET linken naar ric-rst:File met rico:hasRecordSetType"@nl ;
+        rdfs:comment      "Deze informatie is altijd hetzelfde en wordt daarom niet door beschrijvers in Memorix ingevoerd, maar moet standaard bij een export worden toegevoegd."@nl ;
+        rdfs:label        "(Niet in te vullen, want standaard-URI voor 'File')"@nl ;
+        sh:path           rico:hasRecordSetType ;
+        sh:order          1.0 ;
+        sh:maxCount       1 ;
+    ];
     sh:property [
         rdfs:label "Beschrijving"@nl ;
         sh:path rico:hasOrHadTitle ;
-        sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:group blauwdruk:Identificatie  ;
-        sh:order 1.0 ;
+        sh:order 3.0 ;
         memorix:inTitleAt 2.0 ;
         sh:class rico:Title ;
         sh:nodeKind sh:BlankNode ;
-        dash:viewer dash:DetailsEditor ;
     ] ;
     sh:property [
         rdfs:label "Datering"@nl ;
         sh:path rico:isAssociatedWithDate ;
-        sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:group blauwdruk:Beschrijving  ;
         sh:order 4.0 ;
@@ -67,10 +60,24 @@ blauwdruk:Groep a memorix:Recordtype, sh:NodeShape, owl:Class ;
         dash:editor dash:TextAreaEditor ;
     ] ;
     sh:property [
+        rdfs:label "Archiefvormer"@nl ;
+        sh:path rico:hasAccumulator ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:group blauwdruk:Beschrijving ;
+        sh:order 6.0 ;
+        dash:editor memorix:LinkedRecordEditor ;
+        sh:nodeKind sh:IRI ;
+        sh:or ( 
+            [ sh:class blauwdruk:Persoon ]
+            # TBD toevoegen CorporateBody
+        ) ;       
+    ] ;
+    sh:property [
         rdfs:label "Volgende archiefbeschrijving in de volgorde"@nl ;
         sh:path rico:precedesOrPreceded ;
         sh:group blauwdruk:Archiefstructuur ;
-        sh:order 1.0 ;
+        sh:order 7.0 ;
         dash:editor memorix:LinkedRecordEditor ;
         sh:nodeKind sh:IRI ;
         sh:or (
@@ -83,16 +90,29 @@ blauwdruk:Groep a memorix:Recordtype, sh:NodeShape, owl:Class ;
         rdfs:label "Maakt onderdeel uit van"@nl ;
         sh:path rico:isOrWasIncludedIn ;
         sh:group blauwdruk:Archiefstructuur ;
-        sh:order 1.0 ;
+        sh:minCount 1 ;
+        sh:order 8.0 ;
         dash:editor memorix:LinkedRecordEditor ;
         sh:nodeKind sh:IRI ;
         sh:or (
             [ sh:class blauwdruk:Archief ]
             [ sh:class blauwdruk:Groep ]
+            [ sh:class blauwdruk:Bestanddeel ]
         )
+    ] ;
+    sh:property [
+        rdfs:label "Representaties"@nl ;
+        sh:path rico:hasInstantiation ;
+        sh:group blauwdruk:Vindplaatsen ;
+        sh:minCount 1 ;
+        sh:order 9.0 ;
+        sh:class rico:Instantiation ;
+        sh:nodeKind sh:BlankNode ;
     ] .
+
 # TBD:
 # uiterlijke vorm
+
 
 
 # ========================================
@@ -110,9 +130,14 @@ blauwdruk:Archiefstructuur a sh:PropertyGroup ;
     rdfs:label "Datering"@nl ;
     sh:order    3.0 .
 
+blauwdruk:Vindplaatsen a sh:PropertyGroup ;
+    rdfs:label "Vindplaatsen"@nl ;
+    sh:order    4.0 .
+
 
 # ==========================================
 # Standard shapes
+
 
 ## Title
 rico:Title a sh:NodeShape ;
@@ -175,7 +200,6 @@ rico:DateRange a sh:NodeShape ;
         sh:order 2.0 ;
         sh:class rico:SingleDate ;
         sh:nodeKind sh:BlankNode ;
-        dash:viewer dash:DetailsEditor ;
     ] ;
     sh:property [
         rdfs:label "Einddatum"@nl ;
@@ -185,7 +209,6 @@ rico:DateRange a sh:NodeShape ;
         sh:order 3.0 ;
         sh:class rico:SingleDate ;
         sh:nodeKind sh:BlankNode ;
-        dash:viewer dash:DetailsEditor ;
     ] .
 
 rico:SingleDate a sh:NodeShape ;
@@ -206,3 +229,34 @@ rico:SingleDate a sh:NodeShape ;
         sh:order 2.0 ;
         sh:datatype xsd:gYear ;
     ] .
+
+rico:Instantiation a sh:NodeShape ;
+    sh:targetClass rico:Instantiation ;
+    sh:closed true ;
+    sh:ignoredProperties     ( rdf:type ) ;
+    sh:property [
+        sh:message        "rico:Instantiation MUST link to exactly 1 rico:InstantiationType with rico:hasInstantiationType"@en ;
+        sh:path           rico:hasInstantiationType;
+        rdfs:label        "Type"@nl ;
+        sh:order          1.0 ;
+        dash:editor       memorix:VocabularyEditor ; # Eigenlijk moet ik hier standaard dezelfde URI krijgen, want een toegangsnummer is verplicht. Hier deze editor nu gebruikt om te laten zien hoe het zou kunnen werken.
+#       sh:class skos:Concept ; # Nu nog niet in staat gebleken om een Concept aan te maken.
+#       skos:ConceptSchema voc:conceptschemes/uuid-voor-keuzelijst-instantiationtypes ;
+        sh:nodeKind       sh:IRI ;
+        sh:minCount       1 ;
+        sh:maxCount       1 ;
+    ] ;
+    sh:property [
+        sh:message        "rico:Instantiation MUST link to exactly 1 blauwdruk:vindplaats"@en ;
+        sh:path           blauwdruk:vindplaats;
+        rdfs:label        "Type"@nl ;
+        sh:order          1.0 ;
+        dash:editor       memorix:LinkedRecordEditor ;
+        sh:nodeKind       sh:IRI ;
+        sh:minCount       1 ;
+        sh:maxCount       1 ;
+        sh:or (
+            [ sh:class blauwdruk:Computerbestand ]
+        )
+    ] .
+
