@@ -24,6 +24,4 @@
         rico:expressedDate "2003?" ;
         rico:normalizedDateValue "2003"^^xsd:gYear
     ] ;
-    rico:precedesOrPreceded <> ;
-    rico:isOrWasIncludedIn <> ;
-    rico:hasInstantiation <> .
+    rico:isOrWasIncludedIn <> . # 02-groep-14

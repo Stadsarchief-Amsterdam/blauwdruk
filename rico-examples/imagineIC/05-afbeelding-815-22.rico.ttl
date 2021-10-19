@@ -24,6 +24,5 @@
         rico:expressedDate "2004" ;
         rico:normalizedDateValue "2004"^^xsd:gYear
     ] ;
-    rico:precedesOrPreceded <> ;
-    rico:isOrWasIncludedIn <> ;
-    rico:hasInstantiation <> .
+    rico:isOrWasIncludedIn <> ; # 03-bestanddeel-815
+    rico:hasInstantiation <> . # in het e-depot

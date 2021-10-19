@@ -12,20 +12,11 @@
     rico:hasOrHadIdentifier [
         a rico:Identifier ;
         rico:hasIdentifierType voc:de-UUID-voor-concept-rubrieksnummer ; 
-        rico:textualValue ""
+        rico:textualValue "12"
     ] ;
     rico:hasOrHadTitle [
         a rico:Title ;
-        rico:textualValue ""
+        rico:textualValue "Projecten en Activiteiten"
     ] ;
     rico:hasRecordSetType <https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#Series> ;
-    rico:isAssociatedWithDate [
-        a rico:DateRange ;
-        rico:expressedDate "2005 - " ;
-        rico:hasBeginningDate [
-            a rico:SingleDate ;
-            rico:normalizedDateValue "2005"^^xsd:gYear
-        ] ;
-    ] ;
-    rico:precedesOrPreceded <> ;
-    rico:isOrWasIncludedIn <> .
+    rico:isOrWasIncludedIn <> . #01-archief-30655-imagineIC

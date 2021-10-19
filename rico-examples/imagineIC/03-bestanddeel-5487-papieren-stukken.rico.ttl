@@ -18,12 +18,12 @@
         a rico:Title ;
         rico:textualValue "Stukken betreffende de uitvoering van projecten van de stichting InterArt"
     ] ;
+    rico:hasOrHadSubject data:de-UUID-voor-organisatievermelding-interart ;
     rico:hasRecordSetType <https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#File> ;
     rico:isAssociatedWithDate [
         a rico:SingleDate ;
         rico:expressedDate "2001" ;
         rico:normalizedDateValue "2001"^^xsd:gYear
     ] ;
-    rico:precedesOrPreceded <> ;
-    rico:isOrWasIncludedIn <> ;
-    rico:hasInstantiation <> .
+    rico:isOrWasIncludedIn <> ; # 02-groep-12
+    rico:hasInstantiation <> . # in het fysieke depot
