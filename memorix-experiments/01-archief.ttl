@@ -69,6 +69,7 @@ blauwdruk:Archief a memorix:Recordtype, sh:NodeShape, owl:Class ;
         sh:nodeKind sh:IRI ;
         sh:or ( # deze opsomming roept de juiste recordtypes aan waaruit gekozen mag worden in het formulier met de LinkedRecordEditor. Maar bij het valideren MOET er nu ook in de te valideren graaf/record gedeclareerd zijn dat het een blauwdruk:Persoon moet zijn. Dat zal niet geval zijn en dus valideert een record nooit.
             [ sh:class blauwdruk:Persoon ]
+            [ sh:class blauwdruk:Familie ]
             # TBD toevoegen CorporateBody
         ) ;       
     ] ;
@@ -296,4 +297,5 @@ rico:SingleDate a sh:NodeShape ;
         sh:maxCount 1 ;
         sh:order 2.0 ;
         sh:datatype xsd:gYear ;
+        sh:lessThanOrEquals "2050" ;
     ] .

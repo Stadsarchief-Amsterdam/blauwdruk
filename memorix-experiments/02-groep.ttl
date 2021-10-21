@@ -152,7 +152,7 @@ rico:Identifier a sh:NodeShape ;
         sh:maxCount       1 ;
     ] ;
     sh:property [
-        sh:message        "rico:Identifier MUST link to exactly 1 rico:IdentifierType with rico:hasIdentifierType"@en ;
+        sh:message        "rico:Identifier MUST link to exactly 1 rico:IdentifierType"@en ;
         sh:path           rico:hasIdentifierType ;
         rdfs:label        "Type"@nl ;
         sh:order          1.0 ;

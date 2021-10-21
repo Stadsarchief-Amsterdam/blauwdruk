@@ -5,7 +5,8 @@ export PATH=$PATH:$JENA_HOME/bin
 
 shacl --version
 
-shacl validate -s memorix-experiments/archief.ttl -d rico-examples/01-archief/correct/archief-correct1.ttl
+shacl validate -s memorix-experiments/01-archief.ttl -d rico-examples/01-archief/incorrect/archief-incorrect1.ttl
+shacl validate -s memorix-experiments/blauwdruk.ttl -d rico-examples/01-archief/incorrect/archief-incorrect1.ttl
 # shacl validate -s saa-sh.ttl -d 01-archief/incorrect/archief-incorrect1.ttl
 # shacl validate -s saa-sh.ttl -d 04-afbeelding/correct/afbeelding-correct2.ttl
 # shacl validate -s saa-sh.ttl -d 05-informatieobject/correct/informatieobject-correct1.ttl

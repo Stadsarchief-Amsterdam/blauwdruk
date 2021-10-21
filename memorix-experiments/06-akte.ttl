@@ -15,7 +15,7 @@
 @prefix ric-dft:       <https://www.ica.org/standards/RiC/vocabularies/documentaryFormTypes#> .
 
 # ==================================================
-blauwdruk:Afbeelding a memorix:Recordtype, sh:NodeShape, owl:Class ;
+blauwdruk:Akte a memorix:Recordtype, sh:NodeShape, owl:Class ;
     rdfs:comment          "Index Stadsarchief Amsterdam"@nl ;
     rdfs:label            "Akte"@nl ;
     dc:identifier         "Akte" ;
@@ -28,13 +28,13 @@ blauwdruk:Afbeelding a memorix:Recordtype, sh:NodeShape, owl:Class ;
         sh:group          blauwdruk:Identificatie ;
         sh:order          1.0 ;
         memorix:inTitleAt 1.0 ;
-        sh:message        "Afbeelding MUST link at least 1 rico:Identifier with rico:hasOrHadIdentifier"@en ;
+        sh:message        "Akte MUST link at least 1 rico:Identifier with rico:hasOrHadIdentifier"@en ;
         sh:class          rico:Identifier ;
         sh:nodeKind       sh:BlankNode ;
         sh:minCount       1 ;
     ] ;
     sh:property [
-        sh:message        "Afbeelding MUST link to at most 1 rico:Title with rico:hasOrHadTitle"@en ;
+        sh:message        "Akte MUST link to at most 1 rico:Title with rico:hasOrHadTitle"@en ;
         rdfs:label        "Titel"@nl ;
         sh:path           rico:hasOrHadTitle ;
         sh:group          blauwdruk:Identificatie ;
@@ -49,8 +49,8 @@ blauwdruk:Afbeelding a memorix:Recordtype, sh:NodeShape, owl:Class ;
         rdfs:label        "Beschrijving"@nl ;
         dash:editor       dash:TextAreaEditor ;
         dash:singleLine   false ;
-        sh:message        "Afbeelding CAN link to at most 1 xsd:string or xsd:XMLLiteral with rico:scopeAndContent"@en ;
-        sh:message        "Afbeelding KAN linken aan maximaal 1 xsd:string of xsd:XMLLiteral met rico:scopeAndContent"@nl ;
+        sh:message        "Akte CAN link to at most 1 xsd:string or xsd:XMLLiteral with rico:scopeAndContent"@en ;
+        sh:message        "Akte KAN linken aan maximaal 1 xsd:string of xsd:XMLLiteral met rico:scopeAndContent"@nl ;
         sh:group          blauwdruk:Beschrijving ;
         sh:order          3.0 ;
         sh:path           rico:scopeAndContent ;

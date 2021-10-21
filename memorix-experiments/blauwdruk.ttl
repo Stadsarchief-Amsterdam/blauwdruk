@@ -1,229 +1,49 @@
-@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix owl: <http://www.w3.org/2002/07/owl#> .
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix blauwdruk: <https://example.memorix-test.nl/resources/recordtypes/> .
-@prefix dc: <http://purl.org/dc/elements/1.1/> .
-@prefix sh: <http://www.w3.org/ns/shacl#> .
-@prefix dash: <http://datashapes.org/dash#> .
-@prefix memorix: <http://memorix.io/ontology#> .
-@prefix rico: <https://www.ica.org/standards/RiC/ontology#> .
-@prefix ric-rst: <https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#> .
-@prefix ric-dft: <https://www.ica.org/standards/RiC/vocabularies/documentaryFormTypes#> .
+@prefix rdf:           <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:          <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:           <http://www.w3.org/2001/XMLSchema#> .
+@prefix sh:            <http://www.w3.org/ns/shacl#> .
 
-blauwdruk:Afbeelding
-    dash:defaultViewForRole dash:all ;
-    dc:identifier "Afbeelding" ;
-    a memorix:Recordtype, owl:Class, sh:NodeShape ;
-    rdfs:comment "Beeldbankbeschrijvingen Stadsarchief Amsterdam"@nl ;
-    rdfs:equivalentClass rico:Record ;
-    rdfs:label "Afbeelding"@nl ;
-    sh:closed true ;
-    sh:ignoredProperties (rdf:type
-    ) ;
-    sh:property [
-        memorix:inTitleAt 1.0 ;
-        rdfs:label "Nummer"@nl ;
-        sh:class rico:Identifier ;
-        sh:group blauwdruk:Identificatie ;
-        sh:message "Afbeelding MUST link at least 1 rico:Identifier with rico:hasOrHadIdentifier"@en ;
-        sh:minCount 1 ;
-        sh:nodeKind sh:BlankNode ;
-        sh:order 1.0 ;
-        sh:path rico:hasOrHadIdentifier
-    ], [
-        memorix:inTitleAt 2.0 ;
-        rdfs:label "Titel"@nl ;
-        sh:class rico:Title ;
-        sh:group blauwdruk:Identificatie ;
-        sh:maxCount 1 ;
-        sh:message "Afbeelding MUST link to at most 1 rico:Title with rico:hasOrHadTitle"@en ;
-        sh:minCount 1 ;
-        sh:nodeKind sh:BlankNode ;
-        sh:order 2.0 ;
-        sh:path rico:hasOrHadTitle
-    ], [
-        dash:editor dash:TextAreaEditor ;
-        dash:singleLine false ;
-        rdfs:label "Beschrijving"@nl ;
-        sh:datatype xsd:string ;
-        sh:group blauwdruk:Beschrijving ;
-        sh:maxCount 1 ;
-        sh:message "Afbeelding CAN link to at most 1 xsd:string or xsd:XMLLiteral with rico:scopeAndContent"@en, "Afbeelding KAN linken aan maximaal 1 xsd:string of xsd:XMLLiteral met rico:scopeAndContent"@nl ;
-        sh:order 3.0 ;
-        sh:path rico:scopeAndContent
-    ] .
+@prefix rico:          <https://www.ica.org/standards/RiC/ontology#> .
+@prefix ric-rst:       <https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#> .
+@prefix ric-dft:       <https://www.ica.org/standards/RiC/vocabularies/documentaryFormTypes#> .
 
-blauwdruk:Archief
-    dash:defaultViewForRole dash:all ;
-    dc:identifier "Archief" ;
-    a memorix:Recordtype, owl:Class, sh:NodeShape ;
-    rdfs:comment "Standaard Recordtype voor Archiefblok"@nl ;
-    rdfs:label "Archief"@nl ;
-    owl:equivalentClass rico:RecordSet ;
-    sh:closed true ;
-    sh:ignoredProperties (rdf:type
-    ) ;
-    sh:property [
-        dash:viewer dash:DetailsEditor ;
-        memorix:inTitleAt 2.0 ;
-        rdfs:label "Archiefblok naam"@nl ;
-        sh:class rico:Title ;
-        sh:group blauwdruk:Identificatie ;
-        sh:maxCount 1 ;
-        sh:minCount 1 ;
-        sh:nodeKind sh:BlankNode ;
-        sh:order 1.0 ;
-        sh:path rico:hasOrHadTitle
-    ], [
-        dash:viewer dash:DetailsEditor ;
-        memorix:inTitleAt 1.0 ;
-        rdfs:label "Archiefblok nummer"@nl ;
-        sh:class rico:Identifier ;
-        sh:group blauwdruk:Identificatie ;
-        sh:maxCount 1 ;
-        sh:minCount 1 ;
-        sh:nodeKind sh:BlankNode ;
-        sh:order 2.0 ;
-        sh:path rico:hasOrHadIdentifier
-    ], [
-        dash:viewer dash:DetailsEditor ;
-        rdfs:label "Datering oudste stuk"@nl ;
-        sh:class rico:Date ;
-        sh:group blauwdruk:Datering ;
-        sh:maxCount 1 ;
-        sh:minCount 1 ;
-        sh:nodeKind sh:BlankNode ;
-        sh:order 3.0 ;
-        sh:path rico:hasBeginningDate
-    ], [
-        dash:viewer dash:DetailsEditor ;
-        rdfs:label "Datering jongste stuk"@nl ;
-        sh:class rico:Date ;
-        sh:group blauwdruk:Datering ;
-        sh:maxCount 1 ;
-        sh:minCount 1 ;
-        sh:nodeKind sh:BlankNode ;
-        sh:order 4.0 ;
-        sh:path rico:hasEndDate
-    ], [
-        dash:editor dash:TextAreaEditor ;
-        rdfs:label "Inleiding"@nl ;
-        sh:datatype xsd:string ;
-        sh:group blauwdruk:Beschrijving ;
-        sh:order 5.0 ;
-        sh:path rico:scopeAndContent
-    ], [
-        dash:editor memorix:LinkedRecordEditor ;
-        rdfs:label "Archiefvormer"@nl ;
-        sh:group blauwdruk:Vervaardiging ;
-        sh:nodeKind sh:IRI ;
-        sh:or (sh:class
-            blauwdruk:Persoon
-        ) ;
-        sh:order 1.0 ;
-        sh:path rico:hasAccumulator
-    ] ;
-    sh:targetClass blauwdruk:Archief .
+@prefix crm:           <http://www.cidoc-crm.org/cidoc-crm/> .
 
-blauwdruk:Beschrijving
-    a sh:PropertyGroup ;
-    rdfs:label "Beschrijving"@nl ;
-    sh:order 2.0 .
+@prefix saa-ont:       <https://data.archief.amsterdam/ontology#> .
+@prefix saa-sh:        <https://data.archief.amsterdam/shapes#> .
+@prefix saa-voc:       <https://data.archief.amsterdam/vocabulary#> .
 
-blauwdruk:Datering
-    a sh:PropertyGroup ;
-    rdfs:label "Datering"@nl ;
-    sh:order 3.0 .
+@prefix owl:           <http://www.w3.org/2002/07/owl#> .
+@prefix dct:           <http://purl.org/dc/terms/> .
 
-blauwdruk:Identificatie
-    a sh:PropertyGroup ;
-    rdfs:label "Identificatie"@nl ;
-    sh:order 1.0 .
+# 01-archiefblok
+# 02-verzameling
+# 03-bestanddeel
+# 04-afbeelding
+# 05-informatieobject
+# 06-representatie
+# 07-persoon
+# 08-persoonsvermelding
+# 09-familie
+# 10-rechtspersoon
+# 11-rechtspersoonvermelding
+# 12-publicatie
+# 13-locatie
+# 14-locatievermelding
+# a-toegang-en-gebruik
 
-blauwdruk:Vervaardiging
-    a sh:PropertyGroup ;
-    rdfs:label "Archiefvorming"@nl ;
-    sh:order 4.0 .
+<https://data.archief.amsterdam/ontology> a owl:Ontology ;
+    rdfs:label "Amsterdam City Archives RiC-O extension"@en ;
+    rdfs:label "Stadsarchief Amsterdam RiC-O extensie"@nl ;
+    rdfs:comment "Formal definitions of entities used for archival description in the Amsterdam City Archives."@en ;
+    rdfs:comment "Formele definities van entiteiten gebruikt voor archiefbeschrijvingen bij Stadsarchief Amsterdam."@nl ;
+    dct:publisher <http://viaf.org/viaf/125129838> ;
+    dct:creator <http://viaf.org/viaf/8160423087068032715> ;
+    dct:license <https://creativecommons.org/publicdomain/zero/1.0/deed> ;
+    dct:created  "2021-07-21T17:00:00+00:00"^^xsd:dateTime ;
+    dct:modified "2021-07-28T17:00:00+00:00"^^xsd:dateTime ;
+    dct:description "We introduce this ontology because we require different mandatory properties for different subClasses of entities in the RiC ontology. We have defined shapes in SHACL to validate data according to these requirement." ;
 
-rico:Date
-    a sh:NodeShape ;
-    sh:closed true ;
-    sh:ignoredProperties (rdf:type
-    ), (rdf:type
-    ) ;
-    sh:property [
-        rdfs:label "Datum (tekst)"@nl ;
-        sh:datatype xsd:string ;
-        sh:order 1.0 ;
-        sh:path rico:expressedDate
-    ], [
-        memorix:inSummaryAt 2.0 ;
-        rdfs:label "Datum (genormaliseerd)"@nl ;
-        sh:datatype xsd:date ;
-        sh:order 2.0 ;
-        sh:path rico:normalizedDateValue
-    ], [
-        rdfs:label "Datum (tekst)"@nl ;
-        sh:datatype xsd:string ;
-        sh:order 1.0 ;
-        sh:path rico:expressedDate
-    ], [
-        memorix:inSummaryAt 2.0 ;
-        rdfs:label "Datum (genormaliseerd)"@nl ;
-        sh:datatype xsd:date ;
-        sh:order 2.0 ;
-        sh:path rico:normalizedDateValue
-    ] ;
-    sh:targetClass rico:Date .
-
-rico:Identifier
-    a sh:NodeShape ;
-    sh:closed true ;
-    sh:ignoredProperties (rdf:type
-    ), (rdf:type
-    ) ;
-    sh:property [
-        rdfs:label "Waarde"@nl ;
-        sh:datatype xsd:string ;
-        sh:maxCount 1 ;
-        sh:message "This node MUST link to exactly 1 xsd:string with rico:textualValue"@en ;
-        sh:minCount 1 ;
-        sh:order 1.0 ;
-        sh:path rico:textualValue
-    ], [
-        rdfs:label "Waarde"@nl ;
-        sh:datatype xsd:string ;
-        sh:maxCount 1 ;
-        sh:message "This node MUST link to exactly 1 xsd:string with rico:textualValue"@en ;
-        sh:minCount 1 ;
-        sh:order 1.0 ;
-        sh:path rico:textualValue
-    ] ;
-    sh:targetClass rico:Identifier .
-
-rico:Title
-    a sh:NodeShape ;
-    sh:closed true ;
-    sh:ignoredProperties (rdf:type
-    ), (rdf:type
-    ) ;
-    sh:property [
-        rdfs:label "Waarde"@nl ;
-        sh:datatype xsd:string ;
-        sh:maxCount 1 ;
-        sh:message "This node MUST link to exactly 1 xsd:string with rico:textualValue"@en ;
-        sh:minCount 1 ;
-        sh:order 1.0 ;
-        sh:path rico:textualValue
-    ], [
-        rdfs:label "Waarde"@nl ;
-        sh:datatype xsd:string ;
-        sh:maxCount 1 ;
-        sh:message "This node MUST link to exactly 1 xsd:string with rico:textualValue"@en ;
-        sh:minCount 1 ;
-        sh:order 1.0 ;
-        sh:path rico:textualValue
-    ] ;
-    sh:targetClass rico:Title .
-
+    owl:imports <https://www.ica.org/standards/RiC/ontology> ;
+    owl:imports <http://localhost:8000/01-archief.ttl> ;
+    owl:imports <http://localhost:8000/02-groep.ttl> .
