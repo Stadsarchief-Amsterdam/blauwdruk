@@ -1,0 +1,244 @@
+@prefix organisatie: </resources/recordtypes/Organisatie#> .
+@prefix vocabularies: </resources/vocabularies/conceptschemes/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix memorix: <http://memorix.io/ontology#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix recordtypes: </resources/recordtypes/> .
+@prefix html: <http://www.w3.org/1999/xhtml/> .
+@prefix dash: <http://datashapes.org/dash#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+
+recordtypes:Organisatie
+    a memorix:Recordtype, sh:NodeShape ;
+    rdfs:label "Organisatie"@nl ;
+    rdfs:comment "Standaard Recordtype voor Organisaties"@nl ;
+    dc:identifier "Organisatie" ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:targetClass recordtypes:Organisatie ;
+    dash:defaultViewForRole dash:all ;
+    sh:property [
+          rdfs:label "Naam"@nl ;
+          sh:path organisatie:name ;
+          sh:maxCount 1 ;
+          sh:order 1.0 ;
+          sh:group organisatie:identityGroup ;
+          memorix:inTitleAt 1.0 ;
+          memorix:searchWeight 3.0 ;
+          sh:datatype xsd:string ;
+          dash:singleLine true ;
+      ] ;
+    sh:property [
+          rdfs:label "Alternatieve namen"@nl ;
+          sh:path organisatie:otherFormsOfName ;
+          sh:maxCount 5 ;
+          sh:order 4.0 ;
+          sh:group organisatie:identityGroup ;
+          memorix:searchWeight 1.0 ;
+          sh:datatype xsd:string ;
+      ] ;
+    sh:property [
+          rdfs:label "Identificatiekenmerk"@nl ;
+          sh:path organisatie:identifier ;
+          sh:maxCount 1 ;
+          sh:order 5.0 ;
+          sh:group organisatie:identityGroup ;
+          memorix:searchWeight 1.0 ;
+          sh:datatype xsd:string ;
+      ] ;
+    sh:property [
+          rdfs:label "Identiek aan (RKD Artists)"@nl ;
+          sh:path organisatie:sameAsRKDArtists ;
+          sh:maxCount 1 ;
+          sh:order 6.0 ;
+          sh:group organisatie:identityGroup ;
+          memorix:searchWeight 1.0 ;
+          dash:editor              memorix:VocabularyEditor ;
+          memorix:conceptSchemeIn  <https://data.rkd.nl/rkdartists>  ;
+          sh:class                 skos:Concept ;
+          sh:nodeKind sh:IRI ;
+
+      ] ;
+
+    sh:property [
+          rdfs:label "Type organisatie"@nl ;
+          rdfs:comment "Selecteer een waarde uit de lijst."@nl ;
+          sh:path organisatie:documentType ;
+          sh:maxCount 1 ;
+          sh:order 1.0 ;
+          sh:group organisatie:descriptiveInformationGroup ;
+          dash:editor memorix:VocabularyEditor ;
+          sh:class skos:Concept ;
+          memorix:conceptSchemeIn vocabularies:1aa6d707-d2af-31b7-862a-1769126a6f31 ; #replaced by uuid in code
+          sh:nodeKind sh:IRI ;
+      ] ;
+
+    sh:property [
+          rdfs:label "Geschiedenis"@nl ;
+          sh:path organisatie:history ;
+          sh:maxCount 1 ;
+          sh:order 3.0 ;
+          memorix:searchWeight 1.0 ;
+          sh:group organisatie:descriptiveInformationGroup ;
+          sh:datatype xsd:string ;
+          dash:editor dash:TextAreaEditor ;
+      ] ;
+    sh:property [
+          rdfs:label "Bibliografie"@nl ;
+          sh:path organisatie:bibliography ;
+          sh:datatype xsd:string ;
+          dash:editor dash:TextAreaEditor ;
+          sh:maxCount 1 ;
+          sh:order 4.0 ;
+          sh:group organisatie:descriptiveInformationGroup ;
+          memorix:searchWeight 1.0 ;
+      ] ;
+    sh:property [
+          rdfs:label "Beschrijving"@nl ;
+          sh:path organisatie:descrtiption ;
+          sh:datatype xsd:string ;
+          dash:editor dash:TextAreaEditor ;
+          sh:maxCount 1 ;
+          sh:order 5.0 ;
+          sh:group organisatie:descriptiveInformationGroup ;
+          memorix:searchWeight 1.0 ;
+      ] ;
+
+
+#    sh:property [
+#          rdfs:label "Levensloop"@nl ;
+#          sh:path organisatie:period_of_activity ;
+#          sh:datatype xsd:date ;
+#          sh:maxCount 1 ;
+#          sh:order 3.0 ;
+#          sh:group organisatie:lifeEventsGroup ;
+#          memorix:searchWeight 1.0 ;
+#      ] ;
+    sh:property [
+          rdfs:label "Oprichting"@nl ;
+          rdfs:comment "Oprichting"@nl ;
+          sh:maxCount 1 ;
+          sh:path organisatie:Oprichting ;
+          sh:order 2.0 ;
+          sh:nodeKind sh:BlankNode ;
+          sh:class organisatie:Oprichting ;
+          sh:group organisatie:lifeEventsGroup ;
+      ] ;
+
+    sh:property [
+          rdfs:label "Ontbinding"@nl ;
+          rdfs:comment "Ontbinding"@nl ;
+          sh:maxCount 1 ;
+          sh:path organisatie:Ontbinding ;
+          sh:order 3.0 ;
+          sh:nodeKind sh:BlankNode ;
+          sh:class organisatie:Ontbinding ;
+          sh:group organisatie:lifeEventsGroup ;
+      ] ;
+
+    sh:property [
+          rdfs:label "Plaats van werkzaamheid"@nl ;
+          rdfs:comment "Plaats van werkzaamheid"@nl ;
+          sh:maxCount 10 ;
+          sh:path organisatie:placeOfActivity ;
+          sh:order 4.0 ;
+          sh:nodeKind sh:BlankNode ;
+          sh:class organisatie:PlaceOfActivity ;
+          sh:group organisatie:lifeEventsGroup ;
+      ] ;
+.
+organisatie:Oprichting
+    a sh:NodeShape ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:targetClass organisatie:PlaceOfActivity ;
+    sh:property [
+          rdfs:label "Plaats van oprichting (TODO LINK NAAR GEONAMES)"@nl ;
+          sh:path organisatie:Oprichting  ;
+          sh:order 1.0 ;
+          sh:datatype xsd:string ;
+          memorix:searchWeight 1.0 ;
+      # TODO dit moet een link naar Geonames worden
+      ] ;
+    sh:property [
+          rdfs:label "Datum van oprichting"@nl ;
+          sh:path organisatie:Oprichting  ;
+          sh:order 2.0 ;
+          sh:datatype xsd:date ;
+          memorix:searchWeight 1.0 ;
+      ] ;
+.
+organisatie:Ontbinding
+    a sh:NodeShape ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:targetClass organisatie:PlaceOfActivity ;
+    sh:property [
+          rdfs:label "Plaats van ontbinding (TODO LINK NAAR GEONAMES)"@nl ;
+          sh:path organisatie:Ontbinding  ;
+          sh:order 1.0 ;
+          sh:datatype xsd:string ;
+          memorix:searchWeight 1.0 ;
+      # TODO dit moet een link naar Geonames worden
+      ] ;
+    sh:property [
+          rdfs:label "Datum van ontbinding"@nl ;
+          sh:path organisatie:Ontbinding  ;
+          sh:order 2.0 ;
+          sh:datatype xsd:date ;
+          memorix:searchWeight 1.0 ;
+      ] ;
+.
+
+organisatie:PlaceOfActivity
+    a sh:NodeShape ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:targetClass organisatie:PlaceOfActivity ;
+    sh:property [
+          rdfs:label "Locatie (TODO LINK NAAR GEONAMES)"@nl ;
+          sh:path organisatie:activityLocation  ;
+          sh:order 1.0 ;
+          sh:datatype xsd:string ;
+          memorix:searchWeight 1.0 ;
+      # TODO dit moet een link naar Geonames worden
+      ] ;
+    sh:property [
+          rdfs:label "Begindatum"@nl ;
+          sh:path organisatie:activityStartDate  ;
+          sh:order 2.0 ;
+          sh:datatype xsd:date ;
+          memorix:searchWeight 1.0 ;
+      ] ;
+    sh:property [
+          rdfs:label "Einddatum"@nl ;
+          sh:path organisatie:activityEndDate  ;
+          sh:order 3.0 ;
+          sh:datatype xsd:date ;
+          memorix:searchWeight 1.0 ;
+      ] ;
+    sh:property [
+          rdfs:label "Opmerking bij plaats van werkzaamheid"@nl ;
+          sh:path organisatie:activityRemark  ;
+          sh:order 4.0 ;
+          sh:datatype xsd:string ;
+          dash:editor dash:TextAreaEditor ;
+          memorix:searchWeight 1.0 ;
+      ]
+.
+
+organisatie:identityGroup a sh:PropertyGroup ;
+                          rdfs:label "Identiteit"@nl ;
+                          sh:order 1.0
+.
+organisatie:descriptiveInformationGroup a sh:PropertyGroup ;
+                                        rdfs:label "Beschrijving"@nl ;
+                                        sh:order 2.0
+.
+organisatie:lifeEventsGroup a sh:PropertyGroup ;
+                            rdfs:label "Levensloop"@nl ;
+                            sh:order 3.0
+.

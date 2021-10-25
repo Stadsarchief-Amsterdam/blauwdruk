@@ -1,0 +1,386 @@
+@prefix persoon: </resources/recordtypes/Persoon#> .
+@prefix vocabularies: </resources/vocabularies/conceptschemes/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix memorix: <http://memorix.io/ontology#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix recordtypes: </resources/recordtypes/> .
+@prefix html: <http://www.w3.org/1999/xhtml/> .
+@prefix dash: <http://datashapes.org/dash#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+
+recordtypes:Persoon
+    a memorix:Recordtype, sh:NodeShape ;
+    rdfs:label "Persoon"@nl ;
+    rdfs:comment "Standaard Recordtype voor Personen"@nl ;
+    dc:identifier "Persoon" ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:targetClass recordtypes:Persoon ;
+    dash:defaultViewForRole dash:all ;
+    sh:property [
+          rdfs:label "Voornaam"@nl ;
+          sh:path persoon:firstName ;
+          sh:maxCount 1 ;
+          sh:order 1.0 ;
+          sh:group persoon:identityGroup ;
+          memorix:inTitleAt 1.0 ;
+          memorix:searchWeight 3.0 ;
+          sh:datatype xsd:string ;
+          dash:singleLine true ;
+      ] ;
+    sh:property [
+          rdfs:label "Tussenvoegsel"@nl ;
+          sh:path persoon:surnamePrefix ;
+          sh:maxCount 1 ;
+          sh:order 2.0 ;
+          sh:group persoon:identityGroup ;
+          memorix:inTitleAt 2.0 ;
+          memorix:searchWeight 3.0 ;
+          sh:datatype xsd:string ;
+      ] ;
+    sh:property [
+          rdfs:label "Achternaam"@nl ;
+          sh:path persoon:lastName ;
+          sh:maxCount 1 ;
+          sh:order 3.0 ;
+          sh:group persoon:identityGroup ;
+          memorix:inTitleAt 3.0 ;
+          memorix:searchWeight 3.0 ;
+          sh:datatype xsd:string ;
+      ] ;
+    sh:property [
+          rdfs:label "Alternatieve namen"@nl ;
+          sh:path persoon:otherFormsOfName ;
+          sh:maxCount 5 ;
+          sh:order 4.0 ;
+          sh:group persoon:identityGroup ;
+          memorix:searchWeight 1.0 ;
+          sh:datatype xsd:string ;
+      ] ;
+    sh:property [
+          rdfs:label "Identificatiekenmerk"@nl ;
+          sh:path persoon:identifier ;
+          sh:maxCount 1 ;
+          sh:order 5.0 ;
+          sh:group persoon:identityGroup ;
+          memorix:searchWeight 1.0 ;
+          sh:datatype xsd:string ;
+      ] ;
+    sh:property [
+          rdfs:label "Identiek aan (RKD Artists)"@nl ;
+          sh:path persoon:sameAsRKDArtists ;
+          sh:maxCount 1 ;
+          sh:order 6.0 ;
+          sh:group persoon:identityGroup ;
+          memorix:searchWeight 1.0 ;
+          dash:editor              memorix:VocabularyEditor ;
+          memorix:conceptSchemeIn  <https://data.rkd.nl/rkdartists>  ;
+          sh:class                 skos:Concept ;
+          sh:nodeKind sh:IRI ;
+      ] ;
+    sh:property [
+          rdfs:label "Nationaliteit"@nl ;
+          sh:path persoon:nationality ;
+          sh:maxCount 1 ;
+          sh:order 1.0 ;
+          sh:group persoon:descriptiveInformationGroup ;
+          memorix:searchWeight 1.0 ;
+          dash:editor memorix:VocabularyEditor ;
+          sh:class skos:Concept ;
+          memorix:conceptSchemeIn vocabularies:105952b0-da70-3050-a8af-f9f9c6d6ad84 ;#replaced by uuid in code
+          sh:nodeKind sh:IRI ;
+      ] ;
+    sh:property [
+          rdfs:label "Geslacht"@nl ;
+          sh:path persoon:gender ;
+          sh:maxCount 1 ;
+          sh:order 2.0 ;
+          sh:group persoon:descriptiveInformationGroup ;
+          memorix:searchWeight 1.0 ;
+          dash:editor memorix:VocabularyEditor ;
+          sh:class skos:Concept ;
+          memorix:conceptSchemeIn vocabularies:68b6ccb6-2723-3964-9dab-1a871e595002 ;#replaced by uuid in code
+          sh:nodeKind sh:IRI ;
+      ] ;
+    sh:property [
+          rdfs:label "Biografie"@nl ;
+          sh:path persoon:biography ;
+          sh:maxCount 1 ;
+          sh:order 3.0 ;
+          memorix:searchWeight 1.0 ;
+          sh:group persoon:descriptiveInformationGroup ;
+          sh:datatype xsd:string ;
+          dash:editor dash:TextAreaEditor ;
+      ] ;
+    sh:property [
+          rdfs:label "Bibliografie"@nl ;
+          sh:path persoon:bibliography ;
+          sh:datatype xsd:string ;
+          dash:editor dash:TextAreaEditor ;
+          sh:maxCount 1 ;
+          sh:order 4.0 ;
+          sh:group persoon:descriptiveInformationGroup ;
+          memorix:searchWeight 1.0 ;
+      ] ;
+    sh:property [
+          rdfs:label "Beschrijving"@nl ;
+          sh:path persoon:descrtiption ;
+          sh:datatype xsd:string ;
+          dash:editor dash:TextAreaEditor ;
+          sh:maxCount 1 ;
+          sh:order 5.0 ;
+          sh:group persoon:descriptiveInformationGroup ;
+          memorix:searchWeight 1.0 ;
+      ] ;
+    sh:property [
+          rdfs:label "Geboorte"@nl ;
+          rdfs:comment "Geboorte Event"@nl ;
+          sh:maxCount 1 ;
+          sh:path persoon:birthEvent ;
+          sh:order 1.0 ;
+          dash:viewer dash:DetailsEditor ;
+          sh:nodeKind sh:BlankNode ;
+          sh:class persoon:BirthEvent ;
+          sh:group persoon:lifeEventsGroup ;
+      ] ;
+    sh:property [
+          rdfs:label "Overlijden"@nl ;
+          rdfs:comment "Overlijden Event"@nl ;
+          sh:maxCount 1 ;
+          sh:path persoon:deathEvent ;
+          sh:order 2.0 ;
+          dash:viewer dash:DetailsEditor ;
+          sh:nodeKind sh:BlankNode ;
+          sh:class persoon:DeathEvent ;
+          sh:group persoon:lifeEventsGroup ;
+      ] ;
+#    sh:property [
+#          rdfs:label "Werkzame Periode"@nl ;
+#          sh:path persoon:period_of_activity ;
+#          sh:datatype xsd:date ;
+#          sh:maxCount 1 ;
+#          sh:order 3.0 ;
+#          sh:group persoon:lifeEventsGroup ;
+#          memorix:searchWeight 1.0 ;
+#      ] ;
+    sh:property [
+          rdfs:label "Plaats van werkzaamheid"@nl ;
+          rdfs:comment "Plaatsen van werkzaamheid"@nl ;
+          sh:maxCount 10 ;
+          sh:path persoon:placeOfActivity ;
+          sh:order 4.0 ;
+          dash:viewer dash:DetailsEditor ;
+          sh:nodeKind sh:BlankNode ;
+          sh:class persoon:PlaceOfActivity ;
+          sh:group persoon:lifeEventsGroup ;
+      ] ;
+    sh:property [
+          rdfs:label "Relatie"@nl ;
+          rdfs:comment "Relatie tussen personen"@nl ;
+          sh:maxCount 10 ;
+          sh:path persoon:relation ;
+          sh:order 1.0 ;
+          dash:viewer dash:DetailsEditor ;
+          sh:nodeKind sh:BlankNode ;
+          sh:class persoon:Relation ;
+          sh:group persoon:relationsGroup;
+      ] ;
+    sh:property [
+          rdfs:label "Adres"@nl ;
+          sh:path persoon:contactAddress ;
+          sh:datatype xsd:string;
+          sh:maxCount 1 ;
+          sh:group persoon:contactInformationGroup  ;
+          sh:order 1.0 ;
+          memorix:searchWeight 1.0 ;
+      ] ;
+    sh:property [
+          rdfs:label "Postcode"@nl ;
+          sh:path persoon:contactZipCode ;
+          sh:datatype xsd:string;
+          sh:maxCount 1 ;
+          sh:group persoon:contactInformationGroup  ;
+          sh:order 1.0 ;
+          memorix:searchWeight 1.0 ;
+      ] ;
+    sh:property [
+          rdfs:label "Place"@nl ;
+          sh:path persoon:contactPlace ;
+          sh:datatype xsd:string;
+          sh:maxCount 1 ;
+          sh:group persoon:contactInformationGroup  ;
+          sh:order 2.0 ;
+          memorix:searchWeight 1.0 ;
+      ] ;
+    sh:property [
+          rdfs:label "Land"@nl ;
+          sh:path persoon:contactCountry ;
+          sh:datatype xsd:string;
+          sh:maxCount 1 ;
+          sh:group persoon:contactInformationGroup  ;
+          sh:order 3.0 ;
+          memorix:searchWeight 1.0 ;
+      ] ;
+    sh:property [
+          rdfs:label "E-mail"@nl ;
+          sh:path persoon:contactEmail ;
+          sh:datatype xsd:string;
+          sh:maxCount 1 ;
+          sh:group persoon:contactInformationGroup  ;
+          sh:order 4.0 ;
+          memorix:searchWeight 1.0 ;
+      ] ;
+    sh:property [
+          rdfs:label "Website"@nl ;
+          sh:path persoon:contactWebsite ;
+          sh:datatype xsd:string;
+          sh:maxCount 1 ;
+          sh:group persoon:contactInformationGroup  ;
+          sh:order 5.0 ;
+          memorix:searchWeight 1.0 ;
+      ] ;
+    sh:property [
+          rdfs:label "Telefoonnummer"@nl ;
+          sh:path persoon:contactPhone ;
+          sh:datatype xsd:string;
+          sh:maxCount 1 ;
+          sh:group persoon:contactInformationGroup  ;
+          sh:order 6.0 ;
+          memorix:searchWeight 1.0 ;
+      ] ;
+.
+persoon:BirthEvent
+    a sh:NodeShape ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:targetClass persoon:BirthEvent ;
+    sh:property [
+          rdfs:label "Geboortedatum"@nl ;
+          sh:path persoon:birthDate  ;
+          sh:order 1.0 ;
+          dash:editor  memorix:DateEditor ;
+          sh:datatype  xsd:integer ;
+          memorix:searchWeight 1.0 ;
+      ] ;
+    sh:property [
+          rdfs:label "Geboorteplaats"@nl ;
+          sh:path persoon:birthPlace  ;
+          sh:order 2.0 ;
+          sh:datatype xsd:string ;
+          dash:editor dash:TextFieldEditor ;
+          memorix:searchWeight 1.0 ;
+      # TODO dit moet een link naar Geonames worden
+      ]
+.
+persoon:DeathEvent
+    a sh:NodeShape ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:targetClass persoon:DeathEvent ;
+    sh:property [
+          rdfs:label "Overlijdensdatum"@nl ;
+          sh:path persoon:deathDate  ;
+          sh:order 1.0 ;
+          dash:editor  memorix:DateEditor ;
+          sh:datatype  xsd:integer ;
+          memorix:searchWeight 1.0 ;
+      ] ;
+    sh:property [
+          rdfs:label "Overlijdensplaats"@nl ;
+          sh:path persoon:deathPlace  ;
+          sh:order 2.0 ;
+          sh:datatype xsd:string ;
+          dash:editor dash:TextFieldEditor ;
+          memorix:searchWeight 1.0 ;
+      # TODO dit moet een link naar Geonames worden
+      ]
+.
+persoon:PlaceOfActivity
+    a sh:NodeShape ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:targetClass persoon:PlaceOfActivity ;
+    sh:property [
+          rdfs:label "Locatie"@nl ;
+          sh:path persoon:activityLocation  ;
+          sh:order 1.0 ;
+          sh:datatype xsd:string ;
+          memorix:searchWeight 1.0 ;
+      # TODO dit moet een link naar Geonames worden
+      ] ;
+    sh:property [
+          rdfs:label "Begindatum"@nl ;
+          sh:path persoon:activityStartDate  ;
+          sh:order 2.0 ;
+          dash:editor  memorix:DateEditor ;
+          sh:datatype  xsd:integer ;
+          memorix:searchWeight 1.0 ;
+      ] ;
+    sh:property [
+          rdfs:label "Einddatum"@nl ;
+          sh:path persoon:activityEndDate  ;
+          sh:order 3.0 ;
+          dash:editor  memorix:DateEditor ;
+          sh:datatype  xsd:integer ;
+          memorix:searchWeight 1.0 ;
+      ] ;
+    sh:property [
+          rdfs:label "Opmerking bij plaats werkzaamheid"@nl ;
+          sh:path persoon:activityRemark  ;
+          sh:order 4.0 ;
+          sh:datatype xsd:string ;
+          dash:editor dash:TextAreaEditor ;
+          memorix:searchWeight 1.0 ;
+      ]
+.
+persoon:Relation
+    a sh:NodeShape ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:targetClass persoon:Relation ;
+    sh:property [
+          rdfs:label "Soort relatie"@nl ;
+          sh:path persoon:relationType ;
+          sh:order 1.0 ;
+          memorix:searchWeight 1.0 ;
+          dash:editor memorix:VocabularyEditor ;
+          sh:class skos:Concept ;
+          memorix:conceptSchemeIn vocabularies:b37c8154-4f66-3630-affc-5b830003e3d0 ;#replaced by uuid in code
+          sh:nodeKind sh:IRI ;
+      ] ;
+    sh:property [
+          rdfs:label "Gerelateerd Persoon"@nl ;
+          sh:path persoon:relatedPerson ;
+          sh:order 2.0 ;
+          memorix:searchWeight 1.0 ;
+          sh:maxCount  1 ;
+          dash:editor memorix:LinkedRecordEditor ;
+          sh:nodeKind sh:IRI ;
+          sh:or (
+                         [ sh:class recordtypes:Persoon ]
+                     ) ;
+      ]
+.
+persoon:identityGroup a sh:PropertyGroup ;
+                      rdfs:label "Identiteit"@nl ;
+                      sh:order 1.0
+.
+persoon:descriptiveInformationGroup a sh:PropertyGroup ;
+                                    rdfs:label "Beschrijving"@nl ;
+                                    sh:order 2.0
+.
+persoon:lifeEventsGroup a sh:PropertyGroup ;
+                        rdfs:label "Levensloop"@nl ;
+                        sh:order 3.0
+.
+persoon:relationsGroup a sh:PropertyGroup ;
+                       rdfs:label "Relaties"@nl ;
+                       sh:order 4.0
+.
+persoon:contactInformationGroup a sh:PropertyGroup ;
+                                rdfs:label "Contactinformatie"@nl ;
+                                sh:order 5.0
+.
