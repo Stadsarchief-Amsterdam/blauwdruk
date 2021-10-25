@@ -1,6 +1,7 @@
 # voortgang record types
 
 Wat is de stand van zaken mbt de recordtypes en wie is waarmee klaar of bezig.
+Zo lang we nog alleen de beschikking hebben over de example omgeving stel ik voor even alles te prefixen met Saa (anders word ik gek).
 
 | Bestand | Beschrijving | Veld definities | Vertaling Rico | Te doen 
 | ------- | ------------ | --------------- | -------------- | -------
