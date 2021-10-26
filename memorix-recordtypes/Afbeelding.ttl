@@ -257,4 +257,5 @@ afbeelding:contentDescriptionGroup
 afbeelding:physicalDescriptionGroup
     rdf:type   sh:PropertyGroup ;
     rdfs:label "Fysieke kenmerken"@nl ;
-    sh:order   3.0 .
+    sh:order   3.0
+.
