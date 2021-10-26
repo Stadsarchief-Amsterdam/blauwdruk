@@ -94,7 +94,7 @@ rt:SaaArchiefblok
                            sh:maxCount  1 ;
                            sh:nodeKind  sh:BlankNode ;
                            sh:order     1.0 ;
-                           sh:path      rico:hasBeginningDate ] ;
+                           sh:path      archiefblok:hasYoungestRecord ] ;
     sh:property          [ rdfs:label   "Datering Jongste Stuk"@nl ;
                            rdfs:comment "Datum of jaartal van het jongste stuk in dit archief."@nl ;
                            sh:class     rico:SingleDate ;
@@ -102,7 +102,7 @@ rt:SaaArchiefblok
                            sh:maxCount  1 ;
                            sh:nodeKind  sh:BlankNode ;
                            sh:order     2.0 ;
-                           sh:path      rico:hasEndDate ] ;
+                           sh:path      archiefblok:hasOldestRecord ] ;
     sh:property          [ rdfs:label  "Inleiding"@nl ;
                            sh:path     rico:scopeAndContent ;
                            sh:group    archiefblok:beschrijvingGroup ;
