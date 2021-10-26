@@ -1,0 +1,72 @@
+@prefix rdf:            <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:           <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:            <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:            <http://www.w3.org/2001/XMLSchema#> .
+
+@prefix rt:             <https://example.memorix-test.nl/resources/recordtypes/> .
+
+@prefix dc:             <http://purl.org/dc/elements/1.1/> .
+@prefix sh:             <http://www.w3.org/ns/shacl#> .
+@prefix dash:           <http://datashapes.org/dash#> .
+@prefix memorix:        <http://memorix.io/ontology#> .
+@prefix html:           <http://www.w3.org/1999/xhtml/> .
+
+@prefix rico:           <https://www.ica.org/standards/RiC/ontology#> .
+@prefix ric-rst:        <https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#> .
+@prefix ric-dft:        <https://www.ica.org/standards/RiC/vocabularies/documentaryFormTypes#> .
+
+rt:identificatieGroup
+    rdf:type   sh:PropertyGroup ;
+    rdfs:label "Identificatie"@nl ;
+    sh:order   1.0 .
+
+rt:beheerGroup
+    rdf:type   sh:PropertyGroup ;
+    rdfs:label "Beheer"@nl ;
+    sh:order   2.0 .
+
+rt:Aanwinst
+    rdf:type             memorix:Recordtype, sh:NodeShape ;
+    rdfs:label           "Aanwinst"@nl ;
+    rdfs:comment         "Stadsarchief recordtype voor Aanwinst"@nl ;
+    dc:identifier        "SaaAanwinst" ;
+    sh:targetClass       rt:Aanwinst ;
+    sh:closed            true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property          [ rdfs:label      "Identificatiecode"@nl ;
+                           rdfs:comment    "Unieke nummer"@nl ;
+                           dash:singleLine true ;
+                           sh:class        rico:Identifier ;
+                           sh:group        rt:identificatieGroup ;
+                           sh:maxCount     1 ;
+                           sh:nodeKind     sh:BlankNode ;
+                           sh:order        1.0 ;
+                           sh:path         rico:hasOrHadIdentifier ] ;
+    sh:property          [ rdfs:label   "Jaar overdracht"@nl ;
+                           rdfs:comment "Officiële datum dat het archief wordt overgedragen"@nl ;
+                           dash:editor  memorix:DateEditor ;
+                           sh:datatype  xsd:integer ;
+                           sh:group     rt:identificatieGroup ;
+                           sh:order     2.0 ;
+                           sh:path      rt:jaarOverdracht ] ;
+    sh:property          [ rdfs:label   "Datum ontvangst"@nl ;
+                           rdfs:comment "Daadwerkelijke datum van ontvangst"@nl ;
+                           dash:editor  memorix:DateEditor ;
+                           sh:datatype  xsd:integer ;
+                           sh:group     rt:identificatieGroup ;
+                           sh:order     5.0 ;
+                           sh:path      rt:datumOntvangst ] ;
+    sh:property          [ rdfs:label   "Omvang"@nl ;
+                           rdfs:comment "Omvang van de stukken, zoals ze binnenkwamen"@nl ;
+                           sh:datatype  xsd:string ;
+                           sh:group     rt:identificatieGroup ;
+                           sh:order     5.0 ;
+                           sh:path      rt:datumOntvangst ] ;
+
+    sh:property          [ rdfs:label  "Interne opmerking"@nl ;
+                           dash:editor dash:TextAreaEditor ;
+                           sh:datatype xsd:string ;
+                           sh:group    rt:beheerGroup ;
+                           sh:order    1.0 ;
+                           sh:path     rt:opmerking ; ] ;
+.
