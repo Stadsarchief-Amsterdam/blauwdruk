@@ -13,6 +13,13 @@ Zo lang we nog alleen de beschikking hebben over de example omgeving stel ik voo
 | Archiefblok.ttl | af| - |  Samen nalopen
 
 
+## Vragen Picturae
+* dash:singleLine  true ; is dit niet de default?
+* hoe zorgen we ervoor dat sommige velden niet online komen? Zoals bv de interne opmerkingen
+* enum velden, kan zoiets voor een status veld, zonder dat er waardes in een concept scheme komen?
+* 
+
+
 ## UI spul Memorix
 
 op dit moment zijn er maar enkele dash:Editors.
