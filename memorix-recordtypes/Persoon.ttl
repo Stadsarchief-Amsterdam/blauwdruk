@@ -1,0 +1,128 @@
+@prefix rdf:            <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:           <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:            <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:            <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos:           <http://www.w3.org/2004/02/skos/core#> .
+
+@prefix rt:             <https://example.memorix-test.nl/resources/recordtypes/> .
+
+@prefix dc:             <http://purl.org/dc/elements/1.1/> .
+@prefix sh:             <http://www.w3.org/ns/shacl#> .
+@prefix dash:           <http://datashapes.org/dash#> .
+@prefix memorix:        <http://memorix.io/ontology#> .
+@prefix html:           <http://www.w3.org/1999/xhtml/> .
+
+@prefix rico:           <https://www.ica.org/standards/RiC/ontology#> .
+@prefix ric-rst:        <https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#> .
+@prefix ric-dft:        <https://www.ica.org/standards/RiC/vocabularies/documentaryFormTypes#> .
+
+#todo pdr add comments, messages, placeholders, add relations to other Persons?
+
+rt:identificatieGroup
+    rdf:type   sh:PropertyGroup ;
+    rdfs:label "Identificatie"@nl ;
+    sh:order   1.0 .
+
+rt:alternatievenGroup
+    rdf:type   sh:PropertyGroup ;
+    rdfs:label "Ook bekend als"@nl ;
+    sh:order   2.0 .
+
+rt:beheerGroup
+    rdf:type   sh:PropertyGroup ;
+    rdfs:label "Beheer"@nl ;
+    sh:order   3.0 .
+
+rt:Persoon
+    rdf:type             memorix:Recordtype, sh:NodeShape ;
+    rdfs:comment         "Stadsarchief recordtype voor Persoon"@nl ;
+    rdfs:label           "Persoon"@nl ;
+    dc:identifier        "SaaPersoon" ;
+    sh:targetClass       rt:Persoon ;
+    sh:closed            true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property          [ rdfs:label           "Voornaam"@nl ;
+                           dash:singleLine      true ; # zouden we dit overal moeten toevoegen of is dit de default?
+                           memorix:inTitleAt    1.0 ;
+                           memorix:searchWeight 3.0 ;
+                           sh:datatype          xsd:string ;
+                           sh:group             rt:identificatieGroup ;
+                           sh:maxCount          1 ;
+                           sh:order             1.0 ;
+                           sh:path              rt:firstName ] ;
+    sh:property          [ rdfs:label           "Tussenvoegsel"@nl ;
+                           dash:singleLine      true ;
+                           memorix:inTitleAt    2.0 ;
+                           memorix:searchWeight 3.0 ;
+                           sh:datatype          xsd:string ;
+                           sh:group             rt:identificatieGroup ;
+                           sh:maxCount          1 ;
+                           sh:order             2.0 ;
+                           sh:path              rt:surnamePrefix ] ;
+    sh:property          [ rdfs:label           "Achternaam"@nl ;
+                           dash:singleLine      true ;
+                           memorix:inTitleAt    3.0 ;
+                           memorix:searchWeight 3.0 ;
+                           sh:datatype          xsd:string ;
+                           sh:group             rt:identificatieGroup ;
+                           sh:maxCount          1 ;
+                           sh:order             3.0 ;
+                           sh:path              rt:lastName ] ;
+    sh:property          [ rdfs:label  "Geboorteplaats"@nl ;
+                           dash:editor dash:TextFieldEditor ;
+                           sh:datatype xsd:string ;
+                           sh:group    rt:identificatieGroup ;
+                           sh:order    4.0 ;
+                           sh:path     rt:birthPlace ] ;
+    sh:property          [ rdfs:label        "Geboortedatum"@nl ;
+                           rdfs:comment      "Kan een jaartal zijn of een exacte datum"@nl ;
+                           dash:editor       memorix:DateEditor ;
+                           sh:datatype       xsd:integer ;
+                           memorix:inTitleAt 4.0 ;
+                           sh:group          rt:identificatieGroup ;
+                           sh:order          5.0 ;
+                           sh:path           rt:birthDate ] ;
+    sh:property          [ rdfs:label        "Overlijdensplaats"@nl ;
+                           dash:editor       dash:TextFieldEditor ;
+                           sh:datatype       xsd:string ;
+                           memorix:inTitleAt 5.0 ;
+                           sh:group          rt:identificatieGroup ;
+                           sh:order          6.0 ;
+                           sh:path           rt:deathPlace ] ;
+    sh:property          [ rdfs:label   "Overlijdensdatum"@nl ;
+                           rdfs:comment "Kan een jaartal zijn of een exacte datum"@nl ;
+                           dash:editor  memorix:DateEditor ;
+                           sh:datatype  xsd:integer ;
+                           sh:group     rt:identificatieGroup ;
+                           sh:order     7.0 ;
+                           sh:path      rt:deathDate ] ;
+    sh:property          [ rdfs:label           "Alternatieve namen"@nl ;
+                           memorix:searchWeight 1.0 ;
+                           sh:datatype          xsd:string ;
+                           sh:group             rt:alternatievenGroup ;
+                           sh:maxCount          9 ;
+                           sh:order             1.0 ;
+                           sh:path              rt:otherFormsOfName ] ;
+    sh:property          [ rdfs:label              "Identiek aan (RKD Artists)"@nl ;
+                           dash:editor             memorix:VocabularyEditor ;
+                           memorix:conceptSchemeIn <https://data.rkd.nl/rkdartists> ;
+                           memorix:searchWeight    1.0 ;
+                           sh:class                skos:Concept ;
+                           sh:group                rt:alternatievenGroup ;
+                           sh:maxCount             1 ;
+                           sh:nodeKind             sh:IRI ;
+                           sh:order                2.0 ;
+                           sh:path                 rt:sameAsRKDArtists ] ;
+    sh:property          [ rdfs:label  "Interne opmerking"@nl ;
+                           dash:editor dash:TextAreaEditor ;
+                           sh:datatype xsd:string ;
+                           sh:group    rt:beheerGroup ;
+                           sh:order    1.0 ;
+                           sh:path     rt:remarks ; ] ;
+    sh:property          [ rdfs:label   "Bibliotheek descriptor?"@nl ;
+                           rdfs:comment "Of deze naam afkomstig is uit de bibliotheek descriptoren lijst."@nl ;
+                           sh:datatype  xsd:boolean ;
+                           sh:group     rt:beheerGroup ;
+                           sh:order     2.0 ;
+                           sh:path      rt:originallyFromLibrary ; ] ;
+.

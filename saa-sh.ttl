@@ -407,7 +407,7 @@ saa-sh:InformatieobjectShape a sh:NodeShape ;
         sh:or (
             [sh:datatype  xsd:string ; ]
             [sh:datatype  rdf:XMLLiteral ; ]
-    ) ;
+        ) ;
         sh:maxCount       1 ;
     ] ;    
     sh:property [
