@@ -19,7 +19,6 @@ recordtypes:Afbeelding
     sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:targetClass recordtypes:Afbeelding ;
-    dash:defaultViewForRole dash:all ;
     memorix:hasInformationComponent memorix:DepotLocationComponent ;
     sh:property [
           rdfs:label "Type afbeelding"@nl ;
@@ -252,7 +251,8 @@ afbeelding:Creation a sh:NodeShape ;
 afbeelding:contentDescriptionGroup
     rdf:type   sh:PropertyGroup ;
     rdfs:label "Inhoudelijke beschrijving"@nl ;
-    sh:order   1.0 .
+    sh:order   1.0
+.
 
 afbeelding:physicalDescriptionGroup
     rdf:type   sh:PropertyGroup ;
