@@ -46,8 +46,9 @@ rt:SaaArchiefblok
                            rico:hasRecordSetType ric-rst:Fonds ] ;
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property          [ rdfs:label       "Toegang"@nl ;
-                           rdfs:comment     "Unieke nummer van deze toegang"@nl ;
+    sh:property          [ rdfs:label       "Nummer toegang"@nl ;
+                           rdfs:comment     "Unieke nummer van de toegang, gevolgd door de nummer toevoeging."@nl ;
+                           sh:message       "Elk archiefblok moet een nummer hebben, bijvoorbeeld 378.A."@nl ;
                            sh:minCount      1 ;
                            sh:maxCount      1 ;
                            html:placeholder "Bv 10003.A …"@nl ;
@@ -146,7 +147,6 @@ rico:DateRange
     sh:property          [ rdfs:label      "Eindjaar vorming"@nl ;
                            sh:message      "Eindjaar moet liggen tussen 1200 en 2200"@nl ;
                            sh:message      "The year should be between 1200 and 2200"@en ;
-                           # dash:editor memorix:DateEditor ;
                            sh:datatype     xsd:gYear ;
                            sh:order        3.0 ;
                            sh:minInclusive 1200 ;
@@ -188,35 +188,4 @@ rico:SingleDate
                            sh:order            2.0 ;
                            sh:path             rico:normalizedDateValue ] ;
     sh:targetClass       rico:SingleDate .
-
-
-## Identifier
-rico:Identifier
-    a                    sh:NodeShape ;
-    sh:targetClass       rico:Identifier ;
-    sh:closed            true ;
-    sh:ignoredProperties ( rdf:type ) ;
-    sh:property          [ rdfs:label        "Nummer toegang"@nl ;
-                           rdfs:comment      "Unieke nummer van de toegang, gevolgd door de nummer toevoeging."@nl ;
-                           sh:message        "Elk archiefblok moet een nummer hebben, bijvoorbeeld 378.A."@nl ;
-                           sh:order          1.0 ;
-                           sh:minCount       1 ;
-                           sh:maxCount       1 ;
-                           sh:datatype       xsd:string ;
-                           memorix:inTitleAt 1 ;
-                           sh:order          1.0 ;
-                           sh:path           rico:textualValue ; ]
-#            ;
-#    sh:property          [ rdfs:label             "Nummer toevoeging"@nl ;
-#                           rdfs:comment           "Toevoeging bij het nummer"@nl ;
-#                           sh:message             "Een toevoeging is bijvoorbeeld A of AV."@nl ;
-#                           sh:order               2.0 ;
-#                           sh:maxCount            1 ;
-#                           sh:datatype            xsd:string ;
-#                           owl:equivalentProperty rico:textualValue ;
-#                           memorix:inTitleAt      2 ;
-#                           sh:order               2.0 ;
-#                           sh:path                archiefblok:numberAddition ]
-.
-
 
