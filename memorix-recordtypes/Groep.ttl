@@ -1,0 +1,103 @@
+@prefix rdf:            <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:           <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:            <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:            <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos:           <http://www.w3.org/2004/02/skos/core#> .
+
+@prefix rt:             </resources/recordtypes/> .
+
+@prefix dc:             <http://purl.org/dc/elements/1.1/> .
+@prefix sh:             <http://www.w3.org/ns/shacl#> .
+@prefix dash:           <http://datashapes.org/dash#> .
+@prefix memorix:        <http://memorix.io/ontology#> .
+@prefix html:           <http://www.w3.org/1999/xhtml/> .
+
+@prefix rico:           <https://www.ica.org/standards/RiC/ontology#> .
+@prefix ric-rst:        <https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#> .
+@prefix ric-dft:        <https://www.ica.org/standards/RiC/vocabularies/documentaryFormTypes#> .
+
+@prefix pnv:            <https://w3id.org/pnv#> .
+@prefix schema:         <https://schema.org/> .
+
+
+rt:identificatieGroup
+    rdf:type   sh:PropertyGroup ;
+    rdfs:label "Identificatie"@nl ;
+    sh:order   1.0 .
+
+rt:beschrijvingGroup
+    rdf:type   sh:PropertyGroup ;
+    rdfs:label "Beschrijving"@nl ;
+    sh:order   2.0 .
+
+## deze is bedoeld voor het kunnen leggen van koppelingen naar bovenliggende archiefblokken of andere groepe maar ik weet niet hoe dat in Memorix gaat werken.
+rt:indelingGroup
+    rdf:type   sh:PropertyGroup ;
+    rdfs:label "Indeling"@nl ;
+    sh:order   3.0 .
+
+rt:beheerGroup
+    rdf:type   sh:PropertyGroup ;
+    rdfs:label "Beheer"@nl ;
+    sh:order   4.0 .
+
+rt:Groep
+    rdf:type             memorix:Recordtype, sh:NodeShape ;
+    rdfs:comment         "Stadsarchief recordtype voor Groep"@nl ;
+    rdfs:label           "Groep"@nl ;
+    dc:identifier        "SaaGroep" ;
+    sh:targetClass       rt:Groep ;
+    sh:closed            true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property          [ rdfs:label           "Rubriekscode"@nl ;
+                           rdfs:comment         "Voor het vastleggen van o.a. de basis archiefcode"@nl ;
+                           dash:singleLine      true ;
+                           memorix:inTitleAt    1.0 ;
+                           memorix:searchWeight 3.0 ;
+                           sh:datatype          xsd:string ;
+                           sh:group             rt:identificatieGroup ;
+                           sh:maxCount          1 ;
+                           sh:order             1.0 ;
+                           sh:path              rt:rubriekscode ] ;
+    sh:property          [ rdfs:label           "Beschrijving"@nl ;
+                           rdfs:comment         "Korte beschrijving dan wel label of naam van de groep"@nl ;
+                           dash:singleLine      true ;
+                           memorix:inTitleAt    2.0 ;
+                           memorix:searchWeight 3.0 ;
+                           sh:datatype          xsd:string ;
+                           sh:group             rt:identificatieGroup ;
+                           sh:maxCount          1 ;
+                           sh:order             2.0 ;
+                           sh:path              rt:titel ] ;
+    sh:property          [ rdfs:label           "Nota bene"@nl ;
+                           rdfs:comment         "Uitgebreidere beschrijving, afkomstig uit NB velden"@nl ;
+                           dash:singleLine      false ;
+                           memorix:searchWeight 3.0 ;
+                           sh:datatype          xsd:string ;
+                           dash:editor          dash:TextAreaEditor ;
+                           sh:group             rt:beschrijvingGroup ;
+                           sh:maxCount          1 ;
+                           sh:order             3.0 ;
+                           sh:path              rt:remark ] ;
+    sh:property          [ rdfs:label   "Datering"@nl ;
+                           rdfs:comment "Kan een exacte datum of een periode zijn"@nl ;
+                           dash:editor  memorix:DateEditor ;
+                           sh:datatype  xsd:integer ;
+                           sh:group     rt:beschrijvingGroup ;
+                           sh:maxCount  1 ;
+                           sh:order     2.0 ;
+                           sh:path      schema:birthDate ] ;
+    sh:property          [ rdfs:label  "Uiterlijke vorm"@nl ;
+                           dash:editor dash:TextFieldEditor ;
+                           sh:datatype xsd:string ;
+                           sh:group    rt:beschrijvingGroup ;
+                           sh:maxCount 1 ;
+                           sh:order    3.0 ;
+                           sh:path     rt:uiterlijkeVorm ] ;
+    sh:property          [ rdfs:label  "Interne opmerking"@nl ;
+                           dash:editor dash:TextAreaEditor ;
+                           sh:datatype xsd:string ;
+                           sh:group    rt:beheerGroup ;
+                           sh:order    1.0 ;
+                           sh:path     rt:remarks ; ] ;
+.
