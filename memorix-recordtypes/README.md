@@ -5,13 +5,22 @@ Zo lang we nog alleen de beschikking hebben over de example omgeving stel ik voo
 
 | Bestand | Veld definities | Vertaling Rico | Te doen 
 | ------- | --------------- | -------------- | -------
-| Afbeelding.ttl  | - | - | Samen besprken
-| Organisatie.ttl  |  - | - | Levensloop toevoegen?
-| Persoon.ttl  |  af | - |
+| Afbeelding.ttl  | - | - | Koppeling locatie URI's?
+| Organisatie.ttl  | - | - | Levensloop toevoegen?
+| Persoon.ttl  |  - | - | Koppeling persoon - persoon
 | Familie.ttl  |  af |  | Rico toevoegen
 | Aanwinst.ttl     | - | - | P mee bezig
 | Archiefblok.ttl | af| - |  Samen nalopen
-
+| Groep.ttl     | - | - | -
+| Bestanddeel.ttl     | - | - | -
+| Informatieobject.ttl     | - | - | -
+| InformatieobjectOnderdeel.ttl     | - | - | -
+| Akte.ttl     | - | - | -
+| Persoonsvermelding.ttl     | - | - | -
+| Publicatie.ttl     | - | - | -
+| AV.ttl     | - | - | -
+| MAI.ttl     | - | - | -
+| Conservering.ttl     | - | - | Moet deze gemaakt?
 
 ## Vragen Picturae
 * dash:singleLine  true ; is dit niet de default?
