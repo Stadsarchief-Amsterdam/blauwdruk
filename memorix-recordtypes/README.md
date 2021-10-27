@@ -3,14 +3,14 @@
 Wat is de stand van zaken mbt de recordtypes en wie is waarmee klaar of bezig.
 Zo lang we nog alleen de beschikking hebben over de example omgeving stel ik voor even alles te prefixen met Saa (anders word ik gek).
 
-| Bestand | Veld definities | Vertaling Rico | Te doen 
-| ------- | --------------- | -------------- | -------
-| Afbeelding.ttl  | - | - | Koppeling locatie URI's?
-| Organisatie.ttl  | - | - | Levensloop toevoegen?
+| Bestand | Veld definities | Vertaling Rico | Te doen | Klaar voor Picturae
+| ------- | --------------- | -------------- | ------- | --------
+| Afbeelding.ttl  | - | - | Koppeling locatie URI's? | 
+| Organisatie.ttl  | - | - | Levensloop toevoegen? | 
 | Persoon.ttl  |  - | - | Koppeling persoon - persoon
 | Familie.ttl  |  af |  | Rico toevoegen
 | Aanwinst.ttl     | - | - | P mee bezig
-| Archiefblok.ttl | af| - |  Samen nalopen
+| Archiefblok.ttl | af| - | - | ja
 | Groep.ttl     | - | - | -
 | Bestanddeel.ttl     | - | - | -
 | Informatieobject.ttl     | - | - | -
@@ -26,7 +26,7 @@ Zo lang we nog alleen de beschikking hebben over de example omgeving stel ik voo
 * dash:singleLine  true ; is dit niet de default?
 * hoe zorgen we ervoor dat sommige velden niet online komen? Zoals bv de interne opmerkingen
 * enum velden, kan zoiets voor een status veld, zonder dat er waardes in een concept scheme komen?
-* hoe de indeling parent etc vast te leggen?
+* hoe de indeling parent vast te leggen?
 
 ## todo
 * inTitleAt and inSummaryAt nalopen en vastleggen
