@@ -40,22 +40,22 @@ rt:SaaArchiefblok
     rdf:type             sh:NodeShape, memorix:Recordtype ;
     rdfs:label           "Archiefblok"@nl ;
     rdfs:comment         "Stadsarchief recordtype voor Archiefblok"@nl ;
-    dc:identifier        "SaaArchiefblok" ;
+    dc:identifier        "SaaArchiefblok2" ;
     sh:targetClass       rt:SaaArchiefblok ;
     owl:equivalentClass  [ rdf:type              rico:RecordSet ;
                            rico:hasRecordSetType ric-rst:Fonds ] ;
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property          [ rdfs:label       "Nummer toegang"@nl ;
-                           rdfs:comment     "Unieke nummer van de toegang, gevolgd door de nummer toevoeging."@nl ;
-                           sh:message       "Elk archiefblok moet een nummer hebben, bijvoorbeeld 378.A."@nl ;
+    sh:property          [ rdfs:label       "Toegang"@nl ;
+                           rdfs:comment     "Unieke nummer van deze toegang"@nl ;
+                           sh:class         rico:Identifier ;
                            sh:minCount      1 ;
                            sh:maxCount      1 ;
                            html:placeholder "Bv 10003.A …"@nl ;
                            sh:group         archiefblok:identificatieGroup ;
                            sh:order         1.0 ;
                            sh:nodeKind      sh:BlankNode ;
-                           sh:path          rico:identifier ] ;
+                           sh:path          rico:hasOrHadIdentifier ] ;
     sh:property          [ rdfs:label        "Naam toegang"@nl ;
                            rdfs:comment      "Naam of beschrijving van de toegang. Moet altijd beginnen met Archief of Collectie."@nl ;
                            sh:datatype       xsd:string ;
@@ -89,20 +89,20 @@ rt:SaaArchiefblok
                            sh:path      rico:hasAccumulator ] ;
     sh:property          [ rdfs:label   "Datering Oudste Stuk"@nl ;
                            rdfs:comment "Datum of jaartal van het oudste stuk in dit archief."@nl ;
-                           sh:class     rico:SingleDate ;
+                           sh:class     archiefblok:DateOldest ;
                            sh:group     archiefblok:beschrijvingGroup ;
                            sh:maxCount  1 ;
                            sh:nodeKind  sh:BlankNode ;
                            sh:order     1.0 ;
-                           sh:path      archiefblok:hasYoungestRecord ] ;
+                           sh:path      archiefblok:hasOldestRecord ] ;
     sh:property          [ rdfs:label   "Datering Jongste Stuk"@nl ;
                            rdfs:comment "Datum of jaartal van het jongste stuk in dit archief."@nl ;
-                           sh:class     rico:SingleDate ;
+                           sh:class     archiefblok:DateYoungest ;
                            sh:group     archiefblok:beschrijvingGroup ;
                            sh:maxCount  1 ;
                            sh:nodeKind  sh:BlankNode ;
                            sh:order     2.0 ;
-                           sh:path      archiefblok:hasOldestRecord ] ;
+                           sh:path      archiefblok:hasYoungestRecord ] ;
     sh:property          [ rdfs:label  "Inleiding"@nl ;
                            sh:path     rico:scopeAndContent ;
                            sh:group    archiefblok:beschrijvingGroup ;
@@ -137,7 +137,8 @@ rt:SaaArchiefblok
 .
 
 rico:DateRange
-    rdf:type             sh:NodeShape ;
+    rdf:type             sh:nodeshape ;
+    owl:equivalentClass  rico:DateRange ;
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property          [ rdfs:label  "Beginjaar vorming"@nl ;
@@ -147,12 +148,13 @@ rico:DateRange
     sh:property          [ rdfs:label      "Eindjaar vorming"@nl ;
                            sh:message      "Eindjaar moet liggen tussen 1200 en 2200"@nl ;
                            sh:message      "The year should be between 1200 and 2200"@en ;
+                           # dash:editor memorix:DateEditor ;
                            sh:datatype     xsd:gYear ;
                            sh:order        3.0 ;
                            sh:minInclusive 1200 ;
                            sh:maxInclusive 2200 ;
                            sh:path         rico:hasEndDate ] ;
-    sh:targetClass       rico:DateRange .
+    sh:targetClass       archiefblok:PeriodeVorming .
 
 archiefblok:Inventarisatie
     rdf:type             sh:NodeShape ;
@@ -173,8 +175,10 @@ archiefblok:Inventarisatie
                            sh:path         rico:publicationDate ] ;
 .
 
-rico:SingleDate
+
+archiefblok:DateOldest
     rdf:type             sh:NodeShape ;
+    owl:equivalentClass  rico:Date ;
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property          [ rdfs:label  "Datering oudste stuk (tekst)"@nl ;
@@ -187,5 +191,40 @@ rico:SingleDate
                            sh:datatype         xsd:integer ;
                            sh:order            2.0 ;
                            sh:path             rico:normalizedDateValue ] ;
-    sh:targetClass       rico:SingleDate .
+    sh:targetClass       archiefblok:DateOldest .
 
+archiefblok:DateYoungest
+    rdf:type             sh:NodeShape ;
+    owl:equivalentClass  rico:Date ;
+    sh:closed            true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property          [ rdfs:label  "Datering jongste stuk (tekst)"@nl ;
+                           sh:datatype xsd:string ;
+                           sh:order    1.0 ;
+                           sh:path     rico:expressedDate ] ;
+    sh:property          [ rdfs:label          "Datering jongste stuk"@nl ;
+                           dash:editor         memorix:DateEditor ;
+                           memorix:inSummaryAt 2.0 ;
+                           sh:datatype         xsd:integer ;
+                           sh:order            2.0 ;
+                           sh:path             rico:normalizedDateValue ] ;
+    sh:targetClass       archiefblok:DateYoungest
+.
+
+## Identifier
+rico:Identifier
+    a                    sh:NodeShape ;
+    sh:targetClass       rico:Identifier ;
+    sh:closed            true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property          [ rdfs:label        "Nummer toegang"@nl ;
+                           rdfs:comment      "Unieke nummer van de toegang, gevolgd door de nummer toevoeging."@nl ;
+                           sh:message        "Elk archiefblok moet een nummer hebben, bijvoorbeeld 378.A."@nl ;
+                           sh:order          1.0 ;
+                           sh:minCount       1 ;
+                           sh:maxCount       1 ;
+                           sh:datatype       xsd:string ;
+                           memorix:inTitleAt 1 ;
+                           sh:order          1.0 ;
+                           sh:path           rico:textualValue ; ]
+.
