@@ -1,0 +1,17 @@
+@prefix rdf:        <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:       <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema:     <https://schema.org/> .
+@prefix rico:       <https://www.ica.org/standards/RiC/ontology#> .
+@prefix blauwdruk:  <https://example.memorix-test.nl/resources/recordtypes/> .
+@prefix voc:        <https://example.memorix-test.nl/vocabularies/> .
+@prefix data:       <https://example.memorix-test.nl/resources/records/> .
+@prefix xsd:        <http://www.w3.org/2001/XMLSchema#> .
+
+<>
+    a blauwdruk:Informatieobject ;
+    rico:hasOrHadTitle [
+        a rico:Title ;
+        rico:textualValue "\\VONDEL\DOD - Ingest\30655 Imagine IC\Projecten\archief 2003\Heur Haar\productie\planning.doc"
+    ] ;
+    rico:isOrWasIncludedIn <> ; # 03-bestanddeel-3039
+    rico:hasInstantiation <> . # in het e-depot
