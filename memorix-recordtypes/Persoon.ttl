@@ -16,6 +16,9 @@
 @prefix ric-rst:        <https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#> .
 @prefix ric-dft:        <https://www.ica.org/standards/RiC/vocabularies/documentaryFormTypes#> .
 
+@prefix pnv:            <https://w3id.org/pnv#> .
+@prefix schema:         <https://schema.org/> .
+
 #todo pdr add comments, messages, placeholders, add relations to other Persons?
 
 rt:identificatieGroup
@@ -33,12 +36,12 @@ rt:beheerGroup
     rdfs:label "Beheer"@nl ;
     sh:order   3.0 .
 
-rt:Persoon
+rt:SaaPersoon
     rdf:type             memorix:Recordtype, sh:NodeShape ;
     rdfs:comment         "Stadsarchief recordtype voor Persoon"@nl ;
     rdfs:label           "Persoon"@nl ;
     dc:identifier        "SaaPersoon" ;
-    sh:targetClass       rt:Persoon ;
+    sh:targetClass       rt:SaaPersoon ;
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property          [ rdfs:label           "Voornaam"@nl ;
@@ -49,7 +52,7 @@ rt:Persoon
                            sh:group             rt:identificatieGroup ;
                            sh:maxCount          1 ;
                            sh:order             1.0 ;
-                           sh:path              rt:firstName ] ;
+                           sh:path              pnv:givenName ] ;
     sh:property          [ rdfs:label           "Tussenvoegsel"@nl ;
                            dash:singleLine      true ;
                            memorix:inTitleAt    2.0 ;
@@ -58,7 +61,7 @@ rt:Persoon
                            sh:group             rt:identificatieGroup ;
                            sh:maxCount          1 ;
                            sh:order             2.0 ;
-                           sh:path              rt:surnamePrefix ] ;
+                           sh:path              pnv:surnamePrefix ] ;
     sh:property          [ rdfs:label           "Achternaam"@nl ;
                            dash:singleLine      true ;
                            memorix:inTitleAt    3.0 ;
@@ -67,35 +70,35 @@ rt:Persoon
                            sh:group             rt:identificatieGroup ;
                            sh:maxCount          1 ;
                            sh:order             3.0 ;
-                           sh:path              rt:lastName ] ;
-    sh:property          [ rdfs:label  "Geboorteplaats"@nl ;
-                           dash:editor dash:TextFieldEditor ;
-                           sh:datatype xsd:string ;
-                           sh:group    rt:identificatieGroup ;
-                           sh:order    4.0 ;
-                           sh:path     rt:birthPlace ] ;
-    sh:property          [ rdfs:label        "Geboortedatum"@nl ;
-                           rdfs:comment      "Kan een jaartal zijn of een exacte datum"@nl ;
-                           dash:editor       memorix:DateEditor ;
-                           sh:datatype       xsd:integer ;
-                           memorix:inTitleAt 4.0 ;
-                           sh:group          rt:identificatieGroup ;
-                           sh:order          5.0 ;
-                           sh:path           rt:birthDate ] ;
-    sh:property          [ rdfs:label        "Overlijdensplaats"@nl ;
-                           dash:editor       dash:TextFieldEditor ;
-                           sh:datatype       xsd:string ;
-                           memorix:inTitleAt 5.0 ;
-                           sh:group          rt:identificatieGroup ;
-                           sh:order          6.0 ;
-                           sh:path           rt:deathPlace ] ;
-    sh:property          [ rdfs:label   "Overlijdensdatum"@nl ;
-                           rdfs:comment "Kan een jaartal zijn of een exacte datum"@nl ;
-                           dash:editor  memorix:DateEditor ;
-                           sh:datatype  xsd:integer ;
-                           sh:group     rt:identificatieGroup ;
-                           sh:order     7.0 ;
-                           sh:path      rt:deathDate ] ;
+                           sh:path              pnv:baseSurname ] ;
+    sh:property          [ rdfs:label           "Geboorteplaats"@nl ;
+                           dash:editor          dash:TextFieldEditor ;
+                           sh:datatype          xsd:string ;
+                           sh:group             rt:identificatieGroup ;
+                           sh:order             4.0 ;
+                           sh:path              schema:birthPlace ] ;
+    sh:property          [ rdfs:label           "Geboortedatum"@nl ;
+                           rdfs:comment         "Kan een jaartal zijn of een exacte datum"@nl ;
+                           dash:editor          memorix:DateEditor ;
+                           sh:datatype          xsd:integer ;
+                           memorix:inTitleAt    4.0 ;
+                           sh:group             rt:identificatieGroup ;
+                           sh:order             5.0 ;
+                           sh:path              schema:birthDate ] ;
+    sh:property          [ rdfs:label           "Overlijdensplaats"@nl ;
+                           dash:editor          dash:TextFieldEditor ;
+                           sh:datatype          xsd:string ;
+                           memorix:inTitleAt    5.0 ;
+                           sh:group             rt:identificatieGroup ;
+                           sh:order             6.0 ;
+                           sh:path              schema:deathPlace ] ;
+    sh:property          [ rdfs:label           "Overlijdensdatum"@nl ;
+                           rdfs:comment         "Kan een jaartal zijn of een exacte datum"@nl ;
+                           dash:editor          memorix:DateEditor ;
+                           sh:datatype          xsd:integer ;
+                           sh:group             rt:identificatieGroup ;
+                           sh:order             7.0 ;
+                           sh:path              rt:deathDate ] ;
     sh:property          [ rdfs:label           "Alternatieve namen"@nl ;
                            memorix:searchWeight 1.0 ;
                            sh:datatype          xsd:string ;

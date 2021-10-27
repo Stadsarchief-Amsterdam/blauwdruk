@@ -1,0 +1,29 @@
+@prefix rdf:        <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:       <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema:     <https://schema.org/> .
+@prefix rico:       <https://www.ica.org/standards/RiC/ontology#> .
+@prefix blauwdruk:  <https://example.memorix-test.nl/resources/recordtypes/> .
+@prefix voc:        <https://example.memorix-test.nl/vocabularies/> .
+@prefix data:       <https://example.memorix-test.nl/resources/records/> .
+@prefix xsd:        <http://www.w3.org/2001/XMLSchema#> .
+
+<>
+    a blauwdruk:Bestanddeel ;
+    rico:hasOrHadIdentifier [
+        a rico:Identifier ;
+        rico:hasIdentifierType voc:de-UUID-voor-concept-inventarisnummer ; 
+        rico:textualValue "5487"
+    ] ;
+    rico:hasOrHadTitle [
+        a rico:Title ;
+        rico:textualValue "Stukken betreffende de uitvoering van projecten van de stichting InterArt"
+    ] ;
+    rico:hasOrHadSubject data:de-UUID-voor-organisatievermelding-interart ;
+    rico:hasRecordSetType <https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#File> ;
+    rico:isAssociatedWithDate [
+        a rico:SingleDate ;
+        rico:expressedDate "2001" ;
+        rico:normalizedDateValue "2001"^^xsd:gYear
+    ] ;
+    rico:isOrWasIncludedIn <> ; # 02-groep-12
+    rico:hasInstantiation <> . # in het fysieke depot

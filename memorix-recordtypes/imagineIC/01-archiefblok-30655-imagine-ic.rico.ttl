@@ -1,0 +1,39 @@
+@prefix rdf:           <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:          <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:           <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:           <http://www.w3.org/2001/XMLSchema#> .
+
+@prefix rt:            <https://example.memorix-test.nl/resources/recordtypes/> .
+@prefix archiefblok:   <https://example.memorix-test.nl/resources/recordtypes/SaaArchiefblok#> .
+
+@prefix dc:            <http://purl.org/dc/elements/1.1/> .
+@prefix sh:            <http://www.w3.org/ns/shacl#> .
+@prefix dash:          <http://datashapes.org/dash#> .
+@prefix memorix:       <http://memorix.io/ontology#> .
+@prefix html:          <http://www.w3.org/1999/xhtml/> .
+
+@prefix rico:          <https://www.ica.org/standards/RiC/ontology#> .
+@prefix ric-rst:       <https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#> .
+@prefix ric-dft:       <https://www.ica.org/standards/RiC/vocabularies/documentaryFormTypes#> .
+
+<>
+    a rt:SaaArchiefblok ;
+    rico:hasAccumulator data:de-UUID-voor-record-stg-imagine-ic ;
+    rico:identifier "30655" ;
+    rico:title "Archief van Imagine IC" ;
+    rico:isAssociatedWithDate [
+        a rico:DateRange ;
+        rico:expressedDate "2001 - 2010" ;
+        rico:hasBeginningDate [
+            a rico:SingleDate ;
+            rico:normalizedDateValue "2001"^^xsd:gYear
+        ] ;
+        rico:hasEndDate [
+            a rico:SingleDate ;
+            rico:normalizedDateValue "2010"^^xsd:gYear
+        ] ;
+    ] ;
+    rico:isOrWasDescribedBy [
+        a archiefblok:Inventarisatie ;
+        rico:hasPublisher data:de-UUID-voor-SAA ;
+    ] .
