@@ -6,11 +6,11 @@ Zo lang we nog alleen de beschikking hebben over de example omgeving stel ik voo
 | Bestand | Veld definities | Vertaling Rico | Te doen | Klaar voor Picturae
 | ------- | --------------- | -------------- | ------- | --------
 | Afbeelding.ttl  | - | - | Locatie URI's toevoegen |
-| Organisatie.ttl  | - | - | Levensloop toevoegen |
-| Persoon.ttl  |  - | - | Koppeling persoon - persoon
-| Familie.ttl  |  af |  | Rico toevoegen
+| Organisatie.ttl  | - | - | Levensloop toevoegen? | ja
+| Persoon.ttl  |  af | - | | ja
+| Familie.ttl  |  af |  | | ja
 | Aanwinst.ttl     | - | - | P mee bezig
-| Archiefblok.ttl | af| - | - | ja
+| Archiefblok.ttl | af| - | Opnieuw met Ivo door kijken | -
 | Groep.ttl     | - | - | -
 | Bestanddeel.ttl     | - | - | -
 | Informatieobject.ttl     | - | - | -
