@@ -3,8 +3,8 @@
 @prefix owl:           <http://www.w3.org/2002/07/owl#> .
 @prefix xsd:           <http://www.w3.org/2001/XMLSchema#> .
 
-@prefix rt:            <https://example.memorix-test.nl/resources/recordtypes/> .
-@prefix archiefblok:   <https://example.memorix-test.nl/resources/recordtypes/SaaArchiefblok#> .
+@prefix rt:            </resources/recordtypes/> .
+@prefix archiefblok:   </resources/recordtypes/SaaArchiefblok#> .
 
 @prefix dc:            <http://purl.org/dc/elements/1.1/> .
 @prefix sh:            <http://www.w3.org/ns/shacl#> .
@@ -40,7 +40,7 @@ rt:SaaArchiefblok
     rdf:type             sh:NodeShape, memorix:Recordtype ;
     rdfs:label           "Archiefblok"@nl ;
     rdfs:comment         "Stadsarchief recordtype voor Archiefblok"@nl ;
-    dc:identifier        "SaaArchiefblok2" ;
+    dc:identifier        "SaaArchiefblok" ;
     sh:targetClass       rt:SaaArchiefblok ;
     owl:equivalentClass  [ rdf:type              rico:RecordSet ;
                            rico:hasRecordSetType ric-rst:Fonds ] ;

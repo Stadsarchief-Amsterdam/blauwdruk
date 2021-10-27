@@ -3,7 +3,7 @@
 @prefix owl:            <http://www.w3.org/2002/07/owl#> .
 @prefix xsd:            <http://www.w3.org/2001/XMLSchema#> .
 
-@prefix rt:             <https://example.memorix-test.nl/resources/recordtypes/> .
+@prefix rt:             </resources/recordtypes/> .
 
 @prefix dc:             <http://purl.org/dc/elements/1.1/> .
 @prefix sh:             <http://www.w3.org/ns/shacl#> .
