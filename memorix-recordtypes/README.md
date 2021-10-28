@@ -5,7 +5,7 @@ Zo lang we nog alleen de beschikking hebben over de example omgeving stel ik voo
 
 | Bestand | Veld definities | Vertaling Rico | Te doen | Klaar voor Picturae
 | ------- | --------------- | -------------- | ------- | --------
-| Afbeelding.ttl  | - | - | Locatie URI's toevoegen |
+| Afbeelding.ttl  | - | - | - | ja
 | Organisatie.ttl  | - | - | Levensloop toevoegen? | ja
 | Persoon.ttl  |  af | - | | ja
 | Familie.ttl  |  af |  | | ja

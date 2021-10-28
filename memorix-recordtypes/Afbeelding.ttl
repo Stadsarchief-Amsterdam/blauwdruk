@@ -14,8 +14,6 @@
 @prefix ric-rst:        <https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#> .
 @prefix ric-dft:        <https://www.ica.org/standards/RiC/vocabularies/documentaryFormTypes#> .
 
-# todo uri's toevoegen voor locaties
-
 recordtypes:Afbeelding
     a                               memorix:Recordtype, sh:NodeShape ;
     rdfs:label                      "Afbeelding"@nl ;
@@ -134,11 +132,21 @@ recordtypes:Afbeelding
                                       sh:order                3.0 ;
                                       sh:group                afbeelding:beheerGroup ; ] ;
     sh:property                     [ rdfs:label              "Interne opmerking"@nl ;
-                                      sh:path                 rt:remark ;
+                                      sh:path                 afbeelding:remark ;
                                       sh:datatype             xsd:string ;
                                       sh:order                4.0 ;
                                       sh:group                afbeelding:beheerGroup ;
-                                      dash:editor             dash:TextAreaEditor ; ]
+                                      dash:editor             dash:TextAreaEditor ; ] ;
+    sh:property                     [ rdfs:label "Externe locatie URI's" ;
+                                      dash:editor             memorix:VocabularyEditor ;
+                                      memorix:conceptSchemeIn <http://data.beeldengeluid.nl/gtaa#geografische-namen>, <https://www.wikidata.org#entities-streets>,
+                                                              <https://example.memorix-test.nl/vocabularies/conceptschemes/a4863c0c-d9e5-3902-831a-d0960e381a41> ; # tijdelijk: de straten
+                                      sh:class                skos:Concept ;
+                                      sh:group                afbeelding:relationsGroup ;
+                                      sh:nodeKind             sh:IRI ;
+                                      sh:order                1.0 ;
+                                      sh:maxCount             100 ;
+                                      sh:path                 afbeelding:externeLink ] ;
 .
 
 rico:Instantiation
@@ -212,7 +220,8 @@ afbeelding:Creation
                            sh:maxCount            1 ;
                            sh:order               3.0 ;
                            dash:editor            memorix:DateEditor ;
-                           sh:datatype            xsd:integer ; ] .
+                           sh:datatype            xsd:integer ; ]
+.
 
 afbeelding:contentDescriptionGroup
     rdf:type   sh:PropertyGroup ;
@@ -226,7 +235,13 @@ afbeelding:physicalDescriptionGroup
     sh:order   2.0
 .
 
+afbeelding:relationsGroup
+    rdf:type   sh:PropertyGroup ;
+    rdfs:label "Relaties"@nl ;
+    sh:order   3.0
+.
+
 afbeelding:beheerGroup
     rdf:type   sh:PropertyGroup ;
     rdfs:label "Beheer"@nl ;
-    sh:order   3.0 .
+    sh:order   4.0 .
