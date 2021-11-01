@@ -22,7 +22,6 @@ recordtypes:Informatieobject
     sh:closed                       true ;
     sh:ignoredProperties            ( rdf:type ) ;
     sh:targetClass                  recordtypes:Informatieobject ;
-    memorix:hasInformationComponent memorix:DepotLocationComponent ;
     sh:property                     [ rdfs:label              "Type document"@nl ;
                                       rdfs:comment            "Selecteer een waarde uit de lijst."@nl ;
                                       sh:path                 rico:hasDocumentaryFormType ;
