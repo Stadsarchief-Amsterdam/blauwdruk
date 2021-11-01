@@ -1,0 +1,77 @@
+@prefix dc:             <http://purl.org/dc/elements/1.1/> .
+@prefix sh:             <http://www.w3.org/ns/shacl#> .
+@prefix rdf:            <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:           <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dash:           <http://datashapes.org/dash#> .
+@prefix xsd:            <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos:           <http://www.w3.org/2004/02/skos/core#> .
+@prefix html:           <http://www.w3.org/1999/xhtml/> .
+@prefix memorix:        <http://memorix.io/ontology#> .
+@prefix vocabularies:   </resources/vocabularies/conceptschemes/> .
+@prefix recordtypes:    </resources/recordtypes/> .
+@prefix io:             </resources/recordtypes/Informatieobject#> .
+@prefix rico:           <https://www.ica.org/standards/RiC/ontology#> .
+@prefix ric-rst:        <https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#> .
+@prefix ric-dft:        <https://www.ica.org/standards/RiC/vocabularies/documentaryFormTypes#> .
+
+recordtypes:Informatieobject
+    a                               memorix:Recordtype, sh:NodeShape ;
+    rdfs:label                      "Informatieobject"@nl ;
+    rdfs:comment                    "Beschrijvingen van computerbestanden Stadsarchief Amsterdam"@nl ;
+    dc:identifier                   "SaaInformatieobjectIvo" ;
+    sh:closed                       true ;
+    sh:ignoredProperties            ( rdf:type ) ;
+    sh:targetClass                  recordtypes:Informatieobject ;
+    memorix:hasInformationComponent memorix:DepotLocationComponent ;
+    sh:property                     [ rdfs:label              "Type document"@nl ;
+                                      rdfs:comment            "Selecteer een waarde uit de lijst."@nl ;
+                                      sh:path                 rico:hasDocumentaryFormType ;
+                                      sh:maxCount             1 ;
+                                      sh:order                1.0 ;
+                                      sh:group                io:contentDescriptionGroup ;
+                                      dash:editor             memorix:VocabularyEditor ;
+                                      sh:class                skos:Concept ;
+                                      memorix:conceptSchemeIn vocabularies:3765628c-d755-3e25-8af5-f6178cbb7937 ; #replaced by uuid in code
+                                      sh:nodeKind             sh:IRI ; ] ;
+    sh:property                     [ rdfs:label              "Titel"@nl ;
+                                      html:placeholder        "Typ een titel …"@nl ;
+                                      sh:path                 rico:title ; # IZ: Het liefst zou ik hier de officiele geneste vorm gebruiken.
+                                      memorix:inTitleAt       1.0 ;
+                                      sh:minCount             1 ;
+                                      sh:maxCount             1 ;
+                                      sh:order                2.0 ;
+                                      sh:message              "De titel zou niet leeg mogen zijn"@nl, "Empty value for title field should not be allowed"@en ;
+                                      sh:group                io:contentDescriptionGroup ;
+                                      dash:editor             dash:TextFieldEditor ;
+                                      sh:datatype             xsd:string ; ] ;
+    sh:property                     [ rdf:type                sh:PropertyShape ;
+                                      rdfs:label              "Beschrijving"@nl ;
+                                      sh:path                 rico:scopeAndContent ;
+                                      sh:order                3.0 ;
+                                      sh:group                io:contentDescriptionGroup ;
+                                      dash:editor             dash:TextAreaEditor ;
+                                      dash:singleLine         false ;
+                                      sh:datatype             xsd:string ; ] ;
+    sh:property                     [ rdfs:label              "Oude nummers"@nl ;
+                                      sh:path                 io:oudeNummers ;
+                                      sh:datatype             xsd:string ;
+                                      sh:order                3.0 ;
+                                      sh:group                io:beheerGroup ; ] ;
+    sh:property                     [ rdfs:label              "Interne opmerking"@nl ;
+                                      sh:path                 io:remark ;
+                                      sh:datatype             xsd:string ;
+                                      sh:order                4.0 ;
+                                      sh:group                io:beheerGroup ;
+                                      dash:editor             dash:TextAreaEditor ; ] ;
+.
+
+io:contentDescriptionGroup
+    rdf:type   sh:PropertyGroup ;
+    rdfs:label "Inhoudelijke beschrijving"@nl ;
+    sh:order   1.0
+.
+
+io:beheerGroup
+    rdf:type   sh:PropertyGroup ;
+    rdfs:label "Beheer"@nl ;
+    sh:order   4.0 .

@@ -160,6 +160,6 @@ rico:Identifier
                            memorix:searchWeight   3.0 ;
                            owl:equivalentProperty rico:textualValue ;
                            sh:datatype            xsd:string ;
-                           sh:order               1.0 ;
+                           sh:order               2.0 ;
                            sh:path                rt:identificatieGroup ] ;
     sh:targetClass       rico:Identifier .

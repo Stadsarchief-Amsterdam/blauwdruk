@@ -93,26 +93,26 @@ rt:SaaArchiefblok
                            sh:or        ( [ sh:class rt:SaaPersoonIvo ] [ sh:class rt:SaaOrganisatieIvo ] [ sh:class rt:SaaFamilieIvo ] ) ;
                            sh:order     2.0 ;
                            sh:path      rico:hasAccumulator ] ;
-    sh:property          [ rdfs:label   "Datering Jongste Stuk"@nl ;
-                           rdfs:comment "Datum of jaartal van het jongste stuk in dit archief."@nl ;
-                           sh:class     rico:SingleDate ;
-                           sh:group     archiefblok:beschrijvingGroup ;
-                           sh:maxCount  1 ;
-                           sh:message       "Foutje"@nl ;
-                           sh:message       "Error"@en ;
-                           sh:nodeKind  sh:BlankNode ;
-                           sh:order     1.0 ;
-                           sh:path      archiefblok:hasYoungestRecord ] ;
     sh:property          [ rdfs:label   "Datering Oudste Stuk"@nl ;
                            rdfs:comment "Datum of jaartal van het oudste stuk in dit archief."@nl ;
-                           sh:class     rico:SingleDate ;
+                           sh:class     archiefblok:SingleDateOldest ;
                            sh:group     archiefblok:beschrijvingGroup ;
                            sh:message       "Foutje"@nl ;
                            sh:message       "Error"@en ;
                            sh:maxCount  1 ;
                            sh:nodeKind  sh:BlankNode ;
-                           sh:order     2.0 ;
+                           sh:order     1.0 ;
                            sh:path      archiefblok:hasOldestRecord ] ;
+    sh:property          [ rdfs:label   "Datering Jongste Stuk"@nl ;
+                           rdfs:comment "Datum of jaartal van het jongste stuk in dit archief."@nl ;
+                           sh:class     archiefblok:SingleDateYoungest ;
+                           sh:group     archiefblok:beschrijvingGroup ;
+                           sh:maxCount  1 ;
+                           sh:message       "Foutje"@nl ;
+                           sh:message       "Error"@en ;
+                           sh:nodeKind  sh:BlankNode ;
+                           sh:order     2.0 ;
+                           sh:path      archiefblok:hasYoungestRecord ] ;
     sh:property          [ rdfs:label  "Inleiding"@nl ;
                            sh:path     rico:scopeAndContent ;
                            sh:group    archiefblok:beschrijvingGroup ;
@@ -195,7 +195,7 @@ archiefblok:Inventarisatie
                            sh:path         rico:publicationDate ] ;
 .
 
-rico:SingleDate
+archiefblok:SingleDateOldest
     rdf:type             sh:NodeShape ;
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
@@ -206,13 +206,33 @@ rico:SingleDate
                            sh:message       "Error"@en ;
                            sh:path     rico:expressedDate ] ;
     sh:property          [ rdfs:label          "Datum (genormaliseerd)"@nl ;
-#                           dash:editor         memorix:DateEditor ;
+                           dash:editor         memorix:DateEditor ;
                            sh:datatype         xsd:date ;
                            sh:message       "Foutje"@nl ;
                            sh:message       "Error"@en ;
                            sh:order            2.0 ;
                            sh:path             rico:normalizedDateValue ] ;
-    sh:targetClass       rico:SingleDate .
+    sh:targetClass       archiefblok:SingleDateOldest .
+
+archiefblok:SingleDateYoungest
+    rdf:type             sh:NodeShape ;
+    sh:closed            true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property          [ rdfs:label  "Datum (tekst)"@nl ;
+                           sh:datatype xsd:string ;
+                           sh:order    1.0 ;
+                           sh:message       "Foutje"@nl ;
+                           sh:message       "Error"@en ;
+                           sh:path     rico:expressedDate ] ;
+    sh:property          [ rdfs:label          "Datum (genormaliseerd)"@nl ;
+                           dash:editor         memorix:DateEditor ;
+                           sh:datatype         xsd:date ;
+                           sh:message       "Foutje"@nl ;
+                           sh:message       "Error"@en ;
+                           sh:order            2.0 ;
+                           sh:path             rico:normalizedDateValue ] ;
+    sh:targetClass       archiefblok:SingleDateYoungest .
+
 
 
 ## Identifier
