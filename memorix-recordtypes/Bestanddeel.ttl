@@ -48,6 +48,7 @@ rt:Bestanddeel
     sh:targetClass       rt:Bestanddeel ;
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
+    memorix:hasInformationComponent memorix:DepotLocationComponent ;
     sh:property          [ rdfs:label   "Inventarisnummer"@nl ;
                            rdfs:comment "Uniek nummer binnen een archiefcode"@nl ;
                            sh:class     rico:Identifier ;
@@ -66,6 +67,14 @@ rt:Bestanddeel
                            sh:maxCount          1 ;
                            sh:order             2.0 ;
                            sh:path              rico:title ] ;
+    sh:property          [ rdfs:label   "Datering"@nl ; #Ivo: deze kan met dezelfde oplossing als DateOldest of youngest in archiefblok
+                           rdfs:comment "Kan een exacte datum of een periode zijn"@nl ;
+                           dash:editor  memorix:DateEditor ;
+                           sh:datatype  xsd:integer ;
+                           sh:group     rt:beschrijvingGroup ;
+                           sh:maxCount  1 ;
+                           sh:order     1.0 ;
+                           sh:path      rt:datering ] ;
     sh:property          [ rdfs:label           "Nota bene"@nl ;
                            rdfs:comment         "Uitgebreidere beschrijving, afkomstig uit NB velden"@nl ;
                            dash:singleLine      false ;
@@ -74,16 +83,8 @@ rt:Bestanddeel
                            dash:editor          dash:TextAreaEditor ;
                            sh:group             rt:beschrijvingGroup ;
                            sh:maxCount          1 ;
-                           sh:order             1.0 ;
+                           sh:order             2.0 ;
                            sh:path              rt:remark ] ;
-    sh:property          [ rdfs:label   "Datering"@nl ; #Ivo: deze kan met dezelfde oplossing als DateOldest of youngest in archiefblok
-                           rdfs:comment "Kan een exacte datum of een periode zijn"@nl ;
-                           dash:editor  memorix:DateEditor ;
-                           sh:datatype  xsd:integer ;
-                           sh:group     rt:beschrijvingGroup ;
-                           sh:maxCount  1 ;
-                           sh:order     2.0 ;
-                           sh:path      rt:datering ] ;
     sh:property          [ rdfs:label  "Uiterlijke vorm"@nl ;
                            sh:datatype xsd:string ;
                            sh:group    rt:beschrijvingGroup ;
@@ -100,6 +101,16 @@ rt:Bestanddeel
                            sh:or        ( [ sh:class rt:SaaPersoon ] [ sh:class rt:SaaOrganisatie ] [ sh:class rt:SaaFamilie ] ) ;
                            sh:order     4.0 ;
                            sh:path      rico:hasAccumulator ] ;
+    sh:property          [ rdfs:label   "Bovenliggend archiefblok of groep"@nl ;
+                           rdfs:comment "Archiefblok of Groep waartoe dit Bestanddeel behoort."@nl ;
+                           sh:message   "Kies uit de lijst."@nl ;
+                           dash:editor  memorix:LinkedRecordEditor ;
+                           sh:group     rt:indelingGroup ;
+                           sh:maxCount  1 ;
+                           sh:nodeKind  sh:IRI ;
+                           sh:or        ( [ sh:class rt:SaaArchiefblok ] [ sh:class rt:SaaGroep ] ) ;
+                           sh:order     3.0 ;
+                           sh:path      rt:link ] ;
     sh:property          [ rdfs:label   "Digitaal geboren?"@nl ;
                            rdfs:comment "Geeft aan of dit om een oorspronkelijk digitaal geboren stuk gaat"@nl ;
                            sh:datatype  xsd:boolean ;
