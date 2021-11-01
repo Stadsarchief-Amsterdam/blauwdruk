@@ -30,7 +30,6 @@ rt:beschrijvingGroup
     rdfs:label "Beschrijving"@nl ;
     sh:order   2.0 .
 
-## deze is bedoeld voor het kunnen leggen van koppelingen naar bovenliggende archiefblokken of andere groepe maar ik weet niet hoe dat in Memorix gaat werken.
 rt:indelingGroup
     rdf:type   sh:PropertyGroup ;
     rdfs:label "Indeling"@nl ;
@@ -94,6 +93,16 @@ rt:Groep
                            sh:maxCount 1 ;
                            sh:order    3.0 ;
                            sh:path     rt:uiterlijkeVorm ] ;
+    sh:property          [ rdfs:label   "Bovenliggend archiefblok of groep"@nl ;
+                           rdfs:comment "Archiefblok of Groep waartoe dit Bestanddeel behoort."@nl ;
+                           sh:message   "Kies uit de lijst."@nl ;
+                           dash:editor  memorix:LinkedRecordEditor ;
+                           sh:group     rt:indelingGroup ;
+                           sh:maxCount  1 ;
+                           sh:nodeKind  sh:IRI ;
+                           sh:or        ( [ sh:class rt:SaaArchiefblok ] [ sh:class rt:SaaGroep ] ) ;
+                           sh:order     3.0 ;
+                           sh:path      rt:link ] ;
     sh:property          [ rdfs:label  "Interne opmerking"@nl ;
                            dash:editor dash:TextAreaEditor ;
                            sh:datatype xsd:string ;
