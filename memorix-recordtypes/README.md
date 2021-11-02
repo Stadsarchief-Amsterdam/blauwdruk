@@ -5,13 +5,13 @@ Zo lang we nog alleen de beschikking hebben over de example omgeving stel ik voo
 
 | Bestand | Veld definities | Vertaling Rico | Te doen | Klaar voor Picturae
 | ------- | --------------- | -------------- | ------- | --------
-| Afbeelding.ttl  | - | - | - | ja
+| Afbeelding.ttl  | af | - | - | ja
 | Organisatie.ttl  | - | - | Levensloop toevoegen? | ja
 | Persoon.ttl  |  af | - | | ja
 | Familie.ttl  |  af |  | | ja
 | Aanwinst.ttl     | - | - | P mee bezig
 | Archiefblok.ttl | af| - | Opnieuw met Ivo door kijken | -
-| Groep.ttl     | - | - | -
+| Groep.ttl     | af | - | -
 | Bestanddeel.ttl     | - | - | -
 | Informatieobject.ttl     | - | - | -
 | InformatieobjectOnderdeel.ttl     | - | - | -
@@ -27,6 +27,11 @@ Zo lang we nog alleen de beschikking hebben over de example omgeving stel ik voo
 * hoe zorgen we ervoor dat sommige velden niet online komen? Zoals bv de interne opmerkingen
 * enum velden, kan zoiets voor een status veld, zonder dat er waardes in een concept scheme komen?
 * hoe de indeling parent vast te leggen?
+
+## regels voor de Saa SHACL
+* alles behalve Class namen camelCase
+* properties leggen we vast in het Engels
+* minCount 0 is overbodig, maxCount oneindig is overbodig in Shacl maar we hebben maxCount >1 nodig om in Memorix een herhaalbaar blok te kunnen maken. Dus we spreken af: **altijd maxCount** opnemen.
 
 ## todo
 * inTitleAt and inSummaryAt nalopen en vastleggen
