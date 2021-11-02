@@ -108,24 +108,23 @@ recordtypes:Afbeelding
                            sh:nodeKind sh:BlankNode ;
                            sh:class    rico:Instantiation ;
                            sh:group    afbeelding:physicalDescriptionGroup ; ] ;
-# beheer
     sh:property          [ rdfs:label   "Inventarisnummer"@nl ;
                            rdfs:comment "Tijdelijke link om straks te kunnen koppelen aan het juiste bestanddeel"@nl ;
                            sh:path      afbeelding:inventoryNumber ;
                            sh:datatype  xsd:string ;
                            sh:maxCount  1 ;
                            sh:order     1.0 ;
-                           sh:group     afbeelding:beheerGroup ; ] ;
+                           sh:group     afbeelding:managementGroup ; ] ;
     sh:property          [ rdfs:label              "Collectie"@nl ;
                            rdfs:comment            "Tijdelijke oplossing voor het nu kunnen zien van de collectie naam (uit het archiefblok)."@nl ;
                            sh:path                 afbeelding:collection ;
                            sh:maxCount             1 ;
                            sh:order                2.0 ;
-                           sh:group                afbeelding:beheerGroup ;
+                           sh:group                afbeelding:managementGroup ;
                            memorix:inSummaryAt     1.0 ;
                            dash:editor             memorix:VocabularyEditor ;
                            sh:class                skos:Concept ;
-                           memorix:conceptSchemeIn vocabularies:dc4bc4f7-0e8a-3d53-b675-7c36bd780aff ;#replaced by uuid in code
+                           memorix:conceptSchemeIn vocabularies:dc4bc4f7-0e8a-3d53-b675-7c36bd780aff ;
                            sh:nodeKind             sh:IRI ; ] ;
     sh:property          [ rdfs:label  "Oude nummers"@nl ;
                            dash:editor dash:TextAreaEditor ;
@@ -133,12 +132,12 @@ recordtypes:Afbeelding
                            sh:datatype xsd:string ;
                            sh:maxCount 1 ;
                            sh:order    3.0 ;
-                           sh:group    afbeelding:beheerGroup ; ] ;
+                           sh:group    afbeelding:managementGroup ; ] ;
     sh:property          [ rdfs:label  "Interne opmerking"@nl ;
                            sh:path     afbeelding:remark ;
                            sh:datatype xsd:string ;
                            sh:order    4.0 ;
-                           sh:group    afbeelding:beheerGroup ;
+                           sh:group    afbeelding:managementGroup ;
                            dash:editor dash:TextAreaEditor ; ] ;
     sh:property          [ rdfs:label              "Externe locatie URI's" ;
                            dash:editor             memorix:VocabularyEditor ;
@@ -249,7 +248,7 @@ afbeelding:relationsGroup
     sh:order   3.0
 .
 
-afbeelding:beheerGroup
+afbeelding:managementGroup
     rdf:type   sh:PropertyGroup ;
     rdfs:label "Beheer"@nl ;
     sh:order   4.0 .

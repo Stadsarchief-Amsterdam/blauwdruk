@@ -20,22 +20,22 @@
 @prefix schema:         <https://schema.org/> .
 
 
-rt:identificatieGroup
+rt:identificationGroup
     rdf:type   sh:PropertyGroup ;
     rdfs:label "Identificatie"@nl ;
     sh:order   1.0 .
 
-rt:beschrijvingGroup
+rt:contentDescriptionGroup
     rdf:type   sh:PropertyGroup ;
     rdfs:label "Beschrijving"@nl ;
     sh:order   2.0 .
 
-rt:indelingGroup
+rt:partitionGroup
     rdf:type   sh:PropertyGroup ;
     rdfs:label "Indeling"@nl ;
     sh:order   3.0 .
 
-rt:beheerGroup
+rt:managementGroup
     rdf:type   sh:PropertyGroup ;
     rdfs:label "Beheer"@nl ;
     sh:order   4.0 .
@@ -54,27 +54,27 @@ rt:Groep
                            memorix:inTitleAt    1.0 ;
                            memorix:searchWeight 3.0 ;
                            sh:datatype          xsd:string ;
-                           sh:group             rt:identificatieGroup ;
+                           sh:group             rt:identificationGroup ;
                            sh:maxCount          1 ;
                            sh:order             1.0 ;
-                           sh:path              rt:rubriekscode ] ;
+                           sh:path              rico:identifier ] ;
     sh:property          [ rdfs:label           "Beschrijving"@nl ;
                            rdfs:comment         "Korte beschrijving dan wel label of naam van de groep"@nl ;
                            dash:singleLine      true ;
                            memorix:inTitleAt    2.0 ;
                            memorix:searchWeight 3.0 ;
                            sh:datatype          xsd:string ;
-                           sh:group             rt:identificatieGroup ;
+                           sh:group             rt:identificationGroup ;
                            sh:maxCount          1 ;
                            sh:order             2.0 ;
-                           sh:path              rt:titel ] ;
+                           sh:path              rico:title ] ;
     sh:property          [ rdfs:label           "Nota bene"@nl ;
                            rdfs:comment         "Uitgebreidere beschrijving, afkomstig uit NB velden"@nl ;
                            dash:singleLine      false ;
                            memorix:searchWeight 3.0 ;
                            sh:datatype          xsd:string ;
                            dash:editor          dash:TextAreaEditor ;
-                           sh:group             rt:beschrijvingGroup ;
+                           sh:group             rt:contentDescriptionGroup ;
                            sh:maxCount          1 ;
                            sh:order             3.0 ;
                            sh:path              rt:remark ] ;
@@ -82,31 +82,50 @@ rt:Groep
                            rdfs:comment "Kan een exacte datum of een periode zijn"@nl ;
                            dash:editor  memorix:DateEditor ;
                            sh:datatype  xsd:integer ;
-                           sh:group     rt:beschrijvingGroup ;
+                           sh:group     rt:contentDescriptionGroup ;
                            sh:maxCount  1 ;
                            sh:order     2.0 ;
-                           sh:path      schema:birthDate ] ;
+                           sh:path      rico:DateRange ] ;
     sh:property          [ rdfs:label  "Uiterlijke vorm"@nl ;
                            dash:editor dash:TextFieldEditor ;
                            sh:datatype xsd:string ;
-                           sh:group    rt:beschrijvingGroup ;
+                           sh:group    rt:contentDescriptionGroup ;
                            sh:maxCount 1 ;
                            sh:order    3.0 ;
-                           sh:path     rt:uiterlijkeVorm ] ;
+                           sh:path     rico:physicalOrLogicalExtent ] ;
     sh:property          [ rdfs:label   "Bovenliggend archiefblok of groep"@nl ;
                            rdfs:comment "Archiefblok of Groep waartoe dit Bestanddeel behoort."@nl ;
                            sh:message   "Kies uit de lijst."@nl ;
                            dash:editor  memorix:LinkedRecordEditor ;
-                           sh:group     rt:indelingGroup ;
+                           sh:group     rt:partitionGroup ;
                            sh:maxCount  1 ;
                            sh:nodeKind  sh:IRI ;
                            sh:or        ( [ sh:class rt:SaaArchiefblok ] [ sh:class rt:SaaGroep ] ) ;
                            sh:order     3.0 ;
-                           sh:path      rt:link ] ;
+                           sh:path      rico:isOrWasIncludedIn ] ;
     sh:property          [ rdfs:label  "Interne opmerking"@nl ;
                            dash:editor dash:TextAreaEditor ;
                            sh:datatype xsd:string ;
-                           sh:group    rt:beheerGroup ;
+                           sh:group    rt:managementGroup ;
                            sh:order    1.0 ;
-                           sh:path     rt:remarks ; ] ;
+                           sh:maxCount 1 ;
+                           sh:path     rt:remark ; ] ;
 .
+
+rico:DateRange
+    rdf:type             sh:nodeshape ;
+    sh:closed            true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property          [ rdfs:label  "Beginjaar vorming"@nl ;
+                           sh:datatype xsd:date ;
+                           dash:editor memorix:DateEditor ;
+                           sh:order    1.0 ;
+                           sh:path     rico:hasBeginningDate ] ;
+    sh:property          [ rdfs:label  "Eindjaar vorming"@nl ;
+                           sh:message  "Eindjaar moet liggen tussen 1200 en 2200"@nl ;
+                           sh:message  "The year should be between 1200 and 2200"@en ;
+                           dash:editor memorix:DateEditor ;
+                           sh:datatype xsd:date ;
+                           sh:order    2.0 ;
+                           sh:path     rico:hasEndDate ] ;
+    sh:targetClass       rico:DateRange .

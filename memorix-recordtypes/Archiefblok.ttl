@@ -16,22 +16,22 @@
 @prefix ric-rst:       <https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#> .
 @prefix ric-dft:       <https://www.ica.org/standards/RiC/vocabularies/documentaryFormTypes#> .
 
-archiefblok:identificatieGroup
+archiefblok:identificationGroup
     rdf:type   sh:PropertyGroup ;
     rdfs:label "Identificatie"@nl ;
     sh:order   1.0 .
 
-archiefblok:archiefvormingGroup
+archiefblok:accumulationGroup
     rdf:type   sh:PropertyGroup ;
     rdfs:label "Archiefvorming"@nl ;
     sh:order   2.0 .
 
-archiefblok:beschrijvingGroup
+archiefblok:contentDescriptionGroup
     rdf:type   sh:PropertyGroup ;
     rdfs:label "Beschrijving"@nl ;
     sh:order   3.0 .
 
-archiefblok:beheerGroup
+archiefblok:managementGroup
     rdf:type   sh:PropertyGroup ;
     rdfs:label "Beheer"@nl ;
     sh:order   4.0 .
@@ -51,7 +51,7 @@ rt:SaaArchiefblok
                            sh:minCount      1 ;
                            sh:maxCount      1 ;
                            html:placeholder "Bv 10003.A …"@nl ;
-                           sh:group         archiefblok:identificatieGroup ;
+                           sh:group         archiefblok:identificationGroup ;
                            sh:order         1.0 ;
                            sh:path          rico:identifier ;
                            sh:message       "Foutje"@nl ;
@@ -65,7 +65,7 @@ rt:SaaArchiefblok
                            dash:editor       dash:TextFieldEditor ;
                            html:placeholder  "Archief of Collectie van …"@nl ;
                            sh:message        "Naam toegang is verplicht. Moet altijd beginnen met Archief of Collectie."@nl ;
-                           sh:group          archiefblok:identificatieGroup ;
+                           sh:group          archiefblok:identificationGroup ;
                            sh:order          2.0 ;
                            sh:message       "Error"@en ;
                            memorix:inTitleAt 2.0 ;
@@ -74,7 +74,7 @@ rt:SaaArchiefblok
                            rdfs:comment "Jaartal of periode van vorming."@nl ;
                            sh:message   "Geef een of twee jaartallen"@nl ;
                            sh:class     rico:DateRange ;
-                           sh:group     archiefblok:archiefvormingGroup ;
+                           sh:group     archiefblok:accumulationGroup ;
                            sh:maxCount  1 ;
                            sh:nodeKind  sh:BlankNode ;
                            sh:message   "Foutje"@nl ;
@@ -87,7 +87,7 @@ rt:SaaArchiefblok
                            dash:editor  memorix:LinkedRecordEditor ;
                            sh:message   "Foutje"@nl ;
                            sh:message   "Error"@en ;
-                           sh:group     archiefblok:archiefvormingGroup ;
+                           sh:group     archiefblok:accumulationGroup ;
                            sh:maxCount  10 ;
                            sh:nodeKind  sh:IRI ;
                            sh:or        ( [ sh:class rt:SaaPersoon ] [ sh:class rt:SaaOrganisatie ] [ sh:class rt:SaaFamilie ] ) ;
@@ -96,7 +96,7 @@ rt:SaaArchiefblok
     sh:property          [ rdfs:label   "Datering Oudste Stuk"@nl ;
                            rdfs:comment "Datum of jaartal van het oudste stuk in dit archief."@nl ;
                            sh:class     archiefblok:SingleDateOldest ;
-                           sh:group     archiefblok:beschrijvingGroup ;
+                           sh:group     archiefblok:contentDescriptionGroup ;
                            sh:message   "Foutje"@nl ;
                            sh:message   "Error"@en ;
                            sh:maxCount  1 ;
@@ -106,7 +106,7 @@ rt:SaaArchiefblok
     sh:property          [ rdfs:label   "Datering Jongste Stuk"@nl ;
                            rdfs:comment "Datum of jaartal van het jongste stuk in dit archief."@nl ;
                            sh:class     archiefblok:SingleDateYoungest ;
-                           sh:group     archiefblok:beschrijvingGroup ;
+                           sh:group     archiefblok:contentDescriptionGroup ;
                            sh:maxCount  1 ;
                            sh:message   "Foutje"@nl ;
                            sh:message   "Error"@en ;
@@ -115,8 +115,8 @@ rt:SaaArchiefblok
                            sh:path      archiefblok:hasYoungestRecord ] ;
     sh:property          [ rdfs:label  "Inleiding"@nl ;
                            sh:path     rico:scopeAndContent ;
-                           sh:group    archiefblok:beschrijvingGroup ;
-                           sh:maxCount      1 ;
+                           sh:group    archiefblok:contentDescriptionGroup ;
+                           sh:maxCount 1 ;
                            sh:message  "Foutje"@nl ;
                            sh:message  "Error"@en ;
                            sh:order    7.0 ;
@@ -124,7 +124,7 @@ rt:SaaArchiefblok
                            dash:editor dash:TextAreaEditor ; ] ;
     sh:property          [ rdfs:label  "Inventarisatie"@nl ;
                            sh:class    archiefblok:Inventarisatie ;
-                           sh:group    archiefblok:beschrijvingGroup ;
+                           sh:group    archiefblok:contentDescriptionGroup ;
                            sh:maxCount 10 ;
                            sh:message  "Foutje"@nl ;
                            sh:message  "Error"@en ;
@@ -138,7 +138,7 @@ rt:SaaArchiefblok
                                         "Error"@en ;
                            sh:maxCount  1 ;
                            sh:datatype  xsd:string ;
-                           sh:group     archiefblok:beheerGroup ;
+                           sh:group     archiefblok:managementGroup ;
                            sh:order     9.0 ;
                            sh:path      archiefblok:remark ; ] ;
     sh:property          [ rdfs:label   "Status"@nl ;
@@ -148,7 +148,7 @@ rt:SaaArchiefblok
                            sh:datatype  xsd:string ;
                            sh:minCount  1 ;
                            sh:maxCount  1 ;
-                           sh:group     archiefblok:beheerGroup ;
+                           sh:group     archiefblok:managementGroup ;
                            sh:order     10.0 ;
                            sh:path      archiefblok:status ; ] ;
 .
@@ -159,7 +159,7 @@ rico:DateRange
     sh:ignoredProperties ( rdf:type ) ;
     sh:property          [ rdfs:label  "Beginjaar vorming"@nl ;
                            sh:datatype xsd:gYear ;
-                           sh:order    2.0 ;
+                           sh:order    1.0 ;
 #                           sh:minInclusive 1200 ;
 #                           sh:maxInclusive 2200 ;
                            sh:path     rico:hasBeginningDate ] ;
@@ -168,7 +168,7 @@ rico:DateRange
                            sh:message  "The year should be between 1200 and 2200"@en ;
                            # dash:editor memorix:DateEditor ;
                            sh:datatype xsd:gYear ;
-                           sh:order    3.0 ;
+                           sh:order    2.0 ;
 #                           sh:minInclusive 1200 ;
 #                           sh:maxInclusive 2200 ;
                            sh:path     rico:hasEndDate ] ;
