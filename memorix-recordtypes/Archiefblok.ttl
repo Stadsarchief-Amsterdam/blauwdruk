@@ -90,7 +90,7 @@ rt:SaaArchiefblok
                            sh:group     archiefblok:archiefvormingGroup ;
                            sh:maxCount  10 ;
                            sh:nodeKind  sh:IRI ;
-                           sh:or        ( [ sh:class rt:SaaPersoonIvo ] [ sh:class rt:SaaOrganisatieIvo ] [ sh:class rt:SaaFamilieIvo ] ) ;
+                           sh:or        ( [ sh:class rt:SaaPersoon ] [ sh:class rt:SaaOrganisatie ] [ sh:class rt:SaaFamilie ] ) ;
                            sh:order     4.0 ;
                            sh:path      rico:hasAccumulator ] ;
     sh:property          [ rdfs:label   "Datering Oudste Stuk"@nl ;
