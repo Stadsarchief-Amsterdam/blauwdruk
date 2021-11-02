@@ -19,6 +19,7 @@
 @prefix pnv:            <https://w3id.org/pnv#> .
 @prefix schema:         <https://schema.org/> .
 
+#todo bestanddeel aab bestanddeel kunnen koppelen.
 
 rt:identificatieGroup
     rdf:type   sh:PropertyGroup ;
