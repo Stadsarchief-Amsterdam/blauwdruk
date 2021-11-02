@@ -5,13 +5,13 @@ Zo lang we nog alleen de beschikking hebben over de example omgeving stel ik voo
 
 | Bestand | Veld definities | Vertaling Rico | Te doen | Klaar voor Picturae
 | ------- | --------------- | -------------- | ------- | --------
-| Afbeelding.ttl  | af | - | - | ja
+| Afbeelding.ttl  | af | ja | - | ja
 | Organisatie.ttl  | - | - | Levensloop toevoegen? | ja
 | Persoon.ttl  |  af | - | | ja
 | Familie.ttl  |  af |  | | ja
 | Aanwinst.ttl     | - | - | P mee bezig
-| Archiefblok.ttl | af| - | Opnieuw met Ivo door kijken | -
-| Groep.ttl     | af | - | -
+| Archiefblok.ttl | af| af | - | -
+| Groep.ttl     | af | af | -
 | Bestanddeel.ttl     | - | - | -
 | Informatieobject.ttl     | - | - | -
 | InformatieobjectOnderdeel.ttl     | - | - | -
