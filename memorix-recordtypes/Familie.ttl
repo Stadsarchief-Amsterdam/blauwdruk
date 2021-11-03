@@ -17,12 +17,12 @@
 
 @prefix schema:         <https://schema.org/> .
 
-rt:identificatieGroup
+rt:identificationGroup
     rdf:type   sh:PropertyGroup ;
     rdfs:label "Identificatie"@nl ;
     sh:order   1.0 .
 
-rt:beheerGroup
+rt:managementGroup
     rdf:type   sh:PropertyGroup ;
     rdfs:label "Beheer"@nl ;
     sh:order   2.0 .
@@ -42,20 +42,20 @@ rt:Familie
                               memorix:inTitleAt     1.0 ;
                               memorix:searchWeight  3.0 ;
                               sh:datatype           xsd:string ;
-                              sh:group              rt:identificatieGroup ;
+                              sh:group              rt:identificationGroup ;
                               sh:maxCount           1 ;
                               sh:order              1.0 ;
                               sh:path               schema:name ] ;
     sh:property             [ rdfs:label            "Alternatieve namen"@nl ;
                               memorix:searchWeight  1.0 ;
                               sh:datatype           xsd:string ;
-                              sh:group              rt:identificatieGroup ;
+                              sh:group              rt:identificationGroup ;
                               sh:order              2.0 ;
                               sh:path               schema:alternateName ] ;
     sh:property             [ rdfs:label            "Interne opmerking"@nl ;
                               dash:editor           dash:TextAreaEditor ;
                               sh:datatype           xsd:string ;
-                              sh:group              rt:beheerGroup  ;
+                              sh:group              rt:managementGroup  ;
                               sh:order              1.0 ;
-                              sh:path               rt:remarks ; ]
+                              sh:path               rt:remark ; ]
 .
