@@ -33,15 +33,25 @@ recordtypes:Afbeelding
                            sh:class                skos:Concept ;
                            memorix:conceptSchemeIn vocabularies:3765628c-d755-3e25-8af5-f6178cbb7937 ; #replaced by uuid in code
                            sh:nodeKind             sh:IRI ; ] ;
-    sh:property          [ rdfs:label        "Historische titel"@nl ;
-                           rdfs:comment      "De historische titel zoals oorspronkelijk vastgelegd."@nl ;
+    sh:property          [ rdfs:label        "Titel"@nl ;
+                           rdfs:comment      "Geef de afbeelding een herkenbare titel om in overzichten te kunnen onderscheiden."@nl ;
                            html:placeholder  "Typ een titel …"@nl ;
-                           sh:path           afbeelding:historicalTitle ;
+                           sh:path           rico:title ;
                            memorix:inTitleAt 1.0 ;
+                           sh:minCount       1 ;
                            sh:maxCount       1 ;
-                           sh:order          3.0 ;
+                           sh:order          2.0 ;
                            sh:message        "De titel zou niet leeg mogen zijn"@nl,
                                              "Empty value for title field should not be allowed"@en ;
+                           sh:group          afbeelding:contentDescriptionGroup ;
+                           dash:editor       dash:TextFieldEditor ;
+                           sh:datatype       xsd:string ; ] ;
+    sh:property          [ rdfs:label        "Historische titel"@nl ;
+                           rdfs:comment      "De historische titel zoals oorspronkelijk vastgelegd."@nl ;
+                           sh:path           afbeelding:historicalTitle ;
+                           memorix:inTitleAt 2.0 ;
+                           sh:maxCount       1 ;
+                           sh:order          3.0 ;
                            sh:group          afbeelding:contentDescriptionGroup ;
                            dash:editor       dash:TextFieldEditor ;
                            sh:datatype       xsd:string ; ] ;
