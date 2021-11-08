@@ -34,6 +34,7 @@ Zo lang we nog alleen de beschikking hebben over de example omgeving stel ik voo
 * alles behalve Class namen camelCase
 * properties leggen we vast in het Engels
 * minCount 0 is overbodig, maxCount oneindig is overbodig in Shacl maar we hebben maxCount >1 nodig om in Memorix een herhaalbaar blok te kunnen maken. Dus we spreken af: **altijd maxCount** opnemen.
+* asl we zeker weten dat iets een xsd:Date is, voor nu geen Memorix:dateEditor opnemen (want die werkt alleen met ints)
 
 ## todo
 * inTitleAt and inSummaryAt nalopen en vastleggen
