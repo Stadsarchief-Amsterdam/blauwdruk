@@ -189,8 +189,8 @@ archiefblok:Inventarisatie
                            sh:order    1.0 ;
                            sh:message  "Foutje"@nl ;
                            sh:message  "Error"@en ;
-                           sh:minInclusive 1200 ;
-                           sh:maxInclusive 2200 ;
+                           sh:minInclusive "1200"^^xsd:gYear ;
+                           sh:maxInclusive "2200"^^xsd:gYear ;
                            sh:path     rico:publicationDate ] ;
 .
 
