@@ -5,6 +5,7 @@
 @prefix skos:           <http://www.w3.org/2004/02/skos/core#> .
 
 @prefix rt:             </resources/recordtypes/> .
+@prefix bestanddeel:    </resources/recordtypes/Bestanddeel#> .
 
 @prefix dc:             <http://purl.org/dc/elements/1.1/> .
 @prefix sh:             <http://www.w3.org/ns/shacl#> .
@@ -21,22 +22,22 @@
 
 #todo bestanddeel aan bestanddeel kunnen koppelen.
 
-rt:identificationGroup
+bestanddeel:identificationGroup
     rdf:type   sh:PropertyGroup ;
     rdfs:label "Identificatie"@nl ;
     sh:order   1.0 .
 
-rt:contentDescriptionGroup
+bestanddeel:contentDescriptionGroup
     rdf:type   sh:PropertyGroup ;
     rdfs:label "Beschrijving"@nl ;
     sh:order   2.0 .
 
-rt:partitionGroup
+bestanddeel:partitionGroup
     rdf:type   sh:PropertyGroup ;
     rdfs:label "Indeling"@nl ;
     sh:order   3.0 .
 
-rt:managementGroup
+bestanddeel:managementGroup
     rdf:type   sh:PropertyGroup ;
     rdfs:label "Beheer"@nl ;
     sh:order   4.0 .
@@ -53,7 +54,7 @@ rt:Bestanddeel
     sh:property          [ rdfs:label   "Inventarisnummer"@nl ;
                            rdfs:comment "Uniek nummer binnen een archiefcode"@nl ;
                            sh:class     rico:Identifier ;
-                           sh:group     rt:identificationGroup ;
+                           sh:group     bestanddeel:identificationGroup ;
                            sh:maxCount  1 ;
                            sh:nodeKind  sh:BlankNode ;
                            sh:order     1.0 ;
@@ -64,7 +65,7 @@ rt:Bestanddeel
                            memorix:inTitleAt    3.0 ;
                            memorix:searchWeight 3.0 ;
                            sh:datatype          xsd:string ;
-                           sh:group             rt:identificationGroup ;
+                           sh:group             bestanddeel:identificationGroup ;
                            sh:maxCount          1 ;
                            sh:order             2.0 ;
                            sh:path              rico:title ] ;
@@ -72,23 +73,23 @@ rt:Bestanddeel
                            rdfs:comment "Kan een exacte datum of een periode zijn"@nl ;
                            dash:editor  memorix:DateEditor ;
                            sh:datatype  xsd:integer ;
-                           sh:group     rt:contentDescriptionGroup ;
+                           sh:group     bestanddeel:contentDescriptionGroup ;
                            sh:maxCount  1 ;
                            sh:order     1.0 ;
-                           sh:path      rt:dateRange ] ;
+                           sh:path      bestanddeel:dateRange ] ;
     sh:property          [ rdfs:label           "Nota bene"@nl ;
                            rdfs:comment         "Uitgebreidere beschrijving, afkomstig uit NB velden"@nl ;
                            dash:singleLine      false ;
                            memorix:searchWeight 3.0 ;
                            sh:datatype          xsd:string ;
                            dash:editor          dash:TextAreaEditor ;
-                           sh:group             rt:contentDescriptionGroup ;
+                           sh:group             bestanddeel:contentDescriptionGroup ;
                            sh:maxCount          1 ;
                            sh:order             2.0 ;
-                           sh:path              rt:scopeAndContent ] ;
+                           sh:path              rico:scopeAndContent ] ;
     sh:property          [ rdfs:label  "Uiterlijke vorm"@nl ;
                            sh:datatype xsd:string ;
-                           sh:group    rt:contentDescriptionGroup ;
+                           sh:group    bestanddeel:contentDescriptionGroup ;
                            sh:maxCount 1 ;
                            sh:order    3.0 ;
                            sh:path     rico:physicalOrLogicalExtent ] ;
@@ -96,7 +97,7 @@ rt:Bestanddeel
                            rdfs:comment "Gekoppelde archiefvormer uit de Personen en Organisatie thesaurus."@nl ;
                            sh:message   "Kies een archiefvormer uit de lijst."@nl ;
                            dash:editor  memorix:LinkedRecordEditor ;
-                           sh:group     rt:contentDescriptionGroup ;
+                           sh:group     bestanddeel:contentDescriptionGroup ;
                            sh:maxCount  10 ;
                            sh:nodeKind  sh:IRI ;
                            sh:or        ( [ sh:class rt:SaaPersoon ] [ sh:class rt:SaaOrganisatie ] [ sh:class rt:SaaFamilie ] ) ;
@@ -106,7 +107,7 @@ rt:Bestanddeel
                            rdfs:comment "Archiefblok of Groep waartoe dit Bestanddeel behoort."@nl ;
                            sh:message   "Kies uit de lijst."@nl ;
                            dash:editor  memorix:LinkedRecordEditor ;
-                           sh:group     rt:partitionGroup ;
+                           sh:group     bestanddeel:partitionGroup ;
                            sh:maxCount  1 ;
                            sh:nodeKind  sh:IRI ;
                            sh:or        ( [ sh:class rt:SaaArchiefblok ] [ sh:class rt:SaaGroep ] ) ;
@@ -115,37 +116,37 @@ rt:Bestanddeel
     sh:property          [ rdfs:label   "Digitaal geboren?"@nl ;
                            rdfs:comment "Geeft aan of dit om een oorspronkelijk digitaal geboren stuk gaat"@nl ;
                            sh:datatype  xsd:boolean ;
-                           sh:group     rt:managementGroup ;
+                           sh:group     bestanddeel:managementGroup ;
                            sh:maxCount  1 ;
                            sh:order     1.0 ;
-                           sh:path      rt:digitalBorn ] ;
+                           sh:path      bestanddeel:digitalBorn ] ;
     sh:property          [ rdfs:label   "Gedigitaliseerd?"@nl ;
                            rdfs:comment "Geeft aan of dit stuk gedigitaliseerd is"@nl ;
                            sh:datatype  xsd:boolean ;
-                           sh:group     rt:managementGroup ;
+                           sh:group     bestanddeel:managementGroup ;
                            sh:maxCount 1 ;
                            sh:order     2.0 ;
-                           sh:path      rt:digitised ] ;
+                           sh:path      bestanddeel:digitised ] ;
     sh:property          [ rdfs:label  "Microfilmnummer"@nl ;
                            rdfs:comment "Voor het migreren en (tijdelijk) opslaan van de microfilmnummers."@nl ;
                            sh:datatype xsd:string ;
-                           sh:group    rt:contentDescriptionGroup ;
+                           sh:group    bestanddeel:contentDescriptionGroup ;
                            sh:maxCount 1 ;
                            sh:order    3.0 ;
-                           sh:path     rt:microfilm ] ;
+                           sh:path     bestanddeel:microfilm ] ;
     sh:property          [ rdfs:label  "Bergingsnummer"@nl ;
                            sh:datatype xsd:string ;
-                           sh:group    rt:contentDescriptionGroup ;
+                           sh:group    bestanddeel:contentDescriptionGroup ;
                            sh:maxCount 1 ;
                            sh:order    4.0 ;
-                           sh:path     rt:storageNumber ] ;
+                           sh:path     bestanddeel:storageNumber ] ;
     sh:property          [ rdfs:label  "Interne opmerking"@nl ;
                            dash:editor dash:TextAreaEditor ;
                            sh:datatype xsd:string ;
-                           sh:group    rt:managementGroup ;
+                           sh:group    bestanddeel:managementGroup ;
                            sh:maxCount 1 ;
                            sh:order    5.0 ;
-                           sh:path     rt:remark ] ;
+                           sh:path     bestanddeel:remark ] ;
     sh:property          [ rdfs:label   "Status"@nl ;
                            rdfs:comment "Status van het inventarisnummer. Aanwezig, Vervallen, Te vernietigen, Vermist, Vernietigd."@nl ;
                            sh:message   "Status is verplicht."@nl ;
@@ -153,9 +154,9 @@ rt:Bestanddeel
                            sh:minCount  1 ;
                            sh:maxCount  1 ;
                            # todo find out if we can set a default from a list? and this should be enum
-                           sh:group     rt:managementGroup ;
+                           sh:group     bestanddeel:managementGroup ;
                            sh:order     6.0 ;
-                           sh:path      rt:status ; ] ;
+                           sh:path      bestanddeel:status ; ] ;
 .
 
 rico:Identifier
@@ -179,6 +180,6 @@ rico:Identifier
                            sh:maxCount          1 ;
                            sh:datatype            xsd:string ;
                            sh:order               2.0 ;
-                           sh:path                rt:identificationGroup ] ;
+                           sh:path                bestanddeel:identificationGroup ] ;
     sh:targetClass       rico:Identifier
 .
