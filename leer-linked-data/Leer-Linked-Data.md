@@ -1,5 +1,7 @@
 # Leer Linked Data
 
+Beknopte cursus Linked Data voor archivarissen.
+
 ## Voorbereiding
 ### GraphDB installeren
 Zie: https://www.ontotext.com/products/graphdb/graphdb-free/
@@ -12,10 +14,16 @@ Setup -> Repositories -> Create New Repository
 
 ## Les 1: Data
 
-Zie: []
+Zie [hier](Leer-Linked-Data-les1.md)
 
 ## Les 2: SPARQL
 
-Zie: []
+Zie [hier](Leer-Linked-Data-les2.md)
 
-## Les 3:
+## Les 3: Datastructuren
+
+Zie [hier](Leer-Linked-Data-les3.md)
+
+## Les 4: Recordtypes in Memorix
+
+Zie [hier](Leer-Linked-Data-les4.md)
