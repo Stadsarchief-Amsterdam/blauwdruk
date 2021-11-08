@@ -18,8 +18,10 @@ Zo lang we nog alleen de beschikking hebben over de example omgeving stel ik voo
 | Akte.ttl     | - | - | -
 | Persoonsvermelding.ttl     | - | - | -
 | Publicatie.ttl     | - | - | -
+| Aflevering.ttl     | - | - | -
 | AV.ttl     | - | - | -
 | MAI.ttl     | - | - | -
+| Duplicaat.ttl     | - | - | -
 | Conservering.ttl     | - | - | Moet deze gemaakt?
 
 ## Vragen Picturae
