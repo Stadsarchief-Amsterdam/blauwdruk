@@ -85,7 +85,7 @@ rt:Bestanddeel
                            sh:group             rt:contentDescriptionGroup ;
                            sh:maxCount          1 ;
                            sh:order             2.0 ;
-                           sh:path              rt:remark ] ;
+                           sh:path              rt:scopeAndContent ] ;
     sh:property          [ rdfs:label  "Uiterlijke vorm"@nl ;
                            sh:datatype xsd:string ;
                            sh:group    rt:contentDescriptionGroup ;
