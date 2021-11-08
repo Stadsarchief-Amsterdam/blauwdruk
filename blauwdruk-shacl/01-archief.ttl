@@ -212,7 +212,8 @@ rico:Title a sh:NodeShape ;
         sh:datatype       xsd:string ; 
         sh:minCount       1 ;
         sh:maxCount       1 ;
-    ] .
+    ] ;
+.
 
 ## Identifier
 rico:Identifier a sh:NodeShape ;

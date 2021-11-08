@@ -160,17 +160,16 @@ rico:DateRange
     sh:property          [ rdfs:label  "Beginjaar vorming"@nl ;
                            sh:datatype xsd:gYear ;
                            sh:order    1.0 ;
-#                           sh:minInclusive 1200 ;
-#                           sh:maxInclusive 2200 ;
+                           sh:minInclusive "1200"^^xsd:gYear ;
+                           sh:maxInclusive "2200"^^xsd:gYear ;
                            sh:path     rico:hasBeginningDate ] ;
     sh:property          [ rdfs:label  "Eindjaar vorming"@nl ;
                            sh:message  "Eindjaar moet liggen tussen 1200 en 2200"@nl ;
                            sh:message  "The year should be between 1200 and 2200"@en ;
-                           # dash:editor memorix:DateEditor ;
                            sh:datatype xsd:gYear ;
                            sh:order    2.0 ;
-#                           sh:minInclusive 1200 ;
-#                           sh:maxInclusive 2200 ;
+                           sh:minInclusive "1200"^^xsd:gYear ;
+                           sh:maxInclusive "2200"^^xsd:gYear ;
                            sh:path     rico:hasEndDate ] ;
     sh:targetClass       rico:DateRange .
 
@@ -186,12 +185,12 @@ archiefblok:Inventarisatie
                            sh:message  "Error"@en ;
                            sh:path     rico:hasAuthor ] ;
     sh:property          [ rdfs:label  "Inventarisatie jaar"@nl ;
-                           sh:datatype xsd:integer ;
+                           sh:datatype xsd:gYear ;
                            sh:order    1.0 ;
-#                           sh:minInclusive 1200 ;
                            sh:message  "Foutje"@nl ;
                            sh:message  "Error"@en ;
-#                           sh:maxInclusive 2200 ;
+                           sh:minInclusive 1200 ;
+                           sh:maxInclusive 2200 ;
                            sh:path     rico:publicationDate ] ;
 .
 
@@ -206,7 +205,6 @@ archiefblok:SingleDateOldest
                            sh:message  "Error"@en ;
                            sh:path     rico:expressedDate ] ;
     sh:property          [ rdfs:label  "Datum (genormaliseerd)"@nl ;
-                           dash:editor memorix:DateEditor ;
                            sh:datatype xsd:date ;
                            sh:message  "Foutje"@nl ;
                            sh:message  "Error"@en ;
@@ -226,7 +224,6 @@ archiefblok:SingleDateYoungest
                            sh:message  "Error"@en ;
                            sh:path     rico:expressedDate ] ;
     sh:property          [ rdfs:label  "Datum (genormaliseerd)"@nl ;
-                           dash:editor memorix:DateEditor ;
                            sh:datatype xsd:date ;
                            sh:message  "Foutje"@nl ;
                            sh:message  "Error"@en ;
