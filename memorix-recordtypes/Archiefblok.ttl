@@ -16,8 +16,7 @@
 @prefix ric-rst:       <https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#> .
 @prefix ric-dft:       <https://www.ica.org/standards/RiC/vocabularies/documentaryFormTypes#> .
 
-# todo iets 
-# todo iets anders
+# todo iets 2
 archiefblok:identificationGroup
     rdf:type   sh:PropertyGroup ;
     rdfs:label "Identificatie"@nl ;
