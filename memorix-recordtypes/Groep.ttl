@@ -1,24 +1,24 @@
-@prefix rdf:            <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix rdfs:           <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix owl:            <http://www.w3.org/2002/07/owl#> .
-@prefix xsd:            <http://www.w3.org/2001/XMLSchema#> .
-@prefix skos:           <http://www.w3.org/2004/02/skos/core#> .
+@prefix rdf:             <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:            <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:             <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:             <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos:            <http://www.w3.org/2004/02/skos/core#> .
 
-@prefix rt:             </resources/recordtypes/> .
+@prefix rt:              </resources/recordtypes/> .
 @prefix groep:           </resources/recordtypes/Groep#> .
 
-@prefix dc:             <http://purl.org/dc/elements/1.1/> .
-@prefix sh:             <http://www.w3.org/ns/shacl#> .
-@prefix dash:           <http://datashapes.org/dash#> .
-@prefix memorix:        <http://memorix.io/ontology#> .
-@prefix html:           <http://www.w3.org/1999/xhtml/> .
+@prefix dc:              <http://purl.org/dc/elements/1.1/> .
+@prefix sh:              <http://www.w3.org/ns/shacl#> .
+@prefix dash:            <http://datashapes.org/dash#> .
+@prefix memorix:         <http://memorix.io/ontology#> .
+@prefix html:            <http://www.w3.org/1999/xhtml/> .
 
-@prefix rico:           <https://www.ica.org/standards/RiC/ontology#> .
-@prefix ric-rst:        <https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#> .
-@prefix ric-dft:        <https://www.ica.org/standards/RiC/vocabularies/documentaryFormTypes#> .
+@prefix rico:            <https://www.ica.org/standards/RiC/ontology#> .
+@prefix ric-rst:         <https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#> .
+@prefix ric-dft:         <https://www.ica.org/standards/RiC/vocabularies/documentaryFormTypes#> .
 
-@prefix pnv:            <https://w3id.org/pnv#> .
-@prefix schema:         <https://schema.org/> .
+@prefix pnv:             <https://w3id.org/pnv#> .
+@prefix schema:          <https://schema.org/> .
 
 
 groep:identificationGroup
@@ -42,10 +42,12 @@ groep:managementGroup
     sh:order   4.0 .
 
 rt:Groep
-    rdf:type             memorix:Recordtype, sh:NodeShape ;
+    rdf:type             memorix:Recordtype,
+                         sh:NodeShape ;
     rdfs:comment         "Stadsarchief recordtype voor Groep"@nl ;
     rdfs:label           "Groep"@nl ;
     dc:identifier        "SaaGroep" ;
+    owl:equivalentClass  rico:RecordSet ;
     sh:targetClass       rt:Groep ;
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
@@ -61,14 +63,25 @@ rt:Groep
                            sh:path              rico:identifier ] ;
     sh:property          [ rdfs:label           "Beschrijving"@nl ;
                            rdfs:comment         "Korte beschrijving dan wel label of naam van de groep"@nl ;
+                           sh:message           "Geef een korte beschrijving. Dit is verplicht."@nl ;
                            dash:singleLine      true ;
                            memorix:inTitleAt    2.0 ;
                            memorix:searchWeight 3.0 ;
                            sh:datatype          xsd:string ;
                            sh:group             groep:identificationGroup ;
+                           sh:minCount          1 ;
                            sh:maxCount          1 ;
                            sh:order             2.0 ;
                            sh:path              rico:title ] ;
+    sh:property          [ rdfs:label          "Datering"@nl ;
+                           rdfs:comment        "Kan een exacte datum of een periode zijn"@nl ;
+                           dash:editor         memorix:DateEditor ;
+                           memorix:inSummaryAt 2 ;
+                           sh:datatype         xsd:integer ;
+                           sh:group            groep:contentDescriptionGroup ;
+                           sh:maxCount         1 ;
+                           sh:order            1.0 ;
+                           sh:path             rico:DateRange ] ;
     sh:property          [ rdfs:label           "Nota bene"@nl ;
                            rdfs:comment         "Uitgebreidere beschrijving, afkomstig uit NB velden"@nl ;
                            dash:singleLine      false ;
@@ -77,38 +90,42 @@ rt:Groep
                            dash:editor          dash:TextAreaEditor ;
                            sh:group             groep:contentDescriptionGroup ;
                            sh:maxCount          1 ;
-                           sh:order             3.0 ;
+                           sh:order             2.0 ;
                            sh:path              rico:scopeAndContent ] ;
-    sh:property          [ rdfs:label   "Datering"@nl ;
-                           rdfs:comment "Kan een exacte datum of een periode zijn"@nl ;
-                           dash:editor  memorix:DateEditor ;
-                           sh:datatype  xsd:integer ;
-                           sh:group     groep:contentDescriptionGroup ;
-                           sh:maxCount  1 ;
-                           sh:order     1.0 ;
-                           sh:path      rico:DateRange ] ;
-    sh:property          [ rdfs:label  "Uiterlijke vorm"@nl ;
-                           dash:editor dash:TextFieldEditor ;
-                           sh:datatype xsd:string ;
-                           sh:group    groep:contentDescriptionGroup ;
-                           sh:maxCount 1 ;
-                           sh:order    2.0 ;
-                           sh:path     rico:physicalOrLogicalExtent ] ;
+    sh:property          [ rdfs:label          "Uiterlijke vorm"@nl ;
+                           dash:editor         dash:TextFieldEditor ;
+                           sh:datatype         xsd:string ;
+                           memorix:inSummaryAt 1 ;
+                           sh:group            groep:contentDescriptionGroup ;
+                           sh:maxCount         1 ;
+                           sh:order            3.0 ;
+                           sh:path             rico:physicalOrLogicalExtent ] ;
     sh:property          [ rdfs:label   "Bovenliggend archiefblok of groep"@nl ;
-                           rdfs:comment "Archiefblok of Groep waartoe dit Bestanddeel behoort."@nl ;
-                           sh:message   "Kies uit de lijst."@nl ;
+                           rdfs:comment "Archiefblok of groep waartoe dit Bestanddeel behoort."@nl ;
+                           sh:message   "Kies een archiefblok of groep om aan te koppelen. Dit is verplicht."@nl ;
                            dash:editor  memorix:LinkedRecordEditor ;
                            sh:group     groep:partitionGroup ;
+                           #sh:minCount 1 ; #todo aanzetten zodra de UI gefikst is
                            sh:maxCount  1 ;
                            sh:nodeKind  sh:IRI ;
                            sh:or        ( [ sh:class rt:SaaArchiefblok ] [ sh:class rt:SaaGroep ] ) ;
                            sh:order     3 ;
                            sh:path      rico:isOrWasIncludedIn ] ;
+#    sh:property          [ rdfs:label   "Bovenliggend archiefblok of groep (alt)"@nl ;
+#                           rdfs:comment "Archiefblok of groep waartoe dit Bestanddeel behoort."@nl ;
+#                           sh:message   "Kies een archiefblok of groep om aan te koppelen. Dit is verplicht."@nl ;
+#                           dash:editor  memorix:LinkedRecordEditor ;
+#                           sh:group     groep:partitionGroup ;
+#                           sh:maxCount  1 ;
+#                           sh:nodeKind  sh:IRI ;
+#                           sh:or        ( [ sh:class rt:SaaArchiefblok ] [ sh:class rt:SaaGroep ] ) ;
+#                           sh:order     3 ;
+#                           sh:path      groep:isOrWasIncludedIn ] ;
     sh:property          [ rdfs:label  "Interne opmerking"@nl ;
                            dash:editor dash:TextAreaEditor ;
                            sh:datatype xsd:string ;
                            sh:group    groep:managementGroup ;
-                           sh:order    4 ;
+                           sh:order    4.0 ;
                            sh:maxCount 1 ;
                            sh:path     groep:remark ; ] ;
 .

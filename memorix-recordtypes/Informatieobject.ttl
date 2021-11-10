@@ -13,6 +13,7 @@
 @prefix rico:           <https://www.ica.org/standards/RiC/ontology#> .
 @prefix ric-rst:        <https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#> .
 @prefix ric-dft:        <https://www.ica.org/standards/RiC/vocabularies/documentaryFormTypes#> .
+@prefix owl:             <http://www.w3.org/2002/07/owl#> .
 
 recordtypes:SaaInformatieobject
     a                               memorix:Recordtype, sh:NodeShape ;
@@ -21,6 +22,7 @@ recordtypes:SaaInformatieobject
     dc:identifier                   "SaaInformatieobject" ;
     sh:closed                       true ;
     sh:ignoredProperties            ( rdf:type ) ;
+    owl:equivalentClass             rico:Record ;
     sh:targetClass                  recordtypes:SaaInformatieobject ;
     sh:property                     [ rdfs:label              "Type document"@nl ;
                                       rdfs:comment            "Selecteer een waarde uit de lijst."@nl ;
@@ -51,11 +53,12 @@ recordtypes:SaaInformatieobject
                                       dash:editor             dash:TextAreaEditor ;
                                       dash:singleLine         false ;
                                       sh:datatype             xsd:string ; ] ;
-    sh:property          [            rdfs:label   "Bovenliggend archiefblok of groep"@nl ;
-                                      rdfs:comment "Archiefblok of Groep waartoe dit Bestanddeel behoort."@nl ;
-                                      sh:message   "Kies uit de lijst."@nl ;
+    sh:property          [            rdfs:label   "Bovenliggend archiefblok, groep of bestanddeel"@nl ;
+                                      rdfs:comment "Archiefblok, groep of bestanddeel waartoe dit informatieobject behoort."@nl ;
+                                      sh:message   "Kies een archiefblok, groep of bestanddeel om aan te koppelen. Dit is verplicht."@nl ;
                                       dash:editor  memorix:LinkedRecordEditor ;
                                       sh:group     io:partitionGroup ;
+                                      sh:minCount  1 ;
                                       sh:maxCount  1 ;
                                       sh:nodeKind  sh:IRI ;
                                       sh:or        ( [ sh:class recordtypes:SaaArchiefblok ] [ sh:class recordtypes:SaaGroep ] [ sh:class recordtypes:SaaBestanddeel] ) ;

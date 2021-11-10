@@ -10,9 +10,9 @@ Zo lang we nog alleen de beschikking hebben over de example omgeving stel ik voo
 | Persoon.ttl  |  af | - | | ja
 | Familie.ttl  |  af |  | | ja
 | Aanwinst.ttl     | - | - | P mee bezig
-| Archiefblok.ttl | af| af | - | -
-| Groep.ttl     | af | af | -
-| Bestanddeel.ttl     | - | - | -
+| Archiefblok.ttl | af| af | - | ja
+| Groep.ttl     | af | af | - | ja
+| Bestanddeel.ttl     | af | - | - | ja
 | Informatieobject.ttl     | - | - | -
 | InformatieobjectOnderdeel.ttl     | - | - | -
 | Akte.ttl     | - | - | -

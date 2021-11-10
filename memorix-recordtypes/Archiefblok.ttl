@@ -52,7 +52,7 @@ rt:SaaArchiefblok
                            sh:maxCount       1 ;
                            html:placeholder  "Bv 10003.A …"@nl ;
                            sh:group          archiefblok:identificationGroup ;
-                           memorix:inTitleAt 2.0 ;
+                           memorix:inTitleAt 1 ;
                            sh:order          1.0 ;
                            sh:path           rico:identifier ;
                            sh:message        "Foutje"@nl ;
@@ -69,41 +69,44 @@ rt:SaaArchiefblok
                            sh:group          archiefblok:identificationGroup ;
                            sh:order          2.0 ;
                            sh:message        "Error"@en ;
-                           memorix:inTitleAt 2.0 ;
+                           memorix:inTitleAt 2 ;
                            sh:path           rico:title ] ;
-    sh:property          [ rdfs:label   "Periode vorming"@nl ;
-                           rdfs:comment "Jaartal of periode van vorming."@nl ;
-                           sh:message   "Geef een of twee jaartallen"@nl ;
-                           sh:class     rico:DateRange ;
-                           sh:group     archiefblok:accumulationGroup ;
-                           sh:maxCount  1 ;
-                           sh:nodeKind  sh:BlankNode ;
-                           sh:message   "Foutje"@nl ;
-                           sh:message   "Error"@en ;
-                           sh:order     3.0 ;
-                           sh:path      rico:isAssociatedWithDate ] ;
-    sh:property          [ rdfs:label   "Archiefvormer"@nl ;
-                           rdfs:comment "Gekoppelde archiefvormer uit de Personen en Organisatie thesaurus."@nl ;
-                           sh:message   "Kies een archiefvormer uit de lijst."@nl ;
-                           sh:path      rico:hasAccumulator ;
-                           dash:editor  memorix:LinkedRecordEditor ;
-                           sh:group     archiefblok:accumulationGroup ;
-                           sh:maxCount  10 ;
-                           sh:order     4.0 ;
-                           sh:nodeKind  sh:IRI ;
-                           sh:or        ( [ sh:class rt:SaaPersoon ]
-                                          [ sh:class rt:SaaOrganisatie ]
-                                          [ sh:class rt:SaaFamilie ] ) ; ] ;
-    sh:property          [ rdfs:label   "Archiefvormer alt"@nl ; # zelfde setup maar met eigen path!
-                           sh:path      archiefblok:hasAccumulator ;
-                           dash:editor  memorix:LinkedRecordEditor ;
-                           sh:group     archiefblok:accumulationGroup ;
-                           sh:maxCount  10 ;
-                           sh:order     5.0 ;
-                           sh:nodeKind  sh:IRI ;
-                           sh:or        ( [ sh:class rt:SaaPersoon ]
-                                          [ sh:class rt:SaaOrganisatie ]
-                                          [ sh:class rt:SaaFamilie ] ) ; ] ;
+    sh:property          [ rdfs:label          "Periode vorming"@nl ;
+                           rdfs:comment        "Jaartal of periode van vorming."@nl ;
+                           sh:message          "Geef een of twee jaartallen"@nl ;
+                           sh:class            rico:DateRange ;
+                           memorix:inSummaryAt 1 ;
+                           sh:group            archiefblok:accumulationGroup ;
+                           sh:maxCount         1 ;
+                           sh:nodeKind         sh:BlankNode ;
+                           sh:message          "Foutje"@nl ;
+                           sh:message          "Error"@en ;
+                           sh:order            3.0 ;
+                           sh:path             rico:isAssociatedWithDate ] ;
+    sh:property          [ rdfs:label          "Archiefvormer"@nl ;
+                           rdfs:comment        "Gekoppelde archiefvormer uit de Personen en Organisatie thesaurus."@nl ;
+                           sh:message          "Kies een archiefvormer uit de lijst."@nl ;
+                           sh:path             rico:hasAccumulator ;
+                           dash:editor         memorix:LinkedRecordEditor ;
+                           memorix:inSummaryAt 2 ;
+                           sh:group            archiefblok:accumulationGroup ;
+                           #sh:minCount 1 ; #todo aanzetten zodra de UI gefikst is
+                           sh:maxCount         10 ;
+                           sh:order            4.0 ;
+                           sh:nodeKind         sh:IRI ;
+                           sh:or               ( [ sh:class rt:SaaPersoon ]
+                                                 [ sh:class rt:SaaOrganisatie ]
+                                                 [ sh:class rt:SaaFamilie ] ) ; ] ;
+#    sh:property          [ rdfs:label  "Archiefvormer (alt)"@nl ; # zelfde setup maar met eigen path!
+#                           sh:path     archiefblok:hasAccumulator ;
+#                           dash:editor memorix:LinkedRecordEditor ;
+#                           sh:group    archiefblok:accumulationGroup ;
+#                           sh:maxCount 10 ;
+#                           sh:order    5.0 ;
+#                           sh:nodeKind sh:IRI ;
+#                           sh:or       ( [ sh:class rt:SaaPersoon ]
+#                                         [ sh:class rt:SaaOrganisatie ]
+#                                         [ sh:class rt:SaaFamilie ] ) ; ] ;
     sh:property          [ rdfs:label   "Datering Oudste Stuk"@nl ;
                            rdfs:comment "Datum of jaartal van het oudste stuk in dit archief."@nl ;
                            sh:class     archiefblok:SingleDateOldest ;
@@ -149,12 +152,13 @@ rt:SaaArchiefblok
                            sh:order     9.0 ;
                            sh:path      archiefblok:remark ; ] ;
     sh:property          [ rdfs:label   "Status"@nl ;
-                           rdfs:comment "Status van het archief; Nog niet overgebracht, Aanwezig, Vervallen, Te vernietigen, Vernietigd."@nl ;
-                           sh:message   "Status is verplicht."@nl ;
+                           rdfs:comment "Status van het archief."@nl ;
+                           sh:message   "Status is verplicht. Moet een van de volgende waardes zijn: aanwezig, vervallen, te vernietigen, vernietigd"@nl ;
                            sh:message   "Error"@en ;
                            sh:datatype  xsd:string ;
                            sh:minCount  1 ;
                            sh:maxCount  1 ;
+                           sh:in       ( "aanwezig" "vervallen" "te vernietigen" "vernietigd" ) ;
                            sh:group     archiefblok:managementGroup ;
                            sh:order     10.0 ;
                            sh:path      archiefblok:status ; ] ;
