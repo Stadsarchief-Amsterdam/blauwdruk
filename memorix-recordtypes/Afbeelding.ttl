@@ -66,7 +66,7 @@ recordtypes:Afbeelding
                            sh:datatype     xsd:string ; ] ;
     sh:property          [ rdfs:label  "Afgebeeld persoon"@nl ;
                            sh:path     afbeelding:hasOrHadSubjectPerson ;
-                           sh:maxCount 1 ;
+                           sh:maxCount 100 ;
                            sh:order    5.0 ;
                            sh:group    afbeelding:contentDescriptionGroup ;
                            dash:editor memorix:LinkedRecordEditor ;
