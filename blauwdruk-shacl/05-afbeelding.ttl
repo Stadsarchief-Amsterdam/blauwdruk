@@ -47,8 +47,6 @@ blauwdruk:Afbeelding a memorix:Recordtype, sh:NodeShape, owl:Class ;
     ] ;
     sh:property [ 
         rdfs:label        "Beschrijving"@nl ;
-        dash:editor       dash:TextAreaEditor ;
-        dash:singleLine   false ;
         sh:message        "Afbeelding CAN link to at most 1 xsd:string or xsd:XMLLiteral with rico:scopeAndContent"@en ;
         sh:message        "Afbeelding KAN linken aan maximaal 1 xsd:string of xsd:XMLLiteral met rico:scopeAndContent"@nl ;
         sh:group          blauwdruk:Beschrijving ;
@@ -57,14 +55,23 @@ blauwdruk:Afbeelding a memorix:Recordtype, sh:NodeShape, owl:Class ;
         sh:datatype       xsd:string ; 
         sh:maxCount       1 ;
     ] ;
+    sh:property [ 
+        rdfs:label        "Afgebeeld onderwerp (straten, adressen, personen, gebouwen, openbare ruimtes)"@nl ;
+        sh:message        "Afbeelding CAN link to a external IRI for stuff with rico:hasOrHadSubject"@en ;
+        sh:group          blauwdruk:Beschrijving ;
+        sh:order          4.0 ;
+        sh:path           rico:hasOrHadSubject ;
+        sh:nodeKind       sh:IRI ;
+    ] ;
     sh:property [
         rdfs:label        "Datering"@nl ;
         sh:path           rico:isAssociatedWithDate ;
         sh:maxCount       1 ;
         sh:group          blauwdruk:Beschrijving  ;
-        sh:order          4.0 ;
+        sh:order          5.0 ;
         sh:class          rico:DateRange ;
         sh:nodeKind       sh:BlankNode ;
+        sh:maxCount       1 ;
     ] ;
     sh:property [
         rdfs:label        "Nota bene"@nl ;
@@ -108,16 +115,26 @@ rico:Title a sh:NodeShape ;
         sh:message        "This node MUST link to exactly 1 xsd:string with rico:textualValue"@en ;
         sh:path           rico:textualValue ;
         rdfs:label        "Waarde"@nl ;
-        sh:order          1.0 ;
+        sh:order          2.0 ;
         sh:datatype       xsd:string ; 
+        sh:minCount       1 ;
+        sh:maxCount       1 ;
+    ] ;
+    sh:property [
+        sh:message        "rico:Title MUST link to exactly 1 rico:TitleType with rico:hasTitleType"@en ;
+        sh:path           rico:hasTitleType ;
+        rdfs:label        "Type"@nl ;
+        sh:order          1.0 ;
+        sh:nodeKind       sh:IRI ;
         sh:minCount       1 ;
         sh:maxCount       1 ;
     ] .
 
+
 ## Identifier
 rico:Identifier a sh:NodeShape ;
     sh:targetClass rico:Identifier ;
-    # sh:closed true ;
+    sh:closed true ;
     sh:ignoredProperties     ( rdf:type ) ;
     sh:property [
         sh:message        "This node MUST link to exactly 1 xsd:string with rico:textualValue"@en ;
@@ -133,9 +150,6 @@ rico:Identifier a sh:NodeShape ;
         sh:path           rico:hasIdentifierType ;
         rdfs:label        "Type"@nl ;
         sh:order          1.0 ;
-        dash:editor       memorix:VocabularyEditor ; # Eigenlijk moet ik hier standaard dezelfde URI krijgen, want een toegangsnummer is verplicht. Hier deze editor nu gebruikt om te laten zien hoe het zou kunnen werken.
-#       sh:class skos:Concept ; # Nu nog niet in staat gebleken om een Concept aan te maken.
-#       skos:ConceptSchema voc:conceptschemes/uuid-voor-keuzelijst-identifiertypes ;
         sh:nodeKind       sh:IRI ;
         sh:minCount       1 ;
         sh:maxCount       1 ;
@@ -179,6 +193,7 @@ rico:SingleDate a sh:NodeShape ;
         rdfs:label "Datum (tekst)"@nl ;
         sh:path rico:expressedDate ;
         sh:order 1.0 ;
+        sh:maxCount 1 ;
         sh:datatype xsd:string ;
     ] ;
     sh:property [
@@ -187,7 +202,9 @@ rico:SingleDate a sh:NodeShape ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:order 2.0 ;
-        sh:datatype xsd:gYear ;
+        sh:or ( [sh:datatype xsd:gYear ]
+                [sh:datatype xsd:gYearMonth ]  
+                [sh:datatype xsd:date ]  ) ;
     ] .
 
 rico:Instantiation a sh:NodeShape ;
@@ -199,9 +216,6 @@ rico:Instantiation a sh:NodeShape ;
         sh:path           rico:hasInstantiationType;
         rdfs:label        "Type"@nl ;
         sh:order          1.0 ;
-        dash:editor       memorix:VocabularyEditor ; # Eigenlijk moet ik hier standaard dezelfde URI krijgen, want een toegangsnummer is verplicht. Hier deze editor nu gebruikt om te laten zien hoe het zou kunnen werken.
-#       sh:class skos:Concept ; # Nu nog niet in staat gebleken om een Concept aan te maken.
-#       skos:ConceptSchema voc:conceptschemes/uuid-voor-keuzelijst-instantiationtypes ;
         sh:nodeKind       sh:IRI ;
         sh:minCount       1 ;
         sh:maxCount       1 ;
@@ -211,7 +225,6 @@ rico:Instantiation a sh:NodeShape ;
         sh:path           blauwdruk:vindplaats;
         rdfs:label        "Type"@nl ;
         sh:order          1.0 ;
-        dash:editor       memorix:LinkedRecordEditor ;
         sh:nodeKind       sh:IRI ;
         sh:minCount       1 ;
         sh:maxCount       1 ;
@@ -220,3 +233,25 @@ rico:Instantiation a sh:NodeShape ;
         )
     ] .
 
+## rico:Type
+blauwdruk:TypeShape a sh:NodeShape ;
+    sh:targetClass        rico:IdentifierType, rico:CarrierType, rico:ProductionTechniqueType, rico:DocumentaryFormType, rico:TitleType ;
+    sh:property [
+        sh:message        "rico:*Type MUST link to exactly 1 rico:Name with rico:hasOrHadName"@en ;
+        sh:path           rico:hasOrHadName ;
+        sh:class          rico:Name ;
+        sh:minCount       1 ;
+        sh:maxCount       1 ;
+    ] .
+
+## rico:Name
+blauwdruk:NameShape a sh:NodeShape ;
+    sh:targetClass  rico:Name ;
+    sh:property [
+        sh:message        "This node MUST link to exactly 1 xsd:string with rico:textualValue"@en ;
+        sh:path           rico:textualValue ;
+        rdfs:label        "Naam"@nl ;
+        sh:datatype       xsd:string ; 
+        sh:minCount       1 ;
+        sh:maxCount       1 ;
+    ] .
