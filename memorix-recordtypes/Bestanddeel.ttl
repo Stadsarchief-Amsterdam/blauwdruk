@@ -71,15 +71,15 @@ rt:Bestanddeel
                                       sh:maxCount          1 ;
                                       sh:order             2.0 ;
                                       sh:path              rico:title ] ;
-    sh:property                     [ rdfs:label          "Datering"@nl ; #Ivo: deze kan met dezelfde oplossing als DateOldest of youngest in archiefblok
+    sh:property                     [ rdfs:label          "Datering"@nl ;
                                       rdfs:comment        "Kan een exacte datum of een periode zijn"@nl ;
-                                      dash:editor         memorix:DateEditor ;
                                       memorix:inSummaryAt 1 ;
-                                      sh:datatype         xsd:integer ;
+                                      sh:class            rico:DateRange ;
+                                      sh:nodeKind         sh:BlankNode ;
                                       sh:group            bestanddeel:contentDescriptionGroup ;
                                       sh:maxCount         1 ;
                                       sh:order            1.0 ;
-                                      sh:path             bestanddeel:dateRange ] ;
+                                      sh:path             rico:isAssociatedWithDate ] ;
     sh:property                     [ rdfs:label           "Nota bene"@nl ;
                                       rdfs:comment         "Uitgebreidere beschrijving, afkomstig uit NB velden"@nl ;
                                       dash:singleLine      false ;
@@ -201,4 +201,23 @@ rico:Identifier
                            sh:order               2.0 ;
                            sh:path                bestanddeel:identificationGroup ] ;
     sh:targetClass       rico:Identifier
+.
+
+rico:DateRange
+    rdf:type             sh:nodeshape ;
+    sh:closed            true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property          [ rdfs:label  "Datum (tekst)"@nl ;
+                           sh:datatype xsd:string ;
+                           sh:order    1.0 ;
+                           sh:path     rico:expressedDate ] ;
+    sh:property          [ rdfs:label  "Begindatum"@nl ;
+                           sh:datatype xsd:date ;
+                           sh:order    2.0 ;
+                           sh:path     rico:hasBeginningDate ] ;
+    sh:property          [ rdfs:label  "Einddatum"@nl ;
+                           sh:datatype xsd:date ;
+                           sh:order    3.0 ;
+                           sh:path     rico:hasEndDate ] ;
+    sh:targetClass       rico:DateRange ;
 .
