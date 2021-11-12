@@ -53,6 +53,15 @@ recordtypes:SaaInformatieobject
                                       dash:editor             dash:TextAreaEditor ;
                                       dash:singleLine         false ;
                                       sh:datatype             xsd:string ; ] ;
+    sh:property                     [ rdfs:label          "Datering"@nl ;
+                                      rdfs:comment        "Kan een exacte datum of een periode zijn"@nl ;
+                                      memorix:inSummaryAt 1 ;
+                                      sh:class            rico:DateRange ;
+                                      sh:nodeKind         sh:BlankNode ;
+                                      sh:group            io:contentDescriptionGroup ;
+                                      sh:maxCount         1 ;
+                                      sh:order            1.0 ;
+                                      sh:path             rico:isAssociatedWithDate ] ;
     sh:property          [            rdfs:label   "Bovenliggend archiefblok, groep of bestanddeel"@nl ;
                                       rdfs:comment "Archiefblok, groep of bestanddeel waartoe dit informatieobject behoort."@nl ;
                                       sh:message   "Kies een archiefblok, groep of bestanddeel om aan te koppelen. Dit is verplicht."@nl ;
@@ -92,3 +101,22 @@ io:partitionGroup
     rdf:type   sh:PropertyGroup ;
     rdfs:label "Indeling"@nl ;
     sh:order   3.0 .
+
+rico:DateRange
+    rdf:type             sh:NodeShape ;
+    sh:closed            true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property          [ rdfs:label  "Datum (tekst)"@nl ;
+                           sh:datatype xsd:string ;
+                           sh:order    1.0 ;
+                           sh:path     rico:expressedDate ] ;
+    sh:property          [ rdfs:label  "Begindatum"@nl ;
+                           sh:datatype xsd:date ;
+                           sh:order    2.0 ;
+                           sh:path     rico:hasBeginningDate ] ;
+    sh:property          [ rdfs:label  "Einddatum"@nl ;
+                           sh:datatype xsd:date ;
+                           sh:order    3.0 ;
+                           sh:path     rico:hasEndDate ] ;
+    sh:targetClass       rico:DateRange ;
+.

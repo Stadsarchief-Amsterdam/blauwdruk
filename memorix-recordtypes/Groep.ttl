@@ -75,13 +75,13 @@ rt:Groep
                            sh:path              rico:title ] ;
     sh:property          [ rdfs:label          "Datering"@nl ;
                            rdfs:comment        "Kan een exacte datum of een periode zijn"@nl ;
-                           dash:editor         memorix:DateEditor ;
                            memorix:inSummaryAt 2 ;
-                           sh:datatype         xsd:integer ;
+                           sh:class            rico:DateRange ;
                            sh:group            groep:contentDescriptionGroup ;
                            sh:maxCount         1 ;
                            sh:order            1.0 ;
-                           sh:path             rico:DateRange ] ;
+                           sh:nodeKind         sh:BlankNode ;
+                           sh:path             rico:isAssociatedWithDate ] ;
     sh:property          [ rdfs:label           "Nota bene"@nl ;
                            rdfs:comment         "Uitgebreidere beschrijving, afkomstig uit NB velden"@nl ;
                            dash:singleLine      false ;
@@ -131,19 +131,20 @@ rt:Groep
 .
 
 rico:DateRange
-    rdf:type             sh:nodeshape ;
+    rdf:type             sh:NodeShape ;
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property          [ rdfs:label  "Beginjaar vorming"@nl ;
-                           sh:datatype xsd:date ;
-                           dash:editor memorix:DateEditor ;
+    sh:property          [ rdfs:label  "Datum (tekst)"@nl ;
+                           sh:datatype xsd:string ;
                            sh:order    1.0 ;
-                           sh:path     rico:hasBeginningDate ] ;
-    sh:property          [ rdfs:label  "Eindjaar vorming"@nl ;
-                           sh:message  "Eindjaar moet liggen tussen 1200 en 2200"@nl ;
-                           sh:message  "The year should be between 1200 and 2200"@en ;
-                           dash:editor memorix:DateEditor ;
+                           sh:path     rico:expressedDate ] ;
+    sh:property          [ rdfs:label  "Begindatum"@nl ;
                            sh:datatype xsd:date ;
                            sh:order    2.0 ;
+                           sh:path     rico:hasBeginningDate ] ;
+    sh:property          [ rdfs:label  "Einddatum"@nl ;
+                           sh:datatype xsd:date ;
+                           sh:order    3.0 ;
                            sh:path     rico:hasEndDate ] ;
-    sh:targetClass       rico:DateRange .
+    sh:targetClass       rico:DateRange ;
+.
