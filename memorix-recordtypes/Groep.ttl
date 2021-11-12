@@ -131,7 +131,7 @@ rt:Groep
 .
 
 rico:DateRange
-    rdf:type             sh:nodeshape ;
+    rdf:type             sh:NodeShape ;
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property          [ rdfs:label  "Datum (tekst)"@nl ;
