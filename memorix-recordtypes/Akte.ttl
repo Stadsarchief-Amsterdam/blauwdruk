@@ -1,0 +1,121 @@
+@prefix rdf:             <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:            <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:             <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:             <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos:            <http://www.w3.org/2004/02/skos/core#> .
+
+@prefix rt:              </resources/recordtypes/> .
+@prefix akte:            </resources/recordtypes/Akte#> .
+
+@prefix dc:              <http://purl.org/dc/elements/1.1/> .
+@prefix sh:              <http://www.w3.org/ns/shacl#> .
+@prefix dash:            <http://datashapes.org/dash#> .
+@prefix memorix:         <http://memorix.io/ontology#> .
+@prefix html:            <http://www.w3.org/1999/xhtml/> .
+
+@prefix rico:            <https://www.ica.org/standards/RiC/ontology#> .
+@prefix ric-rst:         <https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#> .
+@prefix ric-dft:         <https://www.ica.org/standards/RiC/vocabularies/documentaryFormTypes#> .
+
+@prefix pnv:             <https://w3id.org/pnv#> .
+@prefix schema:          <https://schema.org/> .
+
+
+akte:identificationGroup
+    rdf:type   sh:PropertyGroup ;
+    rdfs:label "Akte"@nl ;
+    sh:order   1.0 .
+
+akte:contentDescriptionGroup
+    rdf:type   sh:PropertyGroup ;
+    rdfs:label "Beschrijving"@nl ;
+    sh:order   2.0 .
+
+akte:managementGroup
+    rdf:type   sh:PropertyGroup ;
+    rdfs:label "Beheer"@nl ;
+    sh:order   3.0 .
+
+rt:Akte
+    rdf:type             memorix:Recordtype,
+                         sh:NodeShape ;
+    rdfs:comment         "Stadsarchief recordtype voor Akte"@nl ;
+    rdfs:label           "Akte"@nl ;
+    dc:identifier        "SaaAkte" ;
+    sh:targetClass       rt:Akte ;
+    sh:closed            true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property          [ rdfs:label        "Titel"@nl ;
+                           rdfs:comment      "Gemigreerde titel, t.b.v. de Memorix interface"@nl ;
+                           memorix:inTitleAt 1.0 ;
+                           sh:datatype       xsd:string ;
+                           sh:group          akte:identificationGroup ;
+                           sh:maxCount       1 ;
+                           sh:order          1.0 ;
+                           sh:path           akte:title ] ;
+    sh:property          [ rdfs:label  "Aktetype"@nl ;
+                           sh:datatype xsd:string ;
+                           sh:group    akte:identificationGroup ;
+                           sh:maxCount 1 ;
+                           sh:order    2.0 ;
+                           sh:path     akte:type ] ;
+    sh:property          [ rdfs:label  "Datum (van de akte)"@nl ;
+                           sh:datatype xsd:date ;
+                           sh:group    akte:identificationGroup ;
+                           sh:order    2.0 ;
+                           sh:path     akte:date ] ;
+    sh:property          [ rdfs:label          "Index Naam"@nl ;
+                           rdfs:comment        "Huidige naam van de indexen."@nl ;
+                           memorix:inSummaryAt 1.0 ;
+                           sh:datatype         xsd:string ;
+                           sh:group            akte:identificationGroup ;
+                           sh:order            3.0 ;
+                           sh:path             akte:indexName ] ;
+    sh:property          [ rdfs:label  "Bronverwijzing"@nl ;
+                           sh:datatype xsd:string ;
+                           sh:group    akte:contentDescriptionGroup ;
+                           sh:order    4.0 ;
+                           sh:path     akte:source ] ;
+    sh:property          [ rdfs:label   "Gekoppeld bestanddeel"@nl ;
+                           rdfs:comment "Bestanddeel waartoe deze akkoord behoort."@nl ;
+                           sh:message   "Kies een bestanddeel om aan te koppelen. Dit is verplicht."@nl ;
+                           dash:editor  memorix:LinkedRecordEditor ;
+                           sh:group     akte:identificationGroup ;
+                           # sh:minCount  1 ; # todo aanzetten als de UI gefikst is
+                           sh:maxCount  1 ;
+                           sh:nodeKind  sh:IRI ;
+                           sh:or        ( [ sh:class rt:SaaBestanddeel ] ) ;
+                           sh:order     5.0 ;
+                           sh:path      rico:isOrWasIncludedIn ] ;
+#    sh:property          [ rdfs:label   "Personen"@nl ;
+#                           rdfs:comment "Personen die voorkomen op de akte."@nl ;
+#                           sh:class     akte:Person ;
+#                           sh:group     akte:contentDescriptionGroup ;
+#                           sh:maxCount  999 ;
+#                           sh:nodeKind  sh:BlankNode ;
+#                           sh:order     5.0 ;
+#                           sh:path      rico:hasOrHadSubject ] ;
+    sh:property          [ rdfs:label  "Interne opmerking"@nl ;
+                           dash:editor dash:TextAreaEditor ;
+                           sh:datatype xsd:string ;
+                           sh:group    akte:managementGroup ;
+                           sh:order    4.0 ;
+                           sh:maxCount 1 ;
+                           sh:path     akte:remark ] ;
+.
+
+#akte:Person
+#    rdf:type              sh::NodeShape ;
+#    sh::closed            true ;
+#    sh::ignoredProperties ( rdf:type ) ;
+#    sh::property          [ rdfs:label   "Persoonsvermelding"@nl ;
+#                            dash:editor  memorix:LinkedRecordEditor ;
+#                            sh::nodeKind sh::IRI ;
+#                            sh::or       ( <https://example.memorix-test.nl/resources/recordtypes/Persoonsvermelding> ) ;
+#                            sh::order    2.0 ;
+#                            sh::path     akte:personObservation ] ;
+#    sh::property          [ rdfs:label   "Rol"@nl ;
+#                            sh::datatype xsd:string ;
+#                            sh::order    1.0 ;
+#                            sh::path     akte:personRole ] ;
+#    sh::targetClass       akte:Person .
