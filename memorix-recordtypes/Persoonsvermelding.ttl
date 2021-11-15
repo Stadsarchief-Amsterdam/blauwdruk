@@ -2,7 +2,10 @@
 @prefix dc:                 <http://purl.org/dc/elements/1.1/> .
 @prefix html:               <http://www.w3.org/1999/xhtml/> .
 @prefix memorix:            <http://memorix.io/ontology#> .
-@prefix persoonsvermelding: <https://example.memorix-test.nl/resources/recordtypes/Persoonsvermelding#> .
+
+@prefix rt:                 </resources/recordtypes/> .
+@prefix persoonsvermelding: </resources/recordtypes/SaaPersoonsvermelding#> .
+
 @prefix rdf:                <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs:               <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix recordtypes:        <https://example.memorix-test.nl/resources/recordtypes/> .
@@ -130,7 +133,7 @@ recordtypes:Persoonsvermelding
                            sh:order     2.0 ;
                            sh:maxCount  100 ;
                            sh:nodeKind  sh:IRI ;
-                           sh:or        ( [ sh:class persoonsvermelding:Persoon ] [ sh:class persoonsvermelding:SaaPersoonsvermelding ] ) ;
+                           sh:or        ( [ sh:class rt:Persoon ] [ sh:class rt:SaaPersoonsvermelding ] ) ;
                            sh:path      persoonsvermelding:internalLink ] ;
     sh:targetClass       recordtypes:Persoonsvermelding .
 
