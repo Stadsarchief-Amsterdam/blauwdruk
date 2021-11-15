@@ -130,7 +130,7 @@ recordtypes:Persoonsvermelding
                            sh:order     2.0 ;
                            sh:maxCount  100 ;
                            sh:nodeKind  sh:IRI ;
-                           sh:or        ( [ sh:class persoonsvermelding:Persoon ] [ sh:class persoonsvermelding:SaaPersoonsvermelding ] ) ;
+                           sh:or        ( [ sh:class persoonsvermelding:SaaPesoon ] [ sh:class persoonsvermelding:SaaPersoonsvermelding ] ) ;
                            sh:path      persoonsvermelding:internalLink ] ;
     sh:targetClass       recordtypes:Persoonsvermelding .
 
