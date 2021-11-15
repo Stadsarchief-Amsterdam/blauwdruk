@@ -12,212 +12,138 @@
 @prefix xsd:                <http://www.w3.org/2001/XMLSchema#> .
 
 persoonsvermelding:personListingGroup
-    rdf:type    sh:PropertyGroup ;
-    rdfs:label  "Persoonsvermelding"@nl ;
-    sh:order    1.0 .
-
-persoonsvermelding:alternativeNameGroup
-    rdf:type    sh:PropertyGroup ;
-    rdfs:label  "Naamsvariant"@nl ;
-    sh:order    2.0 .
-
-persoonsvermelding:remarksGroup
-    rdf:type    sh:PropertyGroup ;
-    rdfs:label  "Opmerkingen"@nl ;
-    sh:order    5.0 .
+    rdf:type   sh:PropertyGroup ;
+    rdfs:label "Persoonsvermelding"@nl ;
+    sh:order   1.0 .
 
 persoonsvermelding:detailsGroup
-    rdf:type    sh:PropertyGroup ;
-    rdfs:label  "Bijzonderheden"@nl ;
-    sh:order    4.0 .
+    rdf:type   sh:PropertyGroup ;
+    rdfs:label "Bijzonderheden"@nl ;
+    sh:order   2.0 .
+
+persoonsvermelding:relationsGroup
+    rdf:type   sh:PropertyGroup ;
+    rdfs:label "Relaties"@nl ;
+    sh:order   3.0 .
+
+persoonsvermelding:managementGroup
+    rdf:type   sh:PropertyGroup ;
+    rdfs:label "Beheer"@nl ;
+    sh:order   4.0 .
+
 
 recordtypes:Persoonsvermelding
-    rdf:type                 sh:NodeShape , memorix:Recordtype ;
-    rdfs:comment             "Standaard Recordtype voor Persoonsvermeldingen in Indexen"@nl ;
-    rdfs:label               "Persoonsvermelding"@nl ;
-    dash:defaultViewForRole  dash:all ;
-    dc:identifier            "Persoonsvermelding" ;
-    sh:closed                true ;
-    sh:ignoredProperties     ( rdf:type ) ;
-    sh:property              [ rdfs:label   "Persoon - URI"@nl ;
-                               sh:datatype  xsd:string ;
-                               sh:group     persoonsvermelding:personListingGroup ;
-                               sh:order     11.0 ;
-                               sh:path      persoonsvermelding:personURI
-                             ] ;
-    sh:property              [ rdfs:label   "Geboortedatum"@nl ;
-                               sh:datatype  xsd:date ;
-                               sh:group     persoonsvermelding:personListingGroup ;
-                               sh:order     4.0 ;
-                               sh:path      persoonsvermelding:birthDate
-                             ] ;
-    sh:property              [ rdfs:label   "Is identiek aan"@nl ;
-                               dash:editor  memorix:LinkedRecordEditor ;
-                               sh:group     persoonsvermelding:personListingGroup ;
-                               sh:nodeKind  sh:IRI ;
-                               sh:order     12.0 ;
-                               sh:path      persoonsvermelding:isIdenticalTo
-                             ] ;
-    sh:property              [ rdfs:label         "Voornaam"@nl ;
-                               memorix:inTitleAt  1.0 ;
-                               sh:datatype        xsd:string ;
-                               sh:group           persoonsvermelding:personListingGroup ;
-                               sh:order           1.0 ;
-                               sh:path            persoonsvermelding:firstName
-                             ] ;
-    sh:property              [ rdfs:label         "Achternaam"@nl ;
-                               memorix:inTitleAt  3.0 ;
-                               sh:datatype        xsd:string ;
-                               sh:group           persoonsvermelding:personListingGroup ;
-                               sh:order           3.0 ;
-                               sh:message "Achernaam is verplicht"@nl;
-                               sh:minCount       1 ;
-                               sh:maxCount       1 ;
-                               sh:path            persoonsvermelding:lastName
-                             ] ;
-    sh:property              [ rdfs:label         "Tussenvoegsel"@nl ;
-                               memorix:inTitleAt  2.0 ;
-                               sh:datatype        xsd:string ;
-                               sh:group           persoonsvermelding:personListingGroup ;
-                               sh:order           2.0 ;
-                               sh:path            persoonsvermelding:surnamePrefix
-                             ] ;
-    sh:property              [ rdfs:label   "Geboorteplaats"@nl ;
-                               sh:datatype  xsd:string ;
-                               sh:group     persoonsvermelding:personListingGroup ;
-                               sh:order     5.0 ;
-                               sh:path      persoonsvermelding:birthPlace
-                             ] ;
-    sh:property              [ rdfs:label   "Overlijdensplaats"@nl ;
-                               sh:datatype  xsd:string ;
-                               sh:group     persoonsvermelding:personListingGroup ;
-                               sh:order     7.0 ;
-                               sh:path      persoonsvermelding:deathPlace
-                             ] ;
-    sh:property              [ rdfs:label   "Leeftijd"@nl ;
-                               sh:datatype  xsd:string ;
-                               sh:group     persoonsvermelding:personListingGroup ;
-                               sh:order     8.0 ;
-                               sh:path      persoonsvermelding:age
-                             ] ;
-    sh:property              [ rdfs:label   "Overlijdensdatum"@nl ;
-                               sh:datatype  xsd:date ;
-                               sh:group     persoonsvermelding:personListingGroup ;
-                               sh:order     6.0 ;
-                               sh:path      persoonsvermelding:deathDate
-                             ] ;
-    sh:property              [ rdfs:comment  "Locaties die voorkomen op de akte"@nl ;
-                               rdfs:label    "Locatie"@nl ;
-                               dash:viewer   dash:DetailsEditor ;
-                               sh:class      persoonsvermelding:Location ;
-                               sh:group      persoonsvermelding:locationsGroup ;
-                               sh:maxCount   999 ;
-                               sh:nodeKind   sh:BlankNode ;
-                               sh:order      1.0 ;
-                               sh:path       persoonsvermelding:location
-                             ] ;
-    sh:property              [ rdfs:label   "Opmerkingen"@nl ;
-                               dash:editor  dash:TextAreaEditor ;
-                               sh:datatype  xsd:string ;
-                               sh:group     persoonsvermelding:remarksGroup ;
-                               sh:maxCount  1 ;
-                               sh:order     1.0 ;
-                               sh:path      persoonsvermelding:notes
-                             ] ;
-    sh:property              [ rdfs:label   "Overleden"@nl ;
-                               sh:datatype  xsd:string ;
-                               sh:group     persoonsvermelding:personListingGroup ;
-                               sh:order     9.0 ;
-                               sh:path      persoonsvermelding:deceased
-                             ] ;
-    sh:property              [ rdfs:comment  "Bijzonderheid bij deze akte"@nl ;
-                               rdfs:label    "Bijzonderheid"@nl ;
-                               dash:viewer   dash:DetailsEditor ;
-                               sh:class      persoonsvermelding:Details ;
-                               sh:group      persoonsvermelding:detailsGroup ;
-                               sh:maxCount   10 ;
-                               sh:nodeKind   sh:BlankNode ;
-                               sh:order      1.0 ;
-                               sh:path       persoonsvermelding:details
-                             ] ;
-    sh:property              [ rdfs:label         "Achternaam"@nl ;
-                               memorix:inTitleAt  3.0 ;
-                               sh:datatype        xsd:string ;
-                               sh:group           persoonsvermelding:alternativeNameGroup ;
-                               sh:order           3.0 ;
-                               sh:path            persoonsvermelding:alternativeLastName
-                             ] ;
-    sh:property              [ rdfs:label         "Voornaam"@nl ;
-                               memorix:inTitleAt  1.0 ;
-                               sh:datatype        xsd:string ;
-                               sh:group           persoonsvermelding:alternativeNameGroup ;
-                               sh:order           1.0 ;
-                               sh:path            persoonsvermelding:alternativeFirstName
-                             ] ;
-    sh:property              [ rdfs:label   "Beroep"@nl ;
-                               sh:datatype  xsd:string ;
-                               sh:group     persoonsvermelding:personListingGroup ;
-                               sh:order     10.0 ;
-                               sh:path      persoonsvermelding:profession
-                             ] ;
-    sh:property              [ rdfs:label         "Tussenvoegsel"@nl ;
-                               memorix:inTitleAt  2.0 ;
-                               sh:datatype        xsd:string ;
-                               sh:group           persoonsvermelding:alternativeNameGroup ;
-                               sh:order           2.0 ;
-                               sh:path            persoonsvermelding:alternativeSurnamePrefix
-                             ] ;
-    sh:targetClass           recordtypes:Persoonsvermelding .
+    rdf:type             sh:NodeShape,
+                         memorix:Recordtype ;
+    rdfs:comment         "Standaard Recordtype voor Persoonsvermeldingen in Indexen"@nl ;
+    rdfs:label           "Persoonsvermelding"@nl ;
+    dc:identifier        "SaaPersoonsvermelding" ;
+    sh:closed            true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property          [ rdfs:label        "Voornaam"@nl ;
+                           memorix:inTitleAt 1.0 ;
+                           sh:datatype       xsd:string ;
+                           sh:group          persoonsvermelding:personListingGroup ;
+                           sh:order          1.0 ;
+                           sh:path           persoonsvermelding:firstName ] ;
+    sh:property          [ rdfs:label        "Tussenvoegsel"@nl ;
+                           memorix:inTitleAt 2.0 ;
+                           sh:datatype       xsd:string ;
+                           sh:group          persoonsvermelding:personListingGroup ;
+                           sh:order          2.0 ;
+                           sh:path           persoonsvermelding:surnamePrefix ] ;
+    sh:property          [ rdfs:label        "Achternaam"@nl ;
+                           memorix:inTitleAt 3.0 ;
+                           sh:datatype       xsd:string ;
+                           sh:group          persoonsvermelding:personListingGroup ;
+                           sh:order          3.0 ;
+                           sh:message        "Achernaam is verplicht"@nl ;
+                           sh:minCount       1 ;
+                           sh:maxCount       1 ;
+                           sh:path           persoonsvermelding:lastName ] ;
+    sh:property          [ rdfs:label  "Geboortedatum"@nl ;
+                           sh:datatype xsd:date ;
+                           sh:group    persoonsvermelding:personListingGroup ;
+                           sh:order    4.0 ;
+                           sh:path     persoonsvermelding:birthDate ] ;
+    sh:property          [ rdfs:label  "Geboorteplaats"@nl ;
+                           sh:datatype xsd:string ;
+                           sh:group    persoonsvermelding:personListingGroup ;
+                           sh:order    5.0 ;
+                           sh:path     persoonsvermelding:birthPlace ] ;
+    sh:property          [ rdfs:label  "Overlijdensdatum"@nl ;
+                           sh:datatype xsd:date ;
+                           sh:group    persoonsvermelding:personListingGroup ;
+                           sh:order    6.0 ;
+                           sh:path     persoonsvermelding:deathDate ] ;
+    sh:property          [ rdfs:label  "Overlijdensplaats"@nl ;
+                           sh:datatype xsd:string ;
+                           sh:group    persoonsvermelding:personListingGroup ;
+                           sh:order    7.0 ;
+                           sh:path     persoonsvermelding:deathPlace ] ;
+    sh:property          [ rdfs:label  "Leeftijdsvermelding in bron"@nl ;
+                           sh:datatype xsd:string ;
+                           sh:group    persoonsvermelding:personListingGroup ;
+                           sh:order    8.0 ;
+                           sh:path     persoonsvermelding:age ] ;
+    sh:property          [ rdfs:label  "Opmerkingen"@nl ;
+                           dash:editor dash:TextAreaEditor ;
+                           sh:datatype xsd:string ;
+                           sh:group    persoonsvermelding:managementGroup ;
+                           sh:maxCount 1 ;
+                           sh:order    1.0 ;
+                           sh:path     persoonsvermelding:notes ] ;
+    sh:property          [ rdfs:label  "Overleden"@nl ;
+                           sh:datatype xsd:string ;
+                           sh:group    persoonsvermelding:personListingGroup ;
+                           sh:order    9.0 ;
+                           sh:path     persoonsvermelding:deceased ] ;
+    sh:property          [ rdfs:label  "Beroep"@nl ;
+                           sh:datatype xsd:string ;
+                           sh:group    persoonsvermelding:personListingGroup ;
+                           sh:order    10.0 ;
+                           sh:path     persoonsvermelding:profession ] ;
+    sh:property          [ rdfs:comment "Bijzonderheid bij deze akte"@nl ;
+                           rdfs:label   "Bijzonderheid"@nl ;
+                           sh:class     persoonsvermelding:Details ;
+                           sh:group     persoonsvermelding:detailsGroup ;
+                           sh:maxCount  10 ;
+                           sh:nodeKind  sh:BlankNode ;
+                           sh:order     1.0 ;
+                           sh:path      persoonsvermelding:details ] ;
+    sh:property          [ rdfs:label              "Koppeling met externe Persoon URI" ;
+                           rdfs:comment            "Verwijzing naar externe geïdentificeerde persoon"@nl ;
+                           dash:editor             memorix:VocabularyEditor ;
+                           memorix:conceptSchemeIn <https://data.rkd.nl/rkdartists>, <https://www.wikidata.org/wiki/Q202444> ; #wikidata given names
+                           sh:class                skos:Concept ;
+                           sh:group                persoonsvermelding:relationsGroup ;
+                           sh:nodeKind             sh:IRI ;
+                           sh:order                1.0 ;
+                           sh:maxCount             100 ;
+                           sh:path                 persoonsvermelding:externalLink ] ;
+    sh:property          [ rdfs:label   "Is identiek aan (koppeling met interne persoon of persoonsvermelding)"@nl ;
+                           rdfs:comment "Verwijzing naar dezelfde persoon in (genealogische) bronnen"@nl ;
+                           dash:editor  memorix:LinkedRecordEditor ;
+                           sh:group     persoonsvermelding:relationsGroup ;
+                           sh:nodeKind  sh:IRI ;
+                           sh:order     2.0 ;
+                           sh:maxCount  100 ;
+                           sh:nodeKind  sh:IRI ;
+                           sh:or        ( [ sh:class persoonsvermelding:SaaPesoon ] [ sh:class persoonsvermelding:SaaPersoonsvermelding ] ) ;
+                           sh:path      persoonsvermelding:internalLink ] ;
+    sh:targetClass       recordtypes:Persoonsvermelding .
 
 persoonsvermelding:Details
-    rdf:type              sh:NodeShape ;
-    sh:closed             true ;
-    sh:ignoredProperties  ( rdf:type ) ;
-    sh:property           [ rdfs:label   "Bijzonderheid - Type"@nl ;
-                            sh:datatype  xsd:string ;
-                            sh:order     1.0 ;
-                            sh:path      persoonsvermelding:detailType
-                          ] ;
-    sh:property           [ rdfs:label   "Bijzonderheid"@nl ;
-                            sh:datatype  xsd:string ;
-                            sh:order     2.0 ;
-                            sh:path      persoonsvermelding:detailDetail
-                          ] ;
-    sh:targetClass        persoonsvermelding:Details .
+    rdf:type             sh:NodeShape ;
+    sh:closed            true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property          [ rdfs:label  "Bijzonderheid - Type"@nl ;
+                           sh:datatype xsd:string ;
+                           sh:order    1.0 ;
+                           sh:path     persoonsvermelding:detailType ] ;
+    sh:property          [ rdfs:label  "Bijzonderheid"@nl ;
+                           sh:datatype xsd:string ;
+                           sh:order    2.0 ;
+                           sh:path     persoonsvermelding:detailDetail ] ;
+    sh:targetClass       persoonsvermelding:Details .
 
-persoonsvermelding:Location
-    rdf:type              sh:NodeShape ;
-    sh:closed             true ;
-    sh:ignoredProperties  ( rdf:type ) ;
-    sh:property           [ rdfs:label   "Locatie - Type"@nl ;
-                            sh:datatype  xsd:string ;
-                            sh:order     1.0 ;
-                            sh:path      persoonsvermelding:locationType
-                          ] ;
-    sh:property           [ rdfs:label   "Benaming in bron"@nl ;
-                            sh:datatype  xsd:string ;
-                            sh:order     2.0 ;
-                            sh:path      persoonsvermelding:locationNameInSource
-                          ] ;
-    sh:property           [ rdfs:label   "Gestandaardiseerde term"@nl ;
-                            sh:datatype  xsd:string ;
-                            sh:order     3.0 ;
-                            sh:path      persoonsvermelding:locationStandardisedTerm
-                          ] ;
-    sh:property           [ rdfs:label   "Locatie - Uri"@nl ;
-                            sh:datatype  xsd:string ;
-                            sh:order     4.0 ;
-                            sh:path      persoonsvermelding:locationUri
-                          ] ;
-    sh:property           [ rdfs:label   "Opmerking"@nl ;
-                            dash:editor  dash:TextAreaEditor ;
-                            sh:datatype  xsd:string ;
-                            sh:order     5.0 ;
-                            sh:path      persoonsvermelding:locationRemark
-                          ] ;
-    sh:targetClass        persoonsvermelding:Location .
-
-persoonsvermelding:locationsGroup
-    rdf:type    sh:PropertyGroup ;
-    rdfs:label  "Locaties"@nl ;
-    sh:order    3.0 .
