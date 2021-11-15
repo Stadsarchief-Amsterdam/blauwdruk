@@ -94,7 +94,7 @@ recordtypes:Persoonsvermelding
                            sh:order    1.0 ;
                            sh:path     persoonsvermelding:notes ] ;
     sh:property          [ rdfs:label  "Overleden"@nl ;
-                           sh:datatype xsd:string ;
+                           sh:datatype xsd:boolean ;
                            sh:group    persoonsvermelding:personListingGroup ;
                            sh:order    9.0 ;
                            sh:path     persoonsvermelding:deceased ] ;
@@ -114,7 +114,8 @@ recordtypes:Persoonsvermelding
     sh:property          [ rdfs:label              "Koppeling met externe Persoon URI" ;
                            rdfs:comment            "Verwijzing naar externe geïdentificeerde persoon"@nl ;
                            dash:editor             memorix:VocabularyEditor ;
-                           memorix:conceptSchemeIn <https://data.rkd.nl/rkdartists>, <https://www.wikidata.org/wiki/Q202444> ; #wikidata given names
+                           memorix:conceptSchemeIn <https://data.rkd.nl/rkdartists>,
+                                                   <https://www.wikidata.org/wiki/Q202444> ; #wikidata given names
                            sh:class                skos:Concept ;
                            sh:group                persoonsvermelding:relationsGroup ;
                            sh:nodeKind             sh:IRI ;
