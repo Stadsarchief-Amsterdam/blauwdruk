@@ -36,7 +36,7 @@ persoonsvermelding:managementGroup
     rdfs:label "Beheer"@nl ;
     sh:order   4.0 .
 
-recordtypes:Persoonsvermelding
+rt:Persoonsvermelding
     rdf:type             sh:NodeShape,
                          memorix:Recordtype ;
     rdfs:comment         "Standaard Recordtype voor Persoonsvermeldingen in Indexen"@nl ;
@@ -136,7 +136,7 @@ recordtypes:Persoonsvermelding
                            sh:nodeKind  sh:IRI ;
                            sh:or        ( [ sh:class rt:Persoon ] [ sh:class rt:SaaPersoonsvermelding ] ) ;
                            sh:path      persoonsvermelding:sameAsInternal ] ;
-    sh:targetClass       recordtypes:Persoonsvermelding .
+    sh:targetClass       rt:Persoonsvermelding .
 
 persoonsvermelding:Details
     rdf:type             sh:NodeShape ;
