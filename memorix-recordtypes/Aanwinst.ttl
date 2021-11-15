@@ -90,12 +90,12 @@ rt:Aanwinst
                                                     [ sh:class rt:SaaFamilie ]
                                                     [ sh:class rt:SaaOrganisatie ] ) ; ] ;
     sh:property                     [ rdfs:label              "Rechtstitel"@nl ;
-                                      sh:datatype             xsd:string ;
                                       sh:message              "Kies een rechtstitel uit de keuzelijst. Dit is verplicht."@nl ;
                                       sh:order                3.0 ;
                                       #sh:minCount             1 ; #todo evt. aanzetten als UI gefikst is
                                       sh:maxCount             1 ;
                                       dash:editor             memorix:VocabularyEditor ;
+                                      sh:nodeKind             sh:IRI ;
                                       sh:class                skos:Concept ;
                                       memorix:conceptSchemeIn vocabularies:93b6eed4-d045-4d61-bfa5-0fa17aa48c7d ;
                                       sh:group                rt:contentDescriptionGroup ;
