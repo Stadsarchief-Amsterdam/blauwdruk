@@ -57,7 +57,7 @@ recordtypes:Persoonsvermelding
                            sh:datatype       xsd:string ;
                            sh:group          persoonsvermelding:personListingGroup ;
                            sh:order          3.0 ;
-                           sh:message        "Achernaam is verplicht"@nl ;
+                           sh:message        "Achternaam is verplicht"@nl ;
                            sh:minCount       1 ;
                            sh:maxCount       1 ;
                            sh:path           persoonsvermelding:lastName ] ;
@@ -130,7 +130,7 @@ recordtypes:Persoonsvermelding
                            sh:order     2.0 ;
                            sh:maxCount  100 ;
                            sh:nodeKind  sh:IRI ;
-                           sh:or        ( [ sh:class persoonsvermelding:SaaPesoon ] [ sh:class persoonsvermelding:SaaPersoonsvermelding ] ) ;
+                           sh:or        ( [ sh:class persoonsvermelding:Persoon ] [ sh:class persoonsvermelding:SaaPersoonsvermelding ] ) ;
                            sh:path      persoonsvermelding:internalLink ] ;
     sh:targetClass       recordtypes:Persoonsvermelding .
 
