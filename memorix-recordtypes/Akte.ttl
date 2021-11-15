@@ -87,14 +87,14 @@ rt:Akte
                            sh:or        ( [ sh:class rt:SaaBestanddeel ] ) ;
                            sh:order     5.0 ;
                            sh:path      rico:isOrWasIncludedIn ] ;
-#    sh:property          [ rdfs:label   "Personen"@nl ;
-#                           rdfs:comment "Personen die voorkomen op de akte."@nl ;
-#                           sh:class     akte:Person ;
-#                           sh:group     akte:contentDescriptionGroup ;
-#                           sh:maxCount  999 ;
-#                           sh:nodeKind  sh:BlankNode ;
-#                           sh:order     5.0 ;
-#                           sh:path      rico:hasOrHadSubject ] ;
+    sh:property          [ rdfs:label   "Personen"@nl ;
+                           rdfs:comment "Personen die voorkomen op de akte."@nl ;
+                           sh:class     akte:Person ;
+                           sh:group     akte:contentDescriptionGroup ;
+                           sh:maxCount  999 ;
+                           sh:nodeKind  sh:BlankNode ;
+                           sh:order     5.0 ;
+                           sh:path      rico:hasOrHadSubject ] ;
     sh:property          [ rdfs:label  "Interne opmerking"@nl ;
                            dash:editor dash:TextAreaEditor ;
                            sh:datatype xsd:string ;
@@ -104,18 +104,18 @@ rt:Akte
                            sh:path     akte:remark ] ;
 .
 
-#akte:Person
-#    rdf:type              sh::NodeShape ;
-#    sh::closed            true ;
-#    sh::ignoredProperties ( rdf:type ) ;
-#    sh::property          [ rdfs:label   "Persoonsvermelding"@nl ;
-#                            dash:editor  memorix:LinkedRecordEditor ;
-#                            sh::nodeKind sh::IRI ;
-#                            sh::or       ( <https://example.memorix-test.nl/resources/recordtypes/Persoonsvermelding> ) ;
-#                            sh::order    2.0 ;
-#                            sh::path     akte:personObservation ] ;
-#    sh::property          [ rdfs:label   "Rol"@nl ;
-#                            sh::datatype xsd:string ;
-#                            sh::order    1.0 ;
-#                            sh::path     akte:personRole ] ;
-#    sh::targetClass       akte:Person .
+akte:Person
+    rdf:type              sh::NodeShape ;
+    sh:closed            true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property          [ rdfs:label   "Persoonsvermelding"@nl ;
+                            dash:editor  memorix:LinkedRecordEditor ;
+                            sh:nodeKind sh:IRI ;
+                            sh:or       ( <https://example.memorix-test.nl/resources/recordtypes/Persoonsvermelding> ) ;
+                            sh:order    2.0 ;
+                            sh:path     akte:personObservation ] ;
+    sh:property          [ rdfs:label   "Rol"@nl ;
+                            sh:datatype xsd:string ;
+                            sh:order    1.0 ;
+                            sh:path     akte:personRole ] ;
+    sh:targetClass       akte:Person .
