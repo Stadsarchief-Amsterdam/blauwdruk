@@ -14,6 +14,9 @@
 @prefix vocabularies:       <https://example.memorix-test.nl/vocabularies/> .
 @prefix xsd:                <http://www.w3.org/2001/XMLSchema#> .
 
+@prefix pnv:            <https://w3id.org/pnv#> .
+@prefix schema:         <https://schema.org/> .
+
 persoonsvermelding:personListingGroup
     rdf:type   sh:PropertyGroup ;
     rdfs:label "Persoonsvermelding"@nl ;
