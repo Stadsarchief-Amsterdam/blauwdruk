@@ -18,7 +18,7 @@
 @prefix ric-dft:         <https://www.ica.org/standards/RiC/vocabularies/documentaryFormTypes#> .
 
 @prefix pnv:             <https://w3id.org/pnv#> .
-@prefix schema:          <https://schema.org/> .
+@prefix schema:          <http://schema.org/> .
 
 
 akte:identificationGroup
