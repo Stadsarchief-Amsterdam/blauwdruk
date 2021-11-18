@@ -95,8 +95,11 @@ blauwdruk:Archiefblok a memorix:Recordtype, sh:NodeShape, owl:Class ;
     ] ;
     sh:property [
         rdfs:label "Status"@nl ;
-        sh:path blauwdruk:status ;
-        sh:datatype xsd:string ; 
+        sh:path rico:isOrWasRecordStateOfAllMembers ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:class rico:RecordState ;
+        sh:nodeKind sh:BlankNode ;
     ] ;
     sh:property [
         rdfs:label "Inventarisatie"@nl ; 
@@ -193,7 +196,6 @@ rico:Identifier a sh:NodeShape ;
         sh:message "This node MUST link to exactly 1 xsd:string with rico:textualValue"@en ;
         sh:path rico:textualValue ;
         rdfs:label "Identifier"@nl ;
-        sh:order 2.0 ;
         sh:datatype xsd:string ; 
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -256,4 +258,21 @@ rico:SingleDate a sh:NodeShape ;
             [ sh:datatype xsd:gYearMonth ] 
             [ sh:datatype xsd:date ] 
         ) ;
+    ] .
+
+blauwdruk:TypeShape a sh:NodeShape ;
+    sh:targetClass        rico:IdentifierType, rico:RecordState, rio:TitleType ;
+    sh:property [
+        sh:message        "rico:*Type MUST link to exactly 1 rico:Name with rico:hasOrHadName"@en ;
+        sh:path           rico:hasOrHadName ;
+        sh:class          rico:Name ;
+        sh:minCount       1 ;
+        sh:maxCount       1 ;
+    ] .
+
+saa-sh:NameShape a sh:NodeShape ;
+    sh:targetClass  rico:Name, rico:AgentName ;
+    sh:property [
+        sh:path rico:textualValue ;
+        sh:datatype xsd:string ;
     ] .
