@@ -7,12 +7,6 @@
 @prefix ric-rst:       <https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#> .
 @prefix ric-dft:       <https://www.ica.org/standards/RiC/vocabularies/documentaryFormTypes#> .
 
-@prefix crm:           <http://www.cidoc-crm.org/cidoc-crm/> .
-
-@prefix saa-ont:       <https://data.archief.amsterdam/ontology#> .
-@prefix saa-sh:        <https://data.archief.amsterdam/shapes#> .
-@prefix saa-voc:       <https://data.archief.amsterdam/vocabulary#> .
-
 @prefix owl:           <http://www.w3.org/2002/07/owl#> .
 @prefix dct:           <http://purl.org/dc/terms/> .
 
@@ -38,12 +32,11 @@
     rdfs:comment "Formal definitions of entities used for archival description in the Amsterdam City Archives."@en ;
     rdfs:comment "Formele definities van entiteiten gebruikt voor archiefbeschrijvingen bij Stadsarchief Amsterdam."@nl ;
     dct:publisher <http://viaf.org/viaf/125129838> ;
-    dct:creator <http://viaf.org/viaf/8160423087068032715> ;
     dct:license <https://creativecommons.org/publicdomain/zero/1.0/deed> ;
     dct:created  "2021-07-21T17:00:00+00:00"^^xsd:dateTime ;
     dct:modified "2021-07-28T17:00:00+00:00"^^xsd:dateTime ;
     dct:description "We introduce this ontology because we require different mandatory properties for different subClasses of entities in the RiC ontology. We have defined shapes in SHACL to validate data according to these requirement." ;
 
     owl:imports <https://www.ica.org/standards/RiC/ontology> ;
-    owl:imports <http://localhost:8000/01-archief.ttl> ;
+    owl:imports <http://localhost:8000/01-archiefblok.ttl> ;
     owl:imports <http://localhost:8000/02-groep.ttl> .
