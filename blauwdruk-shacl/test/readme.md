@@ -1,11 +1,11 @@
 # Data for testing the Blauwdruk SHACL definitions
 
-This directory contains files that can be used to test the SHACL files in this blauwdruk-shacl directory. It contains files that should not give error messages (with 'correct' in the filename) or files that should give error messages intentionally (with 'incorrect' in the filename). It contains 'minimal' files as well; these are correct but contain the minimal data that should give a correct SHACL-validation.
+This directory contains files that can be used to test the SHACL files in this blauwdruk-shacl directory. It contains files that should not give error messages (with 'correct' in the filename) and files that should give error messages intentionally (with 'incorrect' in the filename). Sometimes it contains 'minimal' and 'maximal' files as well; these are correct but contain the minimal or maximum data that should give a correct SHACL-validation.
 
 IMPORTANT NOTE: The examples do not imply decisions on the way URI's of the Amsterdam City Archives are or should be created! Neither about the usage of blanknodes in the data.
 
 # SHACL validation
-I've used Jena to validate data against shacl shapes. After installation we use the Command Line Interface (CLI) command 'shacl'.
+I've used Jena to validate data against shacl shapes. After installation you can use the Command Line Interface (CLI) command 'shacl'.
 
 ## Install Jena
 [Jena](https://jena.apache.org/) is "a free and open source Java framework for building Semantic Web and Linked Data applications". You can download it [here](https://jena.apache.org/download/), unpack the tar or zip and place it on a convenient place on your system.
@@ -24,7 +24,7 @@ Jena contains the CLI command 'shacl' to validate data. It is described in more 
 
 e.g. 
 ```
-$ shacl validate -s saa-sh.ttl -d 01-archiefblok/archiefblok-correct1.ttl
+$ shacl validate -s ../01-archiefblok.ttl -d 01-archiefblok/archiefblok-correct1.ttl
 ```
 
 The shell-script test.sh runs tests on the available test files.
