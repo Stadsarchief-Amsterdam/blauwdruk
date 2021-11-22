@@ -8,19 +8,17 @@
 @prefix dc:            <http://purl.org/dc/elements/1.1/> .
 @prefix sh:            <http://www.w3.org/ns/shacl#> .
 @prefix dash:          <http://datashapes.org/dash#> .
-@prefix memorix:       <http://memorix.io/ontology#> .
 
 @prefix rico:          <https://www.ica.org/standards/RiC/ontology#> .
 @prefix ric-rst:       <https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#> .
 @prefix ric-dft:       <https://www.ica.org/standards/RiC/vocabularies/documentaryFormTypes#> .
 
 # ==================================================
-blauwdruk:Groep a memorix:Recordtype, sh:NodeShape, owl:Class ;
+blauwdruk:Groep a sh:NodeShape, owl:Class ;
     sh:targetClass blauwdruk:Groep ;
     owl:equivalentClass rico:RecordSet ;
     rdfs:label "Groep"@nl ;
     rdfs:comment "Standaard Recordtype voor Groep"@nl ;
-    dc:identifier "Groep" ;
     sh:property [ 
         sh:message "Groep MUST link to ric-rst:Series with rico:hasRecordSetType"@en ,
             "Groep MOET linken naar ric-rst:Series met rico:hasRecordSetType"@nl ;
@@ -77,7 +75,7 @@ blauwdruk:Groep a memorix:Recordtype, sh:NodeShape, owl:Class ;
         rdfs:label "Uiterlijke vorm"@nl ;
         sh:maxCount 1 ;
         sh:path rico:recordResourceExtent ;
-        sh:class rico:RecordResourceExtent ;
+        sh:datatype xsd:string ; 
     ] ;
     sh:property [
         rdfs:label "Interne opmerking"@nl ;
@@ -105,7 +103,6 @@ rico:Title a sh:NodeShape ;
         sh:message "This node MUST link to exactly 1 rico:TitleType with rico:hasTitleType"@en ;
         sh:path rico:hasTitleType ;
         sh:class rico:TitleType ; 
-        sh:nodeKind sh:IRI ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
     ] .

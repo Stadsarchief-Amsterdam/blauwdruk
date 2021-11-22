@@ -4,20 +4,17 @@
 @prefix xsd:           <http://www.w3.org/2001/XMLSchema#> .
 
 @prefix blauwdruk:     <https://example.memorix-test.nl/resources/recordtypes/> .
-@prefix voc:           <https://example.memorix-test.nl/resources/vocabularies/> .
-@prefix data:          <https://example.memorix-test.nl/resources/records/> .
 
 @prefix dc:            <http://purl.org/dc/elements/1.1/> .
 @prefix sh:            <http://www.w3.org/ns/shacl#> .
 @prefix dash:          <http://datashapes.org/dash#> .
-@prefix memorix:       <http://memorix.io/ontology#> .
 
 @prefix rico:          <https://www.ica.org/standards/RiC/ontology#> .
 @prefix ric-rst:       <https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#> .
 @prefix ric-dft:       <https://www.ica.org/standards/RiC/vocabularies/documentaryFormTypes#> .
 
 # ==================================================
-blauwdruk:Archiefblok a memorix:Recordtype, sh:NodeShape, owl:Class ;
+blauwdruk:Archiefblok a sh:NodeShape, owl:Class ;
     sh:targetClass blauwdruk:Archiefblok ;
     owl:equivalentClass rico:RecordSet ;
     rdfs:label "Archiefblok"@nl ;
