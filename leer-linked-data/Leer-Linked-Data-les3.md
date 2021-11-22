@@ -5,7 +5,7 @@
 ### Les 1
 Je mag in Linked Data alle properties gebruiken die je wilt. We hebben tot nu toe gebruik gemaakt van rdf, rdfs en rico. Een veel toegepaste andere verzameling van properties is schema.org.
 
-Zo'n verzameling van properties heeft een bepaalde samenhang. In rico is het bijvoorbeeld logisch dat een knoop van het type rico:RecordSet de property rico:hasRecordSetType mag hebben. Dit soort samenhang wordt vastgelegd in een _ontologie_. Van elke property is bijvoorbeeld vastgelegd wat de _domain_ is, en de _range_. De domain van de property rico:hasRecordSetType is rico:RecordSet en de object van een triple met deze property is van het type rico:RecordSetType, met andere woorden: de range van rico:hasRecordSetType is rico:RecordSetType.
+Zo'n verzameling van properties heeft een bepaalde samenhang. In rico is het bijvoorbeeld logisch dat een knoop van het type rico:RecordSet de property rico:hasRecordSetType mag hebben. Dit soort samenhang wordt vastgelegd in een _ontologie_. Van elke property is bijvoorbeeld vastgelegd wat de _domain_ is, en de _range_. De domain van de property rico:hasRecordSetType is rico:RecordSet en de range van deze property is van het type rico:RecordSetType. Met andere woorden: de subject van een triple met rico:hasRecordSetType als property moet van de klasse rico:RecordSet zijn en de object van de triple is van de klasse rico:RecordSetType.
 
 Lees de rico-ontologie in in GraphDB:
 "Import" -> "RDF" -> "Get RDF data from a URL"
@@ -18,7 +18,7 @@ Geef de graaf de naam "https://www.ica.org/standards/RiC/ontology".
 Als je nu een graaf gaat visualiseren, zie je rdfs:labels die zijn gedefinieerd in de ontologie bij de relaties staan.
 
 ### Les 2
-Een ontologie definieert nog meer samenhang. Zo leg je in de ontologie vast dat bepaalde types op elkaar lijken. Een rico:Family is namelijk een soort rico:Group, net als rico:Organization. En een rico:Group is een soort rico:Agent, net als rico:Person. Dit wordt klasse-hierarchie genoemd. Properties die gedefinieerd zijn bij rico:Agent zijn daardoor ook te gebruiken bij rico:Group en rico:Family. Een andere belangrijke klasse hierarchie in RiC-O is dat rico:Record, rico:RecordSet en rico:RecordPart alledrie subklasses zijn van rico:RecordResource.
+Een ontologie definieert nog meer samenhang. Zo leg je in de ontologie vast dat bepaalde types op elkaar lijken. Een rico:Family is namelijk een soort rico:Group, net als rico:CorporateBody. En een rico:Group is een soort rico:Agent, net als rico:Person. Dit wordt klasse-hierarchie genoemd. Properties die gedefinieerd zijn bij rico:Agent zijn daardoor ook te gebruiken bij rico:Group en rico:Family. Een andere belangrijke klasse hierarchie in RiC-O is dat rico:Record, rico:RecordSet en rico:RecordPart alledrie subklasses zijn van rico:RecordResource.
 
 Je kunt zelf ook classes definieren.
 
@@ -26,12 +26,12 @@ Je kunt zelf ook classes definieren.
 	a rdfs:Class ;
 	owl:equivalentClass rico:RecordSet .
 
-Dat is handig als je zelf aanvullende eigenschappen wilt definieren die nodig zijn om specifieke dingen vast te leggen over een Archief bij het Stadsarchief Amsterdam. De class 'Archief' kan dus alle properties gebruiken die bij rico:RecordSet zijn gedefnieerd en ook alle properties die je zelf definieert. In dit voorbeeld zijn deze niet opgenomen, maar we kunnen een eigen definitie van Archief goed gebruiken om de data te kunnen controleren. Dat leren we in de volgende les.
+Dat is handig als je zelf aanvullende eigenschappen wilt definieren die nodig zijn om specifieke dingen vast te leggen over een Archief bij het Stadsarchief Amsterdam. De class 'Archief' kan dus alle properties gebruiken die bij rico:RecordSet zijn gedefinieerd en ook alle properties die je zelf definieert. In dit voorbeeld zijn deze niet opgenomen, maar we kunnen een eigen definitie van Archief goed gebruiken om de data te kunnen controleren. Dat leren we in de volgende les.
 
 ### Les 3
-De vrijheid die Linked Data biedt is niet altijd handig. Soms moet je gewoon zeker weten dat er een plaats in het depot is vastgelegd bijvoorbeeld. En dat ook kunnen controleren. Daarvoor gebruiken we SHACL. Omdat we in Amsterdam graag andere randvoorwaarden (_constraints_) willen kunnen controleren voor Archief en Bestanddeel is het nodig om deze apart te definieren en te bepalen dat ze hetzelfde zijn als een rico:RecordSet.
+De vrijheid die Linked Data biedt is niet altijd handig. Soms moet je gewoon zeker weten dat er een plaats in het depot is vastgelegd bijvoorbeeld. En dat ook kunnen controleren. Daarvoor gebruiken we SHACL. Omdat we in Amsterdam graag andere randvoorwaarden (_constraints_) willen kunnen controleren voor bijvoorbeeld Archief en Groep is het nodig om deze apart te definieren en te bepalen dat ze hetzelfde zijn als een rico:RecordSet.
 
-Bij een Archief vinden we in Amsterdam een archiefvormer verplicht, bij een Bestanddeel niet. Dus:
+Bij een Archief vinden we in Amsterdam een datum verplicht, bij een Groep niet. Dus:
 
 ```
 @prefix rdf:           <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
@@ -41,20 +41,20 @@ Bij een Archief vinden we in Amsterdam een archiefvormer verplicht, bij een Best
 @prefix sh:            <http://www.w3.org/ns/shacl#> .
 @prefix rico:          <https://www.ica.org/standards/RiC/ontology#> .
 
-blauwdruk:Archief a sh:NodeShape, rdfs:Class ;
-    sh:targetClass blauwdruk:Archief ;
+blauwdruk:Archiefblok a sh:NodeShape, rdfs:Class ;
+    sh:targetClass blauwdruk:Archiefblok ;
     owl:equivalentClass rico:RecordSet ;
     sh:property [
-        sh:path rico:hasAccumulator ;
+        sh:path rico:isAssociatedWithDate ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
     ] .
 
-blauwdruk:Bestanddeel a sh:NodeShape, rdfs:Class ;
-    sh:targetClass blauwdruk:Bestanddeel ;
+blauwdruk:Groep a sh:NodeShape, rdfs:Class ;
+    sh:targetClass blauwdruk:Groep ;
     owl:equivalentClass rico:RecordSet ;
     sh:property [
-        sh:path rico:hasAccumulator ;
+        sh:path rico:isAssociatedWithDate ;
         sh:maxCount 1 ;
     ] .
 
@@ -85,8 +85,8 @@ maar dit mag wel:
 @prefix blauwdruk:     <https://id.archief.amsterdam/recordtypes/> .
 
 <https://id.archief.amsterdam/9> 
-	rdf:type blauwdruk:Bestanddeel ;
-	rico:hasRecordSetType ric-rst:File ;
+	rdf:type blauwdruk:Groep ;
+	rico:hasRecordSetType ric-rst:Series ;
     rico:isAssociatedWithDate [
         a rico:DateRange ;
         rico:expressedDate "1423 - 1424" ;
@@ -107,7 +107,7 @@ Doe opnieuw:
 
 ```
 SELECT * WHERE {
-     ?rs 	rico:hasRecordSetType $rst ;
+     ?rs 	rico:hasRecordSetType ?rst ;
      		rico:isAssociatedWithDate/rico:hasBeginningDate/rico:normalizedDateValue ?begindate .
      FILTER (?begindate < '1600'^^xsd:gYear)
 }
