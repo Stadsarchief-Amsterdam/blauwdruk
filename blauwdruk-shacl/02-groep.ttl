@@ -30,9 +30,9 @@ blauwdruk:Groep a sh:NodeShape, owl:Class ;
     ];
     sh:property [
         rdfs:label "Groep nummer"@nl ;
+        rdfs:comment "Oude en nieuwe nummers" ;
         sh:path rico:hasOrHadIdentifier ;
         sh:minCount 1 ;
-        sh:maxCount 1 ;
         sh:class rico:Identifier ;
     ] ;
     sh:property [
@@ -169,6 +169,7 @@ rico:SingleDate a sh:NodeShape ;
         ) ;
     ] .
 
+## Type
 blauwdruk:TypeShape a sh:NodeShape ;
     sh:targetClass rico:IdentifierType, rico:TitleType ;
     sh:property [

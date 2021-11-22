@@ -8,7 +8,9 @@ shacl --version
 # shacl validate -s ../01-archiefblok.ttl -d 01-archiefblok/archiefblok-correct1.ttl
 # shacl validate -s ../01-archiefblok.ttl -d 01-archiefblok/archiefblok-incorrect1.ttl
 
-shacl validate -s ../02-groep.ttl -d 02-groep/groep-correct1.ttl
+# shacl validate -s ../02-groep.ttl -d 02-groep/groep-correct1.ttl
 # shacl validate -s ../02-groep.ttl -d 02-groep/groep-incorrect1.ttl
 
+shacl validate -s ../03-bestanddeel.ttl -d 03-bestanddeel/bestanddeel-correct1.ttl
+shacl validate -s ../03-bestanddeel.ttl -d 03-bestanddeel/bestanddeel-incorrect1.ttl
 
