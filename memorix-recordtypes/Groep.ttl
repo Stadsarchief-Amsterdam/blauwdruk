@@ -111,6 +111,15 @@ rt:Groep
                            sh:or        ( [ sh:class rt:SaaArchiefblok ] [ sh:class rt:SaaGroep ] ) ;
                            sh:order     3 ;
                            sh:path      rico:isOrWasIncludedIn ] ;
+    sh:property          [ rdfs:label   "Volgende archiefbeschrijving in de volgorde van de archiefbeschrijvingen"@nl ;
+                           rdfs:comment "Groep of Bestanddeel die op dit Bestanddeel volgt."@nl ;
+                           sh:message   "Kies een groep of bestanddeel om aan te koppelen. Dit is verplicht."@nl ;
+                           dash:editor  memorix:LinkedRecordEditor ;
+                           sh:group     groep:partitionGroup ;
+                           sh:path      rico:precedesOrPreceded ;
+                           sh:order     2.0 ;
+                           sh:nodeKind  sh:IRI ;
+                           sh:or        ( [ sh:class rt:SaaBestanddeel ] [ sh:class rt:SaaGroep ] ) ; ] ;
 #    sh:property          [ rdfs:label   "Bovenliggend archiefblok of groep (alt)"@nl ;
 #                           rdfs:comment "Archiefblok of groep waartoe dit Bestanddeel behoort."@nl ;
 #                           sh:message   "Kies een archiefblok of groep om aan te koppelen. Dit is verplicht."@nl ;
