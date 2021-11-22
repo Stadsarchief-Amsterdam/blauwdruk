@@ -5,12 +5,12 @@ export PATH=$PATH:$JENA_HOME/bin
 
 shacl --version
 
-# shacl validate -s ../01-archiefblok.ttl -d 01-archiefblok/archiefblok-correct1.ttl
-# shacl validate -s ../01-archiefblok.ttl -d 01-archiefblok/archiefblok-incorrect1.ttl
+# shacl validate -s ../archiefblok.ttl -d archiefblok/archiefblok-correct1.ttl
+# shacl validate -s ../archiefblok.ttl -d archiefblok/archiefblok-incorrect1.ttl
 
-# shacl validate -s ../02-groep.ttl -d 02-groep/groep-correct1.ttl
-# shacl validate -s ../02-groep.ttl -d 02-groep/groep-incorrect1.ttl
+# shacl validate -s ../groep.ttl -d groep/groep-correct1.ttl
+# shacl validate -s ../groep.ttl -d groep/groep-incorrect1.ttl
 
-shacl validate -s ../03-bestanddeel.ttl -d 03-bestanddeel/bestanddeel-correct1.ttl
-shacl validate -s ../03-bestanddeel.ttl -d 03-bestanddeel/bestanddeel-incorrect1.ttl
+shacl validate -s ../bestanddeel.ttl -d bestanddeel/bestanddeel-correct1.ttl
+shacl validate -s ../bestanddeel.ttl -d bestanddeel/bestanddeel-incorrect1.ttl
 

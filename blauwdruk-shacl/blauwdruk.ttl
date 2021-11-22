@@ -10,21 +10,28 @@
 @prefix owl:           <http://www.w3.org/2002/07/owl#> .
 @prefix dct:           <http://purl.org/dc/terms/> .
 
-# 01-archiefblok
-# 02-groep
-# 03-bestanddeel
-# 04-afbeelding
-# 05-informatieobject
-# 06-representatie
-# 07-persoon
-# 08-persoonsvermelding
-# 09-familie
-# 10-rechtspersoon
-# 11-rechtspersoonvermelding
-# 12-publicatie
+# 010-archiefblok
+
+# 020-groep
+# 021-boekserie
+# 022-periodiek
+
+# 030-bestanddeel
+# 031-holding
+
+# 040-informatieobject
+# 041-afbeelding
+# 042-akte
+# 043-boek
+
+# 060-representatie
+# 070-persoon
+# 080-persoonsvermelding
+# 090-familie
+# 100-organisatie
+# 110-organisatievermelding
 # 13-locatie
 # 14-locatievermelding
-# a-toegang-en-gebruik
 
 <https://data.archief.amsterdam/ontology> a owl:Ontology ;
     rdfs:label "Amsterdam City Archives RiC-O extension"@en ;
