@@ -5,9 +5,7 @@
 
 @prefix blauwdruk:     <https://example.memorix-test.nl/resources/recordtypes/> .
 
-@prefix dc:            <http://purl.org/dc/elements/1.1/> .
 @prefix sh:            <http://www.w3.org/ns/shacl#> .
-@prefix dash:          <http://datashapes.org/dash#> .
 
 @prefix rico:          <https://www.ica.org/standards/RiC/ontology#> .
 @prefix ric-rst:       <https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#> .

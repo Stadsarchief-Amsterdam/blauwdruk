@@ -10,28 +10,30 @@
 @prefix owl:           <http://www.w3.org/2002/07/owl#> .
 @prefix dct:           <http://purl.org/dc/terms/> .
 
-# 010-archiefblok
+# aggregaties
+## archiefblok
 
-# 020-groep
-# 021-boekserie
-# 022-periodiek
+## groep
+## boekserie
+## periodiek
 
-# 030-bestanddeel
-# 031-holding
+## bestanddeel
+## holding
 
-# 040-informatieobject
-# 041-afbeelding
-# 042-akte
-# 043-boek
+# informatieobject
+## dig-informatieobject
+## afbeelding
+## akte
+## boek
 
-# 060-representatie
-# 070-persoon
-# 080-persoonsvermelding
-# 090-familie
-# 100-organisatie
-# 110-organisatievermelding
-# 13-locatie
-# 14-locatievermelding
+# representatie
+
+# persoon
+# familie
+# organisatie
+# persoonsvermelding
+# organisatievermelding
+# locatievermelding
 
 <https://data.archief.amsterdam/ontology> a owl:Ontology ;
     rdfs:label "Amsterdam City Archives RiC-O extension"@en ;
@@ -45,5 +47,5 @@
     dct:description "We introduce this ontology because we require different mandatory properties for different subClasses of entities in the RiC ontology. We have defined shapes in SHACL to validate data according to these requirement." ;
 
     owl:imports <https://www.ica.org/standards/RiC/ontology> ;
-    owl:imports <http://localhost:8000/01-archiefblok.ttl> ;
-    owl:imports <http://localhost:8000/02-groep.ttl> .
+    owl:imports <http://localhost:8000/archiefblok.ttl> ;
+    owl:imports <http://localhost:8000/groep.ttl> .
