@@ -21,66 +21,44 @@ blauwdruk:Groep a memorix:Recordtype, sh:NodeShape, owl:Class ;
     rdfs:label "Groep"@nl ;
     rdfs:comment "Standaard Recordtype voor Groep"@nl ;
     dc:identifier "Groep" ;
-    sh:closed true ;
-    sh:ignoredProperties ( rdf:type ) ;
     sh:property [ 
-        sh:message        "Groep MUST link to ric-rst:Series with rico:hasRecordSetType"@en ;
-        sh:message        "Groep MOET linken naar ric-rst:Series met rico:hasRecordSetType"@nl ;
-        rdfs:comment      "Deze informatie is altijd hetzelfde en wordt daarom niet door beschrijvers in Memorix ingevoerd, maar moet standaard bij een export worden toegevoegd."@nl ;
-        rdfs:label        "(Niet in te vullen, want standaard-URI voor 'Fonds')"@nl ;
-        sh:path           rico:hasRecordSetType ;
-        sh:order          1.0 ;
-        sh:hasValue       ric-rst:Series ;
-#        sh:minCount       1 ;
-        sh:maxCount       1 ;
+        sh:message "Groep MUST link to ric-rst:Series with rico:hasRecordSetType"@en ,
+            "Groep MOET linken naar ric-rst:Series met rico:hasRecordSetType"@nl ;
+        rdfs:comment "Deze informatie is altijd hetzelfde en wordt daarom niet door beschrijvers in Memorix ingevoerd, maar moet standaard bij een export worden toegevoegd."@nl ;
+        sh:path rico:hasRecordSetType ;
+        sh:hasValue ric-rst:Series ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
     ];
     sh:property [
         rdfs:label "Groep nummer"@nl ;
         sh:path rico:hasOrHadIdentifier ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
-        sh:group blauwdruk:Identificatie  ;
-        sh:order 2.0 ;
-        memorix:inTitleAt 1.0 ;
         sh:class rico:Identifier ;
-        sh:nodeKind sh:BlankNode ;
     ] ;
     sh:property [
         rdfs:label "Beschrijving"@nl ;
         sh:path rico:hasOrHadTitle ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
-        sh:group blauwdruk:Identificatie  ;
-        sh:order 3.0 ;
-        memorix:inTitleAt 2.0 ;
         sh:class rico:Title ;
-        sh:nodeKind sh:BlankNode ;
     ] ;
     sh:property [
         rdfs:label "Datering"@nl ;
         sh:path rico:isAssociatedWithDate ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
-        sh:group blauwdruk:Beschrijving  ;
-        sh:order 4.0 ;
         sh:class rico:DateRange ;
-        sh:nodeKind sh:BlankNode ;
     ] ;
     sh:property [
         rdfs:label "Nota bene"@nl ;
         sh:path rico:scopeAndContent ;
-        sh:group blauwdruk:Beschrijving  ;
-        sh:order 5.0 ;
         sh:datatype xsd:string ;
-        dash:editor dash:TextAreaEditor ;
     ] ;
     sh:property [
         rdfs:label "Volgende archiefbeschrijving in de volgorde"@nl ;
         sh:path rico:precedesOrPreceded ;
-        sh:group blauwdruk:Archiefstructuur ;
-        sh:order 6.0 ;
-        dash:editor memorix:LinkedRecordEditor ;
-        sh:nodeKind sh:IRI ;
         sh:or (
             [ sh:class blauwdruk:Groep ]
             [ sh:class blauwdruk:Bestanddeel ]
@@ -90,33 +68,22 @@ blauwdruk:Groep a memorix:Recordtype, sh:NodeShape, owl:Class ;
     sh:property [
         rdfs:label "Maakt onderdeel uit van"@nl ;
         sh:path rico:isOrWasIncludedIn ;
-        sh:group blauwdruk:Archiefstructuur ;
-        sh:order 7.0 ;
-        dash:editor memorix:LinkedRecordEditor ;
-        sh:nodeKind sh:IRI ;
         sh:or (
             [ sh:class blauwdruk:Archief ]
             [ sh:class blauwdruk:Groep ]
         )
+    ] ;
+    sh:property [ 
+        rdfs:label "Uiterlijke vorm"@nl ;
+        sh:maxCount 1 ;
+        sh:path rico:recordResourceExtent ;
+        sh:class rico:RecordResourceExtent ;
+    ] ;
+    sh:property [
+        rdfs:label "Interne opmerking"@nl ;
+        sh:path blauwdruk:remark ;
+        sh:datatype xsd:string ; 
     ] .
-# TBD:
-# uiterlijke vorm
-
-
-# ========================================
-# PropertyGroup's
-
-blauwdruk:Identificatie a sh:PropertyGroup ;
-    rdfs:label "Identificatie"@nl ;
-    sh:order    1.0 .
-
-blauwdruk:Beschrijving a sh:PropertyGroup ;
-    rdfs:label "Beschrijving"@nl ;
-    sh:order    2.0 .
-
-blauwdruk:Archiefstructuur a sh:PropertyGroup ;
-    rdfs:label "Datering"@nl ;
-    sh:order    3.0 .
 
 
 # ==========================================
@@ -125,54 +92,50 @@ blauwdruk:Archiefstructuur a sh:PropertyGroup ;
 ## Title
 rico:Title a sh:NodeShape ;
     sh:targetClass rico:Title ;
-    sh:closed true ;
-    sh:ignoredProperties     ( rdf:type ) ;
     sh:property [
-        sh:message        "This node MUST link to exactly 1 xsd:string with rico:textualValue"@en ;
-        sh:path           rico:textualValue ;
-        rdfs:label        "Waarde"@nl ;
-        sh:order          1.0 ;
-        sh:datatype       xsd:string ; 
-        sh:minCount       1 ;
-        sh:maxCount       1 ;
+        rdfs:label "Beschrijving"@nl ;
+        sh:message "This node MUST link to exactly 1 xsd:string with rico:textualValue"@en ;
+        sh:path rico:textualValue ;
+        sh:datatype xsd:string ; 
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+    ] ;
+    sh:property [
+        rdfs:label "Type beschrijving"@nl ;
+        sh:message "This node MUST link to exactly 1 rico:TitleType with rico:hasTitleType"@en ;
+        sh:path rico:hasTitleType ;
+        sh:class rico:TitleType ; 
+        sh:nodeKind sh:IRI ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
     ] .
 
 ## Identifier
 rico:Identifier a sh:NodeShape ;
     sh:targetClass rico:Identifier ;
-    # sh:closed true ;
-    sh:ignoredProperties     ( rdf:type ) ;
     sh:property [
-        sh:message        "This node MUST link to exactly 1 xsd:string with rico:textualValue"@en ;
-        sh:path           rico:textualValue ;
-        rdfs:label        "Waarde"@nl ;
-        sh:order          2.0 ;
-        sh:datatype       xsd:string ; 
-        sh:minCount       1 ;
-        sh:maxCount       1 ;
+        rdfs:label "Identifier"@nl ;
+        sh:message "This node MUST link to exactly 1 xsd:string with rico:textualValue"@en ;
+        sh:path rico:textualValue ;
+        sh:datatype xsd:string ; 
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
     ] ;
     sh:property [
-        sh:message        "rico:Identifier MUST link to exactly 1 rico:IdentifierType"@en ;
-        sh:path           rico:hasIdentifierType ;
-        rdfs:label        "Type"@nl ;
-        sh:order          1.0 ;
-        dash:editor       memorix:VocabularyEditor ; # Eigenlijk moet ik hier standaard dezelfde URI krijgen, want een toegangsnummer is verplicht. Hier deze editor nu gebruikt om te laten zien hoe het zou kunnen werken.
-#       sh:class skos:Concept ; # Nu nog niet in staat gebleken om een Concept aan te maken.
-#       skos:ConceptSchema voc:conceptschemes/uuid-voor-keuzelijst-identifiertypes ;
-        sh:nodeKind       sh:IRI ;
-        sh:minCount       1 ;
-        sh:maxCount       1 ;
+        rdfs:label "Type identifier"@nl ;
+        sh:message "rico:Identifier MUST link to exactly 1 rico:IdentifierType with rico:hasIdentifierType"@en ;
+        sh:path rico:hasIdentifierType ;
+        sh:class rico:IdentifierType ; 
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
     ] .
 
 ## Date
 rico:DateRange a sh:NodeShape ;
     sh:targetClass rico:DateRange ;
-    sh:closed true ;
-    sh:ignoredProperties     ( rdf:type ) ;
     sh:property [
         rdfs:label "Periode (tekst)"@nl ;
         sh:path rico:expressedDate ;
-        sh:order 1.0 ;
         sh:datatype xsd:string ;
     ] ;
     sh:property [
@@ -180,28 +143,21 @@ rico:DateRange a sh:NodeShape ;
         sh:path rico:hasBeginningDate ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
-        sh:order 2.0 ;
         sh:class rico:SingleDate ;
-        sh:nodeKind sh:BlankNode ;
     ] ;
     sh:property [
         rdfs:label "Einddatum"@nl ;
         sh:path rico:hasEndDate ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
-        sh:order 3.0 ;
         sh:class rico:SingleDate ;
-        sh:nodeKind sh:BlankNode ;
     ] .
 
 rico:SingleDate a sh:NodeShape ;
     sh:targetClass rico:SingleDate ;
-    sh:closed true ;
-    sh:ignoredProperties     ( rdf:type ) ;
     sh:property [
         rdfs:label "Datum (tekst)"@nl ;
         sh:path rico:expressedDate ;
-        sh:order 1.0 ;
         sh:datatype xsd:string ;
     ] ;
     sh:property [
@@ -209,6 +165,26 @@ rico:SingleDate a sh:NodeShape ;
         sh:path rico:normalizedDateValue ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
-        sh:order 2.0 ;
-        sh:datatype xsd:gYear ;
+        sh:or ( 
+            [ sh:datatype xsd:gYear ] 
+            [ sh:datatype xsd:gYearMonth ] 
+            [ sh:datatype xsd:date ] 
+        ) ;
+    ] .
+
+blauwdruk:TypeShape a sh:NodeShape ;
+    sh:targetClass rico:IdentifierType, rico:TitleType ;
+    sh:property [
+        sh:message "rico:*Type MUST link to exactly 1 rico:Name with rico:hasOrHadName"@en ;
+        sh:path rico:hasOrHadName ;
+        sh:class rico:Name ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+    ] .
+
+blauwdruk:NameShape a sh:NodeShape ;
+    sh:targetClass  rico:Name ;
+    sh:property [
+        sh:path rico:textualValue ;
+        sh:datatype xsd:string ;
     ] .

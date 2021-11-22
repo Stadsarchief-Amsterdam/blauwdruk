@@ -11,7 +11,7 @@
 @prefix dct:           <http://purl.org/dc/terms/> .
 
 # 01-archiefblok
-# 02-verzameling
+# 02-groep
 # 03-bestanddeel
 # 04-afbeelding
 # 05-informatieobject

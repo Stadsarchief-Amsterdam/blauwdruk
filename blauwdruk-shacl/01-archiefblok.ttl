@@ -32,10 +32,10 @@ blauwdruk:Archiefblok a memorix:Recordtype, sh:NodeShape, owl:Class ;
         sh:maxCount 1 ;
     ];
     sh:property [
-        rdfs:label "Archiefbloknummer"@nl ;
+        rdfs:label "Archiefbloknummers"@nl ;
+        rdfs:comment "Oude en nieuwe nummers" ;
         sh:path rico:hasOrHadIdentifier ;
         sh:minCount 1 ;
-        sh:maxCount 1 ;
         sh:class rico:Identifier ; 
     ] ;
     sh:property [
@@ -165,7 +165,6 @@ rico:Title a sh:NodeShape ;
         sh:message "This node MUST link to exactly 1 rico:TitleType with rico:hasTitleType"@en ;
         sh:path rico:hasTitleType ;
         sh:class rico:TitleType ; 
-        sh:nodeKind sh:IRI ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
     ] .
@@ -233,13 +232,13 @@ rico:SingleDate a sh:NodeShape ;
     ] .
 
 blauwdruk:TypeShape a sh:NodeShape ;
-    sh:targetClass        rico:IdentifierType, rico:RecordState, rio:TitleType ;
+    sh:targetClass rico:IdentifierType, rico:RecordState, rico:TitleType ;
     sh:property [
-        sh:message        "rico:*Type MUST link to exactly 1 rico:Name with rico:hasOrHadName"@en ;
-        sh:path           rico:hasOrHadName ;
-        sh:class          rico:Name ;
-        sh:minCount       1 ;
-        sh:maxCount       1 ;
+        sh:message "rico:*Type MUST link to exactly 1 rico:Name with rico:hasOrHadName"@en ;
+        sh:path rico:hasOrHadName ;
+        sh:class rico:Name ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
     ] .
 
 blauwdruk:NameShape a sh:NodeShape ;
