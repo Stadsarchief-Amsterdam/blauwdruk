@@ -23,16 +23,16 @@ blauwdruk:Representatie a sh:NodeShape, owl:Class ;
         sh:datatype xsd:string ; 
     ] .
 
+# vindplaats (Container of URI van archiveMatica)
+## bestaat niet in Rico?
+
 # digitaal geboren (Y/N)
 ## rico:hasRepresentationType
 
 # reproductie van andere representatie (blauwdruk:Representatie)
-## rico:hasDerivedInstantiation <> rico:isDerivedInstantiationOf
+## rico:isDerivedInstantiationOf
 
-# vindplaats (Container of URI van archiveMatica)
-## bestaat niet in Rico?
-
-# HASH
+# Checksum
 ## rico:integrity
 
 
