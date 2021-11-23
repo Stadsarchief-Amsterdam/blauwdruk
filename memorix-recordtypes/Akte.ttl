@@ -125,13 +125,8 @@ akte:Person
 
 rico:SingleDate a sh:NodeShape ;
     sh:targetClass        rico:SingleDate ;
-    sh:property          [ rdfs:label  "Datum (tekst)"@nl ;
-                           sh:datatype xsd:string ;
-                           sh:order    1.0 ;
-                           sh:path     rico:expressedDate ] ;
     sh:property          [ rdfs:label  "Datum"@nl ;
                            sh:datatype xsd:date ;
                            sh:order    2.0 ;
                            sh:path     rico:normalizedDateValue ] ;
 .
-
