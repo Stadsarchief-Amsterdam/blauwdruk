@@ -107,7 +107,7 @@ rt:SaaAkte
 .
 
 akte:Person
-    rdf:type              sh::NodeShape ;
+    rdf:type             sh:NodeShape ;
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property          [ rdfs:label   "Persoonsvermelding"@nl ;
