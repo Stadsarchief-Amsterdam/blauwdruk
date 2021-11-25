@@ -39,11 +39,12 @@ archiefblok:managementGroup
 rt:SaaArchiefblok
     rdf:type             sh:NodeShape,
                          memorix:Recordtype ;
+                         rdfs:Class ;
     rdfs:label           "Archiefblok"@nl ;
     rdfs:comment         "Stadsarchief recordtype voor Archiefblok"@nl ;
     dc:identifier        "SaaArchiefblok" ;
     sh:targetClass       rt:SaaArchiefblok ;
-    owl:equivalentClass  rico:RecordSet ;
+    rdfs:subClassOf      rico:RecordSet ;
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property          [ rdfs:label        "Toegang"@nl ;
@@ -155,7 +156,8 @@ rt:SaaArchiefblok
 .
 
 archiefblok:DateRangeAccumulation
-    rdf:type             sh:NodeShape ;
+    rdf:type             sh:NodeShape , rdfs:Class ;
+    rdfs:subClassOf      rico:DateRange ;
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property          [ rdfs:label      "Beginjaar vorming"@nl ;
@@ -195,9 +197,10 @@ archiefblok:Inventarisatie
 .
 
 archiefblok:DateRangeOldest
-    rdf:type             sh:NodeShape ;
+    rdf:type             sh:NodeShape , rdfs:Class ;
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
+    rdfs:subClassOf      rico:DateRange ;
     sh:property          [ rdfs:label  "Datum (tekst)"@nl ;
                            sh:datatype xsd:string ;
                            sh:order    1.0 ;
@@ -220,7 +223,8 @@ archiefblok:DateRangeOldest
 .
 
 archiefblok:DateRangeYoungest
-    rdf:type             sh:NodeShape ;
+    rdf:type             sh:NodeShape , rdfs:Class ;
+    rdfs:subClassOf      rico:DateRange ;
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property          [ rdfs:label  "Datum (tekst)"@nl ;
