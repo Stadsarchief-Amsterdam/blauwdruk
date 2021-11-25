@@ -1,64 +1,116 @@
 # Leer Linked Data
 
-## Memorix
+## Datastructuur
 
-### RecordTypes
-Ik heb een voorbeeld recordtype aangemaakt door de volgende recordtype definitie in te lezen in een test-omgeving van Memorix. We gaan stapje voor stapje na wat er allemaal in wordt uitgedrukt. Maar eerst kun je eens kijken hoe deze recordtype definitie er in Memorix uitziet.
+### Les 1
+Je mag in Linked Data alle properties gebruiken die je wilt. We hebben tot nu toe gebruik gemaakt van rdf, rdfs en rico. Een veel toegepaste andere verzameling van properties is schema.org.
+
+Zo'n verzameling van properties heeft een bepaalde samenhang. In rico is het bijvoorbeeld logisch dat een knoop van het type rico:RecordSet de property rico:hasRecordSetType mag hebben. Dit soort samenhang wordt vastgelegd in een _ontologie_. Van elke property is bijvoorbeeld vastgelegd wat de _domain_ is, en de _range_. De domain van de property rico:hasRecordSetType is rico:RecordSet en de object van een triple met deze property is van het type rico:RecordSetType, met andere woorden: de range van rico:hasRecordSetType is rico:RecordSetType.
+
+Lees de rico-ontologie in in GraphDB:
+"Import" -> "RDF" -> "Get RDF data from a URL"
+
+Gebruik deze URL en kies bij het inlezen voor 'named graph'.
+https://www.ica.org/standards/RiC/RiC-O_v0-2.rdf 
+
+Geef de graaf de naam "https://www.ica.org/standards/RiC/ontology".
+
+Als je nu een graaf gaat visualiseren, zie je rdfs:labels die zijn gedefinieerd in de ontologie bij de relaties staan.
+
+### Les 2
+Een ontologie definieert nog meer samenhang. Zo leg je in de ontologie vast dat bepaalde types op elkaar lijken. Een rico:Family is namelijk een soort rico:Group, net als rico:Organization. En een rico:Group is een soort rico:Agent, net als rico:Person. Dit wordt klasse-hierarchie genoemd. Properties die gedefinieerd zijn bij rico:Agent zijn daardoor ook te gebruiken bij rico:Group en rico:Family. Een andere belangrijke klasse hierarchie in RiC-O is dat rico:Record, rico:RecordSet en rico:RecordPart alledrie subklasses zijn van rico:RecordResource.
+
+Je kunt zelf ook classes definieren.
+
+<https://id.archief.amsterdam/blauwdruk/Archief>
+	a rdfs:Class ;
+	owl:equivalentClass rico:RecordSet .
+
+Dat is handig als je zelf aanvullende eigenschappen wilt definieren die nodig zijn om specifieke dingen vast te leggen over een Archief bij het Stadsarchief Amsterdam. De class 'Archief' kan dus alle properties gebruiken die bij rico:RecordSet zijn gedefnieerd en ook alle properties die je zelf definieert. In dit voorbeeld zijn deze niet opgenomen, maar we kunnen een eigen definitie van Archief goed gebruiken om de data te kunnen controleren. Dat leren we in de volgende les.
+
+### Les 3
+De vrijheid die Linked Data biedt is niet altijd handig. Soms moet je gewoon zeker weten dat er een plaats in het depot is vastgelegd bijvoorbeeld. En dat ook kunnen controleren. Daarvoor gebruiken we SHACL. Omdat we in Amsterdam graag andere randvoorwaarden (_constraints_) willen kunnen controleren voor Archief en Bestanddeel is het nodig om deze apart te definieren en te bepalen dat ze hetzelfde zijn als een rico:RecordSet.
+
+Bij een Archief vinden we in Amsterdam een archiefvormer verplicht, bij een Bestanddeel niet. Dus:
 
 ```
 @prefix rdf:           <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs:          <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix owl:           <http://www.w3.org/2002/07/owl#> .
-@prefix xsd:           <http://www.w3.org/2001/XMLSchema#> .
-
-@prefix dc:            <http://purl.org/dc/elements/1.1/> .
+@prefix blauwdruk:     <https://id.archief.amsterdam/recordtypes/> .
 @prefix sh:            <http://www.w3.org/ns/shacl#> .
-@prefix dash:          <http://datashapes.org/dash#> .
-@prefix memorix:       <http://memorix.io/ontology#> .
-
-@prefix rt:            </resources/recordtypes/> .
-@prefix archiefblok:   </resources/recordtypes/ArchiefblokDemonstratie#> .
 @prefix rico:          <https://www.ica.org/standards/RiC/ontology#> .
 
-rt:Archiefblok a sh:NodeShape, memorix:Recordtype ;
-    rdfs:label           "Archiefblok"@nl ;
-    rdfs:comment         "Stadsarchief recordtype voor Archiefblok"@nl ;
-    dc:identifier        "ArchiefblokDemonstratie" ;
-    sh:targetClass       rt:Archiefblok ;
-    owl:equivalentClass  rico:RecordSet ;
-    sh:closed            true ;
-    sh:ignoredProperties ( rdf:type ) ;
-    sh:property          [ rdfs:label        "Nummer Toegang"@nl ;
-                           rdfs:comment      "Unieke nummer van deze toegang"@nl ;
-                           sh:minCount       1 ;
-                           sh:maxCount       1 ;
-                           sh:group          archiefblok:identificationGroup ;
-                           sh:order          1.0 ;
-                           memorix:inTitleAt 1 ;
-                           sh:path           rico:identifier ;
-                           sh:message        "Een nummer is verplicht en moet een getal zijn."@nl ;
-                           sh:datatype       xsd:integer ] ;
-    sh:property          [ rdfs:label        "Naam Toegang"@nl ;
-                           rdfs:comment      "Naam of beschrijving van het archiefblok."@nl ;
-                           sh:minCount       1 ;
-                           sh:maxCount       1 ;
-                           sh:group          archiefblok:identificationGroup ;
-                           sh:order          2.0 ;
-                           memorix:inTitleAt 2 ;
-                           sh:path           rico:title ;
-                           sh:message        "Naam toegang is verplicht. Moet altijd beginnen met 'Archief' of 'Collectie.'"@nl ;
-                           sh:datatype       xsd:string ] .
+blauwdruk:Archief a sh:NodeShape, rdfs:Class ;
+    sh:targetClass blauwdruk:Archief ;
+    owl:equivalentClass rico:RecordSet ;
+    sh:property [
+        sh:path rico:hasAccumulator ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+    ] .
 
-archiefblok:identificationGroup a sh:PropertyGroup ;
-    rdfs:label "Identificatie"@nl ;
-    sh:order   1.0 .
+blauwdruk:Bestanddeel a sh:NodeShape, rdfs:Class ;
+    sh:targetClass blauwdruk:Bestanddeel ;
+    owl:equivalentClass rico:RecordSet ;
+    sh:property [
+        sh:path rico:hasAccumulator ;
+        sh:maxCount 1 ;
+    ] .
 
 ```
 
-Vul [hier](https://example.memorix-test.nl/ui/collections/eac29c25-1015-40c8-b40f-15391525cde7/record/new-ArchiefblokDemonstratie) data in over een test archief.
+Lees deze graaf in met als naam: http://rdf4j.org/schema/rdf4j#SHACLShapeGraph. Deze graaf van Shapes is niet meer terug te zien in de lijst van geimporteerde grafen maar door het deze naam te geven weet GraphDB dat ze de shapes in de graaf moet gebruiken om te valideren bij het importeren.
 
-1. Kun je ook een letter proberen in te voeren voor het nummer van de toegang?
-1. Kijk wat er gebeurt als je vergeet een titel in te voeren?
-1. 
+### Les 4
+Als het goed is gaat het nu mis als je onderstaande data wilt invoeren
+```
+@prefix rdf:           <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rico:          <https://www.ica.org/standards/RiC/ontology#> .
+@prefix ric-rst:       <https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#> .
+@prefix blauwdruk:     <https://id.archief.amsterdam/recordtypes/> .
 
-### Records
+<https://id.archief.amsterdam/8> 
+	rdf:type blauwdruk:Archief ;
+	rico:hasRecordSetType ric-rst:Fonds .
+```
+
+Vraag: Waaarom?
+
+maar dit mag wel:
+```
+@prefix rdf:           <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rico:          <https://www.ica.org/standards/RiC/ontology#> .
+@prefix ric-rst:       <https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#> .
+@prefix blauwdruk:     <https://id.archief.amsterdam/recordtypes/> .
+
+<https://id.archief.amsterdam/9> 
+	rdf:type blauwdruk:Bestanddeel ;
+	rico:hasRecordSetType ric-rst:File ;
+    rico:isAssociatedWithDate [
+        a rico:DateRange ;
+        rico:expressedDate "1423 - 1424" ;
+        rico:hasBeginningDate [
+            a rico:SingleDate ;
+            rico:normalizedDateValue "1423"^^xsd:gYear
+        ] ;
+        rico:hasEndDate [
+            a rico:SingleDate ;
+            rico:normalizedDateValue "1424"^^xsd:gYear
+        ]
+    ] .
+
+```
+
+### Les 5
+Doe opnieuw:
+
+```
+SELECT * WHERE {
+     ?rs 	rico:hasRecordSetType $rst ;
+     		rico:isAssociatedWithDate/rico:hasBeginningDate/rico:normalizedDateValue ?begindate .
+     FILTER (?begindate < '1600'^^xsd:gYear)
+}
+
+```
+

@@ -27,8 +27,6 @@ De manier om triples uit te drukken zoals we in les 1.1 zagen wordt _n-triples_ 
 	<https://www.ica.org/standards/RiC/ontology#hasRecordSetType> <https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#Fonds> .
 ```
 
-Merk op dat er een punt-komma staat aan het eind van de tweede regel. Dat betekent dat je de _subject_ niet hoeft te herhalen. Deze is bij de volgende reden nog steeds <https://id.archief.amsterdam/1>. Op die manier kun je heel overzichtelijk alle properties onder elkaar opsommen met het object erachter. Totdat je de laatste hebt gehad, dan zet je een punt.
-
 Echt leesbaar voor mensen wordt het als je webadressen afkort met een _namespace_.
 
 ```
@@ -82,10 +80,10 @@ Hieronder is een complete beschrijving van een archief.
 @prefix rdfs:          <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix rico:          <https://www.ica.org/standards/RiC/ontology#> .
 @prefix ric-rst:       <https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#> .
-@prefix xsd:           <http://www.w3.org/2001/XMLSchema#> .
+@prefix xsd:        <http://www.w3.org/2001/XMLSchema#> .
 
 <https://id.archief.amsterdam/4> 
-	a rico:RecordSet ;
+	rdf:type rico:RecordSet ;
 	rdfs:label "Archief van Een Of Ander Instituut" ;
 	rico:hasRecordSetType ric-rst:Fonds ;
     rico:hasAccumulator <https://id.archief.amsterdam/5> ;
@@ -122,7 +120,7 @@ Hieronder is een complete beschrijving van een archief.
     rico:scopeAndContent "blabla" .
 
 <https://id.archief.amsterdam/5>
-	a rico:CorporateBody ;
+	a rico:Organization ;
 	rdfs:label "Een Of Ander Instituut" .
 
 <https://id.archief.amsterdam/6>
@@ -130,7 +128,7 @@ Hieronder is een complete beschrijving van een archief.
 	rdfs:label "Toegangsnummer" .
 
 <https://id.archief.amsterdam/7>
-	a rico:CorporateBody ;
+	a rico:Organization ;
 	rdfs:label "Stadsarchief Amsterdam" .
 
 
