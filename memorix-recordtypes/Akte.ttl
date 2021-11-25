@@ -5,7 +5,7 @@
 @prefix skos:            <http://www.w3.org/2004/02/skos/core#> .
 
 @prefix rt:              </resources/recordtypes/> .
-@prefix akte:            </resources/recordtypes/Akte#> .
+@prefix akte:            </resources/recordtypes/SaaAkte#> .
 
 @prefix dc:              <http://purl.org/dc/elements/1.1/> .
 @prefix sh:              <http://www.w3.org/ns/shacl#> .
@@ -36,13 +36,13 @@ akte:managementGroup
     rdfs:label "Beheer"@nl ;
     sh:order   3.0 .
 
-rt:Akte
+rt:SaaAkte
     rdf:type             memorix:Recordtype,
                          sh:NodeShape ;
     rdfs:comment         "Stadsarchief recordtype voor Akte"@nl ;
     rdfs:label           "Akte"@nl ;
     dc:identifier        "SaaAkte" ;
-    sh:targetClass       rt:Akte ;
+    sh:targetClass       rt:SaaAkte ;
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property          [ rdfs:label        "Titel"@nl ;
