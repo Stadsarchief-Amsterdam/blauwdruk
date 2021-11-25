@@ -125,6 +125,8 @@ akte:Person
 
 rico:SingleDate a sh:NodeShape ;
     sh:targetClass        rico:SingleDate ;
+    sh:closed            true ;
+    sh:ignoredProperties ( rdf:type ) ;
     sh:property          [ rdfs:label  "Datum"@nl ;
                            sh:datatype xsd:date ;
                            sh:order    2.0 ;
