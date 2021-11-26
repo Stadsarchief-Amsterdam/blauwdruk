@@ -4,7 +4,7 @@
 @prefix skos:            <http://www.w3.org/2004/02/skos/core#> .
 
 @prefix rt:              </resources/recordtypes/> .
-@prefix akte:            </resources/recordtypes/SaaAkte#> .
+@prefix akte:            </resources/recordtypes/Akte#> .
 
 @prefix dc:              <http://purl.org/dc/elements/1.1/> .
 @prefix sh:              <http://www.w3.org/ns/shacl#> .
@@ -132,4 +132,8 @@ rico:SingleDate
                            sh:datatype xsd:date ;
                            sh:order    2.0 ;
                            sh:path     rico:normalizedDateValue ] ;
+.
+
+akte:indexName a rdfs:Property ;
+    rdfs:subPropertyOf rico:isOrWasPartOf ;
 .

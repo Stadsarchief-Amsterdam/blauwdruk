@@ -19,22 +19,26 @@
 persoonsvermelding:personListingGroup
     rdf:type   sh:PropertyGroup ;
     rdfs:label "Persoonsvermelding"@nl ;
-    sh:order   1.0 .
+    sh:order   1.0 ;
+.
 
 persoonsvermelding:detailsGroup
     rdf:type   sh:PropertyGroup ;
     rdfs:label "Bijzonderheden"@nl ;
-    sh:order   2.0 .
+    sh:order   2.0 ;
+.
 
 persoonsvermelding:relationsGroup
     rdf:type   sh:PropertyGroup ;
     rdfs:label "Relaties"@nl ;
-    sh:order   3.0 .
+    sh:order   3.0 ;
+.
 
 persoonsvermelding:managementGroup
     rdf:type   sh:PropertyGroup ;
     rdfs:label "Beheer"@nl ;
-    sh:order   4.0 .
+    sh:order   4.0 ;
+.
 
 rt:Persoonsvermelding
     rdf:type             sh:NodeShape,
@@ -44,6 +48,7 @@ rt:Persoonsvermelding
     dc:identifier        "SaaPersoonsvermelding" ;
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
+    rdfs:subClassOf      rico:Person , schema:Person , pnv:Person;
     sh:property          [ rdfs:label        "Voornaam"@nl ;
                            memorix:inTitleAt 1.0 ;
                            sh:datatype       xsd:string ;
@@ -134,7 +139,7 @@ rt:Persoonsvermelding
                            sh:order     2.0 ;
                            sh:maxCount  100 ;
                            sh:nodeKind  sh:IRI ;
-                           sh:or        ( [ sh:class rt:Persoon ] [ sh:class rt:SaaPersoonsvermelding ] ) ;
+                           sh:or        ( [ sh:class rt:SaaPersoon ] [ sh:class rt:SaaPersoonsvermelding ] ) ;
                            sh:path      persoonsvermelding:sameAsInternal ] ;
     sh:targetClass       rt:Persoonsvermelding .
 
@@ -150,5 +155,13 @@ persoonsvermelding:Details
                            sh:datatype xsd:string ;
                            sh:order    2.0 ;
                            sh:path     persoonsvermelding:detailDetail ] ;
-    sh:targetClass       persoonsvermelding:Details .
+    sh:targetClass       persoonsvermelding:Details ;
+.
 
+persoonsvermelding:sameAsExternal a rdfs:Property ;
+    owl:equivalentProperty owl:sameAs ;
+.
+
+persoonsvermelding:sameAsInternal a rdfs:Property ;
+    owl:equivalentProperty owl:sameAs ;
+.

@@ -182,13 +182,15 @@ rico:Instantiation
     sh:property          [ rdfs:label  "Afmetingen van de drager"@nl ;
                            sh:path     rico:hasExtent ;
                            sh:datatype xsd:string ;
-                           sh:order    4.0 ; ] .
+                           sh:order    4.0 ; ] ;
+.
 
 afbeelding:DepictedAddress
     a                    sh:NodeShape ;
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:targetClass       afbeelding:DepictedAddress ;
+    rdfs:subClassOf      rico:Place ;
     sh:property          [ rdfs:label              "Straatnaam"@nl ;
                            sh:path                 afbeelding:street ;
                            sh:order                1.0 ;
@@ -213,6 +215,7 @@ afbeelding:Creation
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:targetClass       afbeelding:Creation ;
+    rdfs:subClassOf      rico:Event ;
     sh:property          [ rdfs:label  "Vervaardiger(s)"@nl ;
                            sh:path     afbeelding:creationEventCreator ;
                            sh:order    1.0 ;
@@ -235,7 +238,7 @@ afbeelding:Creation
     sh:property          [ rdfs:label  "Vervaardigingsdatum tot"@nl ;
                            sh:path     afbeelding:creationEventDateUntil ;
                            sh:maxCount 1 ;
-                           sh:order    3.0 ;
+                           sh:order    4.0 ;
                            dash:editor memorix:DateEditor ;
                            sh:datatype xsd:integer ; ]
 .
@@ -243,22 +246,31 @@ afbeelding:Creation
 afbeelding:contentDescriptionGroup
     rdf:type   sh:PropertyGroup ;
     rdfs:label "Inhoudelijke beschrijving"@nl ;
-    sh:order   1.0
+    sh:order   1.0 ;
 .
 
 afbeelding:physicalDescriptionGroup
     rdf:type   sh:PropertyGroup ;
     rdfs:label "Fysieke kenmerken"@nl ;
-    sh:order   2.0
+    sh:order   2.0 ;
 .
 
 afbeelding:relationsGroup
     rdf:type   sh:PropertyGroup ;
     rdfs:label "Relaties"@nl ;
-    sh:order   3.0
+    sh:order   3.0 ;
 .
 
 afbeelding:managementGroup
     rdf:type   sh:PropertyGroup ;
     rdfs:label "Beheer"@nl ;
-    sh:order   4.0 .
+    sh:order   4.0 ;
+.
+
+afbeelding:historicalTitle a rdfs:Property ;
+    rdfs:subPropertyOf rico:hasOrHadTitle ;
+.
+
+afbeelding:externalLink a rdfs:Property ;
+    rdfs:subPropertyOf rico:hasOrHadSubject ;
+.

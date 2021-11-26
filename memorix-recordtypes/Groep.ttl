@@ -18,7 +18,7 @@
 @prefix ric-dft:         <https://www.ica.org/standards/RiC/vocabularies/documentaryFormTypes#> .
 
 @prefix pnv:             <https://w3id.org/pnv#> .
-@prefix schema:          <https://schema.org/> .
+@prefix schema:          <http://schema.org/> .
 
 
 groep:identificationGroup
@@ -47,7 +47,7 @@ rt:Groep
     rdfs:comment         "Stadsarchief recordtype voor Groep"@nl ;
     rdfs:label           "Groep"@nl ;
     dc:identifier        "SaaGroep" ;
-    owl:equivalentClass  rico:RecordSet ;
+    rdfs:subClassOf      rico:RecordSet ;
     sh:targetClass       rt:Groep ;
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
@@ -148,3 +148,4 @@ rico:DateRange
                            sh:path     rico:hasEndDate ] ;
     sh:targetClass       rico:DateRange ;
 .
+

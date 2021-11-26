@@ -18,27 +18,31 @@
 @prefix ric-dft:        <https://www.ica.org/standards/RiC/vocabularies/documentaryFormTypes#> .
 
 @prefix pnv:            <https://w3id.org/pnv#> .
-@prefix schema:         <https://schema.org/> .
+@prefix schema:         <http://schema.org/> .
 
 bestanddeel:identificationGroup
     rdf:type   sh:PropertyGroup ;
     rdfs:label "Identificatie"@nl ;
-    sh:order   1.0 .
+    sh:order   1.0 ;
+.
 
 bestanddeel:contentDescriptionGroup
     rdf:type   sh:PropertyGroup ;
     rdfs:label "Beschrijving"@nl ;
-    sh:order   2.0 .
+    sh:order   2.0 ;
+.
 
 bestanddeel:partitionGroup
     rdf:type   sh:PropertyGroup ;
     rdfs:label "Indeling"@nl ;
-    sh:order   3.0 .
+    sh:order   3.0 ;
+.
 
 bestanddeel:managementGroup
     rdf:type   sh:PropertyGroup ;
     rdfs:label "Beheer"@nl ;
-    sh:order   4.0 .
+    sh:order   4.0 ;
+.
 
 rt:Bestanddeel
     rdf:type                        memorix:Recordtype,
@@ -47,7 +51,7 @@ rt:Bestanddeel
     rdfs:label                      "Bestanddeel"@nl ;
     dc:identifier                   "SaaBestanddeel" ;
     sh:targetClass                  rt:Bestanddeel ;
-    owl:equivalentClass             rico:RecordSet ;
+    rdfs:subClassOf                 rico:RecordSet ;
     sh:closed                       true ;
     sh:ignoredProperties            ( rdf:type ) ;
     memorix:hasInformationComponent memorix:DepotLocationComponent ;
@@ -165,7 +169,7 @@ rt:Bestanddeel
                                       sh:nodeKind  sh:IRI ;
                                       sh:or        ( [ sh:class rt:SaaBestanddeel ] ) ;
                                       sh:order     7.0 ;
-                                      sh:path      bestanddeel:otherRecord ] ; #todo Ivo, is hier iets voor in Rico?
+                                      sh:path      rdfs:seeAlso ] ; 
     sh:property                     [ rdfs:label   "Status"@nl ;
                                       rdfs:comment "Status van het inventarisnummer. aanwezig, vervallen, te vernietigen, vermist, vernietigd."@nl ;
                                       sh:message   "Status is verplicht. Moet een van de volgende waardes zijn: aanwezig, vervallen, te vernietigen, vermist, vernietigd"@nl ;
@@ -220,4 +224,20 @@ rico:DateRange
                            sh:order    3.0 ;
                            sh:path     rico:hasEndDate ] ;
     sh:targetClass       rico:DateRange ;
+.
+
+bestanddeel:digitalBorn a rdfs:Property ;
+  # in rico modeled with rico:hasRepresentationType
+.
+
+bestanddeel:digitised a rdfs:Property ;
+  # in rico modeled with rico:hasRepresentationType
+.
+
+bestanddeel:duplicate a rdfs:Property ;
+  rdfs:subPropertyOf rico:hasInstantiation ;
+.
+
+bestanddeel:status a rdfs:Property ;
+  rdfs:subPropertyOf rico:isOrWasRecordStateOfAllMembers ;
 .

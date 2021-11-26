@@ -18,7 +18,7 @@
 @prefix ric-dft:        <https://www.ica.org/standards/RiC/vocabularies/documentaryFormTypes#> .
 
 @prefix pnv:            <https://w3id.org/pnv#> .
-@prefix schema:         <https://schema.org/> .
+@prefix schema:         <http://schema.org/> .
 
 
 ding:testGroup
@@ -32,7 +32,7 @@ rt:Ding
                          sh:NodeShape ;
     rdfs:comment         "Stadsarchief recordtype voor test dingen"@nl ;
     rdfs:label           "Ding"@nl ;
-    dc:identifier        "Ding" ;
+    dc:identifier        "SaaDing" ;
     sh:targetClass       rt:Ding ;
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
@@ -62,3 +62,6 @@ rt:Ding
                            sh:order    3.0 ;
                            sh:path     ding:status ] ;
 .
+
+ding:status a rdfs:Property ;
+    rdfs:subPropertyOf rico:isOrWasRecordStateOfAllMembers .

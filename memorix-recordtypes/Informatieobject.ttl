@@ -13,17 +13,16 @@
 @prefix rico:           <https://www.ica.org/standards/RiC/ontology#> .
 @prefix ric-rst:        <https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#> .
 @prefix ric-dft:        <https://www.ica.org/standards/RiC/vocabularies/documentaryFormTypes#> .
-@prefix owl:             <http://www.w3.org/2002/07/owl#> .
 
-recordtypes:SaaInformatieobject
+recordtypes:Informatieobject
     a                               memorix:Recordtype, sh:NodeShape ;
     rdfs:label                      "Informatieobject"@nl ;
     rdfs:comment                    "Beschrijvingen van computerbestanden Stadsarchief Amsterdam"@nl ;
     dc:identifier                   "SaaInformatieobject" ;
     sh:closed                       true ;
     sh:ignoredProperties            ( rdf:type ) ;
-    owl:equivalentClass             rico:Record ;
-    sh:targetClass                  recordtypes:SaaInformatieobject ;
+    rdfs:subClassOf                 rico:Record ;
+    sh:targetClass                  recordtypes:Informatieobject ;
     sh:property                     [ rdfs:label              "Type document"@nl ;
                                       rdfs:comment            "Selecteer een waarde uit de lijst."@nl ;
                                       sh:path                 rico:hasDocumentaryFormType ;
@@ -89,18 +88,20 @@ recordtypes:SaaInformatieobject
 io:contentDescriptionGroup
     rdf:type   sh:PropertyGroup ;
     rdfs:label "Inhoudelijke beschrijving"@nl ;
-    sh:order   1.0
+    sh:order   1.0 ;
 .
 
 io:beheerGroup
     rdf:type   sh:PropertyGroup ;
     rdfs:label "Beheer"@nl ;
-    sh:order  2.0 .
+    sh:order  2.0 ;
+.
 
 io:partitionGroup
     rdf:type   sh:PropertyGroup ;
     rdfs:label "Indeling"@nl ;
-    sh:order   3.0 .
+    sh:order   3.0 ;
+.
 
 rico:DateRange
     rdf:type             sh:NodeShape ;
@@ -119,4 +120,8 @@ rico:DateRange
                            sh:order    3.0 ;
                            sh:path     rico:hasEndDate ] ;
     sh:targetClass       rico:DateRange ;
+.
+
+io:oudeNummers a rdfs:Property ;
+  rdfs:subPropertyOf rico:hasOrHadIdentifier ;
 .

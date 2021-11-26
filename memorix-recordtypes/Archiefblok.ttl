@@ -4,7 +4,7 @@
 @prefix xsd:           <http://www.w3.org/2001/XMLSchema#> .
 
 @prefix rt:            </resources/recordtypes/> .
-@prefix archiefblok:   </resources/recordtypes/SaaArchiefblok#> .
+@prefix archiefblok:   </resources/recordtypes/Archiefblok#> .
 
 @prefix dc:            <http://purl.org/dc/elements/1.1/> .
 @prefix sh:            <http://www.w3.org/ns/shacl#> .
@@ -105,7 +105,7 @@ rt:SaaArchiefblok
                            sh:maxCount  1 ;
                            sh:nodeKind  sh:BlankNode ;
                            sh:order     5.0 ;
-                           sh:path      archiefblok:hasOldestRecord ] ; # archiefblok:hasOldestRecord rdfs:subPropertyOf rico:isAssociatedWithDate .
+                           sh:path      archiefblok:hasOldestRecord ] ; 
     sh:property          [ rdfs:label   "Datering Jongste Stuk"@nl ;
                            rdfs:comment "Datum van het jongste stuk in dit archief."@nl ;
                            sh:class     archiefblok:DateRangeYoungest ;
@@ -113,7 +113,7 @@ rt:SaaArchiefblok
                            sh:maxCount  1 ;
                            sh:nodeKind  sh:BlankNode ;
                            sh:order     6.0 ;
-                           sh:path      archiefblok:hasYoungestRecord ] ; # archiefblok:hasYoungestRecord rdfs:subPropertyOf rico:isAssociatedWithDate .
+                           sh:path      archiefblok:hasYoungestRecord ] ;
     sh:property          [ rdfs:label  "Inleiding"@nl ;
                            sh:path     rico:scopeAndContent ;
                            sh:group    archiefblok:contentDescriptionGroup ;
@@ -152,7 +152,7 @@ rt:SaaArchiefblok
                            sh:in       ( "aanwezig" "vervallen" "te vernietigen" "vernietigd" ) ;
                            sh:group     archiefblok:managementGroup ;
                            sh:order     10.0 ;
-                           sh:path      archiefblok:status ; ] ; # archiefblok:status rdfs:subPropertyOf rico:isOrWasRecordStateOfAllMembers .
+                           sh:path      archiefblok:status ; ] ; 
 .
 
 archiefblok:DateRangeAccumulation
@@ -246,4 +246,15 @@ archiefblok:DateRangeYoungest
                            sh:order    3.0 ;
                            sh:path     rico:hasEndDate ] ;
     sh:targetClass       archiefblok:DateRangeYoungest ;
+.
+
+archiefblok:status a rdfs:Property ;
+    rdfs:subPropertyOf rico:isOrWasRecordStateOfAllMembers .
+
+archiefblok:hasYoungestRecord a rdfs:Property ; 
+    rdfs:subPropertyOf rico:isAssociatedWithDate ;
+.
+
+archiefblok:hasOldestRecord a rdfs:Property ; 
+    rdfs:subPropertyOf rico:isAssociatedWithDate ;
 .
