@@ -4,7 +4,7 @@
 @prefix skos:            <http://www.w3.org/2004/02/skos/core#> .
 
 @prefix rt:              </resources/recordtypes/> .
-@prefix akte:            </resources/recordtypes/Akte#> .
+@prefix akte:            </resources/recordtypes/SaaAkte#> .
 
 @prefix dc:              <http://purl.org/dc/elements/1.1/> .
 @prefix sh:              <http://www.w3.org/ns/shacl#> .
