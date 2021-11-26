@@ -29,7 +29,7 @@ familie:managementGroup
     sh:order   2.0 .
 
 rt:Familie
-    rdf:type                memorix:Recordtype, sh:NodeShape ;
+    rdf:type                memorix:Recordtype , sh:NodeShape , rdfs:Class ;
     rdfs:label              "Familie"@nl ;
     rdfs:comment            "Stadsarchief recordtype voor Familie"@nl ;
     dc:identifier           "SaaFamilie" ;

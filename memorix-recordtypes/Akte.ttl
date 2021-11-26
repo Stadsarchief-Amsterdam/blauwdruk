@@ -35,9 +35,9 @@ akte:managementGroup
     rdfs:label "Beheer"@nl ;
     sh:order   3.0 .
 
-rt:SaaAkte
-    rdf:type             memorix:Recordtype,
-                         sh:NodeShape ;
+rt:SaaAkte a memorix:Recordtype ,
+             sh:NodeShape ,
+             rdfs:Class ;
     rdfs:comment         "Stadsarchief recordtype voor Akte"@nl ;
     rdfs:label           "Akte"@nl,
                          "Deed"@en ;

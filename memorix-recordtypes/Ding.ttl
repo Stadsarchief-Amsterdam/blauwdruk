@@ -28,8 +28,9 @@ ding:testGroup
 
 
 rt:Ding
-    rdf:type             memorix:Recordtype,
-                         sh:NodeShape ;
+    rdf:type             memorix:Recordtype ,
+                         sh:NodeShape ,
+                         rdfs:Class ;
     rdfs:comment         "Stadsarchief recordtype voor test dingen"@nl ;
     rdfs:label           "Ding"@nl ;
     dc:identifier        "SaaDing" ;

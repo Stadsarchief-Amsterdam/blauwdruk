@@ -33,7 +33,7 @@ organisatie:managementGroup
     sh:order   2.0 .
 
 rt:Organisatie
-    rdf:type                memorix:Recordtype, sh:NodeShape ;
+    rdf:type                memorix:Recordtype , rdfs:Class , sh:NodeShape ;
     rdfs:label              "Organisatie"@nl ;
     rdfs:comment            "Stadsarchief recordtype voor Organisatie"@nl ;
     dc:identifier           "SaaOrganisatie" ;

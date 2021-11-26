@@ -15,7 +15,7 @@
 @prefix ric-dft:        <https://www.ica.org/standards/RiC/vocabularies/documentaryFormTypes#> .
 
 recordtypes:Informatieobject
-    a                               memorix:Recordtype, sh:NodeShape ;
+    a                               memorix:Recordtype , rdfs:Class , sh:NodeShape ;
     rdfs:label                      "Informatieobject"@nl ;
     rdfs:comment                    "Beschrijvingen van computerbestanden Stadsarchief Amsterdam"@nl ;
     dc:identifier                   "SaaInformatieobject" ;

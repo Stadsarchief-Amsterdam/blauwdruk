@@ -42,8 +42,9 @@ groep:managementGroup
     sh:order   4.0 .
 
 rt:Groep
-    rdf:type             memorix:Recordtype,
-                         sh:NodeShape ;
+    rdf:type             memorix:Recordtype ,
+                         sh:NodeShape ,
+                         rdfs:Class ;
     rdfs:comment         "Stadsarchief recordtype voor Groep"@nl ;
     rdfs:label           "Groep"@nl ;
     dc:identifier        "SaaGroep" ;

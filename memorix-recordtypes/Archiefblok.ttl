@@ -38,7 +38,7 @@ archiefblok:managementGroup
 
 rt:SaaArchiefblok
     rdf:type             sh:NodeShape,
-                         memorix:Recordtype ;
+                         memorix:Recordtype ,
                          rdfs:Class ;
     rdfs:label           "Archiefblok"@nl ;
     rdfs:comment         "Stadsarchief recordtype voor Archiefblok"@nl ;

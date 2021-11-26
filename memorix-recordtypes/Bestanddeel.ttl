@@ -44,9 +44,9 @@ bestanddeel:managementGroup
     sh:order   4.0 ;
 .
 
-rt:Bestanddeel
-    rdf:type                        memorix:Recordtype,
-                                    sh:NodeShape ;
+rt:Bestanddeel a memorix:Recordtype , 
+                  rdfs:Class ,
+                  sh:NodeShape ;
     rdfs:comment                    "Stadsarchief recordtype voor Bestanddeel"@nl ;
     rdfs:label                      "Bestanddeel"@nl ;
     dc:identifier                   "SaaBestanddeel" ;

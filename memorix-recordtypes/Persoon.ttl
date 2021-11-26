@@ -41,7 +41,7 @@ persoon:managementGroup
 .
 
 rt:Persoon
-    rdf:type             memorix:Recordtype, sh:NodeShape ;
+    rdf:type             memorix:Recordtype , rdfs:Class , sh:NodeShape ;
     rdfs:comment         "Stadsarchief recordtype voor Persoon"@nl ;
     rdfs:label           "Persoon"@nl ;
     dc:identifier        "SaaPersoon" ;

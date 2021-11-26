@@ -14,9 +14,9 @@
 @prefix ric-rst:        <https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#> .
 @prefix ric-dft:        <https://www.ica.org/standards/RiC/vocabularies/documentaryFormTypes#> .
 
-recordtypes:Afbeelding
-    a                    memorix:Recordtype,
-                         sh:NodeShape ;
+recordtypes:Afbeelding a memorix:Recordtype ,
+                         sh:NodeShape ,
+                         rdfs:Class ;
     rdfs:label           "Afbeelding"@nl ;
     rdfs:comment         "Beeldbankbeschrijvingen Stadsarchief Amsterdam"@nl ;
     dc:identifier        "SaaAfbeelding" ;

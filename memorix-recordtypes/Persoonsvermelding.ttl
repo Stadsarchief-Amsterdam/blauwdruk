@@ -41,7 +41,7 @@ persoonsvermelding:managementGroup
 .
 
 rt:Persoonsvermelding
-    rdf:type             sh:NodeShape,
+    rdf:type             sh:NodeShape , rdfs:Class ,
                          memorix:Recordtype ;
     rdfs:comment         "Standaard Recordtype voor Persoonsvermeldingen in Indexen"@nl ;
     rdfs:label           "Persoonsvermelding"@nl ;
