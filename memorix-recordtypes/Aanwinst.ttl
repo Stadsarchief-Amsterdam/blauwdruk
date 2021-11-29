@@ -42,7 +42,8 @@ acquisition:managementGroup
 rt:Acquisition
     rdf:type                        memorix:Recordtype,
                                     sh:NodeShape ;
-    rdfs:label                      "Aanwinst"@nl, "Acquisition"@en ;
+    #rdfs:label                      "Aanwinst"@nl, "Acquisition"@en ; #change after randomness is fixed
+    rdfs:label                      "Aanwinst"@nl ;
     rdfs:comment                    "Stadsarchief recordtype voor Aanwinst"@nl ;
     dc:identifier                   "Acquisition" ;
     sh:targetClass                  rt:Acquisition ;

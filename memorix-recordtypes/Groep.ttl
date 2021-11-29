@@ -46,7 +46,8 @@ rt:Series
                          sh:NodeShape ,
                          rdfs:Class ;
     rdfs:comment         "Stadsarchief recordtype voor Groep"@nl ;
-    rdfs:label           "Groep"@nl, "Series"@en;
+    # rdfs:label           "Groep"@nl, "Series"@en; #change after randomness is fixed
+    rdfs:label           "Groep"@nl ;
     dc:identifier        "Series" ;
     rdfs:subClassOf      rico:RecordSet ;
     sh:targetClass       rt:Series ;

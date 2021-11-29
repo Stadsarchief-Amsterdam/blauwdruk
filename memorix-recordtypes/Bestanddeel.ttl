@@ -48,9 +48,10 @@ rt:File a memorix:Recordtype ,
                   rdfs:Class ,
                   sh:NodeShape ;
     rdfs:comment                    "Stadsarchief recordtype voor Bestanddeel"@nl ;
-    rdfs:label                      "Bestanddeel"@nl, "File"@en ;
+    #rdfs:label                      "Bestanddeel"@nl, "File"@en ; #change after randomness is fixed
+    rdfs:label                      "Bestanddeel"@nl ;
     dc:identifier                   "File" ;
-    sh:targetClass                  rt:Bestanddeel ;
+    sh:targetClass                  rt:File ;
     rdfs:subClassOf                 rico:RecordSet ;
     sh:closed                       true ;
     sh:ignoredProperties            ( rdf:type ) ;
