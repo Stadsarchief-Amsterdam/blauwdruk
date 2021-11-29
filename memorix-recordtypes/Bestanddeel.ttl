@@ -149,7 +149,7 @@ rt:Bestanddeel a memorix:Recordtype ,
                                       sh:group    bestanddeel:managementGroup ;
                                       sh:maxCount 1 ;
                                       sh:order    5.0 ;
-                                      sh:path     bestanddeel:remark ] ;
+                                      sh:path     bestanddeel:internalRemarks ] ;
     sh:property                     [ rdfs:label   "Duplicaat (kopie op film of microfiche)"@nl ;
                                       rdfs:comment "Kopieën van dit bestanddeel op film of microfiche."@nl ;
                                       sh:message   "Selecteer een duplicaat (filmnummer of microfiche)"@nl ;

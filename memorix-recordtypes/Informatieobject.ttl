@@ -78,7 +78,7 @@ recordtypes:Informatieobject
                                       sh:order                5.0 ;
                                       sh:group                io:beheerGroup ; ] ;
     sh:property                     [ rdfs:label              "Interne opmerking"@nl ;
-                                      sh:path                 io:remark ;
+                                      sh:path                 io:internalRemarks ;
                                       sh:datatype             xsd:string ;
                                       sh:order                6.0 ;
                                       sh:group                io:beheerGroup ;

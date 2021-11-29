@@ -101,7 +101,7 @@ rt:Persoonsvermelding
                            sh:group    persoonsvermelding:managementGroup ;
                            sh:maxCount 1 ;
                            sh:order    1.0 ;
-                           sh:path     persoonsvermelding:remark ] ;
+                           sh:path     persoonsvermelding:internalRemarks ] ;
     sh:property          [ rdfs:label  "Overleden"@nl ;
                            sh:datatype xsd:boolean ;
                            sh:group    persoonsvermelding:personListingGroup ;

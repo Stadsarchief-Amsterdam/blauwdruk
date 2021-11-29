@@ -128,7 +128,7 @@ rt:Groep
                            sh:group    groep:managementGroup ;
                            sh:order    4.0 ;
                            sh:maxCount 1 ;
-                           sh:path     groep:remark ; ] ;
+                           sh:path     groep:internalRemarks ; ] ;
 .
 
 rico:DateRange

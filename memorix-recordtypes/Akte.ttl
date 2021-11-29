@@ -103,7 +103,7 @@ rt:SaaAkte a memorix:Recordtype ,
                            sh:group    akte:managementGroup ;
                            sh:order    8.0 ;
                            sh:maxCount 1 ;
-                           sh:path     akte:remark ] ;
+                           sh:path     akte:internalRemarks ] ;
 .
 
 akte:Person

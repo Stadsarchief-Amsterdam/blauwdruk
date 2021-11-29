@@ -142,7 +142,7 @@ rt:Fonds
                            sh:datatype  xsd:string ;
                            sh:group     fonds:managementGroup ;
                            sh:order     9.0 ;
-                           sh:path      fonds:remark ; ] ; # not to be published !
+                           sh:path      fonds:internalRemarks ; ] ; # not to be published !
     sh:property          [ rdfs:label   "Status"@nl ;
                            rdfs:comment "Status van het archief."@nl ;
                            sh:message   "Status is verplicht. Moet een van de volgende waardes zijn: aanwezig, vervallen, te vernietigen, vernietigd"@nl ;
