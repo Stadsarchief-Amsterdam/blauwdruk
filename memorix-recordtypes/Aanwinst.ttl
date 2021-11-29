@@ -86,9 +86,9 @@ rt:Aanwinst
                                       dash:editor memorix:LinkedRecordEditor ;
                                       sh:group    aanwinst:contentDescriptionGroup ;
                                       sh:nodeKind sh:IRI ;
-                                      sh:or       ( [ sh:class rt:SaaPersoon ]
-                                                    [ sh:class rt:SaaFamilie ]
-                                                    [ sh:class rt:SaaOrganisatie ] ) ; ] ;
+                                      sh:or       ( [ sh:class rt:Person ]
+                                                    [ sh:class rt:Family ]
+                                                    [ sh:class rt:Organisation ] ) ; ] ;
     sh:property                     [ rdfs:label              "Rechtstitel"@nl ;
                                       sh:message              "Kies een rechtstitel uit de keuzelijst. Dit is verplicht."@nl ;
                                       sh:order                3.0 ;

@@ -139,7 +139,7 @@ rt:Persoonsvermelding
                            sh:order     2.0 ;
                            sh:maxCount  100 ;
                            sh:nodeKind  sh:IRI ;
-                           sh:or        ( [ sh:class rt:SaaPersoon ] [ sh:class rt:SaaPersoonsvermelding ] ) ;
+                           sh:or        ( [ sh:class rt:Person ] [ sh:class rt:SaaPersoonsvermelding ] ) ;
                            sh:path      persoonsvermelding:sameAsInternal ] ;
     sh:targetClass       rt:Persoonsvermelding .
 

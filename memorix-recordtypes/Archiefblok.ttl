@@ -43,9 +43,9 @@ rt:Fonds
     rdfs:label           "Archiefblok"@nl, "Fonds"@en ;
     rdfs:comment         "Stadsarchief recordtype voor Archiefblok"@nl ;
     dc:identifier        "Fonds" ;
-    sh:targetClass       rt:Fonds ;
+    # sh:targetClass       rt:Fonds ; Een Class die zichzelf als target heeft.... is dat nodig?
     rdfs:subClassOf      rico:RecordSet ;
-    # sh:hasValue ric-rst:Fonds ;
+    # sh:hasValue ric-rst:Fonds ; implement maybe later when the Memorix interface allows it
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property          [ rdfs:label        "Toegang"@nl ;
@@ -96,9 +96,9 @@ rt:Fonds
                            sh:maxCount         10 ;
                            sh:order            4.0 ;
                            sh:nodeKind         sh:IRI ;
-                           sh:or               ( [ sh:class rt:SaaPersoon ]
-                                                 [ sh:class rt:SaaOrganisatie ]
-                                                 [ sh:class rt:SaaFamilie ] ) ; ] ;
+                           sh:or               ( [ sh:class rt:Person ]
+                                                 [ sh:class rt:Organisation ]
+                                                 [ sh:class rt:Family ] ) ; ] ;
     sh:property          [ rdfs:label   "Datering Oudste Stuk"@nl ;
                            rdfs:comment "Datum van het oudste stuk in dit archief."@nl ;
                            sh:class     fonds:DateRangeOldest ;
