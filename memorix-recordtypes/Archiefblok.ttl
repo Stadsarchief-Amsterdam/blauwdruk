@@ -49,7 +49,7 @@ rt:Fonds
     # sh:hasValue ric-rst:Fonds ; implement maybe later when the Memorix interface allows it
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property          [ rdfs:label        "Toegang"@nl ;
+    sh:property          [ rdfs:label        "Nummer toegang"@nl ;
                            rdfs:comment      "Unieke nummer van deze toegang"@nl ;
                            sh:minCount       1 ;
                            sh:maxCount       1 ;
