@@ -5,7 +5,7 @@
 @prefix skos:           <http://www.w3.org/2004/02/skos/core#> .
 
 @prefix rt:             </resources/recordtypes/> .
-@prefix aanwinst:       </resources/recordtypes/SaaAanwinst#> .
+@prefix acquisition:    </resources/recordtypes/Acquisition#> .
 
 @prefix dc:             <http://purl.org/dc/elements/1.1/> .
 @prefix sh:             <http://www.w3.org/ns/shacl#> .
@@ -19,33 +19,33 @@
 @prefix ric-dft:        <https://www.ica.org/standards/RiC/vocabularies/documentaryFormTypes#> .
 
 
-aanwinst:identificationGroup
+acquisition:identificationGroup
     rdf:type   sh:PropertyGroup ;
     rdfs:label "Identificatie"@nl ;
     sh:order   1.0 .
 
-aanwinst:contentDescriptionGroup
+acquisition:contentDescriptionGroup
     rdf:type   sh:PropertyGroup ;
     rdfs:label "Beschrijving"@nl ;
     sh:order   2.0 .
 
-aanwinst:partitionGroup
+acquisition:partitionGroup
     rdf:type   sh:PropertyGroup ;
     rdfs:label "Indeling"@nl ;
     sh:order   3.0 .
 
-aanwinst:managementGroup
+acquisition:managementGroup
     rdf:type   sh:PropertyGroup ;
     rdfs:label "Beheer"@nl ;
     sh:order   4.0 .
 
-rt:Aanwinst
+rt:Acquisition
     rdf:type                        memorix:Recordtype,
                                     sh:NodeShape ;
-    rdfs:label                      "Aanwinst"@nl ;
+    rdfs:label                      "Aanwinst"@nl, "Acquisition"@en ;
     rdfs:comment                    "Stadsarchief recordtype voor Aanwinst"@nl ;
-    dc:identifier                   "SaaAanwinst" ;
-    sh:targetClass                  rt:Aanwinst ;
+    dc:identifier                   "Acquisition" ;
+    sh:targetClass                  rt:Acquisition ;
     sh:closed                       true ;
     sh:ignoredProperties            ( rdf:type ) ;
     memorix:hasInformationComponent memorix:DepotLocationComponent ;
@@ -55,12 +55,12 @@ rt:Aanwinst
                                       html:placeholder  "B.v. 2021-345"@nl ;
                                       dash:singleLine   true ;
                                       memorix:inTitleAt 1.0 ;
-                                      sh:group          aanwinst:identificationGroup ;
+                                      sh:group          acquisition:identificationGroup ;
                                       sh:minCount       1 ;
                                       sh:maxCount       1 ;
                                       sh:datatype       xsd:string ;
                                       sh:order          1.0 ;
-                                      sh:path           aanwinst:identifier ] ;
+                                      sh:path           acquisition:identifier ] ;
     sh:property                     [ rdfs:label      "Jaar van overdracht"@nl ;
                                       rdfs:comment    "Jaar dat het archief wordt overgedragen."@nl ;
                                       sh:message      "Vul tenminste een jaartal in. Dit is verplicht."@nl ;
@@ -69,22 +69,22 @@ rt:Aanwinst
                                       sh:maxInclusive 2200 ;
                                       sh:minCount     1 ;
                                       sh:maxCount     1 ;
-                                      sh:group        aanwinst:identificationGroup ;
+                                      sh:group        acquisition:identificationGroup ;
                                       sh:order        2.0 ;
-                                      sh:path         aanwinst:jaarOverdracht ] ;
+                                      sh:path         acquisition:yearOfTransfer ] ;
     sh:property                     [ rdfs:label   "Datum ontvangst"@nl ;
                                       rdfs:comment "Daadwerkelijke datum van ontvangst"@nl ;
                                       dash:editor  memorix:DateEditor ;
                                       sh:datatype  xsd:integer ;
-                                      sh:group     aanwinst:contentDescriptionGroup ;
+                                      sh:group     acquisition:contentDescriptionGroup ;
                                       sh:order     1.0 ;
-                                      sh:path      aanwinst:datumOntvangst ] ;
+                                      sh:path      acquisition:dateReceived ] ;
     sh:property                     [ rdfs:label  "Contact (persoon of organisatie)"@nl ;
-                                      sh:path     aanwinst:contact ;
+                                      sh:path     acquisition:contact ;
                                       sh:order    2.0 ;
                                       sh:maxCount 5 ;
                                       dash:editor memorix:LinkedRecordEditor ;
-                                      sh:group    aanwinst:contentDescriptionGroup ;
+                                      sh:group    acquisition:contentDescriptionGroup ;
                                       sh:nodeKind sh:IRI ;
                                       sh:or       ( [ sh:class rt:Person ]
                                                     [ sh:class rt:Family ]
@@ -98,64 +98,64 @@ rt:Aanwinst
                                       sh:nodeKind             sh:IRI ;
                                       sh:class                skos:Concept ;
                                       memorix:conceptSchemeIn vocabularies:93b6eed4-d045-4d61-bfa5-0fa17aa48c7d ;
-                                      sh:group                aanwinst:contentDescriptionGroup ;
-                                      sh:path                 aanwinst:rechtstitel ] ;
+                                      sh:group                acquisition:contentDescriptionGroup ;
+                                      sh:path                 acquisition:legalTitle ] ;
     sh:property                     [ rdfs:label  "Zorgdrager"@nl ;
                                       sh:datatype xsd:string ;
-                                      sh:group    aanwinst:contentDescriptionGroup ;
+                                      sh:group    acquisition:contentDescriptionGroup ;
                                       sh:order    4.0 ;
-                                      sh:path     aanwinst:zorgdrager ] ;
+                                      sh:path     acquisition:careTaker ] ;
     sh:property                     [ rdfs:label   "Omvang"@nl ;
                                       rdfs:comment "Omvang van de stukken, zoals ze binnenkwamen"@nl ;
                                       sh:datatype  xsd:string ;
-                                      sh:group     aanwinst:contentDescriptionGroup ;
+                                      sh:group     acquisition:contentDescriptionGroup ;
                                       sh:order     5.0 ;
-                                      sh:path      aanwinst:omvang ] ;
+                                      sh:path      acquisition:dimension ] ;
     sh:property                     [ rdfs:label   "Stuksoort"@nl ;
                                       rdfs:comment "Soort materiaal, bijvoorbeeld filmdatakaarten"@nl ;
                                       sh:datatype  xsd:string ;
-                                      sh:group     aanwinst:contentDescriptionGroup ;
+                                      sh:group     acquisition:contentDescriptionGroup ;
                                       sh:order     6.0 ;
-                                      sh:path      aanwinst:stuksoort ] ;
+                                      sh:path      acquisition:typeOfMaterial ] ;
     sh:property                     [ rdfs:label   "Omschrijving"@nl ;
                                       rdfs:comment "Omschrijving van het binnengekomen materiaal"@nl ;
                                       dash:editor  dash:TextAreaEditor ;
                                       sh:datatype  xsd:string ;
-                                      sh:group     aanwinst:contentDescriptionGroup ;
+                                      sh:group     acquisition:contentDescriptionGroup ;
                                       sh:order     7.0 ;
-                                      sh:path      aanwinst:omschrijving ; ] ;
+                                      sh:path      acquisition:descriptionOfMaterial ; ] ;
     sh:property                     [ rdfs:label  "Overheid?"@nl ;
                                       sh:datatype xsd:boolean ;
-                                      sh:group    aanwinst:contentDescriptionGroup ;
+                                      sh:group    acquisition:contentDescriptionGroup ;
                                       sh:maxCount 1 ;
                                       sh:order    8.0 ;
-                                      sh:path     aanwinst:overheid ] ;
+                                      sh:path     acquisition:isGovernmentArchive ] ;
     sh:property                     [ rdfs:label  "Referentie (AVO) dossier"@nl ;
                                       sh:datatype xsd:string ;
-                                      sh:group    aanwinst:managementGroup ;
+                                      sh:group    acquisition:managementGroup ;
                                       sh:order    1.0 ;
-                                      sh:path     aanwinst:dossier ; ] ;
+                                      sh:path     acquisition:dossier ; ] ;
     sh:property                     [ rdfs:label  "Geïnventariseerd?"@nl ;
                                       sh:datatype xsd:boolean ;
-                                      sh:group    aanwinst:managementGroup ;
+                                      sh:group    acquisition:managementGroup ;
                                       sh:maxCount 1 ;
                                       sh:order    2.0 ;
-                                      sh:path     aanwinst:geinventariseerd ] ;
+                                      sh:path     acquisition:isInventoried ] ;
     sh:property                     [ rdfs:label  "Interne opmerking"@nl ;
                                       dash:editor dash:TextAreaEditor ;
                                       sh:datatype xsd:string ;
-                                      sh:group    aanwinst:managementGroup ;
+                                      sh:group    acquisition:managementGroup ;
                                       sh:order    3.0 ;
-                                      sh:path     aanwinst:opmerking ; ] ;
+                                      sh:path     acquisition:internalRemarks ; ] ;
     sh:property                     [ rdfs:label   "Gekoppeld archiefblok of bestanddeel"@nl ;
                                       rdfs:comment "Archiefblok of bestanddeel waaraan deze aanwinst gekoppeld is."@nl ;
-                                      sh:message   "Kies een archiefblok of bestanddeel waar deze aanwinst bij hoort.."@nl ;
+                                      sh:message   "Kies een archiefblok of bestanddeel waar deze aanwinst bij hoort."@nl ;
                                       dash:editor  memorix:LinkedRecordEditor ;
-                                      sh:group     aanwinst:partitionGroup ;
+                                      sh:group     acquisition:partitionGroup ;
                                       #sh:minCount 1 ; #todo evt. aanzetten als UI gefikst is. Verplicht maken?
                                       sh:maxCount  100 ;
                                       sh:nodeKind  sh:IRI ;
-                                      sh:or        ( [ sh:class rt:Fonds ] [ sh:class rt:SaaBestanddeel ] ) ;
+                                      sh:or        ( [ sh:class rt:Fonds ] [ sh:class rt:File ] ) ;
                                       sh:order     1.0 ;
-                                      sh:path      aanwinst:koppeling ] ;
+                                      sh:path      acquisition:isDescribedIn ] ;
 .
