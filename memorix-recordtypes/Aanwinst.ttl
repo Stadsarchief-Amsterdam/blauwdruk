@@ -155,7 +155,7 @@ rt:Aanwinst
                                       #sh:minCount 1 ; #todo evt. aanzetten als UI gefikst is. Verplicht maken?
                                       sh:maxCount  100 ;
                                       sh:nodeKind  sh:IRI ;
-                                      sh:or        ( [ sh:class rt:SaaArchiefblok ] [ sh:class rt:SaaBestanddeel ] ) ;
+                                      sh:or        ( [ sh:class rt:Fonds ] [ sh:class rt:SaaBestanddeel ] ) ;
                                       sh:order     1.0 ;
                                       sh:path      aanwinst:koppeling ] ;
 .

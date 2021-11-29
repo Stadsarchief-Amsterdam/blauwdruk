@@ -109,7 +109,7 @@ rt:Groep
                            #sh:minCount 1 ; #todo aanzetten zodra de UI gefikst is
                            sh:maxCount  1 ;
                            sh:nodeKind  sh:IRI ;
-                           sh:or        ( [ sh:class rt:SaaArchiefblok ] [ sh:class rt:SaaGroep ] ) ;
+                           sh:or        ( [ sh:class rt:Fonds ] [ sh:class rt:SaaGroep ] ) ;
                            sh:order     3 ;
                            sh:path      rico:isOrWasIncludedIn ] ;
 #    sh:property          [ rdfs:label   "Bovenliggend archiefblok of groep (alt)"@nl ;
@@ -119,7 +119,7 @@ rt:Groep
 #                           sh:group     groep:partitionGroup ;
 #                           sh:maxCount  1 ;
 #                           sh:nodeKind  sh:IRI ;
-#                           sh:or        ( [ sh:class rt:SaaArchiefblok ] [ sh:class rt:SaaGroep ] ) ;
+#                           sh:or        ( [ sh:class rt:Fonds ] [ sh:class rt:SaaGroep ] ) ;
 #                           sh:order     3 ;
 #                           sh:path      groep:isOrWasIncludedIn ] ;
     sh:property          [ rdfs:label  "Interne opmerking"@nl ;

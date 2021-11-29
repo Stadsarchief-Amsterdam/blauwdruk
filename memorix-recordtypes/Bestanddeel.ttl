@@ -119,7 +119,7 @@ rt:Bestanddeel a memorix:Recordtype ,
                                       #sh:minCount 1 ; #todo aanzetten zodra de UI gefikst is
                                       sh:maxCount  1 ;
                                       sh:nodeKind  sh:IRI ;
-                                      sh:or        ( [ sh:class rt:SaaArchiefblok ] [ sh:class rt:SaaGroep ] ) ;
+                                      sh:or        ( [ sh:class rt:Fonds ] [ sh:class rt:SaaGroep ] ) ;
                                       sh:order     1.0 ;
                                       sh:path      rico:isOrWasIncludedIn ] ;
     sh:property                     [ rdfs:label   "Digitaal geboren?"@nl ;
