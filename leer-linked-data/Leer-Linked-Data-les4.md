@@ -3,7 +3,7 @@
 ## Datastructuur
 
 ### Les 1
-Je mag in Linked Data alle properties gebruiken die je wilt. We hebben tot nu toe gebruik gemaakt van rdf, rdfs en rico. Een veel toegepaste andere verzameling van properties is schema.org.
+Je mag in Linked Data alle properties gebruiken die je wilt. Als het nodig is door elkaar. We hebben tot nu toe gebruik gemaakt van property-verzamelingen rdf, rdfs en rico. Een veel toegepaste andere verzameling van properties is schema.org.
 
 Zo'n verzameling van properties heeft een bepaalde samenhang. In rico is het bijvoorbeeld logisch dat een knoop van het type rico:RecordSet de property rico:hasRecordSetType mag hebben. Dit soort samenhang wordt vastgelegd in een _ontologie_. Van elke property is bijvoorbeeld vastgelegd wat de _domain_ is, en de _range_. De domain van de property rico:hasRecordSetType is rico:RecordSet en de object van een triple met deze property is van het type rico:RecordSetType, met andere woorden: de range van rico:hasRecordSetType is rico:RecordSetType.
 
