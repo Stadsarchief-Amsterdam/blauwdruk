@@ -267,10 +267,10 @@ afbeelding:managementGroup
     sh:order   4.0 ;
 .
 
-afbeelding:historicalTitle a rdfs:Property ;
+afbeelding:historicalTitle a rdf:Property ;
     rdfs:subPropertyOf rico:hasOrHadTitle ;
 .
 
-afbeelding:externalLink a rdfs:Property ;
+afbeelding:externalLink a rdf:Property ;
     rdfs:subPropertyOf rico:hasOrHadSubject ;
 .

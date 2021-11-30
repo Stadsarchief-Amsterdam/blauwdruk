@@ -64,5 +64,5 @@ rt:Ding
                            sh:path     ding:status ] ;
 .
 
-ding:status a rdfs:Property ;
+ding:status a rdf:Property ;
     rdfs:subPropertyOf rico:isOrWasRecordStateOfAllMembers .

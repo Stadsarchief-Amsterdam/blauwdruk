@@ -246,6 +246,7 @@ rico:DateRange
     sh:targetClass       rico:DateRange ;
 .
 
+
 file:digitalBorn
     a rdfs:Property ;
     # in rico modeled with rico:hasRepresentationType
