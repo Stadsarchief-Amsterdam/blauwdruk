@@ -39,7 +39,6 @@ rt:Organisation
     dc:identifier           "Organisation" ;
     sh:targetClass          rt:Organisatie ;
     rdfs:subClassOf         rico:CorporateBody ;
-    dash:defaultViewForRole dash:all ;
     sh:closed               true ;
     sh:ignoredProperties    ( rdf:type ) ;
     sh:property             [ rdfs:label            "Naam"@nl ;

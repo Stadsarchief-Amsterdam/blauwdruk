@@ -47,7 +47,6 @@ rt:Person
     dc:identifier        "Person" ;
     sh:targetClass       rt:Persoon ;
     rdfs:subClassOf      rico:Person , schema:Person , pnv:Person ;
-    dash:defaultViewForRole dash:all ;
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property          [ rdfs:label               "Voornaam"@nl ;

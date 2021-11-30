@@ -35,7 +35,6 @@ rt:Family
     dc:identifier           "Family" ;
     sh:targetClass          rt:Familie ;
     rdfs:subClassOf         rico:Family ;
-    dash:defaultViewForRole dash:all ;
     sh:closed               true ;
     sh:ignoredProperties    ( rdf:type ) ;
     sh:property             [ rdfs:label            "Naam"@nl ;
