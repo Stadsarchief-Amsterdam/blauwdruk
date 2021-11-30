@@ -248,13 +248,13 @@ archiefblok:DateRangeYoungest
     sh:targetClass       archiefblok:DateRangeYoungest ;
 .
 
-archiefblok:status a rdfs:Property ;
+archiefblok:status a rdf:Property ;
     rdfs:subPropertyOf rico:isOrWasRecordStateOfAllMembers .
 
-archiefblok:hasYoungestRecord a rdfs:Property ; 
+archiefblok:hasYoungestRecord a rdf:Property ; 
     rdfs:subPropertyOf rico:isAssociatedWithDate ;
 .
 
-archiefblok:hasOldestRecord a rdfs:Property ; 
+archiefblok:hasOldestRecord a rdf:Property ; 
     rdfs:subPropertyOf rico:isAssociatedWithDate ;
 .

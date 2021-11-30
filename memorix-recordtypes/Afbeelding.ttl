@@ -268,45 +268,45 @@ image:managementGroup
     sh:order   4.0 ;
 .
 
-image:historicalTitle a rdfs:Property ;
+image:historicalTitle a rdf:Property ;
     rdfs:subPropertyOf rico:hasOrHadTitle ;
 .
 
-image:creation a rdfs:Property ;
+image:creation a rdf:Property ;
     rdfs:subPropertyOf rico:isAssociatedWithEvent ;
 .
 
-image:inventoryNumber a rdfs:Property ;
+image:inventoryNumber a rdf:Property ;
     rdfs:subPropertyOf rico:isOrWasIncludedIn ;
 .
 
-image:inventoryNumber a rdfs:Property ;
+image:inventoryNumber a rdf:Property ;
 #    rdfs:subPropertyOf rico:isOrWasIncludedIn ;
 #    rdfs:range rdf:Literal ; # dit mag niet, maar hoe dan!?
 .
 
-image:collection a rdfs:Property ;
+image:collection a rdf:Property ;
 #    rdfs:subPropertyOf rico:isOrWasIncludedIn ;
 #    rdfs:range rdf:Literal ; # dit mag niet, maar hoe dan!?
 .
 
 
-image:hasOrHadSubjectPerson a rdfs:Property ;
+image:hasOrHadSubjectPerson a rdf:Property ;
     rdfs:subPropertyOf rico:hasOrHadSubject ;
 .
 
-image:hasOrHadSubjectBuilding a rdfs:Property ;
+image:hasOrHadSubjectBuilding a rdf:Property ;
     rdfs:subPropertyOf rico:hasOrHadSubject ;
 .
 
-image:hasOrHadSubjectPublicSpace a rdfs:Property ;
+image:hasOrHadSubjectPublicSpace a rdf:Property ;
     rdfs:subPropertyOf rico:hasOrHadSubject ;
 .
 
-image:hasOrHadSubjectAddress a rdfs:Property ;
+image:hasOrHadSubjectAddress a rdf:Property ;
     rdfs:subPropertyOf rico:hasOrHadSubject ;
 .
 
-image:hasOrHadSubjectLocation a rdfs:Property ;
+image:hasOrHadSubjectLocation a rdf:Property ;
     rdfs:subPropertyOf rico:hasOrHadSubject ;
 .
