@@ -7,16 +7,16 @@ Zo lang we nog alleen de beschikking hebben over de example omgeving stel ik voo
 | ------- | --------------- | -------------- | ------- | --------
 | Afbeelding.ttl  | af | ja | - | ja
 | Organisatie.ttl  | - | - | Levensloop toevoegen? | ja
-| Persoon.ttl  |  af | - | | ja
-| Familie.ttl  |  af |  | | ja
-| Aanwinst.ttl     | - | - | P mee bezig
+| Persoon.ttl  |  af | af | | ja
+| Familie.ttl  |  af | af | | ja
+| Aanwinst.ttl     | - | - | Ivo nakijken
 | Archiefblok.ttl | af| af | - | ja
 | Groep.ttl     | af | af | - | ja
-| Bestanddeel.ttl     | af | - | - | ja
+| Bestanddeel.ttl     | af | af | - | ja
 | Informatieobject.ttl     | - | - | -
 | InformatieobjectOnderdeel.ttl     | - | - | -
-| Akte.ttl     | - | - | -
-| Persoonsvermelding.ttl     | - | - | -
+| Akte.ttl     | nee | - | adressen toevoegen, en vertalen
+| Persoonsvermelding.ttl     | - | - | vertalen
 | Publicatie.ttl     | - | - | -
 | Aflevering.ttl     | - | - | -
 | AV.ttl     | - | - | -
