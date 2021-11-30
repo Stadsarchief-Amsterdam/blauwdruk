@@ -158,10 +158,10 @@ persoonsvermelding:Details
     sh:targetClass       persoonsvermelding:Details ;
 .
 
-persoonsvermelding:sameAsExternal a rdfs:Property ;
+persoonsvermelding:sameAsExternal a rdf:Property ;
     owl:equivalentProperty owl:sameAs ;
 .
 
-persoonsvermelding:sameAsInternal a rdfs:Property ;
+persoonsvermelding:sameAsInternal a rdf:Property ;
     owl:equivalentProperty owl:sameAs ;
 .

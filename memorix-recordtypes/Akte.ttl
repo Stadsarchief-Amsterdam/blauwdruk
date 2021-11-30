@@ -134,6 +134,6 @@ rico:SingleDate
                            sh:path     rico:normalizedDateValue ] ;
 .
 
-akte:indexName a rdfs:Property ;
+akte:indexName a rdf:Property ;
     rdfs:subPropertyOf rico:isOrWasPartOf ;
 .

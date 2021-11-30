@@ -122,6 +122,6 @@ rico:DateRange
     sh:targetClass       rico:DateRange ;
 .
 
-io:oudeNummers a rdfs:Property ;
+io:oudeNummers a rdf:Property ;
   rdfs:subPropertyOf rico:hasOrHadIdentifier ;
 .

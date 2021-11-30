@@ -226,18 +226,18 @@ rico:DateRange
     sh:targetClass       rico:DateRange ;
 .
 
-bestanddeel:digitalBorn a rdfs:Property ;
+bestanddeel:digitalBorn a rdf:Property ;
   # in rico modeled with rico:hasRepresentationType
 .
 
-bestanddeel:digitised a rdfs:Property ;
+bestanddeel:digitised a rdf:Property ;
   # in rico modeled with rico:hasRepresentationType
 .
 
-bestanddeel:duplicate a rdfs:Property ;
+bestanddeel:duplicate a rdf:Property ;
   rdfs:subPropertyOf rico:hasInstantiation ;
 .
 
-bestanddeel:status a rdfs:Property ;
+bestanddeel:status a rdf:Property ;
   rdfs:subPropertyOf rico:isOrWasRecordStateOfAllMembers ;
 .
