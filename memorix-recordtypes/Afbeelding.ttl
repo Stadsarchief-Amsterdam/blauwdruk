@@ -297,6 +297,7 @@ image:managementGroup
     sh:order   4.0 ;
 .
 
+
 image:historicalTitle a rdf:Property ;
     rdfs:subPropertyOf rico:title ;
 .
@@ -318,7 +319,6 @@ image:collection a rdf:Property ;
 #    rdfs:subPropertyOf rico:isOrWasIncludedIn ;
 #    rdfs:range rdf:Literal ; # dit mag niet, maar hoe dan!?
 .
-
 
 image:hasOrHadSubjectPerson a rdf:Property ;
     rdfs:subPropertyOf rico:hasOrHadSubject ;
