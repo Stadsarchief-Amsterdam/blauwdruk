@@ -69,7 +69,7 @@ recordtypes:Informatieobject
                                       sh:minCount  1 ;
                                       sh:maxCount  1 ;
                                       sh:nodeKind  sh:IRI ;
-                                      sh:or        ( [ sh:class recordtypes:SaaArchiefblok ] [ sh:class recordtypes:SaaGroep ] [ sh:class recordtypes:SaaBestanddeel] ) ;
+                                      sh:or        ( [ sh:class recordtypes:Fonds ] [ sh:class recordtypes:Series ] [ sh:class recordtypes:File] ) ;
                                       sh:order     4.0 ;
                                       sh:path      rico:isOrWasIncludedIn ] ;
     sh:property                     [ rdfs:label              "Oude nummers"@nl ;
@@ -78,7 +78,7 @@ recordtypes:Informatieobject
                                       sh:order                5.0 ;
                                       sh:group                io:beheerGroup ; ] ;
     sh:property                     [ rdfs:label              "Interne opmerking"@nl ;
-                                      sh:path                 io:remark ;
+                                      sh:path                 io:internalRemarks ;
                                       sh:datatype             xsd:string ;
                                       sh:order                6.0 ;
                                       sh:group                io:beheerGroup ;

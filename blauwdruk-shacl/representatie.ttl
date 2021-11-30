@@ -19,7 +19,7 @@ blauwdruk:Representatie a sh:NodeShape, owl:Class ;
     rdfs:comment "Standaard Recordtype voor Representatie"@nl ;
     sh:property [
         rdfs:label "Interne opmerking"@nl ;
-        sh:path blauwdruk:remark ;
+        sh:path blauwdruk:internalRemarks ;
         sh:datatype xsd:string ; 
     ] .
 

@@ -53,7 +53,7 @@ rt:Ding
                            sh:nodeKind sh:IRI ;
                            sh:or       ( [ sh:class rt:Persoon ]
                                          [ sh:class rt:Organisatie ]
-                                         [ sh:class rt:SaaPersoon ] ) ; ] ;
+                                         [ sh:class rt:Person ] ) ; ] ;
     sh:property          [ rdfs:label  "Statuslijstje vaste waardes"@nl ;
                            sh:message  "Status is verplicht. Moet een van de volgende waardes zijn: Aanwezig, Vervallen, Te vernietigen, Vermist, Vernietigd"@nl ;
                            sh:datatype xsd:string ;

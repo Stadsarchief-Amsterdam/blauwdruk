@@ -86,7 +86,7 @@ rt:SaaAkte a memorix:Recordtype ,
                            # sh:minCount  1 ; # todo aanzetten als de UI gefikst is
                            sh:maxCount  1 ;
                            sh:nodeKind  sh:IRI ;
-                           sh:or        ( [ sh:class rt:SaaBestanddeel ] ) ;
+                           sh:or        ( [ sh:class rt:File ] ) ;
                            sh:order     6.0 ;
                            sh:path      rico:isOrWasIncludedIn ] ;
     sh:property          [ rdfs:label   "Personen"@nl ;
@@ -103,7 +103,7 @@ rt:SaaAkte a memorix:Recordtype ,
                            sh:group    akte:managementGroup ;
                            sh:order    8.0 ;
                            sh:maxCount 1 ;
-                           sh:path     akte:remark ] ;
+                           sh:path     akte:internalRemarks ] ;
 .
 
 akte:Person

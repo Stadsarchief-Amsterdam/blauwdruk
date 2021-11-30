@@ -4,7 +4,7 @@
 @prefix xsd:           <http://www.w3.org/2001/XMLSchema#> .
 
 @prefix rt:            <https://example.memorix-test.nl/resources/recordtypes/> .
-@prefix archiefblok:   <https://example.memorix-test.nl/resources/recordtypes/SaaArchiefblok#> .
+@prefix archiefblok:   <https://example.memorix-test.nl/resources/recordtypes/Fonds#> .
 
 @prefix dc:            <http://purl.org/dc/elements/1.1/> .
 @prefix sh:            <http://www.w3.org/ns/shacl#> .
@@ -17,7 +17,7 @@
 @prefix ric-dft:       <https://www.ica.org/standards/RiC/vocabularies/documentaryFormTypes#> .
 
 <>
-    a rt:SaaArchiefblok ;
+    a rt:Fonds ;
     rico:hasAccumulator data:de-UUID-voor-record-stg-imagine-ic ;
     rico:identifier "30655" ;
     rico:title "Archief van Imagine IC" ;

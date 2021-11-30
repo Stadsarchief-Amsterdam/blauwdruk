@@ -5,7 +5,7 @@
 @prefix skos:            <http://www.w3.org/2004/02/skos/core#> .
 
 @prefix rt:              </resources/recordtypes/> .
-@prefix groep:           </resources/recordtypes/SaaGroep#> .
+@prefix series:          </resources/recordtypes/Series#> .
 
 @prefix dc:              <http://purl.org/dc/elements/1.1/> .
 @prefix sh:              <http://www.w3.org/ns/shacl#> .
@@ -21,35 +21,36 @@
 @prefix schema:          <http://schema.org/> .
 
 
-groep:identificationGroup
+series:identificationGroup
     rdf:type   sh:PropertyGroup ;
     rdfs:label "Identificatie"@nl ;
     sh:order   1.0 .
 
-groep:contentDescriptionGroup
+series:contentDescriptionGroup
     rdf:type   sh:PropertyGroup ;
     rdfs:label "Beschrijving"@nl ;
     sh:order   2.0 .
 
-groep:partitionGroup
+series:partitionGroup
     rdf:type   sh:PropertyGroup ;
     rdfs:label "Indeling"@nl ;
     sh:order   3.0 .
 
-groep:managementGroup
+series:managementGroup
     rdf:type   sh:PropertyGroup ;
     rdfs:label "Beheer"@nl ;
     sh:order   4.0 .
 
-rt:Groep
+rt:Series
     rdf:type             memorix:Recordtype ,
                          sh:NodeShape ,
                          rdfs:Class ;
     rdfs:comment         "Stadsarchief recordtype voor Groep"@nl ;
+    # rdfs:label           "Groep"@nl, "Series"@en; #change after randomness is fixed
     rdfs:label           "Groep"@nl ;
-    dc:identifier        "SaaGroep" ;
+    dc:identifier        "Series" ;
     rdfs:subClassOf      rico:RecordSet ;
-    sh:targetClass       rt:Groep ;
+    sh:targetClass       rt:Series ;
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property          [ rdfs:label           "Rubriekscode"@nl ;
@@ -58,7 +59,7 @@ rt:Groep
                            memorix:inTitleAt    1.0 ;
                            memorix:searchWeight 3.0 ;
                            sh:datatype          xsd:string ;
-                           sh:group             groep:identificationGroup ;
+                           sh:group             series:identificationGroup ;
                            sh:maxCount          1 ;
                            sh:order             1.0 ;
                            sh:path              rico:identifier ] ;
@@ -69,7 +70,7 @@ rt:Groep
                            memorix:inTitleAt    2.0 ;
                            memorix:searchWeight 3.0 ;
                            sh:datatype          xsd:string ;
-                           sh:group             groep:identificationGroup ;
+                           sh:group             series:identificationGroup ;
                            sh:minCount          1 ;
                            sh:maxCount          1 ;
                            sh:order             2.0 ;
@@ -78,7 +79,7 @@ rt:Groep
                            rdfs:comment        "Kan een exacte datum of een periode zijn"@nl ;
                            memorix:inSummaryAt 2 ;
                            sh:class            rico:DateRange ;
-                           sh:group            groep:contentDescriptionGroup ;
+                           sh:group            series:contentDescriptionGroup ;
                            sh:maxCount         1 ;
                            sh:order            1.0 ;
                            sh:nodeKind         sh:BlankNode ;
@@ -89,7 +90,7 @@ rt:Groep
                            memorix:searchWeight 3.0 ;
                            sh:datatype          xsd:string ;
                            dash:editor          dash:TextAreaEditor ;
-                           sh:group             groep:contentDescriptionGroup ;
+                           sh:group             series:contentDescriptionGroup ;
                            sh:maxCount          1 ;
                            sh:order             2.0 ;
                            sh:path              rico:scopeAndContent ] ;
@@ -97,7 +98,7 @@ rt:Groep
                            dash:editor         dash:TextFieldEditor ;
                            sh:datatype         xsd:string ;
                            memorix:inSummaryAt 1 ;
-                           sh:group            groep:contentDescriptionGroup ;
+                           sh:group            series:contentDescriptionGroup ;
                            sh:maxCount         1 ;
                            sh:order            3.0 ;
                            sh:path             rico:physicalOrLogicalExtent ] ;
@@ -105,30 +106,20 @@ rt:Groep
                            rdfs:comment "Archiefblok of groep waartoe dit Bestanddeel behoort."@nl ;
                            sh:message   "Kies een archiefblok of groep om aan te koppelen. Dit is verplicht."@nl ;
                            dash:editor  memorix:LinkedRecordEditor ;
-                           sh:group     groep:partitionGroup ;
+                           sh:group     series:partitionGroup ;
                            #sh:minCount 1 ; #todo aanzetten zodra de UI gefikst is
                            sh:maxCount  1 ;
                            sh:nodeKind  sh:IRI ;
-                           sh:or        ( [ sh:class rt:SaaArchiefblok ] [ sh:class rt:SaaGroep ] ) ;
+                           sh:or        ( [ sh:class rt:Fonds ] [ sh:class rt:Series ] ) ;
                            sh:order     3 ;
                            sh:path      rico:isOrWasIncludedIn ] ;
-#    sh:property          [ rdfs:label   "Bovenliggend archiefblok of groep (alt)"@nl ;
-#                           rdfs:comment "Archiefblok of groep waartoe dit Bestanddeel behoort."@nl ;
-#                           sh:message   "Kies een archiefblok of groep om aan te koppelen. Dit is verplicht."@nl ;
-#                           dash:editor  memorix:LinkedRecordEditor ;
-#                           sh:group     groep:partitionGroup ;
-#                           sh:maxCount  1 ;
-#                           sh:nodeKind  sh:IRI ;
-#                           sh:or        ( [ sh:class rt:SaaArchiefblok ] [ sh:class rt:SaaGroep ] ) ;
-#                           sh:order     3 ;
-#                           sh:path      groep:isOrWasIncludedIn ] ;
     sh:property          [ rdfs:label  "Interne opmerking"@nl ;
                            dash:editor dash:TextAreaEditor ;
                            sh:datatype xsd:string ;
-                           sh:group    groep:managementGroup ;
+                           sh:group    series:managementGroup ;
                            sh:order    4.0 ;
                            sh:maxCount 1 ;
-                           sh:path     groep:remark ; ] ;
+                           sh:path     series:internalRemarks ; ] ;
 .
 
 rico:DateRange

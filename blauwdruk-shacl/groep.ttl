@@ -77,7 +77,7 @@ blauwdruk:Groep a sh:NodeShape, owl:Class ;
     ] ;
     sh:property [
         rdfs:label "Interne opmerking"@nl ;
-        sh:path blauwdruk:remark ;
+        sh:path blauwdruk:internalRemarks ;
         sh:datatype xsd:string ; 
     ] .
 

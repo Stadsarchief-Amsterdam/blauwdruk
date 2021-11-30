@@ -5,7 +5,7 @@
 @prefix skos:           <http://www.w3.org/2004/02/skos/core#> .
 
 @prefix rt:             </resources/recordtypes/> .
-@prefix bestanddeel:    </resources/recordtypes/SaaBestanddeel#> .
+@prefix file:           </resources/recordtypes/File#> .
 
 @prefix dc:             <http://purl.org/dc/elements/1.1/> .
 @prefix sh:             <http://www.w3.org/ns/shacl#> .
@@ -20,37 +20,39 @@
 @prefix pnv:            <https://w3id.org/pnv#> .
 @prefix schema:         <http://schema.org/> .
 
-bestanddeel:identificationGroup
+file:identificationGroup
     rdf:type   sh:PropertyGroup ;
     rdfs:label "Identificatie"@nl ;
     sh:order   1.0 ;
 .
 
-bestanddeel:contentDescriptionGroup
+file:contentDescriptionGroup
     rdf:type   sh:PropertyGroup ;
     rdfs:label "Beschrijving"@nl ;
     sh:order   2.0 ;
 .
 
-bestanddeel:partitionGroup
+file:partitionGroup
     rdf:type   sh:PropertyGroup ;
     rdfs:label "Indeling"@nl ;
     sh:order   3.0 ;
 .
 
-bestanddeel:managementGroup
+file:managementGroup
     rdf:type   sh:PropertyGroup ;
     rdfs:label "Beheer"@nl ;
     sh:order   4.0 ;
 .
 
-rt:Bestanddeel a memorix:Recordtype , 
-                  rdfs:Class ,
-                  sh:NodeShape ;
+rt:File
+    a                               memorix:Recordtype,
+                                    rdfs:Class,
+                                    sh:NodeShape ;
     rdfs:comment                    "Stadsarchief recordtype voor Bestanddeel"@nl ;
+    #rdfs:label                      "Bestanddeel"@nl, "File"@en ; #change after randomness is fixed
     rdfs:label                      "Bestanddeel"@nl ;
-    dc:identifier                   "SaaBestanddeel" ;
-    sh:targetClass                  rt:Bestanddeel ;
+    dc:identifier                   "File" ;
+    sh:targetClass                  rt:File ;
     rdfs:subClassOf                 rico:RecordSet ;
     sh:closed                       true ;
     sh:ignoredProperties            ( rdf:type ) ;
@@ -59,127 +61,141 @@ rt:Bestanddeel a memorix:Recordtype ,
                                       rdfs:comment "Uniek nummer binnen een archiefblok."@nl ;
                                       sh:message   "Vul tenminste een (uniek) inventarisnummer in. Dit nummer is verplicht."@nl ;
                                       sh:class     rico:Identifier ;
-                                      sh:group     bestanddeel:identificationGroup ;
+                                      sh:group     file:identificationGroup ;
                                       sh:minCount  1 ;
                                       sh:maxCount  1 ;
                                       sh:nodeKind  sh:BlankNode ;
                                       sh:order     1.0 ;
-                                      sh:path      rico:hasOrHadIdentifier ] ;
+                                      sh:path      rico:hasOrHadIdentifier
+                                    ] ;
     sh:property                     [ rdfs:label           "Beschrijving"@nl ;
                                       rdfs:comment         "Korte beschrijving van dit inventarisnummer"@nl ;
                                       dash:singleLine      true ;
                                       memorix:inTitleAt    2 ;
                                       memorix:searchWeight 3.0 ;
                                       sh:datatype          xsd:string ;
-                                      sh:group             bestanddeel:identificationGroup ;
+                                      sh:group             file:identificationGroup ;
                                       sh:maxCount          1 ;
                                       sh:order             2.0 ;
-                                      sh:path              rico:title ] ;
+                                      sh:path              rico:title
+                                    ] ;
     sh:property                     [ rdfs:label          "Datering"@nl ;
                                       rdfs:comment        "Kan een exacte datum of een periode zijn"@nl ;
                                       memorix:inSummaryAt 1 ;
                                       sh:class            rico:DateRange ;
                                       sh:nodeKind         sh:BlankNode ;
-                                      sh:group            bestanddeel:contentDescriptionGroup ;
+                                      sh:group            file:contentDescriptionGroup ;
                                       sh:maxCount         1 ;
                                       sh:order            1.0 ;
-                                      sh:path             rico:isAssociatedWithDate ] ;
+                                      sh:path             rico:isAssociatedWithDate
+                                    ] ;
     sh:property                     [ rdfs:label           "Nota bene"@nl ;
                                       rdfs:comment         "Uitgebreidere beschrijving, afkomstig uit NB velden"@nl ;
                                       dash:singleLine      false ;
                                       memorix:searchWeight 3.0 ;
                                       sh:datatype          xsd:string ;
                                       dash:editor          dash:TextAreaEditor ;
-                                      sh:group             bestanddeel:contentDescriptionGroup ;
+                                      sh:group             file:contentDescriptionGroup ;
                                       sh:maxCount          1 ;
                                       sh:order             2.0 ;
-                                      sh:path              rico:scopeAndContent ] ;
+                                      sh:path              rico:scopeAndContent
+                                    ] ;
     sh:property                     [ rdfs:label  "Uiterlijke vorm"@nl ;
                                       sh:datatype xsd:string ;
-                                      sh:group    bestanddeel:contentDescriptionGroup ;
+                                      sh:group    file:contentDescriptionGroup ;
                                       sh:maxCount 1 ;
                                       sh:order    3.0 ;
-                                      sh:path     rico:physicalOrLogicalExtent ] ;
+                                      sh:path     rico:physicalOrLogicalExtent
+                                    ] ;
     sh:property                     [ rdfs:label          "Vormer"@nl ;
                                       rdfs:comment        "Gekoppelde archiefvormer uit de Personen en Organisatie thesaurus."@nl ;
                                       sh:message          "Kies een archiefvormer uit de lijst."@nl ;
                                       dash:editor         memorix:LinkedRecordEditor ;
                                       memorix:inSummaryAt 2 ;
-                                      sh:group            bestanddeel:contentDescriptionGroup ;
+                                      sh:group            file:contentDescriptionGroup ;
                                       sh:maxCount         10 ;
                                       sh:nodeKind         sh:IRI ;
-                                      sh:or               ( [ sh:class rt:SaaPersoon ] [ sh:class rt:SaaOrganisatie ] [ sh:class rt:SaaFamilie ] ) ;
+                                      sh:or               ( [ sh:class rt:Person ] [ sh:class rt:Organisation ] [ sh:class rt:Family ] ) ;
                                       sh:order            4.0 ;
-                                      sh:path             rico:hasAccumulator ] ;
+                                      sh:path             rico:hasAccumulator
+                                    ] ;
     sh:property                     [ rdfs:label   "Bovenliggend archiefblok of groep"@nl ;
                                       rdfs:comment "Archiefblok of Groep waartoe dit Bestanddeel behoort."@nl ;
                                       sh:message   "Kies een archiefblok of groep om aan te koppelen. Dit is verplicht."@nl ;
                                       dash:editor  memorix:LinkedRecordEditor ;
-                                      sh:group     bestanddeel:partitionGroup ;
-                                      #sh:minCount 1 ; #todo aanzetten zodra de UI gefikst is
+                                      sh:group     file:partitionGroup ;
+        #sh:minCount 1 ; #todo aanzetten zodra de UI gefikst is
                                       sh:maxCount  1 ;
                                       sh:nodeKind  sh:IRI ;
-                                      sh:or        ( [ sh:class rt:SaaArchiefblok ] [ sh:class rt:SaaGroep ] ) ;
+                                      sh:or        ( [ sh:class rt:Fonds ] [ sh:class rt:Series ] ) ;
                                       sh:order     1.0 ;
-                                      sh:path      rico:isOrWasIncludedIn ] ;
+                                      sh:path      rico:isOrWasIncludedIn
+                                    ] ;
     sh:property                     [ rdfs:label   "Digitaal geboren?"@nl ;
                                       rdfs:comment "Geeft aan of dit om een oorspronkelijk digitaal geboren stuk gaat"@nl ;
                                       sh:datatype  xsd:boolean ;
-                                      sh:group     bestanddeel:managementGroup ;
+                                      sh:group     file:managementGroup ;
                                       sh:maxCount  1 ;
                                       sh:order     1.0 ;
-                                      sh:path      bestanddeel:digitalBorn ] ;
+                                      sh:path      file:digitalBorn
+                                    ] ;
     sh:property                     [ rdfs:label   "Gedigitaliseerd?"@nl ;
                                       rdfs:comment "Geeft aan of dit stuk gedigitaliseerd is"@nl ;
                                       sh:datatype  xsd:boolean ;
-                                      sh:group     bestanddeel:managementGroup ;
+                                      sh:group     file:managementGroup ;
                                       sh:maxCount  1 ;
                                       sh:order     2.0 ;
-                                      sh:path      bestanddeel:digitised ] ;
+                                      sh:path      file:digitised
+                                    ] ;
     sh:property                     [ rdfs:label  "Bergingsnummers"@nl ;
                                       sh:datatype xsd:string ;
-                                      sh:group    bestanddeel:managementGroup ;
-                                      dash:editor  dash:TextAreaEditor ;
+                                      sh:group    file:managementGroup ;
+                                      dash:editor dash:TextAreaEditor ;
                                       sh:maxCount 1 ;
                                       sh:order    4.0 ;
-                                      sh:path     bestanddeel:storageNumber ] ;
+                                      sh:path     file:storageNumber
+                                    ] ;
     sh:property                     [ rdfs:label  "Interne opmerking"@nl ;
                                       dash:editor dash:TextAreaEditor ;
                                       sh:datatype xsd:string ;
-                                      sh:group    bestanddeel:managementGroup ;
+                                      sh:group    file:managementGroup ;
                                       sh:maxCount 1 ;
                                       sh:order    5.0 ;
-                                      sh:path     bestanddeel:remark ] ;
+                                      sh:path     file:internalRemarks
+                                    ] ;
     sh:property                     [ rdfs:label   "Duplicaat (kopie op film of microfiche)"@nl ;
                                       rdfs:comment "Kopieën van dit bestanddeel op film of microfiche."@nl ;
                                       sh:message   "Selecteer een duplicaat (filmnummer of microfiche)"@nl ;
                                       dash:editor  memorix:LinkedRecordEditor ;
-                                      sh:group     bestanddeel:managementGroup ;
+                                      sh:group     file:managementGroup ;
                                       sh:maxCount  1 ;
                                       sh:nodeKind  sh:IRI ;
                                       sh:or        ( [ sh:class rt:SaaDuplicaat ] ) ;
                                       sh:order     6.0 ;
-                                      sh:path      bestanddeel:duplicate ] ;
+                                      sh:path      file:duplicate
+                                    ] ;
     sh:property                     [ rdfs:label   "Zie ook - verwijzing naar ander bestanddeel"@nl ;
                                       rdfs:comment "Sommige bestanddelen verwijzen naar andere bestanddelen."@nl ;
                                       sh:message   "Selecteer een ander bestanddeel"@nl ;
                                       dash:editor  memorix:LinkedRecordEditor ;
-                                      sh:group     bestanddeel:managementGroup ;
+                                      sh:group     file:managementGroup ;
                                       sh:maxCount  1 ;
                                       sh:nodeKind  sh:IRI ;
-                                      sh:or        ( [ sh:class rt:SaaBestanddeel ] ) ;
+                                      sh:or        ( [ sh:class rt:File ] ) ;
                                       sh:order     7.0 ;
-                                      sh:path      rdfs:seeAlso ] ; 
+                                      sh:path      rdfs:seeAlso
+                                    ] ;
     sh:property                     [ rdfs:label   "Status"@nl ;
                                       rdfs:comment "Status van het inventarisnummer. aanwezig, vervallen, te vernietigen, vermist, vernietigd."@nl ;
                                       sh:message   "Status is verplicht. Moet een van de volgende waardes zijn: aanwezig, vervallen, te vernietigen, vermist, vernietigd"@nl ;
                                       sh:datatype  xsd:string ;
                                       sh:minCount  1 ;
                                       sh:maxCount  1 ;
-                                      sh:in       ( "aanwezig" "vervallen" "te vernietigen" "vermist" "vernietigd" ) ;
-                                      sh:group     bestanddeel:managementGroup ;
+                                      sh:in        ( "aanwezig" "vervallen" "te vernietigen" "vermist" "vernietigd" ) ;
+                                      sh:group     file:managementGroup ;
                                       sh:order     8.0 ;
-                                      sh:path      bestanddeel:status ; ] ;
+                                      sh:path      file:status ;
+                                    ] ;
 .
 
 rico:Identifier
@@ -194,16 +210,17 @@ rico:Identifier
                            sh:minCount          1 ;
                            sh:maxCount          1 ;
                            sh:order             1.0 ;
-                           sh:path              rico:textualValue ] ;
-    sh:property          [ rdfs:label             "Nummer toevoeging"@nl ;
-                           dash:singleLine        true ;
-                           memorix:inTitleAt      2.0 ;
-                           memorix:searchWeight   3.0 ;
-                           owl:equivalentProperty rico:textualValue ;
-                           sh:maxCount            1 ;
-                           sh:datatype            xsd:string ;
-                           sh:order               2.0 ;
-                           sh:path                bestanddeel:identificationGroup ] ;
+                           sh:path              file:inventoryNumber
+                         ] ;
+    sh:property          [ rdfs:label           "Nummer toevoeging"@nl ;
+                           dash:singleLine      true ;
+                           memorix:inTitleAt    2.0 ;
+                           memorix:searchWeight 3.0 ;
+                           sh:maxCount          1 ;
+                           sh:datatype          xsd:string ;
+                           sh:order             2.0 ;
+                           sh:path              file:inventoryNumberAddition
+                         ] ;
     sh:targetClass       rico:Identifier
 .
 
@@ -214,30 +231,48 @@ rico:DateRange
     sh:property          [ rdfs:label  "Datum (tekst)"@nl ;
                            sh:datatype xsd:string ;
                            sh:order    1.0 ;
-                           sh:path     rico:expressedDate ] ;
+                           sh:path     rico:expressedDate
+                         ] ;
     sh:property          [ rdfs:label  "Begindatum"@nl ;
                            sh:datatype xsd:date ;
                            sh:order    2.0 ;
-                           sh:path     rico:hasBeginningDate ] ;
+                           sh:path     rico:hasBeginningDate
+                         ] ;
     sh:property          [ rdfs:label  "Einddatum"@nl ;
                            sh:datatype xsd:date ;
                            sh:order    3.0 ;
-                           sh:path     rico:hasEndDate ] ;
+                           sh:path     rico:hasEndDate
+                         ] ;
     sh:targetClass       rico:DateRange ;
 .
 
-bestanddeel:digitalBorn a rdf:Property ;
-  # in rico modeled with rico:hasRepresentationType
+
+file:digitalBorn
+    a rdfs:Property ;
+    # in rico modeled with rico:hasRepresentationType
 .
 
-bestanddeel:digitised a rdf:Property ;
-  # in rico modeled with rico:hasRepresentationType
+file:digitised
+    a rdfs:Property ;
+    # in rico modeled with rico:hasRepresentationType
 .
 
-bestanddeel:duplicate a rdf:Property ;
-  rdfs:subPropertyOf rico:hasInstantiation ;
+file:duplicate
+    a                  rdfs:Property ;
+    rdfs:subPropertyOf rico:hasInstantiation ;
 .
 
-bestanddeel:status a rdf:Property ;
-  rdfs:subPropertyOf rico:isOrWasRecordStateOfAllMembers ;
+file:status
+    a                  rdfs:Property ;
+    rdfs:subPropertyOf rico:isOrWasRecordStateOfAllMembers ;
+.
+
+file:inventoryNumber
+    a                  rdfs:Property ;
+    rdfs:subPropertyOf rico:textualValue ;
+.
+
+file:inventoryNumberAddition
+    a                  rdfs:Property ;
+    rdfs:subPropertyOf rico:textualValue ;
 .

@@ -101,7 +101,7 @@ rt:Persoonsvermelding
                            sh:group    persoonsvermelding:managementGroup ;
                            sh:maxCount 1 ;
                            sh:order    1.0 ;
-                           sh:path     persoonsvermelding:remark ] ;
+                           sh:path     persoonsvermelding:internalRemarks ] ;
     sh:property          [ rdfs:label  "Overleden"@nl ;
                            sh:datatype xsd:boolean ;
                            sh:group    persoonsvermelding:personListingGroup ;
@@ -139,7 +139,7 @@ rt:Persoonsvermelding
                            sh:order     2.0 ;
                            sh:maxCount  100 ;
                            sh:nodeKind  sh:IRI ;
-                           sh:or        ( [ sh:class rt:SaaPersoon ] [ sh:class rt:SaaPersoonsvermelding ] ) ;
+                           sh:or        ( [ sh:class rt:Person ] [ sh:class rt:SaaPersoonsvermelding ] ) ;
                            sh:path      persoonsvermelding:sameAsInternal ] ;
     sh:targetClass       rt:Persoonsvermelding .
 
