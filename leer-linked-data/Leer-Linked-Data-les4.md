@@ -3,7 +3,7 @@
 ## Datastructuur in SHACL
 
 ### Les 1
-De vrijheid die Linked Data biedt is niet altijd handig. Soms moet je gewoon zeker weten dat er een plaats in het depot is vastgelegd bijvoorbeeld. En dat ook kunnen controleren. Daarvoor gebruiken we SHACL. Omdat we in Amsterdam graag andere randvoorwaarden (_constraints_) willen kunnen controleren voor Archiefblok en Bestanddeel is het nodig om deze apart te definieren en te bepalen dat ze hetzelfde zijn als een rico:RecordSet.
+De vrijheid die Linked Data biedt is niet altijd handig. Soms moet je gewoon zeker weten dat er een plaats in het depot is vastgelegd bijvoorbeeld. En dat ook kunnen controleren. Daarvoor gebruiken we SHACL. Omdat we in Amsterdam graag andere randvoorwaarden (_constraints_) willen kunnen controleren voor Archiefblok en Bestanddeel is het nodig om deze apart te definieren en te bepalen dat ze een soort rico:RecordSet zijn (zie rdfs:subClassOf).
 
 Bij een Archief vinden we in Amsterdam een archiefvormer verplicht, bij een Bestanddeel niet. Dus:
 
@@ -50,7 +50,7 @@ Als het goed is gaat het nu mis als je onderstaande data wilt invoeren
 	rico:hasRecordSetType ric-rst:Fonds .
 ```
 
-Vraag: Waaarom?
+Vraag: Waarom?
 
 maar dit mag wel:
 ```
@@ -78,14 +78,11 @@ maar dit mag wel:
 ```
 
 ### Les 3
-Doe opnieuw:
+Class-typering.
 
-```
-SELECT * WHERE {
-     ?rs 	rico:hasRecordSetType ?rst ;
-     		rico:isAssociatedWithDate/rico:hasBeginningDate/rico:normalizedDateValue ?begindate .
-     FILTER (?begindate < '1600'^^xsd:gYear)
-}
+### Les 4
+Data-typering.
 
-```
+### Les 5 
+Brug naar les 5: de datastructuren kunnen de basis vormen voor een formulier.
 
