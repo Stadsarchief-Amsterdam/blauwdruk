@@ -4,7 +4,7 @@
 @prefix xsd:            <http://www.w3.org/2001/XMLSchema#> .
 
 @prefix rt:             </resources/recordtypes/> .
-@prefix familie:        </resources/recordtypes/SaaFamilie#> .
+@prefix family:         </resources/recordtypes/Family#> .
 
 @prefix dc:             <http://purl.org/dc/elements/1.1/> .
 @prefix sh:             <http://www.w3.org/ns/shacl#> .
@@ -18,24 +18,23 @@
 
 @prefix schema:         <http://schema.org/> .
 
-familie:identificationGroup
+family:identificationGroup
     rdf:type   sh:PropertyGroup ;
     rdfs:label "Identificatie"@nl ;
     sh:order   1.0 .
 
-familie:managementGroup
+family:managementGroup
     rdf:type   sh:PropertyGroup ;
     rdfs:label "Beheer"@nl ;
     sh:order   2.0 .
 
-rt:Familie
+rt:Family
     rdf:type                memorix:Recordtype , sh:NodeShape , rdfs:Class ;
-    rdfs:label              "Familie"@nl ;
+    rdfs:label              "Familie"@nl, "Family"@en ;
     rdfs:comment            "Stadsarchief recordtype voor Familie"@nl ;
-    dc:identifier           "SaaFamilie" ;
+    dc:identifier           "Family" ;
     sh:targetClass          rt:Familie ;
     rdfs:subClassOf         rico:Family ;
-    dash:defaultViewForRole dash:all ;
     sh:closed               true ;
     sh:ignoredProperties    ( rdf:type ) ;
     sh:property             [ rdfs:label            "Naam"@nl ;
@@ -44,20 +43,20 @@ rt:Familie
                               memorix:inTitleAt     1.0 ;
                               memorix:searchWeight  3.0 ;
                               sh:datatype           xsd:string ;
-                              sh:group              familie:identificationGroup ;
+                              sh:group              family:identificationGroup ;
                               sh:maxCount           1 ;
                               sh:order              1.0 ;
                               sh:path               schema:name ] ;
     sh:property             [ rdfs:label            "Alternatieve namen"@nl ;
                               memorix:searchWeight  1.0 ;
                               sh:datatype           xsd:string ;
-                              sh:group              familie:identificationGroup ;
+                              sh:group              family:identificationGroup ;
                               sh:order              2.0 ;
                               sh:path               schema:alternateName ] ;
     sh:property             [ rdfs:label            "Interne opmerking"@nl ;
                               dash:editor           dash:TextAreaEditor ;
                               sh:datatype           xsd:string ;
-                              sh:group              familie:managementGroup  ;
+                              sh:group              family:managementGroup  ;
                               sh:order              1.0 ;
-                              sh:path               familie:remark ; ] ;
+                              sh:path               family:internalRemarks ; ] ;
 .

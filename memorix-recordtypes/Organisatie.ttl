@@ -5,7 +5,7 @@
 @prefix skos:           <http://www.w3.org/2004/02/skos/core#> .
 
 @prefix rt:             </resources/recordtypes/> .
-@prefix organisatie:    </resources/recordtypes/SaaOrganisatie#> .
+@prefix organisation:   </resources/recordtypes/Organisation#> .
 
 @prefix dc:             <http://purl.org/dc/elements/1.1/> .
 @prefix sh:             <http://www.w3.org/ns/shacl#> .
@@ -20,26 +20,25 @@
 @prefix pnv:            <https://w3id.org/pnv#> .
 @prefix schema:         <http://schema.org/> .
 
-# todo pdr velden toevoegen omtrent oprichtings data
+# todo pdr velden toevoegen omtrent oprichtings data?
 
-organisatie:identificationGroup
+organisation:identificationGroup
     rdf:type   sh:PropertyGroup ;
     rdfs:label "Identificatie"@nl ;
     sh:order   1.0 .
 
-organisatie:managementGroup
+organisation:managementGroup
     rdf:type   sh:PropertyGroup ;
     rdfs:label "Beheer"@nl ;
     sh:order   2.0 .
 
-rt:Organisatie
+rt:Organisation
     rdf:type                memorix:Recordtype , rdfs:Class , sh:NodeShape ;
-    rdfs:label              "Organisatie"@nl ;
+    rdfs:label              "Organisatie"@nl, "Organisation"@en ;
     rdfs:comment            "Stadsarchief recordtype voor Organisatie"@nl ;
-    dc:identifier           "SaaOrganisatie" ;
+    dc:identifier           "Organisation" ;
     sh:targetClass          rt:Organisatie ;
     rdfs:subClassOf         rico:CorporateBody ;
-    dash:defaultViewForRole dash:all ;
     sh:closed               true ;
     sh:ignoredProperties    ( rdf:type ) ;
     sh:property             [ rdfs:label            "Naam"@nl ;
@@ -48,20 +47,20 @@ rt:Organisatie
                               memorix:inTitleAt     1.0 ;
                               memorix:searchWeight  3.0 ;
                               sh:datatype           xsd:string ;
-                              sh:group              organisatie:identificationGroup ;
+                              sh:group              organisation:identificationGroup ;
                               sh:maxCount           1 ;
                               sh:order              1.0 ;
                               sh:path               schema:name ] ;
     sh:property             [ rdfs:label            "Alternatieve namen"@nl ;
                               memorix:searchWeight  1.0 ;
                               sh:datatype           xsd:string ;
-                              sh:group              organisatie:identificationGroup ;
+                              sh:group              organisation:identificationGroup ;
                               sh:order              2.0 ;
                               sh:path               schema:alternateName ] ;
     sh:property             [ rdfs:label            "Interne opmerking"@nl ;
                               dash:editor           dash:TextAreaEditor ;
                               sh:datatype           xsd:string ;
-                              sh:group              organisatie:managementGroup  ;
+                              sh:group              organisation:managementGroup  ;
                               sh:order              1.0 ;
-                              sh:path               organisatie:remark ; ]
+                              sh:path               organisation:internalRemarks ; ]
 .
