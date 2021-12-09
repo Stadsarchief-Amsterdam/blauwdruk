@@ -20,7 +20,6 @@
 @prefix pnv:            <https://w3id.org/pnv#> .
 @prefix schema:         <http://schema.org/> .
 
-#todo pdr add comments, messages, placeholders, add relations to other Persons?
 
 person:identificationGroup
     rdf:type   sh:PropertyGroup ;
@@ -51,7 +50,7 @@ rt:Person
     sh:ignoredProperties ( rdf:type ) ;
     sh:property          [ rdfs:label               "Voornaam"@nl ;
                            dash:singleLine          true ; # zouden we dit overal moeten toevoegen of is dit de default?
-                           memorix:inTitleAt        1.0 ;
+                           memorix:inTitleAt        3.0 ;
                            memorix:searchWeight     3.0 ;
                            sh:datatype              xsd:string ;
                            sh:group                 person:identificationGroup ;
@@ -69,7 +68,7 @@ rt:Person
                            sh:path                  pnv:surnamePrefix ] ;
     sh:property          [ rdfs:label               "Achternaam"@nl ;
                            dash:singleLine          true ;
-                           memorix:inTitleAt        3.0 ;
+                           memorix:inTitleAt        1.0 ;
                            memorix:searchWeight     3.0 ;
                            sh:datatype              xsd:string ;
                            sh:group                 person:identificationGroup ;
@@ -82,6 +81,7 @@ rt:Person
                            sh:minInclusive          "1200"^^xsd:gYear ;
                            sh:maxInclusive          "2200"^^xsd:gYear ;
                            memorix:inTitleAt        4.0 ;
+                           memorix:inSummaryAt      1.0 ;
                            sh:group                 person:identificationGroup ;
                            sh:order                 4.0 ;
                            sh:path                  schema:birthDate ] ;
@@ -93,6 +93,7 @@ rt:Person
                            sh:path                  schema:birthPlace ] ;
     sh:property          [ rdfs:label               "Overlijdensjaar"@nl ;
                            rdfs:comment             "Geef een jaartal"@nl ;
+                           memorix:inSummaryAt      2.0 ;
                            sh:datatype              xsd:gYear ;
                            sh:minInclusive          "1200"^^xsd:gYear ;
                            sh:maxInclusive          "2200"^^xsd:gYear ;
