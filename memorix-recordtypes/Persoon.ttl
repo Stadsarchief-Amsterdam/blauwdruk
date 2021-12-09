@@ -83,12 +83,14 @@ rt:Person
                            memorix:inTitleAt        4.0 ;
                            memorix:inSummaryAt      1.0 ;
                            sh:group                 person:identificationGroup ;
+                           sh:maxCount              1 ;
                            sh:order                 4.0 ;
                            sh:path                  schema:birthDate ] ;
     sh:property          [ rdfs:label               "Geboorteplaats"@nl ;
                            dash:editor              dash:TextFieldEditor ;
                            sh:datatype              xsd:string ;
                            sh:group                 person:identificationGroup ;
+                           sh:maxCount              1 ;
                            sh:order                 5.0 ;
                            sh:path                  schema:birthPlace ] ;
     sh:property          [ rdfs:label               "Overlijdensjaar"@nl ;
@@ -98,6 +100,7 @@ rt:Person
                            sh:minInclusive          "1200"^^xsd:gYear ;
                            sh:maxInclusive          "2200"^^xsd:gYear ;
                            sh:group                 person:identificationGroup ;
+                           sh:maxCount              1 ;
                            sh:order                 6.0 ;
                            sh:path                  schema:deathDate ] ;
     sh:property          [ rdfs:label               "Overlijdensplaats"@nl ;
@@ -105,12 +108,14 @@ rt:Person
                            sh:datatype              xsd:string ;
                            memorix:inTitleAt        5.0 ;
                            sh:group                 person:identificationGroup ;
+                           sh:maxCount              1 ;
                            sh:order                 7.0 ;
                            sh:path                  schema:deathPlace ] ;
     sh:property          [ rdfs:label               "Alternatieve namen"@nl ;
                            memorix:searchWeight     1.0 ;
                            sh:datatype              xsd:string ;
                            sh:group                 person:alternativeGroup ;
+                           sh:maxCount              1 ;
                            sh:order                 1.0 ;
                            sh:path                  schema:alternateName ] ;
     sh:property          [ rdfs:label               "Identiek aan (RKD Artists)"@nl ;
@@ -127,12 +132,14 @@ rt:Person
                            dash:editor              dash:TextAreaEditor ;
                            sh:datatype              xsd:string ;
                            sh:group                 person:managementGroup ;
+                           sh:maxCount              1 ;
                            sh:order                 1.0 ;
                            sh:path                  person:internalRemarks ; ] ;
     sh:property          [ rdfs:label               "Bibliotheek descriptor?"@nl ;
                            rdfs:comment             "Of deze naam afkomstig is uit de bibliotheek descriptoren lijst."@nl ;
                            sh:datatype              xsd:boolean ;
                            sh:group                 person:managementGroup ;
+                           sh:maxCount              1 ;
                            sh:order                 2.0 ;
                            sh:path                  person:originallyFromLibrary ; ] ;
 .
