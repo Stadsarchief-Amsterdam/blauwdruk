@@ -189,6 +189,8 @@ We moeten dan wel ons eigen ding de rdf:type blauwdruk:Fonds meegeven:
     rico:hasRecordSetType ric-rst:Fonds .
 ```
 
+Opdracht: kijk naar de volledige definitie van Archiefblok in de blauwdruk.
+
 ### Les 5 
-En nu maken we een grote denksprong. Als we dit soort randvoorwaarden vastleggen in SHACL, kunnen we die randvoorwaarden gebruiken om te valideren, maar legt het ook eenduidig vast hoe het scherm van de gebruikersinterface eruit ziet. Bij de bovenstaande NodeShape zal er dus voor een Archiefblok drie velden op het scherm moeten zijn, en het systeem kan aangeven dat ze niet wil opslaan, als er niet een verplichte archiefvormer en datum zijn ingevuld.
+En nu maken we een denksprong. Als we dit soort randvoorwaarden vastleggen in SHACL, kunnen we die randvoorwaarden gebruiken om te valideren, maar legt het ook eenduidig vast hoe het scherm van de gebruikersinterface eruit ziet. Bij de bovenstaande NodeShape zal er dus voor een Archiefblok drie velden op het scherm moeten zijn, en het systeem kan aangeven dat ze niet wil opslaan, als er niet een verplichte archiefvormer en datum zijn ingevuld. We hebben wat aanvullende informatie nodig: we willen de volgorde vastleggen en misschien willen we de velden groeperen in blokken op het scherm. Memorix maakt gebruik van dit idee om drie vliegen in een klap te slaan: met zo'n SHACL-nodeshape-met aanvullingen leggen we de datadefinitie vast, kunnen we de data correct houden en de gebruikersinterface definieren. Volgende keer gaan we daar naar kijken.
 
