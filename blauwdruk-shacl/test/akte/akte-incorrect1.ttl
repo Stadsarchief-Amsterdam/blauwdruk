@@ -19,5 +19,5 @@
     rdfs:label "Geboorteakte Jan Jansen 1898" ;
     rico:isAssociatedWithDate [
         a rico:SingleDate ;
-        rico:normalizedDateValue "Twee jaar voor het begin van de twintigste eeuw" ;
+        rico:normalizedDateValue "Twee jaar voor het begin van de twintigste eeuw"^^xsd:date ;
     ] .

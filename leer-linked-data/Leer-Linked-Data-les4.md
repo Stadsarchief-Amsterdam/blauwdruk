@@ -149,7 +149,7 @@ Daarom definieren we onze eigen Classes, die we 'ophangen' in de RiC-O ontologie
 
 blauwdruk:Fonds a sh:NodeShape , owl:Class ;
     sh:targetClass blauwdruk:Fonds ;
-    owl:subClassOf rico:RecordSet ;
+    rdfs:subClassOf rico:RecordSet ;
     rdfs:label "Archiefblok" ;
     sh:property [
         sh:path rico:hasAccumulator ;
