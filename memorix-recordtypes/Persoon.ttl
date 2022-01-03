@@ -44,7 +44,7 @@ rt:Person
     rdfs:comment         "Stadsarchief recordtype voor Persoon"@nl ;
     rdfs:label           "Persoon"@nl, "Person"@en ;
     dc:identifier        "Person" ;
-    sh:targetClass       rt:Persoon ;
+    sh:targetClass       rt:Person ;
     rdfs:subClassOf      rico:Person , schema:Person , pnv:Person ;
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
@@ -81,7 +81,6 @@ rt:Person
                            sh:minInclusive          "1200"^^xsd:gYear ;
                            sh:maxInclusive          "2200"^^xsd:gYear ;
                            memorix:inTitleAt        4.0 ;
-                           memorix:inSummaryAt      1.0 ;
                            sh:group                 person:identificationGroup ;
                            sh:maxCount              1 ;
                            sh:order                 4.0 ;
@@ -95,7 +94,7 @@ rt:Person
                            sh:path                  schema:birthPlace ] ;
     sh:property          [ rdfs:label               "Overlijdensjaar"@nl ;
                            rdfs:comment             "Geef een jaartal"@nl ;
-                           memorix:inSummaryAt      2.0 ;
+                           memorix:inTitleAt        5.0 ;
                            sh:datatype              xsd:gYear ;
                            sh:minInclusive          "1200"^^xsd:gYear ;
                            sh:maxInclusive          "2200"^^xsd:gYear ;
@@ -106,13 +105,12 @@ rt:Person
     sh:property          [ rdfs:label               "Overlijdensplaats"@nl ;
                            dash:editor              dash:TextFieldEditor ;
                            sh:datatype              xsd:string ;
-                           memorix:inTitleAt        5.0 ;
                            sh:group                 person:identificationGroup ;
                            sh:maxCount              1 ;
                            sh:order                 7.0 ;
                            sh:path                  schema:deathPlace ] ;
     sh:property          [ rdfs:label               "Alternatieve namen"@nl ;
-                           memorix:searchWeight     1.0 ;
+                           memorix:searchWeight     2.0 ;
                            sh:datatype              xsd:string ;
                            sh:group                 person:alternativeGroup ;
                            sh:maxCount              1 ;
