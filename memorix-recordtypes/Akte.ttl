@@ -4,7 +4,7 @@
 @prefix skos:            <http://www.w3.org/2004/02/skos/core#> .
 
 @prefix rt:              </resources/recordtypes/> .
-@prefix akte:            </resources/recordtypes/SaaAkte#> .
+@prefix deed:            </resources/recordtypes/Deed#> .
 
 @prefix dc:              <http://purl.org/dc/elements/1.1/> .
 @prefix sh:              <http://www.w3.org/ns/shacl#> .
@@ -20,47 +20,47 @@
 @prefix schema:          <http://schema.org/> .
 
 
-akte:identificationGroup
+deed:identificationGroup
     rdf:type   sh:PropertyGroup ;
     rdfs:label "Akte"@nl ;
     sh:order   1.0 .
 
-akte:contentDescriptionGroup
+deed:contentDescriptionGroup
     rdf:type   sh:PropertyGroup ;
     rdfs:label "Beschrijving"@nl ;
     sh:order   2.0 .
 
-akte:managementGroup
+deed:managementGroup
     rdf:type   sh:PropertyGroup ;
     rdfs:label "Beheer"@nl ;
     sh:order   3.0 .
 
-rt:SaaAkte a memorix:Recordtype ,
+rt:Deed a memorix:Recordtype ,
              sh:NodeShape ,
              rdfs:Class ;
     rdfs:comment         "Stadsarchief recordtype voor Akte"@nl ;
     rdfs:label           "Akte"@nl,
                          "Deed"@en ;
-    dc:identifier        "SaaAkte" ; #todo rename to Deed?
-    sh:targetClass       rt:SaaAkte ;
+    dc:identifier        "Deed" ;
+    sh:targetClass       rt:Deed ;
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property          [ rdfs:label        "Titel"@nl ;
                            rdfs:comment      "Gemigreerde titel, t.b.v. de Memorix interface"@nl ;
                            memorix:inTitleAt 1.0 ;
                            sh:datatype       xsd:string ;
-                           sh:group          akte:identificationGroup ;
+                           sh:group          deed:identificationGroup ;
                            sh:maxCount       1 ;
                            sh:order          1.0 ;
                            sh:path           rico:title ] ;
     sh:property          [ rdfs:label  "Aktetype"@nl ;
                            sh:datatype xsd:string ;
-                           sh:group    akte:identificationGroup ;
+                           sh:group    deed:identificationGroup ;
                            sh:maxCount 1 ;
                            sh:order    2.0 ;
                            sh:path     rico:hasDocumentaryFormType ] ;
     sh:property          [ rdfs:label  "Datum (van de akte)"@nl ;
-                           sh:group    akte:identificationGroup ;
+                           sh:group    deed:identificationGroup ;
                            sh:order    3.0 ;
                            sh:class    rico:SingleDate ;
                            sh:maxCount 1 ;
@@ -70,19 +70,19 @@ rt:SaaAkte a memorix:Recordtype ,
                            rdfs:comment        "Huidige naam van de index."@nl ;
                            memorix:inSummaryAt 1.0 ;
                            sh:datatype         xsd:string ;
-                           sh:group            akte:identificationGroup ;
+                           sh:group            deed:identificationGroup ;
                            sh:order            4.0 ;
-                           sh:path             akte:indexName ] ;
+                           sh:path             deed:indexName ] ;
     sh:property          [ rdfs:label  "Bronverwijzing"@nl ;
                            sh:datatype xsd:string ;
-                           sh:group    akte:contentDescriptionGroup ;
+                           sh:group    deed:contentDescriptionGroup ;
                            sh:order    5.0 ;
-                           sh:path     akte:source ] ;
+                           sh:path     deed:source ] ;
     sh:property          [ rdfs:label   "Gekoppeld bestanddeel"@nl ;
                            rdfs:comment "Bestanddeel waartoe deze akkoord behoort."@nl ;
                            sh:message   "Kies een bestanddeel om aan te koppelen. Dit is verplicht."@nl ;
                            dash:editor  memorix:LinkedRecordEditor ;
-                           sh:group     akte:identificationGroup ;
+                           sh:group     deed:identificationGroup ;
                            # sh:minCount  1 ; # todo aanzetten als de UI gefikst is
                            sh:maxCount  1 ;
                            sh:nodeKind  sh:IRI ;
@@ -91,8 +91,8 @@ rt:SaaAkte a memorix:Recordtype ,
                            sh:path      rico:isOrWasIncludedIn ] ;
     sh:property          [ rdfs:label   "Personen"@nl ;
                            rdfs:comment "Personen die voorkomen op de akte."@nl ;
-                           sh:class     akte:Person ;
-                           sh:group     akte:contentDescriptionGroup ;
+                           sh:class     deed:Person ;
+                           sh:group     deed:contentDescriptionGroup ;
                            sh:maxCount  999 ;
                            sh:nodeKind  sh:BlankNode ;
                            sh:order     7.0 ;
@@ -100,13 +100,13 @@ rt:SaaAkte a memorix:Recordtype ,
     sh:property          [ rdfs:label  "Interne opmerking"@nl ;
                            dash:editor dash:TextAreaEditor ;
                            sh:datatype xsd:string ;
-                           sh:group    akte:managementGroup ;
+                           sh:group    deed:managementGroup ;
                            sh:order    8.0 ;
                            sh:maxCount 1 ;
-                           sh:path     akte:internalRemarks ] ;
+                           sh:path     deed:internalRemarks ] ;
 .
 
-akte:Person
+deed:Person
     rdf:type             sh:NodeShape ;
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
@@ -115,12 +115,12 @@ akte:Person
                            sh:nodeKind sh:IRI ;
                            sh:or       ( <https://example.memorix-test.nl/resources/recordtypes/Persoonsvermelding> ) ;
                            sh:order    2.0 ;
-                           sh:path     akte:personObservation ] ;
+                           sh:path     deed:personObservation ] ;
     sh:property          [ rdfs:label  "Rol"@nl ;
                            sh:datatype xsd:string ;
                            sh:order    1.0 ;
-                           sh:path     akte:personRole ] ;
-    sh:targetClass       akte:Person
+                           sh:path     deed:personRole ] ;
+    sh:targetClass       deed:Person
 .
 
 rico:SingleDate
@@ -134,6 +134,6 @@ rico:SingleDate
                            sh:path     rico:normalizedDateValue ] ;
 .
 
-akte:indexName a rdf:Property ;
+deed:indexName a rdf:Property ;
     rdfs:subPropertyOf rico:isOrWasPartOf ;
 .
