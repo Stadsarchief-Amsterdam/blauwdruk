@@ -12,9 +12,9 @@
 @prefix ric-dft:       <https://www.ica.org/standards/RiC/vocabularies/documentaryFormTypes#> .
 
 # ==================================================
-blauwdruk:Archiefblok a sh:NodeShape, owl:Class ;
-    sh:targetClass blauwdruk:Archiefblok ;
-    owl:equivalentClass rico:RecordSet ;
+blauwdruk:Fonds a sh:NodeShape, rdfs:Class ;
+    sh:targetClass blauwdruk:Fonds ;
+    rdfs:subClassOf rico:RecordSet ;
     rdfs:label "Archiefblok"@nl ;
     rdfs:comment "Beschrijving van een verzameling bescheiden die gezamenlijk een archiefblok vormen."@nl ;
     sh:property [ 
@@ -65,7 +65,7 @@ blauwdruk:Archiefblok a sh:NodeShape, owl:Class ;
     sh:property [
         rdfs:label "Gerelateerde archieven"@nl ;
         sh:path rdfs:seeAlso ;
-        sh:class blauwdruk:Archiefblok ;       
+        sh:class blauwdruk:Fonds ;       
     ] ;
     sh:property [
         rdfs:label "Gerelateerde publicaties"@nl ;
@@ -84,15 +84,15 @@ blauwdruk:Archiefblok a sh:NodeShape, owl:Class ;
         sh:datatype xsd:string ; 
     ] ;
     sh:property [
-        rdfs:label "Inventarisatie"@nl ; 
+        rdfs:label "Inventaris"@nl ; 
         sh:minCount 1 ; 
         sh:path rico:isOrWasDescribedBy ;
-        sh:class blauwdruk:Inventaris ; 
+        sh:class blauwdruk:FindingAid ; 
     ] .
 
-blauwdruk:Inventaris a sh:NodeShape, owl:Class ;
-    sh:targetClass blauwdruk:Inventaris ;
-    rdfs:equivalentClass rico:Record ;
+blauwdruk:Inventaris a sh:NodeShape, rdfs:Class ;
+    sh:targetClass blauwdruk:FindingAid ;
+    rdfs:subClassOf rico:Record ;
     sh:property [ 
         sh:message "Inventaris MUST link to ric-dft:FindingAid with rico:hasDocumentaryFormType"@en ,
             "Inventaris MOET linken naar ric-dft:FindingAid met rico:hasDocumentaryFormType"@nl ;
