@@ -180,7 +180,7 @@ personObservation:Details
     sh:property          [ rdfs:label  "Bijzonderheid"@nl, "Detail"@en ;
                            sh:datatype xsd:string ;
                            sh:order    2.0 ;
-                           sh:path     personObservation:detailDetail
+                           sh:path     personObservation:detailTextualValue
                          ] ;
     sh:targetClass       personObservation:Details ;
 .
@@ -193,4 +193,28 @@ personObservation:sameAsExternal
 personObservation:sameAsInternal
     a                      rdf:Property ;
     owl:equivalentProperty owl:sameAs ;
+.
+
+personObservation:age
+    a                      rdf:Property ;
+.
+
+personObservation:internalRemarks
+    a                      rdf:Property ;
+.
+
+personObservation:deceased
+    a                      rdf:Property ;
+.
+
+personObservation:details
+    a                      rdf:Property ;
+.
+
+personObservation:detailType
+    a                      rdf:Property ;
+.
+
+personObservation:detailTextualValue
+    a                      rdf:Property ;
 .
