@@ -116,9 +116,9 @@ rt:Person
                            sh:maxCount              1 ;
                            sh:order                 1.0 ;
                            sh:path                  schema:alternateName ] ;
-    sh:property          [ rdfs:label               "Identiek aan (RKD Artists)"@nl, "Is identical to (RKD Artist)"@en  ;
+    sh:property          [ rdfs:label               "Identiek aan"@nl, "Is same as"@en ;
                            dash:editor              memorix:VocabularyEditor ;
-                           memorix:conceptSchemeIn  <https://data.rkd.nl/rkdartists> ;
+                           memorix:conceptSchemeIn  <https://data.rkd.nl/rkdartists> ; # more vocabularies allowed
                            memorix:searchWeight     1.0 ;
                            sh:class                 skos:Concept ;
                            sh:group                 person:alternativeGroup ;
@@ -140,4 +140,13 @@ rt:Person
                            sh:maxCount              1 ;
                            sh:order                 2.0 ;
                            sh:path                  person:originallyFromLibrary ; ] ;
+.
+
+
+person:internalRemarks
+    a                      rdf:Property ;
+.
+
+person:originallyFromLibrary
+    a                      rdf:Property ;
 .
