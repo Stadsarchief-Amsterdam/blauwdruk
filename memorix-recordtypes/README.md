@@ -24,6 +24,19 @@ Zo lang we nog alleen de beschikking hebben over de example omgeving stel ik voo
 | Duplicaat.ttl     | - | - | -
 | Conservering.ttl     | - | - | Moet deze gemaakt?
 
+
+## Andere richtlijnen
+Om een record in Memorix een rdf:type van een bepaald Class te laten zijn volstaat de sh:targetClass property met Object een IRI naar de class, b.v.:
+
+    <> sh:targetClass <http://schema.org/Brand> .
+
+Dit resulteert in een record met 3 rdf:type waardes:
+    
+    </recordtypes/Brand>
+    <http://schema.org/Brand>
+    <http://memorix.io/ontology#Record>
+
+
 ## Vragen Picturae
 * dash:singleLine  true ; is dit niet de default?
 * hoe zorgen we ervoor dat sommige velden niet online komen? Zoals bv de interne opmerkingen
@@ -39,8 +52,6 @@ Zo lang we nog alleen de beschikking hebben over de example omgeving stel ik voo
 ## todo
 * inTitleAt and inSummaryAt nalopen en vastleggen
 * verplichte velden
-* example uri overal afhalen
-
 
 ## UI spul Memorix
 
