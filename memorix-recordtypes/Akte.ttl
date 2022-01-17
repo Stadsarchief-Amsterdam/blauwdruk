@@ -22,17 +22,17 @@
 
 deed:identificationGroup
     rdf:type   sh:PropertyGroup ;
-    rdfs:label "Akte"@nl ;
+    rdfs:label "Akte"@nl, "Deed"@en ;
     sh:order   1.0 .
 
 deed:contentDescriptionGroup
     rdf:type   sh:PropertyGroup ;
-    rdfs:label "Beschrijving"@nl ;
+    rdfs:label "Beschrijving"@nl, "Description"@en ;
     sh:order   2.0 .
 
 deed:managementGroup
     rdf:type   sh:PropertyGroup ;
-    rdfs:label "Beheer"@nl ;
+    rdfs:label "Beheer"@nl, "Manage"@en ;
     sh:order   3.0 .
 
 rt:Deed a memorix:Recordtype ,
@@ -45,7 +45,7 @@ rt:Deed a memorix:Recordtype ,
     sh:targetClass       rt:Deed ;
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property          [ rdfs:label        "Titel"@nl ;
+    sh:property          [ rdfs:label        "Titel"@nl, "Title"@en ;
                            rdfs:comment      "Gemigreerde titel, t.b.v. de Memorix interface"@nl ;
                            memorix:inTitleAt 1.0 ;
                            sh:datatype       xsd:string ;
@@ -53,27 +53,27 @@ rt:Deed a memorix:Recordtype ,
                            sh:maxCount       1 ;
                            sh:order          1.0 ;
                            sh:path           rico:title ] ;
-    sh:property          [ rdfs:label  "Aktetype"@nl ;
+    sh:property          [ rdfs:label  "Aktetype"@nl, "Type of record"@en ;
                            sh:datatype xsd:string ;
                            sh:group    deed:identificationGroup ;
                            sh:maxCount 1 ;
                            sh:order    2.0 ;
                            sh:path     rico:hasDocumentaryFormType ] ;
-    sh:property          [ rdfs:label  "Datum (van de akte)"@nl ;
+    sh:property          [ rdfs:label  "Datum (van de akte)"@nl, "Date of the record"@en ;
                            sh:group    deed:identificationGroup ;
                            sh:order    3.0 ;
                            sh:class    rico:SingleDate ;
                            sh:maxCount 1 ;
                            sh:nodeKind sh:BlankNode ;
                            sh:path     rico:isAssociatedWithDate ] ;
-    sh:property          [ rdfs:label          "Index Naam"@nl ;
-                           rdfs:comment        "Huidige naam van de index."@nl ;
+    sh:property          [ rdfs:label          "Index Naam"@nl, "Name of the index"@en ;
+                           rdfs:comment        "Huidige naam van de index."@nl, "Current name of the index"@en ;
                            memorix:inSummaryAt 1.0 ;
                            sh:datatype         xsd:string ;
                            sh:group            deed:identificationGroup ;
                            sh:order            4.0 ;
                            sh:path             deed:indexName ] ;
-    sh:property          [ rdfs:label  "Bronverwijzing"@nl ;
+    sh:property          [ rdfs:label  "Bronverwijzing"@nl, "Mention of the source"@en ;
                            sh:datatype xsd:string ;
                            sh:group    deed:contentDescriptionGroup ;
                            sh:order    5.0 ;
@@ -89,15 +89,15 @@ rt:Deed a memorix:Recordtype ,
                            sh:or        ( [ sh:class rt:File ] ) ;
                            sh:order     6.0 ;
                            sh:path      rico:isOrWasIncludedIn ] ;
-    sh:property          [ rdfs:label   "Personen"@nl ;
-                           rdfs:comment "Personen die voorkomen op de akte."@nl ;
+    sh:property          [ rdfs:label   "Personen"@nl, "People"@en ;
+                           rdfs:comment "Personen die voorkomen op de akte."@nl, "people mentioned in the source"@en ;
                            sh:class     deed:Person ;
                            sh:group     deed:contentDescriptionGroup ;
                            sh:maxCount  999 ;
                            sh:nodeKind  sh:BlankNode ;
                            sh:order     7.0 ;
                            sh:path      rico:hasOrHadSubject ] ;
-    sh:property          [ rdfs:label  "Interne opmerking"@nl ;
+    sh:property          [ rdfs:label  "Interne opmerking"@nl, "Internal remark"@en ;
                            dash:editor dash:TextAreaEditor ;
                            sh:datatype xsd:string ;
                            sh:group    deed:managementGroup ;
@@ -110,13 +110,13 @@ deed:Person
     rdf:type             sh:NodeShape ;
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property          [ rdfs:label  "Persoonsvermelding"@nl ;
+    sh:property          [ rdfs:label  "Persoonsvermelding"@nl, "Person observation"@en ;
                            dash:editor memorix:LinkedRecordEditor ;
                            sh:nodeKind sh:IRI ;
-                           sh:or       ( <https://example.memorix-test.nl/resources/recordtypes/Persoonsvermelding> ) ;
+                           sh:or       ( <https://example.memorix-test.nl/resources/recordtypes/PersonObservation> ) ;
                            sh:order    2.0 ;
                            sh:path     deed:personObservation ] ;
-    sh:property          [ rdfs:label  "Rol"@nl ;
+    sh:property          [ rdfs:label  "Rol"@nl, "Role"@en ;
                            sh:datatype xsd:string ;
                            sh:order    1.0 ;
                            sh:path     deed:personRole ] ;
@@ -136,4 +136,16 @@ rico:SingleDate
 
 deed:indexName a rdf:Property ;
     rdfs:subPropertyOf rico:isOrWasPartOf ;
+.
+
+deed:source a rdf:Property ;
+.
+
+deed:internalRemarks a rdf:Property ;
+.
+
+deed:personObservation a rdf:Property ;
+.
+
+deed:personRole a rdf:Property ;
 .
