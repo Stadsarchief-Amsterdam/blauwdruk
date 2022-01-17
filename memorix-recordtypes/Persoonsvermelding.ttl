@@ -62,7 +62,7 @@ rt:PersonObservation
                          pnv:Person ;
     sh:property          [ rdfs:label        "Voornaam"@nl,
                                              "First name"@en ;
-                           memorix:inTitleAt 1.0 ;
+                           memorix:inTitleAt 3.0 ;
                            sh:datatype       xsd:string ;
                            sh:group          personObservation:personListingGroup ;
                            sh:order          1.0 ;
@@ -76,7 +76,7 @@ rt:PersonObservation
                            sh:path           pnv:surnamePrefix
                          ] ;
     sh:property          [ rdfs:label        "Achternaam"@nl, "Surname"@en ;
-                           memorix:inTitleAt 3.0 ;
+                           memorix:inTitleAt 1.0 ;
                            sh:datatype       xsd:string ;
                            sh:group          personObservation:personListingGroup ;
                            sh:order          3.0 ;
