@@ -23,19 +23,19 @@
 
 person:identificationGroup
     rdf:type   sh:PropertyGroup ;
-    rdfs:label "Identificatie"@nl ;
+    rdfs:label "Identificatie"@nl, "Identification"@en  ;
     sh:order   1.0 ;
 .
 
 person:alternativeGroup
     rdf:type   sh:PropertyGroup ;
-    rdfs:label "Ook bekend als"@nl ;
+    rdfs:label "Ook bekend als"@nl, "Also known as"@en  ;
     sh:order   2.0 ;
 .
 
 person:managementGroup
     rdf:type   sh:PropertyGroup ;
-    rdfs:label "Beheer"@nl ;
+    rdfs:label "Beheer"@nl, "Manage"@en  ;
     sh:order   3.0 ;
 .
 
@@ -48,7 +48,7 @@ rt:Person
     rdfs:subClassOf      rico:Person , schema:Person , pnv:Person ;
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property          [ rdfs:label               "Voornaam"@nl ;
+    sh:property          [ rdfs:label               "Voornaam"@nl, "First name"@en  ;
                            dash:singleLine          true ; # zouden we dit overal moeten toevoegen of is dit de default?
                            memorix:inTitleAt        3.0 ;
                            memorix:searchWeight     3.0 ;
@@ -57,7 +57,7 @@ rt:Person
                            sh:maxCount              1 ;
                            sh:order                 1.0 ;
                            sh:path                  pnv:givenName ] ;
-    sh:property          [ rdfs:label               "Tussenvoegsel"@nl ;
+    sh:property          [ rdfs:label               "Tussenvoegsel"@nl, "Surname prefix"@en  ;
                            dash:singleLine          true ;
                            memorix:inTitleAt        2.0 ;
                            memorix:searchWeight     3.0 ;
@@ -66,7 +66,7 @@ rt:Person
                            sh:maxCount              1 ;
                            sh:order                 2.0 ;
                            sh:path                  pnv:surnamePrefix ] ;
-    sh:property          [ rdfs:label               "Achternaam"@nl ;
+    sh:property          [ rdfs:label               "Achternaam"@nl, "Surname"@en  ;
                            dash:singleLine          true ;
                            memorix:inTitleAt        1.0 ;
                            memorix:searchWeight     3.0 ;
@@ -75,7 +75,7 @@ rt:Person
                            sh:maxCount              1 ;
                            sh:order                 3.0 ;
                            sh:path                  pnv:baseSurname ] ;
-    sh:property          [ rdfs:label               "Geboortejaar"@nl ;
+    sh:property          [ rdfs:label               "Geboortejaar"@nl, "Year of birth"@en  ;
                            rdfs:comment             "Geef een jaartal"@nl ;
                            sh:datatype              xsd:gYear ;
                            sh:minInclusive          "1200"^^xsd:gYear ;
@@ -85,14 +85,14 @@ rt:Person
                            sh:maxCount              1 ;
                            sh:order                 4.0 ;
                            sh:path                  schema:birthDate ] ;
-    sh:property          [ rdfs:label               "Geboorteplaats"@nl ;
+    sh:property          [ rdfs:label               "Geboorteplaats"@nl, "Place of birth"@en  ;
                            dash:editor              dash:TextFieldEditor ;
                            sh:datatype              xsd:string ;
                            sh:group                 person:identificationGroup ;
                            sh:maxCount              1 ;
                            sh:order                 5.0 ;
                            sh:path                  schema:birthPlace ] ;
-    sh:property          [ rdfs:label               "Overlijdensjaar"@nl ;
+    sh:property          [ rdfs:label               "Overlijdensjaar"@nl, "Year of death"@en  ;
                            rdfs:comment             "Geef een jaartal"@nl ;
                            memorix:inTitleAt        5.0 ;
                            sh:datatype              xsd:gYear ;
@@ -102,21 +102,21 @@ rt:Person
                            sh:maxCount              1 ;
                            sh:order                 6.0 ;
                            sh:path                  schema:deathDate ] ;
-    sh:property          [ rdfs:label               "Overlijdensplaats"@nl ;
+    sh:property          [ rdfs:label               "Overlijdensplaats"@nl, "Place of death"@en  ;
                            dash:editor              dash:TextFieldEditor ;
                            sh:datatype              xsd:string ;
                            sh:group                 person:identificationGroup ;
                            sh:maxCount              1 ;
                            sh:order                 7.0 ;
                            sh:path                  schema:deathPlace ] ;
-    sh:property          [ rdfs:label               "Alternatieve namen"@nl ;
+    sh:property          [ rdfs:label               "Alternatieve namen"@nl, "Alternate names"@en  ;
                            memorix:searchWeight     2.0 ;
                            sh:datatype              xsd:string ;
                            sh:group                 person:alternativeGroup ;
                            sh:maxCount              1 ;
                            sh:order                 1.0 ;
                            sh:path                  schema:alternateName ] ;
-    sh:property          [ rdfs:label               "Identiek aan (RKD Artists)"@nl ;
+    sh:property          [ rdfs:label               "Identiek aan (RKD Artists)"@nl, "Is identical to (RKD Artist)"@en  ;
                            dash:editor              memorix:VocabularyEditor ;
                            memorix:conceptSchemeIn  <https://data.rkd.nl/rkdartists> ;
                            memorix:searchWeight     1.0 ;
@@ -126,15 +126,15 @@ rt:Person
                            sh:nodeKind              sh:IRI ;
                            sh:order                 2.0 ;
                            sh:path                  owl:sameAs ] ;
-    sh:property          [ rdfs:label               "Interne opmerking"@nl ;
+    sh:property          [ rdfs:label               "Interne opmerking"@nl, "Internal remarks"@en ;
                            dash:editor              dash:TextAreaEditor ;
                            sh:datatype              xsd:string ;
                            sh:group                 person:managementGroup ;
                            sh:maxCount              1 ;
                            sh:order                 1.0 ;
                            sh:path                  person:internalRemarks ; ] ;
-    sh:property          [ rdfs:label               "Bibliotheek descriptor?"@nl ;
-                           rdfs:comment             "Of deze naam afkomstig is uit de bibliotheek descriptoren lijst."@nl ;
+    sh:property          [ rdfs:label               "Bibliotheek descriptor?"@nl, "Library descriptor?"@en  ;
+                           rdfs:comment             "Of deze naam afkomstig is uit de bibliotheek descriptoren lijst."@nl, "Is this a descriptor from the SCope library migration?"@en  ;
                            sh:datatype              xsd:boolean ;
                            sh:group                 person:managementGroup ;
                            sh:maxCount              1 ;
