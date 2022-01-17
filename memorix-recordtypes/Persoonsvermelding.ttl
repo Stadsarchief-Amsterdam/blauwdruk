@@ -1,167 +1,196 @@
-@prefix dash:               <http://datashapes.org/dash#> .
-@prefix dc:                 <http://purl.org/dc/elements/1.1/> .
-@prefix html:               <http://www.w3.org/1999/xhtml/> .
-@prefix memorix:            <http://memorix.io/ontology#> .
+@prefix rdf:               <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:              <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:               <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:               <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos:              <http://www.w3.org/2004/02/skos/core#> .
 
-@prefix rt:                 </resources/recordtypes/> .
-@prefix persoonsvermelding: </resources/recordtypes/SaaPersoonsvermelding#> .
+@prefix rt:                </resources/recordtypes/> .
+@prefix personObservation: </resources/recordtypes/PersonObservation#> .
+@prefix vocabularies:      </resources/vocabularies/conceptschemes/> .
 
-@prefix rdf:                <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix rdfs:               <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix sh:                 <http://www.w3.org/ns/shacl#> .
-@prefix skos:               <http://www.w3.org/2004/02/skos/core#> .
-@prefix vocabularies:       <https://example.memorix-test.nl/vocabularies/> .
-@prefix xsd:                <http://www.w3.org/2001/XMLSchema#> .
+@prefix dc:                <http://purl.org/dc/elements/1.1/> .
+@prefix sh:                <http://www.w3.org/ns/shacl#> .
+@prefix dash:              <http://datashapes.org/dash#> .
+@prefix memorix:           <http://memorix.io/ontology#> .
+@prefix html:              <http://www.w3.org/1999/xhtml/> .
 
-@prefix pnv:            <https://w3id.org/pnv#> .
-@prefix schema:         <http://schema.org/> .
+@prefix rico:              <https://www.ica.org/standards/RiC/ontology#> .
+@prefix ric-rst:           <https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#> .
+@prefix ric-dft:           <https://www.ica.org/standards/RiC/vocabularies/documentaryFormTypes#> .
 
-persoonsvermelding:personListingGroup
+@prefix pnv:               <https://w3id.org/pnv#> .
+@prefix schema:            <http://schema.org/> .
+
+personObservation:personListingGroup
     rdf:type   sh:PropertyGroup ;
-    rdfs:label "Persoonsvermelding"@nl ;
+    rdfs:label "Persoonsvermelding"@nl, "Person observation"@en ;
     sh:order   1.0 ;
 .
 
-persoonsvermelding:detailsGroup
+personObservation:detailsGroup
     rdf:type   sh:PropertyGroup ;
-    rdfs:label "Bijzonderheden"@nl ;
+    rdfs:label "Bijzonderheden"@nl, "Details"@en ;
     sh:order   2.0 ;
 .
 
-persoonsvermelding:relationsGroup
+personObservation:relationsGroup
     rdf:type   sh:PropertyGroup ;
-    rdfs:label "Relaties"@nl ;
+    rdfs:label "Relaties"@nl, "Relations"@en ;
     sh:order   3.0 ;
 .
 
-persoonsvermelding:managementGroup
+personObservation:managementGroup
     rdf:type   sh:PropertyGroup ;
-    rdfs:label "Beheer"@nl ;
+    rdfs:label "Beheer"@nl, "Manage"@en ;
     sh:order   4.0 ;
 .
 
-rt:Persoonsvermelding
-    rdf:type             sh:NodeShape , rdfs:Class ,
+# todo can we make this into a roar:personObservation?
+
+rt:PersonObservation
+    rdf:type             sh:NodeShape,
+                         rdfs:Class,
                          memorix:Recordtype ;
-    rdfs:comment         "Standaard Recordtype voor Persoonsvermeldingen in Indexen"@nl ;
-    rdfs:label           "Persoonsvermelding"@nl ;
-    dc:identifier        "SaaPersoonsvermelding" ;
+    rdfs:comment         "Stadsarchief recordtype voor persoonsvermeldingen in Indexen"@nl ;
+    rdfs:label           "Persoonsvermelding"@nl,
+                         "Person observation"@en ;
+    dc:identifier        "PersonObservation" ;
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
-    rdfs:subClassOf      rico:Person , schema:Person , pnv:Person;
-    sh:property          [ rdfs:label        "Voornaam"@nl ;
+    rdfs:subClassOf      rico:Person,
+                         schema:Person,
+                         pnv:Person ;
+    sh:property          [ rdfs:label        "Voornaam"@nl,
+                                             "First name"@en ;
                            memorix:inTitleAt 1.0 ;
                            sh:datatype       xsd:string ;
-                           sh:group          persoonsvermelding:personListingGroup ;
+                           sh:group          personObservation:personListingGroup ;
                            sh:order          1.0 ;
-                           sh:path           pnv:givenName ] ;
-    sh:property          [ rdfs:label        "Tussenvoegsel"@nl ;
+                           sh:path           pnv:givenName
+                         ] ;
+    sh:property          [ rdfs:label        "Tussenvoegsel"@nl, "Surname prefix"@en ;
                            memorix:inTitleAt 2.0 ;
                            sh:datatype       xsd:string ;
-                           sh:group          persoonsvermelding:personListingGroup ;
+                           sh:group          personObservation:personListingGroup ;
                            sh:order          2.0 ;
-                           sh:path           pnv:surnamePrefix ] ;
-    sh:property          [ rdfs:label        "Achternaam"@nl ;
+                           sh:path           pnv:surnamePrefix
+                         ] ;
+    sh:property          [ rdfs:label        "Achternaam"@nl, "Surname"@en ;
                            memorix:inTitleAt 3.0 ;
                            sh:datatype       xsd:string ;
-                           sh:group          persoonsvermelding:personListingGroup ;
+                           sh:group          personObservation:personListingGroup ;
                            sh:order          3.0 ;
-                           sh:message        "Achternaam is verplicht"@nl ;
+                           sh:message        "Achternaam is verplicht"@nl, "Surname is required"@en ;
                            sh:minCount       1 ;
                            sh:maxCount       1 ;
-                           sh:path           pnv:baseSurname ] ;
-    sh:property          [ rdfs:label  "Geboortedatum"@nl ;
+                           sh:path           pnv:baseSurname
+                         ] ;
+    sh:property          [ rdfs:label  "Geboortedatum"@nl, "Date of birth"@en ;
                            sh:datatype xsd:date ;
-                           sh:group    persoonsvermelding:personListingGroup ;
+                           sh:group    personObservation:personListingGroup ;
                            sh:order    4.0 ;
-                           sh:path     schema:birthDate ] ;
-    sh:property          [ rdfs:label  "Geboorteplaats"@nl ;
+                           sh:path     schema:birthDate
+                         ] ;
+    sh:property          [ rdfs:label  "Geboorteplaats"@nl, "Place of birth"@en ;
                            sh:datatype xsd:string ;
-                           sh:group    persoonsvermelding:personListingGroup ;
+                           sh:group    personObservation:personListingGroup ;
                            sh:order    5.0 ;
-                           sh:path     schema:birthPlace ] ;
-    sh:property          [ rdfs:label  "Overlijdensdatum"@nl ;
+                           sh:path     schema:birthPlace
+                         ] ;
+    sh:property          [ rdfs:label  "Overlijdensdatum"@nl, "Date of death"@en ;
                            sh:datatype xsd:date ;
-                           sh:group    persoonsvermelding:personListingGroup ;
+                           sh:group    personObservation:personListingGroup ;
                            sh:order    6.0 ;
-                           sh:path     schema:deathDate ] ;
-    sh:property          [ rdfs:label  "Overlijdensplaats"@nl ;
+                           sh:path     schema:deathDate
+                         ] ;
+    sh:property          [ rdfs:label  "Overlijdensplaats"@nl, "Place of death"@en ;
                            sh:datatype xsd:string ;
-                           sh:group    persoonsvermelding:personListingGroup ;
+                           sh:group    personObservation:personListingGroup ;
                            sh:order    7.0 ;
-                           sh:path     schema:deathPlace ] ;
-    sh:property          [ rdfs:label  "Leeftijdsvermelding in bron"@nl ;
+                           sh:path     schema:deathPlace
+                         ] ;
+    sh:property          [ rdfs:label  "Leeftijdsvermelding in bron"@nl, "age as mentioned in the original document"@en ;
                            sh:datatype xsd:string ;
-                           sh:group    persoonsvermelding:personListingGroup ;
+                           sh:group    personObservation:personListingGroup ;
                            sh:order    8.0 ;
-                           sh:path     persoonsvermelding:age ] ;
-    sh:property          [ rdfs:label  "Opmerkingen"@nl ;
+                           sh:path     personObservation:age
+                         ] ;
+    sh:property          [ rdfs:label  "Opmerkingen"@nl, "Remarks"@en ;
                            dash:editor dash:TextAreaEditor ;
                            sh:datatype xsd:string ;
-                           sh:group    persoonsvermelding:managementGroup ;
+                           sh:group    personObservation:managementGroup ;
                            sh:maxCount 1 ;
                            sh:order    1.0 ;
-                           sh:path     persoonsvermelding:internalRemarks ] ;
-    sh:property          [ rdfs:label  "Overleden"@nl ;
+                           sh:path     personObservation:internalRemarks
+                         ] ;
+    sh:property          [ rdfs:label  "Overleden"@nl, "Deceased"@en ;
                            sh:datatype xsd:boolean ;
-                           sh:group    persoonsvermelding:personListingGroup ;
+                           sh:group    personObservation:personListingGroup ;
                            sh:order    9.0 ;
-                           sh:path     persoonsvermelding:deceased ] ;
-    sh:property          [ rdfs:label  "Beroep"@nl ;
+                           sh:path     personObservation:deceased
+                         ] ;
+    sh:property          [ rdfs:label  "Beroep"@nl, "Profession"@en ;
                            sh:datatype xsd:string ;
-                           sh:group    persoonsvermelding:personListingGroup ;
+                           sh:group    personObservation:personListingGroup ;
                            sh:order    10.0 ;
-                           sh:path     schema:hasOccupation ] ;
-    sh:property          [ rdfs:comment "Bijzonderheid bij deze akte"@nl ;
-                           rdfs:label   "Bijzonderheid"@nl ;
-                           sh:class     persoonsvermelding:Details ;
-                           sh:group     persoonsvermelding:detailsGroup ;
-                           sh:maxCount  10 ;
-                           sh:nodeKind  sh:BlankNode ;
-                           sh:order     1.0 ;
-                           sh:path      persoonsvermelding:details ] ;
-    sh:property          [ rdfs:label              "Koppeling met externe Persoon URI" ;
-                           rdfs:comment            "Verwijzing naar externe geïdentificeerde persoon"@nl ;
+                           sh:path     schema:hasOccupation
+                         ] ;
+    sh:property          [ rdfs:label  "Bijzonderheid"@nl, "Details"@en ;
+                           sh:class    personObservation:Details ;
+                           sh:group    personObservation:detailsGroup ;
+                           sh:maxCount 10 ;
+                           sh:nodeKind sh:BlankNode ;
+                           sh:order    1.0 ;
+                           sh:path     personObservation:details
+                         ] ;
+    sh:property          [ rdfs:label              "Koppeling met externe persoon URI", "Link to external URI for person"@en ;
+                           rdfs:comment            "Verwijzing naar externe geïdentificeerde persoon"@nl, "Link to an identified person in external vocabulary"@en ;
                            dash:editor             memorix:VocabularyEditor ;
                            memorix:conceptSchemeIn <https://data.rkd.nl/rkdartists>,
                                                    <https://www.wikidata.org/wiki/Q202444> ; #wikidata given names
                            sh:class                skos:Concept ;
-                           sh:group                persoonsvermelding:relationsGroup ;
+                           sh:group                personObservation:relationsGroup ;
                            sh:nodeKind             sh:IRI ;
                            sh:order                1.0 ;
                            sh:maxCount             100 ;
-                           sh:path                 persoonsvermelding:sameAsExternal ] ;
-    sh:property          [ rdfs:label   "Is identiek aan (koppeling met interne persoon of persoonsvermelding)"@nl ;
-                           rdfs:comment "Verwijzing naar dezelfde persoon in (genealogische) bronnen"@nl ;
+                           sh:path                 personObservation:sameAsExternal
+                         ] ;
+    sh:property          [ rdfs:label   "Is identiek aan (koppeling met interne persoon of persoonsvermelding)"@nl, "Is identical to (person in internal sources)"@en ;
+                           rdfs:comment "Verwijzing naar dezelfde persoon in (genealogische) bronnen"@nl, "Link to a person or personObservation in internal source"@en ;
                            dash:editor  memorix:LinkedRecordEditor ;
-                           sh:group     persoonsvermelding:relationsGroup ;
+                           sh:group     personObservation:relationsGroup ;
                            sh:nodeKind  sh:IRI ;
                            sh:order     2.0 ;
                            sh:maxCount  100 ;
                            sh:nodeKind  sh:IRI ;
                            sh:or        ( [ sh:class rt:Person ] [ sh:class rt:SaaPersoonsvermelding ] ) ;
-                           sh:path      persoonsvermelding:sameAsInternal ] ;
-    sh:targetClass       rt:Persoonsvermelding .
+                           sh:path      personObservation:sameAsInternal
+                         ] ;
+    sh:targetClass       rt:PersonObservation .
 
-persoonsvermelding:Details
+personObservation:Details
     rdf:type             sh:NodeShape ;
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property          [ rdfs:label  "Bijzonderheid - Type"@nl ;
+    sh:property          [ rdfs:label  "Bijzonderheid - Type"@nl, "Detail type"@en ;
                            sh:datatype xsd:string ;
                            sh:order    1.0 ;
-                           sh:path     persoonsvermelding:detailType ] ;
-    sh:property          [ rdfs:label  "Bijzonderheid"@nl ;
+                           sh:path     personObservation:detailType
+                         ] ;
+    sh:property          [ rdfs:label  "Bijzonderheid"@nl, "Detail"@en ;
                            sh:datatype xsd:string ;
                            sh:order    2.0 ;
-                           sh:path     persoonsvermelding:detailDetail ] ;
-    sh:targetClass       persoonsvermelding:Details ;
+                           sh:path     personObservation:detailDetail
+                         ] ;
+    sh:targetClass       personObservation:Details ;
 .
 
-persoonsvermelding:sameAsExternal a rdf:Property ;
+personObservation:sameAsExternal
+    a                      rdf:Property ;
     owl:equivalentProperty owl:sameAs ;
 .
 
-persoonsvermelding:sameAsInternal a rdf:Property ;
+personObservation:sameAsInternal
+    a                      rdf:Property ;
     owl:equivalentProperty owl:sameAs ;
 .
