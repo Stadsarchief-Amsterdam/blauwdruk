@@ -94,7 +94,7 @@ rico:isAssociatedWithDate
 
 deed:indexName
     a                   sh:PropertyShape ;
-                        # rdf:Property ;
+    # rdf:Property ;
     rdfs:subPropertyOf  rico:isOrWasPartOf ;
     rdfs:label          "Index Naam"@nl,
                         "Name of the index"@en ;
@@ -146,6 +146,22 @@ rico:hasOrHadSubject
     sh:path      rico:hasOrHadSubject
 .
 
+
+# Of rico:hasOrHadPhysicalLocation, rico:hasOrHadPlaceName ?
+rico:hasOrHadLocation
+    a            sh:PropertyShape ;
+    rdfs:label   "Adressen"@nl,
+                 "Addresses"@en ;
+    rdfs:comment "Adres dat voorkomt op de akte."@nl,
+                 "Address mentioned in the source"@en ;
+    sh:class     deed:Address ;
+    sh:group     deed:contentDescriptionGroup ;
+    sh:maxCount  999 ;
+    sh:nodeKind  sh:BlankNode ;
+    sh:order     3.0 ;
+    sh:path      rico:hasOrHadLocation
+.
+
 deed:internalRemarks
     a           sh:PropertyShape ;
     rdfs:label  "Interne opmerking"@nl,
@@ -169,15 +185,33 @@ deed:Person
                            sh:nodeKind sh:IRI ;
                            sh:or       ( <https://example.memorix-test.nl/resources/recordtypes/PersonObservation> ) ;
                            sh:order    2.0 ;
-                           sh:path     deed:personObservation
+                           sh:path     deed:personObservation # todo shape geven
                          ] ;
     sh:property          [ rdfs:label  "Rol"@nl,
                                        "Role"@en ;
                            sh:datatype xsd:string ;
                            sh:order    1.0 ;
-                           sh:path     deed:personRole
+                           sh:path     deed:personRole # todo shape geven
                          ] ;
     sh:targetClass       deed:Person
+.
+
+deed:Address
+    a                    sh:NodeShape ;
+    sh:closed            true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:targetClass       deed:Address ;
+    rdfs:subClassOf      rico:Place ;
+    sh:property          deed:historicalAddress1851, deed:historicalAddress1853, deed:modernAddress, deed:houseName, deed:Place, deed:addressRemarks
+.
+# WIP
+
+deed:historicalAddress1851
+    a                    sh:NodeShape ;
+    sh:closed            true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:targetClass       deed:historicalAddress1851 ;
+    sh:property         []
 .
 
 rico:SingleDate
