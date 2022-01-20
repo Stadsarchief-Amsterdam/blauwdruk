@@ -8,21 +8,20 @@
 @prefix html:           <http://www.w3.org/1999/xhtml/> .
 @prefix memorix:        <http://memorix.io/ontology#> .
 @prefix vocabularies:   </resources/vocabularies/conceptschemes/> .
-@prefix recordtypes:    </resources/recordtypes/> .
+@prefix rt:    </resources/recordtypes/> .
 @prefix io:             </resources/recordtypes/SaaInformatieobject#> .
 @prefix rico:           <https://www.ica.org/standards/RiC/ontology#> .
 @prefix ric-rst:        <https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#> .
 @prefix ric-dft:        <https://www.ica.org/standards/RiC/vocabularies/documentaryFormTypes#> .
 
-recordtypes:Informatieobject
-    a                               memorix:Recordtype , rdfs:Class , sh:NodeShape ;
+rt:Informatieobject
+    a                               memorix:Recordtype , sh:NodeShape ;
     rdfs:label                      "Informatieobject"@nl ;
     rdfs:comment                    "Beschrijvingen van computerbestanden Stadsarchief Amsterdam"@nl ;
-    dc:identifier                   "SaaInformatieobject" ;
+    dc:identifier                   "Informatieobject" ;
     sh:closed                       true ;
     sh:ignoredProperties            ( rdf:type ) ;
-    rdfs:subClassOf                 rico:Record ;
-    sh:targetClass                  recordtypes:Informatieobject ;
+    sh:targetClass                  rt:Informatieobject ;
     sh:property                     [ rdfs:label              "Type document"@nl ;
                                       rdfs:comment            "Selecteer een waarde uit de lijst."@nl ;
                                       sh:path                 rico:hasDocumentaryFormType ;
@@ -69,7 +68,7 @@ recordtypes:Informatieobject
                                       sh:minCount  1 ;
                                       sh:maxCount  1 ;
                                       sh:nodeKind  sh:IRI ;
-                                      sh:or        ( [ sh:class recordtypes:Fonds ] [ sh:class recordtypes:Series ] [ sh:class recordtypes:File] ) ;
+                                      sh:or        ( [ sh:class rt:Fonds ] [ sh:class rt:Series ] [ sh:class rt:File] ) ;
                                       sh:order     4.0 ;
                                       sh:path      rico:isOrWasIncludedIn ] ;
     sh:property                     [ rdfs:label              "Oude nummers"@nl ;

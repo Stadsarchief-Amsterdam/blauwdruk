@@ -17,7 +17,8 @@ Zo lang we nog alleen de beschikking hebben over de example omgeving stel ik voo
 | InformatieobjectOnderdeel.ttl     | - | - | -
 | Akte.ttl     | nee | - | adressen toevoegen, en vertalen
 | Persoonsvermelding.ttl     | - | - | vertalen
-| Publicatie.ttl     | - | - | -
+| Boek.ttl     | - | - | -
+| Periodiek.ttl     | - | - | -
 | Aflevering.ttl     | - | - | -
 | AV.ttl     | - | - | -
 | MAI.ttl     | - | - | -
@@ -69,3 +70,20 @@ Op dit moment worden alleen de volgende datatypes ondersteund op de backend.
 * xsd:gYearMonth
 * xsd:boolean
 * xsd:integer
+
+## Geleerd over Memorix:
+(Deze tekst is nog lang niet uitgewerkt en vooral een opsomming van dingen die we ervaren heb bij het experimenteren)
+
+* dc:identifier is verplicht en de waarde wordt gebruikt voor de unieke naam in het systeem. Het resulteert uiteindelijk in de naam van de memorix:Recordtype. Het mag geen taaldeclaratie bevatten want dan krijg je een foutmelding.
+
+* sh:group is verplicht
+
+* @prefix voor de sh:NodeShapes/memorix:Recordtype's MOET /resources/recordtypes/ (relatief pad) zijn.
+
+* Als je een class wilt gebruiken om een knoop in het pad te willen definieren, moet je sh:BlankNode gebruiken
+
+* Bij het maken van details moet de class mee opgeslagen worden dat gebeurt door de sh:targetClass. 
+
+* Er mag maar e1n memorix:Recordtype in de request zitten. 
+
+* Voor het koppelen van een link is sh:or verplicht, ook als het maar e1n class is die je wilt koppelen.

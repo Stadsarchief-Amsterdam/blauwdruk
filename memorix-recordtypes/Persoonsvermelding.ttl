@@ -49,7 +49,6 @@ personObservation:managementGroup
 
 rt:PersonObservation
     rdf:type             sh:NodeShape,
-                         rdfs:Class,
                          memorix:Recordtype ;
     rdfs:comment         "Stadsarchief recordtype voor persoonsvermeldingen in Indexen"@nl ;
     rdfs:label           "Persoonsvermelding"@nl,

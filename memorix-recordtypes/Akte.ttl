@@ -36,8 +36,7 @@ deed:managementGroup
     sh:order   3.0 .
 
 rt:Deed a memorix:Recordtype ,
-             sh:NodeShape ,
-             rdfs:Class ;
+             sh:NodeShape ;
     rdfs:comment         "Stadsarchief recordtype voor Akte"@nl ;
     rdfs:label           "Akte"@nl,
                          "Deed"@en ;

@@ -38,14 +38,12 @@ fonds:managementGroup
 
 rt:Fonds
     rdf:type             sh:NodeShape,
-                         memorix:Recordtype,
-                         rdfs:Class ;
+                         memorix:Recordtype ;
     #rdfs:label           "Archiefblok"@nl, "Fonds"@en ; #change after randomness is fixed
     rdfs:label           "Archiefblok"@nl ;
     rdfs:comment         "Stadsarchief recordtype voor Archiefblok"@nl ;
     dc:identifier        "Fonds" ;
     sh:targetClass       rt:Fonds ;
-    rdfs:subClassOf      rico:RecordSet ;
     # sh:hasValue ric-rst:Fonds ; implement maybe later when the Memorix interface allows it
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
