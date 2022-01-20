@@ -7,8 +7,10 @@
 @prefix ric-rst:       <https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#> .
 @prefix ric-dft:       <https://www.ica.org/standards/RiC/vocabularies/documentaryFormTypes#>
 
-@prefix rt:             </resources/recordtypes/> .
-@prefix saa:       		<https://data.archief.amsterdam/ontology#> .
+@prefix schema:        <http://schema.org/> .
+
+@prefix rt:            </resources/recordtypes/> .
+@prefix saa:       	   <https://data.archief.amsterdam/ontology#> .
 
 @prefix dct: 		   <http://purl.org/dc/terms/> .
 
