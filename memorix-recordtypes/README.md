@@ -3,7 +3,7 @@
 Wat is de stand van zaken mbt de recordtypes en wie is waarmee klaar of bezig.
 Zo lang we nog alleen de beschikking hebben over de example omgeving stel ik voor even alles te prefixen met Saa (anders word ik gek).
 
-| Bestand | Veld definities | Vertaling Rico | Te doen | Klaar voor Picturae
+| Bestand | Veld definities | Vertaling Rico/andere standaard | Te doen | Klaar voor Picturae
 | ------- | --------------- | -------------- | ------- | --------
 | Afbeelding.ttl  | af | ja | - | ja
 | Organisatie.ttl  | - | - | Levensloop toevoegen? | ja
@@ -13,17 +13,18 @@ Zo lang we nog alleen de beschikking hebben over de example omgeving stel ik voo
 | Archiefblok.ttl | af| af | - | ja
 | Groep.ttl     | af | af | - | ja
 | Bestanddeel.ttl     | af | af | - | ja
-| Informatieobject.ttl     | - | - | -
+| Informatieobject.ttl     | af | af | - | -
 | InformatieobjectOnderdeel.ttl     | - | - | -
 | Akte.ttl     | nee | - | adressen toevoegen, en vertalen
-| Persoonsvermelding.ttl     | - | - | vertalen
+| Persoonsvermelding.ttl     | ja | ja | -
 | Boek.ttl     | - | - | -
 | Periodiek.ttl     | - | - | -
 | Aflevering.ttl     | - | - | -
 | AV.ttl     | - | - | -
 | MAI.ttl     | - | - | -
 | Duplicaat.ttl     | - | - | -
-| Conservering.ttl     | - | - | Moet deze gemaakt?
+| Restauratierapport.ttl     | - | - | -
+| Bruikleen.ttl     | - | - | -
 
 
 ## Andere richtlijnen
