@@ -123,7 +123,7 @@ rt:Person a owl:Class ;
 	rdfs:comment ""@nl .
 
 rt:PersonObservation a owl:Class ;
-    rdfs:subClassOf rico:Person , schema:Person , pnv:Person ;
+    rdfs:subClassOf rico:Person , schema:Person , pnv:Person , roar:personObservation ;
 	rdfs:label "Persoonsvermelding"@nl ;
 	rdfs:comment ""@nl .
 
@@ -149,5 +149,5 @@ rt:PersonObservation a owl:Class ;
 
 # >>> properties
 
-saa:internalRemark a rdf:Property ;
+saa:internalRemarks a rdf:Property ;
 	rdfs:domain rico:Thing .
