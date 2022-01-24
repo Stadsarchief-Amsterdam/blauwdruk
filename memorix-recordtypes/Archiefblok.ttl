@@ -18,22 +18,22 @@
 
 fonds:identificationGroup
     rdf:type   sh:PropertyGroup ;
-    rdfs:label "Identificatie"@nl ;
+    rdfs:label "Identificatie"@nl , "Identification"@en ;
     sh:order   1.0 .
 
 fonds:accumulationGroup
     rdf:type   sh:PropertyGroup ;
-    rdfs:label "Archiefvorming"@nl ;
+    rdfs:label "Archiefvorming"@nl , "Accumulation"@en ;
     sh:order   2.0 .
 
 fonds:contentDescriptionGroup
     rdf:type   sh:PropertyGroup ;
-    rdfs:label "Beschrijving"@nl ;
+    rdfs:label "Inhoudelijke beschrijving"@nl, "Content Description"@en ;
     sh:order   3.0 .
 
 fonds:managementGroup
     rdf:type   sh:PropertyGroup ;
-    rdfs:label "Beheer"@nl ;
+    rdfs:label "Beheer"@nl , "Manage"@en;
     sh:order   4.0 .
 
 rt:Fonds
@@ -56,8 +56,6 @@ rt:Fonds
                            memorix:inTitleAt 1 ;
                            sh:order          1.0 ;
                            sh:path           rico:identifier ;
-                           sh:message        "Foutje"@nl ;
-                           sh:message        "Error"@en ;
                            sh:datatype       xsd:string ] ;
     sh:property          [ rdfs:label        "Naam toegang"@nl ;
                            rdfs:comment      "Naam of beschrijving van de toegang. Moet altijd beginnen met Archief of Collectie."@nl ;
@@ -69,7 +67,6 @@ rt:Fonds
                            sh:message        "Naam toegang is verplicht. Moet altijd beginnen met Archief of Collectie."@nl ;
                            sh:group          fonds:identificationGroup ;
                            sh:order          2.0 ;
-                           sh:message        "Error"@en ;
                            memorix:inTitleAt 2 ;
                            sh:path           rico:title ] ;
     sh:property          [ rdfs:label          "Periode vorming"@nl ;
@@ -80,8 +77,6 @@ rt:Fonds
                            sh:group            fonds:accumulationGroup ;
                            sh:maxCount         1 ;
                            sh:nodeKind         sh:BlankNode ;
-                           sh:message          "Foutje"@nl ;
-                           sh:message          "Error"@en ;
                            sh:order            3.0 ;
                            sh:path             rico:isAssociatedWithDate ] ;
     sh:property          [ rdfs:label          "Archiefvormer"@nl ;
@@ -118,8 +113,6 @@ rt:Fonds
                            sh:path     rico:scopeAndContent ;
                            sh:group    fonds:contentDescriptionGroup ;
                            sh:maxCount 1 ;
-                           sh:message  "Foutje"@nl ;
-                           sh:message  "Error"@en ;
                            sh:order    7.0 ;
                            sh:datatype xsd:string ;
                            dash:editor dash:TextAreaEditor ; ] ;
@@ -127,25 +120,20 @@ rt:Fonds
                            sh:class    fonds:FindingAid ;
                            sh:group    fonds:contentDescriptionGroup ;
                            sh:maxCount 10 ;
-                           sh:message  "Foutje"@nl ;
-                           sh:message  "Error"@en ;
                            sh:nodeKind sh:BlankNode ;
                            sh:order    8.0 ;
                            sh:path     rico:isOrWasDescribedBy ] ;
     sh:property          [ rdfs:label   "Interne opmerking"@nl ;
                            rdfs:comment "Veld voor allerlei interne opmerkingen. Wordt niet gepubliceerd."@nl ;
                            dash:editor  dash:TextAreaEditor ;
-                           sh:message   "Foutje"@nl,
-                                        "Error"@en ;
                            sh:maxCount  1 ;
                            sh:datatype  xsd:string ;
                            sh:group     fonds:managementGroup ;
                            sh:order     9.0 ;
-                           sh:path      fonds:internalRemarks ; ] ; # not to be published !
+                           sh:path      saa:internalRemarks ; ] ; # not to be published !
     sh:property          [ rdfs:label   "Status"@nl ;
                            rdfs:comment "Status van het archief."@nl ;
                            sh:message   "Status is verplicht. Moet een van de volgende waardes zijn: aanwezig, vervallen, te vernietigen, vernietigd"@nl ;
-                           sh:message   "Error"@en ;
                            sh:datatype  xsd:string ;
                            sh:minCount  1 ;
                            sh:maxCount  1 ;
@@ -185,8 +173,6 @@ fonds:FindingAid
     sh:property          [ rdfs:label  "Inventarisatie door"@nl ;
                            sh:datatype xsd:string ;
                            sh:order    1.0 ;
-                           sh:message  "Foutje"@nl ;
-                           sh:message  "Error"@en ;
                            sh:path     rico:hasAuthor ] ;
     sh:property          [ rdfs:label      "Inventarisatie jaar"@nl ;
                            sh:datatype     xsd:gYear ;
@@ -204,19 +190,13 @@ fonds:DateRangeOldest
     sh:property          [ rdfs:label  "Datum (tekst)"@nl ;
                            sh:datatype xsd:string ;
                            sh:order    1.0 ;
-                           sh:message  "Foutje"@nl ;
-                           sh:message  "Error"@en ;
                            sh:path     rico:expressedDate ] ;
     sh:property          [ rdfs:label  "Begindatum"@nl ;
                            sh:datatype xsd:date ;
-                           sh:message  "Foutje"@nl ;
-                           sh:message  "Error"@en ;
                            sh:order    2.0 ;
                            sh:path     rico:hasBeginningDate ] ;
     sh:property          [ rdfs:label  "Einddatum"@nl ;
                            sh:datatype xsd:date ;
-                           sh:message  "Foutje"@nl ;
-                           sh:message  "Error"@en ;
                            sh:order    3.0 ;
                            sh:path     rico:hasEndDate ] ;
     sh:targetClass       fonds:DateRangeOldest ;
@@ -230,19 +210,13 @@ fonds:DateRangeYoungest
     sh:property          [ rdfs:label  "Datum (tekst)"@nl ;
                            sh:datatype xsd:string ;
                            sh:order    1.0 ;
-                           sh:message  "Foutje"@nl ;
-                           sh:message  "Error"@en ;
                            sh:path     rico:expressedDate ] ;
     sh:property          [ rdfs:label  "Begindatum"@nl ;
                            sh:datatype xsd:date ;
-                           sh:message  "Foutje"@nl ;
-                           sh:message  "Error"@en ;
                            sh:order    2.0 ;
                            sh:path     rico:hasBeginningDate ] ;
     sh:property          [ rdfs:label  "Einddatum"@nl ;
                            sh:datatype xsd:date ;
-                           sh:message  "Foutje"@nl ;
-                           sh:message  "Error"@en ;
                            sh:order    3.0 ;
                            sh:path     rico:hasEndDate ] ;
     sh:targetClass       fonds:DateRangeYoungest ;

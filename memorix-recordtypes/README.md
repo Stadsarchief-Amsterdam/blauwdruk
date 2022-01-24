@@ -5,16 +5,16 @@ Zo lang we nog alleen de beschikking hebben over de example omgeving stel ik voo
 
 | Bestand | Veld definities | Vertaling Rico/andere standaard | Te doen | Klaar voor Picturae
 | ------- | --------------- | -------------- | ------- | --------
-| Afbeelding.ttl  | af | ja | - | ja
+| Afbeelding.ttl  | af | af | - | ja
 | Organisatie.ttl  | - | - | Levensloop toevoegen? | ja
 | Persoon.ttl  |  af | af | | ja
 | Familie.ttl  |  af | af | | ja
-| Aanwinst.ttl     | - | - | Ivo nakijken
+| Aanwinst.ttl     | af | af | voorstel: acquisition:isDescribedIn vervangen door acquisition:resultsIn | 
 | Archiefblok.ttl | af| af | - | ja
 | Groep.ttl     | af | af | - | ja
 | Bestanddeel.ttl     | af | af | - | ja
 | Informatieobject.ttl     | af | af | - | -
-| InformatieobjectOnderdeel.ttl     | - | - | -
+| InformatieobjectOnderdeel.ttl     | af | af | - | -
 | Akte.ttl     | nee | - | adressen toevoegen, en vertalen
 | Persoonsvermelding.ttl     | ja | ja | -
 | Boek.ttl     | - | - | -
