@@ -21,22 +21,22 @@
 
 acquisition:identificationGroup
     rdf:type   sh:PropertyGroup ;
-    rdfs:label "Identificatie"@nl ;
+    rdfs:label "Identificatie"@nl , "Identification"@en ;
     sh:order   1.0 .
 
 acquisition:contentDescriptionGroup
     rdf:type   sh:PropertyGroup ;
-    rdfs:label "Beschrijving"@nl ;
+    rdfs:label "Inhoudelijke beschrijving"@nl, "Content Description"@en ;
     sh:order   2.0 .
 
 acquisition:partitionGroup
     rdf:type   sh:PropertyGroup ;
-    rdfs:label "Indeling"@nl ;
+    rdfs:label "Indeling"@nl , "Partitioning"@en ;
     sh:order   3.0 .
 
 acquisition:managementGroup
     rdf:type   sh:PropertyGroup ;
-    rdfs:label "Beheer"@nl ;
+    rdfs:label "Beheer"@nl , "Manage"@en;
     sh:order   4.0 .
 
 rt:Acquisition
@@ -61,7 +61,7 @@ rt:Acquisition
                                       sh:maxCount       1 ;
                                       sh:datatype       xsd:string ;
                                       sh:order          1.0 ;
-                                      sh:path           acquisition:identifier ] ;
+                                      sh:path           rico:identifier ;
     sh:property                     [ rdfs:label      "Jaar van overdracht"@nl ;
                                       rdfs:comment    "Jaar dat het archief wordt overgedragen."@nl ;
                                       sh:message      "Vul tenminste een jaartal in. Dit is verplicht."@nl ;

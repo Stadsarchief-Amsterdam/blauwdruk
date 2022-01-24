@@ -8,21 +8,20 @@
 @prefix html:           <http://www.w3.org/1999/xhtml/> .
 @prefix memorix:        <http://memorix.io/ontology#> .
 @prefix vocabularies:   </resources/vocabularies/conceptschemes/> .
-@prefix recordtypes:    </resources/recordtypes/> .
+@prefix rt:             </resources/recordtypes/> .
 @prefix image:          </resources/recordtypes/Image#> .
 @prefix rico:           <https://www.ica.org/standards/RiC/ontology#> .
 @prefix ric-rst:        <https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#> .
 @prefix ric-dft:        <https://www.ica.org/standards/RiC/vocabularies/documentaryFormTypes#> .
 
-recordtypes:Image a memorix:Recordtype,
-                         sh:NodeShape,
-                         rdfs:Class ;
+rt:Image a memorix:Recordtype,
+                         sh:NodeShape ;
     rdfs:label           "Afbeelding"@nl, "Image"@en ;
     rdfs:comment         "Beeldbankbeschrijvingen Stadsarchief Amsterdam"@nl ;
     dc:identifier        "Image" ;
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:targetClass       recordtypes:Image ;
+    sh:targetClass       rt:Image ;
     sh:property          [ rdfs:label              "Type afbeelding"@nl ;
                            rdfs:comment            "Selecteer een waarde uit de lijst."@nl ;
                            sh:path                 rico:hasDocumentaryFormType ;
@@ -75,7 +74,7 @@ recordtypes:Image a memorix:Recordtype,
                            sh:group    image:contentDescriptionGroup ;
                            dash:editor memorix:LinkedRecordEditor ;
                            sh:nodeKind sh:IRI ;
-                           sh:or       ( [ sh:class recordtypes:Person ] ) ;
+                           sh:or       ( [ sh:class rt:Person ] ) ;
                          ] ;
     sh:property          [ rdfs:label              "Afgebeeld gebouw"@nl ;
                            sh:path                 image:hasOrHadSubjectBuilding ;
@@ -254,7 +253,7 @@ image:Creator
     sh:property          [ rdfs:label  "Vervaardiger"@nl ;
                            dash:editor memorix:LinkedRecordEditor ;
                            sh:nodeKind sh:IRI ;
-                           sh:or       ( [ sh:class recordtypes:Person ] [ sh:class recordtypes:Organisation ] ) ;
+                           sh:or       ( [ sh:class rt:Person ] [ sh:class rt:Organisation ] ) ;
                            sh:order    2.0 ;
                            sh:path     image:creationEventCreator ;
                          ] ;

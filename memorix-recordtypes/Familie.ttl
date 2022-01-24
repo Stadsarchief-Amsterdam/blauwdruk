@@ -29,12 +29,11 @@ family:managementGroup
     sh:order   2.0 .
 
 rt:Family
-    rdf:type                memorix:Recordtype , sh:NodeShape , rdfs:Class ;
+    rdf:type                memorix:Recordtype , sh:NodeShape ;
     rdfs:label              "Familie"@nl, "Family"@en ;
     rdfs:comment            "Stadsarchief recordtype voor Familie"@nl ;
     dc:identifier           "Family" ;
     sh:targetClass          rt:Familie ;
-    rdfs:subClassOf         rico:Family ;
     sh:closed               true ;
     sh:ignoredProperties    ( rdf:type ) ;
     sh:property             [ rdfs:label            "Naam"@nl ;
