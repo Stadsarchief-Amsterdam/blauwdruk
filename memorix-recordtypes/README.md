@@ -9,7 +9,7 @@ Zo lang we nog alleen de beschikking hebben over de example omgeving stel ik voo
 | Organisatie.ttl  | - | - | Levensloop toevoegen? | ja
 | Persoon.ttl  |  af | af | | ja
 | Familie.ttl  |  af | af | | ja
-| Aanwinst.ttl     | af | af | voorstel: acquisition:isDescribedIn vervangen door acquisition:resultsIn | 
+| Aanwinst.ttl     | af | af | enkele voorstellen met IZ gemarkeerd | 
 | Archiefblok.ttl | af| af | - | ja
 | Groep.ttl     | af | af | - | ja
 | Bestanddeel.ttl     | af | af | - | ja

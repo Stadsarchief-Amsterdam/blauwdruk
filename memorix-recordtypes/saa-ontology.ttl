@@ -9,7 +9,6 @@
 
 @prefix schema:        <http://schema.org/> .
 
-@prefix rt:            </resources/recordtypes/> .
 @prefix saa:       	   <https://data.archief.amsterdam/ontology#> . #TBD
 
 @prefix dct: 		   <http://purl.org/dc/terms/> .
@@ -33,51 +32,51 @@
   	dct:description "We introduce this ontology because we require different mandatory properties for different subClasses of entities in the RiC ontology. We have defined shapes in SHACL to validate data according to these requirement."
 
 # >>> subclasses of rico:RecordSet
-rt:Acquisition a owl:Class ;
-	rdfs:subClassOf rico:RecordSet ;
+saa:Acquisition a owl:Class ;
+	rdfs:subClassOf rico:RecordResource ;
 	rdfs:label "Aanwinst"@nl ;
 	rdf:comment ""@nl .
 
-rt:Fonds a owl:Class ;
+saa:Fonds a owl:Class ;
 	rdfs:subClassOf rico:RecordSet ;
 	rdfs:label "Archiefblok"@nl ;
 	rdf:comment ""@nl .
 
-rt:Series a owl:Class ;
+saa:Series a owl:Class ;
 	rdfs:subClassOf rico:RecordSet ;
 	rdfs:label "Groep"@nl ;
 	rdfs:comment ""@nl .
 
-rt:File a owl:Class ;
+saa:File a owl:Class ;
 	rdfs:subClassOf rico:RecordSet ;
 	rdfs:label "Bestanddeel"@nl ;
 	rdfs:comment ""@nl .
 
 # >>> subclasses of rico:Record
-rt:Deed a owl:Class ;
+saa:Deed a owl:Class ;
 	rdfs:subClassOf rico:Record ;
 	rdfs:label "Akte"@nl ;	
 	rdfs:comment ""@nl .
 
-rt:Image a owl:Class ;	
+saa:Image a owl:Class ;	
 	rdfs:subClassOf rico:Record ;
 	rdfs:label "Afbeelding"@nl ;
 	rdfs:comment ""@nl .
 
 # TBD:
-# rt:MAIImage a owl:Class ;	
+# saa:MAIImage a owl:Class ;	
 #	rdfs:subClassOf rico:Record ;
 #	rdfs:label "MAI Afbeelding"@nl ;
 #	rdfs:comment ""@nl .
 
 # TBD:
-# rt:AVObject a owl:Class ;	
+# saa:AVObject a owl:Class ;	
 #	rdfs:subClassOf rico:Record ;
 #	rdfs:label "AV Materiaal"@nl ;
 #	rdfs:comment ""@nl .
 
 # TBD:
-# rt:DigitalRecord a owl:Class ;	
+# saa:DigitalRecord a owl:Class ;	
 #	rdfs:subClassOf rico:Record ;
 #	rdfs:label "Digitaal informatieobject"@nl ;
 #	rdfs:comment ""@nl .
@@ -85,7 +84,7 @@ rt:Image a owl:Class ;
 # >>> subclasses of rico:RecordPart
 
 # TBD:
-# rt:DigitalRecordPart a owl:Class ;
+# saa:DigitalRecordPart a owl:Class ;
 #	rdfs:subClassOf rico:RecordPart ;
 #	rdfs:label "Informatieobjectonderdeel"@nl ;
 #	rdfs:comment ""@nl .
@@ -93,13 +92,13 @@ rt:Image a owl:Class ;
 # >>> subclasses of rico:Instantiation
 
 # TBD
-# rt:Duplicate a owl:Class ;	
+# saa:Duplicate a owl:Class ;	
 #	rdfs:subClassOf rico:Instantiation ;
 #	rdfs:label ""@nl ;
 #	rdfs:comment ""@nl .
 
 # TBD
-# rt:ConservationData a owl:Class ;	
+# saa:ConservationData a owl:Class ;	
 #	rdfs:subClassOf rico:Instantiation ;
 #	rdfs:label ""@nl ;
 #	rdfs:comment ""@nl .
@@ -107,42 +106,43 @@ rt:Image a owl:Class ;
 
 # >>> subclasses of rico:Agent
 
-rt:Family a owl:Class ;
+saa:Family a owl:Class ;
     rdfs:subClassOf rico:Family ;
 	rdfs:label "Familie"@nl ;
 	rdfs:comment ""@nl .
 
-rt:Organisation a owl:Class ;
+saa:Organisation a owl:Class ;
     rdfs:subClassOf rico:CorporateBody ;
 	rdfs:label "Organisatie"@nl ;
 	rdfs:comment ""@nl .
 
-rt:Person a owl:Class ;
+saa:Person a owl:Class ;
     rdfs:subClassOf rico:Person , schema:Person , pnv:Person ;
 	rdfs:label "Persoon"@nl ;
 	rdfs:comment ""@nl .
 
-rt:PersonObservation a owl:Class ;
+saa:PersonObservation a owl:Class ;
     rdfs:subClassOf rico:Person , schema:Person , pnv:Person , roar:personObservation ;
 	rdfs:label "Persoonsvermelding"@nl ;
 	rdfs:comment ""@nl .
 
 # >>> classes for library
+# (We kunnen misschien rechtstreeks op schema mappen)
 
 # TBD
-# rt:Book a owl:Class ;
+# saa:Book a owl:Class ;
 #    rdfs:subClassOf schema:Book ;
 #	rdfs:label "Boek"@nl ;
 #	rdfs:comment ""@nl .
 
 # TBD
-# rt:Periodical a owl:Class ;
+# saa:Periodical a owl:Class ;
 #   rdfs:subClassOf schema:Periodical ;
 #	rdfs:label "Periodiek"@nl ;
 #	rdfs:comment ""@nl .
 
 # TBD
-# rt:PublicationVolume a owl:Class ;
+# saa:PublicationVolume a owl:Class ;
 #   rdfs:subClassOf schema:PublicationVolume ;
 #  	rdfs:label "Aflevering"@nl ;
 #	rdfs:comment ""@nl .
