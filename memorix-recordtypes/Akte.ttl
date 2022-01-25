@@ -183,13 +183,13 @@ deed:Person
                            sh:nodeKind sh:IRI ;
                            sh:or       ( <https://example.memorix-test.nl/resources/recordtypes/PersonObservation> ) ;
                            sh:order    2.0 ;
-                           sh:path     deed:personObservation # todo property definieren
+                           sh:path     deed:personObservation
                          ] ;
     sh:property          [ rdfs:label  "Rol"@nl,
                                        "Role"@en ;
                            sh:datatype xsd:string ;
                            sh:order    1.0 ;
-                           sh:path     deed:personRole # todo property definieren
+                           sh:path     deed:personRole
                          ] ;
     sh:targetClass       deed:Person
 .
@@ -200,47 +200,108 @@ deed:Address
     sh:ignoredProperties ( rdf:type ) ;
     sh:targetClass       deed:Address ;
     rdfs:subClassOf      rico:Place ;
-    #sh:property          deed:historicalAddress1851, deed:historicalAddress1853, deed:modernAddress, deed:houseName, deed:Place, deed:addressRemarks
-    sh:property          deed:AddressRemarksShape ;
+    sh:group             deed:contentDescriptionGroup ;
+    sh:property          deed:historicalAddress1851Shape, deed:historicalAddress1853Shape, deed:AddressHouseNameShape, deed:AddressPlaceShape, deed:AddressRemarksShape ;
 .
-# WIP address
 
-#deed:historicalAddress1851
-#    a                    sh:NodeShape ;
-#    sh:closed            true ;
-#    sh:ignoredProperties ( rdf:type ) ;
-#    sh:targetClass       deed:historicalAddress1851 ;
-#    sh:property          [ ]
-#.
 
-#deed:ModernAddressShape
-#    a                    sh:NodeShape ;
-#    sh:closed            true ;
-#    sh:ignoredProperties ( rdf:type ) ;
-#    sh:targetClass       deed:ModernAddressShape ;
-#    sh:group             deed:contentDescriptionGroup ;
-#    rdfs:subClassOf      rico:Place ;
-#    sh:property          [ rdfs:label              "Straatnaam"@nl ;
-#                           sh:path                 saa:street ;
-#                           sh:order                1.0 ;
-#                           sh:maxCount             1 ;
-#                           dash:editor             memorix:VocabularyEditor ;
-#                           memorix:conceptSchemeIn vocabularies:a4863c0c-d9e5-3902-831a-d0960e381a41 ;
-#                           sh:class                skos:Concept ;
-#                           sh:nodeKind             sh:IRI ;
-#                         ] ;
-#    sh:property          [ rdfs:label  "Huisnummer van"@nl ;
-#                           sh:path     saa:houseNumberBegin ;
-#                           sh:order    2.0 ;
-#                           sh:maxCount 1 ;
-#                           sh:datatype xsd:string ;
-#                         ] ;
-#    sh:property          [ rdfs:label  "Huisnummer tot"@nl ;
-#                           sh:path     saa:houseNumberEnd ;
-#                           sh:order    3.0 ;
-#                           sh:maxCount 1 ;
-#                           sh:datatype xsd:string ;
-#                         ] .
+deed:historicalAddress1851Shape
+    a                    sh:NodeShape ;
+    sh:closed            true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property          [ rdfs:label  "Straatnaam (1851-53)"@nl,
+                                       "Street name (1851-53)"@en ;
+                           sh:datatype xsd:string ;
+                           sh:order    1.0 ;
+                           sh:path     deed:historicalAddress1851Street
+                         ] ;
+    sh:property          [ rdfs:label  "Kleinnummer"@nl,
+                                       "Klein number"@en ;
+                           sh:datatype xsd:string ;
+                           sh:order    2.0 ;
+                           sh:path     deed:historicalAddressKleinNumber
+                         ] ;
+    sh:path              deed:historicalAddress1851 ;
+    sh:targetClass       deed:historicalAddress1851 ;
+.
+
+deed:historicalAddress1853Shape
+    a                    sh:NodeShape ;
+    sh:closed            true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property          [ rdfs:label  "Straatnaam (1853-74)"@nl,
+                                       "Street name (1853-74)"@en ;
+                           sh:datatype xsd:string ;
+                           sh:order    3.0 ;
+                           sh:path     deed:historicalAddress1853Street
+                         ] ;
+    sh:property          [ rdfs:label  "Buurtcode"@nl,
+                                       "Neighourhood code"@en ;
+                           sh:datatype xsd:string ;
+                           sh:order    4.0 ;
+                           sh:path     deed:historicalAddressNeighourhoodCode
+                         ] ;
+    sh:property          [ rdfs:label  "Buurtnummer"@nl,
+                                       "Neighourhood number"@en ;
+                           sh:datatype xsd:string ;
+                           sh:order    5.0 ;
+                           sh:path     deed:historicalAddressNeighourhoodNumber
+                         ] ;
+    sh:path              deed:historicalAddress1853 ;
+    sh:targetClass       deed:historicalAddress1853 ;
+.
+
+
+deed:ModernAddressShape
+    a                    sh:NodeShape ;
+    sh:closed            true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    #rdfs:subClassOf      rico:Place ;
+    sh:property          [ rdfs:label              "Straatnaam"@nl ;
+                           sh:path                 deed:street ;
+                           sh:order                6.0 ;
+                           sh:maxCount             1 ;
+                           dash:editor             memorix:VocabularyEditor ;
+                           memorix:conceptSchemeIn vocabularies:a4863c0c-d9e5-3902-831a-d0960e381a41 ;
+                           sh:class                skos:Concept ;
+                           sh:nodeKind             sh:IRI ;
+                         ] ;
+    sh:property          [ rdfs:label  "Huisnummer van"@nl ;
+                           sh:path     deed:houseNumberBegin ;
+                           sh:order    7.0 ;
+                           sh:maxCount 1 ;
+                           sh:datatype xsd:string ;
+                         ] ;
+    sh:property          [ rdfs:label  "Huisnummer tot"@nl ;
+                           sh:path     deed:houseNumberEnd ;
+                           sh:order    8.0 ;
+                           sh:maxCount 1 ;
+                           sh:datatype xsd:string ;
+                         ];
+    sh:path              deed:ModernAddress ;
+    sh:targetClass       deed:ModernAddress ;
+.
+
+
+deed:AddressHouseNameShape
+    a           sh:PropertyShape ;
+    rdfs:label  "Huisnaam"@nl,
+                "House name"@en ;
+    sh:datatype xsd:string ;
+    sh:order    4.0 ;
+    sh:maxCount 1 ;
+    sh:path     deed:houseName
+.
+
+deed:AddressPlaceShape
+    a           sh:PropertyShape ;
+    rdfs:label  "Plaats (anders dan Amsterdam)"@nl,
+                "Place (other than Amsterdam)"@en ;
+    sh:datatype xsd:string ;
+    sh:order    5.0 ;
+    sh:maxCount 1 ;
+    sh:path     deed:Place
+.
 
 deed:AddressRemarksShape
     a           sh:PropertyShape ;
@@ -248,8 +309,7 @@ deed:AddressRemarksShape
                 "Internal remarks"@en ;
     dash:editor dash:TextAreaEditor ;
     sh:datatype xsd:string ;
-    sh:group    deed:contentDescriptionGroup ;
-    sh:order    8.0 ;
+    sh:order    6.0 ;
     sh:maxCount 1 ;
     sh:path     deed:addressRemarks
 .
@@ -265,3 +325,31 @@ rico:SingleDate
                            sh:path     rico:normalizedDateValue
                          ] ;
 .
+
+deed:indexName
+    a                  rdf:Property ;
+    rdfs:subPropertyOf rico:isOrWasPartOf ;
+.
+
+deed:source
+    a rdf:Property ;
+.
+
+deed:internalRemarks
+    a rdf:Property ;
+.
+
+deed:personObservation
+    a rdf:Property ;
+.
+
+deed:personRole
+    a rdf:Property ;
+.
+
+## tbd
+deed:Place
+    a rdf:Clas ;
+    rdfs:subClassOf rico:Place  ;
+.
+
