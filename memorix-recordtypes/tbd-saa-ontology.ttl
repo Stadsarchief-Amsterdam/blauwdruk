@@ -1,0 +1,32 @@
+# to be added to saa-ontology
+
+# classes
+
+saa:Address a owl:Class ;
+    rdfs:subClassOf rico:Place 
+.
+
+# properties
+
+saa:indexName a rdf:Property ;
+	rdfs:subPropertyOf rico:isOrWasPartOf ;
+	rdfs:domain saa:Deed 
+.
+
+saa:source a rdf:Property ;
+	rdfs:subPropertyOf rico:isOrWasPartOf ;
+	rdfs:domain saa:Deed 
+.
+
+saa:personObservation a rdf:Property ;
+	rdfs:domain saa:Deed
+.
+
+saa:personRole a rdf:Property ;
+	rdfs:domain saa:Deed
+.
+
+## tbd
+saa:Place a owl:Class ;
+    rdfs:subClassOf rico:Place  ;
+.
