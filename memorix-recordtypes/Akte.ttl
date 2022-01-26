@@ -199,7 +199,7 @@ deed:Address
     sh:ignoredProperties ( rdf:type ) ;
     sh:targetClass       saa:Address ;
     sh:group             deed:contentDescriptionGroup ;
-    sh:property          deed:HistoricalAddress1851Shape, deed:HistoricalAddress1853Shape, deed:AddressHouseNameShape, deed:AddressPlaceShape, deed:AddressRemarksShape ;
+    sh:property          deed:HistoricalAddress1851Shape, deed:HistoricalAddress1853Shape, deed:ModernAddressShape, deed:AddressHouseNameShape, deed:AddressPlaceShape, deed:AddressRemarksShape ;
 .
 
 deed:HistoricalAddress1851Shape
