@@ -63,6 +63,29 @@ saa:Image a owl:Class ;
 	rdfs:label "Afbeelding"@nl ;
 	rdfs:comment ""@nl .
 
+saa:FindingAid a owl:Class ;	
+	rdfs:subClassOf rico:Record ;
+	rdfs:label "Inventaris"@nl ;
+	rdfs:comment ""@nl .
+
+saa:DateRangeAccumulation a owl:Class ;
+    rdfs:subClassOf      rico:DateRange ;
+    rdfs:label "Vormingsperiode"@nl ;
+	rdfs:comment ""@nl .
+
+saa:DateRangeYoungest a owl:Class ;
+    rdfs:subClassOf      rico:DateRange ;
+    rdfs:label "Jongste stuk in het archief"@nl ;
+	rdfs:comment ""@nl .
+
+saa:DateRangeOldest a owl:Class ;
+    rdfs:subClassOf      rico:DateRange ;
+    rdfs:label "Oudste stuk in het archief"@nl ;
+	rdfs:comment ""@nl .
+
+
+
+
 # TBD:
 # saa:MAIImage a owl:Class ;	
 #	rdfs:subClassOf rico:Record ;
@@ -151,3 +174,16 @@ saa:PersonObservation a owl:Class ;
 
 saa:internalRemarks a rdf:Property ;
 	rdfs:domain rico:Thing .
+
+saa:status a rdfs:Property ;
+    rdfs:subPropertyOf rico:isOrWasRecordStateOfAllMembers ;
+    rdfs:domain saa:Fonds .
+
+saa:hasYoungestRecord a rdfs:Property ;
+    rdfs:subPropertyOf rico:isAssociatedWithDate ;
+    rdfs:domain saa:Fonds .
+
+saa:hasOldestRecord a rdfs:Property ;
+    rdfs:subPropertyOf rico:isAssociatedWithDate ;
+    rdfs:domain saa:Fonds .
+    
