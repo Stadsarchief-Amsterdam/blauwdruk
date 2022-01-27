@@ -134,7 +134,7 @@ rt:Fonds
                            sh:path      saa:internalRemarks ; ] ; # not to be published !
     sh:property          [ rdfs:label   "Status"@nl , "Status"@en;
                            rdfs:comment "Status van het archief."@nl , "Status of the fonds"@en ;
-                           sh:message   "Status is verplicht. Moet een van de volgende waardes zijn: aanwezig, vervallen, te vernietigen, vernietigd"@nl , "Must be one of the following (Dutch) terms: aanwezig, vervallen, te vernietigen, vernietigd. Mandatory." ;
+                           sh:message   "Status is verplicht. Moet een van de volgende waardes zijn: aanwezig, vervallen, te vernietigen, vernietigd"@nl , "Must be one of the following (Dutch) terms: aanwezig, vervallen, te vernietigen, vernietigd. Mandatory."@en ;
                            sh:datatype  xsd:string ;
                            sh:minCount  1 ;
                            sh:maxCount  1 ;
