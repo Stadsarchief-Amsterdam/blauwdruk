@@ -75,6 +75,20 @@ deed:AssociatedWithDateShape
     sh:order    3.0 ;
     sh:path     rico:isAssociatedWithDate .
 
+deed:IsOrWasIncludedInShape
+    rdf:type     sh:PropertyShape ;
+    rdfs:comment "Bestanddeel waartoe deze akkoord behoort."@nl ;
+    rdfs:label   "Gekoppeld bestanddeel"@nl ;
+    dash:editor  memorix:LinkedRecordEditor ;
+    sh:group     deed:identificationGroup ;
+    # sh:minCount  1 ; # @todo aanzetten als de UI gefikst is
+    sh:maxCount  1 ;
+    sh:message   "Kies een bestanddeel om aan te koppelen. Dit is verplicht."@nl ;
+    sh:nodeKind  sh:IRI ;
+    sh:or        ( [ sh:class rt:File ] ) ;
+    sh:order     4.0 ;
+    sh:path      rico:isOrWasIncludedIn .
+
 deed:SourceShape
     rdf:type    sh:PropertyShape ;
     rdfs:label  "Mention of the source"@en, "Bronverwijzing"@nl ;
@@ -93,19 +107,6 @@ deed:IndexNameShape
     sh:order            2.0 ;
     sh:path             deed:indexName .
 
-deed:IsOrWasIncludedInShape
-    rdf:type     sh:PropertyShape ;
-    rdfs:comment "Bestanddeel waartoe deze akkoord behoort."@nl ;
-    rdfs:label   "Gekoppeld bestanddeel"@nl ;
-    dash:editor  memorix:LinkedRecordEditor ;
-    sh:group     deed:contentDescriptionGroup ;
-    # sh:minCount  1 ; # @todo aanzetten als de UI gefikst is
-    sh:maxCount  1 ;
-    sh:message   "Kies een bestanddeel om aan te koppelen. Dit is verplicht."@nl ;
-    sh:nodeKind  sh:IRI ;
-    sh:or        ( [ sh:class rt:File ] ) ;
-    sh:order     7.0 ;
-    sh:path      rico:isOrWasIncludedIn .
 
 deed:HasOrHadSubjectShape
     rdf:type     sh:PropertyShape ;
@@ -115,7 +116,7 @@ deed:HasOrHadSubjectShape
     sh:group     deed:contentDescriptionGroup ;
     sh:maxCount  999 ;
     sh:nodeKind  sh:BlankNode ;
-    sh:order     2.0 ;
+    sh:order     3.0 ;
     sh:path      rico:hasOrHadSubject .
 
 
@@ -127,9 +128,8 @@ deed:HasOrHadLocationShape
     sh:group     deed:contentDescriptionGroup ;
     sh:maxCount  999 ;
     sh:nodeKind  sh:BlankNode ;
-    sh:order     3.0 ;
+    sh:order     4.0 ;
     sh:path      rico:isAssociatedWithPlace .
-
 
 deed:InternalRemarksShape
     rdf:type    sh:PropertyShape ;
@@ -201,7 +201,7 @@ deed:HistoricalAddress1853Shape
     rdfs:label  "Address in 1853-1874"@en, "Adres uit 1853-1874"@nl ;
     sh:class    deed:HistoricalAddress1853NodeShape ;
     sh:group    deed:contentDescriptionGroup ;
-    sh:maxCount 999 ;
+    sh:maxCount 1 ;
     sh:nodeKind sh:BlankNode ;
     sh:order    3.0 ;
     sh:path     deed:historicalAddress1853 .
@@ -272,7 +272,7 @@ deed:AddressHouseNameShape
     rdfs:label  "House name"@en, "Huisnaam"@nl ;
     sh:datatype xsd:string ;
     sh:maxCount 1 ;
-    sh:order    4.0 ;
+    sh:order    7.0 ;
     sh:path     deed:houseName .
 
 
@@ -281,7 +281,7 @@ deed:AddressPlaceShape
     rdfs:label  "Place (other than Amsterdam)"@en, "Plaats (anders dan Amsterdam)"@nl ;
     sh:datatype xsd:string ;
     sh:maxCount 1 ;
-    sh:order    5.0 ;
+    sh:order    8.0 ;
     sh:path     deed:placeName .
 
 
@@ -291,7 +291,7 @@ deed:AddressRemarksShape
     dash:editor dash:TextAreaEditor ;
     sh:datatype xsd:string ;
     sh:maxCount 1 ;
-    sh:order    6.0 ;
+    sh:order    9.0 ;
     sh:path     deed:addressRemarks .
 
 rico:SingleDate
