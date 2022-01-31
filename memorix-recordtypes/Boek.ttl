@@ -1,0 +1,151 @@
+@prefix rdf:            <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:           <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:            <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:            <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos:           <http://www.w3.org/2004/02/skos/core#> .
+@prefix schema:         <http://schema.org/> .
+
+@prefix rt:             </resources/recordtypes/> .
+@prefix book:           </resources/recordtypes/Book#> .
+@prefix saa:            <https://data.archief.amsterdam/ontology#> . #TBD
+
+@prefix dc:             <http://purl.org/dc/elements/1.1/> .
+@prefix sh:             <http://www.w3.org/ns/shacl#> .
+@prefix dash:           <http://datashapes.org/dash#> .
+@prefix memorix:        <http://memorix.io/ontology#> .
+@prefix html:           <http://www.w3.org/1999/xhtml/> .
+@prefix vocabularies:   </resources/vocabularies/conceptschemes/> .
+
+@prefix rico:           <https://www.ica.org/standards/RiC/ontology#> .
+@prefix ric-rst:        <https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#> .
+@prefix ric-dft:        <https://www.ica.org/standards/RiC/vocabularies/documentaryFormTypes#> .
+
+
+book:contentDescriptionGroup
+    rdf:type   sh:PropertyGroup ;
+    rdfs:label "Beschrijving"@nl,
+               "Description"@en ;
+    sh:order   1.0 .
+
+book:managementGroup
+    rdf:type   sh:PropertyGroup ;
+    rdfs:label "Beheer"@nl,
+               "Manage"@en ;
+    sh:order   2.0 .
+
+## moet linken naar depot
+## datum is met circa vinkje net zo ingewikkeld als bij bestanddeel
+## auteur?
+rt:Book
+    a                    memorix:Recordtype,
+                         sh:NodeShape ;
+    rdfs:comment         "Stadsarchief recordtype voor Boek"@nl ;
+    rdfs:label           "Boek"@nl,
+                         "Book"@en ;
+    dc:identifier        "Book" ;
+    sh:targetClass       rt:Book ;
+    sh:closed            true ;
+    sh:ignoredProperties ( rdf:type ) ;
+
+    # contentDescriptionGroup
+    sh:property          book:hasOrHadIdentifierShape,
+                         book:TitleShape ;
+#                         book:NotaBeneShape,
+#                         book:PublisherPlaceShape,
+#                         book:PublisherShape,
+#                         book:PublishedDateShape ;
+    #sh:property          book:hasOrHadIdentifierShape, book:TitleShape, book:NotaBeneShape, book:PublisherPlaceShape, book:PublisherShape, book:PublishedDateShape ;
+    #sh:property          book:EditionShape, book:CollationShape, book:AuthorsShape, book:redactioneleVormShape, book:isbnShape ;
+
+    # managementGroup
+    sh:property          book:InternalRemarksShape,
+                         book:StatusShape ;
+.
+
+book:hasOrHadIdentifierShape
+    a            sh:PropertyShape ;
+    rdfs:label   "Inventarisnummer"@nl,
+                 "Inventory number"@en ;
+    rdfs:comment "Uniek nummer"@nl ;
+    #sh:message   "Vul tenminste een (uniek) inventarisnummer in. Dit nummer is verplicht."@nl , "Please provide at least an inventory number. It is required."@en;
+    sh:class     book:RicoIdentifierShape ;
+    #sh:class     rico:Identifier ;
+    sh:group     book:contentDescriptionGroup ;
+    #sh:minCount  1 ;
+    sh:maxCount  1 ;
+    sh:nodeKind  sh:BlankNode ;
+    sh:order     1.0 ;
+    sh:path      rico:hasOrHadIdentifier
+.
+
+book:RicoIdentifierShape
+    rdf:type             sh:NodeShape ;
+    sh:closed            true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property          [ rdfs:label           "Nummer"@nl ;
+                           dash:singleLine      true ;
+                           memorix:inTitleAt    1.0 ;
+                           memorix:searchWeight 3.0 ;
+                           sh:datatype          xsd:string ;
+                           sh:minCount          1 ;
+                           sh:maxCount          1 ;
+                           sh:order             1.0 ;
+                           sh:path              book:inventoryNumber
+                         ] ;
+    sh:targetClass       rico:Identifier
+.
+
+
+book:TitleShape
+    a                    sh:PropertyShape ;
+    rdfs:label           "Titel"@nl,
+                         "Title"@en ;
+    sh:datatype          xsd:string ;
+    memorix:inTitleAt    2.0 ;
+    memorix:searchWeight 5.0 ;
+    sh:order             2.0 ;
+    sh:path              schema:name ;
+    sh:group             book:contentDescriptionGroup ;
+.
+#book:Authors
+#    a                    sh:NodeShape ;
+#    sh:closed            true ;
+#    sh:ignoredProperties ( rdf:type ) ;
+#    sh:property          book:relatedPersonOrOrganisation, book:relatedPersonOrOrganisationRole ;
+#    sh:targetClass       book:PersonAndOrganizationRelation
+#.
+
+# management
+book:InternalRemarksShape
+    a           sh:PropertyShape ;
+    rdfs:label  "Interne opmerking"@nl,
+                "Internal remark"@en ;
+    dash:editor dash:TextAreaEditor ;
+    sh:datatype xsd:string ;
+    sh:group    book:managementGroup ;
+    sh:order    1.0 ;
+    sh:maxCount 1 ;
+    sh:path     book:internalRemarks
+.
+
+book:StatusShape
+    a            sh:PropertyShape ;
+    rdfs:label   "Status"@en,
+                 "Status"@nl ;
+    rdfs:comment "Status van het inventarisnummer/boek. aanwezig, vervallen, te vernietigen, vermist, vernietigd."@nl ;
+    sh:message   "Status is verplicht. Moet een van de volgende waardes zijn: aanwezig, vervallen, vermist, vernietigd"@nl,
+                 "Must be one of the following (Dutch) terms: aanwezig, vervallen, vermist, vernietigd. Mandatory."@en ;
+    sh:datatype  xsd:string ;
+    sh:minCount  1 ;
+    sh:maxCount  1 ;
+    sh:in        ( "aanwezig" "vervallen" "vermist" "vernietigd" ) ;
+    sh:group     book:managementGroup ;
+    sh:order     2.0 ;
+    sh:path      book:status ;
+.
+
+
+book:inventoryNumber
+    a                  rdfs:Property ;
+    rdfs:subPropertyOf rico:textualValue ;
+.

@@ -1,0 +1,56 @@
+@prefix rdf:             <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:            <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:             <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos:            <http://www.w3.org/2004/02/skos/core#> .
+
+@prefix rt:              </resources/recordtypes/> .
+@prefix deed:            </resources/recordtypes/Deed#> .
+@prefix saa:             </resources/recordtypes/Saa#> .
+
+@prefix dc:              <http://purl.org/dc/elements/1.1/> .
+@prefix sh:              <http://www.w3.org/ns/shacl#> .
+@prefix dash:            <http://datashapes.org/dash#> .
+@prefix memorix:         <http://memorix.io/ontology#> .
+@prefix html:            <http://www.w3.org/1999/xhtml/> .
+@prefix vocabularies:    </resources/vocabularies/conceptschemes/> .
+
+@prefix rico:            <https://www.ica.org/standards/RiC/ontology#> .
+@prefix ric-rst:         <https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#> .
+@prefix ric-dft:         <https://www.ica.org/standards/RiC/vocabularies/documentaryFormTypes#> .
+
+deed:identificationGroup
+    rdf:type   sh:PropertyGroup ;
+    rdfs:label "Akte"@nl,
+               "Deed"@en ;
+    sh:order   1.0 .
+
+deed:contentDescriptionGroup
+    rdf:type   sh:PropertyGroup ;
+    rdfs:label "Beschrijving"@nl,
+               "Description"@en ;
+    sh:order   2.0 .
+
+deed:managementGroup
+    rdf:type   sh:PropertyGroup ;
+    rdfs:label "Beheer"@nl,
+               "Manage"@en ;
+    sh:order   3.0 .
+
+rt:Deed
+    a                    memorix:Recordtype,
+                         sh:NodeShape;
+    rdfs:comment         "Stadsarchief recordtype voor Akte"@nl ;
+    rdfs:label           "Akte"@nl,
+                         "Deed"@en ;
+    dc:identifier        "Deed" ;
+    sh:targetClass       rt:Deed ;
+    sh:closed            true ;
+    sh:ignoredProperties ( rdf:type ) ;
+
+    # identificationGroup
+    sh:property          deed:TitleShape, deed:DocumentaryFormShape, deed:AssociatedWithDateShape, deed:IndexNameShape, deed:IsOrWasIncludedInShape ;
+    # contentDescriptionGroup
+    sh:property          deed:SourceShape, deed:HasOrHadSubjectShape, deed:HasOrHadLocationShape ;
+    # managementGroup
+    sh:property          deed:InternalRemarksShape ;
+.
