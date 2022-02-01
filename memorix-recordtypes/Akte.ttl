@@ -5,7 +5,6 @@
 
 @prefix rt:              </resources/recordtypes/> .
 @prefix deed:            </resources/recordtypes/Deed#> .
-@prefix saa:             </resources/recordtypes/Saa#> .
 
 @prefix dc:              <http://purl.org/dc/elements/1.1/> .
 @prefix sh:              <http://www.w3.org/ns/shacl#> .
@@ -44,7 +43,7 @@ rt:Deed
     rdfs:label           "Akte"@nl,
                          "Deed"@en ;
     dc:identifier        "Deed" ;
-    sh:targetClass       saa:Deed ;
+    sh:targetClass       rt:Deed ;
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
 
@@ -102,7 +101,7 @@ deed:IndexNameShape
     sh:datatype         xsd:string ;
     sh:group            deed:identificationGroup ;
     sh:order            4.0 ;
-    sh:path             saa:indexName
+    sh:path             deed:indexName
 .
 
 deed:IsOrWasIncludedInShape
@@ -127,7 +126,7 @@ deed:SourceShape
     sh:datatype xsd:string ;
     sh:group    deed:contentDescriptionGroup ;
     sh:order    1.0 ;
-    sh:path     saa:source
+    sh:path     deed:source
 .
 
 deed:HasOrHadSubjectShape
@@ -190,16 +189,20 @@ deed:Person
                            sh:order    1.0 ;
                            sh:path     deed:personRole
                          ] ;
-    sh:targetClass       saa:PersonLink
+    sh:targetClass       deed:Person
 .
 
 deed:Address
     a                    sh:NodeShape ;
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:targetClass       saa:Address ;
+    sh:targetClass       deed:Address ;
     sh:group             deed:contentDescriptionGroup ;
     sh:property          deed:HistoricalAddress1851Shape, deed:HistoricalAddress1853Shape, deed:ModernAddressShape, deed:AddressHouseNameShape, deed:AddressPlaceShape, deed:AddressRemarksShape ;
+#    sh:property          [
+#                            rdfs:label "Adres" ;
+#                            sh:path deed:tekst
+#                    ]
 .
 
 deed:HistoricalAddress1851Shape
@@ -211,7 +214,7 @@ deed:HistoricalAddress1851Shape
     sh:maxCount  999 ;
     sh:nodeKind  sh:BlankNode ;
     sh:order     3.0 ;
-    sh:path      saa:historicalAddress1851 ;
+    sh:path      deed:historicalAddress1851 ;
 .
 
 deed:HistoricalAddress1851NodeShape
@@ -230,7 +233,7 @@ deed:HistoricalAddress1851NodeShape
                            sh:order    2.0 ;
                            sh:path     deed:historicalAddressKleinNumber
                          ] ;
-    sh:targetClass       saa:HistoricalAddress1851 ;
+    sh:targetClass       deed:HistoricalAddress1851NodeShape ;
 .
 
 deed:HistoricalAddress1853Shape
@@ -242,7 +245,7 @@ deed:HistoricalAddress1853Shape
     sh:maxCount  999 ;
     sh:nodeKind  sh:BlankNode ;
     sh:order     3.0 ;
-    sh:path      saa:historicalAddress1853 ;
+    sh:path      deed:historicalAddress1853 ;
 .
 
 deed:HistoricalAddress1853NodeShape
@@ -253,21 +256,21 @@ deed:HistoricalAddress1853NodeShape
                                        "Street name (1853-74)"@en ;
                            sh:datatype xsd:string ;
                            sh:order    3.0 ;
-                           sh:path     saa:historicalAddress1853Street
+                           sh:path     deed:historicalAddress1853Street
                          ] ;
     sh:property          [ rdfs:label  "Buurtcode"@nl,
                                        "Neighourhood code"@en ;
                            sh:datatype xsd:string ;
                            sh:order    4.0 ;
-                           sh:path     saa:historicalAddressNeighourhoodCode
+                           sh:path     deed:historicalAddressNeighourhoodCode
                          ] ;
     sh:property          [ rdfs:label  "Buurtnummer"@nl,
                                        "Neighourhood number"@en ;
                            sh:datatype xsd:string ;
                            sh:order    5.0 ;
-                           sh:path     saa:historicalAddressNeighourhoodNumber
+                           sh:path     deed:historicalAddressNeighourhoodNumber
                          ] ;
-    sh:targetClass       saa:HistoricalAddress1853 ;
+    sh:targetClass       deed:HistoricalAddress1853NodeShape ;
 .
 
 deed:ModernAddressShape
@@ -280,7 +283,7 @@ deed:ModernAddressShape
     sh:datatype  xsd:string ;
     sh:order     4.0 ;
     sh:maxCount  1 ;
-    sh:path      saa:modernAddress
+    sh:path      deed:modernAddress
 .
 
 deed:ModernAddressNodeShape
@@ -308,7 +311,7 @@ deed:ModernAddressNodeShape
                            sh:maxCount 1 ;
                            sh:datatype xsd:string ;
                          ];
-    sh:targetClass       saa:ModernAddress
+    sh:targetClass       deed:ModernAddressNodeShape
 .
 
 
@@ -319,7 +322,7 @@ deed:AddressHouseNameShape
     sh:datatype xsd:string ;
     sh:order    4.0 ;
     sh:maxCount 1 ;
-    sh:path     saa:houseName
+    sh:path     deed:houseName
 .
 
 deed:AddressPlaceShape
@@ -329,7 +332,7 @@ deed:AddressPlaceShape
     sh:datatype xsd:string ;
     sh:order    5.0 ;
     sh:maxCount 1 ;
-    sh:path     saa:placeName
+    sh:path     deed:placeName
 .
 
 deed:AddressRemarksShape
@@ -340,7 +343,7 @@ deed:AddressRemarksShape
     sh:datatype xsd:string ;
     sh:order    6.0 ;
     sh:maxCount 1 ;
-    sh:path     saa:addressRemarks
+    sh:path     deed:addressRemarks
 .
 
 rico:SingleDate
