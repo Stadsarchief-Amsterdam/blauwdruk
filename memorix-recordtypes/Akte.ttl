@@ -77,8 +77,8 @@ deed:AssociatedWithDateShape
 
 deed:IsOrWasIncludedInShape
     rdf:type     sh:PropertyShape ;
-    rdfs:comment "Bestanddeel waartoe deze akkoord behoort."@nl ;
-    rdfs:label   "Gekoppeld bestanddeel"@nl ;
+    rdfs:comment "Bestanddeel waartoe deze akte behoort."@nl ;
+    rdfs:label   "Gekoppeld bestanddeel"@nl , "Linked file"@en ;
     dash:editor  memorix:LinkedRecordEditor ;
     sh:group     deed:identificationGroup ;
     # sh:minCount  1 ; # @todo aanzetten als de UI gefikst is
@@ -110,7 +110,7 @@ deed:IndexNameShape
 
 deed:HasOrHadSubjectShape
     rdf:type     sh:PropertyShape ;
-    rdfs:comment "Personen die voorkomen op de akte."@nl, "people mentioned in the source"@en ;
+    rdfs:comment "Personen die voorkomen op de akte."@nl, "People mentioned in the source"@en ;
     rdfs:label   "Personen"@nl, "People"@en ;
     sh:class     deed:Person ;
     sh:group     deed:contentDescriptionGroup ;
@@ -243,19 +243,19 @@ deed:ModernAddressNodeShape
     rdf:type             sh:NodeShape ;
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property          [ rdfs:label  "Huisnummer tot"@nl ;
+    sh:property          [ rdfs:label  "Huisnummer tot"@nl , "Housenumber to"@en;
                            sh:datatype xsd:string ;
                            sh:maxCount 1 ;
                            sh:order    8.0 ;
                            sh:path     deed:houseNumberEnd
                          ] ;
-    sh:property          [ rdfs:label  "Huisnummer van"@nl ;
+    sh:property          [ rdfs:label  "Huisnummer van"@nl , "Housenumber from"@en;
                            sh:datatype xsd:string ;
                            sh:maxCount 1 ;
                            sh:order    7.0 ;
                            sh:path     deed:houseNumberBegin
                          ] ;
-    sh:property          [ rdfs:label              "Straatnaam"@nl ;
+    sh:property          [ rdfs:label              "Straatnaam"@nl, "Streetname"@en;
                            dash:editor             memorix:VocabularyEditor ;
                            memorix:conceptSchemeIn vocabularies:a4863c0c-d9e5-3902-831a-d0960e381a41 ;
                            sh:class                skos:Concept ;
@@ -298,7 +298,7 @@ rico:SingleDate
     rdf:type             sh:NodeShape ;
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property          [ rdfs:label  "Datum"@nl ;
+    sh:property          [ rdfs:label  "Datum"@nl, "Date"@en ;
                            sh:datatype xsd:date ;
                            sh:order    2.0 ;
                            sh:path     rico:normalizedDateValue
