@@ -255,7 +255,7 @@ deed:ModernAddressNodeShape
                            sh:order    7.0 ;
                            sh:path     deed:houseNumberBegin
                          ] ;
-    sh:property          [ rdfs:label              "Straatnaam"@nl, "Streetname"@en;
+    sh:property          [ rdfs:label              "Straatnaam"@nl, "Street name"@en;
                            dash:editor             memorix:VocabularyEditor ;
                            memorix:conceptSchemeIn vocabularies:a4863c0c-d9e5-3902-831a-d0960e381a41 ;
                            sh:class                skos:Concept ;
