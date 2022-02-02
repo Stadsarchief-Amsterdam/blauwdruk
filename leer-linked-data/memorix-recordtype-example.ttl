@@ -15,6 +15,10 @@ all:MyGroup  rdf:type  sh:PropertyGroup ;
         rdfs:label  "Group label" ;
         sh:order    1.0 .
 
+all:MyGroupTwo  rdf:type  sh:PropertyGroup ;
+        rdfs:label  "Group two label" ;
+        sh:order    2.0 .
+
 all:Group  rdf:type           sh:NodeShape ;
         sh:closed             true ;
         sh:ignoredProperties  ( rdf:type ) ;
@@ -22,7 +26,7 @@ all:Group  rdf:type           sh:NodeShape ;
                                 sh:datatype  xsd:integer ;
                                 sh:maxCount  1 ;
                                 sh:order     8.0 ;
-                                sh:path      all:group-int
+                                sh:path      dc:identifier
                               ] ;
         sh:property           [ rdfs:label   "group input text"@nl ;
                                 sh:datatype  xsd:string ;
@@ -30,7 +34,37 @@ all:Group  rdf:type           sh:NodeShape ;
                                 sh:order     8.0 ;
                                 sh:path      all:group-text
                               ] ;
-        sh:targetClass        all:Group .
+# Dit werkt niet: we zouden ook subgroupen willen kunnen aanmaken.
+#        sh:property           [ rdfs:label   "subgroup"@nl ;
+#                                sh:class      all:SubGroup ;
+#                                sh:nodeKind   sh:BlankNode ;
+#                                sh:maxCount  1 ;
+#                                sh:order     8.0 ;
+#                                sh:path      all:subgroup ;
+#                              ] ;
+# Dit werkt niet: het lijkt erop dat ik een subgroep niet naar een eigen class kan mappen, 
+# zonder het onderscheid te maken tussen NodeShape en Class.
+         sh:targetClass        dc:SubResource .
+#         sh:targetClass        all:Group .
+
+
+all:SubGroup  rdf:type        sh:NodeShape ;
+        sh:closed             true ;
+        sh:ignoredProperties  ( rdf:type ) ;
+        sh:property           [ rdfs:label   "subgroup input int"@nl ;
+                                sh:datatype  xsd:integer ;
+                                sh:maxCount  1 ;
+                                sh:order     8.0 ;
+                                sh:path      all:group-int
+                              ] ;
+        sh:property           [ rdfs:label   "subgroup input text"@nl ;
+                                sh:datatype  xsd:string ;
+                                sh:maxCount  1 ;
+                                sh:order     8.0 ;
+                                sh:path      all:group-text
+                              ] ;
+        sh:targetClass        all:SubGroup .
+
 
 recordtypes:All  rdf:type        memorix:Recordtype , sh:NodeShape ;
         rdfs:comment             "Recordtype with all possible fields" ;
@@ -42,7 +76,7 @@ recordtypes:All  rdf:type        memorix:Recordtype , sh:NodeShape ;
                 ] ;
         memorix:hasInformationComponent
                 [ rdf:type  memorix:DepotLocationComponent ] ;
-        dc:identifier            "All" ;
+        dc:identifier            "AllIvo" ;
         sh:closed                true ;
         sh:ignoredProperties     ( rdf:type ) ;
         sh:property              [ rdfs:comment  "This is a group of fields which can repeat" ;
@@ -132,7 +166,7 @@ recordtypes:All  rdf:type        memorix:Recordtype , sh:NodeShape ;
                                    sh:message         "Empty value for title field should not be allowed" ;
                                    sh:minCount        1 ;
                                    sh:order           1.0 ;
-                                   sh:path            all:title
+                                   sh:path            dc:title
                                  ] ;
         sh:property              [ rdf:type     sh:PropertyShape ;
                                    rdfs:label   "Integer" ;
@@ -151,8 +185,5 @@ recordtypes:All  rdf:type        memorix:Recordtype , sh:NodeShape ;
                                    sh:order             3.0 ;
                                    sh:path              all:date
                                  ] ;
-        sh:targetClass           recordtypes:All .
+        sh:targetClass           dc:Resource .
 
-all:MyGroupTwo  rdf:type  sh:PropertyGroup ;
-        rdfs:label  "Group two label" ;
-        sh:order    1.0 .

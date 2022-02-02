@@ -1,0 +1,189 @@
+@prefix rdf:           <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:          <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: 		   <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:           <http://www.w3.org/2001/XMLSchema#> .
+
+@prefix rico:          <https://www.ica.org/standards/RiC/ontology#> .
+@prefix ric-rst:       <https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#> .
+@prefix ric-dft:       <https://www.ica.org/standards/RiC/vocabularies/documentaryFormTypes#>
+
+@prefix schema:        <http://schema.org/> .
+
+@prefix saa:       	   <https://data.archief.amsterdam/ontology#> . #TBD
+
+@prefix dct: 		   <http://purl.org/dc/terms/> .
+
+
+<https://data.archief.amsterdam/ontology#> a owl:Ontology ;
+	rdfs:label "Amsterdam City Archives RiC-O extension"@en ;
+	rdfs:label "Stadsarchief Amsterdam RiC-O extensie"@nl ;
+	owl:imports <https://www.ica.org/standards/RiC/ontology> ;
+	rdfs:comment "Formal definitions of entities used for archival description in the Amsterdam City Archives."@en ;
+	rdfs:comment "Formele definities van entiteiten gebruikt voor archiefbeschrijvingen bij Stadsarchief Amsterdam."@nl ;
+	dct:publisher [
+		schema:name "Amsterdam City Archives"@en ;
+		schema:name "Stadsarchief Amsterdam"@nl ;
+		schema:identifier <https://www.amsterdam.nl/stadsarchief/> ;
+  	] ;
+	dct:rights "© 2021-… Amsterdam City Archives, Amsterdam, the Netherlands" ;
+	dct:license <https://creativecommons.org/licenses/by/4.0/> ;
+	dct:created  "2022-01-20T17:00:00+00:00"^^xsd:dateTime ;
+  	dct:modified "2022-01-20T17:00:00+00:00"^^xsd:dateTime ;
+  	dct:description "We introduce this ontology because we require different mandatory properties for different subClasses of entities in the RiC ontology. We have defined shapes in SHACL to validate data according to these requirement."
+
+# >>> subclasses of rico:RecordSet
+saa:Acquisition a owl:Class ;
+	rdfs:subClassOf rico:RecordResource ;
+	rdfs:label "Aanwinst"@nl ;
+	rdf:comment ""@nl .
+
+saa:Fonds a owl:Class ;
+	rdfs:subClassOf rico:RecordSet ;
+	rdfs:label "Archiefblok"@nl ;
+	rdf:comment ""@nl .
+
+saa:Series a owl:Class ;
+	rdfs:subClassOf rico:RecordSet ;
+	rdfs:label "Groep"@nl ;
+	rdfs:comment ""@nl .
+
+saa:File a owl:Class ;
+	rdfs:subClassOf rico:RecordSet ;
+	rdfs:label "Bestanddeel"@nl ;
+	rdfs:comment ""@nl .
+
+# >>> subclasses of rico:Record
+saa:Deed a owl:Class ;
+	rdfs:subClassOf rico:Record ;
+	rdfs:label "Akte"@nl ;	
+	rdfs:comment ""@nl .
+
+saa:Image a owl:Class ;	
+	rdfs:subClassOf rico:Record ;
+	rdfs:label "Afbeelding"@nl ;
+	rdfs:comment ""@nl .
+
+saa:FindingAid a owl:Class ;	
+	rdfs:subClassOf rico:Record ;
+	rdfs:label "Inventaris"@nl ;
+	rdfs:comment ""@nl .
+
+saa:DateRangeAccumulation a owl:Class ;
+    rdfs:subClassOf      rico:DateRange ;
+    rdfs:label "Vormingsperiode"@nl ;
+	rdfs:comment ""@nl .
+
+saa:DateRangeYoungest a owl:Class ;
+    rdfs:subClassOf      rico:DateRange ;
+    rdfs:label "Jongste stuk in het archief"@nl ;
+	rdfs:comment ""@nl .
+
+saa:DateRangeOldest a owl:Class ;
+    rdfs:subClassOf      rico:DateRange ;
+    rdfs:label "Oudste stuk in het archief"@nl ;
+	rdfs:comment ""@nl .
+
+
+
+
+# TBD:
+# saa:MAIImage a owl:Class ;	
+#	rdfs:subClassOf rico:Record ;
+#	rdfs:label "MAI Afbeelding"@nl ;
+#	rdfs:comment ""@nl .
+
+# TBD:
+# saa:AVObject a owl:Class ;	
+#	rdfs:subClassOf rico:Record ;
+#	rdfs:label "AV Materiaal"@nl ;
+#	rdfs:comment ""@nl .
+
+# TBD:
+# saa:DigitalRecord a owl:Class ;	
+#	rdfs:subClassOf rico:Record ;
+#	rdfs:label "Digitaal informatieobject"@nl ;
+#	rdfs:comment ""@nl .
+
+# >>> subclasses of rico:RecordPart
+
+# TBD:
+# saa:DigitalRecordPart a owl:Class ;
+#	rdfs:subClassOf rico:RecordPart ;
+#	rdfs:label "Informatieobjectonderdeel"@nl ;
+#	rdfs:comment ""@nl .
+
+# >>> subclasses of rico:Instantiation
+
+# TBD
+# saa:Duplicate a owl:Class ;	
+#	rdfs:subClassOf rico:Instantiation ;
+#	rdfs:label ""@nl ;
+#	rdfs:comment ""@nl .
+
+# TBD
+# saa:ConservationData a owl:Class ;	
+#	rdfs:subClassOf rico:Instantiation ;
+#	rdfs:label ""@nl ;
+#	rdfs:comment ""@nl .
+
+
+# >>> subclasses of rico:Agent
+
+saa:Family a owl:Class ;
+    rdfs:subClassOf rico:Family ;
+	rdfs:label "Familie"@nl ;
+	rdfs:comment ""@nl .
+
+saa:Organisation a owl:Class ;
+    rdfs:subClassOf rico:CorporateBody ;
+	rdfs:label "Organisatie"@nl ;
+	rdfs:comment ""@nl .
+
+saa:Person a owl:Class ;
+    rdfs:subClassOf rico:Person , schema:Person , pnv:Person ;
+	rdfs:label "Persoon"@nl ;
+	rdfs:comment ""@nl .
+
+saa:PersonObservation a owl:Class ;
+    rdfs:subClassOf rico:Person , schema:Person , pnv:Person , roar:personObservation ;
+	rdfs:label "Persoonsvermelding"@nl ;
+	rdfs:comment ""@nl .
+
+# >>> classes for library
+# (We kunnen misschien rechtstreeks op schema mappen)
+
+# TBD
+# saa:Book a owl:Class ;
+#    rdfs:subClassOf schema:Book ;
+#	rdfs:label "Boek"@nl ;
+#	rdfs:comment ""@nl .
+
+# TBD
+# saa:Periodical a owl:Class ;
+#   rdfs:subClassOf schema:Periodical ;
+#	rdfs:label "Periodiek"@nl ;
+#	rdfs:comment ""@nl .
+
+# TBD
+# saa:PublicationVolume a owl:Class ;
+#   rdfs:subClassOf schema:PublicationVolume ;
+#  	rdfs:label "Aflevering"@nl ;
+#	rdfs:comment ""@nl .
+
+# >>> properties
+
+saa:internalRemarks a rdf:Property ;
+	rdfs:domain rico:Thing .
+
+saa:status a rdfs:Property ;
+    rdfs:subPropertyOf rico:isOrWasRecordStateOfAllMembers ;
+    rdfs:domain saa:Fonds .
+
+saa:hasYoungestRecord a rdfs:Property ;
+    rdfs:subPropertyOf rico:isAssociatedWithDate ;
+    rdfs:domain saa:Fonds .
+
+saa:hasOldestRecord a rdfs:Property ;
+    rdfs:subPropertyOf rico:isAssociatedWithDate ;
+    rdfs:domain saa:Fonds .
+    

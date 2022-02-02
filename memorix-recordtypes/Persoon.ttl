@@ -40,12 +40,11 @@ person:managementGroup
 .
 
 rt:Person
-    rdf:type             memorix:Recordtype , rdfs:Class , sh:NodeShape ;
+    rdf:type             memorix:Recordtype , sh:NodeShape ;
     rdfs:comment         "Stadsarchief recordtype voor Persoon"@nl ;
     rdfs:label           "Persoon"@nl, "Person"@en ;
     dc:identifier        "Person" ;
     sh:targetClass       rt:Person ;
-    rdfs:subClassOf      rico:Person , schema:Person , pnv:Person ;
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property          [ rdfs:label               "Voornaam"@nl, "First name"@en  ;

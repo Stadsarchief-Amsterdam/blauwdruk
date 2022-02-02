@@ -15,14 +15,14 @@
 @prefix ric-rst:        <https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#> .
 @prefix ric-dft:        <https://www.ica.org/standards/RiC/vocabularies/documentaryFormTypes#> .
 
-rt:DigitalRecord
+rt:DigitalRecordPart
     a                               memorix:Recordtype , sh:NodeShape ;
-    rdfs:label                      "Digitaal informatieobject"@nl , "Digital Record"@en;
-    rdfs:comment                    "Beschrijvingen van computerbestanden Stadsarchief Amsterdam"@nl ;
-    dc:identifier                   "DigitalRecord" ;
+    rdfs:label                      "Digitaal informatieobjectonderdeel"@nl , "Digital RecordPart"@en;
+    rdfs:comment                    "Beschrijvingen van computerbestanden als bijlage bij een Digitaal Informatieobject Stadsarchief Amsterdam"@nl ;
+    dc:identifier                   "DigitalRecordPart" ;
     sh:closed                       true ;
     sh:ignoredProperties            ( rdf:type ) ;
-    sh:targetClass                  rt:DigitalRecord ;
+    sh:targetClass                  rt:DigitalRecordPart ;
     sh:property                     [ rdfs:label              "Type document"@nl , "Document Type"@en ;
                                       rdfs:comment            "Selecteer een waarde uit de lijst."@nl , "Select a value from the list"@en ;
                                       sh:path                 rico:hasDocumentaryFormType ;
@@ -60,15 +60,15 @@ rt:DigitalRecord
                                       sh:maxCount         1 ;
                                       sh:order            4.0 ;
                                       sh:path             rico:isAssociatedWithDate ] ;
-    sh:property          [            rdfs:label   "Bovenliggend archiefblok, groep of bestanddeel"@nl , "Parental fonds, series or file."@en ;
-                                      rdfs:comment "Archiefblok, groep of bestanddeel waartoe dit informatieobject behoort."@nl , "Fonds, series or file of which this digital record is part of."@en;
-                                      sh:message   "Kies een archiefblok, groep of bestanddeel om aan te koppelen. Dit is verplicht."@nl , "Choose a fonds, series or file to relate to. This is mandatory.";
+    sh:property          [            rdfs:label   "Onderdeel van"@nl , "Part of"@en ;
+                                      rdfs:comment "Digitaal Informatieobject waartoe deel onderdeel behoort."@nl , "Digital Record of which this part is part of."@en;
+                                      sh:message   "Kies een digitaal informatieobject om aan te koppelen. Dit is verplicht."@nl , "Choose a digital record to relate to. This is mandatory.";
                                       dash:editor  memorix:LinkedRecordEditor ;
                                       sh:group     io:partitionGroup ;
                                       sh:minCount  1 ;
                                       sh:maxCount  1 ;
                                       sh:nodeKind  sh:IRI ;
-                                      sh:or        ( [ sh:class rt:Fonds ] [ sh:class rt:Series ] [ sh:class rt:File] ) ;
+                                      sh:or        ( [ sh:class rt:DigitalRecord ] ) ;
                                       sh:order     5.0 ;
                                       sh:path      rico:isOrWasIncludedIn ] ;
     sh:property                     [ rdfs:label              "Oude nummers"@nl, "Obsolete Numbers"@en ;

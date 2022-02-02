@@ -34,6 +34,7 @@ deed:managementGroup
     rdfs:label "Beheer"@nl, "Manage"@en ;
     sh:order   4.0 .
 
+
 rt:Deed
     rdf:type             sh:NodeShape, memorix:Recordtype ;
     rdfs:comment         "Stadsarchief recordtype voor Akte"@nl ;
@@ -118,7 +119,6 @@ deed:HasOrHadSubjectShape
     sh:nodeKind  sh:BlankNode ;
     sh:order     3.0 ;
     sh:path      rico:hasOrHadSubject .
-
 
 deed:HasOrHadLocationShape
     rdf:type     sh:PropertyShape ;
