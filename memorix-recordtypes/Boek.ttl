@@ -48,8 +48,7 @@ rt:Book
     sh:ignoredProperties ( rdf:type ) ;
 
     # contentDescriptionGroup
-    sh:property          book:hasOrHadIdentifierShape,
-                         book:TitleShape ;
+    sh:property          book:TitleShape ;
 #                         book:NotaBeneShape,
 #                         book:PublisherPlaceShape,
 #                         book:PublisherShape,
@@ -58,43 +57,8 @@ rt:Book
     #sh:property          book:EditionShape, book:CollationShape, book:AuthorsShape, book:redactioneleVormShape, book:isbnShape ;
 
     # managementGroup
-    sh:property          book:InternalRemarksShape,
-                         book:StatusShape ;
+    sh:property          book:TitleShape, book:InternalRemarksShape, book:StatusShape ;
 .
-
-book:hasOrHadIdentifierShape
-    a            sh:PropertyShape ;
-    rdfs:label   "Inventarisnummer"@nl,
-                 "Inventory number"@en ;
-    rdfs:comment "Uniek nummer"@nl ;
-    #sh:message   "Vul tenminste een (uniek) inventarisnummer in. Dit nummer is verplicht."@nl , "Please provide at least an inventory number. It is required."@en;
-    sh:class     book:RicoIdentifierShape ;
-    #sh:class     rico:Identifier ;
-    sh:group     book:contentDescriptionGroup ;
-    #sh:minCount  1 ;
-    sh:maxCount  1 ;
-    sh:nodeKind  sh:BlankNode ;
-    sh:order     1.0 ;
-    sh:path      rico:hasOrHadIdentifier
-.
-
-book:RicoIdentifierShape
-    rdf:type             sh:NodeShape ;
-    sh:closed            true ;
-    sh:ignoredProperties ( rdf:type ) ;
-    sh:property          [ rdfs:label           "Nummer"@nl ;
-                           dash:singleLine      true ;
-                           memorix:inTitleAt    1.0 ;
-                           memorix:searchWeight 3.0 ;
-                           sh:datatype          xsd:string ;
-                           sh:minCount          1 ;
-                           sh:maxCount          1 ;
-                           sh:order             1.0 ;
-                           sh:path              book:inventoryNumber
-                         ] ;
-    sh:targetClass       rico:Identifier
-.
-
 
 book:TitleShape
     a                    sh:PropertyShape ;
@@ -107,15 +71,8 @@ book:TitleShape
     sh:path              schema:name ;
     sh:group             book:contentDescriptionGroup ;
 .
-#book:Authors
-#    a                    sh:NodeShape ;
-#    sh:closed            true ;
-#    sh:ignoredProperties ( rdf:type ) ;
-#    sh:property          book:relatedPersonOrOrganisation, book:relatedPersonOrOrganisationRole ;
-#    sh:targetClass       book:PersonAndOrganizationRelation
-#.
 
-# management
+
 book:InternalRemarksShape
     a           sh:PropertyShape ;
     rdfs:label  "Interne opmerking"@nl,
