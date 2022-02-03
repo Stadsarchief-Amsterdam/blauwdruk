@@ -21,7 +21,7 @@ rt:Image a memorix:Recordtype,
     dc:identifier        "Image" ;
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:targetClass       saa:Image ;
+    sh:targetClass       rt:Image ;
     sh:property          [ rdfs:label              "Type afbeelding"@nl ;
                            rdfs:comment            "Selecteer een waarde uit de lijst."@nl ;
                            sh:path                 rico:hasDocumentaryFormType ;
