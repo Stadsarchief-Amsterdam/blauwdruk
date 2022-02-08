@@ -88,7 +88,7 @@ rt:PersonObservation
                            sh:order    5.0 ;
                            sh:path     schema:deathPlace
                          ] ;
-    sh:property          [ rdfs:label  "Leeftijdsvermelding in bron"@nl, "age as mentioned in the original document"@en ;
+    sh:property          [ rdfs:label  "Leeftijdsvermelding in bron"@nl, "Age as mentioned in the original document"@en ;
                            sh:datatype xsd:string ;
                            sh:group    personObservation:personListingGroup ;
                            sh:order    6.0 ;
