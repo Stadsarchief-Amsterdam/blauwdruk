@@ -69,21 +69,19 @@ saa:FindingAid a owl:Class ;
 	rdfs:comment ""@nl .
 
 saa:DateRangeAccumulation a owl:Class ;
-    rdfs:subClassOf      rico:DateRange ;
+    rdfs:subClassOf rico:DateRange ;
     rdfs:label "Vormingsperiode"@nl ;
 	rdfs:comment ""@nl .
 
 saa:DateRangeYoungest a owl:Class ;
-    rdfs:subClassOf      rico:DateRange ;
+    rdfs:subClassOf rico:DateRange ;
     rdfs:label "Jongste stuk in het archief"@nl ;
 	rdfs:comment ""@nl .
 
 saa:DateRangeOldest a owl:Class ;
-    rdfs:subClassOf      rico:DateRange ;
+    rdfs:subClassOf rico:DateRange ;
     rdfs:label "Oudste stuk in het archief"@nl ;
 	rdfs:comment ""@nl .
-
-
 
 
 # TBD:
@@ -149,6 +147,19 @@ saa:PersonObservation a owl:Class ;
 	rdfs:label "Persoonsvermelding"@nl ;
 	rdfs:comment ""@nl .
 
+# >>> subclasses of rico:Place
+saa:Address a owl:Class ;
+    rdfs:subClassOf rico:Place .
+
+saa:ModernAddress a owl:Class ;
+    rdfs:subClassOf rico:Place .
+
+saa:HistoricalAddress1851 a owl:Class ;
+    rdfs:subClassOf rico:Place .
+
+saa:HistoricalAddress1853 a owl:Class ;
+    rdfs:subClassOf rico:Place .
+
 # >>> classes for library
 # (We kunnen misschien rechtstreeks op schema mappen)
 
@@ -170,10 +181,18 @@ saa:PersonObservation a owl:Class ;
 #  	rdfs:label "Aflevering"@nl ;
 #	rdfs:comment ""@nl .
 
+# Eigen classes
+saa:Detail a owl:Class ;
+	rdfs:label "Bijzonderheden" ;
+	rdfs:comment ""@nl .
+
+
 # >>> properties
 
 saa:internalRemarks a rdf:Property ;
 	rdfs:domain rico:Thing .
+
+# properties bij saa:Fonds
 
 saa:status a rdfs:Property ;
     rdfs:subPropertyOf rico:isOrWasRecordStateOfAllMembers ;
@@ -186,4 +205,108 @@ saa:hasYoungestRecord a rdfs:Property ;
 saa:hasOldestRecord a rdfs:Property ;
     rdfs:subPropertyOf rico:isAssociatedWithDate ;
     rdfs:domain saa:Fonds .
-    
+
+# properties bij saa:Deed
+
+saa:source a rdf:Property ;
+	rdfs:subPropertyOf rico:isOrWasPartOf ;
+	rdfs:domain saa:Deed .
+
+saa:indexName a rdf:Property ;
+	rdfs:subPropertyOf rico:isOrWasPartOf ;
+	rdfs:domain saa:Deed .
+
+saa:isAssociatedWithHistoricalAddress1851 a rdf:Property ;
+    rdfs:subPropertyOf rico:isAssociatedWithPlace .
+	rdfs:domain saa:Deed ;
+	rdfs:range saa:HistoricalAddress1851 .
+
+saa:isAssociatedWithHistoricalAddress1853 a rdf:Property ;
+    rdfs:subPropertyOf rico:isAssociatedWithPlace ;
+	rdfs:domain saa:Deed ;
+	rdfs:range saa:HistoricalAddress1853 .
+
+saa:isAssociatedWithModernAddress a rdf:Property ;
+    rdfs:subPropertyOf rico:isAssociatedWithPlace ;
+	rdfs:domain saa:Deed ;
+	rdfs:range saa:ModernAddress .
+
+saa:houseName a rdf:Property ;
+    rdfs:subPropertyOf rico:isAssociatedWithPlace ;
+	rdfs:domain saa:Deed .
+
+saa:placeName a rdf:Property ;
+    rdfs:subPropertyOf rico:isAssociatedWithPlace ;
+	rdfs:domain saa:Deed .
+
+saa:addressDescription a rdf:Property ;
+    rdfs:subPropertyOf rico:isAssociatedWithPlace ;
+	rdfs:domain saa:Deed .
+
+# properties bij saa:HistorialAddress1851
+
+saa:historicalAddressKleinNumber a rdf:Property ;
+	rdfs:domain saa:HistorialAddress1851 .
+
+saa:historicalAddress1851Street a rdf:Property ;
+	rdfs:domain saa:HistorialAddress1851 .
+
+# properties bij saa:HistorialAddress1853
+
+saa:historicalAddressNeighourhoodNumber a rdf:Property ;
+	rdfs:domain saa:HistorialAddress1853 .
+
+saa:historicalAddressNeighourhoodCode a rdf:Property ;
+	rdfs:domain saa:HistorialAddress1853 .
+
+saa:historicalAddress1853Street a rdf:Property ;
+	rdfs:domain saa:HistorialAddress1853 .
+
+# properties bij saa:ModernAddress
+
+saa:houseNumberEnd a rdf:Property ;
+	rdfs:domain saa:ModernAddress .
+
+saa:houseNumberBegin a rdf:Property ;
+	rdfs:domain saa:ModernAddress .
+
+saa:street a rdf:Property ;
+	rdfs:domain saa:ModernAddress .
+
+# properties bij saa:PersonObservation
+
+saa:sameAsInternal a rdf:Property ;
+	rdfs:domain saa:PersonObservation ;
+    owl:equivalentProperty owl:sameAs .
+
+saa:age a rdf:Property ;
+	rdfs:domain saa:PersonObservation .
+
+saa:internalRemarks a rdf:Property ;
+	rdfs:domain saa:PersonObservation .
+
+saa:deceased a rdf:Property ;
+	rdfs:domain saa:PersonObservation .
+
+saa:detail a rdf:Property ;
+	rdfs:domain saa:PersonObservation ;
+	rdfs:range saa:Detail .
+
+# properties bij saa:PersonLink
+
+saa:personRole a rdf:Property ;
+	rdfs:domain saa:PersonLink .
+
+saa:personObservation a rdf:Property ;
+	rdfs:domain saa:PersonLink ;
+	rdfs:range saa:PersonObservation .
+
+
+# properties bij saa:Detail
+
+saa:detailType a rdf:Property ;
+	rdfs:domain saa:Detail .
+
+saa:detailTextualValue a rdf:Property ;
+    rdfs:subPropertyOf rico:textualValue ;
+	rdfs:domain saa:Detail .

@@ -92,7 +92,7 @@ rt:PersonObservation
                            sh:datatype xsd:string ;
                            sh:group    personObservation:personListingGroup ;
                            sh:order    6.0 ;
-                           sh:path     personObservation:age
+                           sh:path     saa:age
                          ] ;
     sh:property          [ rdfs:label  "Opmerkingen"@nl, "Remarks"@en ;
                            dash:editor dash:TextAreaEditor ;
@@ -106,7 +106,7 @@ rt:PersonObservation
                            sh:datatype xsd:boolean ;
                            sh:group    personObservation:personListingGroup ;
                            sh:order    9.0 ;
-                           sh:path     personObservation:deceased
+                           sh:path     saa:deceased
                          ] ;
     sh:property          [ rdfs:label  "Beroep"@nl, "Profession"@en ;
                            sh:datatype xsd:string ;
@@ -115,12 +115,12 @@ rt:PersonObservation
                            sh:path     schema:hasOccupation
                          ] ;
     sh:property          [ rdfs:label  "Bijzonderheid"@nl, "Details"@en ;
-                           sh:class    personObservation:Details ;
+                           sh:class    saa:Detail ;
                            sh:group    personObservation:detailsGroup ;
                            sh:maxCount 10 ;
                            sh:nodeKind sh:BlankNode ;
                            sh:order    11.0 ;
-                           sh:path     personObservation:details
+                           sh:path     saa:detail
                          ] ;
     sh:property          [ rdfs:label              "Identiek aan"@nl, "Is same as"@en ;
                            rdfs:comment            "Is identiek aan geïdentificeerde persoon in andere terminologiebron"@nl, "Is same as identified person in external vocabulary"@en ;
@@ -143,7 +143,7 @@ rt:PersonObservation
                            sh:maxCount  100 ;
                            sh:nodeKind  sh:IRI ;
                            sh:or        ( [ sh:class rt:Person ] [ sh:class rt:PersonObservation ] ) ;
-                           sh:path      personObservation:sameAsInternal
+                           sh:path      saa:sameAsInternal
                          ] ;
     sh:targetClass       rt:PersonObservation .
 
@@ -179,49 +179,19 @@ pnv:PersonName
     sh:targetClass       pnv:PersonName ;
 .
 
-personObservation:Details
+saa:Detail
     rdf:type             sh:NodeShape ;
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property          [ rdfs:label  "Bijzonderheid - Type"@nl, "Detail type"@en ;
                            sh:datatype xsd:string ;
                            sh:order    1.0 ;
-                           sh:path     personObservation:detailType
+                           sh:path     saa:detailType
                          ] ;
     sh:property          [ rdfs:label  "Bijzonderheid"@nl, "Detail"@en ;
                            sh:datatype xsd:string ;
                            sh:order    2.0 ;
-                           sh:path     personObservation:detailTextualValue
+                           sh:path     saa:detailTextualValue
                          ] ;
     sh:targetClass       personObservation:Details ;
-.
-
-
-personObservation:sameAsInternal
-    a                      rdf:Property ;
-    owl:equivalentProperty owl:sameAs ;
-.
-
-personObservation:age
-    a                      rdf:Property ;
-.
-
-personObservation:internalRemarks
-    a                      rdf:Property ;
-.
-
-personObservation:deceased
-    a                      rdf:Property ;
-.
-
-personObservation:details
-    a                      rdf:Property ;
-.
-
-personObservation:detailType
-    a                      rdf:Property ;
-.
-
-personObservation:detailTextualValue
-    a                      rdf:Property ;
 .
