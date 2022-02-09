@@ -194,5 +194,5 @@ saa:Detail
                            sh:order    2.0 ;
                            sh:path     saa:detailTextualValue
                          ] ;
-    sh:targetClass       personObservation:Details ;
+    sh:targetClass       saa:Detail ;
 .

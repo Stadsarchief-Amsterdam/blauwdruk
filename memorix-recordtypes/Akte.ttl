@@ -60,6 +60,7 @@ deed:TitleShape
     memorix:inTitleAt 1.0 ;
     sh:datatype       xsd:string ;
     sh:group          deed:identificationGroup ;
+    sh:minCount       1 ;
     sh:maxCount       1 ;
     sh:order          1.0 ;
     sh:path           rico:title .
@@ -69,6 +70,7 @@ deed:DocumentaryFormShape
     rdfs:label  "Type of record"@en, "Aktetype"@nl ;
     sh:datatype xsd:string ;
     sh:group    deed:identificationGroup ;
+    sh:minCount 1 ;
     sh:maxCount 1 ;
     sh:order    2.0 ;
     sh:path     rico:hasDocumentaryFormType .
@@ -109,8 +111,8 @@ deed:IndexNameShape
     rdf:type            sh:PropertyShape ;
     rdfs:comment        "Current name of the index"@en, "Huidige naam van de index."@nl ;
     rdfs:label          "Index Naam"@nl, "Name of the index"@en ;
-    memorix:inSummaryAt 1.0 ;
     sh:datatype         xsd:string ;
+    memorix:inSummaryAt 1.0 ;
     sh:group            deed:identificationGroup ;
     sh:order            7.0 ;
     sh:path             saa:indexName .
