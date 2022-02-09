@@ -58,7 +58,6 @@ rt:PersonObservation
     sh:property          [ rdfs:label  "Naam"@nl, "Name"@en ;
                            sh:class    pnv:PersonName ;
                            sh:group    personObservation:personListingGroup ;
-                           sh:minCount 1 ;
                            sh:maxCount 1 ;
                            sh:nodeKind sh:BlankNode ;
                            sh:order    1.0 ;
@@ -68,6 +67,7 @@ rt:PersonObservation
                            sh:datatype xsd:date ;
                            sh:group    personObservation:personListingGroup ;
                            sh:order    2.0 ;
+                           memorix:inSummaryAt 1 ;
                            sh:path     schema:birthDate
                          ] ;
     sh:property          [ rdfs:label  "Geboorteplaats"@nl, "Place of birth"@en ;
@@ -79,6 +79,7 @@ rt:PersonObservation
     sh:property          [ rdfs:label  "Overlijdensdatum"@nl, "Date of death"@en ;
                            sh:datatype xsd:date ;
                            sh:group    personObservation:personListingGroup ;
+                           memorix:inSummaryAt 2 ;
                            sh:order    4.0 ;
                            sh:path     schema:deathDate
                          ] ;
@@ -173,7 +174,6 @@ pnv:PersonName
                            sh:group          personObservation:personListingGroup ;
                            sh:order          3.0 ;
                            sh:message        "Achternaam is verplicht"@nl, "Surname is required"@en ;
-                           sh:minCount       1 ;
                            sh:maxCount       1 ;
                            sh:path           pnv:baseSurname
                          ] ;
