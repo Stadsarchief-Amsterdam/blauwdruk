@@ -75,22 +75,23 @@ deed:DocumentaryFormShape
 
 deed:AssociatedWithDateShape
     rdf:type    sh:PropertyShape ;
-    rdfs:label  "Date of the record"@en, "Datum (van de akte)"@nl ;
+    rdfs:label  "Date of the record"@en, "Datum van de akte"@nl ;
     sh:datatype xsd:date ;
     sh:group    deed:identificationGroup ;
     sh:order    3.0 ;
     sh:path     rico:normalizedDateValue .
 
+# @todo link naar bestanddeel anders
 # @todo geo component
 deed:IsOrWasIncludedInShape
     rdf:type     sh:PropertyShape ;
-    rdfs:comment "Bestanddeel waartoe deze akte behoort."@nl, "Linked record where this deed is displayed."@en ;
+    rdfs:comment "Bestanddeel waartoe deze akte behoort."@nl ;
     rdfs:label   "Gekoppeld bestanddeel"@nl , "Linked file"@en ;
     dash:editor  memorix:LinkedRecordEditor ;
     sh:group     deed:identificationGroup ;
-    sh:minCount  1 ;
+    # sh:minCount  1 ; # @todo aanzetten als de UI gefikst is
     sh:maxCount  1 ;
-    sh:message   "Kies een bestanddeel om aan te koppelen. Dit is verplicht."@nl, "Choose a File recordtype that this deed belongs to. This is required."@en ;
+    sh:message   "Kies een bestanddeel om aan te koppelen. Dit is verplicht."@nl ;
     sh:nodeKind  sh:IRI ;
     sh:or        ( [ sh:class rt:File ] ) ;
     sh:order     4.0 ;
@@ -126,17 +127,6 @@ deed:HasOrHadSubjectShape
     sh:order     3.0 ;
     sh:path      rico:hasOrHadSubject .
 
-# deed:HasOrHadLocationShape
-#    rdf:type     sh:PropertyShape ;
-#    rdfs:comment "Adres dat voorkomt op de akte."@nl, "Address mentioned in the source"@en ;
-#    rdfs:label   "Adres"@nl, "Address"@en ;
-#    sh:class     saa:Address ;
-#    sh:group     deed:locationGroup ;
-#    sh:maxCount  1 ;
-#    sh:nodeKind  sh:BlankNode ;
-#    sh:order     4.0 ;
-#    sh:path      rico:isAssociatedWithPlace .
-
 deed:InternalRemarksShape
     rdf:type    sh:PropertyShape ;
     rdfs:label  "Internal remark"@en, "Interne opmerking"@nl ;
@@ -145,6 +135,7 @@ deed:InternalRemarksShape
     sh:group    deed:managementGroup ;
     sh:maxCount 1 ;
     sh:order    8.0 ;
+    memorix:audience memorix:audienceInternal ;
     sh:path     saa:internalRemarks .
 
 ## shapes
@@ -155,14 +146,14 @@ saa:PersonLink
     sh:property          [ rdfs:label  "Role"@en, "Rol"@nl ;
                            sh:datatype xsd:string ;
                            sh:order    1.0 ;
-                           sh:path     deed:personRole
+                           sh:path     saa:personRole
                          ] ;
     sh:property          [ rdfs:label  "Person observation"@en, "Persoonsvermelding"@nl ;
                            dash:editor memorix:LinkedRecordEditor ;
                            sh:nodeKind sh:IRI ;
                            sh:or       ( rt:PersonObservation ) ;
                            sh:order    2.0 ;
-                           sh:path     deed:personObservation
+                           sh:path     saa:personObservation
                          ] ;
     sh:targetClass       saa:PersonLink .
 
@@ -170,7 +161,7 @@ deed:HasOrHadLocation1851Shape
     rdf:type     sh:PropertyShape ;
     rdfs:label   "Address in 1851-1853"@en, "Adres uit 1851-1853"@nl ;
     rdfs:comment "Adres zoals het voorkomt in de bron."@nl, "Address mentioned in the source"@en ;
-    sh:class     deed:HistoricalAddress1851 ;
+    sh:class     saa:HistoricalAddress1851 ;
     sh:group     deed:locationGroup ;
     sh:maxCount  1 ;
     sh:nodeKind  sh:BlankNode ;
@@ -185,12 +176,12 @@ saa:HistoricalAddress1851
     sh:property          [ rdfs:label  "Klein number"@en, "Kleinnummer"@nl ;
                            sh:datatype xsd:string ;
                            sh:order    2.0 ;
-                           sh:path     deed:historicalAddressKleinNumber
+                           sh:path     saa:historicalAddressKleinNumber
                          ] ;
     sh:property          [ rdfs:label  "Street name (1851-53)"@en, "Straatnaam (1851-53)"@nl ;
                            sh:datatype xsd:string ;
                            sh:order    1.0 ;
-                           sh:path     deed:historicalAddress1851Street
+                           sh:path     saa:historicalAddress1851Street
                          ] ;
     sh:targetClass       saa:HistoricalAddress1851 .
 
@@ -252,7 +243,7 @@ saa:ModernAddress
                            sh:datatype xsd:string ;
                            sh:maxCount 1 ;
                            sh:order    7.0 ;
-                           sh:path     deed:houseNumberBegin
+                           sh:path     saa:houseNumberBegin
                          ] ;
     sh:property          [ rdfs:label              "Straatnaam"@nl, "Street name"@en;
                            dash:editor             memorix:VocabularyEditor ;
@@ -261,7 +252,7 @@ saa:ModernAddress
                            sh:maxCount             1 ;
                            sh:nodeKind             sh:IRI ;
                            sh:order                6.0 ;
-                           sh:path                 deed:street
+                           sh:path                 saa:street
                          ] ;
     sh:targetClass       saa:ModernAddress .
 
