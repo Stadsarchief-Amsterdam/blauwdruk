@@ -1,0 +1,155 @@
+@prefix rdf:            <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:           <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:            <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:            <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos:           <http://www.w3.org/2004/02/skos/core#> .
+@prefix schema:         <http://schema.org/> .
+
+@prefix rt:             </resources/recordtypes/> .
+@prefix report:         </resources/recordtypes/RestorationReport#> .
+
+@prefix dc:             <http://purl.org/dc/elements/1.1/> .
+@prefix sh:             <http://www.w3.org/ns/shacl#> .
+@prefix dash:           <http://datashapes.org/dash#> .
+@prefix memorix:        <http://memorix.io/ontology#> .
+@prefix html:           <http://www.w3.org/1999/xhtml/> .
+@prefix vocabularies:   </resources/vocabularies/conceptschemes/> .
+
+@prefix rico:           <https://www.ica.org/standards/RiC/ontology#> .
+@prefix ric-rst:        <https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#> .
+@prefix ric-dft:        <https://www.ica.org/standards/RiC/vocabularies/documentaryFormTypes#> .
+
+
+report:identificationGroup
+    rdf:type   sh:PropertyGroup ;
+    rdfs:label "Identificatie"@nl, "Identification"@en ;
+    sh:order   1.0 .
+
+report:partitionGroup
+    rdf:type   sh:PropertyGroup ;
+    rdfs:label "Indeling"@nl, "Partitioning"@en ;
+    sh:order   2.0 .
+
+report:objectDescriptionGroup
+    rdf:type   sh:PropertyGroup ;
+    rdfs:label "Objectbeschrijving"@nl, "Object Description"@en ;
+    sh:order   3.0 .
+
+report:managementGroup
+    rdf:type   sh:PropertyGroup ;
+    rdfs:label "Beheer"@nl, "Manage"@en ;
+    sh:order   4.0 .
+
+rt:RestorationReport
+    a                    memorix:Recordtype, sh:NodeShape ;
+    rdfs:comment         "Stadsarchief recordtype voor Restauratierapport"@nl ;
+    rdfs:label           "Conserverings- en Restauratierapport"@nl, "Conservation and Restoration report"@en ;
+    dc:identifier        "RestorationReport" ;
+    sh:targetClass       rt:RestorationReport ;
+    sh:closed            true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property          report:BeginDateShape, report:EndDateShape, report:ObjectDescriptionShape, report:ObjectTypeShape, report:ObjectMaterialShape, report:ObjectTechniqueShape ;
+    sh:property          report:InternalRemarksShape ;
+.
+
+report:BeginDateShape
+    a                   sh:PropertyShape ;
+    rdfs:label          "Datering begin"@nl, "Begin date"@en ;
+    memorix:inSummaryAt 1.0 ;
+    memorix:searchWeight 3.0 ;
+    sh:datatype         xsd:date ;
+    sh:group            report:identificationGroup ;
+    sh:order            2.0 ;
+    sh:path             report:dateBegin
+.
+
+report:EndDateShape
+    a                   sh:PropertyShape ;
+    rdfs:label          "Datering eind"@nl, "End date"@en ;
+    memorix:inSummaryAt 2.0 ;
+    memorix:searchWeight 3.0 ;
+    sh:datatype         xsd:date ;
+    sh:group            report:identificationGroup ;
+    sh:order            3.0 ;
+    sh:path             report:dateEnd
+.
+
+report:IsOrWasIncludedInShape
+    rdf:type     sh:PropertyShape ;
+    rdfs:label   "Gekoppeld bestanddeel"@nl , "Linked file"@en ;
+    rdfs:comment "Bestanddeel waartoe dit rapport behoort."@nl, "Related file from the inventory."@en ;
+    dash:editor  memorix:LinkedRecordEditor ;
+    sh:group     report:identificationGroup ;
+    sh:minCount  1 ;
+    # sh:maxCount  1 ; # todo navragen bij Jochem en Cristina, Altijd maar 1?
+    sh:message   "Kies een bestanddeel om aan te koppelen. Dit is verplicht."@nl, "Choose a related (inventory) file. It is required."@en ;
+    sh:nodeKind  sh:IRI ;
+    sh:or        ( [ sh:class rt:File ] ) ;
+    sh:order     4.0 ;
+    sh:path      rico:isOrWasIncludedIn .
+
+report:ObjectDescriptionShape
+    a                    sh:PropertyShape ;
+    rdfs:label           "Specificatie bestanddeel"@nl, "Specification of the record"@en ;
+    dash:editor          dash:TextAreaEditor ;
+    memorix:inTitleAt    1.0 ;
+    memorix:searchWeight 5.0 ;
+    sh:datatype          xsd:string ;
+    sh:group             report:objectDescriptionGroup ;
+    sh:order             1.0 ;
+    sh:path              schema:name ;
+.
+
+report:ObjectTypeShape
+    a                       sh:PropertyShape ;
+    rdfs:label              "Object type"@nl, "Object type"@en ;
+    sh:message              "Kies een object type uit de keuzelijst."@nl, "Please choose a object type from the list."@en ;
+    dash:editor             memorix:VocabularyEditor ;
+    memorix:conceptSchemeIn vocabularies:1cc20db0-62dc-45cf-b7f7-c7b2fb2074a2 ; # todo find out if we can set a name?
+    sh:class                skos:Concept ;
+    sh:group                report:objectDescriptionGroup ;
+    sh:maxCount             1 ;
+    sh:nodeKind             sh:IRI ;
+    sh:order                2.0 ;
+    sh:path                 report:objectType ; # todo what is the getty definition of this?
+.
+
+report:ObjectMaterialShape
+    a                       sh:PropertyShape ;
+    rdfs:label              "Materiaal"@nl, "Type of material"@en ;
+    sh:message              "Kies een materiaal uit de keuzelijst."@nl, "Please choose a type of material from the list."@en ;
+    dash:editor             memorix:VocabularyEditor ;
+    memorix:conceptSchemeIn vocabularies:ae2e509f-ad1b-4dc3-bf0d-0fb9bc7e7863 ;
+    sh:class                skos:Concept ;
+    sh:group                report:objectDescriptionGroup ;
+    sh:maxCount             1 ;
+    sh:nodeKind             sh:IRI ;
+    sh:order                5.0 ;
+    sh:path                 report:objectMaterial ; # todo what is the getty definition of this?
+.
+
+report:ObjectTechniqueShape
+    a                       sh:PropertyShape ;
+    rdfs:label              "Techniek"@nl, "Technique"@en ;
+    sh:message              "Kies een techniek uit de keuzelijst."@nl, "Please choose a technique from the list."@en ;
+    dash:editor             memorix:VocabularyEditor ;
+    memorix:conceptSchemeIn vocabularies:d0fc28e9-e1c0-47c0-ad66-f496c8d12f90 ;
+    sh:class                skos:Concept ;
+    sh:group                report:objectDescriptionGroup ;
+    sh:maxCount             1 ;
+    sh:nodeKind             sh:IRI ;
+    sh:order                4.0 ;
+    sh:path                 report:objectTechnique ; # todo what is the getty definition of this?
+.
+report:InternalRemarksShape
+    a                sh:PropertyShape ;
+    rdfs:label       "Interne opmerking"@nl, "Internal remark"@en ;
+    dash:editor      dash:TextAreaEditor ;
+    memorix:audience memorix:audienceInternal ;
+    sh:datatype      xsd:string ;
+    sh:group         report:managementGroup ;
+    sh:order         1.0 ;
+    sh:maxCount      1 ;
+    sh:path          report:internalRemarks
+.
+
