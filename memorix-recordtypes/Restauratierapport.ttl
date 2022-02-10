@@ -25,11 +25,6 @@ report:identificationGroup
     rdfs:label "Identificatie"@nl, "Identification"@en ;
     sh:order   1.0 .
 
-report:partitionGroup
-    rdf:type   sh:PropertyGroup ;
-    rdfs:label "Indeling"@nl, "Partitioning"@en ;
-    sh:order   2.0 .
-
 report:objectDescriptionGroup
     rdf:type   sh:PropertyGroup ;
     rdfs:label "Objectbeschrijving"@nl, "Object Description"@en ;
@@ -48,40 +43,40 @@ rt:RestorationReport
     sh:targetClass       rt:RestorationReport ;
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property          report:BeginDateShape, report:EndDateShape, report:ObjectDescriptionShape, report:ObjectTypeShape, report:ObjectMaterialShape, report:ObjectTechniqueShape ;
+    sh:property          report:BeginDateShape, report:EndDateShape, report:IsOrWasIncludedInShape, report:ObjectDescriptionShape, report:ObjectTypeShape, report:ObjectMaterialShape, report:ObjectTechniqueShape ;
     sh:property          report:InternalRemarksShape ;
 .
 
 report:BeginDateShape
-    a                   sh:PropertyShape ;
-    rdfs:label          "Datering begin"@nl, "Begin date"@en ;
-    memorix:inSummaryAt 1.0 ;
+    a                    sh:PropertyShape ;
+    rdfs:label           "Datering begin"@nl, "Begin date"@en ;
+    memorix:inSummaryAt  1.0 ;
     memorix:searchWeight 3.0 ;
-    sh:datatype         xsd:date ;
-    sh:group            report:identificationGroup ;
-    sh:order            2.0 ;
-    sh:path             report:dateBegin
+    sh:datatype          xsd:date ;
+    sh:group             report:identificationGroup ;
+    sh:order             2.0 ;
+    sh:path              report:dateBegin
 .
 
 report:EndDateShape
-    a                   sh:PropertyShape ;
-    rdfs:label          "Datering eind"@nl, "End date"@en ;
-    memorix:inSummaryAt 2.0 ;
+    a                    sh:PropertyShape ;
+    rdfs:label           "Datering eind"@nl, "End date"@en ;
+    memorix:inSummaryAt  2.0 ;
     memorix:searchWeight 3.0 ;
-    sh:datatype         xsd:date ;
-    sh:group            report:identificationGroup ;
-    sh:order            3.0 ;
-    sh:path             report:dateEnd
+    sh:datatype          xsd:date ;
+    sh:group             report:identificationGroup ;
+    sh:order             3.0 ;
+    sh:path              report:dateEnd
 .
 
 report:IsOrWasIncludedInShape
     rdf:type     sh:PropertyShape ;
-    rdfs:label   "Gekoppeld bestanddeel"@nl , "Linked file"@en ;
+    rdfs:label   "Gekoppeld bestanddeel"@nl, "Linked file"@en ;
     rdfs:comment "Bestanddeel waartoe dit rapport behoort."@nl, "Related file from the inventory."@en ;
     dash:editor  memorix:LinkedRecordEditor ;
     sh:group     report:identificationGroup ;
     sh:minCount  1 ;
-    # sh:maxCount  1 ; # todo navragen bij Jochem en Cristina, Altijd maar 1?
+    # sh:maxCount  1 ; # todo navragen bij Jochem en Cristina, Altijd maar 1, en moet het verplicht??
     sh:message   "Kies een bestanddeel om aan te koppelen. Dit is verplicht."@nl, "Choose a related (inventory) file. It is required."@en ;
     sh:nodeKind  sh:IRI ;
     sh:or        ( [ sh:class rt:File ] ) ;
@@ -141,6 +136,7 @@ report:ObjectTechniqueShape
     sh:order                4.0 ;
     sh:path                 report:objectTechnique ; # todo what is the getty definition of this?
 .
+
 report:InternalRemarksShape
     a                sh:PropertyShape ;
     rdfs:label       "Interne opmerking"@nl, "Internal remark"@en ;
