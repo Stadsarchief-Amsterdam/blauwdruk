@@ -43,9 +43,8 @@ acquisition:managementGroup
 rt:Acquisition
     rdf:type                        memorix:Recordtype,
                                     sh:NodeShape ;
-    #rdfs:label                      "Aanwinst"@nl, "Acquisition"@en ; #change after randomness is fixed
-    rdfs:label                      "Aanwinst"@nl ;
-    rdfs:comment                    "Stadsarchief recordtype voor Aanwinst"@nl ;
+    rdfs:label                      "Aanwinst"@nl, "Acquisition"@en ;
+    rdfs:comment                    "Stadsarchief recordtype voor Aanwinst"@nl, "Record type for Aquisition"@en ;
     dc:identifier                   "Acquisition" ;
     sh:targetClass                  saa:Acquisition ;
     sh:closed                       true ;
@@ -93,9 +92,8 @@ rt:Acquisition
                                                     [ sh:class rt:Family ]
                                                     [ sh:class rt:Organisation ] ) ; ] ;
     sh:property                     [ rdfs:label              "Rechtstitel"@nl, "Legal reason for transfer"@en ;
-                                      sh:message              "Kies een rechtstitel uit de keuzelijst. Dit is verplicht."@nl , "Choose a legal reason from the list. This is mandatory."@en;
+                                      sh:message              "Kies een rechtstitel uit de keuzelijst."@nl , "Choose a legal  for transfer from the list."@en;
                                       sh:order                3.0 ;
-                                      #sh:minCount             1 ; #todo evt. aanzetten als UI gefikst is
                                       sh:maxCount             1 ;
                                       dash:editor             memorix:VocabularyEditor ;
                                       sh:nodeKind             sh:IRI ;
@@ -103,7 +101,7 @@ rt:Acquisition
                                       memorix:conceptSchemeIn vocabularies:93b6eed4-d045-4d61-bfa5-0fa17aa48c7d ;
                                       sh:group                acquisition:contentDescriptionGroup ;
                                       sh:path                 acquisition:legalTitle ; ] ;
-    sh:property                     [ rdfs:label  "Zorgdrager"@nl, "Care Taker"@en ;
+    sh:property                     [ rdfs:label  "Zorgdrager"@nl, "Care Taker"@en ; # todo moet vocabulary worden
                                       sh:datatype xsd:string ;
                                       sh:group    acquisition:contentDescriptionGroup ;
                                       sh:order    4.0 ;
@@ -133,14 +131,12 @@ rt:Acquisition
                                       sh:group    acquisition:contentDescriptionGroup ;
                                       sh:maxCount 1 ;
                                       sh:order    8.0 ;
-                                      sh:path     acquisition:isGovernmentArchive ; ] ;
-# IZ: voorstel                        sh:path     acquisition:isGovernmentalArchive ; ] ;
+                                      sh:path     acquisition:isGovernmentalArchive ; ] ;
     sh:property                     [ rdfs:label  "Referentie (AVO) dossier"@nl , "Reference to the (AVO) file of acquisition"@en;
                                       sh:datatype xsd:string ;
                                       sh:group    acquisition:managementGroup ;
                                       sh:order    9.0 ;
-                                      sh:path     acquisition:dossier ; ] ;
-# IZ: voorstel                        sh:path     acquisition:acquisitionFile ; ] ;
+                                      sh:path     acquisition:acquisitionFile ; ] ;
     sh:property                     [ rdfs:label  "Geïnventariseerd?"@nl , "Archival Description created?"@en ;
                                       sh:datatype xsd:boolean ;
                                       sh:group    acquisition:managementGroup ;
@@ -158,7 +154,6 @@ rt:Acquisition
                                       sh:message   "Kies een archiefblok of bestanddeel waar deze aanwinst bij hoort."@nl , "Choose a fonds or file that relates to this acquisition."@en ;
                                       dash:editor  memorix:LinkedRecordEditor ;
                                       sh:group     acquisition:partitionGroup ;
-                                      #sh:minCount 1 ; #todo evt. aanzetten als UI gefikst is. Verplicht maken? IZ: Lijkt me niet: het wordt eerst verworven en later pas beschreven. Of begrijp ik het dan verkeerd?
                                       sh:maxCount  100 ;
                                       sh:nodeKind  sh:IRI ;
                                       sh:or        ( [ sh:class rt:Fonds ] [ sh:class rt:File ] ) ;
