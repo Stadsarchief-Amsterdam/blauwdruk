@@ -83,17 +83,16 @@ deed:AssociatedWithDateShape
     sh:order    3.0 ;
     sh:path     rico:normalizedDateValue .
 
-# @todo link naar bestanddeel anders
 # @todo geo component
 deed:IsOrWasIncludedInShape
     rdf:type     sh:PropertyShape ;
-    rdfs:comment "Bestanddeel waartoe deze akte behoort."@nl ;
     rdfs:label   "Gekoppeld bestanddeel"@nl , "Linked file"@en ;
+    rdfs:comment "Bestanddeel waartoe deze akte behoort."@nl ;
     dash:editor  memorix:LinkedRecordEditor ;
     sh:group     deed:identificationGroup ;
-    # sh:minCount  1 ; # @todo aanzetten als de UI gefikst is
+    sh:minCount  1 ;
     sh:maxCount  1 ;
-    sh:message   "Kies een bestanddeel om aan te koppelen. Dit is verplicht."@nl ;
+    sh:message   "Kies een bestanddeel om aan te koppelen. Dit is verplicht."@nl, "Choose a related (inventory) file. It is required."@en ;
     sh:nodeKind  sh:IRI ;
     sh:or        ( [ sh:class rt:File ] ) ;
     sh:order     4.0 ;
