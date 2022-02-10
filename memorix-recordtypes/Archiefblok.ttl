@@ -43,6 +43,12 @@ rt:Fonds
     #rdfs:label           "Archiefblok"@nl, "Fonds"@en ; #change after randomness is fixed
     rdfs:label           "Archiefblok"@nl ;
     rdfs:comment         "Stadsarchief recordtype voor Archiefblok"@nl ;
+#    memorix:hasInformationComponent
+#            [ rdf:type               memorix:TreePathComponent ;
+#              memorix:hasRecordtype  rt:Fonds , rt:Series ,rt:File
+#            ] ;
+    memorix:hasInformationComponent
+            [ rdf:type  memorix:DepotLocationComponent ] ;
     dc:identifier        "Fonds" ;
     sh:targetClass       saa:Fonds ;
     # sh:hasValue ric-rst:Fonds ; implement maybe later when the Memorix interface allows it

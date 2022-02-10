@@ -38,6 +38,7 @@ rt:Organisation
     rdfs:comment            "Stadsarchief recordtype voor Organisatie"@nl ;
     dc:identifier           "Organisation" ;
     sh:targetClass          rt:Organisation ;
+    memorix:copyrightHolderSource  true ;
     sh:closed               true ;
     sh:ignoredProperties    ( rdf:type ) ;
     sh:property             [ rdfs:label            "Naam"@nl ;

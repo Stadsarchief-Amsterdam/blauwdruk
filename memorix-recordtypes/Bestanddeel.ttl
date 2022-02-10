@@ -57,11 +57,17 @@ rt:File
     rdfs:comment                    "Stadsarchief recordtype voor Bestanddeel"@nl ;
     #rdfs:label                      "Bestanddeel"@nl, "File"@en ; #change after randomness is fixed
     rdfs:label                      "Bestanddeel"@nl ;
+    memorix:hasInformationComponent
+            [ rdf:type               memorix:TreePathComponent ;
+              memorix:hasRecordtype  rt:Fonds , rt:Series
+            ] ;
+    memorix:hasInformationComponent
+            [ rdf:type  memorix:DepotLocationComponent ] ;
     dc:identifier                   "File" ;
     sh:targetClass                  rt:File ;
+    rdfs:subClassOf                 rico:RecordSet ;
     sh:closed                       true ;
     sh:ignoredProperties            ( rdf:type ) ;
-    memorix:hasInformationComponent memorix:DepotLocationComponent ;
     sh:property                     [ rdfs:label   "Inventarisnummer"@nl, "Inventory number"@en ;
                                       rdfs:comment "Uniek nummer binnen een archiefblok."@nl ;
                                       sh:message   "Vul tenminste een (uniek) inventarisnummer in. Dit nummer is verplicht."@nl , "Please provide at least an inventory number. It is required."@en;
