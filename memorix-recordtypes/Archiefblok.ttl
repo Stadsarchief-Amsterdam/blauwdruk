@@ -5,6 +5,7 @@
 
 @prefix rt:            </resources/recordtypes/> .
 @prefix fonds:         </resources/recordtypes/Fonds#> .
+@prefix saa:           <https://data.archief.amsterdam/ontology#> . #TBD
 
 @prefix dc:            <http://purl.org/dc/elements/1.1/> .
 @prefix sh:            <http://www.w3.org/ns/shacl#> .
@@ -41,10 +42,9 @@ rt:Fonds
                          memorix:Recordtype ;
     rdfs:label           "Archiefblok"@nl, "Fonds"@en ;
     rdfs:comment         "Stadsarchief recordtype voor Archiefblok"@nl ;
-    memorix:hasInformationComponent
-            [ rdf:type  memorix:DepotLocationComponent ] ;
-    dc:identifier        "FondsPetra" ;
-    sh:targetClass       fonds:Fonds ;
+    memorix:hasInformationComponent [ rdf:type  memorix:DepotLocationComponent ] ;
+    dc:identifier        "Fonds" ;
+    sh:targetClass       rt:Fonds ;
     # sh:hasValue ric-rst:Fonds ; todo implement maybe later when the Memorix interface allows hidden fields
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
@@ -127,13 +127,15 @@ rt:Fonds
     sh:property          [ rdfs:label   "Interne opmerkingen"@nl, "Internal remarks"@en ;
                            rdfs:comment "Veld voor allerlei interne opmerkingen. Wordt niet gepubliceerd."@nl , "Divers remarks intended for internal administration"@en;
                            dash:editor  dash:TextAreaEditor ;
+                           memorix:audience memorix:audienceInternal ;
                            sh:maxCount  1 ;
                            sh:datatype  xsd:string ;
                            sh:group     fonds:managementGroup ;
                            sh:order     9.0 ;
-                           sh:path      fonds:internalRemarks ; ] ; # not to be published !
+                           sh:path      saa:internalRemarks ; ] ;
     sh:property          [ rdfs:label   "Status"@nl , "Status"@en;
                            rdfs:comment "Status van het archief."@nl , "Status of the fonds"@en ;
+                           memorix:audience memorix:audienceInternal ;
                            sh:message   "Status is verplicht. Moet een van de volgende waardes zijn: aanwezig, vervallen, te vernietigen, vernietigd"@nl , "Must be one of the following (Dutch) terms: aanwezig, vervallen, te vernietigen, vernietigd. Mandatory." ;
                            sh:datatype  xsd:string ;
                            sh:minCount  1 ;
