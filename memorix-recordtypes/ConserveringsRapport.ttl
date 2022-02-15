@@ -63,7 +63,7 @@ rt:ConservationReport
                          report:ObjectTechniqueShape ;
     sh:property          report:PrimaryCarrierShape, report:MediumShape, report:SecondaryAdditionShape, report:DamageShape, report:HasCarriedOutTestsShape ;
     sh:property          report:AcidityShape, report:OtherFindingsShape ;
-    #sh:property          report:InternalRemarksShape ;
+    sh:property          report:InternalRemarksShape ;
 .
 
 report:BeginDateShape
@@ -247,6 +247,7 @@ report:CarriedOutTests
                            sh:path                 report:typeOfTest
                          ] ;
     sh:property          [ rdfs:label  "Uitslag"@nl, "Result"@en ;
+                           html:placeholder  "positief/negatief"@nl ;
                            sh:datatype xsd:string ;
                            sh:order    2.0 ;
                            sh:path     report:resultOfTest
@@ -257,14 +258,14 @@ report:CarriedOutTests
 report:AcidityShape
     a           sh:PropertyShape ;
     rdfs:label  "Zuurgraad gas A-D strips"@nl, "Acidity A-D strips"@en ;
-    sh:datatype xsd:string ;
+    sh:datatype xsd:integer ;
     sh:group    report:investigationGroup ;
     sh:order    6.0 ;
     sh:maxCount 1 ;
+    sh:minInclusive 0 ;
+    sh:maxInclusive 4 ;
+    sh:message  "Zuurgraad moet liggen tussen 0 en 4"@nl, "Acidity must be between 0 and 4"@en ;
     sh:path     report:acidity
-#    sh:minInclusive 0 ;
-#    sh:maxInclusive 4 ;
-#    sh:message      "Zuurgraad moet liggen tussen 0 en 4"@nl, "Acidity must be between 0 and 4"@en ;
 .
 
 report:OtherFindingsShape
@@ -277,6 +278,8 @@ report:OtherFindingsShape
     sh:maxCount 1 ;
     sh:path     report:otherFindings
 .
+
+## todo add Behandeling blokken
 
 report:InternalRemarksShape
     a                sh:PropertyShape ;
