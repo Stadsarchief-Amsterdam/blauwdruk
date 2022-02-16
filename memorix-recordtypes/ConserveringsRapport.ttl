@@ -63,6 +63,7 @@ rt:ConservationReport
                          report:ObjectTechniqueShape ;
     sh:property          report:PrimaryCarrierShape, report:MediumShape, report:SecondaryAdditionShape, report:DamageShape, report:HasCarriedOutTestsShape ;
     sh:property          report:AcidityShape, report:OtherFindingsShape ;
+    sh:property          report:HasDamageTreatmentShape, report:OtherTreatmentShape ;
     sh:property          report:InternalRemarksShape ;
 .
 
@@ -138,7 +139,7 @@ report:ObjectMaterialShape
     sh:group                report:descriptionGroup ;
     sh:maxCount             50 ;
     sh:nodeKind             sh:IRI ;
-    sh:order                5.0 ;
+    sh:order                3.0 ;
     sh:path                 report:objectMaterial ;
 .
 
@@ -159,13 +160,13 @@ report:ObjectTechniqueShape
 #Condition
 report:PrimaryCarrierShape
     a                       sh:PropertyShape ;
-    rdfs:label              "Primaire drager"@nl, "Primary carrier"@en ;
+    rdfs:label              "Conditie Primaire drager"@nl, "Condition Primary carrier"@en ;
     sh:message              "Kies een term uit de keuzelijst."@nl, "Please choose from the list."@en ;
     dash:editor             memorix:VocabularyEditor ;
-    memorix:conceptSchemeIn vocabularies:1cc20db0-62dc-45cf-b7f7-c7b2fb2074a2 ;
+    memorix:conceptSchemeIn vocabularies:d3538eb3-e234-4c41-99f5-38ddbfce7e36 ;
     sh:class                skos:Concept ;
     sh:group                report:conditionGroup ;
-    sh:maxCount             1 ;
+    sh:maxCount             50 ;
     sh:nodeKind             sh:IRI ;
     sh:order                1.0 ;
     sh:path                 report:primaryCarrier ;
@@ -173,13 +174,13 @@ report:PrimaryCarrierShape
 
 report:MediumShape
     a                       sh:PropertyShape ;
-    rdfs:label              "Medium"@nl, "Medium"@en ;
+    rdfs:label              "Conditie Medium"@nl, "Condition Medium"@en ;
     sh:message              "Kies een term uit de keuzelijst."@nl, "Please choose from the list."@en ;
     dash:editor             memorix:VocabularyEditor ;
-    memorix:conceptSchemeIn vocabularies:1cc20db0-62dc-45cf-b7f7-c7b2fb2074a2 ;
+    memorix:conceptSchemeIn vocabularies:d3538eb3-e234-4c41-99f5-38ddbfce7e36 ;
     sh:class                skos:Concept ;
     sh:group                report:conditionGroup ;
-    sh:maxCount             1 ;
+    sh:maxCount             50 ;
     sh:nodeKind             sh:IRI ;
     sh:order                2.0 ;
     sh:path                 report:medium ;
@@ -187,13 +188,13 @@ report:MediumShape
 
 report:SecondaryAdditionShape
     a                       sh:PropertyShape ;
-    rdfs:label              "Secundaire toevoeging"@nl, "Secondary addition"@en ; # todo Jochem/Cristina, is dit een term?
+    rdfs:label              "Conditie toevoeging"@nl, "Condition addition"@en ;
     sh:message              "Kies een term uit de keuzelijst."@nl, "Please choose from the list."@en ;
     dash:editor             memorix:VocabularyEditor ;
-    memorix:conceptSchemeIn vocabularies:1cc20db0-62dc-45cf-b7f7-c7b2fb2074a2 ;
+    memorix:conceptSchemeIn vocabularies:d3538eb3-e234-4c41-99f5-38ddbfce7e36 ;
     sh:class                skos:Concept ;
     sh:group                report:conditionGroup ;
-    sh:maxCount             1 ;
+    sh:maxCount             50 ;
     sh:nodeKind             sh:IRI ;
     sh:order                3.0 ;
     sh:path                 report:secondaryAddition ;
@@ -209,16 +210,16 @@ report:DamageShape
     sh:order    4.0 ;
     sh:path     report:otherDamage
 .
-#
-#report:WorkloadShape
-#    a           sh:PropertyShape ;
-#    rdfs:label  "Werkvoorraad?"@nl, "Workload?"@en ;
-#    sh:datatype xsd:boolean ;
-#    sh:group    report:conditionGroup ;
-#    sh:maxCount 1 ;
-#    sh:order    5.0 ;
-#    sh:path     report:workload
-#.
+
+report:WorkloadShape
+    a           sh:PropertyShape ;
+    rdfs:label  "Werkvoorraad?"@nl, "Workload?"@en ;
+    sh:datatype xsd:boolean ;
+    sh:group    report:conditionGroup ;
+    sh:maxCount 1 ;
+    sh:order    5.0 ;
+    sh:path     report:workload
+.
 
 # #InvestigationGroup
 report:HasCarriedOutTestsShape
@@ -279,7 +280,64 @@ report:OtherFindingsShape
     sh:path     report:otherFindings
 .
 
-## todo add Behandeling blokken
+# treatmentGroup
+report:HasDamageTreatmentShape
+    a           sh:PropertyShape ;
+    rdfs:label  "Behandelingen"@nl, "Treatments"@en ;
+    sh:class    report:DamageTreatment ;
+    sh:group    report:treatmentGroup ;
+    sh:maxCount 50 ;
+    sh:nodeKind sh:BlankNode ;
+    sh:order    1.0 ;
+    sh:path     report:hasDamageTreatment
+.
+
+report:DamageTreatment
+    rdf:type             sh:NodeShape ;
+    rdfs:label           "Nog een behandeling?"@nl, "treatment"@en ;
+    sh:closed            true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property          [ rdfs:label              "Behandelde schade/onderdeel/plek"@nl, "Treated damage"@en ;
+                           dash:editor             memorix:VocabularyEditor ;
+                           memorix:conceptSchemeIn vocabularies:d3538eb3-e234-4c41-99f5-38ddbfce7e36 ;
+                           sh:class                skos:Concept ;
+                           sh:maxCount             1 ;
+                           sh:nodeKind             sh:IRI ;
+                           sh:order                1.0 ;
+                           sh:path                 report:typeOfDamage
+                         ] ;
+    sh:property          [ rdfs:label              "Behandeling"@nl, "Treatment"@en ;
+                           dash:editor             memorix:VocabularyEditor ;
+                           memorix:conceptSchemeIn vocabularies:3f4bdac4-51af-497a-af8f-24e86bc30c55 ;
+                           sh:class                skos:Concept ;
+                           sh:maxCount             1 ;
+                           sh:nodeKind             sh:IRI ;
+                           sh:order                2.0 ;
+                           sh:path                 report:typeOfTreatment
+                         ] ;
+    sh:property          [ rdfs:label              "Behandel middel"@nl, "Treated with"@en ;
+                           dash:editor             memorix:VocabularyEditor ;
+                           memorix:conceptSchemeIn vocabularies:99cef907-bfbd-47b3-a277-895ee6b608f8 ;
+                           sh:class                skos:Concept ;
+                           sh:maxCount             1 ;
+                           sh:nodeKind             sh:IRI ;
+                           sh:order                3.0 ;
+                           sh:path                 report:typeOfMaterial
+                         ] ;
+    sh:targetClass       report:DamageTreatment
+.
+
+report:OtherTreatmentShape
+    a                sh:PropertyShape ;
+    rdfs:label       "Behandeling overig"@nl, "Treatment other"@en ;
+    dash:editor      dash:TextAreaEditor ;
+    memorix:audience memorix:audienceInternal ;
+    sh:datatype      xsd:string ;
+    sh:group         report:treatmentGroup ;
+    sh:order         2.0 ;
+    sh:maxCount      1 ;
+    sh:path          report:otherTreatment
+.
 
 report:InternalRemarksShape
     a                sh:PropertyShape ;
