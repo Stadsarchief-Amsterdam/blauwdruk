@@ -78,13 +78,12 @@ rt:Image a memorix:Recordtype,
                            sh:datatype       xsd:string ; ] ;
     sh:property          [ rdfs:label      "Historische titel"@nl, "Historical title"@en  ;
                            rdfs:comment    "De historische titel zoals oorspronkelijk vastgelegd."@nl, "The original (historical) title a image was given."@en ;
-                           sh:path         image:historicalTitle ;
                            dash:editor     dash:TextAreaEditor ;
                            dash:singleLine false ;
                            sh:maxCount     1 ;
                            sh:order        3.0 ;
+                           sh:path         image:historicalTitle ;
                            sh:group        image:contentDescriptionGroup ;
-                           dash:editor     dash:TextFieldEditor ;
                            sh:datatype     xsd:string ; ] ;
     sh:property          [ rdf:type        sh:PropertyShape ;
                            rdfs:label      "Beschrijving"@nl, "Description"@en  ;
