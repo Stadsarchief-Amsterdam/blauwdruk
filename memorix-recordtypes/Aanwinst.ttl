@@ -92,7 +92,7 @@ rt:Acquisition
                                                     [ sh:class rt:Family ]
                                                     [ sh:class rt:Organisation ] ) ; ] ;
     sh:property                     [ rdfs:label              "Rechtstitel"@nl, "Legal reason for transfer"@en ;
-                                      sh:message              "Kies een rechtstitel uit de keuzelijst."@nl , "Choose a legal  for transfer from the list."@en;
+                                      sh:message              "Kies een rechtstitel uit de keuzelijst."@nl , "Choose a legal reason for transfer from the list."@en;
                                       sh:order                3.0 ;
                                       sh:maxCount             1 ;
                                       dash:editor             memorix:VocabularyEditor ;
