@@ -41,14 +41,11 @@ rt:Series
     rdf:type             memorix:Recordtype ,
                          sh:NodeShape ;
     rdfs:comment         "Stadsarchief recordtype voor Groep"@nl ;
-    # rdfs:label           "Groep"@nl, "Series"@en; #change after randomness is fixed
-    rdfs:label           "Groep"@nl ;
-    memorix:hasInformationComponent
-            [ rdf:type               memorix:TreePathComponent ;
-              memorix:hasRecordtype  rt:Fonds , rt:Series
-            ] ;
-    memorix:hasInformationComponent
-            [ rdf:type  memorix:DepotLocationComponent ] ;
+    rdfs:label           "Groep"@nl, "Series"@en;
+    memorix:hasInformationComponent [ rdf:type              memorix:TreePathComponent ;
+                                      memorix:hasRecordtype rt:Fonds, rt:Series
+                                    ] ;
+    memorix:hasInformationComponent [ rdf:type memorix:DepotLocationComponent ] ;
     dc:identifier        "Series" ;
     sh:targetClass       rt:Series ;
     sh:closed            true ;
@@ -102,9 +99,9 @@ rt:Series
                            sh:maxCount         1 ;
                            sh:order            3.0 ;
                            sh:path             rico:physicalOrLogicalExtent ] ;
-
     sh:property          [ rdfs:label  "Interne opmerking"@nl ;
                            dash:editor dash:TextAreaEditor ;
+                           memorix:audience memorix:audienceInternal ;
                            sh:datatype xsd:string ;
                            sh:group    series:managementGroup ;
                            sh:order    4.0 ;
