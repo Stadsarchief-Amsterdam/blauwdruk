@@ -31,10 +31,6 @@ series:contentDescriptionGroup
     rdfs:label "Beschrijving"@nl ;
     sh:order   2.0 .
 
-series:partitionGroup
-    rdf:type   sh:PropertyGroup ;
-    rdfs:label "Indeling"@nl ;
-    sh:order   3.0 .
 
 series:managementGroup
     rdf:type   sh:PropertyGroup ;
@@ -45,8 +41,11 @@ rt:Series
     rdf:type             memorix:Recordtype ,
                          sh:NodeShape ;
     rdfs:comment         "Stadsarchief recordtype voor Groep"@nl ;
-    # rdfs:label           "Groep"@nl, "Series"@en; #change after randomness is fixed
-    rdfs:label           "Groep"@nl ;
+    rdfs:label           "Groep"@nl, "Series"@en;
+    memorix:hasInformationComponent [ rdf:type              memorix:TreePathComponent ;
+                                      memorix:hasRecordtype rt:Fonds, rt:Series
+                                    ] ;
+    memorix:hasInformationComponent [ rdf:type memorix:DepotLocationComponent ] ;
     dc:identifier        "Series" ;
     sh:targetClass       rt:Series ;
     sh:closed            true ;
@@ -100,19 +99,9 @@ rt:Series
                            sh:maxCount         1 ;
                            sh:order            3.0 ;
                            sh:path             rico:physicalOrLogicalExtent ] ;
-    sh:property          [ rdfs:label   "Bovenliggend archiefblok of groep"@nl ;
-                           rdfs:comment "Archiefblok of groep waartoe dit Bestanddeel behoort."@nl ;
-                           sh:message   "Kies een archiefblok of groep om aan te koppelen. Dit is verplicht."@nl ;
-                           dash:editor  memorix:LinkedRecordEditor ;
-                           sh:group     series:partitionGroup ;
-                           #sh:minCount 1 ; #todo aanzetten zodra de UI gefikst is
-                           sh:maxCount  1 ;
-                           sh:nodeKind  sh:IRI ;
-                           sh:or        ( [ sh:class rt:Fonds ] [ sh:class rt:Series ] ) ;
-                           sh:order     3 ;
-                           sh:path      rico:isOrWasIncludedIn ] ;
     sh:property          [ rdfs:label  "Interne opmerking"@nl ;
                            dash:editor dash:TextAreaEditor ;
+                           memorix:audience memorix:audienceInternal ;
                            sh:datatype xsd:string ;
                            sh:group    series:managementGroup ;
                            sh:order    4.0 ;

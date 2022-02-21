@@ -34,6 +34,7 @@ rt:Family
     rdfs:comment            "Stadsarchief recordtype voor Familie"@nl ;
     dc:identifier           "Family" ;
     sh:targetClass          rt:Familie ;
+    memorix:copyrightHolderSource  true ;
     sh:closed               true ;
     sh:ignoredProperties    ( rdf:type ) ;
     sh:property             [ rdfs:label            "Naam"@nl ;

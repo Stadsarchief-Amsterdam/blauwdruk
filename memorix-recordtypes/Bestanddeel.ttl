@@ -39,12 +39,6 @@ file:locationGroup
     sh:order   3.0 ;
 .
 
-file:partitionGroup
-    rdf:type   sh:PropertyGroup ;
-    rdfs:label "Indeling"@nl ;
-    sh:order   4.0 ;
-.
-
 file:managementGroup
     rdf:type   sh:PropertyGroup ;
     rdfs:label "Beheer"@nl ;
@@ -52,19 +46,21 @@ file:managementGroup
 .
 
 rt:File
-    a                               memorix:Recordtype,
-                                    sh:NodeShape ;
+    a                               memorix:Recordtype, sh:NodeShape ;
     rdfs:comment                    "Stadsarchief recordtype voor Bestanddeel"@nl ;
-    #rdfs:label                      "Bestanddeel"@nl, "File"@en ; #change after randomness is fixed
-    rdfs:label                      "Bestanddeel"@nl ;
+    rdfs:label                      "Bestanddeel"@nl, "File"@en ;
+    memorix:hasInformationComponent [ rdf:type              memorix:TreePathComponent ;
+                                      memorix:hasRecordtype rt:Fonds, rt:Series
+                                    ] ;
+    memorix:hasInformationComponent [ rdf:type memorix:DepotLocationComponent ] ;
     dc:identifier                   "File" ;
     sh:targetClass                  rt:File ;
+    rdfs:subClassOf                 rico:RecordSet ;
     sh:closed                       true ;
     sh:ignoredProperties            ( rdf:type ) ;
-    memorix:hasInformationComponent memorix:DepotLocationComponent ;
     sh:property                     [ rdfs:label   "Inventarisnummer"@nl, "Inventory number"@en ;
                                       rdfs:comment "Uniek nummer binnen een archiefblok."@nl ;
-                                      sh:message   "Vul tenminste een (uniek) inventarisnummer in. Dit nummer is verplicht."@nl , "Please provide at least an inventory number. It is required."@en;
+                                      sh:message   "Vul tenminste een (uniek) inventarisnummer in. Dit nummer is verplicht."@nl, "Please provide at least an inventory number. It is required."@en ;
                                       sh:class     rico:Identifier ;
                                       sh:group     file:identificationGroup ;
                                       sh:minCount  1 ;
@@ -133,18 +129,6 @@ rt:File
                                       sh:nodeKind  sh:BlankNode ;
                                       sh:group     file:locationGroup ;
                                     ] ;
-    sh:property                     [ rdfs:label   "Bovenliggend archiefblok of groep"@nl ;
-                                      rdfs:comment "Archiefblok of Groep waartoe dit Bestanddeel behoort."@nl ;
-                                      sh:message   "Kies een archiefblok of groep om aan te koppelen. Dit is verplicht."@nl ;
-                                      dash:editor  memorix:LinkedRecordEditor ;
-                                      sh:group     file:partitionGroup ;
-        #sh:minCount 1 ; #todo aanzetten zodra de UI gefikst is
-                                      sh:maxCount  1 ;
-                                      sh:nodeKind  sh:IRI ;
-                                      sh:or        ( [ sh:class rt:Fonds ] [ sh:class rt:Series ] ) ;
-                                      sh:order     1.0 ;
-                                      sh:path      rico:isOrWasIncludedIn
-                                    ] ;
     sh:property                     [ rdfs:label   "Digitaal geboren?"@nl ;
                                       rdfs:comment "Geeft aan of dit om een oorspronkelijk digitaal geboren stuk gaat"@nl ;
                                       sh:datatype  xsd:boolean ;
@@ -169,13 +153,14 @@ rt:File
                                       sh:order    4.0 ;
                                       sh:path     file:storageNumber
                                     ] ;
-    sh:property                     [ rdfs:label  "Interne opmerking"@nl ;
-                                      dash:editor dash:TextAreaEditor ;
-                                      sh:datatype xsd:string ;
-                                      sh:group    file:managementGroup ;
-                                      sh:maxCount 1 ;
-                                      sh:order    5.0 ;
-                                      sh:path     file:internalRemarks
+    sh:property                     [ rdfs:label       "Interne opmerking"@nl ;
+                                      dash:editor      dash:TextAreaEditor ;
+                                      memorix:audience memorix:audienceInternal ;
+                                      sh:datatype      xsd:string ;
+                                      sh:group         file:managementGroup ;
+                                      sh:maxCount      1 ;
+                                      sh:order         5.0 ;
+                                      sh:path          file:internalRemarks
                                     ] ;
     sh:property                     [ rdfs:label   "Duplicaat (kopie op film of microfiche)"@nl ;
                                       rdfs:comment "Kopieën van dit bestanddeel op film of microfiche."@nl ;
@@ -184,7 +169,7 @@ rt:File
                                       sh:group     file:managementGroup ;
                                       sh:maxCount  1 ;
                                       sh:nodeKind  sh:IRI ;
-                                      sh:or        ( [ sh:class rt:SaaDuplicaat ] ) ;
+                                      sh:or        ( [ sh:class rt:Duplicate ] ) ;
                                       sh:order     6.0 ;
                                       sh:path      file:duplicate
                                     ] ;
@@ -288,13 +273,11 @@ file:SubjectAddress
                            sh:datatype xsd:string ;
                          ] .
 
-file:digitalBorn
-    a rdfs:Property ;
+file:digitalBorn a rdfs:Property ;
     # in rico modeled with rico:hasRepresentationType
 .
 
-file:digitised
-    a rdfs:Property ;
+file:digitised a rdfs:Property ;
     # in rico modeled with rico:hasRepresentationType
 .
 
@@ -324,14 +307,11 @@ file:hasOrHadSubjectAddress
     rdfs:subPropertyOf rico:hasOrHadSubject ;
 .
 
-file:street
-    a rdf:Property ;
+file:street a rdf:Property ;
 .
 
-file:houseNumberBegin
-    a rdf:Property ;
+file:houseNumberBegin a rdf:Property ;
 .
 
-file:houseNumberEnd
-    a rdf:Property ;
+file:houseNumberEnd a rdf:Property ;
 .

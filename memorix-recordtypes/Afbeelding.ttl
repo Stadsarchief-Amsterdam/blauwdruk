@@ -52,6 +52,7 @@ rt:Image a memorix:Recordtype,
     sh:ignoredProperties ( rdf:type ) ;
     sh:targetClass       rt:Image ;
     sh:property          [ rdfs:label              "Type afbeelding"@nl, "Type of image"@en  ;
+                           rdfs:comment            "Selecteer een waarde uit de lijst."@nl ;
                            sh:path                 rico:hasDocumentaryFormType ;
                            sh:maxCount             1 ;
                            sh:order                1.0 ;
@@ -180,7 +181,7 @@ rt:Image a memorix:Recordtype,
                            sh:nodeKind             sh:IRI ;
                            sh:order                1.0 ;
                            sh:maxCount             100 ;
-                           sh:path                 image:hasOrHadSubjectLocation ] ; 
+                           sh:path                 image:hasOrHadSubjectLocation ] ;
 .
 
 rico:Instantiation

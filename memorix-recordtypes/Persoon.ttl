@@ -45,6 +45,7 @@ rt:Person
     rdfs:label           "Persoon"@nl, "Person"@en ;
     dc:identifier        "Person" ;
     sh:targetClass       rt:Person ;
+    memorix:copyrightHolderSource  true ;
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property          [ rdfs:label               "Voornaam"@nl, "First name"@en  ;
