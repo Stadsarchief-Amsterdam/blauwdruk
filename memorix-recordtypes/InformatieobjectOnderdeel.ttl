@@ -72,7 +72,7 @@ rt:DigitalRecordPart
                                       sh:order     5.0 ;
                                       sh:path      rico:isOrWasIncludedIn ] ;
     sh:property                     [ rdfs:label              "Oude nummers"@nl, "Obsolete Numbers"@en ;
-                                      sh:path                 io:obsoleteNumbers ;
+                                      sh:path                 saa:obsoleteNumbers ;
                                       sh:datatype             xsd:string ;
                                       sh:order                6.0 ;
                                       sh:group                io:managementGroup ; ] ;
@@ -121,6 +121,6 @@ rico:DateRange
     sh:targetClass       rico:DateRange ;
 .
 
-io:obsoleteNumbers a rdf:Property ;
-  rdfs:subPropertyOf rico:hasOrHadIdentifier ;
+saa:obsoleteNumbers a rdf:Property ;
+  rdfs:subPropertyOf rico:identifier ;
 .
