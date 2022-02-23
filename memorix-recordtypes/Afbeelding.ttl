@@ -27,15 +27,21 @@ image:contentDescriptionGroup
     rdfs:label "Beschrijving"@nl, "Description"@en ;
     sh:order   2.0 .
 
+image:physicalDescriptionGroup
+    rdf:type   sh:PropertyGroup ;
+    rdfs:label "Fysieke kenmerken"@nl, "Physical description"@en ;
+    sh:order   3.0 ;
+.
+
 image:locationsGroup
     rdf:type   sh:PropertyGroup ;
     rdfs:label "Locaties"@nl, "Locations"@en ;
-    sh:order   3.0 .
+    sh:order   4.0 .
 
 image:managementGroup
     rdf:type   sh:PropertyGroup ;
     rdfs:label "Beheer"@nl, "Management"@en ;
-    sh:order   4.0 .
+    sh:order   5.0 .
 
 rt:Image
     a                       memorix:Recordtype, sh:NodeShape ;
@@ -65,24 +71,25 @@ rt:Image
                               sh:group                image:identificationGroup ;
                               dash:editor             memorix:VocabularyEditor ;
                               memorix:inTitleAt       2.0 ;
+                              memorix:searchWeight    3.0 ;
                               sh:class                skos:Concept ;
                               memorix:conceptSchemeIn vocabularies:3765628c-d755-3e25-8af5-f6178cbb7937 ;
                               sh:nodeKind             sh:IRI ;
                             ] ;
-    sh:property             [ rdfs:label        "Titel"@nl, "Title"@en ;
-                              rdfs:comment      "Geef de afbeelding een herkenbare titel om in overzichten te kunnen onderscheiden."@nl ;
-                              html:placeholder  "Typ een titel …"@nl, "Enter a title"@en ;
-                              sh:path           rico:title ;
-                              memorix:inTitleAt 1.0 ;
-                              dash:editor       dash:TextAreaEditor ;
-                              dash:singleLine   false ;
-                              sh:minCount       1 ;
-                              sh:maxCount       1 ;
-                              sh:order          3.0 ;
-                              sh:message        "De titel zou niet leeg mogen zijn."@nl, "Always provide a title. This is required."@en ;
-                              sh:group          image:identificationGroup ;
-                              dash:editor       dash:TextFieldEditor ;
-                              sh:datatype       xsd:string ;
+    sh:property             [ rdfs:label           "Titel"@nl, "Title"@en ;
+                              rdfs:comment         "Geef de afbeelding een herkenbare titel om in overzichten te kunnen onderscheiden."@nl ;
+                              html:placeholder     "Typ een titel …"@nl, "Enter a title"@en ;
+                              sh:path              rico:title ;
+                              memorix:inTitleAt    1.0 ;
+                              memorix:searchWeight 5.0 ;
+                              dash:editor          dash:TextAreaEditor ;
+                              dash:singleLine      false ;
+                              sh:minCount          1 ;
+                              sh:maxCount          1 ;
+                              sh:order             3.0 ;
+                              sh:message           "De titel zou niet leeg mogen zijn."@nl, "Always provide a title. This is required."@en ;
+                              sh:group             image:identificationGroup ;
+                              sh:datatype          xsd:string ;
                             ] ;
     sh:property             [ rdfs:label      "Historische titel"@nl, "Historical title"@en ;
                               rdfs:comment    "De historische titel zoals oorspronkelijk vastgelegd."@nl, "The original (historical) title an image was given."@en ;
@@ -104,18 +111,10 @@ rt:Image
                               dash:singleLine false ;
                               sh:datatype     xsd:string ;
                             ] ;
-    sh:property             [ rdfs:label  "Vervaardiging"@nl, "Creation"@en ;
-                              sh:path     image:creation ;
-                              sh:order    5.0 ;
-                              sh:maxCount 1 ;
-                              sh:nodeKind sh:BlankNode ;
-                              sh:class    image:CreationEvent ;
-                              sh:group    image:contentDescriptionGroup ;
-                            ] ;
     sh:property             [ rdfs:label  "Afgebeeld persoon"@nl, "Depicted person"@en ;
                               sh:path     image:hasOrHadSubjectPerson ;
                               sh:maxCount 100 ;
-                              sh:order    6.0 ;
+                              sh:order    5.0 ;
                               sh:group    image:contentDescriptionGroup ;
                               dash:editor memorix:LinkedRecordEditor ;
                               sh:nodeKind sh:IRI ;
@@ -123,7 +122,7 @@ rt:Image
                             ] ;
     sh:property             [ rdfs:label              "Afgebeeld gebouw"@nl, "Depicted building"@en ;
                               sh:path                 image:hasOrHadSubjectBuilding ;
-                              sh:order                7.0 ;
+                              sh:order                6.0 ;
                               sh:message              "Invalid building reference."@en, "Ongeldige referentie naar gebouw"@nl ;
                               sh:group                image:contentDescriptionGroup ;
                               sh:maxCount             100 ;
@@ -132,13 +131,21 @@ rt:Image
                               memorix:conceptSchemeIn vocabularies:95d82b74-948f-34a1-9938-e25b13397d34 ;
                               sh:nodeKind             sh:IRI ;
                             ] ;
-    sh:property             [ rdfs:label  "Fysieke Kenmerken"@nl, "Physical Description"@en ;
+    sh:property             [ rdfs:label  ""@nl, ""@en ;
+                              sh:path     image:creation ;
+                              sh:order    7.0 ;
+                              sh:maxCount 1 ;
+                              sh:nodeKind sh:BlankNode ;
+                              sh:class    image:CreationEvent ;
+                              sh:group    image:contentDescriptionGroup ;
+                            ] ;
+    sh:property             [ rdfs:label  ""@nl, ""@en ;
                               sh:path     rico:hasInstantiation ;
-                              sh:order    10.0 ;
+                              sh:order    1.0 ;
                               sh:maxCount 1 ;
                               sh:nodeKind sh:BlankNode ;
                               sh:class    rico:Instantiation ;
-                              sh:group    image:contentDescriptionGroup ;
+                              sh:group    image:physicalDescriptionGroup ;
                             ] ;
     sh:property             [ rdfs:label              "Collectie"@nl, "Collection"@en ;
                               rdfs:comment            "Tijdelijke oplossing voor het nu kunnen zien van de collectie naam (uit het archiefblok)."@nl ;
@@ -180,7 +187,7 @@ rt:Image
                             ] ;
 #    sh:property             [ rdfs:label              "Locatie URI"@nl ;
 #                              dash:editor             memorix:LocationBagEditor ;
-#                              sh:class                skos:Concept ; # todo decide class?
+#                              sh:class                skos:Concept ; # todo still need to know how to implement image!
 #                              sh:group                image:locationsGroup ;
 #                              sh:nodeKind             sh:IRI ;
 #                              sh:order                2.0 ;
@@ -228,6 +235,7 @@ image:DepictedAddress
                            sh:maxCount             1 ;
                            dash:editor             memorix:VocabularyEditor ;
                            memorix:conceptSchemeIn vocabularies:a4863c0c-d9e5-3902-831a-d0960e381a41 ;
+                           memorix:searchWeight    2.0 ;
                            sh:class                skos:Concept ;
                            sh:nodeKind             sh:IRI ;
                          ] ;
@@ -251,6 +259,7 @@ image:CreationEvent
     sh:targetClass       image:CreationEvent ;
     rdfs:subClassOf      rico:Event ;
     sh:property          [ rdfs:label  "Vervaardiger(s)"@nl, "Creators"@en ;
+                           memorix:searchWeight  3.0 ;
                            sh:path     image:creators ;
                            sh:class    image:Creator ;
                            sh:nodeKind sh:BlankNode ;
