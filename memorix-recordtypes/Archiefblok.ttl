@@ -49,8 +49,9 @@ rt:Fonds
                            sh:minCount       1 ;
                            sh:maxCount       1 ;
                            html:placeholder  "Bv 10003.A …"@nl ;
+                           memorix:inTitleAt 1.0 ;
+                           memorix:searchWeight 5.0 ;
                            sh:group          fonds:identificationGroup ;
-                           memorix:inTitleAt 1 ;
                            sh:order          1.0 ;
                            sh:path           rico:identifier ;
                            sh:datatype       xsd:string ] ;
@@ -61,16 +62,16 @@ rt:Fonds
                            sh:maxCount       1 ;
                            dash:editor       dash:TextAreaEditor ;
                            html:placeholder  "Archief of Collectie van …"@nl ;
+                           memorix:inTitleAt 2.0 ;
+                           memorix:searchWeight 5.0 ;
                            sh:message        "Naam toegang is verplicht."@nl , "The title of a fonds is mandatory"@en;
                            sh:group          fonds:identificationGroup ;
                            sh:order          2.0 ;
-                           memorix:inTitleAt 2 ;
                            sh:path           rico:title ] ;
     sh:property          [ rdfs:label          "Periode vorming"@nl , "Dates of accumulation"@en ;
                            rdfs:comment        "Jaartal of periode van vorming."@nl , "Year or range of years of accumulation"@en ;
                            sh:message          "Geef een of twee jaartallen"@nl , "Enter one or two years"@en ;
                            sh:class            fonds:DateRangeAccumulation ;
-                           memorix:inSummaryAt 1 ;
                            sh:group            fonds:identificationGroup ;
                            sh:maxCount         1 ;
                            sh:nodeKind         sh:BlankNode ;
@@ -81,7 +82,6 @@ rt:Fonds
                            sh:message          "Kies een archiefvormer uit de lijst."@nl ;
                            sh:path             rico:hasAccumulator ;
                            dash:editor         memorix:LinkedRecordEditor ;
-                           memorix:inSummaryAt 2 ;
                            sh:group            fonds:identificationGroup ;
                            #sh:minCount         1 ; #todo later aanzetten
                            sh:maxCount         10 ;
@@ -147,6 +147,8 @@ fonds:DateRangeAccumulation
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property          [ rdfs:label      "Beginjaar vorming"@nl , "Start Year"@en ;
+                           memorix:inSummaryAt 1.0 ;
+                           memorix:searchWeight 3.0 ;
                            sh:message      "Het jaar moet liggen tussen 1200 en 2200"@nl , "The year must be between 1200 and 2200"@en ;
                            sh:datatype     xsd:gYear ;
                            sh:order        1.0 ;
@@ -154,6 +156,8 @@ fonds:DateRangeAccumulation
                            sh:maxInclusive "2200"^^xsd:gYear ;
                            sh:path         rico:hasBeginningDate ] ;
     sh:property          [ rdfs:label      "Eindjaar vorming"@nl , "End Year"@en ;
+                           memorix:inSummaryAt 2.0 ;
+                           memorix:searchWeight 3.0 ;
                            sh:message      "Het jaar moet liggen tussen 1200 en 2200"@nl , "The year must be between 1200 and 2200"@en ;
                            sh:datatype     xsd:gYear ;
                            sh:order        2.0 ;
