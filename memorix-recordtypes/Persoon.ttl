@@ -118,11 +118,11 @@ rt:Person
                            sh:path                  schema:alternateName ] ;
     sh:property          [ rdfs:label               "Identiek aan"@nl, "Is same as"@en ;
                            dash:editor              memorix:VocabularyEditor ;
-                           memorix:conceptSchemeIn  <https://data.rkd.nl/rkdartists> ; # more vocabularies allowed
+                           memorix:conceptSchemeIn  <https://data.rkd.nl/rkdartists>, <https://www.wikidata.org/wiki/Q202444>;
                            memorix:searchWeight     1.0 ;
                            sh:class                 skos:Concept ;
                            sh:group                 person:alternativeGroup ;
-                           sh:maxCount              1 ;
+                           sh:maxCount              100 ;
                            sh:nodeKind              sh:IRI ;
                            sh:order                 2.0 ;
                            sh:path                  owl:sameAs ] ;
