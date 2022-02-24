@@ -27,7 +27,7 @@ acquisition:identificationGroup
 
 acquisition:contentDescriptionGroup
     rdf:type   sh:PropertyGroup ;
-    rdfs:label "Inhoudelijke beschrijving"@nl, "Content Description"@en ;
+    rdfs:label "Beschrijving"@nl, "Description"@en ;
     sh:order   2.0 .
 
 acquisition:managementGroup
@@ -46,11 +46,11 @@ rt:Acquisition
     sh:ignoredProperties            ( rdf:type ) ;
     memorix:hasInformationComponent memorix:DepotLocationComponent ;
     memorix:audience memorix:audienceInternal ;
-    sh:property                     [ rdfs:label        "Identificatiecode"@nl, "Identification Code"@en ;
+    sh:property                     [ rdfs:label        "Nummer aanwinst"@nl, "Number of the acquisition"@en ;
                                       rdfs:comment      "Unieke nummer dat correspondeert met de mappenstructuur waarin de AVO-dossiers bewaard worden."@nl , 
                                                         "Unique number corresponding to the directory where the AVO-file is stored."@en;
-                                      sh:message        "Vul tenminste een (uniek) nummer in, bijvoorbeeld 2022-123. Een nummer is verplicht."@nl ;
-                                      html:placeholder  "B.v. 2021-345"@nl ;
+                                      sh:message        "Vul tenminste een (uniek) nummer in, bijvoorbeeld 2022-123. Een nummer is verplicht."@nl, "Please provide a unique number. This is mandatory."@en  ;
+                                      html:placeholder  "B.v. 2021-345"@nl, "e.g. 2021-345"@en ;
                                       dash:singleLine   true ;
                                       memorix:inTitleAt 1.0 ;
                                       sh:group          acquisition:identificationGroup ;
@@ -78,11 +78,19 @@ rt:Acquisition
                                       sh:maxCount  100 ;
                                       sh:nodeKind  sh:IRI ;
                                       sh:or        ( [ sh:class rt:Fonds ] [ sh:class rt:File ] ) ;
-                                      sh:order     12.0 ;
+                                      sh:order     3.0 ;
                                       sh:path      acquisition:resultsIn ; ] ;
+    sh:property                     [ rdfs:label   "Omschrijving"@nl , "Description"@en;
+                                      rdfs:comment "Omschrijving van het binnengekomen materiaal"@nl , "Description of the material received"@en;
+                                      dash:editor  dash:TextAreaEditor ;
+                                      sh:datatype  xsd:string ;
+                                      sh:group     acquisition:identificationGroup ;
+                                      sh:order     4.0 ;
+                                      sh:path      acquisition:descriptionOfMaterial ; ] ;
     sh:property                     [ rdfs:label   "Datum ontvangst"@nl, "Date of reception"@en ;
                                       rdfs:comment "Daadwerkelijke datum van ontvangst"@nl , "Actual date of reception. May differ from year of transfer."@en;
                                       dash:editor  memorix:DateEditor ;
+                                      memorix:inSummaryAt 2.0 ;
                                       sh:datatype  xsd:integer ;
                                       sh:group     acquisition:contentDescriptionGroup ;
                                       sh:order     1.0 ;
@@ -102,9 +110,10 @@ rt:Acquisition
                                       sh:order                3.0 ;
                                       sh:maxCount             1 ;
                                       dash:editor             memorix:VocabularyEditor ;
+                                      memorix:conceptSchemeIn vocabularies:93b6eed4-d045-4d61-bfa5-0fa17aa48c7d ;
+                                      memorix:inSummaryAt     1.0 ;
                                       sh:nodeKind             sh:IRI ;
                                       sh:class                skos:Concept ;
-                                      memorix:conceptSchemeIn vocabularies:93b6eed4-d045-4d61-bfa5-0fa17aa48c7d ;
                                       sh:group                acquisition:contentDescriptionGroup ;
                                       sh:path                 acquisition:legalTitle ; ] ;
     sh:property                     [ rdfs:label  "Zorgdrager"@nl, "Care Taker"@en ;
@@ -127,13 +136,6 @@ rt:Acquisition
                                       sh:group     acquisition:contentDescriptionGroup ;
                                       sh:order     6.0 ;
                                       sh:path      acquisition:typeOfMaterial ; ] ;
-    sh:property                     [ rdfs:label   "Omschrijving"@nl , "Description"@en;
-                                      rdfs:comment "Omschrijving van het binnengekomen materiaal"@nl , "Description of the material received"@en;
-                                      dash:editor  dash:TextAreaEditor ;
-                                      sh:datatype  xsd:string ;
-                                      sh:group     acquisition:contentDescriptionGroup ;
-                                      sh:order     7.0 ;
-                                      sh:path      acquisition:descriptionOfMaterial ; ] ;
     sh:property                     [ rdfs:label  "Overheid?"@nl , "Governmental?"@en ;
                                       sh:datatype xsd:boolean ;
                                       sh:group    acquisition:contentDescriptionGroup ;
