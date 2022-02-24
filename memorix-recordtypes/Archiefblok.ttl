@@ -22,20 +22,16 @@ fonds:identificationGroup
     rdfs:label "Identificatie"@nl , "Identification"@en ;
     sh:order   1.0 .
 
-fonds:accumulationGroup
-    rdf:type   sh:PropertyGroup ;
-    rdfs:label "Archiefvorming"@nl , "Accumulation"@en ;
-    sh:order   2.0 .
-
 fonds:contentDescriptionGroup
     rdf:type   sh:PropertyGroup ;
     rdfs:label "Beschrijving"@nl, "Description"@en ;
-    sh:order   3.0 .
+    sh:order   2.0 .
 
 fonds:managementGroup
     rdf:type   sh:PropertyGroup ;
     rdfs:label "Beheer"@nl , "Manage"@en;
-    sh:order   4.0 .
+    sh:order   3.0 .
+
 
 rt:Fonds
     rdf:type             sh:NodeShape,
@@ -59,11 +55,11 @@ rt:Fonds
                            sh:path           rico:identifier ;
                            sh:datatype       xsd:string ] ;
     sh:property          [ rdfs:label        "Naam toegang"@nl , "Name of the fonds"@en ;
-                           rdfs:comment      "Naam of beschrijving van de toegang. Moet altijd beginnen met Archief of Collectie."@nl , "Title or decription of the fonds. Must start with 'Archief' or 'Collectie' (Dutch)"@en;
+                           rdfs:comment      "Naam of beschrijving van de toegang. Moet altijd beginnen met Archief of Collectie."@nl , "Title or description of the fonds. Must start with 'Archief' or 'Collectie' (Dutch)"@en;
                            sh:datatype       xsd:string ;
                            sh:minCount       1 ;
                            sh:maxCount       1 ;
-                           dash:editor       dash:TextFieldEditor ;
+                           dash:editor       dash:TextAreaEditor ;
                            html:placeholder  "Archief of Collectie van …"@nl ;
                            sh:message        "Naam toegang is verplicht."@nl , "The title of a fonds is mandatory"@en;
                            sh:group          fonds:identificationGroup ;
@@ -75,7 +71,7 @@ rt:Fonds
                            sh:message          "Geef een of twee jaartallen"@nl , "Enter one or two years"@en ;
                            sh:class            fonds:DateRangeAccumulation ;
                            memorix:inSummaryAt 1 ;
-                           sh:group            fonds:accumulationGroup ;
+                           sh:group            fonds:identificationGroup ;
                            sh:maxCount         1 ;
                            sh:nodeKind         sh:BlankNode ;
                            sh:order            3.0 ;
@@ -86,14 +82,21 @@ rt:Fonds
                            sh:path             rico:hasAccumulator ;
                            dash:editor         memorix:LinkedRecordEditor ;
                            memorix:inSummaryAt 2 ;
-                           sh:group            fonds:accumulationGroup ;
-                           #sh:minCount 1 ; #todo aanzetten zodra de UI gefikst is
+                           sh:group            fonds:identificationGroup ;
+                           #sh:minCount         1 ; #todo later aanzetten
                            sh:maxCount         10 ;
                            sh:order            4.0 ;
                            sh:nodeKind         sh:IRI ;
                            sh:or               ( [ sh:class rt:Person ]
                                                  [ sh:class rt:Organisation ]
                                                  [ sh:class rt:Family ] ) ; ] ;
+    sh:property          [ rdfs:label  "Inleiding"@nl , "Introduction"@en;
+                           sh:path     rico:scopeAndContent ;
+                           sh:group    fonds:contentDescriptionGroup ;
+                           sh:maxCount 1 ;
+                           sh:order    1.0 ;
+                           sh:datatype xsd:string ;
+                           dash:editor dash:TextAreaEditor ; ] ;
     sh:property          [ rdfs:label   "Datering Oudste Stuk"@nl , "Date oldest record"@en;
                            rdfs:comment "Datum van het oudste stuk in dit archief."@nl , "Date of the oldest record in the fonds"@en ;
                            sh:class     fonds:DateRangeOldest ;
@@ -110,13 +113,6 @@ rt:Fonds
                            sh:nodeKind  sh:BlankNode ;
                            sh:order     6.0 ;
                            sh:path      fonds:hasYoungestRecord ] ;
-    sh:property          [ rdfs:label  "Inleiding"@nl , "Introduction"@en;
-                           sh:path     rico:scopeAndContent ;
-                           sh:group    fonds:contentDescriptionGroup ;
-                           sh:maxCount 1 ;
-                           sh:order    7.0 ;
-                           sh:datatype xsd:string ;
-                           dash:editor dash:TextAreaEditor ; ] ;
     sh:property          [ rdfs:label  "Inventarisatie"@nl , "About the description"@en;
                            sh:class    fonds:FindingAid ;
                            sh:group    fonds:contentDescriptionGroup ;
