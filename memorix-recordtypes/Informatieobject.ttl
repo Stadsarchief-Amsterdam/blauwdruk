@@ -95,10 +95,9 @@ rt:DigitalRecord
                                       sh:order     8.0 ;
                                       sh:path      rico:isOrWasIncludedIn ] ;
     sh:property                     [ rdfs:label              "Nummer"@nl, "Identifier"@en ;
-                                      sh:path                 saa:hasOrHadIdentifier ;
+                                      sh:path                 rico:hasOrHadIdentifier ;
                                       sh:class                rico:Identifier ;
                                       sh:nodeKind             sh:BlankNode ;
-                                      sh:datatype             xsd:string ;
                                       sh:order                9.0 ;
                                       sh:group                io:managementGroup ; ] ;
     sh:property                     [ rdfs:label              "Interne opmerkingen"@nl, "Internal Remarks"@en ;
