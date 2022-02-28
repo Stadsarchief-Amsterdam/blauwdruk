@@ -67,28 +67,6 @@ rt:ConservationReport
     sh:property          report:InternalRemarksShape ;
 .
 
-report:BeginDateShape
-    a                    sh:PropertyShape ;
-    rdfs:label           "Datering begin"@nl, "Begin date"@en ;
-    memorix:inSummaryAt  1.0 ;
-    memorix:searchWeight 3.0 ;
-    sh:datatype          xsd:date ;
-    sh:group             report:identificationGroup ;
-    sh:order             2.0 ;
-    sh:path              report:dateBegin
-.
-
-report:EndDateShape
-    a                    sh:PropertyShape ;
-    rdfs:label           "Datering eind"@nl, "End date"@en ;
-    memorix:inSummaryAt  2.0 ;
-    memorix:searchWeight 3.0 ;
-    sh:datatype          xsd:date ;
-    sh:group             report:identificationGroup ;
-    sh:order             3.0 ;
-    sh:path              report:dateEnd
-.
-
 report:IsOrWasIncludedInShape
     rdf:type     sh:PropertyShape ;
     rdfs:label   "Gekoppeld bestanddeel"@nl, "Linked file"@en ;
@@ -100,15 +78,36 @@ report:IsOrWasIncludedInShape
     sh:message   "Kies een bestanddeel om aan te koppelen. Dit is verplicht."@nl, "Choose a related (inventory) file. It is required."@en ;
     sh:nodeKind  sh:IRI ;
     sh:or        ( [ sh:class rt:File ] ) ;
-    sh:order     4.0 ;
+    sh:order     1.0 ;
     sh:path      rico:isOrWasIncludedIn .
+
+report:BeginDateShape
+    a                    sh:PropertyShape ;
+    rdfs:label           "Begindatum"@nl, "Begin date"@en ;
+    memorix:inTitleAt    1.0 ;
+    memorix:searchWeight 5.0 ;
+    sh:datatype          xsd:date ;
+    sh:group             report:identificationGroup ;
+    sh:minCount          1 ;
+    sh:message          "Vul tenminste een begindatum in. Dit is verplicht."@nl, "Please provide a begin date. This is mandatory."@en ;
+    sh:order             2.0 ;
+    sh:path              report:dateBegin
+.
+
+report:EndDateShape
+    a                    sh:PropertyShape ;
+    rdfs:label           "Einddatum"@nl, "End date"@en ;
+    sh:datatype          xsd:date ;
+    sh:group             report:identificationGroup ;
+    sh:order             3.0 ;
+    sh:path              report:dateEnd
+.
 
 report:ObjectDescriptionShape
     a                    sh:PropertyShape ;
     rdfs:label           "Specificatie bestanddeel"@nl, "Specification of the record"@en ;
     dash:editor          dash:TextAreaEditor ;
-    memorix:inTitleAt    1.0 ;
-    memorix:searchWeight 5.0 ;
+    memorix:searchWeight 3.0 ;
     sh:datatype          xsd:string ;
     sh:group             report:descriptionGroup ;
     sh:order             1.0 ;
@@ -258,7 +257,8 @@ report:CarriedOutTests
 
 report:AcidityShape
     a           sh:PropertyShape ;
-    rdfs:label  "Zuurgraad gas A-D strips"@nl, "Acidity A-D strips"@en ;
+    rdfs:label  "Azijnzuurgas (A-D strips)"@nl, "Acidity (A-D strips)"@en ;
+    html:placeholder  "0,1,2,3 of 4"@nl, "0,1,2,3 or 4"@en ;
     sh:datatype xsd:integer ;
     sh:group    report:investigationGroup ;
     sh:order    6.0 ;
@@ -301,7 +301,7 @@ report:DamageTreatment
                            dash:editor             memorix:VocabularyEditor ;
                            memorix:conceptSchemeIn vocabularies:d3538eb3-e234-4c41-99f5-38ddbfce7e36 ;
                            sh:class                skos:Concept ;
-                           sh:maxCount             1 ;
+                           sh:maxCount             20 ;
                            sh:nodeKind             sh:IRI ;
                            sh:order                1.0 ;
                            sh:path                 report:typeOfDamage
@@ -310,7 +310,7 @@ report:DamageTreatment
                            dash:editor             memorix:VocabularyEditor ;
                            memorix:conceptSchemeIn vocabularies:3f4bdac4-51af-497a-af8f-24e86bc30c55 ;
                            sh:class                skos:Concept ;
-                           sh:maxCount             1 ;
+                           sh:maxCount             20 ;
                            sh:nodeKind             sh:IRI ;
                            sh:order                2.0 ;
                            sh:path                 report:typeOfTreatment
@@ -319,7 +319,7 @@ report:DamageTreatment
                            dash:editor             memorix:VocabularyEditor ;
                            memorix:conceptSchemeIn vocabularies:99cef907-bfbd-47b3-a277-895ee6b608f8 ;
                            sh:class                skos:Concept ;
-                           sh:maxCount             1 ;
+                           sh:maxCount             20 ;
                            sh:nodeKind             sh:IRI ;
                            sh:order                3.0 ;
                            sh:path                 report:typeOfMaterial
