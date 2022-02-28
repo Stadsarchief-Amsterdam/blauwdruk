@@ -57,8 +57,8 @@ rt:DigitalRecord
                            sh:maxCount 10 ;
                            sh:nodeKind sh:BlankNode ;
                            sh:order    4.0 ;
-                           sh:path     io:specification ] ; # PD hasOrHadSpecification?
-    sh:property                     [ rdfs:label          "Datering"@nl , "Dates"@en;
+                           sh:path     io:hasSpecification ] ;
+    sh:property                     [ rdfs:label          "Datering Digitaal Informatieobject"@nl , "Dates Resource"@en;
                                       rdfs:comment        "Kan een exacte datum (vul dan twee keer dezelfde datum in) of een periode zijn"@nl , "Can be a specific date (than fill in the same date twice) or a daterange"@en ;
                                       memorix:inSummaryAt 1 ;
                                       sh:class            io:DateRangeOfRecordResource ;
@@ -66,7 +66,7 @@ rt:DigitalRecord
                                       sh:group            io:contentDescriptionGroup ;
                                       sh:maxCount         1 ;
                                       sh:order            5.0 ;
-                                      sh:path             rico:isAssociatedWithDate ] ;
+                                      sh:path             io:isRecordResourceAssociatedWithDate ] ;
     sh:property          [ rdfs:label  "Gerelateerde persoon of organisatie"@nl, "Related person or organisation"@en  ;
                            sh:path     io:isAssociatedWithAgent ;
                            sh:maxCount 100 ;
@@ -76,7 +76,7 @@ rt:DigitalRecord
                            sh:nodeKind sh:IRI ;
                            sh:or       ( [ sh:class rt:Person ] [ sh:class rt:Organization ]  ) ; ] ;
     sh:property          [ rdfs:label  "Gerelateerde plaats"@nl, "Related location"@en  ;
-                           sh:path     rico:isAssociatedWithPlace ;
+                           sh:path     io:isRecordResourceAssociatedWithPlace ;
                            sh:maxCount 100 ;
                            sh:order    7.0 ;
                            sh:group    io:contentDescriptionGroup ;
@@ -101,7 +101,7 @@ rt:DigitalRecord
                                       sh:order                9.0 ;
                                       sh:group                io:managementGroup ; ] ;
     sh:property                     [ rdfs:label              "Interne opmerkingen"@nl, "Internal Remarks"@en ;
-                                      sh:path                 saa:internalRemarks ;
+                                      sh:path                 io:internalRemarks ;
                                       sh:datatype             xsd:string ;
                                       sh:order                10.0 ;
                                       sh:group                io:managementGroup ;
@@ -215,7 +215,7 @@ rico:Activity
         rdfs:label "Datering activiteit"@nl , "Dates"@en;
         rdfs:comment        "Kan een exacte datum (vul dan twee keer dezelfde datum in) of een periode zijn"@nl , "Can be a specific date (than fill in the same date twice) or a daterange"@en ;
         sh:message ""@en ;
-        sh:path rico:isAssociatedWithDate ;
+        sh:path io:isActivityAssociatedWithDate ;
         sh:order    2.0 ;
         sh:class            io:DateRangeOfActivity ;
         sh:nodeKind         sh:BlankNode ;
