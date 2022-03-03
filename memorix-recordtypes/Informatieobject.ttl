@@ -167,7 +167,7 @@ saa:DateRangeOfRecordResource
                            sh:datatype xsd:string ;
                            sh:order    1.0 ;
                            sh:path     rico:expressedDateOfRecordResource ] ;
-    sh:property          [ rdfs:label  "Begindatum"@nl, "Beginning Date"@en ;
+    sh:property          [ rdfs:label  "Begindatum"@nl, "Begin Date"@en ;
                            sh:datatype xsd:date ;
                            sh:order    2.0 ;
                            sh:path     rico:hasBeginningDateOfRecordResource ] ;
@@ -186,7 +186,7 @@ saa:DateRangeOfActivity
                            sh:datatype xsd:string ;
                            sh:order    1.0 ;
                            sh:path     rico:expressedDateOfActivity ] ;
-    sh:property          [ rdfs:label  "Begindatum"@nl, "Beginning Date"@en ;
+    sh:property          [ rdfs:label  "Begindatum"@nl, "Begin Date"@en ;
                            sh:datatype xsd:date ;
                            sh:order    2.0 ;
                            sh:path     rico:hasBeginningDateOfActivity ] ;
