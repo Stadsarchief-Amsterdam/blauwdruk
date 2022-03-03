@@ -71,35 +71,36 @@ rt:File
                                     ] ;
     sh:property                     [ rdfs:label           "Beschrijving"@nl, "Title"@en ;
                                       rdfs:comment         "Korte beschrijving van dit inventarisnummer"@nl, "Title or short description"@en ;
-                                      dash:singleLine      true ;
+                                      dash:singleLine      false ;
+                                      dash:editor          dash:TextAreaEditor ;
                                       memorix:inTitleAt    2 ;
-                                      memorix:searchWeight 3.0 ;
+                                      memorix:searchWeight 5.0 ;
                                       sh:datatype          xsd:string ;
                                       sh:group             file:identificationGroup ;
                                       sh:maxCount          1 ;
                                       sh:order             2.0 ;
                                       sh:path              rico:title
                                     ] ;
-    sh:property                     [ rdfs:label          "Datering"@nl, "Dated"@en ;
-                                      rdfs:comment        "Kan een exacte datum of een periode zijn"@nl, ""@en ;
-                                      memorix:inSummaryAt 1 ;
-                                      sh:class            rico:DateRange ;
-                                      sh:nodeKind         sh:BlankNode ;
-                                      sh:group            file:contentDescriptionGroup ;
-                                      sh:maxCount         1 ;
-                                      sh:order            1.0 ;
-                                      sh:path             rico:isAssociatedWithDate
+    sh:property                     [ rdfs:label      "Nota bene"@nl, "Note"@en ;
+                                      rdfs:comment    "Uitgebreidere beschrijving, afkomstig uit NB velden"@nl, "A more descriptive note"@en ;
+                                      dash:singleLine false ;
+                                      dash:editor     dash:TextAreaEditor ;
+                                      sh:datatype     xsd:string ;
+                                      sh:group        file:identificationGroup ;
+                                      sh:maxCount     1 ;
+                                      sh:order        3.0 ;
+                                      sh:path         rico:scopeAndContent
                                     ] ;
-    sh:property                     [ rdfs:label           "Nota bene"@nl ;
-                                      rdfs:comment         "Uitgebreidere beschrijving, afkomstig uit NB velden"@nl ;
-                                      dash:singleLine      false ;
+    sh:property                     [ rdfs:label           "Datering"@nl, "Dated"@en ;
+                                      rdfs:comment         "Kan een exacte datum of een periode zijn"@nl, "Exact date or date range"@en ;
+                                      memorix:inSummaryAt  1 ;
                                       memorix:searchWeight 3.0 ;
-                                      sh:datatype          xsd:string ;
-                                      dash:editor          dash:TextAreaEditor ;
+                                      sh:class             rico:DateRange ;
+                                      sh:nodeKind          sh:BlankNode ;
                                       sh:group             file:contentDescriptionGroup ;
                                       sh:maxCount          1 ;
-                                      sh:order             2.0 ;
-                                      sh:path              rico:scopeAndContent
+                                      sh:order             1.0 ;
+                                      sh:path              rico:isAssociatedWithDate
                                     ] ;
     sh:property                     [ rdfs:label  "Uiterlijke vorm"@nl ;
                                       sh:datatype xsd:string ;
@@ -108,17 +109,14 @@ rt:File
                                       sh:order    3.0 ;
                                       sh:path     rico:physicalOrLogicalExtent
                                     ] ;
-    sh:property                     [ rdfs:label          "Vormer"@nl ;
-                                      rdfs:comment        "Gekoppelde archiefvormer uit de Personen en Organisatie thesaurus."@nl ;
-                                      sh:message          "Kies een archiefvormer uit de lijst."@nl ;
-                                      dash:editor         memorix:LinkedRecordEditor ;
-                                      memorix:inSummaryAt 2 ;
-                                      sh:group            file:contentDescriptionGroup ;
-                                      sh:maxCount         10 ;
-                                      sh:nodeKind         sh:IRI ;
-                                      sh:or               ( [ sh:class rt:Person ] [ sh:class rt:Organisation ] [ sh:class rt:Family ] ) ;
-                                      sh:order            4.0 ;
-                                      sh:path             rico:hasAccumulator
+    sh:property                     [ rdfs:label           "Gekoppelde personen"@nl, "Linked persons"@en ;
+                                      memorix:searchWeight 3.0 ;
+                                      sh:class             file:LinkedAgent ;
+                                      sh:group             file:contentDescriptionGroup ;
+                                      sh:path              file:hasOrHadRelatedAgents ;
+                                      sh:nodeKind          sh:BlankNode ;
+                                      sh:maxCount          100 ;
+                                      sh:order             4.0 ;
                                     ] ;
     sh:property                     [ rdfs:label   "Betreffend adres"@nl ;
                                       rdfs:comment "Vermelde straatnamen en huisnummers"@nl ;
@@ -201,7 +199,7 @@ rico:Identifier
     rdf:type             sh:NodeShape ;
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property          [ rdfs:label           "Nummer"@nl ;
+    sh:property          [ rdfs:label           "Inventarisnummer"@nl ;
                            dash:singleLine      true ;
                            memorix:inTitleAt    1.0 ;
                            memorix:searchWeight 3.0 ;
@@ -211,7 +209,7 @@ rico:Identifier
                            sh:order             1.0 ;
                            sh:path              file:inventoryNumber
                          ] ;
-    sh:property          [ rdfs:label           "Nummer toevoeging"@nl ;
+    sh:property          [ rdfs:label           "Inventarisnummer toevoeging"@nl ;
                            dash:singleLine      true ;
                            memorix:inTitleAt    2.0 ;
                            memorix:searchWeight 3.0 ;
@@ -227,17 +225,17 @@ rico:DateRange
     rdf:type             sh:NodeShape ;
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property          [ rdfs:label  "Datum (tekst)"@nl ;
+    sh:property          [ rdfs:label  "Datum (tekst)"@nl, "Date (text)"@en ;
                            sh:datatype xsd:string ;
                            sh:order    1.0 ;
                            sh:path     rico:expressedDate
                          ] ;
-    sh:property          [ rdfs:label  "Begindatum"@nl ;
+    sh:property          [ rdfs:label  "Begindatum"@nl, "Begin date"@en ;
                            sh:datatype xsd:date ;
                            sh:order    2.0 ;
                            sh:path     rico:hasBeginningDate
                          ] ;
-    sh:property          [ rdfs:label  "Einddatum"@nl ;
+    sh:property          [ rdfs:label  "Einddatum"@nl, "End date"@en ;
                            sh:datatype xsd:date ;
                            sh:order    3.0 ;
                            sh:path     rico:hasEndDate
@@ -272,6 +270,30 @@ file:SubjectAddress
                            sh:maxCount 1 ;
                            sh:datatype xsd:string ;
                          ] .
+
+file:LinkedAgent
+    rdf:type             sh:NodeShape ;
+    sh:closed            true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property          [ rdfs:label              "Rol gekoppeld persoon"@nl, "Role of related person"@en ;
+                           dash:editor             memorix:VocabularyEditor ;
+                           memorix:conceptSchemeIn vocabularies:0dada355-9e1e-4f1f-8d86-0455d6067bb7 ;
+                           sh:class                skos:Concept ;
+                           sh:nodeKind             sh:IRI ;
+                           sh:order                1.0 ;
+                           sh:path                 file:relatedAgentRole ;
+                         ] ;
+    sh:property          [ rdfs:label  "Persoon"@nl, "Person"@en ;
+                           dash:editor memorix:LinkedRecordEditor ;
+                           sh:message  "Kies een persoon uit de lijst."@nl ;
+                           sh:nodeKind sh:IRI ;
+                           sh:or       ( [ sh:class rt:Person ] [ sh:class rt:Organisation ] [ sh:class rt:Family ] ) ;
+                           sh:order    2.0 ;
+                           sh:path     file:relatedAgent ;
+                         ] ;
+    sh:targetClass       file:LinkedAgent
+.
+
 
 file:digitalBorn a rdfs:Property ;
     # in rico modeled with rico:hasRepresentationType
