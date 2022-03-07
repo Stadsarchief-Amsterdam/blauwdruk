@@ -82,14 +82,13 @@ rt:DigitalRecord
                            sh:or               ( [ sh:class rt:Person ]
                                                  [ sh:class rt:Organisation ]
                                                  [ sh:class rt:Family ] ) ; ] ;
-    sh:property          [ rdfs:label  "Gerelateerde persoon of organisatie"@nl, "Related person or organisation"@en  ;
-                           sh:path     io:isAssociatedWithAgent ;
+    sh:property          [ rdfs:label  "Gerelateerde persoon, organisatie of familie"@nl, "Related person, organisation or family"@en  ;
+                           sh:path     io:hasOrHadLinkedAgent ;
+                           sh:class    saa:LinkedAgent ;
                            sh:maxCount 100 ;
                            sh:order    5.0 ;
                            sh:group    io:contentDescriptionGroup ;
-                           dash:editor memorix:LinkedRecordEditor ;
-                           sh:nodeKind sh:IRI ;
-                           sh:or       ( [ sh:class rt:Person ] [ sh:class rt:Organization ]  ) ; ] ;
+                           sh:nodeKind sh:BlankNode ; ] ;
     sh:property          [ rdfs:label  "Gerelateerde plaats"@nl, "Related location"@en  ;
                            sh:path     io:isRecordResourceAssociatedWithPlace ;
                            sh:maxCount 100 ;
@@ -171,24 +170,28 @@ rico:Identifier a sh:NodeShape ;
     ]
 .
 
-## DateRange
-io:DateRangeOfRecordResource
+saa:LinkedAgent
     rdf:type             sh:NodeShape ;
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property          [ rdfs:label  "Begindatum"@nl, "Beginning Date"@en ;
-                           dash:editor memorix:DateEditor ;
-                           sh:datatype xsd:integer ;
+    sh:property          [ rdfs:label              "Rol gekoppelde persoon, organisatie of familie"@nl, "Role of related person"@en ;
+                           dash:editor             memorix:VocabularyEditor ;
+                           memorix:conceptSchemeIn vocabularies:0dada355-9e1e-4f1f-8d86-0455d6067bb7 ;
+                           sh:class                skos:Concept ;
+                           sh:nodeKind             sh:IRI ;
+                           sh:order                1.0 ;
+                           sh:path                 saa:relatedAgentRole ;
+                         ] ;
+    sh:property          [ rdfs:label  "Gekoppelde Persoon, organisatie of familie"@nl, "Person"@en ;
+                           dash:editor memorix:LinkedRecordEditor ;
+                           sh:message  "Kies een persoon, organisatie of familie uit de lijst."@nl ;
+                           sh:nodeKind sh:IRI ;
+                           sh:or       ( [ sh:class rt:Person ] [ sh:class rt:Organisation ] [ sh:class rt:Family ] ) ;
                            sh:order    2.0 ;
-                           sh:path     rico:hasBeginningDateOfRecordResource ] ;
-    sh:property          [ rdfs:label  "Einddatum"@nl, "End Date"@en ;
-                           dash:editor memorix:DateEditor ;
-                           sh:datatype xsd:integer ;
-                           sh:order    3.0 ;
-                           sh:path     rico:hasEndDateOfRecordResource ] ;
-    sh:targetClass       io:DateRangeOfRecordResource ;
+                           sh:path     saa:relatedAgent ;
+                         ] ;
+    sh:targetClass       saa:LinkedAgent
 .
-
 
 ## Activity
 rico:Activity
