@@ -113,7 +113,7 @@ rt:File
                                       memorix:searchWeight 3.0 ;
                                       sh:class             file:LinkedAgent ;
                                       sh:group             file:contentDescriptionGroup ;
-                                      sh:path              file:hasOrHadRelatedAgents ;
+                                      sh:path              file:hasOrHadLinkedAgent ;
                                       sh:nodeKind          sh:BlankNode ;
                                       sh:maxCount          100 ;
                                       sh:order             4.0 ;
