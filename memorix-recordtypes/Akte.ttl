@@ -140,23 +140,23 @@ deed:InternalRemarksShape
     sh:path     saa:internalRemarks .
 
 ## shapes
-saa:PersonLink
+saa:LinkedPersonObservation
     rdf:type             sh:NodeShape ;
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property          [ rdfs:label  "Role"@en, "Rol"@nl ;
                            sh:datatype xsd:string ;
                            sh:order    1.0 ;
-                           sh:path     saa:personRole
+                           sh:path     saa:relatedPersonObservationRole
                          ] ;
     sh:property          [ rdfs:label  "Person observation"@en, "Persoonsvermelding"@nl ;
                            dash:editor memorix:LinkedRecordEditor ;
                            sh:nodeKind sh:IRI ;
                            sh:or       ( rt:PersonObservation ) ;
                            sh:order    2.0 ;
-                           sh:path     saa:personObservation
+                           sh:path     saa:relatedPersonObservation
                          ] ;
-    sh:targetClass       saa:PersonLink .
+    sh:targetClass       saa:LinkedPersonObservation .
 
 deed:HasOrHadLocation1851Shape
     rdf:type     sh:PropertyShape ;

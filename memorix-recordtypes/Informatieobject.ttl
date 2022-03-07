@@ -250,3 +250,26 @@ saa:Specification
                          ] ;
     sh:targetClass       saa:Specification ;
 .
+
+saa:LinkedAgent
+    rdf:type             sh:NodeShape ;
+    sh:closed            true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property          [ rdfs:label              "Rol gekoppeld persoon"@nl, "Role of related person"@en ;
+                           dash:editor             memorix:VocabularyEditor ;
+                           memorix:conceptSchemeIn vocabularies:0dada355-9e1e-4f1f-8d86-0455d6067bb7 ;
+                           sh:class                skos:Concept ;
+                           sh:nodeKind             sh:IRI ;
+                           sh:order                1.0 ;
+                           sh:path                 file:relatedAgentRole ;
+                         ] ;
+    sh:property          [ rdfs:label  "Persoon"@nl, "Person"@en ;
+                           dash:editor memorix:LinkedRecordEditor ;
+                           sh:message  "Kies een persoon uit de lijst."@nl ;
+                           sh:nodeKind sh:IRI ;
+                           sh:or       ( [ sh:class rt:Person ] [ sh:class rt:Organisation ] [ sh:class rt:Family ] ) ;
+                           sh:order    2.0 ;
+                           sh:path     file:relatedAgent ;
+                         ] ;
+    sh:targetClass       saa:LinkedAgent
+.
