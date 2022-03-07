@@ -121,7 +121,7 @@ deed:HasOrHadSubjectShape
     rdf:type     sh:PropertyShape ;
     rdfs:comment "Personen die voorkomen op de akte."@nl, "People mentioned in the source"@en ;
     rdfs:label   "Personen"@nl, "People"@en ;
-    sh:class     saa:PersonLink ;
+    sh:class     saa:LinkedPersonObservation ;
     sh:group     deed:personGroup ;
     sh:maxCount  999 ;
     sh:nodeKind  sh:BlankNode ;
