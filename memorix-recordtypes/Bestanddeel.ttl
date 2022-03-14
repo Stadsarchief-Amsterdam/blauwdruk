@@ -111,9 +111,9 @@ rt:File
                                     ] ;
     sh:property                     [ rdfs:label           "Gekoppelde personen"@nl, "Linked persons"@en ;
                                       memorix:searchWeight 3.0 ;
-                                      sh:class             file:LinkedAgent ;
+                                      sh:class             file:RelatedAgent ;
                                       sh:group             file:contentDescriptionGroup ;
-                                      sh:path              file:hasOrHadLinkedAgent ;
+                                      sh:path              file:hasOrHadRelatedAgent ;
                                       sh:nodeKind          sh:BlankNode ;
                                       sh:maxCount          100 ;
                                       sh:order             4.0 ;
@@ -271,7 +271,7 @@ file:SubjectAddress
                            sh:datatype xsd:string ;
                          ] .
 
-file:LinkedAgent
+file:RelatedAgent
     rdf:type             sh:NodeShape ;
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
@@ -281,7 +281,7 @@ file:LinkedAgent
                            sh:class                skos:Concept ;
                            sh:nodeKind             sh:IRI ;
                            sh:order                1.0 ;
-                           sh:path                 file:relatedAgentRole ;
+                           sh:path                 file:hasRole ;
                          ] ;
     sh:property          [ rdfs:label  "Persoon"@nl, "Person"@en ;
                            dash:editor memorix:LinkedRecordEditor ;
@@ -289,9 +289,9 @@ file:LinkedAgent
                            sh:nodeKind sh:IRI ;
                            sh:or       ( [ sh:class rt:Person ] [ sh:class rt:Organisation ] [ sh:class rt:Family ] ) ;
                            sh:order    2.0 ;
-                           sh:path     file:relatedAgent ;
+                           sh:path     file:hasAgent ;
                          ] ;
-    sh:targetClass       file:LinkedAgent
+    sh:targetClass       file:RelatedAgent
 .
 
 
