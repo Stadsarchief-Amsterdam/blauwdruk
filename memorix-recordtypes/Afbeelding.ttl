@@ -185,6 +185,23 @@ rt:Image
                               sh:nodeKind  sh:BlankNode ;
                               sh:group     image:locationsGroup ;
                             ] ;
+    sh:property              [ rdfs:label   "Locatie URI (BAG of Adamlink)"@nl, "Location URI (BAG or Adamlink)"@en ;
+                               dash:editor  memorix:LocationBagEditor ;
+                               sh:class     memorix:GeoCoordinates ;
+                               sh:group     image:locationsGroup;
+                               sh:order     2.0 ;
+                               sh:maxCount  100 ;
+                               sh:path      image:hasOrHadSubjectLocation
+                             ] ;
+    sh:property              [ rdfs:label   "Locatie coördinaten"@nl, "Locatie coordinates"@en ;
+                               dash:editor  memorix:LocationCoordinatesEditor ;
+                               sh:class     memorix:GeoCoordinates ;
+                               sh:group     image:locationsGroup ;
+                               sh:order     3.0 ;
+                               sh:maxCount  100 ;
+                               sh:path      image:hasOrHadSubjectCoordinates
+                             ] ;
+
 #    sh:property             [ rdfs:label              "Locatie URI"@nl ;
 #                              dash:editor             memorix:LocationBagEditor ;
 #                              sh:class                skos:Concept ; # todo still need to know how to implement this!
