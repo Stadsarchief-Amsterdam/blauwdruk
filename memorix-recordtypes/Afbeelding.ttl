@@ -30,8 +30,7 @@ image:contentDescriptionGroup
 image:physicalDescriptionGroup
     rdf:type   sh:PropertyGroup ;
     rdfs:label "Fysieke kenmerken"@nl, "Physical description"@en ;
-    sh:order   3.0 ;
-.
+    sh:order   3.0 .
 
 image:locationsGroup
     rdf:type   sh:PropertyGroup ;
@@ -131,12 +130,20 @@ rt:Image
                               memorix:conceptSchemeIn vocabularies:95d82b74-948f-34a1-9938-e25b13397d34 ;
                               sh:nodeKind             sh:IRI ;
                             ] ;
-    sh:property             [ rdfs:label  ""@nl, ""@en ;
-                              sh:path     image:creation ;
+    sh:property             [ rdfs:label  "Vervaardigers"@nl, "Creators"@en ;
+                              sh:path     saa:hasCreator ;
+                              sh:order    7.0 ;
+                              sh:maxCount 100 ;
+                              sh:nodeKind sh:BlankNode ;
+                              sh:class    saa:RelatedAgent ;
+                              sh:group    image:contentDescriptionGroup ;
+                            ] ;
+    sh:property             [ rdfs:label  "Vervaardigingsdatum"@nl, "Date of Creation"@en ;
+                              sh:path     saa:creationDate ;
                               sh:order    7.0 ;
                               sh:maxCount 1 ;
                               sh:nodeKind sh:BlankNode ;
-                              sh:class    image:CreationEvent ;
+                              sh:class    rico:DateRange ;
                               sh:group    image:contentDescriptionGroup ;
                             ] ;
     sh:property             [ rdfs:label  ""@nl, ""@en ;
@@ -185,22 +192,22 @@ rt:Image
                               sh:nodeKind  sh:BlankNode ;
                               sh:group     image:locationsGroup ;
                             ] ;
-    sh:property              [ rdfs:label   "Locatie URI (BAG of Adamlink)"@nl, "Location URI (BAG or Adamlink)"@en ;
-                               dash:editor  memorix:LocationBagEditor ;
-                               sh:class     memorix:GeoCoordinates ;
-                               sh:group     image:locationsGroup;
-                               sh:order     2.0 ;
-                               sh:maxCount  100 ;
-                               sh:path      image:hasOrHadSubjectLocation
-                             ] ;
-    sh:property              [ rdfs:label   "Locatie coördinaten"@nl, "Locatie coordinates"@en ;
-                               dash:editor  memorix:LocationCoordinatesEditor ;
-                               sh:class     memorix:GeoCoordinates ;
-                               sh:group     image:locationsGroup ;
-                               sh:order     3.0 ;
-                               sh:maxCount  100 ;
-                               sh:path      image:hasOrHadSubjectCoordinates
-                             ] ;
+    sh:property             [ rdfs:label  "Locatie URI (BAG of Adamlink)"@nl, "Location URI (BAG or Adamlink)"@en ;
+                              dash:editor memorix:LocationBagEditor ;
+                              sh:class    memorix:GeoCoordinates ;
+                              sh:group    image:locationsGroup ;
+                              sh:order    2.0 ;
+                              sh:maxCount 100 ;
+                              sh:path     image:hasOrHadSubjectLocation
+                            ] ;
+    sh:property             [ rdfs:label  "Locatie coördinaten"@nl, "Locatie coordinates"@en ;
+                              dash:editor memorix:LocationCoordinatesEditor ;
+                              sh:class    memorix:GeoCoordinates ;
+                              sh:group    image:locationsGroup ;
+                              sh:order    3.0 ;
+                              sh:maxCount 100 ;
+                              sh:path     image:hasOrHadSubjectCoordinates
+                            ] ;
 .
 
 rico:Instantiation
@@ -259,65 +266,56 @@ image:DepictedAddress
                            sh:datatype xsd:string ;
                          ] .
 
-image:CreationEvent
+rico:DateRange
     a                    sh:NodeShape ;
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:targetClass       image:CreationEvent ;
-    rdfs:subClassOf      rico:Event ;
-    sh:property          [ rdfs:label  "Vervaardiger(s)"@nl, "Creators"@en ;
-                           memorix:searchWeight  3.0 ;
-                           sh:path     image:creators ;
-                           sh:class    image:Creator ;
-                           sh:nodeKind sh:BlankNode ;
-                           sh:maxCount 100 ;
-                           sh:order    1.0 ;
-                         ] ;
+    sh:targetClass       rico:DateRange ;
     sh:property          [ rdfs:label  "Datum vervaardiging (tekst)"@nl, "Creation date (text)"@en ;
-                           sh:path     image:creationEventDateText ;
+                           sh:path     rico:textualValue ;
                            sh:datatype xsd:string ;
                            sh:maxCount 1 ;
                            sh:order    2.0 ;
                          ] ;
     sh:property          [ rdfs:label  "Vervaardigingsdatum van"@nl, "Creation date (begin)"@en ;
-                           sh:path     image:creationEventDateFrom ;
+                           sh:path     rico:hasBeginningDate ;
                            sh:maxCount 1 ;
                            sh:order    3.0 ;
                            dash:editor memorix:DateEditor ;
                            sh:datatype xsd:integer ;
                          ] ;
     sh:property          [ rdfs:label  "Vervaardigingsdatum tot"@nl, "Creation date (end)"@en ;
-                           sh:path     image:creationEventDateUntil ;
+                           sh:path     rico:hasEndDate ;
                            sh:maxCount 1 ;
                            sh:order    4.0 ;
                            dash:editor memorix:DateEditor ;
                            sh:datatype xsd:integer ;
-                         ]
-.
+                         ] .
 
-image:Creator
+
+saa:RelatedAgent
     rdf:type             sh:NodeShape ;
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property          [ rdfs:label              "Rol vervaardiger"@nl, "Role creator"@en ;
+    sh:property          [ rdfs:label              "Rol"@nl, "Role of related person"@en ;
                            dash:editor             memorix:VocabularyEditor ;
                            memorix:conceptSchemeIn vocabularies:0dada355-9e1e-4f1f-8d86-0455d6067bb7 ;
                            sh:class                skos:Concept ;
                            sh:nodeKind             sh:IRI ;
                            sh:order                1.0 ;
-                           sh:path                 image:creatorRole ;
+                           sh:path                 saa:hasRole ;
                          ] ;
-    sh:property          [ rdfs:label  "Vervaardiger"@nl, "Creator"@en ;
+    sh:property          [ rdfs:label  "Actor"@nl, "Agent"@en ;
                            dash:editor memorix:LinkedRecordEditor ;
+                           sh:message  "Kies een persoon, organisatie of familie uit de lijst."@nl ;
                            sh:nodeKind sh:IRI ;
-                           sh:or       ( [ sh:class rt:Person ] [ sh:class rt:Organisation ] ) ;
+                           sh:or       ( [ sh:class rt:Person ]
+                                         [ sh:class rt:Organisation ]
+                                         [ sh:class rt:Family ] ) ;
                            sh:order    2.0 ;
-                           sh:path     image:creationEventCreator ;
+                           sh:path     saa:hasAgent ;
                          ] ;
-    sh:targetClass       image:Creator
-.
-
-
+    sh:targetClass       saa:RelatedAgent .
 
 image:historicalTitle
     a                  rdf:Property ;
