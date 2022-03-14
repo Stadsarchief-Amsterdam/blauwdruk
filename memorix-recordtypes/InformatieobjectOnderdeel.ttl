@@ -110,7 +110,7 @@ rico:DateRange
                            sh:datatype xsd:string ;
                            sh:order    1.0 ;
                            sh:path     rico:expressedDate ] ;
-    sh:property          [ rdfs:label  "Begindatum"@nl, "Beginning Date"@en ;
+    sh:property          [ rdfs:label  "Begindatum"@nl, "Begin Date"@en ;
                            sh:datatype xsd:date ;
                            sh:order    2.0 ;
                            sh:path     rico:hasBeginningDate ] ;

@@ -179,7 +179,7 @@ saa:LinkedAgent
                            memorix:conceptSchemeIn vocabularies:0dada355-9e1e-4f1f-8d86-0455d6067bb7 ;
                            sh:class                skos:Concept ;
                            sh:nodeKind             sh:IRI ;
-                           sh:order                1.0 ;
+                           sh:order    1.0 ;
                            sh:path                 saa:relatedAgentRole ;
                          ] ;
     sh:property          [ rdfs:label  "Gekoppelde Persoon, organisatie of familie"@nl, "Person"@en ;

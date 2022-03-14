@@ -39,7 +39,7 @@ image:locationsGroup
 
 image:managementGroup
     rdf:type   sh:PropertyGroup ;
-    rdfs:label "Beheer"@nl, "Management"@en ;
+    rdfs:label "Beheer"@nl, "Manage"@en ;
     sh:order   5.0 .
 
 rt:Image
@@ -192,15 +192,22 @@ rt:Image
                               sh:nodeKind  sh:BlankNode ;
                               sh:group     image:locationsGroup ;
                             ] ;
-#    sh:property             [ rdfs:label              "Locatie URI"@nl ;
-#                              dash:editor             memorix:LocationBagEditor ;
-#                              sh:class                skos:Concept ; # todo still need to know how to implement this!
-#                              sh:group                image:locationsGroup ;
-#                              sh:nodeKind             sh:IRI ;
-#                              sh:order                2.0 ;
-#                              sh:maxCount             100 ;
-#                              sh:path                 owl:sameAs;
-#                            ] ;
+    sh:property             [ rdfs:label  "Locatie URI (BAG of Adamlink)"@nl, "Location URI (BAG or Adamlink)"@en ;
+                              dash:editor memorix:LocationBagEditor ;
+                              sh:class    memorix:GeoCoordinates ;
+                              sh:group    image:locationsGroup ;
+                              sh:order    2.0 ;
+                              sh:maxCount 100 ;
+                              sh:path     image:hasOrHadSubjectLocation
+                            ] ;
+    sh:property             [ rdfs:label  "Locatie coördinaten"@nl, "Locatie coordinates"@en ;
+                              dash:editor memorix:LocationCoordinatesEditor ;
+                              sh:class    memorix:GeoCoordinates ;
+                              sh:group    image:locationsGroup ;
+                              sh:order    3.0 ;
+                              sh:maxCount 100 ;
+                              sh:path     image:hasOrHadSubjectCoordinates
+                            ] ;
 .
 
 rico:Instantiation
@@ -287,30 +294,28 @@ rico:DateRange
 
 
 saa:RelatedAgent
-    rdf:type sh:NodeShape ;
-    sh:closed true ;
+    rdf:type             sh:NodeShape ;
+    sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ 
-        rdfs:label "Rol"@nl, 
-            "Role of related person"@en ;
-        dash:editor memorix:VocabularyEditor ;
-        memorix:conceptSchemeIn vocabularies:0dada355-9e1e-4f1f-8d86-0455d6067bb7 ;
-        sh:class skos:Concept ;
-        sh:nodeKind sh:IRI ;
-        sh:order 1.0 ;
-        sh:path saa:hasRole ; ] ;
-    sh:property [ 
-        rdfs:label "Actor"@nl, 
-            "Agent"@en ;
-        dash:editor memorix:LinkedRecordEditor ;
-        sh:message  "Kies een persoon, organisatie of familie uit de lijst."@nl ;
-        sh:nodeKind sh:IRI ;
-        sh:or ( [ sh:class rt:Person ] 
-            [ sh:class rt:Organisation ] 
-            [ sh:class rt:Family ] ) ;
-        sh:order 2.0 ;
-        sh:path saa:hasAgent ; ] ;
-    sh:targetClass saa:RelatedAgent .
+    sh:property          [ rdfs:label              "Rol"@nl, "Role of related person"@en ;
+                           dash:editor             memorix:VocabularyEditor ;
+                           memorix:conceptSchemeIn vocabularies:0dada355-9e1e-4f1f-8d86-0455d6067bb7 ;
+                           sh:class                skos:Concept ;
+                           sh:nodeKind             sh:IRI ;
+                           sh:order                1.0 ;
+                           sh:path                 saa:hasRole ;
+                         ] ;
+    sh:property          [ rdfs:label  "Actor"@nl, "Agent"@en ;
+                           dash:editor memorix:LinkedRecordEditor ;
+                           sh:message  "Kies een persoon, organisatie of familie uit de lijst."@nl ;
+                           sh:nodeKind sh:IRI ;
+                           sh:or       ( [ sh:class rt:Person ]
+                                         [ sh:class rt:Organisation ]
+                                         [ sh:class rt:Family ] ) ;
+                           sh:order    2.0 ;
+                           sh:path     saa:hasAgent ;
+                         ] ;
+    sh:targetClass       saa:RelatedAgent .
 
 image:historicalTitle
     a                  rdf:Property ;

@@ -32,7 +32,7 @@ acquisition:contentDescriptionGroup
 
 acquisition:managementGroup
     rdf:type   sh:PropertyGroup ;
-    rdfs:label "Beheer"@nl , "Management"@en;
+    rdfs:label "Beheer"@nl , "Manage"@en;
     sh:order   4.0 .
 
 rt:Acquisition
