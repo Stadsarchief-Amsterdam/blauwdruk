@@ -41,7 +41,7 @@ person:managementGroup
 
 rt:Person
     rdf:type             memorix:Recordtype , sh:NodeShape ;
-    rdfs:comment         "Stadsarchief recordtype voor Persoon"@nl ;
+    rdfs:comment         "Stadsarchief recordtype voor Persoon"@nl, "Amsterdam City Archives record type for Person"@en ;
     rdfs:label           "Persoon"@nl, "Person"@en ;
     dc:identifier        "Person" ;
     sh:targetClass       rt:Person ;
@@ -49,7 +49,7 @@ rt:Person
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property          [ rdfs:label               "Voornaam"@nl, "First name"@en  ;
-                           dash:singleLine          true ; # zouden we dit overal moeten toevoegen of is dit de default?
+                           dash:singleLine          true ;
                            memorix:inTitleAt        3.0 ;
                            memorix:searchWeight     3.0 ;
                            sh:datatype              xsd:string ;

@@ -40,7 +40,7 @@ image:locationsGroup
 
 image:managementGroup
     rdf:type   sh:PropertyGroup ;
-    rdfs:label "Beheer"@nl, "Management"@en ;
+    rdfs:label "Beheer"@nl, "Manage"@en ;
     sh:order   5.0 .
 
 rt:Image

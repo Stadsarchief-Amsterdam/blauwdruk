@@ -2,6 +2,7 @@
 @prefix rdfs:           <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix owl:            <http://www.w3.org/2002/07/owl#> .
 @prefix xsd:            <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos:           <http://www.w3.org/2004/02/skos/core#> .
 
 @prefix rt:             </resources/recordtypes/> .
 @prefix family:         </resources/recordtypes/Family#> .
@@ -23,40 +24,61 @@ family:identificationGroup
     rdfs:label "Identificatie"@nl ;
     sh:order   1.0 .
 
+family:alternativeGroup
+    rdf:type   sh:PropertyGroup ;
+    rdfs:label "Ook bekend als"@nl, "Also known as"@en ;
+    sh:order   2.0 ;
+.
+
 family:managementGroup
     rdf:type   sh:PropertyGroup ;
-    rdfs:label "Beheer"@nl ;
-    sh:order   2.0 .
+    rdfs:label "Beheer"@nl, "Management"@en ; ;
+    sh:order   3.0 .
 
 rt:Family
-    rdf:type                memorix:Recordtype , sh:NodeShape ;
-    rdfs:label              "Familie"@nl, "Family"@en ;
-    rdfs:comment            "Stadsarchief recordtype voor Familie"@nl ;
-    dc:identifier           "Family" ;
-    sh:targetClass          rt:Familie ;
-    memorix:copyrightHolderSource  true ;
-    sh:closed               true ;
-    sh:ignoredProperties    ( rdf:type ) ;
-    sh:property             [ rdfs:label            "Naam"@nl ;
-                              rdfs:comment          "Naam van de gehele familie"@nl ;
-                              dash:singleLine       true ;
-                              memorix:inTitleAt     1.0 ;
-                              memorix:searchWeight  3.0 ;
-                              sh:datatype           xsd:string ;
-                              sh:group              family:identificationGroup ;
-                              sh:maxCount           1 ;
-                              sh:order              1.0 ;
-                              sh:path               schema:name ] ;
-    sh:property             [ rdfs:label            "Alternatieve namen"@nl ;
-                              memorix:searchWeight  1.0 ;
-                              sh:datatype           xsd:string ;
-                              sh:group              family:identificationGroup ;
-                              sh:order              2.0 ;
-                              sh:path               schema:alternateName ] ;
-    sh:property             [ rdfs:label            "Interne opmerking"@nl ;
-                              dash:editor           dash:TextAreaEditor ;
-                              sh:datatype           xsd:string ;
-                              sh:group              family:managementGroup  ;
-                              sh:order              1.0 ;
-                              sh:path               family:internalRemarks ; ] ;
+    rdf:type                      memorix:Recordtype, sh:NodeShape ;
+    rdfs:label                    "Familie"@nl, "Family"@en ;
+    rdfs:comment                  "Stadsarchief recordtype voor Familie"@nl, "Amsterdam City Archives record type for Family"@en ;
+    dc:identifier                 "Family" ;
+    sh:targetClass                rt:Family ;
+    memorix:copyrightHolderSource true ;
+    sh:closed                     true ;
+    sh:ignoredProperties          ( rdf:type ) ;
+    sh:property                   [ rdfs:label           "Naam"@nl, "Name"@en ;
+                                    rdfs:comment         "Naam van de gehele familie"@nl, "Name of a family"@en ;
+                                    dash:singleLine      true ;
+                                    memorix:inTitleAt    1.0 ;
+                                    memorix:searchWeight 3.0 ;
+                                    sh:datatype          xsd:string ;
+                                    sh:group             family:identificationGroup ;
+                                    sh:maxCount          1 ;
+                                    sh:order             1.0 ;
+                                    sh:path              schema:name
+                                  ] ;
+    sh:property                   [ rdfs:label           "Alternatieve namen"@nl, "Alternate names"@en ;
+                                    memorix:searchWeight 2.0 ;
+                                    sh:datatype          xsd:string ;
+                                    sh:group             family:alternativeGroup ;
+                                    sh:maxCount          1 ;
+                                    sh:order             1.0 ;
+                                    sh:path              schema:alternateName
+                                  ] ;
+    sh:property                   [ rdfs:label              "Identiek aan"@nl, "Is same as"@en ;
+                                    dash:editor             memorix:VocabularyEditor ;
+                                    memorix:conceptSchemeIn <https://data.rkd.nl/rkdartists>, <https://www.wikidata.org/wiki/Q202444> ;
+                                    memorix:searchWeight    2.0 ;
+                                    sh:class                skos:Concept ;
+                                    sh:group                family:alternativeGroup ;
+                                    sh:maxCount             100 ;
+                                    sh:nodeKind             sh:IRI ;
+                                    sh:order                2.0 ;
+                                    sh:path                 owl:sameAs
+                                  ] ;
+    sh:property                   [ rdfs:label  "Interne opmerking"@nl ;
+                                    dash:editor dash:TextAreaEditor ;
+                                    sh:datatype xsd:string ;
+                                    sh:group    family:managementGroup ;
+                                    sh:order    1.0 ;
+                                    sh:path     family:internalRemarks ;
+                                  ] ;
 .

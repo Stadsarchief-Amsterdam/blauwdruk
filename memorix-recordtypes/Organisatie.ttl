@@ -20,47 +20,67 @@
 @prefix pnv:            <https://w3id.org/pnv#> .
 @prefix schema:         <http://schema.org/> .
 
-# todo pdr velden toevoegen omtrent oprichtings data?
 
 organisation:identificationGroup
     rdf:type   sh:PropertyGroup ;
     rdfs:label "Identificatie"@nl ;
     sh:order   1.0 .
 
+organisation:alternativeGroup
+    rdf:type   sh:PropertyGroup ;
+    rdfs:label "Ook bekend als"@nl, "Also known as"@en ;
+    sh:order   2.0 ;
+.
+
 organisation:managementGroup
     rdf:type   sh:PropertyGroup ;
-    rdfs:label "Beheer"@nl ;
-    sh:order   2.0 .
+    rdfs:label "Beheer"@nl, "Management"@en ; ;
+    sh:order   3.0 .
 
 rt:Organisation
-    rdf:type                memorix:Recordtype , sh:NodeShape ;
-    rdfs:label              "Organisatie"@nl, "Organisation"@en ;
-    rdfs:comment            "Stadsarchief recordtype voor Organisatie"@nl ;
-    dc:identifier           "Organisation" ;
-    sh:targetClass          rt:Organisation ;
-    memorix:copyrightHolderSource  true ;
-    sh:closed               true ;
-    sh:ignoredProperties    ( rdf:type ) ;
-    sh:property             [ rdfs:label            "Naam"@nl ;
-                              rdfs:comment          "Naam van de organisatie"@nl ;
-                              dash:singleLine       true ;
-                              memorix:inTitleAt     1.0 ;
-                              memorix:searchWeight  3.0 ;
-                              sh:datatype           xsd:string ;
-                              sh:group              organisation:identificationGroup ;
-                              sh:maxCount           1 ;
-                              sh:order              1.0 ;
-                              sh:path               schema:name ] ;
-    sh:property             [ rdfs:label            "Alternatieve namen"@nl ;
-                              memorix:searchWeight  1.0 ;
-                              sh:datatype           xsd:string ;
-                              sh:group              organisation:identificationGroup ;
-                              sh:order              2.0 ;
-                              sh:path               schema:alternateName ] ;
-    sh:property             [ rdfs:label            "Interne opmerking"@nl ;
-                              dash:editor           dash:TextAreaEditor ;
-                              sh:datatype           xsd:string ;
-                              sh:group              organisation:managementGroup  ;
-                              sh:order              1.0 ;
-                              sh:path               organisation:internalRemarks ; ]
+    rdf:type                      memorix:Recordtype, sh:NodeShape ;
+    rdfs:label                    "Organisatie"@nl, "Organisation"@en ;
+    rdfs:comment                  "Stadsarchief recordtype voor Organisatie"@nl, "Amsterdam City Archives record type for Organisation"@en ;
+    dc:identifier                 "Organisation" ;
+    sh:targetClass                rt:Organisation ;
+    memorix:copyrightHolderSource true ;
+    sh:closed                     true ;
+    sh:ignoredProperties          ( rdf:type ) ;
+    sh:property                   [ rdfs:label           "Naam"@nl, "Name"@en ;
+                                    rdfs:comment         "Naam van de organisatie"@nl, "Name of the organisation"@en ;
+                                    dash:singleLine      true ;
+                                    memorix:inTitleAt    1.0 ;
+                                    memorix:searchWeight 3.0 ;
+                                    sh:datatype          xsd:string ;
+                                    sh:group             organisation:identificationGroup ;
+                                    sh:maxCount          1 ;
+                                    sh:order             1.0 ;
+                                    sh:path              schema:name
+                                  ] ;
+    sh:property                   [ rdfs:label           "Alternatieve namen"@nl, "Alternate names"@en ;
+                                    memorix:searchWeight 2.0 ;
+                                    sh:datatype          xsd:string ;
+                                    sh:group             organisation:alternativeGroup ;
+                                    sh:maxCount          1 ;
+                                    sh:order             1.0 ;
+                                    sh:path              schema:alternateName
+                                  ] ;
+    sh:property                   [ rdfs:label              "Identiek aan"@nl, "Is same as"@en ;
+                                    dash:editor             memorix:VocabularyEditor ;
+                                    memorix:conceptSchemeIn <https://data.rkd.nl/rkdartists>, <https://www.wikidata.org/wiki/Q202444> ;
+                                    memorix:searchWeight    1.0 ;
+                                    sh:class                skos:Concept ;
+                                    sh:group                organisation:alternativeGroup ;
+                                    sh:maxCount             100 ;
+                                    sh:nodeKind             sh:IRI ;
+                                    sh:order                2.0 ;
+                                    sh:path                 owl:sameAs
+                                  ] ;
+    sh:property                   [ rdfs:label  "Interne opmerkingen"@nl, "Internal remarks"@en ;
+                                    dash:editor dash:TextAreaEditor ;
+                                    sh:datatype xsd:string ;
+                                    sh:group    organisation:managementGroup ;
+                                    sh:order    1.0 ;
+                                    sh:path     organisation:internalRemarks ;
+                                  ]
 .
