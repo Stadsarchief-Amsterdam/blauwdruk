@@ -117,12 +117,12 @@ rt:PersonObservation
                            sh:path     schema:hasOccupation
                          ] ;
     sh:property          [ rdfs:label  "Bijzonderheid"@nl, "Details"@en ;
-                           sh:class    saa:Detail ;
+                           sh:class    saa:Specification ;
                            sh:group    personObservation:detailsGroup ;
                            sh:maxCount 10 ;
                            sh:nodeKind sh:BlankNode ;
                            sh:order    11.0 ;
-                           sh:path     saa:detail
+                           sh:path     saa:hasSpecification
                          ] ;
     sh:property          [ rdfs:label              "Identiek aan"@nl, "Is same as"@en ;
                            rdfs:comment            "Is identiek aan geïdentificeerde persoon in andere terminologiebron"@nl, "Is same as identified person in external vocabulary"@en ;
@@ -180,19 +180,19 @@ pnv:PersonName
     sh:targetClass       pnv:PersonName ;
 .
 
-saa:Detail
+saa:Specification
     rdf:type             sh:NodeShape ;
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property          [ rdfs:label  "Bijzonderheid - Type"@nl, "Detail type"@en ;
                            sh:datatype xsd:string ;
                            sh:order    1.0 ;
-                           sh:path     saa:detailType
+                           sh:path     saa:specificationType
                          ] ;
     sh:property          [ rdfs:label  "Bijzonderheid"@nl, "Detail"@en ;
                            sh:datatype xsd:string ;
                            sh:order    2.0 ;
-                           sh:path     saa:detailTextualValue
+                           sh:path     saa:specificationTextualValue
                          ] ;
-    sh:targetClass       saa:Detail ;
+    sh:targetClass       saa:Specification ;
 .
