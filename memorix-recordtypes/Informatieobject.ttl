@@ -83,8 +83,8 @@ rt:DigitalRecord
                                                  [ sh:class rt:Organisation ]
                                                  [ sh:class rt:Family ] ) ; ] ;
     sh:property          [ rdfs:label  "Gerelateerde persoon, organisatie of familie"@nl, "Related person, organisation or family"@en  ;
-                           sh:path     io:hasOrHadLinkedAgent ;
-                           sh:class    saa:LinkedAgent ;
+                           sh:path     io:hasOrHadRelatedAgent ;
+                           sh:class    saa:RelatedAgent ;
                            sh:maxCount 100 ;
                            sh:order    5.0 ;
                            sh:group    io:contentDescriptionGroup ;
@@ -98,12 +98,12 @@ rt:DigitalRecord
                            sh:nodeKind sh:IRI ;
                            sh:or       ( [ sh:class rt:Location ] ) ; ] ;
     sh:property          [ rdfs:label  "Kenmerk"@nl, "Specification"@en ;
-                           sh:class    io:Specification ;
+                           sh:class    saa:Specification ;
                            sh:group    io:contentDescriptionGroup ;
                            sh:maxCount 10 ;
                            sh:nodeKind sh:BlankNode ;
                            sh:order    7.0 ;
-                           sh:path     io:hasSpecification ] ;
+                           sh:path     saa:hasSpecification ] ;
     sh:property                     [ rdfs:label              "Externe identificatie"@nl, "Identifier"@en ;
                                       rdfs:comment            "Allerlei identificeren kenmerken die in de oorspronkelijk data was opgenomen. Kan bijvoorbeeld ook de oorspronkelijke bestandsnaam zijn al dan niet met pad."@nl , "Fonds, series or file of which this digital record is part of."@en;
                                       sh:path                 rico:hasOrHadIdentifier ;
@@ -170,7 +170,7 @@ rico:Identifier a sh:NodeShape ;
     ]
 .
 
-saa:LinkedAgent
+saa:RelatedAgent
     rdf:type             sh:NodeShape ;
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
@@ -180,7 +180,7 @@ saa:LinkedAgent
                            sh:class                skos:Concept ;
                            sh:nodeKind             sh:IRI ;
                            sh:order    1.0 ;
-                           sh:path                 saa:relatedAgentRole ;
+                           sh:path                 saa:hasRole ;
                          ] ;
     sh:property          [ rdfs:label  "Gekoppelde Persoon, organisatie of familie"@nl, "Person"@en ;
                            dash:editor memorix:LinkedRecordEditor ;
@@ -188,9 +188,9 @@ saa:LinkedAgent
                            sh:nodeKind sh:IRI ;
                            sh:or       ( [ sh:class rt:Person ] [ sh:class rt:Organisation ] [ sh:class rt:Family ] ) ;
                            sh:order    2.0 ;
-                           sh:path     saa:relatedAgent ;
+                           sh:path     saa:hasAgent ;
                          ] ;
-    sh:targetClass       saa:LinkedAgent
+    sh:targetClass       saa:RelatedAgent
 .
 
 ## Activity
@@ -230,19 +230,18 @@ rico:Activity
 .
 
 ## Detail
-io:Specification
+saa:Specification
     rdf:type             sh:NodeShape ;
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property          [ rdfs:label  "Type Kenmerk"@nl, "Detail type"@en ;
                            sh:datatype xsd:string ;
                            sh:order    1.0 ;
-                           sh:path     io:specificationType
+                           sh:path     saa:specificationType
                          ] ;
     sh:property          [ rdfs:label  "Kenmerk"@nl, "Detail"@en ;
                            sh:datatype xsd:string ;
                            sh:order    2.0 ;
-                           sh:path     io:specificationTextualValue
+                           sh:path     saa:specificationTextualValue
                          ] ;
-    sh:targetClass       io:Specification ;
-.
+    sh:targetClass       saa:Specification .
