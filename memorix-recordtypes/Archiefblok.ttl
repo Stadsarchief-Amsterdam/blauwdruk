@@ -172,11 +172,11 @@ fonds:FindingAid
     sh:targetClass       fonds:FindingAid ;
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property          [ rdfs:label  "Inventarisatie door"@nl , "Creator"@en;
+    sh:property          [ rdfs:label  "Inventarisatie door"@nl , "Inventory creator"@en;
                            sh:datatype xsd:string ;
                            sh:order    1.0 ;
                            sh:path     rico:hasAuthor ] ;
-    sh:property          [ rdfs:label      "Inventarisatie jaar"@nl , "Year of creation"@en ;
+    sh:property          [ rdfs:label      "Inventarisatie jaar"@nl , "Year of inventory creation"@en ;
                            sh:message      "Het jaar moet liggen tussen 1800 en 2200"@nl , "The year must be between 1800 and 2200"@en ;
                            sh:datatype     xsd:gYear ;
                            sh:order        1.0 ;
