@@ -253,13 +253,13 @@ image:DepictedAddress
                            sh:class                skos:Concept ;
                            sh:nodeKind             sh:IRI ;
                          ] ;
-    sh:property          [ rdfs:label  "Huisnummer van"@nl, "Housenumber from"@en ;
+    sh:property          [ rdfs:label  "Huisnummer van"@nl, "House number from"@en ;
                            sh:path     image:houseNumberBegin ;
                            sh:order    2.0 ;
                            sh:maxCount 1 ;
                            sh:datatype xsd:string ;
                          ] ;
-    sh:property          [ rdfs:label  "Huisnummer tot"@nl, "Housenumber to"@en ;
+    sh:property          [ rdfs:label  "Huisnummer tot"@nl, "House number to"@en ;
                            sh:path     image:houseNumberEnd ;
                            sh:order    3.0 ;
                            sh:maxCount 1 ;

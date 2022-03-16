@@ -249,7 +249,7 @@ file:Address
     sh:ignoredProperties ( rdf:type ) ;
     sh:targetClass       file:Address ;
     rdfs:subClassOf      rico:Place ;
-    sh:property          [ rdfs:label              "Straatnaam"@nl ;
+    sh:property          [ rdfs:label              "Straatnaam"@nl, "Street name"@en ;
                            sh:path                 file:street ;
                            sh:order                1.0 ;
                            sh:maxCount             1 ;
@@ -258,13 +258,13 @@ file:Address
                            sh:class                skos:Concept ;
                            sh:nodeKind             sh:IRI ;
                          ] ;
-    sh:property          [ rdfs:label  "Huisnummer van"@nl ;
+    sh:property          [ rdfs:label  "Huisnummer van"@nl, "House number from"@en ;
                            sh:path     file:houseNumberBegin ;
                            sh:order    2.0 ;
                            sh:maxCount 1 ;
                            sh:datatype xsd:string ;
                          ] ;
-    sh:property          [ rdfs:label  "Huisnummer tot"@nl ;
+    sh:property          [ rdfs:label  "Huisnummer tot"@nl, "House number from"@en ;
                            sh:path     file:houseNumberEnd ;
                            sh:order    3.0 ;
                            sh:maxCount 1 ;

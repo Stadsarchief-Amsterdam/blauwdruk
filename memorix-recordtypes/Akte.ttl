@@ -234,13 +234,13 @@ saa:Address
     rdf:type             sh:NodeShape ;
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property          [ rdfs:label  "Huisnummer tot"@nl , "Housenumber to"@en;
+    sh:property          [ rdfs:label  "Huisnummer tot"@nl , "House number to"@en;
                            sh:datatype xsd:string ;
                            sh:maxCount 1 ;
                            sh:order    8.0 ;
                            sh:path     saa:houseNumberEnd
                          ] ;
-    sh:property          [ rdfs:label  "Huisnummer van"@nl , "Housenumber from"@en;
+    sh:property          [ rdfs:label  "Huisnummer van"@nl , "House number from"@en;
                            sh:datatype xsd:string ;
                            sh:maxCount 1 ;
                            sh:order    7.0 ;
