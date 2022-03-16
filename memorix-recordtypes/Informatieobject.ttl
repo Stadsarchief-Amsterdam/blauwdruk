@@ -45,18 +45,10 @@ rt:DigitalRecord
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:targetClass       rt:DigitalRecord ;
-    sh:property          [ rdfs:label   "Bovenliggend archiefblok, groep of bestanddeel"@nl, "Parental fonds, series or file."@en ;
-                           rdfs:comment "Archiefblok, groep of bestanddeel waartoe dit informatieobject behoort."@nl, "Fonds, series or file of which this digital record is part of."@en ;
-                           sh:message   "Kies een archiefblok, groep of bestanddeel om aan te koppelen. Dit is verplicht."@nl, "Choose a fonds, series or file to relate to. This is mandatory." ;
-                           dash:editor  memorix:LinkedRecordEditor ;
-                           sh:group     io:identificationGroup ;
-                            # sh:minCount  1 ;
-                           sh:maxCount  1 ;
-                           sh:nodeKind  sh:IRI ;
-                           sh:or        ( [ sh:class rt:Fonds ] [ sh:class rt:Series ] [ sh:class rt:File ] ) ;
-                           sh:order     1.0 ;
-                           sh:path      rico:isOrWasIncludedIn
-                         ] ;
+    memorix:hasInformationComponent [ rdf:type              memorix:TreePathComponent ;
+                                      memorix:hasRecordtype rt:Fonds, rt:Series, rt:File;
+                                      # sh:path      rico:isOrWasIncludedIn we would like to have this as a pro
+                                    ] ;
     sh:property          [ rdfs:label        "Documentsoort"@nl, "Document Type"@en ;
                            rdfs:comment      "Selecteer een waarde uit de lijst."@nl, "Select a value from the list"@en ;
                            memorix:inTitleAt 1 ;
