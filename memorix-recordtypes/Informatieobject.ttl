@@ -177,7 +177,7 @@ io:RelatedAgent
                          ] ;
     sh:property          [ rdfs:label  "Gekoppelde Persoon, organisatie of familie"@nl, "Person"@en ;
                            dash:editor memorix:LinkedRecordEditor ;
-                           sh:message  "Kies een persoon, organisatie of familie uit de lijst."@nl ;
+                           sh:message  "Kies een persoon, organisatie of familie uit de lijst."@nl, "Please choose a person, organisation or family"@en ;
                            sh:nodeKind sh:IRI ;
                            sh:or       ( [ sh:class rt:Person ] [ sh:class rt:Organisation ] [ sh:class rt:Family ] ) ;
                            sh:order    2.0 ;
