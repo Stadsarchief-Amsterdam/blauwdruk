@@ -37,7 +37,7 @@ rt:Fonds
     rdf:type             sh:NodeShape,
                          memorix:Recordtype ;
     rdfs:label           "Archiefblok"@nl, "Fonds"@en ;
-    rdfs:comment         "Stadsarchief recordtype voor Archiefblok"@nl ;
+    rdfs:comment         "Stadsarchief recordtype voor Archiefblok"@nl, "Record type for fonds"@en ;
     memorix:hasInformationComponent [ rdf:type  memorix:DepotLocationComponent ] ;
     dc:identifier        "Fonds" ;
     sh:targetClass       rt:Fonds ;

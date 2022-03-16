@@ -24,25 +24,25 @@
 
 file:identificationGroup
     rdf:type   sh:PropertyGroup ;
-    rdfs:label "Identificatie"@nl ;
+    rdfs:label "Identificatie"@nl , "Identification"@en ;
     sh:order   1.0 ;
 .
 
 file:contentDescriptionGroup
     rdf:type   sh:PropertyGroup ;
-    rdfs:label "Beschrijving"@nl ;
+    rdfs:label "Beschrijving"@nl, "Description"@en ;
     sh:order   2.0 ;
 .
 
 file:locationsGroup
     rdf:type   sh:PropertyGroup ;
-    rdfs:label "Locaties"@nl ;
+    rdfs:label "Locaties"@nl, "Locations"@en ;
     sh:order   3.0 ;
 .
 
 file:managementGroup
     rdf:type   sh:PropertyGroup ;
-    rdfs:label "Beheer"@nl ;
+    rdfs:label "Beheer"@nl, "Manage"@en ;
     sh:order   5.0 ;
 .
 
