@@ -6,6 +6,7 @@
 
 @prefix rt:             </resources/recordtypes/> .
 @prefix file:           </resources/recordtypes/File#> .
+@prefix saa:            <https://data.archief.amsterdam/ontology#> . #TBD
 
 @prefix dc:             <http://purl.org/dc/elements/1.1/> .
 @prefix sh:             <http://www.w3.org/ns/shacl#> .
@@ -111,7 +112,7 @@ rt:File
                                     ] ;
     sh:property                     [ rdfs:label           "Gekoppelde personen"@nl, "Linked persons"@en ;
                                       memorix:searchWeight 3.0 ;
-                                      sh:class             file:RelatedAgent ;
+                                      sh:class             saa:RelatedAgent ;
                                       sh:group             file:contentDescriptionGroup ;
                                       sh:path              file:hasOrHadRelatedAgent ;
                                       sh:nodeKind          sh:BlankNode ;
@@ -271,7 +272,7 @@ file:Address
                            sh:datatype xsd:string ;
                          ] .
 
-file:RelatedAgent
+saa:RelatedAgent
     rdf:type             sh:NodeShape ;
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
@@ -281,7 +282,7 @@ file:RelatedAgent
                            sh:class                skos:Concept ;
                            sh:nodeKind             sh:IRI ;
                            sh:order                1.0 ;
-                           sh:path                 file:hasRole ;
+                           sh:path                 saa:hasRole ;
                          ] ;
     sh:property          [ rdfs:label  "Persoon"@nl, "Person"@en ;
                            dash:editor memorix:LinkedRecordEditor ;
@@ -289,9 +290,9 @@ file:RelatedAgent
                            sh:nodeKind sh:IRI ;
                            sh:or       ( [ sh:class rt:Person ] [ sh:class rt:Organisation ] [ sh:class rt:Family ] ) ;
                            sh:order    2.0 ;
-                           sh:path     file:hasAgent ;
+                           sh:path     saa:hasAgent ;
                          ] ;
-    sh:targetClass       file:RelatedAgent
+    sh:targetClass       saa:RelatedAgent
 .
 
 

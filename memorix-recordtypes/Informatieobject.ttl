@@ -91,7 +91,7 @@ rt:DigitalRecord
                          ] ;
     sh:property          [ rdfs:label  "Gerelateerde persoon, organisatie of familie"@nl, "Related person, organisation or family"@en ;
                            sh:path     io:hasOrHadRelatedAgent ;
-                           sh:class    io:RelatedAgent ;
+                           sh:class    saa:RelatedAgent ;
                            sh:maxCount 100 ;
                            sh:order    5.0 ;
                            sh:group    io:contentDescriptionGroup ;
@@ -163,7 +163,7 @@ rico:Identifier
                          ]
 .
 
-io:RelatedAgent
+saa:RelatedAgent
     rdf:type             sh:NodeShape ;
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
@@ -173,7 +173,7 @@ io:RelatedAgent
                            sh:class                skos:Concept ;
                            sh:nodeKind             sh:IRI ;
                            sh:order                1.0 ;
-                           sh:path                 io:hasRole ;
+                           sh:path                 saa:hasRole ;
                          ] ;
     sh:property          [ rdfs:label  "Gekoppelde Persoon, organisatie of familie"@nl, "Person"@en ;
                            dash:editor memorix:LinkedRecordEditor ;
@@ -181,9 +181,9 @@ io:RelatedAgent
                            sh:nodeKind sh:IRI ;
                            sh:or       ( [ sh:class rt:Person ] [ sh:class rt:Organisation ] [ sh:class rt:Family ] ) ;
                            sh:order    2.0 ;
-                           sh:path     io:hasAgent ;
+                           sh:path     saa:hasAgent ;
                          ] ;
-    sh:targetClass       io:RelatedAgent
+    sh:targetClass       saa:RelatedAgent
 .
 
 ## Activity
