@@ -297,7 +297,7 @@ saa:RelatedAgent
     rdf:type             sh:NodeShape ;
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property          [ rdfs:label              "Rol"@nl, "Role of related person"@en ;
+    sh:property          [ rdfs:label              "Rol vervaardiger"@nl, "Role creator"@en ;
                            dash:editor             memorix:VocabularyEditor ;
                            memorix:conceptSchemeIn vocabularies:0dada355-9e1e-4f1f-8d86-0455d6067bb7 ;
                            sh:class                skos:Concept ;
@@ -305,9 +305,9 @@ saa:RelatedAgent
                            sh:order                1.0 ;
                            sh:path                 saa:hasRole ;
                          ] ;
-    sh:property          [ rdfs:label  "Actor"@nl, "Agent"@en ;
+    sh:property          [ rdfs:label  "Vervaardiger"@nl, "Creator"@en ;
                            dash:editor memorix:LinkedRecordEditor ;
-                           sh:message  "Kies een persoon, organisatie of familie uit de lijst."@nl ;
+                           sh:message  "Kies een persoon, organisatie of familie uit de lijst."@nl, "Please choose a person, organisation or family"@en ;
                            sh:nodeKind sh:IRI ;
                            sh:or       ( [ sh:class rt:Person ]
                                          [ sh:class rt:Organisation ]
