@@ -222,7 +222,7 @@ saa:HistoricalAddress1853
 deed:HasOrHadModernLocationShape
     rdf:type    sh:PropertyShape ;
     rdfs:label  "Modern adres"@nl, "Modern Address"@en ;
-    sh:class    saa:ModernAddress ;
+    sh:class    saa:Address ;
     sh:group    deed:locationGroup ;
     sh:maxCount 1 ;
     sh:nodeKind sh:BlankNode ;
@@ -230,7 +230,7 @@ deed:HasOrHadModernLocationShape
     sh:path     saa:isAssociatedWithModernAddress .
 
 
-saa:ModernAddress
+saa:Address
     rdf:type             sh:NodeShape ;
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
@@ -255,7 +255,7 @@ saa:ModernAddress
                            sh:order                6.0 ;
                            sh:path                 saa:street
                          ] ;
-    sh:targetClass       saa:ModernAddress .
+    sh:targetClass       saa:Address .
 
 
 deed:AddressHouseNameShape
