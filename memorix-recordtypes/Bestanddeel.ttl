@@ -103,7 +103,8 @@ rt:File
                                       sh:order             1.0 ;
                                       sh:path              rico:isAssociatedWithDate
                                     ] ;
-    sh:property                     [ rdfs:label  "Uiterlijke vorm"@nl ;
+    sh:property                     [ rdfs:label  "Uiterlijke vorm"@nl, "Resource extent"@en ;
+                                      html:placeholder  "Bv 2 pakken"@nl, "eg 2 photographs"@en ;
                                       sh:datatype xsd:string ;
                                       sh:group    file:contentDescriptionGroup ;
                                       sh:maxCount 1 ;
@@ -119,8 +120,8 @@ rt:File
                                       sh:maxCount          100 ;
                                       sh:order             4.0 ;
                                     ] ;
-    sh:property                     [ rdfs:label   "Betreffend adres"@nl ;
-                                      rdfs:comment "Vermelde straatnamen en huisnummers"@nl ;
+    sh:property                     [ rdfs:label   "Betreffend adres"@nl, "Associated with address"@en ;
+                                      rdfs:comment "Straatnamen en huisnummers"@nl, "Street and house number"@en ;
                                       sh:class     saa:Address ;
                                       sh:path      file:isAssociatedWithAddress ;
                                       sh:order     1.0 ;
@@ -144,42 +145,42 @@ rt:File
                                       sh:maxCount 100 ;
                                       sh:path     file:hasOrHadSubjectCoordinates
                                     ] ;
-    sh:property                     [ rdfs:label   "Digitaal geboren?"@nl ;
-                                      rdfs:comment "Geeft aan of dit om een oorspronkelijk digitaal geboren stuk gaat"@nl ;
+    sh:property                     [ rdfs:label   "Digitaal geboren?"@nl, "Digital born?"@en ;
+                                      rdfs:comment "Geeft aan of dit om een oorspronkelijk digitaal geboren stuk gaat"@nl, "Whether the records were digital born"@en  ;
                                       sh:datatype  xsd:boolean ;
                                       sh:group     file:managementGroup ;
                                       sh:maxCount  1 ;
                                       sh:order     1.0 ;
                                       sh:path      file:digitalBorn
                                     ] ;
-    sh:property                     [ rdfs:label   "Gedigitaliseerd?"@nl ;
-                                      rdfs:comment "Geeft aan of dit stuk gedigitaliseerd is"@nl ;
+    sh:property                     [ rdfs:label   "Gedigitaliseerd?"@nl, "Digitized?"@en ;
+                                      rdfs:comment "Geeft aan of dit stuk gedigitaliseerd is"@nl, "Whether the records were digitized or not"@en ;
                                       sh:datatype  xsd:boolean ;
                                       sh:group     file:managementGroup ;
                                       sh:maxCount  1 ;
                                       sh:order     2.0 ;
                                       sh:path      file:digitised
                                     ] ;
-    sh:property                     [ rdfs:label  "Bergingsnummers"@nl ;
+    sh:property                     [ rdfs:label  "Bergingsnummers"@nl, "Old storage numbers (bergingsnummers)"@en  ;
+                                      dash:editor dash:TextAreaEditor ;
+                                      memorix:audience memorix:audienceInternal ;
                                       sh:datatype xsd:string ;
                                       sh:group    file:managementGroup ;
-                                      dash:editor dash:TextAreaEditor ;
                                       sh:maxCount 1 ;
                                       sh:order    4.0 ;
                                       sh:path     file:storageNumber
                                     ] ;
-    sh:property                     [ rdfs:label       "Interne opmerking"@nl ;
+    sh:property                     [ rdfs:label       "Interne opmerking"@nl, "Internal remarks"@en ;
                                       dash:editor      dash:TextAreaEditor ;
                                       memorix:audience memorix:audienceInternal ;
                                       sh:datatype      xsd:string ;
                                       sh:group         file:managementGroup ;
                                       sh:maxCount      1 ;
                                       sh:order         5.0 ;
-                                      sh:path          file:internalRemarks
+                                      sh:path          saa:internalRemarks
                                     ] ;
-    sh:property                     [ rdfs:label   "Duplicaat (kopie op film of microfiche)"@nl ;
-                                      rdfs:comment "Kopieën van dit bestanddeel op film of microfiche."@nl ;
-                                      sh:message   "Selecteer een duplicaat (filmnummer of microfiche)"@nl ;
+    sh:property                     [ rdfs:label   "Duplicaat (kopie op film of microfiche)"@nl, "Duplicate (copy on film or microfiche)"@en ;
+                                      sh:message   "Selecteer een duplicaat (filmnummer of microfiche)"@nl, "Please select a duplicate file"@en ;
                                       dash:editor  memorix:LinkedRecordEditor ;
                                       sh:group     file:managementGroup ;
                                       sh:maxCount  1 ;
@@ -188,9 +189,8 @@ rt:File
                                       sh:order     6.0 ;
                                       sh:path      file:duplicate
                                     ] ;
-    sh:property                     [ rdfs:label   "Zie ook - verwijzing naar ander bestanddeel"@nl ;
-                                      rdfs:comment "Sommige bestanddelen verwijzen naar andere bestanddelen."@nl ;
-                                      sh:message   "Selecteer een ander bestanddeel"@nl ;
+    sh:property                     [ rdfs:label   "Zie ook - verwijzing naar ander bestanddeel"@nl, "See also - link to another file"@en ;
+                                      sh:message   "Selecteer een ander bestanddeel"@nl, "Please select another file to link to"@en ;
                                       dash:editor  memorix:LinkedRecordEditor ;
                                       sh:group     file:managementGroup ;
                                       sh:maxCount  1 ;
@@ -199,12 +199,12 @@ rt:File
                                       sh:order     7.0 ;
                                       sh:path      rdfs:seeAlso
                                     ] ;
-    sh:property                     [ rdfs:label   "Status"@nl ;
-                                      rdfs:comment "Status van het inventarisnummer. aanwezig, vervallen, te vernietigen, vermist, vernietigd."@nl ;
-                                      sh:message   "Status is verplicht. Moet een van de volgende waardes zijn: aanwezig, vervallen, te vernietigen, vermist, vernietigd"@nl ;
+    sh:property                     [ rdfs:label   "Status"@nl, "Status"@en ;
+                                      sh:message   "Status is verplicht. Moet een van de volgende waardes zijn: aanwezig, vervallen, te vernietigen, vermist, vernietigd"@nl, "Must be one of the following (Dutch) terms: aanwezig, vervallen, te vernietigen, vermist, vernietigd. Mandatory." ;
                                       sh:datatype  xsd:string ;
                                       sh:minCount  1 ;
                                       sh:maxCount  1 ;
+                                      memorix:audience memorix:audienceInternal ;
                                       sh:in        ( "aanwezig" "vervallen" "te vernietigen" "vermist" "vernietigd" ) ;
                                       sh:group     file:managementGroup ;
                                       sh:order     8.0 ;
@@ -216,7 +216,7 @@ rico:Identifier
     rdf:type             sh:NodeShape ;
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property          [ rdfs:label           "Inventarisnummer"@nl ;
+    sh:property          [ rdfs:label   "Inventarisnummer"@nl, "Inventory number"@en ;
                            dash:singleLine      true ;
                            memorix:inTitleAt    1.0 ;
                            memorix:searchWeight 3.0 ;
@@ -226,7 +226,7 @@ rico:Identifier
                            sh:order             1.0 ;
                            sh:path              file:inventoryNumber
                          ] ;
-    sh:property          [ rdfs:label           "Inventarisnummer toevoeging"@nl ;
+    sh:property          [ rdfs:label           "Inventarisnummer toevoeging"@nl, "Inventory number addition"@en ;
                            dash:singleLine      true ;
                            memorix:inTitleAt    2.0 ;
                            memorix:searchWeight 3.0 ;
@@ -281,7 +281,7 @@ saa:Address
                            sh:maxCount 1 ;
                            sh:datatype xsd:string ;
                          ] ;
-    sh:property          [ rdfs:label  "Huisnummer tot"@nl, "House number from"@en ;
+    sh:property          [ rdfs:label  "Huisnummer tot"@nl, "House number to"@en ;
                            sh:path     saa:houseNumberEnd ;
                            sh:order    3.0 ;
                            sh:maxCount 1 ;
