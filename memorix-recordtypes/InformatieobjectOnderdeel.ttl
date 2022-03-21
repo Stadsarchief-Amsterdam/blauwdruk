@@ -9,118 +9,120 @@
 @prefix memorix:        <http://memorix.io/ontology#> .
 @prefix vocabularies:   </resources/vocabularies/conceptschemes/> .
 @prefix rt:             </resources/recordtypes/> .
-@prefix io:             </resources/recordtypes/DigitalRecord#> .
+@prefix iop:             </resources/recordtypes/DigitalRecordPart#> .
 @prefix saa:            <https://data.archief.amsterdam/ontology#> . #TBD
 @prefix rico:           <https://www.ica.org/standards/RiC/ontology#> .
 @prefix ric-rst:        <https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#> .
 @prefix ric-dft:        <https://www.ica.org/standards/RiC/vocabularies/documentaryFormTypes#> .
 
+
+iop:contentDescriptionGroup
+    rdf:type   sh:PropertyGroup ;
+    rdfs:label "Beschrijving"@nl, "Description"@en ;
+    sh:order   1.0 .
+
+iop:managementGroup
+    rdf:type   sh:PropertyGroup ;
+    rdfs:label "Beheer"@nl, "Manage"@en ;
+    sh:order   2.0 ;
+.
+
 rt:DigitalRecordPart
-    a                               memorix:Recordtype , sh:NodeShape ;
-    rdfs:label                      "Digitaal informatieobjectonderdeel"@nl , "Digital RecordPart"@en;
+    a                               memorix:Recordtype, sh:NodeShape ;
+    rdfs:label                      "Digitaal informatieobjectonderdeel"@nl, "Digital Record Part"@en ;
     rdfs:comment                    "Beschrijvingen van computerbestanden als bijlage bij een Digitaal Informatieobject Stadsarchief Amsterdam"@nl ;
     dc:identifier                   "DigitalRecordPart" ;
     sh:closed                       true ;
     sh:ignoredProperties            ( rdf:type ) ;
     sh:targetClass                  rt:DigitalRecordPart ;
-    sh:property                     [ rdfs:label              "Type document"@nl , "Document Type"@en ;
-                                      rdfs:comment            "Selecteer een waarde uit de lijst."@nl , "Select a value from the list"@en ;
-                                      sh:path                 rico:hasDocumentaryFormType ;
-                                      sh:maxCount             1 ;
-                                      sh:order                1.0 ;
-                                      sh:group                io:contentDescriptionGroup ;
-                                      dash:editor             memorix:VocabularyEditor ;
-                                      sh:class                skos:Concept ;
-                                      memorix:conceptSchemeIn vocabularies:3765628c-d755-3e25-8af5-f6178cbb7937 ; #replaced by uuid in code
-                                      sh:nodeKind             sh:IRI ; ] ;
-    sh:property                     [ rdfs:label              "Titel"@nl , "Title"@en ;
-                                      sh:path                 rico:title ;
-                                      memorix:inTitleAt       1.0 ;
-                                      sh:minCount             1 ;
-                                      sh:maxCount             1 ;
-                                      sh:order                2.0 ;
-                                      sh:message              "De titel zou niet leeg mogen zijn"@nl, "Empty value for title field should not be allowed"@en ;
-                                      sh:group                io:contentDescriptionGroup ;
-                                      dash:editor             dash:TextFieldEditor ;
-                                      sh:datatype             xsd:string ; ] ;
-    sh:property                     [ rdf:type                sh:PropertyShape ;
-                                      rdfs:label              "Beschrijving"@nl , "Description"@en;
-                                      sh:path                 rico:scopeAndContent ;
-                                      sh:order                3.0 ;
-                                      sh:group                io:contentDescriptionGroup ;
-                                      dash:editor             dash:TextAreaEditor ;
-                                      dash:singleLine         false ;
-                                      sh:datatype             xsd:string ; ] ;
-    sh:property                     [ rdfs:label          "Datering"@nl , "Dates"@en;
-                                      rdfs:comment        "Kan een exacte datum (vul dan twee keer dezelfde datum in) of een periode zijn"@nl , "Can be a specific date (than fill in the same date twice) or a daterange"@en ;
+    memorix:hasInformationComponent [ rdf:type              memorix:TreePathComponent ;
+                                      memorix:hasRecordtype rt:DigitalRecord ;
+                                        # sh:path      rico:isOrWasPartOf we would like to have this as a pro
+                                    ] ;
+    sh:property                     [ rdf:type             sh:PropertyShape ;
+                                      rdfs:label           "Beschrijving"@nl, "Description"@en ;
+                                      memorix:inTitleAt    1 ;
+                                      memorix:searchWeight 5.0 ;
+                                      sh:path              rico:title ;
+                                      sh:order             1.0 ;
+                                      sh:group             iop:contentDescriptionGroup ;
+                                      dash:editor          dash:TextAreaEditor ;
+                                      dash:singleLine      false ;
+                                      sh:datatype          xsd:string ;
+                                    ] ;
+    sh:property                     [ rdf:type            sh:PropertyShape ;
+                                      rdfs:label          "Datering"@nl, "Dates Resource"@en ;
+                                      rdfs:comment        "Datum van vorming van het archiefstuk"@nl, "Date of creation of the record"@en ;
                                       memorix:inSummaryAt 1 ;
-                                      sh:class            rico:DateRange ;
-                                      sh:nodeKind         sh:BlankNode ;
-                                      sh:group            io:contentDescriptionGroup ;
+                                      sh:path             iop:dateRecordResource ;
+                                      sh:group            iop:contentDescriptionGroup ;
+                                      dash:editor         memorix:DateEditor ;
+                                      sh:datatype         xsd:integer ;
+                                      sh:order            2.0 ;
                                       sh:maxCount         1 ;
-                                      sh:order            4.0 ;
-                                      sh:path             rico:isAssociatedWithDate ] ;
-    sh:property          [            rdfs:label   "Onderdeel van"@nl , "Part of"@en ;
-                                      rdfs:comment "Digitaal Informatieobject waartoe deel onderdeel behoort."@nl , "Digital Record of which this part is part of."@en;
-                                      sh:message   "Kies een digitaal informatieobject om aan te koppelen. Dit is verplicht."@nl , "Choose a digital record to relate to. This is mandatory.";
-                                      dash:editor  memorix:LinkedRecordEditor ;
-                                      sh:group     io:partitionGroup ;
-                                      sh:minCount  1 ;
-                                      sh:maxCount  1 ;
-                                      sh:nodeKind  sh:IRI ;
-                                      sh:or        ( [ sh:class rt:DigitalRecord ] ) ;
-                                      sh:order     5.0 ;
-                                      sh:path      rico:isOrWasIncludedIn ] ;
-    sh:property                     [ rdfs:label              "Oude nummers"@nl, "Obsolete Numbers"@en ;
-                                      sh:path                 saa:obsoleteNumbers ;
-                                      sh:datatype             xsd:string ;
-                                      sh:order                6.0 ;
-                                      sh:group                io:managementGroup ; ] ;
-    sh:property                     [ rdfs:label              "Interne opmerkingen"@nl, "Internal Remarks"@en ;
-                                      sh:path                 saa:internalRemarks ;
-                                      sh:datatype             xsd:string ;
-                                      sh:order                7.0 ;
-                                      sh:group                io:managementGroup ;
-                                      dash:editor             dash:TextAreaEditor ; ] ;
+                                    ] ;
+    sh:property                     [ rdfs:label  "Kenmerk"@nl, "Specification"@en ;
+                                      sh:class    saa:Specification ;
+                                      sh:group    iop:contentDescriptionGroup ;
+                                      sh:maxCount 100 ;
+                                      sh:nodeKind sh:BlankNode ;
+                                      sh:order    7.0 ;
+                                      sh:path     saa:hasSpecification
+                                    ] ;
+    sh:property                     [ rdfs:label  "Externe identificatie"@nl, "Identifier"@en ;
+                                      rdfs:comment
+                                                  "Allerlei identificeren kenmerken die in de oorspronkelijk data was opgenomen. Kan bijvoorbeeld ook de oorspronkelijke bestandsnaam zijn al dan niet met pad."@nl,
+                                                  "Fonds, series or file of which this digital record is part of."@en ;
+                                      sh:path     rico:hasOrHadIdentifier ;
+                                      sh:class    rico:Identifier ;
+                                      sh:nodeKind sh:BlankNode ;
+                                      sh:order    9.0 ;
+                                      sh:group    iop:contentDescriptionGroup ;
+                                    ] ;
+    sh:property                     [ rdfs:label  "Interne opmerkingen"@nl, "Internal Remarks"@en ;
+                                      sh:path     iop:internalRemarks ;
+                                      sh:datatype xsd:string ;
+                                      sh:order    1.0 ;
+                                      sh:group    iop:managementGroup ;
+                                      dash:editor dash:TextAreaEditor ;
+                                    ] ;
 .
 
-io:contentDescriptionGroup
-    rdf:type   sh:PropertyGroup ;
-    rdfs:label "Inhoudelijke beschrijving"@nl, "Content Description"@en ;
-    sh:order   1.0 ;
-.
+## Identifier
+rico:Identifier
+    a                    sh:NodeShape ;
+    sh:targetClass       rico:Identifier ;
+    sh:closed            true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property          [ rdfs:label  "Identifier type"@en, "Type identificatie"@nl ;
+                           sh:message  "rico:Identifier MUST link to exactly 1 rico:IdentifierType with rico:hasIdentifierType"@en ;
+                           sh:path     rico:hasIdentifierType ;
+                           sh:order    1.0 ;
+                           sh:datatype xsd:string ;
+                           sh:maxCount 1 ;
+                         ] ;
+    sh:property          [ rdfs:label  "External Identifier"@en, "Identificatie"@nl ;
+                           sh:message  "This node MUST link to exactly 1 xsd:string with rico:textualValue"@en ;
+                           sh:path     rico:textualValue ;
+                           sh:order    2.0 ;
+                           sh:datatype xsd:string ;
+                           sh:maxCount 1 ;
+                         ] .
 
-io:managementGroup
-    rdf:type   sh:PropertyGroup ;
-    rdfs:label "Beheer"@nl , "Manage"@en ;
-    sh:order  2.0 ;
-.
-
-io:partitionGroup
-    rdf:type   sh:PropertyGroup ;
-    rdfs:label "Indeling"@nl , "Partitioning"@en ;
-    sh:order   3.0 ;
-.
-
-rico:DateRange
+## Detail
+saa:Specification
     rdf:type             sh:NodeShape ;
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property          [ rdfs:label  "Datum (tekst)"@nl, "Date (text)"@en ;
+    sh:property          [ rdfs:label  "Type Kenmerk"@nl, "Detail type"@en ;
                            sh:datatype xsd:string ;
                            sh:order    1.0 ;
-                           sh:path     rico:expressedDate ] ;
-    sh:property          [ rdfs:label  "Begindatum"@nl, "Begin Date"@en ;
-                           sh:datatype xsd:date ;
+                           sh:path     saa:specificationType
+                         ] ;
+    sh:property          [ rdfs:label  "Kenmerk"@nl, "Detail"@en ;
+                           sh:datatype xsd:string ;
                            sh:order    2.0 ;
-                           sh:path     rico:hasBeginningDate ] ;
-    sh:property          [ rdfs:label  "Einddatum"@nl, "End Date"@en ;
-                           sh:datatype xsd:date ;
-                           sh:order    3.0 ;
-                           sh:path     rico:hasEndDate ] ;
-    sh:targetClass       rico:DateRange ;
-.
+                           sh:path     saa:specificationTextualValue
+                         ] ;
+    sh:targetClass       saa:Specification .
 
-saa:obsoleteNumbers a rdf:Property ;
-  rdfs:subPropertyOf rico:identifier ;
-.
