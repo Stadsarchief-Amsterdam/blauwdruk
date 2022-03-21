@@ -341,7 +341,7 @@ report:OtherTreatmentShape
 
 report:InternalRemarksShape
     a                sh:PropertyShape ;
-    rdfs:label       "Interne opmerking"@nl, "Internal remark"@en ;
+    rdfs:label       "Interne opmerking"@nl, "Internal remarks"@en ;
     dash:editor      dash:TextAreaEditor ;
     memorix:audience memorix:audienceInternal ;
     sh:datatype      xsd:string ;

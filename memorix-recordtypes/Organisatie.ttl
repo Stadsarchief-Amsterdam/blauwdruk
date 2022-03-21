@@ -71,7 +71,7 @@ rt:Organisation
                                     memorix:searchWeight 2.0 ;
                                     sh:datatype          xsd:string ;
                                     sh:group             organisation:alternativeGroup ;
-                                    sh:maxCount          100 ;
+                                    sh:maxCount          10 ;
                                     sh:order             3.0 ;
                                     sh:path              schema:alternateName
                                   ] ;

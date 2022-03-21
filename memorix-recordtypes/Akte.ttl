@@ -130,7 +130,7 @@ deed:HasOrHadSubjectShape
 
 deed:InternalRemarksShape
     rdf:type    sh:PropertyShape ;
-    rdfs:label  "Internal remark"@en, "Interne opmerking"@nl ;
+    rdfs:label  "Internal remarks"@en, "Interne opmerking"@nl ;
     dash:editor dash:TextAreaEditor ;
     sh:datatype xsd:string ;
     sh:group    deed:managementGroup ;

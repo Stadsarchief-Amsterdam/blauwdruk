@@ -59,7 +59,7 @@ rt:Family
                                     memorix:searchWeight 2.0 ;
                                     sh:datatype          xsd:string ;
                                     sh:group             family:alternativeGroup ;
-                                    sh:maxCount          1 ;
+                                    sh:maxCount          10 ;
                                     sh:order             1.0 ;
                                     sh:path              schema:alternateName
                                   ] ;
@@ -74,11 +74,12 @@ rt:Family
                                     sh:order                2.0 ;
                                     sh:path                 owl:sameAs
                                   ] ;
-    sh:property                   [ rdfs:label  "Interne opmerking"@nl ;
-                                    dash:editor dash:TextAreaEditor ;
-                                    sh:datatype xsd:string ;
-                                    sh:group    family:managementGroup ;
-                                    sh:order    1.0 ;
-                                    sh:path     family:internalRemarks ;
+    sh:property                   [ rdfs:label       "Interne opmerking"@nl, "Internal remarks"@en ;
+                                    dash:editor      dash:TextAreaEditor ;
+                                    memorix:audience memorix:audienceInternal ;
+                                    sh:datatype      xsd:string ;
+                                    sh:group         family:managementGroup ;
+                                    sh:order         1.0 ;
+                                    sh:path          family:internalRemarks ;
                                   ] ;
 .

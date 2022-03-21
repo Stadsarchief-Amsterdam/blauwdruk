@@ -128,6 +128,7 @@ rt:Person
                            sh:path                  owl:sameAs ] ;
     sh:property          [ rdfs:label               "Interne opmerking"@nl, "Internal remarks"@en ;
                            dash:editor              dash:TextAreaEditor ;
+                           memorix:audience         memorix:audienceInternal ;
                            sh:datatype              xsd:string ;
                            sh:group                 person:managementGroup ;
                            sh:maxCount              1 ;
@@ -135,6 +136,7 @@ rt:Person
                            sh:path                  person:internalRemarks ; ] ;
     sh:property          [ rdfs:label               "Bibliotheek descriptor?"@nl, "Library descriptor?"@en  ;
                            rdfs:comment             "Of deze naam afkomstig is uit de bibliotheek descriptoren lijst."@nl, "Is this a descriptor from the SCope library migration?"@en  ;
+                           memorix:audience         memorix:audienceInternal ;
                            sh:datatype              xsd:boolean ;
                            sh:group                 person:managementGroup ;
                            sh:maxCount              1 ;
