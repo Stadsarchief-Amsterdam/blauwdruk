@@ -31,7 +31,7 @@
   	dct:description "We introduce this ontology because we require different mandatory properties for different subClasses of entities in the RiC ontology. We have defined shapes in SHACL to validate data according to these requirement."
 
 
-# Blauwdruk entities
+# CLASSES Blauwdruk entities
 ## subclasses of rico:RecordResource
 saa:Acquisition a owl:Class ;
 	rdfs:subClassOf rico:RecordResource ;
@@ -105,7 +105,7 @@ saa:PersonObservation a owl:Class ;
 
 ## subclasses for library (TBD: schema:Book, schema:Periodical, schema:PublicationVolume)
 
-# Classes from standards needed for metadata with blauwdruk entities
+# CLASSES from standards needed for metadata with blauwdruk entities
 ## subclasses of rico:Record
 saa:FindingAid a owl:Class ;	
 	rdfs:subClassOf rico:Record ;
@@ -141,7 +141,7 @@ saa:HistoricalAddress1851 a owl:Class ;
 saa:HistoricalAddress1853 a owl:Class ;
     rdfs:subClassOf rico:Place .
 
-# Classes defined by SAA without relation with other standards
+# CLASSES defined by SAA without relation with other standards
 saa:Specification a owl:Class ;
 	rdfs:label "Bijzonderheden" ;
 	rdfs:comment ""@nl .
@@ -150,11 +150,51 @@ saa:RelatedAgent a owl:Class ;
 	rdfs:label "Gekoppelde actor met rol / type relatie" ;
 	rdfs:comment ""@nl .
 
-# properties
+# PROPERTIES
 
 ## general properties
 saa:internalRemarks a rdf:Property ;
 	rdfs:domain rico:Thing .
+
+## properties saa:Acquisition
+saa:yearOfTransfer a rdf:Property ;
+	rdfs:subPropertyOf rico:isAssociatedWithDate ;
+	rdfs:domain saa:Acquisition .
+
+saa:resultsIn a rdf:Property ;
+	rdfs:domain saa:Acquisition ;
+	rdfs:range saa:Fonds, saa:File .
+
+saa:descriptionOfMaterial a rdf:Property ;
+	rdfs:domain saa:Acquisition .
+
+saa:dateReceived a rdf:Property ;
+	rdfs:subPropertyOf rico:isAssociatedWithDate ;
+	rdfs:domain saa:Acquisition .
+
+saa:contact a rdf:Property ;
+	rdfs:domain saa:Acquisition .
+
+saa:legalTitle a rdf:Property ;
+	rdfs:domain saa:Acquisition .
+
+saa:careTaker a rdf:Property ;
+	rdfs:domain saa:Acquisition .
+
+saa:typeOfMaterial a rdf:Property ;
+	rdfs:domain saa:Acquisition .
+
+saa:isGovernmentalArchive a rdf:Property ;
+	rdfs:domain saa:Acquisition .
+
+saa:acquisitionFile a rdf:Property ;
+	rdfs:domain saa:Acquisition .
+
+saa:acquisitionFile a rdf:Property ;
+	rdfs:domain saa:Acquisition .
+
+saa:isDescribed a rdf:Property ;
+	rdfs:domain saa:Acquisition .
 
 ## properties saa:Fonds
 saa:status a rdfs:Property ;
