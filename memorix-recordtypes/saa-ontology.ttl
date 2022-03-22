@@ -176,7 +176,7 @@ saa:hasOldestRecord a rdfs:Property ;
 
 ## properties saa:File
 saa:hasOrHadRelatedAgent a rdfs:Property ;
-	rdfs:domain saa:File ;
+	rdfs:domain saa:File, saa:DigitalRecord ;
 	rdfs:range saa:RelatedAgent .
 
 saa:isAssociatedWithAddress a rdfs:Property ;
@@ -296,6 +296,28 @@ saa:hasOrHadSubjectCoordinates a rdf:Property ;
 	rdfs:domain saa:Image ;
 	rdfs:range memorix:GeoCoordinates .
 
+# properties saa:DigitalRecord
+saa:dateRecordResource a rd:Property ;
+	rdfs:subPropertyOf rico:date ;
+	rdfs:domain saa:DigitalRecord .
+
+# saa:hasOrHadRelatedAgent, see "properties saa:File" 
+# saa:hasSpecification, see "properties saa:PersonObservation"
+# saa:isAssociatedWithAddress, see "properties saa:File"
+# saa:hasOrHadSubjectLocation, see "properties saa:Image"
+# saa:hasOrHadSubjectCoordinates, see "properties saa:Image"
+# saa:internalRemarks, see "general properties"
+
+
+# properties rico:Activity
+saa:dateActivity a rdfs:Property ;
+	rdfs:subPropertyOf rico:date ;
+	rdfs:domain rico:Activity .
+
+saa:activityBackground a rdfs:Property ;
+	rdfs:domain rico:Activity .
+
+
 # properties saa:HistoricalAddress1851
 saa:historicalAddressKleinNumber a rdf:Property ;
 	rdfs:domain saa:HistorialAddress1851 .
@@ -335,7 +357,7 @@ saa:deceased a rdf:Property ;
 	rdfs:domain saa:PersonObservation .
 
 saa:hasSpecification a rdf:Property ;
-	rdfs:domain saa:PersonObservation ;
+	rdfs:domain saa:PersonObservation, saa:DigitalRecord ;
 	rdfs:range saa:Specification .
 
 # properties bij saa:RelatedAgent
