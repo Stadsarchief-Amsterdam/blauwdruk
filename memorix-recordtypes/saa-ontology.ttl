@@ -76,7 +76,11 @@ saa:DigitalRecordPart a owl:Class ;
 	rdfs:label "Digitaal Informatieobjectonderdeel"@nl ;
 	rdfs:comment ""@nl .
 
-## subclasses of rico:Instantiation (TBD: saa:Duplicate, saa:ConservationData)
+## subclasses of rico:Instantiation (TBD: saa:ConservationData)
+saa:Duplicate a owl:Class ;
+	rdfs:subClassOf rico:Instantiation ;
+	rdfs:label "Duplicaat"
+	rdfs:comment "HIERVAN IS NOG GEEN RECORDTYPE DEFINITIE."@nl .
 
 ## subclasses of rico:Agent
 saa:Family a owl:Class ;
@@ -137,32 +141,74 @@ saa:HistoricalAddress1851 a owl:Class ;
 saa:HistoricalAddress1853 a owl:Class ;
     rdfs:subClassOf rico:Place .
 
-## subclasses of rico:Agent ?
-saa:RelatedAgent a owl:Class .
-
 # Classes defined by SAA without relation with other standards
 saa:Specification a owl:Class ;
 	rdfs:label "Bijzonderheden" ;
 	rdfs:comment ""@nl .
 
+saa:RelatedAgent a owl:Class ;
+	rdfs:label "Gekoppelde actor met rol / type relatie" ;
+	rdfs:comment ""@nl .
 
 # properties
 
+## general properties
 saa:internalRemarks a rdf:Property ;
 	rdfs:domain rico:Thing .
 
 ## properties saa:Fonds
 saa:status a rdfs:Property ;
     rdfs:subPropertyOf rico:isOrWasRecordStateOfAllMembers ;
-    rdfs:domain saa:Fonds .
+    rdfs:domain saa:Fonds, saa:File .
 
 saa:hasYoungestRecord a rdfs:Property ;
     rdfs:subPropertyOf rico:isAssociatedWithDate ;
-    rdfs:domain saa:Fonds .
+    rdfs:domain saa:Fonds ;
+    rdfs:range saa:DateRangeYoungest .
 
 saa:hasOldestRecord a rdfs:Property ;
     rdfs:subPropertyOf rico:isAssociatedWithDate ;
-    rdfs:domain saa:Fonds .
+    rdfs:domain saa:Fonds ;
+    rdfs:range saa:DateRangeOldest .
+
+## properties saa:Series
+## none!
+
+## properties saa:File
+saa:hasOrHadRelatedAgent a rdfs:Property ;
+	rdfs:domain saa:File ;
+	rdfs:range saa:RelatedAgent .
+
+saa:isAssociatedWithAddress a rdfs:Property ;
+	rdfs:subPropertyOf rico:isAssociatedWithPlace ;
+	rdfs:domain saa:File ;
+	rdfs:range saa:Address .
+
+# saa:hasOrHadSubjectLocation, see "properties saa:Image"
+# saa:hasOrHadSubjectCoordinates, see "properties saa:Image"
+
+saa:digitalBorn a rdfs:Property ;
+	rdfs:domain saa:File .
+
+saa:digitized a rdfs:Property ;
+	rdfs:domain saa:File .
+
+saa:storageNumber a rdfs:Property ;
+	rdfs:domain saa:File .
+
+saa:duplicate a rdfs:Property ;
+	rdfs:domain saa:File ;
+	rdfs:range saa:Duplicate .
+
+# saa:status, see "Properties saa:Fonds"
+
+saa:inventoryNumber a rdfs:Property ;
+	rdfs:subPropertyOf rico:textualValue ;
+	rdfs:domain rico:Identifier .
+
+saa:inventoryNumberAddition a rdfs:Property ;
+	rdfs:subPropertyOf rico:textualValue ;
+	rdfs:domain rico:Identifier .
 
 ## properties saa:Deed
 saa:source a rdf:Property ;
@@ -242,7 +288,7 @@ saa:hasOrHadSubjectAddress a rdf:Property ;
 
 saa:hasOrHadSubjectLocation a rdf:Property ;
 	rdfs:subPropertyOf rico:isOrWasAssociatedWith ;
-	rdfs:domain saa:Image ;
+	rdfs:domain saa:Image, saa:File ;
 	rdfs:range memorix:GeoCoordinates .
 
 saa:hasOrHadSubjectCoordinates a rdf:Property ;

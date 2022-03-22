@@ -56,7 +56,6 @@ rt:File
     memorix:hasInformationComponent [ rdf:type memorix:DepotLocationComponent ] ;
     dc:identifier                   "File" ;
     sh:targetClass                  rt:File ;
-    rdfs:subClassOf                 rico:RecordSet ;
     sh:closed                       true ;
     sh:ignoredProperties            ( rdf:type ) ;
     sh:property                     [ rdfs:label   "Inventarisnummer"@nl, "Inventory number"@en ;
@@ -309,48 +308,4 @@ saa:RelatedAgent
                            sh:path     saa:hasAgent ;
                          ] ;
     sh:targetClass       saa:RelatedAgent
-.
-
-
-file:digitalBorn a rdfs:Property ;
-    # in rico modeled with rico:hasRepresentationType
-.
-
-file:digitised a rdfs:Property ;
-    # in rico modeled with rico:hasRepresentationType
-.
-
-file:duplicate
-    a                  rdfs:Property ;
-    rdfs:subPropertyOf rico:hasInstantiation ;
-.
-
-file:status
-    a                  rdfs:Property ;
-    rdfs:subPropertyOf rico:isOrWasRecordStateOfAllMembers ;
-.
-
-file:inventoryNumber
-    a                  rdfs:Property ;
-    rdfs:subPropertyOf rico:textualValue ;
-.
-
-file:inventoryNumberAddition
-    a                  rdfs:Property ;
-    rdfs:subPropertyOf rico:textualValue ;
-.
-
-
-file:hasOrHadAddress
-    a                  rdf:Property ;
-    rdfs:subPropertyOf rico:hasOrHadSubject ;
-.
-
-file:street a rdf:Property ;
-.
-
-file:houseNumberBegin a rdf:Property ;
-.
-
-file:houseNumberEnd a rdf:Property ;
 .
