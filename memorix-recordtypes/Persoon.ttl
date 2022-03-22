@@ -143,12 +143,3 @@ rt:Person
                            sh:order                 2.0 ;
                            sh:path                  person:originallyFromLibrary ; ] ;
 .
-
-
-person:internalRemarks
-    a                      rdf:Property ;
-.
-
-person:originallyFromLibrary
-    a                      rdf:Property ;
-.

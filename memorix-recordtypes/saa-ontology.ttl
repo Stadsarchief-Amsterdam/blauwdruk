@@ -308,6 +308,33 @@ saa:dateRecordResource a rd:Property ;
 # saa:hasOrHadSubjectCoordinates, see "properties saa:Image"
 # saa:internalRemarks, see "general properties"
 
+# properties saa:Organisation
+# saa:internalRemarks, see "general properties"
+
+# properties saa:Person
+# saa:internalRemarks, see "general properties"
+
+saa:originallyFromLibrary
+	rdfs:domain saa:Person .
+
+# properties saa:Family
+# saa:internalRemarks, see "general properties"
+
+
+# properties bij saa:PersonObservation
+saa:sameAsInternal a rdf:Property ;
+	rdfs:domain saa:PersonObservation ;
+    owl:equivalentProperty owl:sameAs .
+
+saa:age a rdf:Property ;
+	rdfs:domain saa:PersonObservation .
+
+saa:deceased a rdf:Property ;
+	rdfs:domain saa:PersonObservation .
+
+saa:hasSpecification a rdf:Property ;
+	rdfs:domain saa:PersonObservation, saa:DigitalRecord ;
+	rdfs:range saa:Specification .
 
 # properties rico:Activity
 saa:dateActivity a rdfs:Property ;
@@ -345,20 +372,6 @@ saa:houseNumberEnd a rdf:Property ;
 saa:street a rdf:Property ;
 	rdfs:domain saa:Address .
 
-# properties bij saa:PersonObservation
-saa:sameAsInternal a rdf:Property ;
-	rdfs:domain saa:PersonObservation ;
-    owl:equivalentProperty owl:sameAs .
-
-saa:age a rdf:Property ;
-	rdfs:domain saa:PersonObservation .
-
-saa:deceased a rdf:Property ;
-	rdfs:domain saa:PersonObservation .
-
-saa:hasSpecification a rdf:Property ;
-	rdfs:domain saa:PersonObservation, saa:DigitalRecord ;
-	rdfs:range saa:Specification .
 
 # properties bij saa:RelatedAgent
 saa:hasRole a rdf:Property ;
