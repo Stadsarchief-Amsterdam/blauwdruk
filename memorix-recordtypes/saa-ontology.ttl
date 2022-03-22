@@ -21,8 +21,7 @@
 	rdfs:comment "Formal definitions of entities used for archival description in the Amsterdam City Archives."@en ;
 	rdfs:comment "Formele definities van entiteiten gebruikt voor archiefbeschrijvingen bij Stadsarchief Amsterdam."@nl ;
 	dct:publisher [
-		schema:name "Amsterdam City Archives"@en ;
-		schema:name "Stadsarchief Amsterdam"@nl ;
+		schema:name "Amsterdam City Archives"@en , "Stadsarchief Amsterdam"@nl ;
 		schema:identifier <https://www.amsterdam.nl/stadsarchief/> ;
   	] ;
 	dct:rights "© 2021-… Amsterdam City Archives, Amsterdam, the Netherlands" ;
@@ -31,12 +30,15 @@
   	dct:modified "2022-01-20T17:00:00+00:00"^^xsd:dateTime ;
   	dct:description "We introduce this ontology because we require different mandatory properties for different subClasses of entities in the RiC ontology. We have defined shapes in SHACL to validate data according to these requirement."
 
-# >>> subclasses of rico:RecordSet
+
+# Blauwdruk entities
+## subclasses of rico:RecordResource
 saa:Acquisition a owl:Class ;
 	rdfs:subClassOf rico:RecordResource ;
 	rdfs:label "Aanwinst"@nl ;
 	rdf:comment ""@nl .
 
+## subclasses of rico:RecordSet
 saa:Fonds a owl:Class ;
 	rdfs:subClassOf rico:RecordSet ;
 	rdfs:label "Archiefblok"@nl ;
@@ -52,7 +54,7 @@ saa:File a owl:Class ;
 	rdfs:label "Bestanddeel"@nl ;
 	rdfs:comment ""@nl .
 
-# >>> subclasses of rico:Record
+## subclasses of rico:Record (TBD: saa:MAIImage, saa:AVObject)
 saa:Deed a owl:Class ;
 	rdfs:subClassOf rico:Record ;
 	rdfs:label "Akte"@nl ;	
@@ -63,70 +65,20 @@ saa:Image a owl:Class ;
 	rdfs:label "Afbeelding"@nl ;
 	rdfs:comment ""@nl .
 
-saa:FindingAid a owl:Class ;	
+saa:DigitalRecord a owl:Class ;	
 	rdfs:subClassOf rico:Record ;
-	rdfs:label "Inventaris"@nl ;
+	rdfs:label "Digitaal informatieobject"@nl ;
 	rdfs:comment ""@nl .
 
-saa:DateRangeAccumulation a owl:Class ;
-    rdfs:subClassOf rico:DateRange ;
-    rdfs:label "Vormingsperiode"@nl ;
+## subclasses of rico:RecordPart
+saa:DigitalRecordPart a owl:Class ;
+	rdfs:subClassOf rico:RecordPart ;
+	rdfs:label "Digitaal Informatieobjectonderdeel"@nl ;
 	rdfs:comment ""@nl .
 
-saa:DateRangeYoungest a owl:Class ;
-    rdfs:subClassOf rico:DateRange ;
-    rdfs:label "Jongste stuk in het archief"@nl ;
-	rdfs:comment ""@nl .
+## subclasses of rico:Instantiation (TBD: saa:Duplicate, saa:ConservationData)
 
-saa:DateRangeOldest a owl:Class ;
-    rdfs:subClassOf rico:DateRange ;
-    rdfs:label "Oudste stuk in het archief"@nl ;
-	rdfs:comment ""@nl .
-
-
-# TBD:
-# saa:MAIImage a owl:Class ;	
-#	rdfs:subClassOf rico:Record ;
-#	rdfs:label "MAI Afbeelding"@nl ;
-#	rdfs:comment ""@nl .
-
-# TBD:
-# saa:AVObject a owl:Class ;	
-#	rdfs:subClassOf rico:Record ;
-#	rdfs:label "AV Materiaal"@nl ;
-#	rdfs:comment ""@nl .
-
-# TBD:
-# saa:DigitalRecord a owl:Class ;	
-#	rdfs:subClassOf rico:Record ;
-#	rdfs:label "Digitaal informatieobject"@nl ;
-#	rdfs:comment ""@nl .
-
-# >>> subclasses of rico:RecordPart
-
-# TBD:
-# saa:DigitalRecordPart a owl:Class ;
-#	rdfs:subClassOf rico:RecordPart ;
-#	rdfs:label "Informatieobjectonderdeel"@nl ;
-#	rdfs:comment ""@nl .
-
-# >>> subclasses of rico:Instantiation
-
-# TBD
-# saa:Duplicate a owl:Class ;	
-#	rdfs:subClassOf rico:Instantiation ;
-#	rdfs:label ""@nl ;
-#	rdfs:comment ""@nl .
-
-# TBD
-# saa:ConservationData a owl:Class ;	
-#	rdfs:subClassOf rico:Instantiation ;
-#	rdfs:label ""@nl ;
-#	rdfs:comment ""@nl .
-
-
-# >>> subclasses of rico:Agent
-
+## subclasses of rico:Agent
 saa:Family a owl:Class ;
     rdfs:subClassOf rico:Family ;
 	rdfs:label "Familie"@nl ;
@@ -143,16 +95,41 @@ saa:Person a owl:Class ;
 	rdfs:comment ""@nl .
 
 saa:PersonObservation a owl:Class ;
-    rdfs:subClassOf rico:Person , schema:Person , pnv:Person , roar:personObservation ;
+    rdfs:subClassOf rico:Person , schema:Person , pnv:Person , roar:PersonObservation ;
 	rdfs:label "Persoonsvermelding"@nl ;
 	rdfs:comment ""@nl .
 
-# >>> subclasses of rico:Place
+## subclasses for library (TBD: schema:Book, schema:Periodical, schema:PublicationVolume)
+
+# Classes from standards needed for metadata with blauwdruk entities
+## subclasses of rico:Record
+saa:FindingAid a owl:Class ;	
+	rdfs:subClassOf rico:Record ;
+	rdfs:label "Inventaris"@nl ;
+	rdfs:comment ""@nl .
+
+## subclasses of rico:DateRange
+saa:DateRangeAccumulation a owl:Class ;
+    rdfs:subClassOf rico:DateRange ;
+    rdfs:label "Vormingsperiode"@nl ;
+	rdfs:comment ""@nl .
+
+saa:DateRangeYoungest a owl:Class ;
+    rdfs:subClassOf rico:DateRange ;
+    rdfs:label "Jongste stuk in het archief"@nl ;
+	rdfs:comment ""@nl .
+
+saa:DateRangeOldest a owl:Class ;
+    rdfs:subClassOf rico:DateRange ;
+    rdfs:label "Oudste stuk in het archief"@nl ;
+	rdfs:comment ""@nl .
+
+## subclasses of rico:Place
 saa:Address a owl:Class ;
     rdfs:subClassOf rico:Place .
 
-saa:ModernAddress a owl:Class ;
-    rdfs:subClassOf rico:Place .
+saa:DepictedAddress a owl:Class ;
+    rdfs:subClassOf saa:Address .
 
 saa:HistoricalAddress1851 a owl:Class ;
     rdfs:subClassOf rico:Place .
@@ -160,40 +137,21 @@ saa:HistoricalAddress1851 a owl:Class ;
 saa:HistoricalAddress1853 a owl:Class ;
     rdfs:subClassOf rico:Place .
 
-# >>> classes for library
-# (We kunnen misschien rechtstreeks op schema mappen)
+## subclasses of rico:Agent ?
+saa:RelatedAgent a owl:Class .
 
-# TBD
-# saa:Book a owl:Class ;
-#    rdfs:subClassOf schema:Book ;
-#	rdfs:label "Boek"@nl ;
-#	rdfs:comment ""@nl .
-
-# TBD
-# saa:Periodical a owl:Class ;
-#   rdfs:subClassOf schema:Periodical ;
-#	rdfs:label "Periodiek"@nl ;
-#	rdfs:comment ""@nl .
-
-# TBD
-# saa:PublicationVolume a owl:Class ;
-#   rdfs:subClassOf schema:PublicationVolume ;
-#  	rdfs:label "Aflevering"@nl ;
-#	rdfs:comment ""@nl .
-
-# Eigen classes
-saa:Detail a owl:Class ;
+# Classes defined by SAA without relation with other standards
+saa:Specification a owl:Class ;
 	rdfs:label "Bijzonderheden" ;
 	rdfs:comment ""@nl .
 
 
-# >>> properties
+# properties
 
 saa:internalRemarks a rdf:Property ;
 	rdfs:domain rico:Thing .
 
-# properties bij saa:Fonds
-
+## properties saa:Fonds
 saa:status a rdfs:Property ;
     rdfs:subPropertyOf rico:isOrWasRecordStateOfAllMembers ;
     rdfs:domain saa:Fonds .
@@ -206,8 +164,7 @@ saa:hasOldestRecord a rdfs:Property ;
     rdfs:subPropertyOf rico:isAssociatedWithDate ;
     rdfs:domain saa:Fonds .
 
-# properties bij saa:Deed
-
+## properties saa:Deed
 saa:source a rdf:Property ;
 	rdfs:subPropertyOf rico:isOrWasPartOf ;
 	rdfs:domain saa:Deed .
@@ -229,7 +186,7 @@ saa:isAssociatedWithHistoricalAddress1853 a rdf:Property ;
 saa:isAssociatedWithModernAddress a rdf:Property ;
     rdfs:subPropertyOf rico:isAssociatedWithPlace ;
 	rdfs:domain saa:Deed ;
-	rdfs:range saa:ModernAddress .
+	rdfs:range saa:Address .
 
 saa:houseName a rdf:Property ;
     rdfs:subPropertyOf rico:isAssociatedWithPlace ;
@@ -243,16 +200,64 @@ saa:addressDescription a rdf:Property ;
     rdfs:subPropertyOf rico:isAssociatedWithPlace ;
 	rdfs:domain saa:Deed .
 
-# properties bij saa:HistorialAddress1851
+# properties saa:Image
+saa:isDescribedIn a rdf:Property ;
+    rdfs:subPropertyOf rico:isOrWasIncludedIn ;
+   	rdfs:domain saa:Image .
 
+saa:historicalTitle a rdf:Property ;
+    rdfs:subPropertyOf rico:title ;
+    rdfs:domain saa:Image .
+
+saa:hasOrHadSubjectPerson a rdf:Property ;
+    rdfs:subPropertyOf rico:hasOrHadSubject ;
+    rdfs:domain saa:Image ;
+    rdfs:range saa:Person .
+
+saa:hasOrHadSubjectBuilding a rdf:Property ;
+    rdfs:subPropertyOf rico:hasOrHadSubject ;
+    rdfs:domain saa:Image ;
+    rdfs:range rico:Place .
+
+saa:hasCreator a rdf:Property ;
+#    rdfs:subPropertyOf rico:creator .
+
+saa:creationDate a rdf:Property ;
+    rdfs:subPropertyOf rico:isOrWasAssociatedWithDate ;
+    rdfs:domain saa:Image ;
+    rdfs:range rico:DateRange .
+
+saa:collection a rdf:Property ;
+    rdfs:subPropertyOf rico:isOrWasIncludedIn ;
+    rdfs:domain saa:Image .
+
+saa:oldNumbers a rdf:Property ;
+	rdfs:subPropertyOf rico:identifier ;
+	rdfs:domain saa:Image .
+
+saa:hasOrHadSubjectAddress a rdf:Property ;
+	rdfs:subPropertyOf rico:isOrWasAssociatedWith ;
+	rdfs:domain saa:Image ;
+	rdfs:range saa:DepictedAddress .
+
+saa:hasOrHadSubjectLocation a rdf:Property ;
+	rdfs:subPropertyOf rico:isOrWasAssociatedWith ;
+	rdfs:domain saa:Image ;
+	rdfs:range memorix:GeoCoordinates .
+
+saa:hasOrHadSubjectCoordinates a rdf:Property ;
+	rdfs:subPropertyOf rico:isOrWasAssociatedWith ;
+	rdfs:domain saa:Image ;
+	rdfs:range memorix:GeoCoordinates .
+
+# properties saa:HistoricalAddress1851
 saa:historicalAddressKleinNumber a rdf:Property ;
 	rdfs:domain saa:HistorialAddress1851 .
 
 saa:historicalAddress1851Street a rdf:Property ;
 	rdfs:domain saa:HistorialAddress1851 .
 
-# properties bij saa:HistorialAddress1853
-
+# properties saa:HistoricalAddress1853
 saa:historicalAddressNeighourhoodNumber a rdf:Property ;
 	rdfs:domain saa:HistorialAddress1853 .
 
@@ -262,19 +267,17 @@ saa:historicalAddressNeighourhoodCode a rdf:Property ;
 saa:historicalAddress1853Street a rdf:Property ;
 	rdfs:domain saa:HistorialAddress1853 .
 
-# properties bij saa:ModernAddress
+# properties saa:Address
+saa:houseNumberBegin a rdf:Property ;
+	rdfs:domain saa:Address .
 
 saa:houseNumberEnd a rdf:Property ;
-	rdfs:domain saa:ModernAddress .
-
-saa:houseNumberBegin a rdf:Property ;
-	rdfs:domain saa:ModernAddress .
+	rdfs:domain saa:Address .
 
 saa:street a rdf:Property ;
-	rdfs:domain saa:ModernAddress .
+	rdfs:domain saa:Address .
 
 # properties bij saa:PersonObservation
-
 saa:sameAsInternal a rdf:Property ;
 	rdfs:domain saa:PersonObservation ;
     owl:equivalentProperty owl:sameAs .
@@ -282,31 +285,26 @@ saa:sameAsInternal a rdf:Property ;
 saa:age a rdf:Property ;
 	rdfs:domain saa:PersonObservation .
 
-saa:internalRemarks a rdf:Property ;
-	rdfs:domain saa:PersonObservation .
-
 saa:deceased a rdf:Property ;
 	rdfs:domain saa:PersonObservation .
 
-saa:detail a rdf:Property ;
+saa:hasSpecification a rdf:Property ;
 	rdfs:domain saa:PersonObservation ;
-	rdfs:range saa:Detail .
+	rdfs:range saa:Specification .
 
-# properties bij saa:PersonLink
+# properties bij saa:RelatedAgent
+saa:hasRole a rdf:Property ;
+	rdfs:domain saa:RelatedAgent .
 
-saa:personRole a rdf:Property ;
-	rdfs:domain saa:PersonLink .
+saa:hasAgent a rdf:Property ;
+	rdfs:domain saa:RelatedAgent ;
+	rdfs:range rico:Agent .
 
-saa:personObservation a rdf:Property ;
-	rdfs:domain saa:PersonLink ;
-	rdfs:range saa:PersonObservation .
+# properties bij saa:Specification
+saa:specificationType a rdf:Property ;
+	rdfs:domain saa:Specification .
 
-
-# properties bij saa:Detail
-
-saa:detailType a rdf:Property ;
-	rdfs:domain saa:Detail .
-
-saa:detailTextualValue a rdf:Property ;
+saa:specificationTextualValue a rdf:Property ;
     rdfs:subPropertyOf rico:textualValue ;
-	rdfs:domain saa:Detail .
+	rdfs:domain saa:Specification .
+
