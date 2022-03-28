@@ -210,7 +210,7 @@ saa:RelatedAgent
     rdf:type             sh:NodeShape ;
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property          [ rdfs:label              "Rol gekoppeld persoon"@nl, "Role of related agent"@en ;
+    sh:property          [ rdfs:label              "Rol gekoppeld persoon, organisatie of familie"@nl, "Role of related agent"@en ;
                            dash:editor             memorix:VocabularyEditor ;
                            memorix:conceptSchemeIn vocabularies:0dada355-9e1e-4f1f-8d86-0455d6067bb7 ;
                            sh:class                skos:Concept ;
