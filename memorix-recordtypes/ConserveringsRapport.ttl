@@ -297,7 +297,7 @@ report:DamageTreatment
     rdfs:label           "Nog een behandeling?"@nl, "treatment"@en ;
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property          [ rdfs:label              "Behandelde schade/onderdeel/plek"@nl, "Treated damage"@en ;
+    sh:property          [ rdfs:label              "Behandeld onderdeel"@nl, "Treated damage"@en ;
                            dash:editor             memorix:VocabularyEditor ;
                            memorix:conceptSchemeIn vocabularies:d3538eb3-e234-4c41-99f5-38ddbfce7e36 ;
                            sh:class                skos:Concept ;
