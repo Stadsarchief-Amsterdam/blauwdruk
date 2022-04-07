@@ -79,7 +79,7 @@ report:IsOrWasIncludedInShape
     sh:nodeKind  sh:IRI ;
     sh:or        ( [ sh:class rt:File ] ) ;
     sh:order     1.0 ;
-    sh:path      rico:isOrWasIncludedIn .
+    sh:path      rico:describesOrDescribed .
 
 report:BeginDateShape
     a                    sh:PropertyShape ;
@@ -92,7 +92,7 @@ report:BeginDateShape
     sh:minCount          1 ;
     sh:message          "Vul tenminste een begindatum in. Dit is verplicht."@nl, "Please provide a begin date. This is mandatory."@en ;
     sh:order             2.0 ;
-    sh:path              report:dateBegin
+    sh:path              rico:hasBeginningDate ;
 .
 
 report:EndDateShape
@@ -102,7 +102,7 @@ report:EndDateShape
     sh:datatype          xsd:integer ;
     sh:group             report:identificationGroup ;
     sh:order             3.0 ;
-    sh:path              report:dateEnd
+    sh:path              rico:hasEndDate ;
 .
 
 report:ObjectDescriptionShape
@@ -113,7 +113,7 @@ report:ObjectDescriptionShape
     sh:datatype          xsd:string ;
     sh:group             report:descriptionGroup ;
     sh:order             1.0 ;
-    sh:path              schema:name ;
+    sh:path              rico:title ;
 .
 
 report:ObjectTypeShape
@@ -127,7 +127,7 @@ report:ObjectTypeShape
     sh:maxCount             1 ;
     sh:nodeKind             sh:IRI ;
     sh:order                2.0 ;
-    sh:path                 report:objectType ;
+    sh:path                 rico:hasDocumentaryFormType ;
 .
 
 report:ObjectMaterialShape
