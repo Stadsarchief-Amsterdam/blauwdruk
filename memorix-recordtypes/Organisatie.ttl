@@ -117,7 +117,7 @@ saa:RelatedAgent
                            dash:editor memorix:LinkedRecordEditor ;
                            sh:message  "Kies een organisatie uit de lijst."@nl, "Please choose an organisation."@en ;
                            sh:nodeKind sh:IRI ;
-                           sh:or       ( [] sh:class rt:Organisation ] ) ;
+                           sh:or       ( [ sh:class rt:Organisation ] ) ;
                            sh:order    2.0 ;
                            sh:path     saa:hasAgent ;
                          ] ;
