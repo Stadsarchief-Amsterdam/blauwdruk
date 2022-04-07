@@ -68,6 +68,14 @@ rt:Organisation
                                     sh:order    2.0 ;
                                     sh:path     rico:isSuccessorOf ;
                                   ] ;
+    sh:property                     [ rdfs:label  "Gerelateerde organisatie"@nl, "Related organisation"@en ;
+                                      sh:path     saa:hasOrHadRelatedAgent ;
+                                      sh:class    saa:RelatedAgent ;
+                                      sh:maxCount 100 ;
+                                      sh:order    5.0 ;
+                                      sh:group    organisation:identificationGroup ;
+                                      sh:nodeKind sh:BlankNode ;
+                                    ] ;
     sh:property                   [ rdfs:label           "Alternatieve namen"@nl, "Alternate names"@en ;
                                     memorix:searchWeight 2.0 ;
                                     sh:datatype          xsd:string ;
@@ -95,3 +103,22 @@ rt:Organisation
                                     sh:path     organisation:internalRemarks ;
                                   ]
 .
+
+saa:RelatedAgent
+    rdf:type             sh:NodeShape ;
+    sh:closed            true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property          [ rdfs:label              "Type relatie"@nl, "Type relation"@en ;
+                           sh:datatype             xsd:string ;
+                           sh:order                1.0 ;
+                           sh:path                 saa:hasRole ;
+                         ] ;
+    sh:property          [ rdfs:label  "Gerelateerde organisatie"@nl, "Related organisation"@en ;
+                           dash:editor memorix:LinkedRecordEditor ;
+                           sh:message  "Kies een organisatie uit de lijst."@nl, "Please choose an organisation."@en ;
+                           sh:nodeKind sh:IRI ;
+                           sh:or       ( [] sh:class rt:Organisation ] ) ;
+                           sh:order    2.0 ;
+                           sh:path     saa:hasAgent ;
+                         ] ;
+    sh:targetClass       saa:RelatedAgent .
