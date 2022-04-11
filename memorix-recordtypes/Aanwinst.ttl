@@ -72,18 +72,6 @@ rt:Acquisition
                                       sh:order        2.0 ;
                                       sh:path         acquisition:yearOfTransfer ;
                                     ] ;
-#    sh:property                     [ rdfs:label   "Gekoppeld archiefblok of bestanddeel"@nl, "Related fonds or file"@en ;
-#                                      rdfs:comment "Archiefblok of bestanddeel waaraan deze aanwinst gekoppeld is."@nl,
-#                                                   "Description of the fonds or file to which this acquisition is the origination of."@en ;
-#                                      sh:message   "Kies een archiefblok of bestanddeel waar deze aanwinst bij hoort."@nl, "Choose a fonds or file that relates to this acquisition."@en ;
-#                                      dash:editor  memorix:LinkedRecordEditor ;
-#                                      sh:group     acquisition:identificationGroup ;
-#                                      sh:maxCount  100 ;
-#                                      sh:nodeKind  sh:IRI ;
-#                                      sh:or        ( [ sh:class rt:Fonds ] [ sh:class rt:File ] ) ;
-#                                      sh:order     3.0 ;
-#                                      sh:path      acquisition:resultsIn ;
-#                                    ] ;
     sh:property                     [ rdfs:label   "Omschrijving"@nl, "Description"@en ;
                                       rdfs:comment "Omschrijving van het binnengekomen materiaal"@nl, "Description of the material received"@en ;
                                       dash:editor  dash:TextAreaEditor ;
@@ -133,23 +121,9 @@ rt:Acquisition
                                       sh:order                4.0 ;
                                       sh:path                 acquisition:careTaker
                                     ] ;
-#    sh:property                     [ rdfs:label   "Omvang"@nl, "Dimensions"@en ;
-#                                      rdfs:comment "Omvang van de stukken, zoals ze binnenkwamen"@nl, "Dimensions of the acquisition, as received"@en ;
-#                                      sh:datatype  xsd:string ;
-#                                      sh:group     acquisition:contentDescriptionGroup ;
-#                                      sh:order     5.0 ;
-#                                      sh:path      rico:recordResourceExtent ;
-#                                    ] ;
-#    sh:property                     [ rdfs:label   "Stuksoort"@nl, "Type of material"@en ;
-#                                      rdfs:comment "Soort materiaal, bijvoorbeeld filmdatakaarten"@nl, "Type of material, for instance film data cards"@en ;
-#                                      sh:datatype  xsd:string ;
-#                                      sh:group     acquisition:contentDescriptionGroup ;
-#                                      sh:order     6.0 ;
-#                                      sh:path      acquisition:typeOfMaterial ;
-#                                    ] ;
     sh:property                     [ rdfs:label   "Bevat"@nl, "Contains"@en ;
                                       rdfs:comment "Overzicht van wat de aanwinst bevat"@nl, "Overview of the thing the acquisition contains"@en ;
-                                      sh:class     saa:AcquisitionRecordSet ;
+                                      sh:class     acquisition:AcquisitionRecordSet ;
                                       sh:group     acquisition:contentDescriptionGroup ;
                                       sh:maxCount  1000 ;
                                       sh:nodeKind  sh:BlankNode ;
@@ -184,11 +158,11 @@ rt:Acquisition
                                       sh:path     saa:internalRemarks ;
                                     ] .
 
-saa:AcquisitionRecordSet
+acquisition:AcquisitionRecordSet
     a                    sh:NodeShape ;
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:targetClass       saa:AcquisitionRecordSet ;
+    sh:targetClass       acquisition:AcquisitionRecordSet ;
     sh:property          [ rdfs:label  "Aantal"@nl, "Number"@en ;
                            sh:path     rico:recordResourceExtent ;
                            sh:order    1.0 ;
