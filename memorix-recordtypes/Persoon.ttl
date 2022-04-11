@@ -3,6 +3,7 @@
 @prefix owl:            <http://www.w3.org/2002/07/owl#> .
 @prefix xsd:            <http://www.w3.org/2001/XMLSchema#> .
 @prefix skos:           <http://www.w3.org/2004/02/skos/core#> .
+@prefix saa:            <https://data.archief.amsterdam/ontology#> . #TBD
 
 @prefix rt:             </resources/recordtypes/> .
 @prefix person:         </resources/recordtypes/Person#> .
@@ -38,6 +39,13 @@ person:managementGroup
     rdfs:label "Beheer"@nl, "Manage"@en  ;
     sh:order   3.0 ;
 .
+
+person:rightsGroup
+    rdf:type   sh:PropertyGroup ;
+    rdfs:label "Rechtenafspraken"@nl, "Rights Agreements"@en  ;
+    sh:order   4.0 ;
+.
+
 
 rt:Person
     rdf:type             memorix:Recordtype , sh:NodeShape ;
@@ -142,4 +150,27 @@ rt:Person
                            sh:maxCount              1 ;
                            sh:order                 2.0 ;
                            sh:path                  person:originallyFromLibrary ; ] ;
+    sh:property          [ rdfs:label               "Auteursrechtafspraken"@nl, "Copyright Agreement"@en  ;
+                           dash:editor              dash:TextAreaEditor ;
+                           sh:datatype              xsd:string ;
+                           sh:group                 person:rightsGroup ;
+                           sh:maxCount              1 ;
+                           sh:order                 7.0 ;
+                           sh:path                  saa:copyrightsAgreement ] ;
+    sh:property          [ rdfs:label               "Contractnummer"@nl, "Contract Number"@en  ;
+                           dash:editor              dash:TextFieldEditor ;
+                           sh:datatype              xsd:string ;
+                           sh:group                 person:rightsGroup ;
+                           sh:maxCount              1 ;
+                           sh:order                 8.0 ;
+                           sh:path                  saa:copyrightsContractNr ] ;
+    sh:property          [ rdfs:label               "Auteursrechtopmerkingen"@nl, "Copyright Remarks"@en  ;
+                           dash:editor              dash:TextAreaEditor ;
+                           sh:datatype              xsd:string ;
+                           sh:group                 person:rightsGroup ;
+                           sh:maxCount              1 ;
+                           sh:order                 9.0 ;
+                           sh:path                  saa:copyrightsRemarks ] ;
 .
+
+
