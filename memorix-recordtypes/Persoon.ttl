@@ -151,8 +151,10 @@ rt:Person
                            sh:order                 2.0 ;
                            sh:path                  person:originallyFromLibrary ; ] ;
     sh:property          [ rdfs:label               "Auteursrechtafspraken"@nl, "Copyright Agreement"@en  ;
-                           dash:editor              dash:TextAreaEditor ;
-                           sh:datatype              xsd:string ;
+                           dash:editor              memorix:VocabularyEditor ;
+                           sh:nodeKind              sh:IRI ;
+                           sh:class                 skos:Concept ;
+                           memorix:conceptSchemeIn  vocabularies:80216597-805e-4439-abab-f7a323dde6ec ;
                            sh:group                 person:rightsGroup ;
                            sh:maxCount              1 ;
                            sh:order                 7.0 ;
