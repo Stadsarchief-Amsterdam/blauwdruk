@@ -7,6 +7,7 @@
 
 @prefix rt:             </resources/recordtypes/> .
 @prefix person:         </resources/recordtypes/Person#> .
+@prefix vocabularies:   </resources/vocabularies/conceptschemes/> .
 
 @prefix dc:             <http://purl.org/dc/elements/1.1/> .
 @prefix sh:             <http://www.w3.org/ns/shacl#> .
