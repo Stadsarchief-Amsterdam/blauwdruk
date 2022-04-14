@@ -34,10 +34,15 @@ file:contentDescriptionGroup
     sh:order   2.0 ;
 .
 
+file:physicalDescriptionGroup
+    rdf:type   sh:PropertyGroup ;
+    rdfs:label "Fysieke kenmerken"@nl, "Physical description"@en ;
+    sh:order   3.0 .
+
 file:locationsGroup
     rdf:type   sh:PropertyGroup ;
     rdfs:label "Locaties"@nl, "Locations"@en ;
-    sh:order   3.0 ;
+    sh:order   4.0 ;
 .
 
 file:managementGroup
@@ -144,6 +149,14 @@ rt:File
                                       sh:maxCount 100 ;
                                       sh:path     file:hasOrHadSubjectCoordinates
                                     ] ;
+    sh:property             [ rdfs:label  ""@nl, ""@en ;
+                              sh:path     rico:hasInstantiation ;
+                              sh:order    1.0 ;
+                              sh:maxCount 1 ;
+                              sh:nodeKind sh:BlankNode ;
+                              sh:class    rico:Instantiation ;
+                              sh:group    file:physicalDescriptionGroup ;
+                            ] ;
     sh:property                     [ rdfs:label   "Digitaal geboren?"@nl, "Digital born?"@en ;
                                       rdfs:comment "Geeft aan of dit om een oorspronkelijk digitaal geboren stuk gaat"@nl, "Whether the records were digital born"@en  ;
                                       sh:datatype  xsd:boolean ;
@@ -169,6 +182,15 @@ rt:File
                                       sh:order    4.0 ;
                                       sh:path     file:storageNumber
                                     ] ;
+    sh:property             [ rdfs:label       "Oude nummers"@nl, "Old numbers"@en ;
+                              dash:editor      dash:TextAreaEditor ;
+                              memorix:audience memorix:audienceInternal ;
+                              sh:path          file:oldNumbers ;
+                              sh:datatype      xsd:string ;
+                              sh:maxCount      1 ;
+                              sh:order         3.0 ;
+                              sh:group         file:managementGroup ;
+                            ] ;
     sh:property                     [ rdfs:label       "Interne opmerking"@nl, "Internal remarks"@en ;
                                       dash:editor      dash:TextAreaEditor ;
                                       memorix:audience memorix:audienceInternal ;
@@ -258,6 +280,64 @@ rico:DateRange
                          ] ;
     sh:targetClass       rico:DateRange ;
 .
+
+rico:Instantiation
+    a                    sh:NodeShape ;
+    sh:targetClass       rico:Instantiation ;
+    sh:closed            true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property          [ rdfs:label  "Object type toelichting"@nl, "Object type explanation"@en ;
+                           sh:path     saa:objectTypeTextualValue ;
+                           sh:datatype xsd:string ;
+                           sh:order    1.0 ;
+                         ] ;
+    sh:property          [  rdfs:label              "Object type"@nl, "Object type "@en ;
+                            sh:message              "Kies een object type uit de keuzelijst."@nl, "Please choose a object type from the list."@en ;
+                            dash:editor             memorix:VocabularyEditor ;
+                            memorix:conceptSchemeIn vocabularies:1cc20db0-62dc-45cf-b7f7-c7b2fb2074a2 ;
+                            sh:class                skos:Concept ;
+                            sh:maxCount             1 ;
+                            sh:nodeKind             sh:IRI ;
+                            sh:order                2.0 ;
+                            sh:path                 saa:objectType ;
+                         ] ;
+    sh:property          [ rdfs:label  "Techniek toelichting"@nl, "Technique explanation"@en ;
+                           sh:path     saa:techniqueTextualValue ;
+                           sh:datatype xsd:string ;
+                           sh:order    3.0 ;
+                         ] ;
+    sh:property          [  rdfs:label              "Techniek"@nl, "Technique"@en ;
+                           sh:message              "Kies een techniek uit de keuzelijst."@nl, "Please choose a technique from the list."@en ;
+                           dash:editor             memorix:VocabularyEditor ;
+                           memorix:conceptSchemeIn vocabularies:d0fc28e9-e1c0-47c0-ad66-f496c8d12f90 ;
+                           sh:class                skos:Concept ;
+                           sh:maxCount             50 ;
+                           sh:nodeKind             sh:IRI ;
+                           sh:order                4.0 ;
+                           sh:path                 saa:technique ;
+                         ] ;
+    sh:property          [ rdfs:label  "Materialen toelichting"@nl, "Materials explanation"@en ;
+                           sh:path     saa:materialTextualValue ;
+                           sh:datatype xsd:string ;
+                           sh:order    5.0 ;
+                        ] ;
+    sh:property          [  rdfs:label              "Materialen"@nl, "Materials"@en ;
+                            sh:message              "Kies een materiaal uit de keuzelijst."@nl, "Please choose a type of material from the list."@en ;
+                            dash:editor             memorix:VocabularyEditor ;
+                            memorix:conceptSchemeIn vocabularies:ae2e509f-ad1b-4dc3-bf0d-0fb9bc7e7863 ;
+                            sh:class                skos:Concept ;
+                            sh:maxCount             50 ;
+                            sh:nodeKind             sh:IRI ;
+                            sh:order                6.0 ;
+                            sh:path                 saa:material ;
+                         ] ;
+    sh:property          [ rdfs:label  "Afmetingen"@nl, "Dimensions"@en ;
+                           sh:path     rico:hasExtent ;
+                           sh:datatype xsd:string ;
+                           sh:order    7.0 ;
+                         ] ;
+.
+
 
 saa:Address
     a                    sh:NodeShape ;
