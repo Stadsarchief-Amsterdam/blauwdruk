@@ -121,10 +121,10 @@ rt:Acquisition
                                       sh:order                4.0 ;
                                       sh:path                 acquisition:careTaker
                                     ] ;
-    sh:property                     [ rdfs:label   "Bevat"@nl, "Contains"@en ;
-                                      rdfs:comment "Overzicht van wat de aanwinst bevat"@nl, "Overview of the thing the acquisition contains"@en ;
+    sh:property                     [ rdfs:label   "Opgegaan in"@nl, "Merged into"@en ;
+                                      rdfs:comment "Overzicht van tot welke Bestanddelen de aanwinst is verwerkt"@nl, "Overview of the Files the acquisition containswas merged into"@en ;
                                       sh:class     acquisition:AcquisitionRecordSet ;
-                                      sh:group     acquisition:contentDescriptionGroup ;
+                                      sh:group     acquisition:managementGroup ;
                                       sh:maxCount  1000 ;
                                       sh:nodeKind  sh:BlankNode ;
                                       sh:order     6.0 ;
