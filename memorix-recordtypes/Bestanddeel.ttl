@@ -178,6 +178,15 @@ rt:File
                                       sh:order         5.0 ;
                                       sh:path          saa:internalRemarks
                                     ] ;
+    sh:property                     [ rdfs:label       "Auteursrecht opmerking (intern)"@nl, "Copyright remarks (internal)"@en ;
+                                      rdfs:comment     "Bijvoorbeeld: niet gecontroleerd, niet geregeld"@nl ;
+                                      memorix:audience memorix:audienceInternal ;
+                                      sh:datatype      xsd:string ;
+                                      sh:group         file:managementGroup ;
+                                      sh:order         5.0 ;
+                                      sh:path          saa:copyrightsRemarks ;
+                                      dash:editor      dash:TextAreaEditor ;
+                                    ] ;
     sh:property                     [ rdfs:label   "Duplicaat (kopie op film of microfiche)"@nl, "Duplicate (copy on film or microfiche)"@en ;
                                       sh:message   "Selecteer een duplicaat (filmnummer of microfiche)"@nl, "Please select a duplicate file"@en ;
                                       dash:editor  memorix:LinkedRecordEditor ;

@@ -38,6 +38,12 @@ organisation:managementGroup
     rdfs:label "Beheer"@nl, "Management"@en ;
     sh:order   3.0 .
 
+organisation:rightsGroup
+    rdf:type   sh:PropertyGroup ;
+    rdfs:label "Rechtenafspraken"@nl, "Rights Agreements"@en  ;
+    sh:order   4.0 ;
+.
+
 rt:Organisation
     rdf:type                      memorix:Recordtype, sh:NodeShape ;
     rdfs:label                    "Organisatie"@nl, "Organisation"@en ;
@@ -93,5 +99,28 @@ rt:Organisation
                                     sh:group    organisation:managementGroup ;
                                     sh:order    5.0 ;
                                     sh:path     organisation:internalRemarks ;
-                                  ]
+                                  ] ;
+    sh:property          [ rdfs:label               "Auteursrechtafspraken"@nl, "Copyright Agreement"@en  ;
+                           dash:editor              memorix:VocabularyEditor ;
+                           sh:nodeKind              sh:IRI ;
+                           sh:class                 skos:Concept ;
+                           memorix:conceptSchemeIn  vocabularies:80216597-805e-4439-abab-f7a323dde6ec ;
+                           sh:group                 organisation:rightsGroup ;
+                           sh:maxCount              1 ;
+                           sh:order                 7.0 ;
+                           sh:path                  saa:copyrightsAgreement ] ;
+    sh:property          [ rdfs:label               "Contractnummer"@nl, "Contract Number"@en  ;
+                           dash:editor              dash:TextFieldEditor ;
+                           sh:datatype              xsd:string ;
+                           sh:group                 organisation:rightsGroup ;
+                           sh:maxCount              1 ;
+                           sh:order                 8.0 ;
+                           sh:path                  saa:copyrightsContractNr ] ;
+    sh:property          [ rdfs:label               "Auteursrechtopmerkingen"@nl, "Copyright Remarks"@en  ;
+                           dash:editor              dash:TextAreaEditor ;
+                           sh:datatype              xsd:string ;
+                           sh:group                 organisation:rightsGroup ;
+                           sh:maxCount              1 ;
+                           sh:order                 9.0 ;
+                           sh:path                  saa:copyrightsRemarks ] ;
 .
