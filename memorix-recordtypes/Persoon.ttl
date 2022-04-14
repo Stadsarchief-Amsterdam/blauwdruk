@@ -113,7 +113,7 @@ rt:Person
                            memorix:searchWeight     2.0 ;
                            sh:datatype              xsd:string ;
                            sh:group                 person:alternativeGroup ;
-                           sh:maxCount              1 ;
+                           sh:maxCount              10 ;
                            sh:order                 1.0 ;
                            sh:path                  schema:alternateName ] ;
     sh:property          [ rdfs:label               "Identiek aan"@nl, "Is same as"@en ;
