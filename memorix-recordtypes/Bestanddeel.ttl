@@ -240,7 +240,15 @@ rt:File
                                       sh:order     8.0 ;
                                       sh:path      file:status ;
                                     ] ;
-.
+    sh:property                     [ rdfs:label   "Aanwinst"@nl, "Acquisition"@en ;
+                                      dash:editor  memorix:LinkedRecordEditor ;
+                                      sh:group     file:managementGroup ;
+                                      sh:maxCount  1 ;
+                                      sh:nodeKind  sh:IRI ;
+                                      sh:or        ( [ sh:class rt:Acquisition ] ) ;
+                                      sh:order     9.0 ;
+                                      sh:path      saa:isIncludedInAcquisition ;
+                                    ] .
 
 rico:Identifier
     rdf:type             sh:NodeShape ;
