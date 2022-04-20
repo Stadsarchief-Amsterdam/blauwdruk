@@ -183,6 +183,14 @@ rt:Image
                               sh:path          image:internalRemarks ;
                               dash:editor      dash:TextAreaEditor ;
                             ] ;
+    sh:property             [ rdfs:label       "Auteursrecht opmerking (intern)"@nl, "Copyright remarks (internal)"@en ;
+                              memorix:audience memorix:audienceInternal ;
+                              sh:datatype      xsd:string ;
+                              sh:group         image:managementGroup ;
+                              sh:order         5.0 ;
+                              sh:path          saa:copyrightsRemarks ;
+                              dash:editor      dash:TextAreaEditor ;
+                            ] ;
     sh:property             [ rdfs:label   "Afgebeeld adres"@nl, "Depicted address"@en ;
                               rdfs:comment "Adresgegevens waar de afbeelding betrekking op heeft."@nl, "An address that is connected to this image. "@en ;
                               sh:class     image:DepictedAddress ;
