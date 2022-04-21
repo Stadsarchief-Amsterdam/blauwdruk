@@ -247,14 +247,12 @@ rico:DateRange
                            sh:path     rico:expressedDate
                          ] ;
     sh:property          [ rdfs:label  "Begindatum"@nl, "Begin date"@en ;
-                           dash:editor  memorix:DateEditor ;
-                           sh:datatype  xsd:integer ;
+                           sh:datatype xsd:date ;
                            sh:order    2.0 ;
                            sh:path     rico:hasBeginningDate
                          ] ;
     sh:property          [ rdfs:label  "Einddatum"@nl, "End date"@en ;
-                           dash:editor  memorix:DateEditor ;
-                           sh:datatype  xsd:integer ;
+                           sh:datatype xsd:date ;
                            sh:order    3.0 ;
                            sh:path     rico:hasEndDate
                          ] ;

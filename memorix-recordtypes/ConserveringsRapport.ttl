@@ -86,8 +86,7 @@ report:BeginDateShape
     rdfs:label           "Begindatum"@nl, "Begin date"@en ;
     memorix:inTitleAt    1.0 ;
     memorix:searchWeight 5.0 ;
-    dash:editor          memorix:DateEditor ;
-    sh:datatype          xsd:integer ;
+    sh:datatype          xsd:date ;
     sh:group             report:identificationGroup ;
     sh:minCount          1 ;
     sh:message          "Vul tenminste een begindatum in. Dit is verplicht."@nl, "Please provide a begin date. This is mandatory."@en ;
@@ -98,8 +97,7 @@ report:BeginDateShape
 report:EndDateShape
     a                    sh:PropertyShape ;
     rdfs:label           "Einddatum"@nl, "End date"@en ;
-    dash:editor          memorix:DateEditor ;
-    sh:datatype          xsd:integer ;
+    sh:datatype          xsd:date ;
     sh:group             report:identificationGroup ;
     sh:order             3.0 ;
     sh:path              rico:hasEndDate ;
