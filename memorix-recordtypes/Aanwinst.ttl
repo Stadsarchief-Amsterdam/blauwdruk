@@ -94,9 +94,8 @@ rt:Acquisition
                                     ] ;
     sh:property                     [ rdfs:label          "Datum ontvangst"@nl, "Date of reception"@en ;
                                       rdfs:comment        "Daadwerkelijke datum van ontvangst"@nl, "Actual date of reception. May differ from year of transfer."@en ;
-                                      dash:editor         memorix:DateEditor ;
                                       memorix:inSummaryAt 2.0 ;
-                                      sh:datatype         xsd:integer ;
+                                      sh:datatype         xsd:date ;
                                       sh:group            acquisition:contentDescriptionGroup ;
                                       sh:order            1.0 ;
                                       sh:path             acquisition:dateReceived ;

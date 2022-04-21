@@ -281,15 +281,13 @@ rico:DateRange
                            sh:path     rico:hasBeginningDate ;
                            sh:maxCount 1 ;
                            sh:order    3.0 ;
-                           dash:editor memorix:DateEditor ;
-                           sh:datatype xsd:integer ;
+                           sh:datatype xsd:date ;
                          ] ;
     sh:property          [ rdfs:label  "Vervaardigingsdatum tot"@nl, "Creation date (end)"@en ;
                            sh:path     rico:hasEndDate ;
                            sh:maxCount 1 ;
                            sh:order    4.0 ;
-                           dash:editor memorix:DateEditor ;
-                           sh:datatype xsd:integer ;
+                           sh:datatype xsd:date ;
                          ] .
 
 
