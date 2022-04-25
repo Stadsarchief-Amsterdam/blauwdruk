@@ -3,52 +3,38 @@
 @prefix owl:           <http://www.w3.org/2002/07/owl#> .
 @prefix xsd:           <http://www.w3.org/2001/XMLSchema#> .
 
-@prefix blauwdruk:     <https://example.memorix-test.nl/resources/recordtypes/> .
-
 @prefix sh:            <http://www.w3.org/ns/shacl#> .
 
 @prefix rico:          <https://www.ica.org/standards/RiC/ontology#> .
 @prefix ric-rst:       <https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#> .
 @prefix ric-dft:       <https://www.ica.org/standards/RiC/vocabularies/documentaryFormTypes#> .
+@prefix saa:           <https://data.archief.amsterdam/ontology#> . #TBD
+
 
 # ==================================================
-blauwdruk:Fonds a sh:NodeShape, rdfs:Class ;
-    sh:targetClass blauwdruk:Fonds ;
-    rdfs:subClassOf rico:RecordSet ;
+saa:Fonds a sh:NodeShape ;
+    sh:targetClass saa:Fonds ;
     rdfs:label "Archiefblok"@nl ;
-    rdfs:comment "Beschrijving van een verzameling bescheiden die gezamenlijk een archiefblok vormen."@nl ;
     sh:property [ 
-        sh:message "Archiefblok MUST link to ric-rst:Fonds with rico:hasRecordSetType"@en ,
-            "Archiefblok MOET linken naar ric-rst:Fonds met rico:hasRecordSetType"@nl ;
-        rdfs:comment "Deze informatie is altijd hetzelfde voor de entiteit Archief."@nl ;
+        rdfs:label "Soort"@nl ;
         sh:path rico:hasRecordSetType ;
-        sh:hasValue ric-rst:Fonds ;
+        sh:in ( ric-rst:Fonds ric-rst:Collection) ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
     ];
     sh:property [
-        rdfs:label "Archiefbloknummers"@nl ;
-        rdfs:comment "Oude en nieuwe nummers" ;
+        rdfs:label "Archiefnummer"@nl ;
         sh:path rico:hasOrHadIdentifier ;
         sh:minCount 1 ;
+        sh:maxCount 1 ;
         sh:class rico:Identifier ; 
     ] ;
     sh:property [
-        rdfs:label "Archiefbloknaam"@nl ;
+        rdfs:label "Naam van het archief/collectie"@nl ;
         sh:path rico:hasOrHadTitle ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:class rico:Title ;
-    ] ;
-    sh:property [
-        rdfs:label "Archiefvormer"@nl ;
-        sh:path rico:hasAccumulator ;
-        sh:maxCount 1 ;
-        sh:or ( 
-            [ sh:class blauwdruk:Persoon ]
-            [ sh:class blauwdruk:Organisatie ]
-            [ sh:class blauwdruk:Familie ]
-        ) ;       
     ] ;
     sh:property [
         rdfs:label "Periode van vorming"@nl ;
@@ -58,18 +44,32 @@ blauwdruk:Fonds a sh:NodeShape, rdfs:Class ;
         sh:class rico:DateRange ;
     ] ;
     sh:property [
-        rdfs:label "Inleiding"@nl ;
+        rdfs:label "Archiefvormer"@nl ;
+        sh:path rico:hasAccumulator ;
+        sh:minCount 1 ;
+        sh:or ( 
+            [ sh:class rico:Person ]
+            [ sh:class rico:CorporateBody ]
+            [ sh:class rico:Family ]
+        ) ;       
+    ] ;
+    sh:property [
+        rdfs:label "Beschrijving"@nl ;
         sh:path rico:scopeAndContent ;
         sh:datatype xsd:string ; 
     ] ;
     sh:property [
         rdfs:label "Gerelateerde archieven"@nl ;
         sh:path rdfs:seeAlso ;
-        sh:class blauwdruk:Fonds ;       
+        sh:class saa:Fonds ;       
     ] ;
     sh:property [
         rdfs:label "Gerelateerde publicaties"@nl ;
         sh:path rdfs:seeAlso ;
+        sh:or ( 
+            [ sh:class schema:Book ]
+            # nog meer relevante schema-Classes
+        ) ;       
     ] ;
     sh:property [
         rdfs:label "Status"@nl ;
@@ -80,22 +80,20 @@ blauwdruk:Fonds a sh:NodeShape, rdfs:Class ;
     ] ;
     sh:property [
         rdfs:label "Interne opmerking"@nl ;
-        sh:path blauwdruk:internalRemarks ;
+        sh:path saa:internalRemarks ;
         sh:datatype xsd:string ; 
     ] ;
     sh:property [
-        rdfs:label "Inventaris"@nl ; 
+        rdfs:label "Inventarisatie"@nl ; 
         sh:minCount 1 ; 
         sh:path rico:isOrWasDescribedBy ;
-        sh:class blauwdruk:FindingAid ; 
+        sh:class saa:FindingAid ; 
     ] .
 
-blauwdruk:Inventaris a sh:NodeShape, rdfs:Class ;
-    sh:targetClass blauwdruk:FindingAid ;
+saa:FindingAid a sh:NodeShape ;
+    sh:targetClass saa:FindingAid ;
     rdfs:subClassOf rico:Record ;
     sh:property [ 
-        sh:message "Inventaris MUST link to ric-dft:FindingAid with rico:hasDocumentaryFormType"@en ,
-            "Inventaris MOET linken naar ric-dft:FindingAid met rico:hasDocumentaryFormType"@nl ;
         rdfs:comment "Deze informatie is altijd hetzelfde voor de entiteit Inventaris."@nl ;
         sh:path rico:hasDocumentaryFormType ;
         sh:hasValue ric-dft:FindingAid ;
@@ -104,35 +102,27 @@ blauwdruk:Inventaris a sh:NodeShape, rdfs:Class ;
     ];
     sh:property [
         rdfs:label "Inventarisator"@nl ;
-        sh:message "Inventaris CAN link to at most 1 rico:Person or rico:CorporateBody with rico:hasAuthor"@en ;
-        sh:message "Inventaris KAN linken aan maximaal 1 rico:Person or rico:CorporateBody met rico:hasAuthor"@nl ;
         sh:path rico:hasAuthor ;
         sh:or (
-            [ sh:class blauwdruk:Persoon ]
-            [ sh:class blauwdruk:Organisatie ]
+            [ sh:class rico:Person ]
+            [ sh:class rico:CorporateBody ]
         ) ;     
         sh:maxCount 1 ;
     ] ;
     sh:property [
         # LET OP! Deze moet nog een keer netjes met echte rico:Date's Dat is nog niet goed in RiC-O: ik heb er een issue voor aangemaakt bij de RiC-O ontwikkelaars.
-        rdfs:label "Inventarisatiejaar"@nl ;
-        sh:message "Inventaris CAN link to at most 1 xsd:gYear with rico:publicationDate"@en ,
-            "Inventaris KAN linken naar maximaal 1 xsd:gYear met rico:publicationDate"@nl ;
+        rdfs:label "Datum Inventarisatie"@nl ;
         sh:path rico:publicationDate ;
         sh:datatype xsd:gYear ; 
         sh:maxCount 1 ;
     ] ;
     sh:property [
         rdfs:label "Verantwoording van de inventarisatie"@nl ;
-        sh:message "Inventaris CAN link to 1 xsd:string with rico:history"@en ,
-            "Inventaris KAN linken naar 1 xsd:string met rico:history"@nl ;
         sh:path rico:history ;
         sh:datatype xsd:string ; 
         sh:maxCount 1 ;
     ] ;
     sh:property [
-        sh:message "Inventaris MUST link to at exactly 1 rico:CorporateBody with rico:hasPublisher"@en ,
-            "Inventaris MOET linken aan precies 1 rico:CorporateBody met rico:hasPublisher"@nl ;
         rdfs:comment "Deze informatie is altijd hetzelfde (namelijk 'Stadsarchief Amsterdam')."@nl ;
         sh:path rico:hasPublisher ;
         sh:hasValue <https://archief.amsterdam/> ;
@@ -149,7 +139,6 @@ rico:Title a sh:NodeShape ;
     sh:targetClass rico:Title ;
     sh:property [
         rdfs:label "Titel"@nl ;
-        sh:message "This node MUST link to exactly 1 xsd:string with rico:textualValue"@en ;
         sh:path rico:textualValue ;
         sh:datatype xsd:string ; 
         sh:minCount 1 ;
@@ -157,7 +146,6 @@ rico:Title a sh:NodeShape ;
     ] ;
     sh:property [
         rdfs:label "Type titel"@nl ;
-        sh:message "This node MUST link to exactly 1 rico:TitleType with rico:hasTitleType"@en ;
         sh:path rico:hasTitleType ;
         sh:class rico:TitleType ; 
         sh:minCount 1 ;
@@ -169,7 +157,6 @@ rico:Identifier a sh:NodeShape ;
     sh:targetClass rico:Identifier ;
     sh:property [
         rdfs:label "Identifier"@nl ;
-        sh:message "This node MUST link to exactly 1 xsd:string with rico:textualValue"@en ;
         sh:path rico:textualValue ;
         sh:datatype xsd:string ; 
         sh:minCount 1 ;
@@ -177,7 +164,6 @@ rico:Identifier a sh:NodeShape ;
     ] ;
     sh:property [
         rdfs:label "Type identifier"@nl ;
-        sh:message "rico:Identifier MUST link to exactly 1 rico:IdentifierType with rico:hasIdentifierType"@en ;
         sh:path rico:hasIdentifierType ;
         sh:class rico:IdentifierType ; 
         sh:minCount 1 ;
@@ -226,17 +212,16 @@ rico:SingleDate a sh:NodeShape ;
         ) ;
     ] .
 
-blauwdruk:TypeShape a sh:NodeShape ;
+:TypeShape a sh:NodeShape ;
     sh:targetClass rico:IdentifierType, rico:RecordState, rico:TitleType ;
     sh:property [
-        sh:message "rico:*Type MUST link to exactly 1 rico:Name with rico:hasOrHadName"@en ;
         sh:path rico:hasOrHadName ;
         sh:class rico:Name ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
     ] .
 
-blauwdruk:NameShape a sh:NodeShape ;
+:NameShape a sh:NodeShape ;
     sh:targetClass  rico:Name ;
     sh:property [
         sh:path rico:textualValue ;
