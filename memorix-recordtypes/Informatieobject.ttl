@@ -217,7 +217,7 @@ saa:RelatedAgent
                            sh:order                1.0 ;
                            sh:path                 saa:hasRole ;
                          ] ;
-    sh:property          [ rdfs:label  "Persoon"@nl, "Person"@en ;
+    sh:property          [ rdfs:label  "Persoon, organisatie of familie"@nl, "Person, organisation or family"@en ;
                            dash:editor memorix:LinkedRecordEditor ;
                            sh:message  "Kies een persoon, organisatie of familie uit de lijst."@nl, "Please choose a person, organisation or family"@en ;
                            sh:nodeKind sh:IRI ;
