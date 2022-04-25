@@ -56,8 +56,7 @@ rt:DigitalRecordPart
                                       memorix:inSummaryAt 1 ;
                                       sh:path             iop:dateRecordResource ;
                                       sh:group            iop:contentDescriptionGroup ;
-                                      dash:editor         memorix:DateEditor ;
-                                      sh:datatype         xsd:integer ;
+                                      sh:datatype         xsd:date ;
                                       sh:order            2.0 ;
                                       sh:maxCount         1 ;
                                     ] ;

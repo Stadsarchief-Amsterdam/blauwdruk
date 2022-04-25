@@ -63,7 +63,7 @@ rt:ConservationReport
                          report:ObjectTechniqueShape ;
     sh:property          report:PrimaryCarrierShape, report:MediumShape, report:SecondaryAdditionShape, report:DamageShape, report:HasCarriedOutTestsShape ;
     sh:property          report:AcidityShape, report:OtherFindingsShape ;
-    sh:property          report:HasDamageTreatmentShape, report:OtherTreatmentShape ;
+    sh:property          report:HasDamageTreatmentShape, report:OtherTreatmentShape, report:ExtrenalConservatorShape ;
     sh:property          report:InternalRemarksShape ;
 .
 
@@ -79,7 +79,7 @@ report:IsOrWasIncludedInShape
     sh:nodeKind  sh:IRI ;
     sh:or        ( [ sh:class rt:File ] ) ;
     sh:order     1.0 ;
-    sh:path      rico:isOrWasIncludedIn .
+    sh:path      rico:describesOrDescribed .
 
 report:BeginDateShape
     a                    sh:PropertyShape ;
@@ -91,7 +91,7 @@ report:BeginDateShape
     sh:minCount          1 ;
     sh:message          "Vul tenminste een begindatum in. Dit is verplicht."@nl, "Please provide a begin date. This is mandatory."@en ;
     sh:order             2.0 ;
-    sh:path              report:dateBegin
+    sh:path              rico:hasBeginningDate ;
 .
 
 report:EndDateShape
@@ -100,7 +100,7 @@ report:EndDateShape
     sh:datatype          xsd:date ;
     sh:group             report:identificationGroup ;
     sh:order             3.0 ;
-    sh:path              report:dateEnd
+    sh:path              rico:hasEndDate ;
 .
 
 report:ObjectDescriptionShape
@@ -111,13 +111,13 @@ report:ObjectDescriptionShape
     sh:datatype          xsd:string ;
     sh:group             report:descriptionGroup ;
     sh:order             1.0 ;
-    sh:path              schema:name ;
+    sh:path              rico:title ;
 .
 
 report:ObjectTypeShape
     a                       sh:PropertyShape ;
-    rdfs:label              "Object type"@nl, "Object type"@en ;
-    sh:message              "Kies een object type uit de keuzelijst."@nl, "Please choose a object type from the list."@en ;
+    rdfs:label              "Objecttype"@nl, "Object type"@en ;
+    sh:message              "Kies een objecttype uit de keuzelijst."@nl, "Please choose a object type from the list."@en ;
     dash:editor             memorix:VocabularyEditor ;
     memorix:conceptSchemeIn vocabularies:1cc20db0-62dc-45cf-b7f7-c7b2fb2074a2 ;
     sh:class                skos:Concept ;
@@ -125,7 +125,7 @@ report:ObjectTypeShape
     sh:maxCount             1 ;
     sh:nodeKind             sh:IRI ;
     sh:order                2.0 ;
-    sh:path                 report:objectType ;
+    sh:path                 rico:hasDocumentaryFormType ;
 .
 
 report:ObjectMaterialShape
@@ -159,7 +159,7 @@ report:ObjectTechniqueShape
 #Condition
 report:PrimaryCarrierShape
     a                       sh:PropertyShape ;
-    rdfs:label              "Conditie Primaire drager"@nl, "Condition Primary carrier"@en ;
+    rdfs:label              "Conditie primaire drager"@nl, "Condition Primary carrier"@en ;
     sh:message              "Kies een term uit de keuzelijst."@nl, "Please choose from the list."@en ;
     dash:editor             memorix:VocabularyEditor ;
     memorix:conceptSchemeIn vocabularies:d3538eb3-e234-4c41-99f5-38ddbfce7e36 ;
@@ -173,7 +173,7 @@ report:PrimaryCarrierShape
 
 report:MediumShape
     a                       sh:PropertyShape ;
-    rdfs:label              "Conditie Medium"@nl, "Condition Medium"@en ;
+    rdfs:label              "Conditie medium"@nl, "Condition Medium"@en ;
     sh:message              "Kies een term uit de keuzelijst."@nl, "Please choose from the list."@en ;
     dash:editor             memorix:VocabularyEditor ;
     memorix:conceptSchemeIn vocabularies:d3538eb3-e234-4c41-99f5-38ddbfce7e36 ;
@@ -201,7 +201,7 @@ report:SecondaryAdditionShape
 
 report:DamageShape
     a           sh:PropertyShape ;
-    rdfs:label  "Schade overig"@nl, "Damage (other)"@en ;
+    rdfs:label  "Conditie overig"@nl, "Condition (other)"@en ;
     #dash:editor      dash:TextAreaEditor ;
     sh:datatype xsd:string ;
     sh:group    report:conditionGroup ;
@@ -294,10 +294,10 @@ report:HasDamageTreatmentShape
 
 report:DamageTreatment
     rdf:type             sh:NodeShape ;
-    rdfs:label           "Nog een behandeling?"@nl, "treatment"@en ;
+    rdfs:label           "Nog een behandeling"@nl, "treatment"@en ;
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property          [ rdfs:label              "Behandeld onderdeel"@nl, "Treated damage"@en ;
+    sh:property          [ rdfs:label              "Onderdeel behandeling"@nl, "Treated part"@en ;
                            dash:editor             memorix:VocabularyEditor ;
                            memorix:conceptSchemeIn vocabularies:d3538eb3-e234-4c41-99f5-38ddbfce7e36 ;
                            sh:class                skos:Concept ;
@@ -315,7 +315,7 @@ report:DamageTreatment
                            sh:order                2.0 ;
                            sh:path                 report:typeOfTreatment
                          ] ;
-    sh:property          [ rdfs:label              "Behandel middel"@nl, "Treated with"@en ;
+    sh:property          [ rdfs:label              "Middel behandeling"@nl, "Treated with"@en ;
                            dash:editor             memorix:VocabularyEditor ;
                            memorix:conceptSchemeIn vocabularies:99cef907-bfbd-47b3-a277-895ee6b608f8 ;
                            sh:class                skos:Concept ;
@@ -337,6 +337,18 @@ report:OtherTreatmentShape
     sh:order         2.0 ;
     sh:maxCount      1 ;
     sh:path          report:otherTreatment
+.
+
+report:ExtrenalConservatorShape
+    a                sh:PropertyShape ;
+    rdfs:label       "Externe behandelaar"@nl, "External conservator"@en ;
+    dash:editor      dash:TextAreaEditor ;
+    memorix:audience memorix:audienceInternal ;
+    sh:datatype      xsd:string ;
+    sh:group         report:treatmentGroup ;
+    sh:order         3.0 ;
+    sh:maxCount      1 ;
+    sh:path          report:externalConservator
 .
 
 report:InternalRemarksShape

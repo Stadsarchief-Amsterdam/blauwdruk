@@ -3,9 +3,11 @@
 @prefix owl:            <http://www.w3.org/2002/07/owl#> .
 @prefix xsd:            <http://www.w3.org/2001/XMLSchema#> .
 @prefix skos:           <http://www.w3.org/2004/02/skos/core#> .
+@prefix saa:            <https://data.archief.amsterdam/ontology#> . #TBD
 
 @prefix rt:             </resources/recordtypes/> .
 @prefix person:         </resources/recordtypes/Person#> .
+@prefix vocabularies:   </resources/vocabularies/conceptschemes/> .
 
 @prefix dc:             <http://purl.org/dc/elements/1.1/> .
 @prefix sh:             <http://www.w3.org/ns/shacl#> .
@@ -39,6 +41,13 @@ person:managementGroup
     sh:order   3.0 ;
 .
 
+person:rightsGroup
+    rdf:type   sh:PropertyGroup ;
+    rdfs:label "Rechtenafspraken"@nl, "Rights Agreements"@en  ;
+    sh:order   4.0 ;
+.
+
+
 rt:Person
     rdf:type             memorix:Recordtype , sh:NodeShape ;
     rdfs:comment         "Stadsarchief recordtype voor Persoon"@nl, "Amsterdam City Archives record type for Person"@en ;
@@ -57,6 +66,14 @@ rt:Person
                            sh:maxCount              1 ;
                            sh:order                 1.0 ;
                            sh:path                  pnv:givenName ] ;
+    sh:property          [ rdfs:label               "Initialen"@nl, "Initials"@en  ;
+                           dash:singleLine          true ;
+                           memorix:inTitleAt        4.0 ;
+                           sh:datatype              xsd:string ;
+                           sh:group                 person:identificationGroup ;
+                           sh:maxCount              1 ;
+                           sh:order                 2.0 ;
+                           sh:path                  pnv:initials ] ;
     sh:property          [ rdfs:label               "Tussenvoegsel"@nl, "Surname prefix"@en  ;
                            dash:singleLine          true ;
                            memorix:inTitleAt        2.0 ;
@@ -64,7 +81,7 @@ rt:Person
                            sh:datatype              xsd:string ;
                            sh:group                 person:identificationGroup ;
                            sh:maxCount              1 ;
-                           sh:order                 2.0 ;
+                           sh:order                 3.0 ;
                            sh:path                  pnv:surnamePrefix ] ;
     sh:property          [ rdfs:label               "Achternaam"@nl, "Surname"@en  ;
                            dash:singleLine          true ;
@@ -73,7 +90,7 @@ rt:Person
                            sh:datatype              xsd:string ;
                            sh:group                 person:identificationGroup ;
                            sh:maxCount              1 ;
-                           sh:order                 3.0 ;
+                           sh:order                 4.0 ;
                            sh:path                  pnv:baseSurname ] ;
     sh:property          [ rdfs:label               "Geboortejaar"@nl, "Year of birth"@en  ;
                            rdfs:comment             "Geef een jaartal"@nl ;
@@ -83,14 +100,14 @@ rt:Person
                            memorix:inTitleAt        4.0 ;
                            sh:group                 person:identificationGroup ;
                            sh:maxCount              1 ;
-                           sh:order                 4.0 ;
+                           sh:order                 5.0 ;
                            sh:path                  schema:birthDate ] ;
     sh:property          [ rdfs:label               "Geboorteplaats"@nl, "Place of birth"@en  ;
                            dash:editor              dash:TextFieldEditor ;
                            sh:datatype              xsd:string ;
                            sh:group                 person:identificationGroup ;
                            sh:maxCount              1 ;
-                           sh:order                 5.0 ;
+                           sh:order                 6.0 ;
                            sh:path                  schema:birthPlace ] ;
     sh:property          [ rdfs:label               "Overlijdensjaar"@nl, "Year of death"@en  ;
                            rdfs:comment             "Geef een jaartal"@nl ;
@@ -100,14 +117,14 @@ rt:Person
                            sh:maxInclusive          "2200"^^xsd:gYear ;
                            sh:group                 person:identificationGroup ;
                            sh:maxCount              1 ;
-                           sh:order                 6.0 ;
+                           sh:order                 7.0 ;
                            sh:path                  schema:deathDate ] ;
     sh:property          [ rdfs:label               "Overlijdensplaats"@nl, "Place of death"@en  ;
                            dash:editor              dash:TextFieldEditor ;
                            sh:datatype              xsd:string ;
                            sh:group                 person:identificationGroup ;
                            sh:maxCount              1 ;
-                           sh:order                 7.0 ;
+                           sh:order                 8.0 ;
                            sh:path                  schema:deathPlace ] ;
     sh:property          [ rdfs:label               "Alternatieve namen"@nl, "Alternate names"@en  ;
                            memorix:searchWeight     2.0 ;
@@ -142,4 +159,29 @@ rt:Person
                            sh:maxCount              1 ;
                            sh:order                 2.0 ;
                            sh:path                  person:originallyFromLibrary ; ] ;
+    sh:property          [ rdfs:label               "Auteursrechtafspraken"@nl, "Copyright Agreement"@en  ;
+                           dash:editor              memorix:VocabularyEditor ;
+                           sh:nodeKind              sh:IRI ;
+                           sh:class                 skos:Concept ;
+                           memorix:conceptSchemeIn  vocabularies:80216597-805e-4439-abab-f7a323dde6ec ;
+                           sh:group                 person:rightsGroup ;
+                           sh:maxCount              1 ;
+                           sh:order                 7.0 ;
+                           sh:path                  saa:copyrightsAgreement ] ;
+    sh:property          [ rdfs:label               "Contractnummer"@nl, "Contract Number"@en  ;
+                           dash:editor              dash:TextFieldEditor ;
+                           sh:datatype              xsd:string ;
+                           sh:group                 person:rightsGroup ;
+                           sh:maxCount              1 ;
+                           sh:order                 8.0 ;
+                           sh:path                  saa:copyrightsContractNr ] ;
+    sh:property          [ rdfs:label               "Auteursrechtopmerkingen"@nl, "Copyright Remarks"@en  ;
+                           dash:editor              dash:TextAreaEditor ;
+                           sh:datatype              xsd:string ;
+                           sh:group                 person:rightsGroup ;
+                           sh:maxCount              1 ;
+                           sh:order                 9.0 ;
+                           sh:path                  saa:copyrightsRemarks ] ;
 .
+
+
