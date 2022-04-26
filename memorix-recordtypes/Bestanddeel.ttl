@@ -55,6 +55,7 @@ rt:File
     a                               memorix:Recordtype, sh:NodeShape ;
     rdfs:comment                    "Stadsarchief recordtype voor Bestanddeel"@nl ;
     rdfs:label                      "Bestanddeel"@nl, "File"@en ;
+    memorix:typeOf                  memorix:File ;
     memorix:hasInformationComponent [ rdf:type              memorix:TreePathComponent ;
                                       memorix:hasRecordtype rt:Fonds, rt:Series
                                     ] ;
@@ -63,16 +64,17 @@ rt:File
     sh:targetClass                  rt:File ;
     sh:closed                       true ;
     sh:ignoredProperties            ( rdf:type ) ;
-    sh:property                     [ rdfs:label   "Inventarisnummer"@nl, "Inventory number"@en ;
-                                      rdfs:comment "Uniek nummer binnen een archiefblok."@nl ;
-                                      sh:message   "Vul tenminste een (uniek) inventarisnummer in. Dit nummer is verplicht."@nl, "Please provide at least an inventory number. It is required."@en ;
-                                      sh:class     rico:Identifier ;
-                                      sh:group     file:identificationGroup ;
-                                      sh:minCount  1 ;
-                                      sh:maxCount  1 ;
-                                      sh:nodeKind  sh:BlankNode ;
-                                      sh:order     1.0 ;
-                                      sh:path      rico:hasOrHadIdentifier
+    sh:property                     [ memorix:typeOf memorix:Identifier ;
+                                      rdfs:label     "Inventarisnummer"@nl, "Inventory number"@en ;
+                                      rdfs:comment   "Uniek nummer binnen een archiefblok."@nl ;
+                                      sh:message     "Vul tenminste een (uniek) inventarisnummer in. Dit nummer is verplicht."@nl, "Please provide at least an inventory number. It is required."@en ;
+                                      sh:class       rico:Identifier ;
+                                      sh:group       file:identificationGroup ;
+                                      sh:minCount    1 ;
+                                      sh:maxCount    1 ;
+                                      sh:nodeKind    sh:BlankNode ;
+                                      sh:order       1.0 ;
+                                      sh:path        rico:hasOrHadIdentifier
                                     ] ;
     sh:property                     [ rdfs:label           "Beschrijving"@nl, "Title"@en ;
                                       rdfs:comment         "Korte beschrijving van dit inventarisnummer"@nl, "Title or short description"@en ;
@@ -95,6 +97,17 @@ rt:File
                                       sh:maxCount     1 ;
                                       sh:order        3.0 ;
                                       sh:path         rico:scopeAndContent
+                                    ] ;
+    sh:property                     [ memorix:typeOf memorix:FondsFieldLink ;
+                                      rdfs:label     "Fonds/Archive" ;
+                                      sh:path        file:fonds ;
+                                      sh:order       4.0 ;
+                                      sh:nodeKind    sh:IRI ;
+                                      sh:or          ( [ sh:class rt:Fonds ] ) ;
+                                      sh:group       file:identificationGroup ;
+                                      dash:editor    memorix:LinkedRecordEditor ;
+                                      sh:minCount    1 ;
+                                      sh:maxCount    1
                                     ] ;
     sh:property                     [ rdfs:label           "Datering"@nl, "Dated"@en ;
                                       rdfs:comment         "Kan een exacte datum of een periode zijn"@nl, "Exact date or date range"@en ;
