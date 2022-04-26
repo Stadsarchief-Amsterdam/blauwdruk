@@ -38,13 +38,15 @@ rt:Fonds
                          memorix:Recordtype ;
     rdfs:label           "Archiefblok"@nl, "Fonds"@en ;
     rdfs:comment         "Stadsarchief recordtype voor Archiefblok"@nl, "Record type for fonds"@en ;
+    memorix:typeOf       memorix:Fonds ;
     memorix:hasInformationComponent [ rdf:type  memorix:DepotLocationComponent ] ;
     dc:identifier        "Fonds" ;
     sh:targetClass       rt:Fonds ;
     # sh:hasValue ric-rst:Fonds ; todo implement maybe later when the Memorix interface allows hidden fields
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property          [ rdfs:label        "Nummer toegang"@nl , "Fonds Number"@en ;
+    sh:property          [ memorix:typeOf    memorix:Identifier ;
+                           rdfs:label        "Nummer toegang"@nl , "Fonds Number"@en ;
                            rdfs:comment      "Unieke nummer van deze toegang"@nl , "Unique number to identify the fonds"@en;
                            sh:minCount       1 ;
                            sh:maxCount       1 ;
