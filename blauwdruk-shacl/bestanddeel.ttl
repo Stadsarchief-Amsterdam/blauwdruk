@@ -65,23 +65,25 @@ saa:File a sh:NodeShape ;
         rdfs:label "Volgende archiefbeschrijving in de volgorde"@nl ;
         sh:path rico:precedesOrPreceded ;
         sh:or (
-            [ sh:class blauwdruk:Groep ]
-            [ sh:class blauwdruk:Bestanddeel ]
-            [ sh:class blauwdruk:Informatieobject ]
+            [ sh:class saa:Series ]
+            [ sh:class saa:File ]
+            [ sh:class saa:DigitalRecord ]
+            [ sh:class saa:Deed ]
+            [ sh:class saa:Image ]
         )
     ] ;
     sh:property [
         rdfs:label "Maakt onderdeel uit van"@nl ;
         sh:path rico:isOrWasIncludedIn ;
         sh:or (
-            [ sh:class blauwdruk:Archief ]
-            [ sh:class blauwdruk:Groep ]
+            [ sh:class saa:Fonds ]
+            [ sh:class saa:Series ]
         )
     ] ;
     sh:property [
         rdfs:label "Zie ook"@nl ;
         sh:path rico:rdfs:seeAlso ;
-        sh:class blauwdruk:Bestanddeel ;
+        sh:class saa:File ;
     ] ;
     sh:property [
         rdfs:label "Status"@nl ;
@@ -94,11 +96,11 @@ saa:File a sh:NodeShape ;
         rdfs:label "Representaties"@nl ;
         sh:path rico:hasInstantiation ;
         sh:minCount 1 ;
-        sh:class rico:Representatie ;
+        sh:class rico:Instantiation ;
     ] ;
     sh:property [
         rdfs:label "Interne opmerking"@nl ;
-        sh:path blauwdruk:internalRemarks ;
+        sh:path rico:descriptiveNote ;
         sh:datatype xsd:string ; 
     ] .
 
@@ -111,7 +113,6 @@ rico:Title a sh:NodeShape ;
     sh:targetClass rico:Title ;
     sh:property [
         rdfs:label "Beschrijving"@nl ;
-        sh:message "This node MUST link to exactly 1 xsd:string with rico:textualValue"@en ;
         sh:path rico:textualValue ;
         sh:datatype xsd:string ; 
         sh:minCount 1 ;
@@ -119,7 +120,6 @@ rico:Title a sh:NodeShape ;
     ] ;
     sh:property [
         rdfs:label "Type beschrijving"@nl ;
-        sh:message "This node MUST link to exactly 1 rico:TitleType with rico:hasTitleType"@en ;
         sh:path rico:hasTitleType ;
         sh:class rico:TitleType ; 
         sh:minCount 1 ;
@@ -131,7 +131,6 @@ rico:Identifier a sh:NodeShape ;
     sh:targetClass rico:Identifier ;
     sh:property [
         rdfs:label "Identifier"@nl ;
-        sh:message "This node MUST link to exactly 1 xsd:string with rico:textualValue"@en ;
         sh:path rico:textualValue ;
         sh:datatype xsd:string ; 
         sh:minCount 1 ;
@@ -139,7 +138,6 @@ rico:Identifier a sh:NodeShape ;
     ] ;
     sh:property [
         rdfs:label "Type identifier"@nl ;
-        sh:message "rico:Identifier MUST link to exactly 1 rico:IdentifierType with rico:hasIdentifierType"@en ;
         sh:path rico:hasIdentifierType ;
         sh:class rico:IdentifierType ; 
         sh:minCount 1 ;
@@ -189,18 +187,17 @@ rico:SingleDate a sh:NodeShape ;
     ] .
 
 ## Type
-blauwdruk:TypeShape a sh:NodeShape ;
+:TypeShape a sh:NodeShape ;
     sh:targetClass rico:IdentifierType, rico:TitleType, rico:RecordState ;
     sh:property [
-        sh:message "rico:*Type MUST link to exactly 1 rico:Name with rico:hasOrHadName"@en ;
         sh:path rico:hasOrHadName ;
         sh:class rico:Name ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
     ] .
 
-blauwdruk:NameShape a sh:NodeShape ;
-    sh:targetClass  rico:Name ;
+:NameShape a sh:NodeShape ;
+    sh:targetClass rico:Name ;
     sh:property [
         sh:path rico:textualValue ;
         sh:datatype xsd:string ;
