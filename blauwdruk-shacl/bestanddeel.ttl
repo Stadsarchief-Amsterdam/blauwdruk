@@ -3,32 +3,26 @@
 @prefix owl:           <http://www.w3.org/2002/07/owl#> .
 @prefix xsd:           <http://www.w3.org/2001/XMLSchema#> .
 
-@prefix blauwdruk:     <https://example.memorix-test.nl/resources/recordtypes/> .
-
 @prefix sh:            <http://www.w3.org/ns/shacl#> .
 
 @prefix rico:          <https://www.ica.org/standards/RiC/ontology#> .
 @prefix ric-rst:       <https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#> .
 @prefix ric-dft:       <https://www.ica.org/standards/RiC/vocabularies/documentaryFormTypes#> .
+@prefix saa:           <https://data.archief.amsterdam/ontology#> . #TBD
+
 
 # ==================================================
-blauwdruk:Bestanddeel a sh:NodeShape, owl:Class ;
-    sh:targetClass blauwdruk:Bestanddeel ;
-    owl:equivalentClass rico:RecordSet ;
+saa:File a sh:NodeShape ;
+    sh:targetClass saa:File ;
     rdfs:label "Bestanddeel"@nl ;
-    rdfs:comment "Standaard Recordtype voor Bestanddeel"@nl ;
     sh:property [ 
-        sh:message        "Bestanddeel MUST link to ric-rst:File with rico:hasRecordSetType"@en ,
-            "Bestanddeel MOET linken naar ric-rst:File met rico:hasRecordSetType"@nl ;
-        rdfs:comment      "Deze informatie is altijd hetzelfde en wordt daarom niet door beschrijvers in Memorix ingevoerd, maar moet standaard bij een export worden toegevoegd."@nl ;
         sh:path           rico:hasRecordSetType ;
         sh:hasValue       ric-rst:File ;
         sh:minCount       1 ;
         sh:maxCount       1 ;
     ];
     sh:property [
-        rdfs:label "Inventarisnummer"@nl ;
-        rdfs:comment "Oude en nieuwe nummers" ;
+        rdfs:label "Inventarisnummer"@nl, "Oude nummers"@nl ;
         sh:path rico:hasOrHadIdentifier ;
         sh:minCount 1 ;
         sh:class rico:Identifier ;
@@ -56,15 +50,15 @@ blauwdruk:Bestanddeel a sh:NodeShape, owl:Class ;
         rdfs:label "Archiefvormer"@nl ;
         sh:path rico:hasAccumulator ;
         sh:or ( 
-            [ sh:class blauwdruk:Persoon ]
-            [ sh:class blauwdruk:Organisatie ]
-            [ sh:class blauwdruk:Familie ]
+            [ sh:class saa:Person ]
+            [ sh:class saa:Organisation ]
+            [ sh:class saa:Family ]
         ) ;       
     ] ;
     sh:property [ 
         rdfs:label "Uiterlijke vorm"@nl ;
         sh:maxCount 1 ;
-        sh:path rico:recordResourceExtent ;
+        sh:path rico:physicalOrLogicalExtent ;
         sh:datatype xsd:string ; 
     ] ;
     sh:property [
