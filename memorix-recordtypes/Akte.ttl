@@ -201,15 +201,15 @@ saa:HistoricalAddress1853
     rdf:type             sh:NodeShape ;
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property          [ rdfs:label  "Neighourhood number"@en, "Buurtnummer"@nl ;
+    sh:property          [ rdfs:label  "Neighbourhood number"@en, "Buurtnummer"@nl ;
                            sh:datatype xsd:string ;
                            sh:order    5.0 ;
-                           sh:path     saa:historicalAddressNeighourhoodNumber
+                           sh:path     saa:historicalAddressNeighbourhoodNumber
                          ] ;
-    sh:property          [ rdfs:label  "Neighourhood code"@en, "Buurtcode"@nl ;
+    sh:property          [ rdfs:label  "Neighbourhood code"@en, "Buurtcode"@nl ;
                            sh:datatype xsd:string ;
                            sh:order    4.0 ;
-                           sh:path     saa:historicalAddressNeighourhoodCode
+                           sh:path     saa:historicalAddressNeighbourhoodCode
                          ] ;
     sh:property          [ rdfs:label  "Street name (1853-74)"@en, "Straatnaam (1853-74)"@nl ;
                            sh:datatype xsd:string ;
