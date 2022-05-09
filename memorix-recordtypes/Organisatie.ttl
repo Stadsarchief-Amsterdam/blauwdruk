@@ -84,14 +84,14 @@ rt:Organisation
                                     sh:group             organisation:historyGroup ;
                                     sh:maxCount          1 ;
                                     sh:order             3.0 ;
-                                    sh:path              schema:birthDate
+                                    sh:path              schema:foundingDate
                                   ] ;
     sh:property                   [ rdfs:label           "Bron Oprichtingsdatum"@nl, "Source of Date of establishment"@en ;
                                     sh:datatype          xsd:string ;
                                     sh:group             organisation:historyGroup ;
                                     sh:maxCount          1 ;
                                     sh:order             3.5 ;
-                                    sh:path              saa:birthDateSource
+                                    sh:path              saa:foundingDateSource
                                   ] ;
 
     sh:property                   [ rdfs:label           "Opheffingsdatum"@nl, "Date of dissolution"@en ;
@@ -99,7 +99,7 @@ rt:Organisation
                                     sh:group             organisation:historyGroup ;
                                     sh:maxCount          1 ;
                                     sh:order             4.0 ;
-                                    sh:path              schema:deathDate
+                                    sh:path              schema:dissolutionDate
                                   ] ;
 
     sh:property                   [ rdfs:label           "Bron Opheffingsdatum"@nl, "Source of Date of dissolution"@en ;
@@ -107,7 +107,7 @@ rt:Organisation
                                     sh:group             organisation:historyGroup ;
                                     sh:maxCount          1 ;
                                     sh:order             4.5 ;
-                                    sh:path              saa:deathDateSource
+                                    sh:path              saa:dissolutionDateSource
                                   ] ;
 
     sh:property                     [ rdfs:label  "Gerelateerde organisatie"@nl, "Related organisation"@en ;
