@@ -46,6 +46,7 @@ rt:Image
     a                       memorix:Recordtype, sh:NodeShape ;
     rdfs:label              "Afbeelding"@nl, "Image"@en ;
     rdfs:comment            "Stadsarchief recordtype voor beeldmateriaal"@nl, "Record type for image descriptions"@en ;
+    memorix:hasInformationComponent [ rdf:type memorix:DigitalAssetComponent ] ;
     dc:identifier           "Image" ;
     sh:closed               true ;
     sh:ignoredProperties    ( rdf:type ) ;
