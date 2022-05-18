@@ -59,7 +59,9 @@ rt:File
     memorix:hasInformationComponent [ rdf:type              memorix:TreePathComponent ;
                                       memorix:hasRecordtype rt:Fonds, rt:Series
                                     ] ;
-    memorix:hasInformationComponent [ rdf:type memorix:DepotLocationComponent ] ;
+    memorix:hasInformationComponent [ rdf:type memorix:DepotLocationComponent ;
+                                      rdf:type memorix:DigitalAssetComponent ;
+                                    ] ;
     dc:identifier                   "File" ;
     sh:targetClass                  rt:File ;
     sh:closed                       true ;
