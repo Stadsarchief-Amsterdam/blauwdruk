@@ -47,6 +47,7 @@ rt:Deed
     dc:identifier        "Deed" ;
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
+    memorix:hasInformationComponent [ rdf:type memorix:DigitalAssetComponent ] ;
     sh:property          deed:TitleShape, deed:DocumentaryFormShape, deed:AssociatedWithDateShape, deed:SourceShape, deed:IndexNameShape,
                          deed:HasOrHadSubjectShape, deed:HasOrHadLocation1851Shape, deed:HasOrHadLocation1853Shape, deed:HasOrHadModernLocationShape,
                          deed:AddressHouseNameShape, deed:AddressPlaceShape, deed:AddressDescriptionShape,

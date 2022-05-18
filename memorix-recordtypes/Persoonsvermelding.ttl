@@ -55,6 +55,7 @@ rt:PersonObservation
     dc:identifier        "PersonObservation" ;
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
+    memorix:hasInformationComponent [ rdf:type memorix:DigitalAssetComponent ] ;
     sh:property          [ rdfs:label  "Naam"@nl, "Name"@en ;
                            sh:class    pnv:PersonName ;
                            sh:group    personObservation:personListingGroup ;
