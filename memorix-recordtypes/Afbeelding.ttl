@@ -118,7 +118,8 @@ rt:Image
                               sh:group    image:contentDescriptionGroup ;
                               dash:editor memorix:LinkedRecordEditor ;
                               sh:nodeKind sh:IRI ;
-                              sh:or       ( [ sh:class rt:Person ] ) ;
+                              sh:or       ( [ sh:class rt:Person ]
+                                            [ sh:class rt:Family ] ) ;
                             ] ;
     sh:property             [ rdfs:label              "Afgebeeld gebouw"@nl, "Depicted building"@en ;
                               sh:path                 image:isAssociatedWithBuilding ;
