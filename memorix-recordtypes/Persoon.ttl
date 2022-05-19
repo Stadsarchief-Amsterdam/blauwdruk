@@ -57,41 +57,14 @@ rt:Person
     memorix:copyrightHolderSource  true ;
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property          [ rdfs:label               "Voornaam"@nl, "First name"@en  ;
-                           dash:singleLine          true ;
-                           memorix:inTitleAt        3.0 ;
-                           memorix:searchWeight     3.0 ;
-                           sh:datatype              xsd:string ;
-                           sh:group                 person:identificationGroup ;
-                           sh:maxCount              1 ;
-                           sh:order                 1.0 ;
-                           sh:path                  pnv:givenName ] ;
-    sh:property          [ rdfs:label               "Initialen"@nl, "Initials"@en  ;
-                           dash:singleLine          true ;
-                           memorix:inTitleAt        4.0 ;
-                           sh:datatype              xsd:string ;
-                           sh:group                 person:identificationGroup ;
-                           sh:maxCount              1 ;
-                           sh:order                 2.0 ;
-                           sh:path                  pnv:initials ] ;
-    sh:property          [ rdfs:label               "Tussenvoegsel"@nl, "Surname prefix"@en  ;
-                           dash:singleLine          true ;
-                           memorix:inTitleAt        2.0 ;
-                           memorix:searchWeight     3.0 ;
-                           sh:datatype              xsd:string ;
-                           sh:group                 person:identificationGroup ;
-                           sh:maxCount              1 ;
-                           sh:order                 3.0 ;
-                           sh:path                  pnv:surnamePrefix ] ;
-    sh:property          [ rdfs:label               "Achternaam"@nl, "Surname"@en  ;
-                           dash:singleLine          true ;
-                           memorix:inTitleAt        1.0 ;
-                           memorix:searchWeight     3.0 ;
-                           sh:datatype              xsd:string ;
-                           sh:group                 person:identificationGroup ;
-                           sh:maxCount              1 ;
-                           sh:order                 4.0 ;
-                           sh:path                  pnv:baseSurname ] ;
+    sh:property          [ rdfs:label  "Naam"@nl, "Name"@en ;
+                           sh:class    pnv:PersonName ;
+                           sh:group    personObservation:personListingGroup ;
+                           sh:maxCount 1 ;
+                           sh:nodeKind sh:BlankNode ;
+                           sh:order    1.0 ;
+                           sh:path     pnv:hasName ;
+                         ] ;
     sh:property          [ rdfs:label               "Geboortejaar"@nl, "Year of birth"@en  ;
                            rdfs:comment             "Geef een jaartal"@nl ;
                            sh:datatype              xsd:gYear ;
@@ -182,6 +155,45 @@ rt:Person
                            sh:maxCount              1 ;
                            sh:order                 9.0 ;
                            sh:path                  saa:copyrightsRemarks ] ;
+.
+
+pnv:PersonName
+    rdf:type             sh:NodeShape ;
+    sh:closed            true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property          [ rdfs:label        "Voornaam"@nl,
+                                             "First name"@en ;
+                           memorix:inTitleAt 3.0 ;
+                           sh:datatype       xsd:string ;
+                           sh:group          personObservation:personListingGroup ;
+                           sh:order          1.0 ;
+                           sh:path           pnv:givenName
+                         ] ;
+    sh:property          [ rdfs:label               "Initialen"@nl, "Initials"@en  ;
+                           dash:singleLine          true ;
+                           memorix:inTitleAt        4.0 ;
+                           sh:datatype              xsd:string ;
+                           sh:group                 person:identificationGroup ;
+                           sh:maxCount              1 ;
+                           sh:order                 2.0 ;
+                           sh:path                  pnv:initials ] ;
+    sh:property          [ rdfs:label        "Tussenvoegsel"@nl, "Surname prefix"@en ;
+                           memorix:inTitleAt 2.0 ;
+                           sh:datatype       xsd:string ;
+                           sh:group          personObservation:personListingGroup ;
+                           sh:order          3.0 ;
+                           sh:path           pnv:surnamePrefix
+                         ] ;
+    sh:property          [ rdfs:label        "Achternaam"@nl, "Surname"@en ;
+                           memorix:inTitleAt 1.0 ;
+                           sh:datatype       xsd:string ;
+                           sh:group          personObservation:personListingGroup ;
+                           sh:order          4.0 ;
+                           sh:message        "Achternaam is verplicht"@nl, "Surname is required"@en ;
+                           sh:maxCount       1 ;
+                           sh:path           pnv:baseSurname
+                         ] ;
+    sh:targetClass       pnv:PersonName ;
 .
 
 
