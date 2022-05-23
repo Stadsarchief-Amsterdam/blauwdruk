@@ -93,7 +93,7 @@ rt:File
                                       rdfs:comment         "Korte beschrijving van dit inventarisnummer"@nl, "Title or short description"@en ;
                                       dash:singleLine      false ;
                                       dash:editor          dash:TextAreaEditor ;
-                                      memorix:inTitleAt    2 ;
+                                      memorix:inTitleAt    3 ;
                                       memorix:searchWeight 5.0 ;
                                       sh:datatype          xsd:string ;
                                       sh:group             file:identificationGroup ;
