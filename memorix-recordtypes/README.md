@@ -22,7 +22,7 @@ Wat is de stand van zaken mbt de recordtypes en wie is waarmee klaar of bezig.
 | AV.ttl     | - | - | -
 | MAI.ttl     | - | - | -
 | Duplicaat.ttl     | - | - | -
-| Restauratierapport.ttl     | ja | - | -
+| Conserveringsrapport.ttl     | ja | - | -
 | Bruikleen.ttl     | - | - | -
 
 
