@@ -139,7 +139,6 @@ report:ObjectMaterialShape
     sh:maxCount             50 ;
     sh:nodeKind             sh:IRI ;
     sh:order                3.0 ;
-#    sh:path                 report:objectMaterial ;
     sh:path                 saa:material ;
 .
 
@@ -154,7 +153,6 @@ report:ObjectTechniqueShape
     sh:maxCount             50 ;
     sh:nodeKind             sh:IRI ;
     sh:order                4.0 ;
-#    sh:path                 report:objectTechnique ;
     sh:path                 saa:technique ;
 .
 
