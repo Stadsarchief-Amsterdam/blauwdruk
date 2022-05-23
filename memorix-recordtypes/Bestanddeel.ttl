@@ -77,7 +77,7 @@ rt:File
                                       sh:order       1.0 ;
                                       sh:path        file:fonds
                                     ] ;
-    sh:property                     [ memorix:typeOf memorix:Identifier ;
+    sh:property                     [
                                       rdfs:label     "Inventarisnummer"@nl, "Inventory number"@en ;
                                       rdfs:comment   "Uniek nummer binnen een archiefblok."@nl ;
                                       sh:message     "Vul tenminste een (uniek) inventarisnummer in. Dit nummer is verplicht."@nl, "Please provide at least an inventory number. It is required."@en ;
@@ -269,7 +269,8 @@ rico:Identifier
     rdf:type             sh:NodeShape ;
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property          [ rdfs:label   "Inventarisnummer"@nl, "Inventory number"@en ;
+    sh:property          [ memorix:typeOf memorix:Identifier ;
+                           rdfs:label   "Inventarisnummer"@nl, "Inventory number"@en ;
                            dash:singleLine      true ;
                            memorix:inTitleAt    1.0 ;
                            memorix:searchWeight 3.0 ;
