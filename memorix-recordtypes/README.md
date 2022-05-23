@@ -1,7 +1,6 @@
 # voortgang record types
 
 Wat is de stand van zaken mbt de recordtypes en wie is waarmee klaar of bezig.
-Zo lang we nog alleen de beschikking hebben over de example omgeving stel ik voor even alles te prefixen met Saa (anders word ik gek).
 
 | Bestand | Veld definities | Vertaling Rico/andere standaard | Te doen | Klaar voor Picturae
 | ------- | --------------- | -------------- | ------- | --------
@@ -39,17 +38,11 @@ Dit resulteert in een record met 3 rdf:type waardes:
     <http://memorix.io/ontology#Record>
 
 
-## Vragen Picturae
-* dash:singleLine  true ; is dit niet de default?
-* hoe zorgen we ervoor dat sommige velden niet online komen? Zoals bv de interne opmerkingen
-* enum velden, kan zoiets voor een status veld, zonder dat er waardes in een concept scheme komen?
-* hoe de indeling parent vast te leggen?
-
 ## regels voor de Saa SHACL
 * alles behalve Class namen camelCase
 * properties leggen we vast in het Engels
 * minCount 0 is overbodig, maxCount oneindig is overbodig in Shacl maar we hebben maxCount >1 nodig om in Memorix een herhaalbaar blok te kunnen maken. Dus we spreken af: **altijd maxCount** opnemen.
-* asl we zeker weten dat iets een xsd:Date is, voor nu geen Memorix:dateEditor opnemen (want die werkt alleen met ints)
+* als we zeker weten dat iets een xsd:Date is, voor nu geen Memorix:dateEditor opnemen (want die werkt alleen met ints)
 
 ## todo
 * inTitleAt and inSummaryAt nalopen en vastleggen
