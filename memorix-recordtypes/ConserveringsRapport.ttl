@@ -53,7 +53,7 @@ report:managementGroup
 
 rt:ConservationReport
     a                    memorix:Recordtype, sh:NodeShape ;
-    rdfs:comment         "Stadsarchief recordtype voor Restauratierapport"@nl ;
+    rdfs:comment         "Stadsarchief recordtype voor Conserveringsrapport"@nl ;
     rdfs:label           "Conserveringsrapport"@nl, "Conservation report"@en ;
     dc:identifier        "ConservationReport" ;
     sh:targetClass       rt:ConservationReport ;
@@ -63,7 +63,7 @@ rt:ConservationReport
                          report:ObjectTechniqueShape ;
     sh:property          report:PrimaryCarrierShape, report:MediumShape, report:SecondaryAdditionShape, report:DamageShape, report:HasCarriedOutTestsShape ;
     sh:property          report:AcidityShape, report:OtherFindingsShape ;
-    sh:property          report:HasDamageTreatmentShape, report:OtherTreatmentShape, report:ExtrenalConservatorShape ;
+    sh:property          report:HasDamageTreatmentShape, report:OtherTreatmentShape, report:ExternalConservatorShape ;
     sh:property          report:InternalRemarksShape ;
 .
 
@@ -139,7 +139,8 @@ report:ObjectMaterialShape
     sh:maxCount             50 ;
     sh:nodeKind             sh:IRI ;
     sh:order                3.0 ;
-    sh:path                 report:objectMaterial ;
+#    sh:path                 report:objectMaterial ;
+    sh:path                 saa:material ;
 .
 
 report:ObjectTechniqueShape
@@ -153,7 +154,8 @@ report:ObjectTechniqueShape
     sh:maxCount             50 ;
     sh:nodeKind             sh:IRI ;
     sh:order                4.0 ;
-    sh:path                 report:objectTechnique ;
+#    sh:path                 report:objectTechnique ;
+    sh:path                 saa:technique ;
 .
 
 #Condition
@@ -294,7 +296,7 @@ report:HasDamageTreatmentShape
 
 report:DamageTreatment
     rdf:type             sh:NodeShape ;
-    rdfs:label           "Nog een behandeling"@nl, "treatment"@en ;
+    rdfs:label           "Behandeling"@nl, "Treatment"@en ;
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property          [ rdfs:label              "Onderdeel behandeling"@nl, "Treated part"@en ;
@@ -339,7 +341,7 @@ report:OtherTreatmentShape
     sh:path          report:otherTreatment
 .
 
-report:ExtrenalConservatorShape
+report:ExternalConservatorShape
     a                sh:PropertyShape ;
     rdfs:label       "Externe behandelaar"@nl, "External conservator"@en ;
     dash:editor      dash:TextAreaEditor ;
