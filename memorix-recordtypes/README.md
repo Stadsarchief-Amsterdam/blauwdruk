@@ -6,24 +6,24 @@ Zo lang we nog alleen de beschikking hebben over de example omgeving stel ik voo
 | Bestand | Veld definities | Vertaling Rico/andere standaard | Te doen | Klaar voor Picturae
 | ------- | --------------- | -------------- | ------- | --------
 | Afbeelding.ttl  | af | af | - | ja
-| Organisatie.ttl  | - | - | Levensloop toevoegen? | ja
-| Persoon.ttl  |  af | af | | ja
-| Familie.ttl  |  af | af | | ja
-| Aanwinst.ttl     | af | af | enkele voorstellen met IZ gemarkeerd | 
+| Organisatie.ttl  | ja | ja | - | ja
+| Persoon.ttl  |  af | af | - | ja
+| Familie.ttl  |  af | af | - | ja
+| Aanwinst.ttl     | af | af | LOD nakijken | 
 | Archiefblok.ttl | af| af | - | ja
 | Groep.ttl     | af | af | - | ja
 | Bestanddeel.ttl     | af | af | - | ja
-| Informatieobject.ttl     | af | af | - | -
-| InformatieobjectOnderdeel.ttl     | af | af | - | -
-| Akte.ttl     | nee | - | adressen toevoegen, en vertalen
-| Persoonsvermelding.ttl     | ja | ja | -
+| Informatieobject.ttl     | af | af | - | ja
+| InformatieobjectOnderdeel.ttl     | af | af | - | ja
+| Akte.ttl     | ja | ja | concept scheme type nakijken
+| Persoonsvermelding.ttl     | ja | ja | - | ja
 | Boek.ttl     | - | - | -
 | Periodiek.ttl     | - | - | -
 | Aflevering.ttl     | - | - | -
 | AV.ttl     | - | - | -
 | MAI.ttl     | - | - | -
 | Duplicaat.ttl     | - | - | -
-| Restauratierapport.ttl     | - | - | -
+| Restauratierapport.ttl     | ja | - | -
 | Bruikleen.ttl     | - | - | -
 
 
