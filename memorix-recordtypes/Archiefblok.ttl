@@ -47,7 +47,7 @@ rt:Fonds
         dc:title "Series";
         # Branches of the tree
         memorix:hasNode [
-            memorix:hasRecordType rt:Serie ;
+            memorix:hasRecordType rt:Series ;
             # Fields to display in the tree node, only direct paths of type string are supported.
             memorix:inlineField [
               memorix:path rico:identifier;
