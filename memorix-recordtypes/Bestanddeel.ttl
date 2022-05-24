@@ -77,17 +77,19 @@ rt:File
                                       sh:order       1.0 ;
                                       sh:path        file:fonds
                                     ] ;
-    sh:property                     [
-                                      rdfs:label     "Inventarisnummer"@nl, "Inventory number"@en ;
-                                      rdfs:comment   "Uniek nummer binnen een archiefblok."@nl ;
-                                      sh:message     "Vul tenminste een (uniek) inventarisnummer in. Dit nummer is verplicht."@nl, "Please provide at least an inventory number. It is required."@en ;
-                                      sh:class       rico:Identifier ;
-                                      sh:group       file:identificationGroup ;
-                                      sh:minCount    1 ;
-                                      sh:maxCount    1 ;
-                                      sh:nodeKind    sh:BlankNode ;
-                                      sh:order       2.0 ;
-                                      sh:path        rico:hasOrHadIdentifier
+    sh:property                     [ memorix:typeOf       memorix:Identifier ;
+                                      rdfs:label           "Inventarisnummer"@nl, "Inventory number"@en ;
+                                      rdfs:comment         "Uniek nummer binnen een archiefblok."@nl ;
+                                      sh:message           "Vul tenminste een (uniek) inventarisnummer in. Dit nummer is verplicht."@nl, "Please provide at least an inventory number. It is required."@en ;
+                                      dash:singleLine      true ;
+                                      memorix:inTitleAt    1.0 ;
+                                      memorix:searchWeight 3.0
+                                      sh:datatype          xsd:string ;
+                                      sh:group             file:identificationGroup ;
+                                      sh:minCount          1 ;
+                                      sh:maxCount          1 ;
+                                      sh:order             2.0 ;
+                                      sh:path              rico:identifier
                                     ] ;
     sh:property                     [ rdfs:label           "Beschrijving"@nl, "Title"@en ;
                                       rdfs:comment         "Korte beschrijving van dit inventarisnummer"@nl, "Title or short description"@en ;
@@ -264,33 +266,6 @@ rt:File
                                       sh:order     10.0 ;
                                       sh:path      file:status ;
                                     ] .
-
-rico:Identifier
-    rdf:type             sh:NodeShape ;
-    sh:closed            true ;
-    sh:ignoredProperties ( rdf:type ) ;
-    sh:property          [ memorix:typeOf memorix:Identifier ;
-                           rdfs:label   "Inventarisnummer"@nl, "Inventory number"@en ;
-                           dash:singleLine      true ;
-                           memorix:inTitleAt    1.0 ;
-                           memorix:searchWeight 3.0 ;
-                           sh:datatype          xsd:string ;
-                           sh:minCount          1 ;
-                           sh:maxCount          1 ;
-                           sh:order             1.0 ;
-                           sh:path              file:inventoryNumber
-                         ] ;
-    sh:property          [ rdfs:label           "Inventarisnummer toevoeging"@nl, "Inventory number addition"@en ;
-                           dash:singleLine      true ;
-                           memorix:inTitleAt    2.0 ;
-                           memorix:searchWeight 3.0 ;
-                           sh:maxCount          1 ;
-                           sh:datatype          xsd:string ;
-                           sh:order             2.0 ;
-                           sh:path              file:inventoryNumberAddition
-                         ] ;
-    sh:targetClass       rico:Identifier
-.
 
 rico:DateRange
     rdf:type             sh:NodeShape ;
