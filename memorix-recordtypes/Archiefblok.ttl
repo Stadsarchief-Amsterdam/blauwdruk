@@ -169,6 +169,7 @@ rt:Fonds
                            memorix:audience memorix:audienceInternal ;
                            sh:message   "Status is verplicht. Moet een van de volgende waardes zijn: aanwezig, vervallen, te vernietigen, vernietigd"@nl , "Must be one of the following (Dutch) terms: aanwezig, vervallen, te vernietigen, vernietigd. Mandatory." ;
                            sh:datatype  xsd:string ;
+                           dash:editor  dash:EnumSelectEditor ;
                            sh:minCount  1 ;
                            sh:maxCount  1 ;
                            sh:in       ( "aanwezig" "vervallen" "te vernietigen" "vernietigd" ) ;
