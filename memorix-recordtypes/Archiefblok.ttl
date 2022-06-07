@@ -119,8 +119,7 @@ rt:Fonds
                            sh:path             rico:hasAccumulator ;
                            dash:editor         memorix:LinkedRecordEditor ;
                            sh:group            fonds:identificationGroup ;
-                           #sh:minCount         1 ; #todo later aanzetten
-                           sh:maxCount         10 ;
+                           sh:maxCount         1000 ;
                            sh:order            4.0 ;
                            sh:nodeKind         sh:IRI ;
                            sh:or               ( [ sh:class rt:Person ]
