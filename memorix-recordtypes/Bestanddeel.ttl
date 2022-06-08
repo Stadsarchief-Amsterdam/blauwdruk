@@ -83,7 +83,7 @@ rt:File
                                       sh:message           "Vul tenminste een (uniek) inventarisnummer in. Dit nummer is verplicht."@nl, "Please provide at least an inventory number. It is required."@en ;
                                       dash:singleLine      true ;
                                       memorix:inTitleAt    1.0 ;
-                                      memorix:searchWeight 3.0
+                                      memorix:searchWeight 3.0 ;
                                       sh:datatype          xsd:string ;
                                       sh:group             file:identificationGroup ;
                                       sh:minCount          1 ;
