@@ -83,7 +83,7 @@ rt:File
                                       sh:message           "Vul tenminste een (uniek) inventarisnummer in. Dit nummer is verplicht."@nl, "Please provide at least an inventory number. It is required."@en ;
                                       dash:singleLine      true ;
                                       memorix:inTitleAt    1.0 ;
-                                      memorix:searchWeight 3.0
+                                      memorix:searchWeight 3.0 ;
                                       sh:datatype          xsd:string ;
                                       sh:group             file:identificationGroup ;
                                       sh:minCount          1 ;
@@ -257,7 +257,7 @@ rt:File
                                     ] ;
     sh:property                     [ rdfs:label   "Status"@nl, "Status"@en ;
                                       sh:message   "Status is verplicht. Moet een van de volgende waardes zijn: aanwezig, vervallen, te vernietigen, vermist, vernietigd"@nl, "Must be one of the following (Dutch) terms: aanwezig, vervallen, te vernietigen, vermist, vernietigd. Mandatory." ;
-                                      sh:datatype  xsd:string ;
+                                      dash:editor  dash:EnumSelectEditor ;
                                       sh:minCount  1 ;
                                       sh:maxCount  1 ;
                                       memorix:audience memorix:audienceInternal ;
