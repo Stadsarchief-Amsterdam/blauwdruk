@@ -1,0 +1,45 @@
+@prefix :              <https://data.archief.amsterdam/blauwdruk#>
+
+@prefix rdf:           <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:          <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:           <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:           <http://www.w3.org/2001/XMLSchema#> .
+
+@prefix sh:            <http://www.w3.org/ns/shacl#> .
+
+@prefix rico:          <https://www.ica.org/standards/RiC/ontology#> .
+@prefix ric-rst:       <https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#> .
+@prefix ric-dft:       <https://www.ica.org/standards/RiC/vocabularies/documentaryFormTypes#> .
+@prefix schema:        <http://schema.org/> .
+
+
+# ==================================================
+:Agent a sh:NodeShape ;
+    sh:targetClass rico:Agent ;
+    sh:xone ( 
+        [ sh:node :Person ]
+        [ sh:node :PersonObservation ]
+        [ sh:node :Organisation ]
+        [ sh:node :OrganisationObservation ]
+        [ sh:node :Family ]
+    ) .
+
+# ===== PERSON =====
+:Person a sh:NodeShape ;
+    rdfs:label "Persoon"@nl .
+
+# ===== PERSON OBSERVATION =====
+:PersonObservation a sh:NodeShape ;
+    rdfs:label "Persoonsvermelding"@nl .
+
+# ===== ORGANISATION =====
+:Organisation a sh:NodeShape ;
+    rdfs:label "Organisatie"@nl .
+
+# ===== ORGANISATION OBSERVATION =====
+:OrganisationObservation a sh:NodeShape ;
+    rdfs:label "Organisatievermelding"@nl .
+
+# ===== FAMILY =====
+:Family a sh:NodeShape ;
+    rdfs:label "Familie"@nl .

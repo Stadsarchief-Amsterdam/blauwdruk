@@ -8,7 +8,7 @@
 @prefix xsd:        <http://www.w3.org/2001/XMLSchema#> .
 
 <https://data.archief.amsterdam/fonds/2ab843bcdc58542729ac2e5d86a7ecd6>
-    a blauwdruk:Bestanddeel ;
+    a rico:RecordSet ;
     rico:hasOrHadIdentifier [
         a rico:Identifier ;
         rico:hasIdentifierType [

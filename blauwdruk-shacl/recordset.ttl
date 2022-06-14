@@ -1,0 +1,418 @@
+@prefix :              <https://data.archief.amsterdam/blauwdruk#>
+
+@prefix rdf:           <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:          <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:           <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:           <http://www.w3.org/2001/XMLSchema#> .
+
+@prefix sh:            <http://www.w3.org/ns/shacl#> .
+
+@prefix rico:          <https://www.ica.org/standards/RiC/ontology#> .
+@prefix ric-rst:       <https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#> .
+@prefix ric-dft:       <https://www.ica.org/standards/RiC/vocabularies/documentaryFormTypes#> .
+@prefix schema:        <http://schema.org/> .
+
+
+# ==================================================
+:RecordSet a sh:NodeShape ;
+    sh:targetClass rico:RecordSet ;
+    sh:xone ( 
+        [ sh:node :Fonds ]
+        [ sh:node :Series ]
+        [ sh:node :File ]
+    ) .
+
+# ===== FONDS =====
+:Fonds a sh:NodeShape ;
+    rdfs:label "Archiefblok"@nl ;
+    sh:property [ 
+        rdfs:label "Soort archiefblok"@nl ;
+        sh:path rico:hasRecordSetType ;
+        sh:in ( ric-rst:Fonds ric-rst:Collection) ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+    ] ;
+    sh:property [
+        rdfs:label "Archiefnummer"@nl ;
+        sh:path rico:hasOrHadIdentifier ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:class rico:Identifier ; 
+        sh:node :IdentifierFonds ;
+    ] ;
+    sh:property [
+        rdfs:label "Naam van het archief/collectie"@nl ;
+        sh:path rico:hasOrHadTitle ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:class rico:Title ;
+        sh:node :TitleFonds ;
+    ] ;
+    sh:property [
+        rdfs:label "Periode van vorming"@nl ;
+        sh:path rico:isAssociatedWithDate ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:class rico:DateRange ;
+        sh:node :DateRangeFonds ;
+    ] ;
+    sh:property [
+        rdfs:label "Archiefvormer"@nl ;
+        sh:path rico:hasAccumulator ;
+        sh:minCount 1 ;
+        sh:or ( 
+            [ sh:class rico:Person ]
+            [ sh:class rico:CorporateBody ]
+            [ sh:class rico:Family ]
+        ) ;       
+    ] ;
+    sh:property [
+        rdfs:label "Beschrijving"@nl ;
+        sh:path rico:scopeAndContent ;
+        sh:datatype xsd:string ; 
+    ] ;
+    sh:property [
+        rdfs:label "Gerelateerde archieven"@nl ;
+        sh:path rdfs:seeAlso ;
+        sh:class rico:RecordSet ;       
+    ] ;
+    sh:property [
+        rdfs:label "Gerelateerde publicaties"@nl ;
+        sh:path rdfs:seeAlso ;
+        sh:or ( 
+            [ sh:class schema:Book ]
+            # nog meer relevante schema-Classes
+        ) ;       
+    ] ;
+    sh:property [
+        rdfs:label "Status"@nl ;
+        sh:path rico:isOrWasRecordStateOfAllMembers ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:class rico:RecordState ;
+        sh:node :RecordState ;
+    ] ;
+    sh:property [
+        rdfs:label "Interne opmerking"@nl ;
+        sh:path rico:descriptiveNote ;
+        sh:datatype xsd:string ; 
+    ] ;
+    sh:property [
+        rdfs:label "Inventarisatie"@nl ; 
+        sh:minCount 1 ; 
+        sh:path rico:isOrWasDescribedBy ;
+        sh:node :FindingAid ; 
+        sh:class rico:Record ;
+    ] .
+
+# ===== FONDS ===== Finding Aid
+:FindingAid a sh:NodeShape ;
+    sh:property [ 
+        sh:path rico:hasDocumentaryFormType ;
+        sh:hasValue ric-dft:FindingAid ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+    ];
+    sh:property [
+        rdfs:label "Inventarisator"@nl ;
+        sh:path rico:hasAuthor ;
+        sh:or (
+            [ sh:class rico:Person ]
+            [ sh:class rico:CorporateBody ]
+        ) ;     
+        sh:maxCount 1 ;
+    ] ;
+    sh:property [
+        # LET OP! Deze moet nog een keer netjes met echte rico:Date's Dat is nog niet goed in RiC-O: ik heb er een issue voor aangemaakt bij de RiC-O ontwikkelaars.
+        rdfs:label "Datum Inventarisatie"@nl ;
+        sh:path rico:publicationDate ;
+        sh:datatype xsd:gYear ; 
+        sh:maxCount 1 ;
+    ] ;
+    sh:property [
+        rdfs:label "Verantwoording van de inventarisatie"@nl ;
+        sh:path rico:history ;
+        sh:datatype xsd:string ; 
+        sh:maxCount 1 ;
+    ] ;
+    sh:property [
+        rdfs:comment "Uitgever van de inventarisatie"@nl ;
+        sh:path rico:hasPublisher ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+    ] .
+
+# ===== FONDS ===== Title
+:TitleFonds a sh:NodeShape ;
+    sh:property [
+        rdfs:label "Titel"@nl ;
+        sh:path rico:textualValue ;
+        sh:datatype xsd:string ; 
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+    ] ;
+    sh:property [
+        rdfs:label "Type titel"@nl ;
+        sh:path rico:hasTitleType ;
+        sh:class rico:TitleType ; 
+        sh:node :TitleTypeFonds ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+    ] .
+
+:TitleTypeFonds a sh:NodeShape ;
+    sh:property [
+        sh:path rico:hasOrHadName ;
+        sh:class rico:Name ;
+        sh:node :TitleTypeNameFonds ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+    ] .
+
+:TitleTypeNameFonds a sh:NodeShape ;
+    sh:property [
+        sh:path rico:textualValue ;
+        sh:hasValue "Toegangsnaam" ;
+    ] .
+
+# ===== FONDS ===== Identifier
+:IdentifierFonds a sh:NodeShape ;
+    sh:property [
+        rdfs:label "Toegangsnummer"@nl ;
+        sh:path rico:textualValue ;
+        sh:datatype xsd:string ; 
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+    ] ;
+    sh:property [
+        rdfs:label "Type identifier"@nl ;
+        sh:path rico:hasIdentifierType ;
+        sh:node :IdentifierTypeFonds ; 
+        sh:class rico:IdentifierType ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+    ] .
+
+:IdentifierTypeFonds a sh:NodeShape ;
+    sh:property [
+        sh:path rico:hasOrHadName ;
+        sh:class rico:Name ;
+        sh:node :IdentifierTypeNameFonds ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+    ] .
+
+:IdentifierTypeNameFonds a sh:NodeShape ;
+    sh:property [
+        sh:path rico:textualValue ;
+        sh:hasValue "Toegangsnummer" ;
+    ] .
+
+# ===== FONDS ===== Date
+:DateRangeFonds a sh:NodeShape ;
+    sh:property [
+        rdfs:label "Begindatum"@nl ;
+        sh:path rico:hasBeginningDate ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:node :SingleYear ;
+        sh:class rico:SingleDate ;
+    ] ;
+    sh:property [
+        rdfs:label "Einddatum"@nl ;
+        sh:path rico:hasEndDate ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:node :SingleYear ;
+        sh:class rico:SingleDate ;
+    ] .
+
+:SingleYear a sh:NodeShape ;
+    sh:property [
+        rdfs:label "Jaartal (genormaliseerd)"@nl ;
+        sh:path rico:normalizedDateValue ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:gYear ;
+    ] .
+
+# ===== SERIES =====
+:Series a sh:NodeShape ;
+    rdfs:label "Groep"@nl ;
+    sh:property [ 
+        rdfs:label "Groep"@nl ;
+        sh:path rico:hasRecordSetType ;
+        sh:hasValue ric-rst:Series ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+    ] ;
+    sh:property [
+        rdfs:label "Rubrieksnummer"@nl ;
+        sh:path rico:hasOrHadIdentifier ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:class rico:Identifier ; 
+        sh:node :IdentifierSeries ;
+    ] ;
+    sh:property [
+        rdfs:label "Rubrieksnaam"@nl ;
+        sh:path rico:hasOrHadTitle ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:class rico:Title ;
+        sh:node :TitleSeries ;
+    ] ;
+    sh:property [
+        rdfs:label "Beschrijving"@nl ;
+        sh:path rico:scopeAndContent ;
+        sh:datatype xsd:string ; 
+    ] ;
+    sh:property [
+        rdfs:label "Datering"@nl ;
+        sh:path rico:isAssociatedWithDate ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:class rico:DateRange ;
+        sh:node :DateRangeSeries ;
+    ] ;
+    sh:property [ 
+        rdfs:label "Uiterlijke vorm"@nl ;
+        sh:maxCount 1 ;
+        sh:path rico:physicalOrLogicalExtent ;
+        sh:datatype xsd:string ; 
+    ] ;
+    sh:property [
+        rdfs:label "Volgende archiefbeschrijving in de volgorde"@nl ;
+        sh:path rico:precedesOrPreceded ;
+#        sh:or (
+#            [ sh:node :Series ]
+#            [ sh:node :File ]
+#            [ sh:class rico:Record ]
+#        )
+    ] ;
+    sh:property [
+        rdfs:label "Maakt onderdeel uit van"@nl ;
+        sh:path rico:isOrWasIncludedIn ;
+        sh:class rico:RecordSet 
+    ] ;
+    sh:property [
+        rdfs:label "Interne opmerking"@nl ;
+        sh:path rico:descriptiveNote ;
+        sh:datatype xsd:string ; 
+    ] .
+
+# ===== SERIES ===== Identifier
+:IdentifierSeries a sh:NodeShape ;
+    sh:property [
+        rdfs:label "Rubrieksnummer"@nl ;
+        sh:path rico:textualValue ;
+        sh:datatype xsd:string ; 
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+    ] ;
+    sh:property [
+        rdfs:label "Type identifier"@nl ;
+        sh:path rico:hasIdentifierType ;
+        sh:node :IdentifierTypeSeries ; 
+        sh:class rico:IdentifierType ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+    ] .
+
+:IdentifierTypeSeries a sh:NodeShape ;
+    sh:property [
+        sh:path rico:hasOrHadName ;
+        sh:class rico:Name ;
+        sh:node :IdentifierTypeNameSeries ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+    ] .
+
+:IdentifierTypeNameSeries a sh:NodeShape ;
+    sh:property [
+        sh:path rico:textualValue ;
+        sh:or (
+            [ sh:hasValue "Rubrieksnummer" ]
+            [ sh:hasValue "Inventarisnummers" ]
+        )
+    ] .
+
+# ===== SERIES ===== Title
+:TitleSeries a sh:NodeShape ;
+    sh:property [
+        rdfs:label "Titel"@nl ;
+        sh:path rico:textualValue ;
+        sh:datatype xsd:string ; 
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+    ] ;
+    sh:property [
+        rdfs:label "Type titel"@nl ;
+        sh:path rico:hasTitleType ;
+        sh:class rico:TitleType ; 
+        sh:node :TitleTypeSeries ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+    ] .
+
+:TitleTypeSeries a sh:NodeShape ;
+    sh:property [
+        sh:path rico:hasOrHadName ;
+        sh:class rico:Name ;
+        sh:node :TitleTypeNameSeries ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+    ] .
+
+:TitleTypeNameSeries a sh:NodeShape ;
+    sh:property [
+        sh:path rico:textualValue ;
+        sh:or (
+            [ sh:hasValue "Rubrieksnaam" ]
+            [ sh:hasValue "Verzamelingbeschrijving" ]
+        )
+    ] .
+
+# ===== SERIES ===== Date
+:DateRangeSeries a sh:NodeShape ;
+    sh:property [
+        rdfs:label "Periode (tekst)"@nl ;
+        sh:path rico:expressedDate ;
+        sh:datatype xsd:string ;
+    ] ;
+    sh:property [
+        rdfs:label "Begindatum"@nl ;
+        sh:path rico:hasBeginningDate ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:node :SingleDate ;
+        sh:class rico:SingleDate ;
+    ] ;
+    sh:property [
+        rdfs:label "Einddatum"@nl ;
+        sh:path rico:hasEndDate ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:node :SingleDate ;
+        sh:class rico:SingleDate ;
+    ] .
+
+:SingleDate a sh:NodeShape ;
+    sh:property [
+        rdfs:label "Datum (genormaliseerd)"@nl ;
+        sh:path rico:normalizedDateValue ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:date ;
+    ] .
+
+# ===== FILE =====
+:File a sh:NodeShape ;
+    rdfs:label "Bestanddeel"@nl ;
+    sh:property [ 
+        rdfs:label "Bestanddeel"@nl ;
+        sh:path rico:hasRecordSetType ;
+        sh:hasValue ric-rst:File ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+    ] .

@@ -3,12 +3,11 @@
 
 @prefix rico:          <https://www.ica.org/standards/RiC/ontology#> .
 @prefix ric-voc:       <https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#> .
-@prefix blauwdruk:     <https://example.memorix-test.nl/resources/recordtypes/> .
 
 @prefix xsd:           <http://www.w3.org/2001/XMLSchema#> .
 
 <https://data.archief.amsterdam/cf1d8cbacfd2d88b8c4b38324ab2acba>
-    a blauwdruk:Archiefblok, rico:RecordSet ;
+    a rico:RecordSet ;
     rico:hasRecordSetType ric-voc:Fonds ;
     rico:hasOrHadIdentifier [
         a rico:Identifier ;
