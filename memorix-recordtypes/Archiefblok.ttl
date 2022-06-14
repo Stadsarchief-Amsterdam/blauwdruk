@@ -5,6 +5,7 @@
 
 @prefix rt:            </resources/recordtypes/> .
 @prefix fonds:         </resources/recordtypes/Fonds#> .
+@prefix file:         </resources/recordtypes/File#> .
 @prefix saa:           <https://data.archief.amsterdam/ontology#> . #TBD
 
 @prefix dc:            <http://purl.org/dc/elements/1.1/> .
@@ -40,6 +41,39 @@ rt:Fonds
     rdfs:comment         "Stadsarchief recordtype voor Archiefblok"@nl, "Record type for fonds"@en ;
     memorix:typeOf       memorix:Fonds ;
     memorix:hasInformationComponent [ rdf:type  memorix:DepotLocationComponent ] ;
+    memorix:hasInformationComponent [
+        a memorix:TreeComponent ;
+        # Title of the tab
+        dc:title "Series";
+        # Branches of the tree
+        memorix:hasNode [
+            memorix:hasRecordType rt:Series ;
+            # Fields to display in the tree node, only direct paths of type string are supported.
+            memorix:inlineField [
+              memorix:path rico:identifier;
+                memorix:order 1.0;
+            ];
+            memorix:inlineField [
+                memorix:path rico:title;
+                memorix:order 2.0;
+            ];
+        ];
+        # Leaf nodes of the tree
+        memorix:hasLeaf [
+              memorix:hasRecordType rt:File ;
+              # Field in the File recordtype with the current Fonds record as parent
+              memorix:path file:fonds ;
+          ] ;
+    ];
+    # Info to render the "File" tab with child records
+    memorix:hasInformationComponent [
+        a memorix:HasRecordsComponent ;
+        # Title of the tab
+        dc:title "Files";
+        memorix:hasRecordType rt:File ;
+        # Field in the File recordtype with the current Fonds record as parent
+        memorix:path file:fonds ;
+    ] ;
     dc:identifier        "Fonds" ;
     sh:targetClass       rt:Fonds ;
     # sh:hasValue ric-rst:Fonds ; todo implement maybe later when the Memorix interface allows hidden fields
@@ -85,8 +119,7 @@ rt:Fonds
                            sh:path             rico:hasAccumulator ;
                            dash:editor         memorix:LinkedRecordEditor ;
                            sh:group            fonds:identificationGroup ;
-                           #sh:minCount         1 ; #todo later aanzetten
-                           sh:maxCount         10 ;
+                           sh:maxCount         1000 ;
                            sh:order            4.0 ;
                            sh:nodeKind         sh:IRI ;
                            sh:or               ( [ sh:class rt:Person ]
@@ -135,7 +168,7 @@ rt:Fonds
                            rdfs:comment "Status van het archief."@nl , "Status of the fonds"@en ;
                            memorix:audience memorix:audienceInternal ;
                            sh:message   "Status is verplicht. Moet een van de volgende waardes zijn: aanwezig, vervallen, te vernietigen, vernietigd"@nl , "Must be one of the following (Dutch) terms: aanwezig, vervallen, te vernietigen, vernietigd. Mandatory." ;
-                           sh:datatype  xsd:string ;
+                           dash:editor  dash:EnumSelectEditor ;
                            sh:minCount  1 ;
                            sh:maxCount  1 ;
                            sh:in       ( "aanwezig" "vervallen" "te vernietigen" "vernietigd" ) ;

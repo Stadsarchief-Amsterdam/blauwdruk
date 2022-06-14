@@ -77,23 +77,25 @@ rt:File
                                       sh:order       1.0 ;
                                       sh:path        file:fonds
                                     ] ;
-    sh:property                     [ memorix:typeOf memorix:Identifier ;
-                                      rdfs:label     "Inventarisnummer"@nl, "Inventory number"@en ;
-                                      rdfs:comment   "Uniek nummer binnen een archiefblok."@nl ;
-                                      sh:message     "Vul tenminste een (uniek) inventarisnummer in. Dit nummer is verplicht."@nl, "Please provide at least an inventory number. It is required."@en ;
-                                      sh:class       rico:Identifier ;
-                                      sh:group       file:identificationGroup ;
-                                      sh:minCount    1 ;
-                                      sh:maxCount    1 ;
-                                      sh:nodeKind    sh:BlankNode ;
-                                      sh:order       2.0 ;
-                                      sh:path        rico:hasOrHadIdentifier
+    sh:property                     [ memorix:typeOf       memorix:Identifier ;
+                                      rdfs:label           "Inventarisnummer"@nl, "Inventory number"@en ;
+                                      rdfs:comment         "Uniek nummer binnen een archiefblok."@nl ;
+                                      sh:message           "Vul tenminste een (uniek) inventarisnummer in. Dit nummer is verplicht."@nl, "Please provide at least an inventory number. It is required."@en ;
+                                      dash:singleLine      true ;
+                                      memorix:inTitleAt    1.0 ;
+                                      memorix:searchWeight 3.0 ;
+                                      sh:datatype          xsd:string ;
+                                      sh:group             file:identificationGroup ;
+                                      sh:minCount          1 ;
+                                      sh:maxCount          1 ;
+                                      sh:order             2.0 ;
+                                      sh:path              rico:identifier
                                     ] ;
     sh:property                     [ rdfs:label           "Beschrijving"@nl, "Title"@en ;
                                       rdfs:comment         "Korte beschrijving van dit inventarisnummer"@nl, "Title or short description"@en ;
                                       dash:singleLine      false ;
                                       dash:editor          dash:TextAreaEditor ;
-                                      memorix:inTitleAt    2 ;
+                                      memorix:inTitleAt    3 ;
                                       memorix:searchWeight 5.0 ;
                                       sh:datatype          xsd:string ;
                                       sh:group             file:identificationGroup ;
@@ -255,7 +257,7 @@ rt:File
                                     ] ;
     sh:property                     [ rdfs:label   "Status"@nl, "Status"@en ;
                                       sh:message   "Status is verplicht. Moet een van de volgende waardes zijn: aanwezig, vervallen, te vernietigen, vermist, vernietigd"@nl, "Must be one of the following (Dutch) terms: aanwezig, vervallen, te vernietigen, vermist, vernietigd. Mandatory." ;
-                                      sh:datatype  xsd:string ;
+                                      dash:editor  dash:EnumSelectEditor ;
                                       sh:minCount  1 ;
                                       sh:maxCount  1 ;
                                       memorix:audience memorix:audienceInternal ;
@@ -264,32 +266,6 @@ rt:File
                                       sh:order     10.0 ;
                                       sh:path      file:status ;
                                     ] .
-
-rico:Identifier
-    rdf:type             sh:NodeShape ;
-    sh:closed            true ;
-    sh:ignoredProperties ( rdf:type ) ;
-    sh:property          [ rdfs:label   "Inventarisnummer"@nl, "Inventory number"@en ;
-                           dash:singleLine      true ;
-                           memorix:inTitleAt    1.0 ;
-                           memorix:searchWeight 3.0 ;
-                           sh:datatype          xsd:string ;
-                           sh:minCount          1 ;
-                           sh:maxCount          1 ;
-                           sh:order             1.0 ;
-                           sh:path              file:inventoryNumber
-                         ] ;
-    sh:property          [ rdfs:label           "Inventarisnummer toevoeging"@nl, "Inventory number addition"@en ;
-                           dash:singleLine      true ;
-                           memorix:inTitleAt    2.0 ;
-                           memorix:searchWeight 3.0 ;
-                           sh:maxCount          1 ;
-                           sh:datatype          xsd:string ;
-                           sh:order             2.0 ;
-                           sh:path              file:inventoryNumberAddition
-                         ] ;
-    sh:targetClass       rico:Identifier
-.
 
 rico:DateRange
     rdf:type             sh:NodeShape ;
