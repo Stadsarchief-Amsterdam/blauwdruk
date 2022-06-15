@@ -29,6 +29,151 @@
 # ===== IMAGE =====
 :Image a sh:NodeShape ;
     rdfs:label "Afbeelding"@nl .
+    sh:property [
+        rdfs:label "Nummer"@nl ;
+        sh:path rico:hasOrHadIdentifier ;
+        sh:class rico:Identifier ;
+        sh:node :IdentifierImage ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        rdfs:label "Titel"@nl ;
+        sh:path rico:hasOrHadTitle ;
+        sh:class rico:Title ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+    ] ;
+    sh:property [
+        rdfs:label "Beschrijving"@nl ;
+        sh:path rico:scopeAndContent ;
+        sh:datatype xsd:string ; 
+        sh:maxCount 1 ;
+    ] ;
+    sh:property [ 
+        rdfs:label "Afgebeeld onderwerp"@nl ;
+        sh:path rico:hasOrHadSubject ;
+    ] ;
+    sh:property [
+        rdfs:label "Datering"@nl ;
+        sh:path rico:isAssociatedWithDate ;
+        sh:maxCount 1 ;
+        sh:class rico:DateRange ;
+        sh:maxCount 1 ;
+    ] ;
+    sh:property [
+        rdfs:label "Nota bene"@nl ;
+        sh:path rico:scopeAndContent ;
+        sh:datatype xsd:string ;
+    ] .
+
+
+# ==========================================
+# Standard shapes
+
+## Title
+:Title a sh:NodeShape ;
+    sh:property [
+        sh:path rico:textualValue ;
+        rdfs:label "Waarde"@nl ;
+        sh:datatype xsd:string ; 
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+    ] ;
+    sh:property [
+        sh:path rico:hasTitleType ;
+        rdfs:label "Type"@nl ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+    ] .
+
+
+## Identifier
+:Identifier a sh:NodeShape ;
+    sh:property [
+        sh:path rico:textualValue ;
+        rdfs:label "Waarde"@nl ;
+        sh:dataype xsd:string ; 
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+    ] ;
+    sh:property [
+        sh:path rico:hasIdentifierType ;
+        rdfs:label "Type"@nl ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+    ] .
+
+## Date
+:DateRange a sh:NodeShape ;
+    sh:property [
+        rdfs:label "Periode (tekst)"@nl ;
+        sh:path rico:expressedDate ;
+        sh:order 1.0 ;
+        sh:datatype xsd:string ;
+    ] ;
+    sh:property [
+        rdfs:label "Begindatum"@nl ;
+        sh:path rico:hasBeginningDate ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:class rico:SingleDate ;
+        sh:node :SingleDate ;
+    ] ;
+    sh:property [
+        rdfs:label "Einddatum"@nl ;
+        sh:path rico:hasEndDate ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:class rico:SingleDate ;
+        sh:node :SingleDate ;
+    ] .
+
+:SingleDate a sh:NodeShape ;
+    sh:property [
+        rdfs:label "Datum (genormaliseerd)"@nl ;
+        sh:path rico:normalizedDateValue ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:date ;
+    ] .
+
+:Instantiation a sh:NodeShape ;
+    sh:property [
+        sh:path rico:hasInstantiationType;
+        rdfs:label "Type"@nl ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+    ] ;
+    sh:property [
+# !!!
+        sh:path blauwdruk:vindplaats;
+        rdfs:label "Type"@nl ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:or (
+            [ sh:class blauwdruk:Computerbestand ]
+        )
+    ] .
+
+## :Type
+:Type a sh:NodeShape ;
+    sh:property [
+        sh:path rico:hasOrHadName ;
+        sh:class rico:Name ;
+        sh:node :Name ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+    ] .
+
+## :Name
+:Name a sh:NodeShape ;
+    sh:property [
+        sh:path rico:textualValue ;
+        rdfs:label "Naam"@nl ;
+        sh:dataype  xsd:string ; 
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+    ] .
 
 # ===== DIGITAL RECORD =====
 :DigitalRecord a sh:NodeShape ;
