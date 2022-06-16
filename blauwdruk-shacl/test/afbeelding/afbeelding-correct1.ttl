@@ -3,18 +3,16 @@
 
 @prefix rico:          <https://www.ica.org/standards/RiC/ontology#> .
 @prefix ric-voc:       <https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#> .
-@prefix saa-ont:       <https://data.archief.amsterdam/ontology#> .
 @prefix saa-voc:       <https://data.archief.amsterdam/vocabulary#> .
 
 @prefix xsd:           <http://www.w3.org/2001/XMLSchema#> .
 
 <https://data.archief.amsterdam/item/4f3d64b1a1e22edf474a620112b1ce3a>
-    # https://archief.amsterdam/beeldbank/detail/4f3d64b1-a1e2-2edf-474a-620112b1ce3a
-    a saa-ont:Afbeelding, rico:Record ;
+    a rico:Record ;
     rdfs:label "Exterieur van een goederenloods op de Oostelijke Handelskade" ;
     rico:hasOrHadTitle [
         a rico:Title ;
-        rico:textualValue "Exterieur van een goederenloods op de Oostelijke Handelskade"
+        rico:textualValue "Exterieur van een goederenloods op de Oostelijke Handelskade";
     ] ;
     rico:hasDocumentaryFormType saa-voc:Foto ;
     rico:scopeAndContent "Foto uit een losbladig album met 18 foto's van de Amsterdamse haven, aangeboden aan Petrus Wilhelmus Cornelis de Graaf, oud-ingenieur en hoofd van de Afdeling Havenwerken van de Gemeente Amsterdam, ter herinnering aan de 25-jarige ambtsvervulling (1882-1907)." ;
@@ -52,6 +50,9 @@
             ]
         ]
     ] ;
-    rico:isOrWasIncludedIn <https://data.archief.amsterdam/fonds/UUID-van-toegang-10054> ;
     rico:isOrWasIncludedIn <https://data.archief.amsterdam/file/UUID-van-invnr-498-van-10054> ;
     rico:hasOrHadSubject <https://adamlink.nl/geo/street/oostelijke-handelskade/3310> .
+
+saa-voc:Foto a rico:DocumentaryFormType .
+
+<https://data.archief.amsterdam/file/UUID-van-invnr-498-van-10054> a rico:RecordSet .

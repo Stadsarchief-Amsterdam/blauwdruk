@@ -19,29 +19,81 @@
     sh:xone ( 
         [ sh:node :Deed ]
         [ sh:node :Image ]
-        [ sh:node :DigitalRecord ]
+#        [ sh:node :DigitalRecord ]
     ) .
 
 # ===== DEED =====
 :Deed a sh:NodeShape ;
-    rdfs:label "Akte"@nl .
-
-# ===== IMAGE =====
-:Image a sh:NodeShape ;
-    rdfs:label "Afbeelding"@nl .
-    sh:property [
-        rdfs:label "Nummer"@nl ;
-        sh:path rico:hasOrHadIdentifier ;
-        sh:class rico:Identifier ;
-        sh:node :IdentifierImage ;
-        sh:minCount 1 ;
-    ] ;
+    rdfs:label "Akte"@nl ;
     sh:property [
         rdfs:label "Titel"@nl ;
         sh:path rico:hasOrHadTitle ;
         sh:class rico:Title ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
+        sh:node :Title ;
+    ] ;
+    sh:property [
+        rdfs:label "Documenttype"@nl ;
+        sh:path rico:hasDocumentaryFormType ;
+        sh:class rico:DocumentaryFormType ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+    ] ;
+    sh:property [
+        rdfs:label "Datering"@nl ;
+        sh:path rico:isAssociatedWithDate ;
+        sh:maxCount 1 ;
+        sh:class rico:SingleDate ;
+        sh:node :SingleDate ;
+    ] ;
+    sh:property [
+        rdfs:label "Nummer"@nl ;
+        sh:path rico:hasOrHadIdentifier ;
+        sh:class rico:Identifier ;
+        sh:minCount 1 ;
+        sh:node :Identifier ;
+    ] ;
+    sh:property [
+        rdfs:label "Maakt onderdeel uit van"@nl ;
+        sh:path rico:isOrWasIncludedIn ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+    ] .
+
+
+# ===== IMAGE =====
+:Image a sh:NodeShape ;
+    rdfs:label "Afbeelding"@nl ;
+    sh:property [
+        rdfs:label "Volgende archiefbeschrijving in de volgorde"@nl ;
+        sh:path rico:precedesOrPreceded ;
+    ] ;
+    sh:property [
+        rdfs:label "Maakt onderdeel uit van"@nl ;
+        sh:path rico:isOrWasIncludedIn ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        rdfs:label "Documenttype"@nl ;
+        sh:path rico:hasDocumentaryFormType ;
+        sh:class rico:DocumentaryFormType ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+    ] ;
+    sh:property [
+        rdfs:label "Nummer"@nl ;
+        sh:path rico:hasOrHadIdentifier ;
+        sh:class rico:Identifier ;
+        sh:minCount 1 ;
+        sh:node :Identifier ;
+    ] ;
+    sh:property [
+        rdfs:label "Titel"@nl ;
+        sh:path rico:hasOrHadTitle ;
+        sh:class rico:Title ;
+        sh:minCount 1 ;
+        sh:node :Title ;
     ] ;
     sh:property [
         rdfs:label "Beschrijving"@nl ;
@@ -58,7 +110,7 @@
         sh:path rico:isAssociatedWithDate ;
         sh:maxCount 1 ;
         sh:class rico:DateRange ;
-        sh:maxCount 1 ;
+        sh:node :DateRange ;
     ] ;
     sh:property [
         rdfs:label "Nota bene"@nl ;
@@ -66,26 +118,15 @@
         sh:datatype xsd:string ;
     ] .
 
-
-# ==========================================
-# Standard shapes
-
 ## Title
 :Title a sh:NodeShape ;
     sh:property [
         sh:path rico:textualValue ;
-        rdfs:label "Waarde"@nl ;
+        rdfs:label "Titel"@nl ;
         sh:datatype xsd:string ; 
         sh:minCount 1 ;
         sh:maxCount 1 ;
-    ] ;
-    sh:property [
-        sh:path rico:hasTitleType ;
-        rdfs:label "Type"@nl ;
-        sh:minCount 1 ;
-        sh:maxCount 1 ;
     ] .
-
 
 ## Identifier
 :Identifier a sh:NodeShape ;
@@ -99,8 +140,8 @@
     sh:property [
         sh:path rico:hasIdentifierType ;
         rdfs:label "Type"@nl ;
-        sh:minCount 1 ;
         sh:maxCount 1 ;
+        sh:node :Type ;
     ] .
 
 ## Date
@@ -143,16 +184,6 @@
         rdfs:label "Type"@nl ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
-    ] ;
-    sh:property [
-# !!!
-        sh:path blauwdruk:vindplaats;
-        rdfs:label "Type"@nl ;
-        sh:minCount 1 ;
-        sh:maxCount 1 ;
-        sh:or (
-            [ sh:class blauwdruk:Computerbestand ]
-        )
     ] .
 
 ## :Type

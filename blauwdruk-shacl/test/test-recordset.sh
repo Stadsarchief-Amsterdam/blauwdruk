@@ -23,10 +23,3 @@ shacl validate -s ../recordset.ttl -d bestanddeel/bestanddeel-correct1.ttl
 echo == Validate bestanddeel-incorrect1.ttl
 shacl validate -s ../recordset.ttl -d bestanddeel/bestanddeel-incorrect1.ttl
 
-echo AKTE
-echo == Validate akte-correct1.ttl
-shacl validate -s ../record.ttl -d akte/akte-correct1.ttl
-echo == Validate akte-incorrect1.ttl
-shacl validate -s ../record.ttl -d akte/akte-incorrect1.ttl
-echo == Validate akte-minimal1.ttl
-shacl validate -s ../record.ttl -d akte/akte-minimal1.ttl

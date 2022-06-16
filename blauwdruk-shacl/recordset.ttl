@@ -284,11 +284,6 @@
     sh:property [
         rdfs:label "Volgende archiefbeschrijving in de volgorde"@nl ;
         sh:path rico:precedesOrPreceded ;
-#        sh:or (
-#            [ sh:node :Series ]
-#            [ sh:node :File ]
-#            [ sh:class rico:Record ]
-#        )
     ] ;
     sh:property [
         rdfs:label "Maakt onderdeel uit van"@nl ;

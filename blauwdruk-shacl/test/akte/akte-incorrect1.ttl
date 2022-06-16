@@ -14,10 +14,12 @@
 # Wrong data-type for date
 
 <https://data.archief.amsterdam/cf1d8cbacfd2d88b8c4b38324ab2acbc>
-    a saa-ont:Informatieobject, rico:Record ;
+    a rico:Record ;
     rico:hasDocumentaryFormType saa-voc:BirthCertificate ;
     rdfs:label "Geboorteakte Jan Jansen 1898" ;
     rico:isAssociatedWithDate [
         a rico:SingleDate ;
         rico:normalizedDateValue "Twee jaar voor het begin van de twintigste eeuw"^^xsd:date ;
     ] .
+
+saa-voc:BirthCertificate a rico:DocumentaryFormType .
