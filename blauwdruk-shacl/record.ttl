@@ -12,7 +12,6 @@
 @prefix ric-dft:       <https://www.ica.org/standards/RiC/vocabularies/documentaryFormTypes#> .
 @prefix schema:        <http://schema.org/> .
 
-
 # ==================================================
 :Record a sh:NodeShape ;
     sh:targetClass rico:Record ;
@@ -60,7 +59,6 @@
         sh:minCount 1 ;
         sh:maxCount 1 ;
     ] .
-
 
 # ===== IMAGE =====
 :Image a sh:NodeShape ;
@@ -118,7 +116,12 @@
         sh:datatype xsd:string ;
     ] .
 
-## Title
+# ===== DIGITAL RECORD =====
+:DigitalRecord a sh:NodeShape ;
+    rdfs:label "Digitaal informatieobject"@nl .
+
+
+# ===== Title =====
 :Title a sh:NodeShape ;
     sh:property [
         sh:path rico:textualValue ;
@@ -128,7 +131,7 @@
         sh:maxCount 1 ;
     ] .
 
-## Identifier
+# ====== Identifier ======
 :Identifier a sh:NodeShape ;
     sh:property [
         sh:path rico:textualValue ;
@@ -141,10 +144,11 @@
         sh:path rico:hasIdentifierType ;
         rdfs:label "Type"@nl ;
         sh:maxCount 1 ;
+        sh:class rico:IdentifierType ;
         sh:node :Type ;
     ] .
 
-## Date
+# ====== Date =======
 :DateRange a sh:NodeShape ;
     sh:property [
         rdfs:label "Periode (tekst)"@nl ;
@@ -178,6 +182,7 @@
         sh:datatype xsd:date ;
     ] .
 
+# ====== :Instantiation ======
 :Instantiation a sh:NodeShape ;
     sh:property [
         sh:path rico:hasInstantiationType;
@@ -186,7 +191,7 @@
         sh:maxCount 1 ;
     ] .
 
-## :Type
+# ===== :Type =====
 :Type a sh:NodeShape ;
     sh:property [
         sh:path rico:hasOrHadName ;
@@ -196,7 +201,7 @@
         sh:maxCount 1 ;
     ] .
 
-## :Name
+# ====== :Name ======
 :Name a sh:NodeShape ;
     sh:property [
         sh:path rico:textualValue ;
@@ -206,6 +211,3 @@
         sh:maxCount 1 ;
     ] .
 
-# ===== DIGITAL RECORD =====
-:DigitalRecord a sh:NodeShape ;
-    rdfs:label "Digitaal informatieobject"@nl .
