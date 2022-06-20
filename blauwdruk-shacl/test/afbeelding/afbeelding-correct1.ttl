@@ -51,8 +51,20 @@
         ]
     ] ;
     rico:isOrWasIncludedIn <https://data.archief.amsterdam/file/UUID-van-invnr-498-van-10054> ;
-    rico:hasOrHadSubject <https://adamlink.nl/geo/street/oostelijke-handelskade/3310> .
+    rico:isAssociatedWithPlace <https://adamlink.nl/geo/street/oostelijke-handelskade/3310> ;
+    rico:isAssociatedWithPlace [
+        a rico:Place ;
+        rico:hasOrHadPhysicalLocation [
+            a rico:PhysicalLocation ;
+            rico:hasOrHadCoordinates [
+                a rico:Coordinates ;
+                rico:longitude 1.23 ;
+                rico:latitude 4.56 ;
+            ] ;
+        ] ;
+    ] .
 
 saa-voc:Foto a rico:DocumentaryFormType .
 
 <https://data.archief.amsterdam/file/UUID-van-invnr-498-van-10054> a rico:RecordSet .
+<https://adamlink.nl/geo/street/oostelijke-handelskade/3310> a rico:Place .

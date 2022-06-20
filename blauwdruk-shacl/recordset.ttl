@@ -86,11 +86,11 @@
     ] ;
     sh:property [
         rdfs:label "Status"@nl ;
-        sh:path rico:isOrWasRecordStateOfAllMembers ;
+        sh:path rico:hasOrHadRecordStateOfAllMembers ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:class rico:RecordState ;
-        sh:node :RecordState ;
+        sh:node :Type ;
     ] ;
     sh:property [
         rdfs:label "Interne opmerking"@nl ;
@@ -255,7 +255,7 @@
         sh:node :IdentifierSeries ;
     ] ;
     sh:property [
-        rdfs:label "Rubrieksnaam"@nl ;
+        rdfs:label "Beschrijving"@nl ;
         sh:path rico:hasOrHadTitle ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
@@ -263,7 +263,7 @@
         sh:node :TitleSeries ;
     ] ;
     sh:property [
-        rdfs:label "Beschrijving"@nl ;
+        rdfs:label "Nota Bene"@nl ;
         sh:path rico:scopeAndContent ;
         sh:datatype xsd:string ; 
     ] ;
@@ -273,7 +273,7 @@
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:class rico:DateRange ;
-        sh:node :DateRangeSeries ;
+        sh:node :DateRange ;
     ] ;
     sh:property [ 
         rdfs:label "Uiterlijke vorm"@nl ;
@@ -368,8 +368,264 @@
         )
     ] .
 
-# ===== SERIES ===== Date
-:DateRangeSeries a sh:NodeShape ;
+# ===== FILE =====
+:File a sh:NodeShape ;
+    rdfs:label "Bestanddeel"@nl ;
+    sh:property [ 
+        rdfs:label "Bestanddeel"@nl ;
+        sh:path rico:hasRecordSetType ;
+        sh:hasValue ric-rst:File ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+    ] ;
+    sh:property [
+        rdfs:label "Nummer"@nl ;
+        sh:path rico:hasOrHadIdentifier ;
+        sh:class rico:Identifier ; 
+        sh:qualifiedValueShape :IdentifierFile ;
+        sh:qualifiedValueShapeDisjoint true ; 
+        sh:qualifiedMaxCount 1 ;
+        sh:qualifiedMinCount 1 ;        
+    ] ;
+    sh:property [
+        rdfs:label "Nummer"@nl ;
+        sh:path rico:hasOrHadIdentifier ;
+        sh:class rico:Identifier ; 
+        sh:qualifiedValueShapeDisjoint true ; 
+        sh:qualifiedValueShape :IdentifierFileAlt ;
+        sh:qualifiedMaxCount 2 ;
+    ] ;
+    sh:property [
+        rdfs:label "Bestanddeelbeschrijving"@nl ;
+        sh:path rico:hasOrHadTitle ;
+        sh:maxCount 1 ;
+        sh:class rico:Title ;
+        sh:node :TitleFile ;
+    ] ;
+    sh:property [
+        rdfs:label "Nota Bene"@nl ;
+        sh:path rico:scopeAndContent ;
+        sh:datatype xsd:string ; 
+    ] ;
+    sh:property [
+        rdfs:label "Uiterlijke vorm"@nl ;
+        sh:path rico:physicalAndLogicalExtent ;
+        sh:datatype xsd:string ; 
+    ] ;
+    sh:property [
+        rdfs:label "Volgende archiefbeschrijving in de volgorde"@nl ;
+        sh:path rico:precedesOrPreceded ;
+    ] ;
+    sh:property [
+        rdfs:label "Maakt onderdeel uit van"@nl ;
+        sh:path rico:isOrWasIncludedIn ;
+        sh:class rico:RecordSet 
+    ] ;
+    sh:property [
+        rdfs:label "Interne opmerking"@nl ;
+        sh:path rico:descriptiveNote ;
+        sh:datatype xsd:string ; 
+    ] ;
+    sh:property [
+        rdfs:label "Gekoppeld persoon, familie of organisatie" ;
+        sh:path rico:hasOrHadSubject ;
+        sh:class schema:Role ;
+        sh:node :SubjectAgent ;
+    ] ;
+    sh:property [ 
+        rdfs:label "Afgebeelde locatie"@nl ;
+        sh:path rico:isAssociatedWithPlace ;
+        sh:class rico:Place ;
+    ] ;
+    sh:property [
+        rdfs:label "Auteursrecht"@nl ;
+        sh:path rico:hasOrHadAllMembersWithLegalStatus ;
+        sh:class rico:LegalStatus ;
+        sh:node :LegalStatus ;
+        sh:maxCount 1 ;
+    ] ;
+    sh:property [
+        rdfs:label "Status"@nl ;
+        sh:path rico:hasOrHadRecordStateOfAllMembers ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:class rico:RecordState ;
+        sh:node :Type ;
+    ] ;
+    sh:property [
+        rdfs:label "Verwijzing"@nl ;
+        sh:path rdfs:seeAlso ;
+        sh:class rico:RecordSet ;
+    ] ;
+    sh:property [
+        rdfs:label "Technische metadata"@nl ;
+        sh:path rico:hasInstantiation ;
+        sh:class rico:Instantiation ;
+        sh:node :InstantiationFile ;
+        sh:maxCount 1 ;
+    ] .
+
+# ===== FILE ===== Identifier
+:IdentifierFile a sh:NodeShape ;
+    sh:property [
+        rdfs:label "Nummers"@nl ;
+        sh:path rico:textualValue ;
+        sh:datatype xsd:string ; 
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+    ] ;
+    sh:property [
+        rdfs:label "Type identifier"@nl ;
+        sh:path rico:hasIdentifierType ;
+        sh:node :IdentifierTypeFile ; 
+        sh:class rico:IdentifierType ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+    ] .
+
+:IdentifierTypeFile a sh:NodeShape ;
+    sh:property [
+        sh:path rico:hasOrHadName ;
+        sh:class rico:Name ;
+        sh:node :IdentifierTypeNameFile ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+    ] .
+
+:IdentifierTypeNameFile a sh:NodeShape ;
+    sh:property [
+        sh:path rico:textualValue ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:hasValue "Inventarisnummer" ; 
+    ] .
+
+:IdentifierFileAlt a sh:NodeShape ;
+    sh:property [
+        rdfs:label "Nummers"@nl ;
+        sh:path rico:textualValue ;
+        sh:datatype xsd:string ; 
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+    ] ;
+    sh:property [
+        rdfs:label "Type identifier"@nl ;
+        sh:path rico:hasIdentifierType ;
+        sh:node :IdentifierTypeFileAlt ; 
+        sh:class rico:IdentifierType ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+    ] .
+
+:IdentifierTypeFileAlt a sh:NodeShape ;
+    sh:property [
+        sh:path rico:hasOrHadName ;
+        sh:class rico:Name ;
+        sh:node :IdentifierTypeNameFileAlt ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+    ] .
+
+:IdentifierTypeNameFileAlt a sh:NodeShape ;
+    sh:property [
+        sh:path rico:textualValue ;
+        sh:xone (
+            [ sh:hasValue "Bergingsnummer" ; ]
+            [ sh:hasValue "Oude nummers" ; ]
+        )
+    ] .
+
+# ===== FILE ===== Title
+:TitleFile a sh:NodeShape ;
+    sh:property [
+        rdfs:label "Titel"@nl ;
+        sh:path rico:textualValue ;
+        sh:datatype xsd:string ; 
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+    ] ;
+    sh:property [
+        rdfs:label "Type titel"@nl ;
+        sh:path rico:hasTitleType ;
+        sh:class rico:TitleType ; 
+        sh:node :TitleTypeFile ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+    ] .
+
+:TitleTypeFile a sh:NodeShape ;
+    sh:property [
+        sh:path rico:hasOrHadName ;
+        sh:class rico:Name ;
+        sh:node :TitleTypeNameFile ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+    ] .
+
+:TitleTypeNameFile a sh:NodeShape ;
+    sh:property [
+        sh:path rico:textualValue ;
+        sh:hasValue "Bestanddeelbeschrijving" ;
+    ] .
+
+# ====== FILE ====== SubjectAgent
+:SubjectAgent a sh:NodeShape ;
+    sh:property [
+        sh:path rico:hasOrHadSubject ;
+        sh:or (
+           [ sh:class rico:Person ; ]
+           [ sh:class rico:Family ; ]
+           [ sh:class rico:CorporateBody ; ]            
+        )
+    ] ;
+    sh:property [
+        sh:path schema:roleName ;
+        sh:class rico:Type ;
+        sh:node :Type ;
+    ] .
+
+# ====== FILE ====== Instantiation
+:InstantiationFile a sh:NodeShape ;
+    sh:property [
+        sh:path rico:hasProductionTechniqueType ;
+        sh:class rico:ProductionTechniqueType ;
+        sh:node :Type ;
+    ] ;
+    sh:property [
+        sh:path rico:hasCarrierType ;
+        sh:class rico:CarrierType ;
+        sh:node :Type ;
+    ] ;
+    sh:property [
+        sh:path rico:hasExtent;
+        sh:class rico:Extent ;
+        sh:node :Extent ;
+    ] .
+
+:Extent a sh:NodeShape ;
+    sh:property [
+        sh:path rico:hasExtentType ;
+        sh:class rico:ExtentType ;
+        sh:node :Type ;
+        sh:maxCount 1 ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path rico:hasUnitOfMeasurement ;
+        sh:class rico:UnitOfMeasurement ;
+        sh:node :Type ;
+        sh:maxCount 1 ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path rico:quantity ;
+        sh:datatype xsd:decimal ;
+        sh:maxCount 1 ;
+        sh:minCount 1 ;
+    ] .
+
+# ===== :DateRange ===== 
+:DateRange a sh:NodeShape ;
     sh:property [
         rdfs:label "Periode (tekst)"@nl ;
         sh:path rico:expressedDate ;
@@ -401,13 +657,55 @@
         sh:datatype xsd:date ;
     ] .
 
-# ===== FILE =====
-:File a sh:NodeShape ;
-    rdfs:label "Bestanddeel"@nl ;
-    sh:property [ 
-        rdfs:label "Bestanddeel"@nl ;
-        sh:path rico:hasRecordSetType ;
-        sh:hasValue ric-rst:File ;
+# ==== :PhysicalLocation =====
+:PhysicalLocation a sh:NodeShape ;
+    sh:targetClass rico:PhysicalLocation ;
+    sh:property [
+        sh:path rico:hasOrHadCoordinates ;
+        sh:class rico:Coordinates ;
+        sh:node :Coordinates ;
+        sh:maxCount 1 ;
+        sh:minCount 1 ;
+    ] .
+
+:Coordinates a sh:NodeShape ;
+    sh:property [
+        sh:path rico:longitude ;
+        sh:datatype xsd:decimal ;
+        sh:maxCount 1 ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path rico:latitude ;
+        sh:datatype xsd:decimal ;
+        sh:maxCount 1 ;
+        sh:minCount 1 ;
+    ] .
+
+# ====== :LegalStatus ======
+:LegalStatus a sh:NodeShape ;
+    sh:property [
+        rdfs:label "Auteursrecht opmerking"@nl ;
+        sh:path rico:descriptiveNote ;
+        sh:maxCount 1 ;
+        sh:minCount 1 ;
+    ] .
+
+# ===== :Type =====
+:Type a sh:NodeShape ;
+    sh:property [
+        sh:path rico:hasOrHadName ;
+        sh:class rico:Name ;
+        sh:node :Name ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+    ] .
+
+:Name a sh:NodeShape ;
+    sh:property [
+        sh:path rico:textualValue ;
+        rdfs:label "Naam"@nl ;
+        sh:dataype  xsd:string ; 
         sh:minCount 1 ;
         sh:maxCount 1 ;
     ] .

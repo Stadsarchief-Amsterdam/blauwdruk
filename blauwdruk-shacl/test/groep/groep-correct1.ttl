@@ -15,7 +15,7 @@
             a rico:IdentifierType ;
             rico:hasOrHadName [
                 a rico:Name ;
-                rico:textualValue "Rubriekscode"
+                rico:textualValue "Rubrieksnummer"
             ] ;
         ] ; 
         rico:textualValue "1.21.51"
@@ -37,11 +37,11 @@
         rico:expressedDate "1752-1753" ;
         rico:hasBeginningDate [
             a rico:SingleDate ;
-            rico:normalizedDateValue "1752"^^xsd:gYear
+            rico:normalizedDateValue "1752-01-01"^^xsd:date
         ] ;
         rico:hasEndDate [
             a rico:SingleDate ;
-            rico:normalizedDateValue "1753"^^xsd:gYear
+            rico:normalizedDateValue "1753-12-31"^^xsd:date
         ] ;
     ] ;
     rico:scopeAndContent "Interessante stukken!!"^^xsd:string .

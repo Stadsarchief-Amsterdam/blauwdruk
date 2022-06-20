@@ -1,0 +1,49 @@
+@prefix :              <https://data.archief.amsterdam/blauwdruk#>
+
+@prefix rdf:           <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:          <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:           <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:           <http://www.w3.org/2001/XMLSchema#> .
+
+@prefix sh:            <http://www.w3.org/ns/shacl#> .
+
+@prefix rico:          <https://www.ica.org/standards/RiC/ontology#> .
+@prefix ric-rst:       <https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#> .
+@prefix ric-dft:       <https://www.ica.org/standards/RiC/vocabularies/documentaryFormTypes#> .
+@prefix schema:        <http://schema.org/> .
+
+
+# ==================================================
+:Place a sh:NodeShape ;
+    sh:targetClass rico:Place ;
+    sh:property [
+        sh:path rico:hasOrHadPhysicalLocation ;
+        sh:class rico:PhysicalLocation ;
+        sh:node :PhysicalLocation ;
+        sh:maxCount 1 ;
+        sh:minCount 1 ;
+    ] .
+
+:PhysicalLocation a sh:NodeShape ;
+    sh:targetClass rico:PhysicalLocation ;
+    sh:property [
+        sh:path rico:hasOrHadCoordinates ;
+        sh:class rico:Coordinates ;
+        sh:node :Coordinates ;
+        sh:maxCount 1 ;
+        sh:minCount 1 ;
+    ] .
+
+:Coordinates a sh:NodeShape ;
+    sh:property [
+        sh:path rico:longitude ;
+        sh:datatype xsd:decimal ;
+        sh:maxCount 1 ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path rico:latitude ;
+        sh:datatype xsd:decimal ;
+        sh:maxCount 1 ;
+        sh:minCount 1 ;
+    ] .
