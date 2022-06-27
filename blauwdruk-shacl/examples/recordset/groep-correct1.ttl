@@ -1,0 +1,47 @@
+@prefix rdf:        <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:       <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema:     <http://schema.org/> .
+@prefix rico:       <https://www.ica.org/standards/RiC/ontology#> .
+@prefix blauwdruk:  <https://example.memorix-test.nl/resources/recordtypes/> .
+@prefix voc:        <https://example.memorix-test.nl/vocabularies/> .
+@prefix data:       <https://example.memorix-test.nl/resources/records/> .
+@prefix xsd:        <http://www.w3.org/2001/XMLSchema#> .
+
+<https://data.archief.amsterdam/fonds/2ab843bcdc58542729ac2e5d86a7ecd6>
+    a rico:RecordSet ;
+    rico:hasOrHadIdentifier [
+        a rico:Identifier ;
+        rico:hasIdentifierType [
+            a rico:IdentifierType ;
+            rico:hasOrHadName [
+                a rico:Name ;
+                rico:textualValue "Rubrieksnummer"
+            ] ;
+        ] ; 
+        rico:textualValue "1.21.51"
+    ] ;
+    rico:hasOrHadTitle [
+        a rico:Title ;
+        rico:textualValue "Stukken betreffende allerlei dingen" ;
+        rico:hasTitleType [
+            a rico:TitleType ;
+            rico:hasOrHadName [
+                a rico:Name ;
+                rico:textualValue "Rubrieksnaam" ;
+            ] ;
+        ] ;
+    ] ;
+    rico:hasRecordSetType <https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#Series> ;
+    rico:isAssociatedWithDate [
+        a rico:DateRange ;
+        rico:expressedDate "1752-1753" ;
+        rico:hasBeginningDate [
+            a rico:SingleDate ;
+            rico:normalizedDateValue "1752-01-01"^^xsd:date
+        ] ;
+        rico:hasEndDate [
+            a rico:SingleDate ;
+            rico:normalizedDateValue "1753-12-31"^^xsd:date
+        ] ;
+    ] ;
+    rico:scopeAndContent "Interessante stukken!!"^^xsd:string .

@@ -1,0 +1,15 @@
+@prefix rdf:           <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:           <http://www.w3.org/2001/XMLSchema#> .
+
+@prefix roar:          <https://w3id.org/roar#> .
+@prefix pnv:           <https://w3id.org/pnv#> .
+@prefix schema:        <http://schema.org/> .
+
+<https://example.memorix-test.nl/resources/records/4080e15d-7ffd-44ef-a485-5e1389fbe87f>
+        a roar:PersonObservation ;
+        schema:birthDate "1975-01-01"^^xsd:date ;
+        schema:birthPlace "Groot Eindhoven" ;
+        pnv:hasName        [ a pnv:PersonName ;
+                             pnv:baseSurname "Zandhuis" ;
+                             pnv:givenName "Ivo"
+                           ] .

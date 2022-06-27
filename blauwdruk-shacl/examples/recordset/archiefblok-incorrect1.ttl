@@ -1,0 +1,34 @@
+@prefix rdf:           <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:          <http://www.w3.org/2000/01/rdf-schema#> .
+
+@prefix rico:          <https://www.ica.org/standards/RiC/ontology#> .
+@prefix ric-voc:       <https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#> .
+
+@prefix xsd:           <http://www.w3.org/2001/XMLSchema#> .
+
+<https://data.archief.amsterdam/cf1d8cbacfd2d88b8c4b38324ab2acba>
+    a rico:RecordSet ;
+    rico:hasRecordSetType ric-voc:Fonds ;
+    rico:hasOrHadIdentifier [
+        a rico:Identifier ;
+        rico:textualValue "30920" ;
+        rico:hasIdentifierType [
+            a rico:IdentifierType ;
+            rico:hasOrHadName [
+                a rico:Name ;
+                rico:textualValue "Toegangnummer" ;
+            ]
+        ] 
+    ];
+    rico:hasOrHadIdentifier [
+        a rico:Identifier ;
+        rico:textualValue "GAA-6.10.003" ;
+        rico:hasEndDate "2007-02-01"^^xsd:date ;
+        rico:hasIdentifierType [
+            a rico:IdentifierType ;
+            rico:hasOrHadName [
+                a rico:Name ;
+                rico:textualValue "oude nummer" ;
+            ]
+        ] 
+    ] .

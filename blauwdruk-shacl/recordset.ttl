@@ -288,7 +288,7 @@
     sh:property [
         rdfs:label "Maakt onderdeel uit van"@nl ;
         sh:path rico:isOrWasIncludedIn ;
-        sh:class rico:RecordSet
+        sh:class rico:RecordSet ;
         sh:minCount 1 ;
     ] ;
     sh:property [
@@ -420,7 +420,7 @@
     sh:property [
         rdfs:label "Maakt onderdeel uit van"@nl ;
         sh:path rico:isOrWasIncludedIn ;
-        sh:class rico:RecordSet 
+        sh:class rico:RecordSet ;
         sh:minCount 1 ;
     ] ;
     sh:property [

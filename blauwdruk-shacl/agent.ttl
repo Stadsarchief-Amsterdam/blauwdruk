@@ -11,35 +11,263 @@
 @prefix ric-rst:       <https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#> .
 @prefix ric-dft:       <https://www.ica.org/standards/RiC/vocabularies/documentaryFormTypes#> .
 @prefix schema:        <http://schema.org/> .
-
-
-# ==================================================
-:Agent a sh:NodeShape ;
-    sh:targetClass rico:Agent ;
-    sh:xone ( 
-        [ sh:node :Person ]
-        [ sh:node :PersonObservation ]
-        [ sh:node :Organisation ]
-        [ sh:node :OrganisationObservation ]
-        [ sh:node :Family ]
-    ) .
+@prefix pnv:           <https://w3id.org/pnv#> .
+@prefix roar:          <https://w3id.org/roar#> .
+@prefix dc:            <http://purl.org/dc/elements/1.1/> .
 
 # ===== PERSON =====
 :Person a sh:NodeShape ;
-    rdfs:label "Persoon"@nl .
+    sh:targetClass rico:Person ;
+    rdfs:label "Persoon"@nl ;
+    sh:property [
+        sh:path pnv:hasName ;
+        sh:class pnv:PersonName ;
+        sh:node :PersonName ;
+        sh:maxCount 1 ;
+    ] ;
+    sh:property [
+        rdfs:label "Geboortejaar"@nl ;
+        sh:path schema:birthDate ;
+        sh:datatype xsd:gYear ;
+        sh:maxCount 1 ;
+    ] ;
+    sh:property [
+        rdfs:label "Geboorteplaats"@nl ;
+        sh:path schema:birthPlace ;
+        sh:datatype xsd:string ;
+        sh:maxCount 1 ;
+    ] ;
+    sh:property [
+        rdfs:label "Overlijdensjaar"@nl ;
+        sh:path schema:deathDate ;
+        sh:datatype xsd:gYear ;
+        sh:maxCount 1 ;
+    ] ;
+    sh:property [
+        rdfs:label "Overlijdensplaats"@nl ;
+        sh:path schema:deathPlace ;
+        sh:datatype xsd:string ;
+        sh:maxCount 1 ;
+    ] ;
+    sh:property [
+        rdfs:label "Alternatieve namen"@nl ;
+        sh:path schema:alternateName ;
+        sh:datatype xsd:string ;
+    ] ;
+    sh:property [
+        rdfs:label "Link naar externe terminologiebron"@nl ;
+        sh:path owl:sameAs ;
+        sh:nodeKind sh:IRI ;
+    ] ;
+    sh:property [
+        rdfs:label "Interne opmerking"@nl ;
+        sh:path rico:descriptiveNote ;
+        sh:datatype xsd:string ;
+        sh:maxCount 1 ;
+    ] .
 
 # ===== PERSON OBSERVATION =====
 :PersonObservation a sh:NodeShape ;
-    rdfs:label "Persoonsvermelding"@nl .
+    sh:targetClass roar:PersonObservation ;
+    rdfs:label "Persoonsvermelding"@nl ;
+    sh:property [
+        rdfs:label "Persoonsnaam"@nl ;
+        sh:path pnv:hasName ;
+        sh:class pnv:PersonName ;
+        sh:node :PersonName ;
+        sh:maxCount 1 ;
+    ] ;
+    sh:property [
+        rdfs:label "Geboortedatum"@nl ;
+        sh:path schema:birthDate ;
+        sh:datatype xsd:date ;
+        sh:maxCount 1 ;
+    ] ;
+    sh:property [
+        rdfs:label "Geboorteplaats"@nl ;
+        sh:path schema:birthPlace ;
+        sh:datatype xsd:string ;
+        sh:maxCount 1 ;
+    ] ;
+    sh:property [
+        rdfs:label "Overlijdensdatum"@nl ;
+        sh:path schema:deathDate ;
+        sh:datatype xsd:date ;
+        sh:maxCount 1 ;
+    ] ;
+    sh:property [
+        rdfs:label "Overlijdensplaats"@nl ;
+        sh:path schema:deathPlace ;
+        sh:datatype xsd:string ;
+        sh:maxCount 1 ;
+    ] ;
+    sh:property [
+        rdfs:label "Alternatieve namen"@nl ;
+        sh:path schema:alternateName ;
+        sh:datatype xsd:string ;
+    ] ;
+    sh:property [
+        rdfs:label "Link naar externe terminologiebron"@nl ;
+        sh:path owl:sameAs ;
+        sh:nodeKind sh:IRI ;
+    ] ;
+    sh:property [
+        rdfs:label "Interne opmerking"@nl ;
+        sh:path rico:descriptiveNote ;
+        sh:datatype xsd:string ;
+        sh:maxCount 1 ;
+    ] ;
+    # TBD: age (xsd:decimal)
+    # TBD: dead (xsd:boolean)
+    sh:property [
+        rdfs:label "Beroep"@nl ;
+        sh:path schema:hasOccupation ;
+    ] ;
+    sh:property [
+        rdfs:label "Link naar externe terminologiebron"@nl ;
+        sh:path owl:sameAs ;
+        sh:nodeKind sh:IRI ;
+    ] ;
+    sh:property [
+        rdfs:label "Link naar interne terminologiebron"@nl ;
+        sh:path owl:sameAs ;
+        sh:nodeKind sh:IRI ;
+    ] ;
+    sh:property [
+        rdfs:label "Interne opmerking"@nl ;
+        sh:path rico:descriptiveNote ;
+        sh:datatype xsd:string ;
+        sh:maxCount 1 ;
+    ] .
 
 # ===== ORGANISATION =====
 :Organisation a sh:NodeShape ;
-    rdfs:label "Organisatie"@nl .
-
-# ===== ORGANISATION OBSERVATION =====
-:OrganisationObservation a sh:NodeShape ;
-    rdfs:label "Organisatievermelding"@nl .
+    sh:targetClass rico:CorporateBody ;
+    rdfs:label "Organisatie"@nl ;
+    sh:property [
+        rdfs:label "Organisatienaam"@nl ;
+        sh:path schema:name ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+    ] ;
+    sh:property [
+        rdfs:label "Altenatieve organisatienaam"@nl ;
+        sh:path schema:alternateName ;
+        sh:datatype xsd:string ;
+    ] ;
+    sh:property [
+        rdfs:label "Rechtsopvolger van"@nl ;
+        sh:path rico:isSuccessorOf ;
+        sh:datatype xsd:string ;
+        sh:maxCount 1 ;
+    ] ;
+    sh:property [
+        rdfs:label "Jaar van oprichting"@nl ;
+        sh:path schema:foundingDate ;
+        sh:datatype xsd:gYear ;
+        sh:maxCount 1 ;
+    ] ;
+    sh:property [
+        rdfs:label "Jaar van opheffing"@nl ;
+        sh:path schema:dissolutionDate ;
+        sh:datatype xsd:gYear ;
+        sh:maxCount 1 ;
+    ] ;
+    sh:property [
+        rdfs:label "Bron"@nl ;
+        sh:path dc:source ;
+        sh:datatype xsd:string ;
+    ] ;
+    sh:property [
+        rdfs:label "Gekoppeld persoon, familie of organisatie" ;
+        sh:path rico:hasOrHadSubject ;
+        sh:class schema:Role ;
+        sh:node :SubjectAgent ;
+    ] ;
+    sh:property [
+        rdfs:label "Link naar externe terminologiebron"@nl ;
+        sh:path owl:sameAs ;
+        sh:nodeKind sh:IRI ;
+    ] ;
+    sh:property [
+        rdfs:label "Interne opmerking"@nl ;
+        sh:path rico:descriptiveNote ;
+        sh:datatype xsd:string ;
+        sh:maxCount 1 ;
+    ] .
 
 # ===== FAMILY =====
 :Family a sh:NodeShape ;
-    rdfs:label "Familie"@nl .
+    rdfs:label "Familie"@nl ;
+    sh:property [
+        rdfs:label "Organisatienaam"@nl ;
+        sh:path schema:name ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+    ] ;
+    sh:property [
+        rdfs:label "Altenatieve organisatienaam"@nl ;
+        sh:path schema:alternateName ;
+        sh:datatype xsd:string ;
+    ] ;
+    sh:property [
+        rdfs:label "Link naar externe terminologiebron"@nl ;
+        sh:path owl:sameAs ;
+        sh:nodeKind sh:IRI ;
+    ] ;
+    sh:property [
+        rdfs:label "Interne opmerking"@nl ;
+        sh:path rico:descriptiveNote ;
+        sh:datatype xsd:string ;
+        sh:maxCount 1 ;
+    ] .
+
+# ===== :SubjectAgent =====
+:SubjectAgent a sh:NodeShape ;
+    sh:property [
+        sh:path rico:hasOrHadSubject ;
+        sh:or (
+           [ sh:class rico:Person ; ]
+           [ sh:class rico:Family ; ]
+           [ sh:class rico:CorporateBody ; ]            
+        ) ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+    ] ;
+    sh:property [
+        sh:path schema:roleName ;
+        sh:class rico:Type ;
+        sh:node :Type ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+    ] .
+
+# ===== :PersonName ===== 
+:PersonName a sh:NodeShape ;
+    rdfs:label "Persoonsnaam"@nl ;
+    sh:property [
+        rdfs:label "Voorletter(s)"@nl ;
+        sh:path pnv:initials ;
+        sh:datatype xsd:string ;
+        sh:maxCount 1 ;
+    ] ;
+    sh:property [
+        rdfs:label "Voornaam(en)"@nl ;
+        sh:path pnv:givenName ;
+        sh:datatype xsd:string ;
+        sh:maxCount 1 ;
+    ] ;
+    sh:property [
+        rdfs:label "Tussenvoegsel"@nl ;
+        sh:path pnv:surnamePrefix ;
+        sh:datatype xsd:string ;
+        sh:maxCount 1 ;
+    ] ;
+    sh:property [
+        rdfs:label "Achternaam"@nl ;
+        sh:path pnv:baseSurname ;
+        sh:datatype xsd:string ;
+        sh:maxCount 1 ;
+    ] .
