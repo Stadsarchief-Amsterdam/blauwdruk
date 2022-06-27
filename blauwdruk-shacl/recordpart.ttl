@@ -1,0 +1,113 @@
+@prefix :              <https://data.archief.amsterdam/blauwdruk#>
+
+@prefix rdf:           <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:          <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:           <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:           <http://www.w3.org/2001/XMLSchema#> .
+
+@prefix sh:            <http://www.w3.org/ns/shacl#> .
+
+@prefix rico:          <https://www.ica.org/standards/RiC/ontology#> .
+@prefix ric-rst:       <https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#> .
+@prefix ric-dft:       <https://www.ica.org/standards/RiC/vocabularies/documentaryFormTypes#> .
+@prefix schema:        <http://schema.org/> .
+@prefix roar:          <https://w3id.org/roar#> .
+
+# ===== DIGITAL RECORD PART =====
+:DigitalRecordPart a sh:NodeShape ;
+    sh:targetClass rico:RecordPart ;
+    rdfs:label "Digitaal informatieobjectOnderdeel"@nl ;
+    sh:property [
+        rdfs:label "Volgende archiefbeschrijving in de volgorde"@nl ;
+        sh:class rico:Record ;
+        sh:path rico:precedesOrPreceded ;
+    ] ;
+    sh:property [
+        rdfs:label "Maakt onderdeel uit van"@nl ;
+        sh:path rico:isOrWasIncludedIn ;
+        sh:class rico:Record ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        rdfs:label "Beschrijving"@nl ;
+        sh:path rico:hasOrHadTitle ;
+        sh:class rico:Title ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:node :Title ;
+    ] ;    
+    sh:property [
+        rdfs:label "Datering"@nl ;
+        sh:path rico:isAssociatedWithDate ;
+        sh:maxCount 1 ;
+        sh:class rico:SingleDate ;
+        sh:node :SingleDate ;
+    ] ;
+    sh:property [
+        rdfs:label "Nummer"@nl ;
+        sh:path rico:hasOrHadIdentifier ;
+        sh:class rico:Identifier ;
+        sh:minCount 1 ;
+        sh:node :Identifier ;
+    ] ;
+    sh:property [
+        rdfs:label "Interne opmerking"@nl ;
+        sh:path rico:descriptiveNote ;
+        sh:datatype xsd:string ;
+    ] .
+
+# ===== :Title =====
+:Title a sh:NodeShape ;
+    sh:property [
+        sh:path rico:textualValue ;
+        rdfs:label "Titel"@nl ;
+        sh:datatype xsd:string ; 
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+    ] .
+
+# ====== :Identifier ======
+:Identifier a sh:NodeShape ;
+    sh:property [
+        sh:path rico:textualValue ;
+        rdfs:label "Waarde"@nl ;
+        sh:dataype xsd:string ; 
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+    ] ;
+    sh:property [
+        sh:path rico:hasIdentifierType ;
+        rdfs:label "Type"@nl ;
+        sh:maxCount 1 ;
+        sh:class rico:IdentifierType ;
+        sh:node :Type ;
+    ] .
+
+# ====== :SingleDate ======
+:SingleDate a sh:NodeShape ;
+    sh:property [
+        rdfs:label "Datum (genormaliseerd)"@nl ;
+        sh:path rico:normalizedDateValue ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:date ;
+    ] .
+
+# ===== :Type =====
+:Type a sh:NodeShape ;
+    sh:property [
+        sh:path rico:hasOrHadName ;
+        sh:class rico:Name ;
+        sh:node :Name ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+    ] .
+
+:Name a sh:NodeShape ;
+    sh:property [
+        sh:path rico:textualValue ;
+        rdfs:label "Naam"@nl ;
+        sh:dataype  xsd:string ; 
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+    ] .

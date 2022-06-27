@@ -7,16 +7,16 @@ shacl --version
 
 echo AKTE
 echo == Validate akte-correct1.ttl
-shacl validate -s ../record.ttl -d akte/akte-correct1.ttl
+shacl validate -s ../record.ttl -d record/akte-correct1.ttl
 echo == Validate akte-incorrect1.ttl
-shacl validate -s ../record.ttl -d akte/akte-incorrect1.ttl
+shacl validate -s ../record.ttl -d record/akte-incorrect1.ttl
 echo == Validate akte-minimal1.ttl
-shacl validate -s ../record.ttl -d akte/akte-minimal1.ttl
+shacl validate -s ../record.ttl -d record/akte-minimal1.ttl
 
 echo AFBEELDING
 echo == Validate afbeelding-correct1.ttl
-shacl validate -s ../record.ttl -d afbeelding/afbeelding-correct1.ttl
+shacl validate -s ../record.ttl -d record/afbeelding-correct1.ttl
 
 echo DIGITAAL INFORMATIEOBJECT
 echo == Validate dio-correct1.ttl
-shacl validate -s ../record.ttl -d digitaal-informatieobject/dio-correct1.ttl
+shacl validate -s ../record.ttl -d record/dio-correct1.ttl
