@@ -17,13 +17,30 @@
 :Place a sh:NodeShape ;
     sh:targetClass rico:Place ;
     sh:property [
+        sh:path rico:hasName ;
+        sh:node :Name ; 
+    ] ;
+    sh:property [
+        sh:path rico:descriptiveNote ;
+        sh:datatype xsd:string ; 
+    ] ;
+    sh:property [
         sh:path rico:hasOrHadPhysicalLocation ;
         sh:class rico:PhysicalLocation ;
         sh:node :PhysicalLocation ;
-        sh:maxCount 1 ;
+    ] ;
+.
+# ===== :Name =====
+:Name a sh:NodeShape ;
+    sh:property [
+        sh:path rico:textualValue ;
+        rdfs:label "Naam"@nl ;
+        sh:dataype  xsd:string ; 
         sh:minCount 1 ;
-    ] .
+        sh:maxCount 1 ;
+    ] .    
 
+# ===== :PhysicalLocation =====
 :PhysicalLocation a sh:NodeShape ;
     sh:targetClass rico:PhysicalLocation ;
     sh:property [
@@ -47,3 +64,5 @@
         sh:maxCount 1 ;
         sh:minCount 1 ;
     ] .
+
+

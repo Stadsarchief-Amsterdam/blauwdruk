@@ -3,8 +3,8 @@
 
 @prefix rico:          <https://www.ica.org/standards/RiC/ontology#> .
 @prefix ric-voc:       <https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#> .
-@prefix saa-ont:           <https://data.archief.amsterdam/ontology#> .
-@prefix saa-voc:       <https://data.archief.amsterdam/vocabulary#> .
+@prefix schema:        <http://schema.org/> .
+@prefix roar:          <https://w3id.org/roar#> .
 
 @prefix xsd:           <http://www.w3.org/2001/XMLSchema#> .
 
@@ -17,17 +17,22 @@
             rico:textualValue "Machtiging"
         ]        
     ] ;
+    rico:hasOrHadTitle [
+        a rico:Title ;
+        rico:textualValue "akte 476255" ;
+    ] ;
     rico:hasOrHadIdentifier [ 
         a rico:Identifier ;
-        rico:textualValue "b21a5c6d-bb4f-6a83-e053-b784100a6e32" ;
+        rico:textualValue "476255" ;
         rico:hasIdentifierType [
             a rico:IdentifierType ;
             rico:hasOrHadName [
                 a rico:Name ;
-                rico:textualValue "UUID" ;
+                rico:textualValue "Databasenummer"
             ]
         ]
     ] ;
+
     rico:isOrWasIncludedIn <https://data.archief.amsterdam/905d9dcf17394ea0a16d1b8c602946b8> .
 
 <https://data.archief.amsterdam/905d9dcf17394ea0a16d1b8c602946b8> a rico:RecordSet .

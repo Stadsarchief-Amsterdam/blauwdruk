@@ -288,7 +288,8 @@
     sh:property [
         rdfs:label "Maakt onderdeel uit van"@nl ;
         sh:path rico:isOrWasIncludedIn ;
-        sh:class rico:RecordSet 
+        sh:class rico:RecordSet
+        sh:minCount 1 ;
     ] ;
     sh:property [
         rdfs:label "Interne opmerking"@nl ;
@@ -388,7 +389,7 @@
         sh:qualifiedMinCount 1 ;        
     ] ;
     sh:property [
-        rdfs:label "Nummer"@nl ;
+        rdfs:label "Alternatieve nummers"@nl ;
         sh:path rico:hasOrHadIdentifier ;
         sh:class rico:Identifier ; 
         sh:qualifiedValueShapeDisjoint true ; 
@@ -420,6 +421,7 @@
         rdfs:label "Maakt onderdeel uit van"@nl ;
         sh:path rico:isOrWasIncludedIn ;
         sh:class rico:RecordSet 
+        sh:minCount 1 ;
     ] ;
     sh:property [
         rdfs:label "Interne opmerking"@nl ;
@@ -576,12 +578,16 @@
            [ sh:class rico:Person ; ]
            [ sh:class rico:Family ; ]
            [ sh:class rico:CorporateBody ; ]            
-        )
+        ) ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
     ] ;
     sh:property [
         sh:path schema:roleName ;
         sh:class rico:Type ;
         sh:node :Type ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
     ] .
 
 # ====== FILE ====== Instantiation
@@ -655,40 +661,6 @@
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:datatype xsd:date ;
-    ] .
-
-# ==== :PhysicalLocation =====
-:PhysicalLocation a sh:NodeShape ;
-    sh:targetClass rico:PhysicalLocation ;
-    sh:property [
-        sh:path rico:hasOrHadCoordinates ;
-        sh:class rico:Coordinates ;
-        sh:node :Coordinates ;
-        sh:maxCount 1 ;
-        sh:minCount 1 ;
-    ] .
-
-:Coordinates a sh:NodeShape ;
-    sh:property [
-        sh:path rico:longitude ;
-        sh:datatype xsd:decimal ;
-        sh:maxCount 1 ;
-        sh:minCount 1 ;
-    ] ;
-    sh:property [
-        sh:path rico:latitude ;
-        sh:datatype xsd:decimal ;
-        sh:maxCount 1 ;
-        sh:minCount 1 ;
-    ] .
-
-# ====== :LegalStatus ======
-:LegalStatus a sh:NodeShape ;
-    sh:property [
-        rdfs:label "Auteursrecht opmerking"@nl ;
-        sh:path rico:descriptiveNote ;
-        sh:maxCount 1 ;
-        sh:minCount 1 ;
     ] .
 
 # ===== :Type =====

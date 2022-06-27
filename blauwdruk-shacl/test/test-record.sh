@@ -16,3 +16,7 @@ shacl validate -s ../record.ttl -d akte/akte-minimal1.ttl
 echo AFBEELDING
 echo == Validate afbeelding-correct1.ttl
 shacl validate -s ../record.ttl -d afbeelding/afbeelding-correct1.ttl
+
+echo DIGITAAL INFORMATIEOBJECT
+echo == Validate dio-correct1.ttl
+shacl validate -s ../record.ttl -d digitaal-informatieobject/dio-correct1.ttl
