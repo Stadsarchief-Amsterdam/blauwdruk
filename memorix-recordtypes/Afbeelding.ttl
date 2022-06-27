@@ -225,13 +225,13 @@ rico:Instantiation
     sh:targetClass       rico:Instantiation ;
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property          [ rdfs:label  "Object type toelichting"@nl, "Object type explanation"@en ;
+    sh:property          [ rdfs:label  "Objecttype toelichting"@nl, "Object type explanation"@en ;
                            sh:path     saa:objectTypeTextualValue ;
                            sh:datatype xsd:string ;
                            sh:order    1.0 ;
                          ] ;
-    sh:property          [  rdfs:label              "Object type"@nl, "Object type "@en ;
-                            sh:message              "Kies een object type uit de keuzelijst."@nl, "Please choose a object type from the list."@en ;
+    sh:property          [  rdfs:label              "Objecttype"@nl, "Object type "@en ;
+                            sh:message              "Kies een objecttype uit de keuzelijst."@nl, "Please choose a object type from the list."@en ;
                             dash:editor             memorix:VocabularyEditor ;
                             memorix:conceptSchemeIn vocabularies:1cc20db0-62dc-45cf-b7f7-c7b2fb2074a2 ;
                             sh:class                skos:Concept ;

@@ -226,7 +226,7 @@ rt:File
                                       sh:order         6.0 ;
                                       sh:path          saa:internalRemarks
                                     ] ;
-    sh:property                     [ rdfs:label       "Auteursrecht opmerking (intern)"@nl, "Copyright remarks (internal)"@en ;
+    sh:property                     [ rdfs:label       "Auteursrechtopmerking (intern)"@nl, "Copyright remarks (internal)"@en ;
                                       rdfs:comment     "Bijvoorbeeld: niet gecontroleerd, niet geregeld"@nl ;
                                       memorix:audience memorix:audienceInternal ;
                                       sh:datatype      xsd:string ;
@@ -294,13 +294,13 @@ rico:Instantiation
     sh:targetClass       rico:Instantiation ;
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property          [ rdfs:label  "Object type toelichting"@nl, "Object type explanation"@en ;
+    sh:property          [ rdfs:label  "Objecttype toelichting"@nl, "Object type explanation"@en ;
                            sh:path     saa:objectTypeTextualValue ;
                            sh:datatype xsd:string ;
                            sh:order    1.0 ;
                          ] ;
-    sh:property          [  rdfs:label              "Object type"@nl, "Object type "@en ;
-                            sh:message              "Kies een object type uit de keuzelijst."@nl, "Please choose a object type from the list."@en ;
+    sh:property          [  rdfs:label              "Objecttype"@nl, "Object type "@en ;
+                            sh:message              "Kies een objecttype uit de keuzelijst."@nl, "Please choose a object type from the list."@en ;
                             dash:editor             memorix:VocabularyEditor ;
                             memorix:conceptSchemeIn vocabularies:1cc20db0-62dc-45cf-b7f7-c7b2fb2074a2 ;
                             sh:class                skos:Concept ;
@@ -387,7 +387,7 @@ saa:RelatedAgent
                            sh:order                1.0 ;
                            sh:path                 saa:hasRole ;
                          ] ;
-    sh:property          [ rdfs:label  "Persoon, Organisatie of Familie"@nl, "Person, Organisation or Family"@en ;
+    sh:property          [ rdfs:label  "Persoon, organisatie of familie"@nl, "Person, organisation or family"@en ;
                            dash:editor memorix:LinkedRecordEditor ;
                            sh:message  "Kies een persoon, organisatie of familie uit de lijst."@nl, "Please choose a person, organisation or family"@en ;
                            sh:nodeKind sh:IRI ;

@@ -28,7 +28,7 @@ report:identificationGroup
 
 report:descriptionGroup
     rdf:type   sh:PropertyGroup ;
-    rdfs:label "Object beschrijving"@nl, "Object Description"@en ;
+    rdfs:label "Objectbeschrijving"@nl, "Object Description"@en ;
     sh:order   2.0 .
 
 report:conditionGroup
