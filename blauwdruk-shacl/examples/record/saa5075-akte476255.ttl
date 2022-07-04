@@ -10,6 +10,10 @@
 
 @prefix xsd:           <http://www.w3.org/2001/XMLSchema#> .
 
+# Example
+# URI's are not real, but invented for demonstrational purposes!
+# See for the original data: https://archief.amsterdam/indexen/deeds/b21a5c6d-bb4f-6a83-e053-b784100a6e32
+
 <https://data.archief.amsterdam/b21a5c6dbb4f6a83e053b784100a6e32>
     a rico:Record ;
     rico:hasDocumentaryFormType [
@@ -52,7 +56,7 @@
     rico:isOrWasIncludedIn :5075_invnr10249 ;
     rico:hasOrHadSubject [
         a schema:Role ;
-        rico:hasOrHadSubject     <https://data.archief.amsterdam/b21a5c6dbb4f6a83e053b784100a6e32#person1> ;
+        rico:hasOrHadSubject <https://data.archief.amsterdam/b21a5c6dbb4f6a83e053b784100a6e32#person1> ;
         schema:roleName [
             a rico:Type ;
             rico:hasOrHadName [

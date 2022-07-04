@@ -19,6 +19,7 @@
 :Person a sh:NodeShape ;
     sh:targetClass rico:Person ;
     rdfs:label "Persoon"@nl ;
+    rdfs:comment "Een persoon is een actor, bijvoorbeeld relevant bij de vorming of als onderwerp van een archiefstuk, of aggregatie van archiefstukken."@nl ;
     sh:property [
         sh:path pnv:hasName ;
         sh:class pnv:PersonName ;
@@ -70,6 +71,7 @@
 :PersonObservation a sh:NodeShape ;
     sh:targetClass roar:PersonObservation ;
     rdfs:label "Persoonsvermelding"@nl ;
+    rdfs:comment "Een persoonsvermelding is een niet nadere geidentificeerd persoon; het bevat alle relevante informatie die bij een vermelding in een bron is aangetroffen. Ze zijn vaak afkomstig uit een nadere toegang."@nl ;
     sh:property [
         rdfs:label "Persoonsnaam"@nl ;
         sh:path pnv:hasName ;
@@ -144,6 +146,7 @@
 :Organisation a sh:NodeShape ;
     sh:targetClass rico:CorporateBody ;
     rdfs:label "Organisatie"@nl ;
+    rdfs:comment "Een organisatie is een actor, bijvoorbeeld relevant bij de vorming of als onderwerp van een archiefstuk, of aggregatie van archiefstukken."@nl ;
     sh:property [
         rdfs:label "Organisatienaam"@nl ;
         sh:path schema:name ;
@@ -200,6 +203,7 @@
 # ===== FAMILY =====
 :Family a sh:NodeShape ;
     rdfs:label "Familie"@nl ;
+    rdfs:comment "Een familie is een actor, bijvoorbeeld relevant bij de vorming of als onderwerp van een archiefstuk, of aggregatie van archiefstukken."@nl ;
     sh:property [
         rdfs:label "Organisatienaam"@nl ;
         sh:path schema:name ;

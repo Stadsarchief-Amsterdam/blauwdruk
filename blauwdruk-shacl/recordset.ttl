@@ -16,7 +16,7 @@
 # ==================================================
 :RecordSet a sh:NodeShape ;
     sh:targetClass rico:RecordSet ;
-    sh:comment "" ;
+    rdfs:comment "Een rico:RecordSet is een aggregatie van archiefstukken ('records'). We stellen aan verschillende soorten rico:RecordSet's (Fonds: het archief als geheel; Series: rubrieken en verzamelbeschrijvingen; File: dossier, bestandeel, enkelvoudige of deelbeschrijving."@nl ;
     sh:xone ( 
         [ sh:node :Fonds ]
         [ sh:node :Series ]
@@ -26,6 +26,7 @@
 # ===== FONDS =====
 :Fonds a sh:NodeShape ;
     rdfs:label "Archiefblok"@nl ;
+    rdfs:comment "Een rico:RecordSet van het type 'Fonds' is het hoogste aggregatieniveau: het archief als geheel."@nl ;
     sh:property [ 
         rdfs:label "Soort archiefblok"@nl ;
         sh:path rico:hasRecordSetType ;
@@ -240,6 +241,7 @@
 # ===== SERIES =====
 :Series a sh:NodeShape ;
     rdfs:label "Groep"@nl ;
+    rdfs:comment "Een rico:RecordSet van het type 'Series' is het tussenliggende aggregatieniveau, een rubriek of een verzamelbeschrijving. Als algemene term daarvan hebben we de term 'Groep' geintroduceerd."@nl ;
     sh:property [ 
         rdfs:label "Groep"@nl ;
         sh:path rico:hasRecordSetType ;
@@ -372,6 +374,7 @@
 
 # ===== FILE =====
 :File a sh:NodeShape ;
+    rdfs:comment "Een rico:RecordSet van het type 'File' is het laagste aggregatieniveau, een enkelvoudige of deelbeschrijving. Een File (in het Nederlands 'dossier' of 'bestanddeel') is de kleinste eenheid in een (klassieke) archiefinventaris Als algemene term daarvan hebben we de term 'Groep' geintroduceerd."@nl ;
     rdfs:label "Bestanddeel"@nl ;
     sh:property [ 
         rdfs:label "Bestanddeel"@nl ;

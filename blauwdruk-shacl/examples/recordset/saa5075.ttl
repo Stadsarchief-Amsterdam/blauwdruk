@@ -9,7 +9,6 @@
 # Example
 # URI's are not real, but invented for demonstrational purposes!
 # See for the original data: https://archief.amsterdam/inventarissen/file/905d9dcf17394ea0a16d1b8c602946b8
-# https://archief.amsterdam/indexen/deeds/b21a5c6d-bb4f-6a83-e053-b784100a6e32
 
 :5075
     a rico:RecordSet ;

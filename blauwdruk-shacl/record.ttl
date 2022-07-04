@@ -16,6 +16,7 @@
 # ==================================================
 :Record a sh:NodeShape ;
     sh:targetClass rico:Record ;
+    rdfs:comment "Een rico:Record is de kleinste, logische informatie-eenheid, zoals een brief, een geboorteakte, een testament of een foto."@nl ;
     sh:or ( 
         [ sh:node :Deed ]
         [ sh:node :Image ]
@@ -25,6 +26,7 @@
 # ===== DEED =====
 :Deed a sh:NodeShape ;
     rdfs:label "Akte"@nl ;
+    rdfs:comment "Een akte is een specifiek soort rico:Record, met verwijzingen naar persoons- en plaatsvermeldingen. Aktes vormen vaak de basis voor een nadere toegang."@nl ;
     sh:property [
         rdfs:label "Titel"@nl ;
         sh:path rico:hasOrHadTitle ;
@@ -95,6 +97,7 @@
 # ===== IMAGE =====
 :Image a sh:NodeShape ;
     rdfs:label "Afbeelding"@nl ;
+    rdfs:comment "Een afbeelding is een specifiek voor rico:Record. Van belang bij een afbeelding is de vervaardiger en de afgebeelde personen en locaties."@nl ;
     sh:property [
         rdfs:label "Maakt onderdeel uit van"@nl ;
         sh:path rico:isOrWasIncludedIn ;
@@ -185,6 +188,7 @@
 # ===== DIGITAL RECORD =====
 :DigitalRecord a sh:NodeShape ;
     rdfs:label "Digitaal informatieobject"@nl ;
+    rdfs:comment "Een digitaal informatieobject is een specifiek voor rico:Record. Van belang bij deze digitaal geboren archiefstukken zijn vooral de openbaarheidsaspecten."@nl ;
     sh:property [
         rdfs:label "Volgende archiefbeschrijving in de volgorde"@nl ;
         sh:path rico:precedesOrPreceded ;

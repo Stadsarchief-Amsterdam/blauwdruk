@@ -16,6 +16,8 @@
 # ==================================================
 :Place a sh:NodeShape ;
     sh:targetClass rico:Place ;
+    rdfs:label "Locatie"@nl ;
+    rdfs:comment "Een locatie is een fenomeen in de ruimte, bijvoorbeeld relevant als onderwerp van een archiefstuk, of aggregatie van archiefstukken."@nl ;
     sh:property [
         sh:path rico:hasName ;
         sh:node :Name ; 

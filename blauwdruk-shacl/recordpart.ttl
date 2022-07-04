@@ -17,16 +17,19 @@
 :DigitalRecordPart a sh:NodeShape ;
     sh:targetClass rico:RecordPart ;
     rdfs:label "Digitaal informatieobjectOnderdeel"@nl ;
+    rdfs:comment "Een digitaal informatieobjectOnderdeel maakt onlosmakelijk deel uit van een informatieobject om tot de kleinste logische informatie-eenheid te komen. Zo is een bijlage bij een e-mail of een brief onlosmakkelijk met de e-mail verbonden: zonder de bijlage is e-mail betekenisloos."@nl ;
     sh:property [
         rdfs:label "Volgende archiefbeschrijving in de volgorde"@nl ;
         sh:class rico:Record ;
         sh:path rico:precedesOrPreceded ;
+        sh:nodeKind sh:IRI ;
     ] ;
     sh:property [
         rdfs:label "Maakt onderdeel uit van"@nl ;
         sh:path rico:isOrWasIncludedIn ;
         sh:class rico:Record ;
         sh:minCount 1 ;
+        sh:nodeKind sh:IRI ;
     ] ;
     sh:property [
         rdfs:label "Beschrijving"@nl ;
