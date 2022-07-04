@@ -6,9 +6,11 @@ export PATH=$PATH:$JENA_HOME/bin
 shacl --version
 
 echo NOTARISSEN
-echo == Validate finding aid
+echo == Validate finding aid notarissen
 shacl validate -s ../recordset.ttl -d recordset/saa5075.ttl
-echo == Validate finding aid
-shacl validate -s ../recordset.ttl -d recordset/saa5075.ttl
+echo == Validate notarial deed
+shacl validate -s ../record.ttl -d record/saa5075-akte476255.ttl
+echo == Validate notarial deed - person observation
+shacl validate -s ../agent.ttl -d agent/saa5075-akte476255-person1.ttl
 
 

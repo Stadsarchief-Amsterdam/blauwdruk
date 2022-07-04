@@ -1,0 +1,67 @@
+@prefix :              <https://data.archief.amsterdam/example#> .
+
+@prefix rdf:           <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:          <http://www.w3.org/2000/01/rdf-schema#> .
+
+@prefix rico:          <https://www.ica.org/standards/RiC/ontology#> .
+@prefix ric-voc:       <https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#> .
+@prefix schema:        <http://schema.org/> .
+@prefix roar:          <https://w3id.org/roar#> .
+
+@prefix xsd:           <http://www.w3.org/2001/XMLSchema#> .
+
+<https://data.archief.amsterdam/b21a5c6dbb4f6a83e053b784100a6e32>
+    a rico:Record ;
+    rico:hasDocumentaryFormType [
+        a rico:DocumentaryFormType ;
+        rico:hasOrHadName [
+            a rico:Name ;
+            rico:textualValue "Machtiging"
+        ]        
+    ] ;
+    rico:hasOrHadTitle [
+        a rico:Title ;
+        rico:textualValue "akte 476255" ;
+    ] ;
+    rico:isAssociatedWithDate [
+        a rico:SingleDate ;
+        rico:normalizedDateValue "1749-09-12"^^xsd:date ;
+    ] ;
+    rico:hasOrHadIdentifier [ 
+        a rico:Identifier ;
+        rico:textualValue "476255" ;
+        rico:hasIdentifierType [
+            a rico:IdentifierType ;
+            rico:hasOrHadName [
+                a rico:Name ;
+                rico:textualValue "Databasenummer"
+            ]
+        ]
+    ] ;
+    rico:hasOrHadIdentifier [ 
+        a rico:Identifier ;
+        rico:textualValue "b21a5c6d-bb4f-6a83-e053-b784100a6e32" ;
+        rico:hasIdentifierType [
+            a rico:IdentifierType ;
+            rico:hasOrHadName [
+                a rico:Name ;
+                rico:textualValue "UUID" ;
+            ]
+        ]
+    ] ;
+    rico:isOrWasIncludedIn :5075_invnr10249 ;
+    rico:hasOrHadSubject [
+        a schema:Role ;
+        rico:hasOrHadSubject     <https://data.archief.amsterdam/b21a5c6dbb4f6a83e053b784100a6e32#person1> ;
+        schema:roleName [
+            a rico:Type ;
+            rico:hasOrHadName [
+                a rico:Name ;
+                rico:textualValue "machtigingverlener" ;
+            ]
+        ]
+    ] .
+
+:5075_invnr10249 a rico:RecordSet .
+
+<https://data.archief.amsterdam/b21a5c6dbb4f6a83e053b784100a6e32#person1> a roar:PersonObservation .

@@ -8,8 +8,8 @@
 <https://example.memorix-test.nl/resources/records/4080e15d-7ffd-44ef-a485-5e1389fbe87f>
         a roar:PersonObservation ;
         schema:birthDate "1975-01-01"^^xsd:date ;
-        schema:birthPlace "Groot Eindhoven" ;
+        schema:birthPlace "Omgeving Amsterdam" ;
         pnv:hasName        [ a pnv:PersonName ;
-                             pnv:baseSurname "Zandhuis" ;
-                             pnv:givenName "Ivo"
+                             pnv:baseSurname "Jansen" ;
+                             pnv:givenName "Jan"
                            ] .
