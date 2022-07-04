@@ -23,3 +23,4 @@ shacl validate -s ../recordset.ttl -d recordset/bestanddeel-correct1.ttl
 echo == Validate bestanddeel-incorrect1.ttl
 shacl validate -s ../recordset.ttl -d recordset/bestanddeel-incorrect1.ttl
 
+

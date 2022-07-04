@@ -2,13 +2,11 @@
 @prefix rdfs:       <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix schema:     <http://schema.org/> .
 @prefix rico:       <https://www.ica.org/standards/RiC/ontology#> .
-@prefix voc:        <https://example.memorix-test.nl/vocabularies/> .
-@prefix data:       <https://example.memorix-test.nl/resources/records/> .
 @prefix xsd:        <http://www.w3.org/2001/XMLSchema#> .
 
 <https://data.archief.amsterdam/fonds/2ab843bcdc58542729ac2e5d86a7ecd6>
     a rico:RecordSet ;
-    rico:hasAccumulator data:de-UUID-voor-record-fam-boissevain ;
+    rico:hasAccumulator :de-UUID-voor-record-fam-boissevain ;
     rico:hasOrHadIdentifier [
         a rico:Identifier ;
         rico:hasIdentifierType [
@@ -70,6 +68,6 @@
     ] .
 
 
-data:de-UUID-voor-record-fam-boissevain
+:de-UUID-voor-record-fam-boissevain
     a rico:Family ;
     rdfs:label "Familie Boissevain" .

@@ -1,4 +1,4 @@
-@prefix :              <https://data.archief.amsterdam/blauwdruk#>
+@prefix :              <https://data.archief.amsterdam/blauwdruk#> .
 
 @prefix rdf:           <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs:          <http://www.w3.org/2000/01/rdf-schema#> .
@@ -270,7 +270,6 @@
     sh:property [
         rdfs:label "Datering"@nl ;
         sh:path rico:isAssociatedWithDate ;
-        sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:class rico:DateRange ;
         sh:node :DateRange ;
@@ -283,12 +282,14 @@
     ] ;
     sh:property [
         rdfs:label "Volgende archiefbeschrijving in de volgorde"@nl ;
-        sh:path rico:precedesOrPreceded ;
+        sh:path rico:precedesOrPreceded ; 
+        sh:nodeKind sh:IRI ;
     ] ;
     sh:property [
         rdfs:label "Maakt onderdeel uit van"@nl ;
         sh:path rico:isOrWasIncludedIn ;
         sh:class rico:RecordSet ;
+        sh:nodeKind sh:IRI ;
         sh:minCount 1 ;
     ] ;
     sh:property [
@@ -394,7 +395,7 @@
         sh:class rico:Identifier ; 
         sh:qualifiedValueShapeDisjoint true ; 
         sh:qualifiedValueShape :IdentifierFileAlt ;
-        sh:qualifiedMaxCount 2 ;
+        sh:qualifiedMaxCount 2 ; # TODO waarom zou dat 1 moeten zijn?
     ] ;
     sh:property [
         rdfs:label "Bestanddeelbeschrijving"@nl ;
@@ -416,10 +417,12 @@
     sh:property [
         rdfs:label "Volgende archiefbeschrijving in de volgorde"@nl ;
         sh:path rico:precedesOrPreceded ;
+        sh:nodeKind sh:IRI ;
     ] ;
     sh:property [
         rdfs:label "Maakt onderdeel uit van"@nl ;
         sh:path rico:isOrWasIncludedIn ;
+        sh:nodeKind sh:IRI ;
         sh:class rico:RecordSet ;
         sh:minCount 1 ;
     ] ;
