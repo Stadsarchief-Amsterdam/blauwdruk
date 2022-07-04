@@ -17,6 +17,7 @@
         ] ; 
         rico:textualValue "123"
     ] ;
+    rico:isOrWasIncludedIn <https://data.archief.amsterdam/fonds/rubriek-x> ;
     rico:hasOrHadIdentifier [
         a rico:Identifier ;
         rico:hasIdentifierType [

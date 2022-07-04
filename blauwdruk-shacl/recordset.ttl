@@ -288,7 +288,6 @@
     sh:property [
         rdfs:label "Maakt onderdeel uit van"@nl ;
         sh:path rico:isOrWasIncludedIn ;
-        sh:class rico:RecordSet ;
         sh:nodeKind sh:IRI ;
         sh:minCount 1 ;
     ] ;
@@ -415,6 +414,13 @@
         sh:datatype xsd:string ; 
     ] ;
     sh:property [
+        rdfs:label "Datering"@nl ;
+        sh:path rico:isAssociatedWithDate ;
+        sh:maxCount 1 ;
+        sh:class rico:DateRange ;
+        sh:node :DateRange ;
+    ] ;
+    sh:property [
         rdfs:label "Volgende archiefbeschrijving in de volgorde"@nl ;
         sh:path rico:precedesOrPreceded ;
         sh:nodeKind sh:IRI ;
@@ -423,7 +429,6 @@
         rdfs:label "Maakt onderdeel uit van"@nl ;
         sh:path rico:isOrWasIncludedIn ;
         sh:nodeKind sh:IRI ;
-        sh:class rico:RecordSet ;
         sh:minCount 1 ;
     ] ;
     sh:property [

@@ -32,6 +32,7 @@
         ] ;
     ] ;
     rico:hasRecordSetType <https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#Series> ;
+    rico:isOrWasIncludedIn <https://data.archief.amsterdam/fonds/x> ;
     rico:isAssociatedWithDate [
         a rico:DateRange ;
         rico:expressedDate "1752-1753" ;
