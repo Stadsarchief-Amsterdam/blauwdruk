@@ -2,7 +2,7 @@
 
 This folder contains 
 * examples of archival descriptive data complying to the [Records in Contexts Ontology](https://www.ica.org/standards/RiC/ontology).
-* constrains on a minimal viable data structure for Dutch archival description, defined in [SHACL](https://www.w3.org/TR/shacl/) shapes.
+* constraints on a minimal viable data structure for Dutch archival description, defined in [SHACL](https://www.w3.org/TR/shacl/) shapes.
 * shell-scripts for validating the examples to the shacl-shapes.
 
 A basic introduction (Dutch) into Records in Contexts was published in [Archievenblad, april 2021, pp. 16-17](Artikel-RiC-Archievenblad-april-2021.pdf).
@@ -12,7 +12,7 @@ We provide examples for resources of the classes rico:RecordSet, rico:Record and
 ![Example graph depicted](geerlings-zandhuis-ab202104-afb1.png)
 
 # SHACL shapes
-The turtle files, containing the SHACL shapes with constraints of a minimal viable data structure for Dutch archival description, contain a more general description of the data structure by means of rdfs:label and rdfs:comment properties. With some small effort one can read the SHACL-files and interprete their consequences.
+The turtle files, containing the SHACL shapes with constraints of a minimal viable data structure for Dutch archival description, contain a more detailed description (in Dutch) of the data structure by means of rdfs:label and rdfs:comment properties. With some small effort one can read the SHACL-files and interprete their consequences.
 
 ## SHACL validation
 The SHACL files can be used in the [shacl-playground](https://shacl.org/playground/) or with CLI tool 'shacl' in Apache Jena to validate your data.
