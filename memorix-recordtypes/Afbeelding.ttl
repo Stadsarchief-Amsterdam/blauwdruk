@@ -57,7 +57,7 @@ rt:Image
                               sh:message   "Kies een bestanddeel waar deze afbeelding uit komt."@nl, "Choose a file where this image belongs to."@en ;
                               dash:editor  memorix:LinkedRecordEditor ;
                               sh:group     image:identificationGroup ;
-                              sh:maxCount  100 ;
+                              sh:maxCount  1 ;
                               sh:nodeKind  sh:IRI ;
                               sh:or        ( [ sh:class rt:File ] ) ;
                               sh:order     1.0 ;
