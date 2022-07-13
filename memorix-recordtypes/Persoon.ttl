@@ -1,26 +1,27 @@
-@prefix rdf:            <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix rdfs:           <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix owl:            <http://www.w3.org/2002/07/owl#> .
-@prefix xsd:            <http://www.w3.org/2001/XMLSchema#> .
-@prefix skos:           <http://www.w3.org/2004/02/skos/core#> .
-@prefix saa:            <https://data.archief.amsterdam/ontology#> . #TBD
+@prefix rdf:               <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:              <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:               <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:               <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos:              <http://www.w3.org/2004/02/skos/core#> .
+@prefix saa:               <https://data.archief.amsterdam/ontology#> . #TBD
 
-@prefix rt:             </resources/recordtypes/> .
-@prefix person:         </resources/recordtypes/Person#> .
-@prefix vocabularies:   </resources/vocabularies/conceptschemes/> .
+@prefix rt:                </resources/recordtypes/> .
+@prefix person:            </resources/recordtypes/Person#> .
+@prefix personObservation: </resources/recordtypes/PersonObservation#> .
+@prefix vocabularies:      </resources/vocabularies/conceptschemes/> .
 
-@prefix dc:             <http://purl.org/dc/elements/1.1/> .
-@prefix sh:             <http://www.w3.org/ns/shacl#> .
-@prefix dash:           <http://datashapes.org/dash#> .
-@prefix memorix:        <http://memorix.io/ontology#> .
-@prefix html:           <http://www.w3.org/1999/xhtml/> .
+@prefix dc:                <http://purl.org/dc/elements/1.1/> .
+@prefix sh:                <http://www.w3.org/ns/shacl#> .
+@prefix dash:              <http://datashapes.org/dash#> .
+@prefix memorix:           <http://memorix.io/ontology#> .
+@prefix html:              <http://www.w3.org/1999/xhtml/> .
 
-@prefix rico:           <https://www.ica.org/standards/RiC/ontology#> .
-@prefix ric-rst:        <https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#> .
-@prefix ric-dft:        <https://www.ica.org/standards/RiC/vocabularies/documentaryFormTypes#> .
+@prefix rico:              <https://www.ica.org/standards/RiC/ontology#> .
+@prefix ric-rst:           <https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#> .
+@prefix ric-dft:           <https://www.ica.org/standards/RiC/vocabularies/documentaryFormTypes#> .
 
-@prefix pnv:            <https://w3id.org/pnv#> .
-@prefix schema:         <http://schema.org/> .
+@prefix pnv:               <https://w3id.org/pnv#> .
+@prefix schema:            <http://schema.org/> .
 
 
 person:identificationGroup
