@@ -11,11 +11,10 @@
 @prefix vocabularies:   </resources/vocabularies/conceptschemes/> .
 @prefix rt:             </resources/recordtypes/> .
 @prefix image:          </resources/recordtypes/Image#> .
-@prefix saa:            <https://data.archief.amsterdam/ontology#> . #TBD
+@prefix saa:            <https://data.archief.amsterdam/ontology#> .
 @prefix rico:           <https://www.ica.org/standards/RiC/ontology#> .
 @prefix ric-rst:        <https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#> .
 @prefix ric-dft:        <https://www.ica.org/standards/RiC/vocabularies/documentaryFormTypes#> .
-
 
 image:identificationGroup
     rdf:type   sh:PropertyGroup ;
@@ -52,6 +51,17 @@ rt:Image
     sh:ignoredProperties    ( rdf:type ) ;
     dash:defaultViewForRole dash:all ;
     sh:targetClass          rt:Image ;
+    sh:property             [ rdfs:label   "Archief"@nl, "Fonds"@en ;
+                              rdfs:comment "Archief waar deze afbeelding bij hoort."@nl, "Fonds to which this image belongs."@en ;
+                              sh:message   "Kies een archief waar deze afbeelding uit komt."@nl, "Choose a fonds where this image belongs to."@en ;
+                              dash:editor  memorix:LinkedRecordEditor ;
+                              sh:group     image:identificationGroup ;
+                              sh:maxCount  1 ;
+                              sh:nodeKind  sh:IRI ;
+                              sh:or        ( [ sh:class rt:Fonds ] ) ;
+                              sh:order     1.0 ;
+                              sh:path      rico:isOrWasIncludedIn ;
+                            ] ;
     sh:property             [ rdfs:label   "Gekoppeld bestanddeel"@nl, "Related file"@en ;
                               rdfs:comment "Bestanddeel waaraan deze afbeelding gekoppeld is."@nl, "Description of the file to which this image belongs."@en ;
                               sh:message   "Kies een bestanddeel waar deze afbeelding uit komt."@nl, "Choose a file where this image belongs to."@en ;
@@ -156,18 +166,6 @@ rt:Image
                               sh:class    rico:Instantiation ;
                               sh:group    image:physicalDescriptionGroup ;
                             ] ;
-    sh:property             [ rdfs:label              "Collectie"@nl, "Collection"@en ;
-                              rdfs:comment            "Tijdelijke oplossing voor het nu kunnen zien van de collectie naam (uit het archiefblok)."@nl ;
-                              sh:path                 image:collection ;
-                              sh:maxCount             1 ;
-                              sh:order                2.0 ;
-                              sh:group                image:managementGroup ;
-                              memorix:inSummaryAt     1.0 ;
-                              dash:editor             memorix:VocabularyEditor ;
-                              sh:class                skos:Concept ;
-                              memorix:conceptSchemeIn vocabularies:dc4bc4f7-0e8a-3d53-b675-7c36bd780aff ;
-                              sh:nodeKind             sh:IRI ;
-                            ] ;
     sh:property             [ rdfs:label       "Oude nummers"@nl, "Old numbers"@en ;
                               dash:editor      dash:TextAreaEditor ;
                               memorix:audience memorix:audienceInternal ;
@@ -245,7 +243,7 @@ rico:Instantiation
                            sh:datatype xsd:string ;
                            sh:order    3.0 ;
                          ] ;
-    sh:property          [  rdfs:label              "Techniek"@nl, "Technique"@en ;
+    sh:property          [  rdfs:label             "Techniek"@nl, "Technique"@en ;
                            sh:message              "Kies een techniek uit de keuzelijst."@nl, "Please choose a technique from the list."@en ;
                            dash:editor             memorix:VocabularyEditor ;
                            memorix:conceptSchemeIn vocabularies:d0fc28e9-e1c0-47c0-ad66-f496c8d12f90 ;
@@ -354,4 +352,3 @@ saa:RelatedAgent
                            sh:path     saa:hasAgent ;
                          ] ;
     sh:targetClass       saa:RelatedAgent .
-
