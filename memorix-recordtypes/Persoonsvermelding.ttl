@@ -3,22 +3,19 @@
 @prefix owl:               <http://www.w3.org/2002/07/owl#> .
 @prefix xsd:               <http://www.w3.org/2001/XMLSchema#> .
 @prefix skos:              <http://www.w3.org/2004/02/skos/core#> .
-
 @prefix rt:                </resources/recordtypes/> .
+@prefix person:            </resources/recordtypes/Person#> .
 @prefix personObservation: </resources/recordtypes/PersonObservation#> .
 @prefix vocabularies:      </resources/vocabularies/conceptschemes/> .
-@prefix saa:               <https://data.archief.amsterdam/ontology#> . #TBD
-
+@prefix saa:               <https://data.archief.amsterdam/ontology#> . 
 @prefix dc:                <http://purl.org/dc/elements/1.1/> .
 @prefix sh:                <http://www.w3.org/ns/shacl#> .
 @prefix dash:              <http://datashapes.org/dash#> .
 @prefix memorix:           <http://memorix.io/ontology#> .
 @prefix html:              <http://www.w3.org/1999/xhtml/> .
-
 @prefix rico:              <https://www.ica.org/standards/RiC/ontology#> .
 @prefix ric-rst:           <https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#> .
 @prefix ric-dft:           <https://www.ica.org/standards/RiC/vocabularies/documentaryFormTypes#> .
-
 @prefix pnv:               <https://w3id.org/pnv#> .
 @prefix schema:            <http://schema.org/> .
 
@@ -68,7 +65,7 @@ rt:PersonObservation
                            sh:datatype xsd:date ;
                            sh:group    personObservation:personListingGroup ;
                            sh:order    2.0 ;
-                           memorix:inSummaryAt 1 ;
+                           memorix:inSummaryAt 1.0 ;
                            sh:path     schema:birthDate
                          ] ;
     sh:property          [ rdfs:label  "Geboorteplaats"@nl, "Place of birth"@en ;
@@ -80,7 +77,7 @@ rt:PersonObservation
     sh:property          [ rdfs:label  "Overlijdensdatum"@nl, "Date of death"@en ;
                            sh:datatype xsd:date ;
                            sh:group    personObservation:personListingGroup ;
-                           memorix:inSummaryAt 2 ;
+                           memorix:inSummaryAt 2.0 ;
                            sh:order    4.0 ;
                            sh:path     schema:deathDate
                          ] ;
@@ -148,7 +145,8 @@ rt:PersonObservation
                            sh:or        ( [ sh:class rt:Person ] [ sh:class rt:PersonObservation ] ) ;
                            sh:path      saa:sameAsInternal
                          ] ;
-    sh:targetClass       rt:PersonObservation .
+    sh:targetClass       rt:PersonObservation
+    .
 
 pnv:PersonName
     rdf:type             sh:NodeShape ;

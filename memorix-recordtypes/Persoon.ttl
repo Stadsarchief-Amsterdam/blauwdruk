@@ -3,25 +3,20 @@
 @prefix owl:            <http://www.w3.org/2002/07/owl#> .
 @prefix xsd:            <http://www.w3.org/2001/XMLSchema#> .
 @prefix skos:           <http://www.w3.org/2004/02/skos/core#> .
-@prefix saa:            <https://data.archief.amsterdam/ontology#> . #TBD
-
+@prefix saa:            <https://data.archief.amsterdam/ontology#> .
 @prefix rt:             </resources/recordtypes/> .
 @prefix person:         </resources/recordtypes/Person#> .
 @prefix vocabularies:   </resources/vocabularies/conceptschemes/> .
-
 @prefix dc:             <http://purl.org/dc/elements/1.1/> .
 @prefix sh:             <http://www.w3.org/ns/shacl#> .
 @prefix dash:           <http://datashapes.org/dash#> .
 @prefix memorix:        <http://memorix.io/ontology#> .
 @prefix html:           <http://www.w3.org/1999/xhtml/> .
-
 @prefix rico:           <https://www.ica.org/standards/RiC/ontology#> .
 @prefix ric-rst:        <https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#> .
 @prefix ric-dft:        <https://www.ica.org/standards/RiC/vocabularies/documentaryFormTypes#> .
-
 @prefix pnv:            <https://w3id.org/pnv#> .
 @prefix schema:         <http://schema.org/> .
-
 
 person:identificationGroup
     rdf:type   sh:PropertyGroup ;
@@ -47,7 +42,6 @@ person:rightsGroup
     sh:order   4.0 ;
 .
 
-
 rt:Person
     rdf:type             memorix:Recordtype , sh:NodeShape ;
     rdfs:comment         "Stadsarchief recordtype voor Persoon"@nl, "Amsterdam City Archives record type for Person"@en ;
@@ -59,7 +53,7 @@ rt:Person
     sh:ignoredProperties ( rdf:type ) ;
     sh:property          [ rdfs:label  "Naam"@nl, "Name"@en ;
                            sh:class    pnv:PersonName ;
-                           sh:group    personObservation:personListingGroup ;
+                           sh:group    person:identificationGroup ;
                            sh:maxCount 1 ;
                            sh:nodeKind sh:BlankNode ;
                            sh:order    1.0 ;
@@ -124,14 +118,6 @@ rt:Person
                            sh:maxCount              1 ;
                            sh:order                 1.0 ;
                            sh:path                  person:internalRemarks ; ] ;
-    sh:property          [ rdfs:label               "Bibliotheek descriptor?"@nl, "Library descriptor?"@en  ;
-                           rdfs:comment             "Of deze naam afkomstig is uit de bibliotheek descriptoren lijst."@nl, "Is this a descriptor from the SCope library migration?"@en  ;
-                           memorix:audience         memorix:audienceInternal ;
-                           sh:datatype              xsd:boolean ;
-                           sh:group                 person:managementGroup ;
-                           sh:maxCount              1 ;
-                           sh:order                 2.0 ;
-                           sh:path                  person:originallyFromLibrary ; ] ;
     sh:property          [ rdfs:label               "Auteursrechtafspraken"@nl, "Copyright Agreement"@en  ;
                            dash:editor              memorix:VocabularyEditor ;
                            sh:nodeKind              sh:IRI ;
@@ -165,7 +151,7 @@ pnv:PersonName
                                              "First name"@en ;
                            memorix:inTitleAt 3.0 ;
                            sh:datatype       xsd:string ;
-                           sh:group          personObservation:personListingGroup ;
+                           sh:group          person:identificationGroup ;
                            sh:order          1.0 ;
                            sh:path           pnv:givenName
                          ] ;
@@ -180,14 +166,14 @@ pnv:PersonName
     sh:property          [ rdfs:label        "Tussenvoegsel"@nl, "Surname prefix"@en ;
                            memorix:inTitleAt 2.0 ;
                            sh:datatype       xsd:string ;
-                           sh:group          personObservation:personListingGroup ;
+                           sh:group          person:identificationGroup ;
                            sh:order          3.0 ;
                            sh:path           pnv:surnamePrefix
                          ] ;
     sh:property          [ rdfs:label        "Achternaam"@nl, "Surname"@en ;
                            memorix:inTitleAt 1.0 ;
                            sh:datatype       xsd:string ;
-                           sh:group          personObservation:personListingGroup ;
+                           sh:group          person:identificationGroup ;
                            sh:order          4.0 ;
                            sh:message        "Achternaam is verplicht"@nl, "Surname is required"@en ;
                            sh:maxCount       1 ;
