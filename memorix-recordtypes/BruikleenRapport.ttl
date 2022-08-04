@@ -45,8 +45,8 @@ rt:LoanReport
     sh:targetClass       rt:LoanReport ;
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property          loan:IsOrWasIncludedInShape, loan:ExhibitionOrganisationShape, loan:ExhibitionTitleShape, loan:ExhibitionInsuredValueShape, loan:ExhibitionApprovedShape, loan:ExhibitionBeginDateShape, loan:ExhibitionEndDateShape ;
-    sh:property          loan:ExhibitedPageShape, loan:LightSensitivityShape, loan:LumenShape, loan:ExhibitionRemarksShape ;
+    sh:property          loan:IsOrWasIncludedInShape, loan:ExhibitionOrganisationNameShape, loan:ExhibitionOrganisationShape, loan:ExhibitionTitleShape, loan:ExhibitionInsuredValueShape, loan:ExhibitionApprovedShape, loan:ExhibitionBeginDateShape, loan:ExhibitionEndDateShape ;
+    sh:property          loan:ExhibitedPageShape, loan:LightSensitivityShape, loan:openingHoursShape, loan:LumenShape ;
     sh:property          loan:InternalRemarksShape ;
 .
 
@@ -65,23 +65,39 @@ loan:IsOrWasIncludedInShape
     sh:path      rico:describesOrDescribed
 .
 
-loan:ExhibitionOrganisationShape
+loan:ExhibitionOrganisationNameShape
     a                    sh:PropertyShape ;
-    rdfs:label           "Naam organisatie"@nl, "Organisation"@en ;
+    rdfs:label           "Organisatie werkveld"@nl, "Migrated Organisation"@en ;
+    rdfs:comment         "Tijdelijk veld waarin data uit Scope gemigreerd wordt" ;
     sh:datatype          xsd:string ;
     sh:group             loan:exhibitionGroup ;
     sh:maxCount          1 ;
     sh:order             2.0 ;
-    sh:path              loan:organisation
+    sh:path              loan:migratedOrganisationName
+.
+
+loan:ExhibitionOrganisationShape
+    a                    sh:PropertyShape ;
+    rdfs:label           "Organisatie"@nl, "Organisation"@en ;
+    dash:editor          memorix:LinkedRecordEditor ;
+    memorix:inSummaryAt  2.0 ;
+    sh:nodeKind          sh:IRI ;
+    sh:group             loan:exhibitionGroup ;
+    sh:maxCount          1 ;
+    sh:or                ( [ sh:class rt:Organisation ] ) ;
+    sh:order             3.0 ;
+    sh:path              loan:organisation ;
 .
 
 loan:ExhibitionTitleShape
     a                    sh:PropertyShape ;
     rdfs:label           "Titel tentoonstelling"@nl, "Exhibition title"@en ;
+    memorix:inSummaryAt  1.0 ;
+    memorix:searchWeight 3.0 ;
     sh:datatype          xsd:string ;
     sh:group             loan:exhibitionGroup ;
     sh:maxCount          1 ;
-    sh:order             3.0 ;
+    sh:order             5.0 ;
     sh:path              loan:exhibitionTitle
 .
 
@@ -91,7 +107,7 @@ loan:ExhibitionInsuredValueShape
     sh:datatype          xsd:integer ;
     sh:group             loan:exhibitionGroup ;
     sh:maxCount          1 ;
-    sh:order             4.0 ;
+    sh:order             6.0 ;
     sh:path              loan:exhibitionInsuredValue
 .
 
@@ -101,25 +117,28 @@ loan:ExhibitionApprovedShape
     sh:datatype          xsd:boolean ;
     sh:group             loan:exhibitionGroup ;
     sh:maxCount          1 ;
-    sh:order             5.0 ;
+    sh:order             7.0 ;
     sh:path              loan:exhibitionApproved
 .
 
 loan:ExhibitionBeginDateShape
     a                    sh:PropertyShape ;
     rdfs:label           "Begindatum tentoonstelling"@nl, "Exhibition begin date"@en ;
+    memorix:inTitleAt    1.0 ;
+    memorix:searchWeight 5.0 ;
     sh:datatype          xsd:date ;
     sh:group             loan:exhibitionGroup ;
-    sh:order             6.0 ;
+    sh:order             8.0 ;
     sh:path              rico:hasBeginningDate
 .
 
 loan:ExhibitionEndDateShape
     a                    sh:PropertyShape ;
     rdfs:label           "Einddatum tentoonstelling"@nl, "Exhibition end date"@en ;
+    memorix:inTitleAt    2.0 ;
     sh:datatype          xsd:date ;
     sh:group             loan:exhibitionGroup ;
-    sh:order             7.0 ;
+    sh:order             9.0 ;
     sh:path              rico:hasEndDate
 .
 
@@ -140,30 +159,31 @@ loan:LightSensitivityShape
     sh:datatype          xsd:integer ;
     sh:group             loan:conditionGroup ;
     sh:maxCount          1 ;
+    sh:minInclusive      0 ;
+    sh:maxInclusive      8 ;
+    sh:message           "Kies een waarde tussen 0 en 8"@nl, "Please choose a value between 0 and 8"@en ; 
     sh:order             2.0 ;
     sh:path              loan:lightSensitivity
 .
 
-loan:LumenShape
+loan:openingHoursShape
     a                    sh:PropertyShape ;
-    rdfs:label           "Belichtingsduur in uren"@nl, "Lumen"@en ;
+    rdfs:label           "Openingsuren per week"@nl, "Opening hours per week"@en ;
     sh:datatype          xsd:integer ;
     sh:group             loan:conditionGroup ;
     sh:maxCount          1 ;
     sh:order             3.0 ;
-    sh:path              loan:lumen
+    sh:path              loan:openingHours
 .
 
-loan:ExhibitionRemarksShape
-    a                sh:PropertyShape ;
-    rdfs:label       "Opmerking"@nl, "Remarks"@en ;
-    dash:editor      dash:TextAreaEditor ;
-    memorix:audience memorix:audienceInternal ;
-    sh:datatype      xsd:string ;
-    sh:group         loan:conditionGroup ;
-    sh:maxCount      1 ;
-    sh:order         6.0 ;
-    sh:path          saa:exhibitionRemarks
+loan:LumenShape
+    a                    sh:PropertyShape ;
+    rdfs:label           "Belichtingsduur in uren (totaal)"@nl, "Lumen"@en ;
+    sh:datatype          xsd:integer ;
+    sh:group             loan:conditionGroup ;
+    sh:maxCount          1 ;
+    sh:order             4.0 ;
+    sh:path              loan:lumen
 .
 
 loan:InternalRemarksShape
