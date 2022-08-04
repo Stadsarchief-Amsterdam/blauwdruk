@@ -4,15 +4,18 @@
 @prefix xsd:             <http://www.w3.org/2001/XMLSchema#> .
 @prefix skos:            <http://www.w3.org/2004/02/skos/core#> .
 @prefix schema:          <http://schema.org/> .
+
 @prefix rt:              </resources/recordtypes/> .
 @prefix report:          </resources/recordtypes/ConservationReport#> .
-@prefix saa:             <https://data.archief.amsterdam/ontology#> .
+@prefix saa:             <https://data.archief.amsterdam/ontology#> . #TBD
+
 @prefix dc:              <http://purl.org/dc/elements/1.1/> .
 @prefix sh:              <http://www.w3.org/ns/shacl#> .
 @prefix dash:            <http://datashapes.org/dash#> .
 @prefix memorix:         <http://memorix.io/ontology#> .
 @prefix html:            <http://www.w3.org/1999/xhtml/> .
 @prefix vocabularies:    </resources/vocabularies/conceptschemes/> .
+
 @prefix rico:            <https://www.ica.org/standards/RiC/ontology#> .
 @prefix ric-rst:         <https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#> .
 @prefix ric-dft:         <https://www.ica.org/standards/RiC/vocabularies/documentaryFormTypes#> .
@@ -199,7 +202,7 @@ report:SecondaryAdditionShape
 report:DamageShape
     a           sh:PropertyShape ;
     rdfs:label  "Conditie overig"@nl, "Condition (other)"@en ;
-    dash:editor  dash:TextAreaEditor ;
+    #dash:editor      dash:TextAreaEditor ;
     sh:datatype xsd:string ;
     sh:group    report:conditionGroup ;
     sh:maxCount 1 ;
@@ -339,6 +342,7 @@ report:OtherTreatmentShape
 report:ExternalConservatorShape
     a                sh:PropertyShape ;
     rdfs:label       "Externe behandelaar"@nl, "External conservator"@en ;
+    dash:editor      dash:TextAreaEditor ;
     memorix:audience memorix:audienceInternal ;
     sh:datatype      xsd:string ;
     sh:group         report:treatmentGroup ;
