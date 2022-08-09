@@ -70,7 +70,7 @@ rt:DigitalRecordPart
                                     ] ;
     sh:property                     [ rdfs:label  "Externe identificatie"@nl, "Identifier"@en ;
                                       rdfs:comment
-                                                  "Allerlei identificeren kenmerken die in de oorspronkelijk data was opgenomen. Kan bijvoorbeeld ook de oorspronkelijke bestandsnaam zijn al dan niet met pad."@nl,
+                                                  "Allerlei identificerende kenmerken die in de oorspronkelijk data was opgenomen. Kan bijvoorbeeld ook de oorspronkelijke bestandsnaam zijn al dan niet met pad."@nl,
                                                   "Fonds, series or file of which this digital record is part of."@en ;
                                       sh:path     rico:hasOrHadIdentifier ;
                                       sh:class    rico:Identifier ;

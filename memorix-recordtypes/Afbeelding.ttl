@@ -223,7 +223,8 @@ rico:Instantiation
     sh:targetClass       rico:Instantiation ;
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property          [ rdfs:label  "Objecttype toelichting"@nl, "Object type explanation"@en ;
+    sh:property          [ rdfs:label  "Objecttype werkveld"@nl, "Migrated Object type"@en ;
+                           rdfs:comment "Tijdelijk veld om huidge data te migreren en later te standaardiseren";
                            sh:path     saa:objectTypeTextualValue ;
                            sh:datatype xsd:string ;
                            sh:order    1.0 ;
@@ -238,7 +239,8 @@ rico:Instantiation
                             sh:order                2.0 ;
                             sh:path                 saa:objectType ;
                          ] ;
-    sh:property          [ rdfs:label  "Techniek toelichting"@nl, "Technique explanation"@en ;
+    sh:property          [ rdfs:label  "Techniek werkveld"@nl, "Migrated Technique"@en ;
+                           rdfs:comment "Tijdelijk veld om huidge data te migreren en later te standaardiseren";
                            sh:path     saa:techniqueTextualValue ;
                            sh:datatype xsd:string ;
                            sh:order    3.0 ;
@@ -253,7 +255,8 @@ rico:Instantiation
                            sh:order                4.0 ;
                            sh:path                 saa:technique ;
                          ] ;
-    sh:property          [ rdfs:label  "Materialen toelichting"@nl, "Materials explanation"@en ;
+    sh:property          [ rdfs:label  "Materialen werkveld"@nl, "Migrated Materials"@en ;
+                           rdfs:comment "Tijdelijk veld om huidge data te migreren en later te standaardiseren";
                            sh:path     saa:materialTextualValue ;
                            sh:datatype xsd:string ;
                            sh:order    5.0 ;
