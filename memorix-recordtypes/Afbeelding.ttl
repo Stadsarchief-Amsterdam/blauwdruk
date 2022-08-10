@@ -88,7 +88,7 @@ rt:Image
                             ] ;
     sh:property             [ rdfs:label           "Titel"@nl, "Title"@en ;
                               rdfs:comment         "Geef de afbeelding een herkenbare titel om in overzichten te kunnen onderscheiden."@nl ;
-                              html:placeholder     "Typ een titel …"@nl, "Enter a title"@en ;
+                              html:placeholder     "Typ een titel"@nl, "Enter a title"@en ;
                               sh:path              rico:title ;
                               memorix:inTitleAt    1.0 ;
                               memorix:searchWeight 5.0 ;
