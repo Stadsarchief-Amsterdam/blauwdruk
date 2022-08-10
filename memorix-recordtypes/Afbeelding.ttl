@@ -70,14 +70,14 @@ rt:Image
                               sh:maxCount  1 ;
                               sh:nodeKind  sh:IRI ;
                               sh:or        ( [ sh:class rt:File ] ) ;
-                              sh:order     1.0 ;
+                              sh:order     2.0 ;
                               sh:path      image:isDescribedIn ;
                             ] ;
     sh:property             [ rdfs:label              "Type afbeelding"@nl, "Type of image"@en ;
                               rdfs:comment            "Selecteer een waarde uit de lijst."@nl ;
                               sh:path                 rico:hasDocumentaryFormType ;
                               sh:maxCount             1 ;
-                              sh:order                2.0 ;
+                              sh:order                3.0 ;
                               sh:group                image:identificationGroup ;
                               dash:editor             memorix:VocabularyEditor ;
                               memorix:inTitleAt       2.0 ;
@@ -96,7 +96,7 @@ rt:Image
                               dash:singleLine      false ;
                               sh:minCount          1 ;
                               sh:maxCount          1 ;
-                              sh:order             3.0 ;
+                              sh:order             4.0 ;
                               sh:message           "De titel zou niet leeg mogen zijn."@nl, "Always provide a title. This is required."@en ;
                               sh:group             image:identificationGroup ;
                               sh:datatype          xsd:string ;
