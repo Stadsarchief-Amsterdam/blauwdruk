@@ -79,7 +79,7 @@ rt:DigitalRecord
                                       sh:order            1.0 ;
                                       sh:maxCount         1 ;
                                     ] ;
-    sh:property                     [ rdfs:label  "Gerelateerde persoon, organisatie of familie"@nl, "Related person, organisation or family"@en ;
+    sh:property                     [ rdfs:label  "Gerelateerde actoren"@nl, "Linked agents"@en ;
                                       sh:path     io:hasOrHadRelatedAgent ;
                                       sh:class    saa:RelatedAgent ;
                                       sh:maxCount 100 ;
@@ -209,7 +209,8 @@ saa:RelatedAgent
     rdf:type             sh:NodeShape ;
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property          [ rdfs:label              "Rol gekoppeld persoon, organisatie of familie"@nl, "Role of related agent"@en ;
+    sh:property          [ rdfs:label              "Rol actor"@nl, "Role of related agent"@en ;
+                           rdfs:comment            "Rol van gerelateerd persoon, organisatie of familie"@nl, "Role of related person, organisation or family"@en ;
                            dash:editor             memorix:VocabularyEditor ;
                            memorix:conceptSchemeIn vocabularies:0dada355-9e1e-4f1f-8d86-0455d6067bb7 ;
                            sh:class                skos:Concept ;
@@ -217,7 +218,8 @@ saa:RelatedAgent
                            sh:order                1.0 ;
                            sh:path                 saa:hasRole ;
                          ] ;
-    sh:property          [ rdfs:label  "Persoon, organisatie of familie"@nl, "Person, organisation or family"@en ;
+    sh:property          [ rdfs:label  "Actor"@nl, "Agent"@en ;
+                           rdfs:comment "Actoren, bestaande uit een persoon, organisatie of familie"@nl, "Agent is a person, organisation or family"@en ;
                            dash:editor memorix:LinkedRecordEditor ;
                            sh:message  "Kies een persoon, organisatie of familie uit de lijst."@nl, "Please choose a person, organisation or family"@en ;
                            sh:nodeKind sh:IRI ;

@@ -1,0 +1,17 @@
+@prefix :              <https://data.archief.amsterdam/example#> .
+@prefix rdf:           <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:           <http://www.w3.org/2001/XMLSchema#> .
+
+@prefix roar:          <https://w3id.org/roar#> .
+@prefix pnv:           <https://w3id.org/pnv#> .
+@prefix schema:        <http://schema.org/> .
+
+:saa5075-akte476255-person1
+    a roar:PersonObservation ;
+    schema:birthPlace "Rotterdam" ;
+    pnv:hasName [ 
+        a pnv:PersonName ;
+        pnv:baseSurname "Sloot" ;
+        pnv:surnamePrefix "van der" ;
+        pnv:givenName "Bastiaan"
+    ] .

@@ -1,0 +1,190 @@
+@prefix :           <https://data.archief.amsterdam/example#> .
+
+@prefix rdf:        <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:       <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema:     <http://schema.org/> .
+@prefix rico:       <https://www.ica.org/standards/RiC/ontology#> .
+@prefix xsd:        <http://www.w3.org/2001/XMLSchema#> .
+
+# Example
+# URI's are not real, but invented for demonstrational purposes!
+# See for the original data: https://archief.amsterdam/inventarissen/file/905d9dcf17394ea0a16d1b8c602946b8
+
+:5075
+    a rico:RecordSet ;
+    rico:hasRecordSetType <https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#Fonds> ;
+    rico:hasAccumulator :notaris_phaff ;
+    rico:hasOrHadIdentifier [
+        a rico:Identifier ;
+        rico:hasIdentifierType [
+            a rico:IdentifierType ;
+            rico:hasOrHadName [
+                a rico:Name ;
+                rico:textualValue "Toegangsnummer"
+            ] ;
+        ] ; 
+        rico:textualValue "5075"
+    ] ;
+    rico:hasOrHadTitle [
+        a rico:Title ;
+        rico:textualValue "Archief van de Notarissen ter Standplaats Amsterdam" ;
+        rico:hasTitleType [
+            a rico:TitleType ;
+            rico:hasOrHadName [
+                a rico:Name ;
+                rico:textualValue "Toegangsnaam"
+            ] ;
+        ] ;
+    ] ;
+    rico:isAssociatedWithDate [
+        a rico:DateRange ;
+        rico:expressedDate "1578 - 1915" ;
+        rico:hasBeginningDate [
+            a rico:SingleDate ;
+            rico:normalizedDateValue "1578"^^xsd:gYear
+        ] ;
+        rico:hasEndDate [
+            a rico:SingleDate ;
+            rico:normalizedDateValue "1915"^^xsd:gYear
+        ]
+    ] ;
+    rico:isOrWasDescribedBy [
+        a rico:Record ;
+        rico:hasDocumentaryFormType <https://www.ica.org/standards/RiC/vocabularies/documentaryFormTypes#FindingAid> ;
+        rico:hasOrHadTitle [
+            a rico:Title ;
+            rico:hasTitleType [
+                a rico:TitleType ;
+                rico:hasOrHadName [
+                    a rico:Name ;
+                    rico:textualValue "Inventaristitel"
+                ] ;
+            ] ;
+            rico:textualValue "Inventaris van het Archief van de Notarissen ter Standplaats Amsterdam"
+        ] ;
+        rico:hasPublisher <https://archief.amsterdam/> ;
+    ] ;
+    rico:scopeAndContent "De notariële archieven zijn weliswaar zeer omvangrijk maar niet volledig bewaard. Door onder meer een brand in 1762, het niet inleveren van protocollen of het niet doorgeven aan een opvolger zijn akten verloren gegaan. Het oudst bewaarde protocol begint in 1578. Afschriften van notariële akten uit de daaraan voorafgaa nde periode zijn elders te vinden, in het bijzonder in de archieven van kerkelijke en stedelijke instellingen, zoals de Weeskamer, en in sommige familiearchieven. Alle zestiende-eeuwse en de meeste zeventiende-eeuwse protocollen, ook de niet beschadigde delen, zijn op microfilm gezet. Alle notariële akten in het Gemeentearchief Amsterdam zijn openbaar, uitgezonderd testamenten die 94 jaar oud of jonger zijn. Deze kunnen slechts worden ingezien als kan worden aangetoond dat de testateur is overleden. Vrijwel alles is dus openbaar. Maar hoe toegankelijk zijn de notariële archieven? Gezien het belang van de notariële archieven heeft het Gemeentearchief zich beijverd om deze rijke bron toegankelijk te maken. Dat is gedaan door middel van een kaartsysteem. Voor de periode tot omstreeks 1800 is naar schatting tussen de vijf en acht procent van de notariële akten toegankelijk gemaakt op persoonsnamen, beroepen, zaken en aardrijkskun-dige namen. De periode 1578-1620 is redelijk goed toegankeli jk gemaakt. De akten uit de jaren 1701-1710 zijn op beroepen, zakelijke onderwerpen en aardrijkskundige namen vrijwel geheel op kaartjes gezet, echter niet op persoonsnamen. Vanaf 1961 loopt een grootscheeps onderzoek naar de vermelding van Portugese joden in notariële akten tot 1640. In het Engels vertaalde regesten van deze stukken worden gepubliceerd in Studia Rosenthaliana; zie tevens toegangsnr. 334. Bevrachtingscontracten, wisselprotesten en bodemerijen die tussen 1601 en 1625 door een aantal Amsterdamse notarissen zijn opgemaakt, zijn door P.H. Winkelman uitgegeven (3 dln., 's-Gravenhage 1983). Voor de achttiende eeuw is men grotendeels op eigentijdse indexen op persoonsnamen aangewezen. Vanaf het midden van die eeuw hebben bijna alle notarissen klappers op hun protocollen en werken zij niet meer, zoals in de zeventiende eeuw, met aparte series. Het archief van de Bank van Assurantiën en Averijen (toegangsnr. 5061) bevat achttiende-eeuwse vonnissen betreffende averij-grosse waarin wordt verwezen naar verklaringen die ten overstaan van notarissen zijn afgelegd; op deze bron is een index gemaakt en uit de bijlage daarbij blijkt welke notarissen voor dergelijke verklaringen werden ingeschakeld. Een door A.I. Bosma samengesteld Repertorium van notarissen residerende in Amsterdam, Amstelland, ambachtsheerlijkheden en geannexeerde gemeenten (uitgave Gemeentearchief Amsterdam 1998) bevat voor de periode 1524-1810 gegevens over de notarissen, hun protocollen en hun werkzaamheden. Daarin staan ook alle soorten akten vermeld die in hun archieven kunnen worden aangetroffen. Op de studie zaal staat de getypte Inventaris van de Notariële Archieven van Amsterdam, 1578-1895. Daarin zijn de protocollen van alle notarissen chronologisch gerangschikt; daarbij is een alfabetische en een chronologische index. Bovendien is er een getypte handleiding voor de raadpleging van notariële archieven. De negentiende eeuw is vrijwel niet geïndiceerd. Er zijn voor die tijd echter meerdere mogelijkheden om op het spoor van akten te komen. Zo is er voor de periode 1890-1974 het Centraal Testamenten Register in het Algemeen Rijksarchief in Den Haag, terwijl de successies van memorie in het Rijksarchief in Noord-Holland te Haarlem verwijzingen naar notariële akten kunnen bevatten. Ook uit adverten-ties in kranten kan de naam van een notaris worden achterhaald. Een andere mogelijkheid is na te gaan of bepaalde notarissen specialismen hadden. Sommigen waren bedreven in het opstellen van akten in vreemde talen. De plaats waar een notaris kantoor hield - bijvoorbeeld bij de Beurs -, of zijn gelo of - een doopsgezinde notaris kon veel geloofsgenoten onder zijn clientèle tellen - kan van belang zijn. Slavenhandel In 1772 vond een voorname Amsterdamse koopman een compagnon. Ze kwamen overeen een koffieplantage in West-Indië aan te leggen. De West-Indische Compagnie zou de grond leveren. Zelf dienden ze voor arbeidskrachten te zorgen. Daarom bracht ieder 6000 gulden in om slaven aan te kopen. De notariële protocollen bevatten talloze van dergelijke stukken over de slavenhandel. Bij sommige notarissen kan men die zelfs veelvuldig aantreffen. Bijvoorbeeld bij Stephanus Pelgrom. Deze werkte voor de WIC en was bovendien van 1692-1711 secretaris van de Sociteit van Suriname. Voor de geschiedenis van de WIC zijn ook de protocollen van Hendrick Schaeff van belang. Deze notaris maakte namelijk akten in het West-Indisch Huis op en was in 1665 soldijboek-houder van de WIC. Schaeff maakte ook veel stukken betreffende Nieuw-Nederland op."^^xsd:string ;
+    rico:hasOrHadRecordStateOfAllMembers [
+        a rico:RecordState ;
+        rico:hasOrHadName [
+            a rico:Name ;
+            rico:textualValue "aanwezig"
+        ] ;
+    ] .
+
+:5075_rubr341
+    a rico:RecordSet ;
+    rico:hasRecordSetType <https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#Series> ;
+    rico:isOrWasIncludedIn :5075 ;
+    rico:hasOrHadIdentifier [
+        a rico:Identifier ;
+        rico:hasIdentifierType [
+            a rico:IdentifierType ;
+            rico:hasOrHadName [
+                a rico:Name ;
+                rico:textualValue "Rubrieksnummer"
+            ] ;
+        ] ; 
+        rico:textualValue "341"
+    ] ;
+    rico:hasOrHadTitle [
+        a rico:Title ;
+        rico:textualValue "BENJAMIN PHAFF" ;
+        rico:hasTitleType [
+            a rico:TitleType ;
+            rico:hasOrHadName [
+                a rico:Name ;
+                rico:textualValue "Rubrieksnaam" ;
+            ] ;
+        ] ;
+    ] .
+
+:5075_vb10197_10295
+    a rico:RecordSet ;
+    rico:hasRecordSetType <https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#Series> ;
+    rico:isOrWasIncludedIn :5075_rubr341 ;
+    rico:hasOrHadIdentifier [
+        a rico:Identifier ;
+        rico:hasIdentifierType [
+            a rico:IdentifierType ;
+            rico:hasOrHadName [
+                a rico:Name ;
+                rico:textualValue "Inventarisnummers"
+            ] ;
+        ] ; 
+        rico:textualValue "10197-10295"
+    ] ;
+    rico:hasOrHadTitle [
+        a rico:Title ;
+        rico:textualValue "Minuutacten" ;
+        rico:hasTitleType [
+            a rico:TitleType ;
+            rico:hasOrHadName [
+                a rico:Name ;
+                rico:textualValue "Verzamelingbeschrijving" ;
+            ] ;
+        ] ;
+        rico:isAssociatedWithDate [
+            a rico:DateRange ;
+            rico:expressedDate "1733-1761" ;
+            rico:hasBeginningDate [
+                a rico:SingleDate ;
+                rico:normalizedDateValue "1733-01-01"^^xsd:date
+            ] ;
+            rico:hasEndDate [
+                a rico:SingleDate ;
+                rico:normalizedDateValue "1761-12-31"^^xsd:date
+            ] ;
+        ] ;
+    ] .
+
+:5075_invnr10249
+    a rico:RecordSet ;
+    rico:hasRecordSetType <https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#File> ;
+    rico:isOrWasIncludedIn :5075_vb10197_10295 ;
+    rico:hasOrHadIdentifier [
+        a rico:Identifier ;
+        rico:hasIdentifierType [
+            a rico:IdentifierType ;
+            rico:hasOrHadName [
+                a rico:Name ;
+                rico:textualValue "Inventarisnummer"
+            ] ;
+        ] ; 
+        rico:textualValue "10249"
+    ] ;
+    rico:hasOrHadTitle [
+        a rico:Title ;
+        rico:textualValue "1749 April 1 - 1749 Juni 30, met alphab. index." ;
+        rico:hasTitleType [
+            a rico:TitleType ;
+            rico:hasOrHadName [
+                a rico:Name ;
+                rico:textualValue "Bestanddeelbeschrijving" ;
+            ] ;
+        ] ;
+    ] ;
+    rico:isAssociatedWithDate [
+        a rico:DateRange ;
+        rico:expressedDate "1749" ;
+        rico:hasBeginningDate [
+            a rico:SingleDate ;
+            rico:normalizedDateValue "1749-01-01"^^xsd:date
+        ] ;
+        rico:hasEndDate [
+            a rico:SingleDate ;
+            rico:normalizedDateValue "1749-12-31"^^xsd:date
+        ] ;
+    ] ;
+    rico:hasOrHadRecordStateOfAllMembers [
+        a rico:RecordState ;
+        rico:hasOrHadName [
+            a rico:Name ;
+            rico:textualValue "aanwezig"
+        ] ;
+    ] .
+
+:notaris_phaff
+    a rico:Person ;
+    rdfs:label "Benjamin Phaff" .

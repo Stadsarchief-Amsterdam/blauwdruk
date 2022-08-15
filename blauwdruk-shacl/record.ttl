@@ -1,4 +1,4 @@
-@prefix :              <https://data.archief.amsterdam/blauwdruk#>
+@prefix :              <https://data.archief.amsterdam/blauwdruk#> .
 
 @prefix rdf:           <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs:          <http://www.w3.org/2000/01/rdf-schema#> .
@@ -11,19 +11,22 @@
 @prefix ric-rst:       <https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#> .
 @prefix ric-dft:       <https://www.ica.org/standards/RiC/vocabularies/documentaryFormTypes#> .
 @prefix schema:        <http://schema.org/> .
+@prefix roar:          <https://w3id.org/roar#> .
 
 # ==================================================
 :Record a sh:NodeShape ;
     sh:targetClass rico:Record ;
-    sh:xone ( 
+    rdfs:comment "Een rico:Record is de kleinste, logische informatie-eenheid, zoals een brief, een geboorteakte, een testament of een foto."@nl ;
+    sh:or ( 
         [ sh:node :Deed ]
         [ sh:node :Image ]
-#        [ sh:node :DigitalRecord ]
+        [ sh:node :DigitalRecord ]
     ) .
 
 # ===== DEED =====
 :Deed a sh:NodeShape ;
     rdfs:label "Akte"@nl ;
+    rdfs:comment "Een akte is een specifiek soort rico:Record, met verwijzingen naar persoons- en plaatsvermeldingen. Aktes vormen vaak de basis voor een nadere toegang."@nl ;
     sh:property [
         rdfs:label "Titel"@nl ;
         sh:path rico:hasOrHadTitle ;
@@ -56,16 +59,49 @@
     sh:property [
         rdfs:label "Maakt onderdeel uit van"@nl ;
         sh:path rico:isOrWasIncludedIn ;
+        sh:class rico:RecordSet ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        rdfs:label "Persoonsvermelding" ;
+        sh:path rico:hasOrHadSubject ;
+        sh:class schema:Role ;
+        sh:node :PersonObservation ;
+    ] ;
+    sh:property [
+        rdfs:label "Adres of huisnaam" ;
+        sh:path rico:isAssociatedWithPlace ;
+        sh:class rico:Place ;
+    ] ;
+    sh:property [
+        rdfs:label "Interne opmerking"@nl ;
+        sh:path rico:descriptiveNote ;
+        sh:datatype xsd:string ;
+    ] .
+
+# ====== DEED ====== PersonObservation
+:PersonObservation a sh:NodeShape ;
+    sh:property [
+        sh:path rico:hasOrHadSubject ;
+        sh:class roar:PersonObservation ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+    ] ;
+    sh:property [
+        sh:path schema:roleName ;
+        sh:class rico:Type ;
+        sh:node :Type ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
     ] .
-
 # ===== IMAGE =====
 :Image a sh:NodeShape ;
     rdfs:label "Afbeelding"@nl ;
+    rdfs:comment "Een afbeelding is een specifiek voor rico:Record. Van belang bij een afbeelding is de vervaardiger en de afgebeelde personen en locaties."@nl ;
     sh:property [
         rdfs:label "Maakt onderdeel uit van"@nl ;
         sh:path rico:isOrWasIncludedIn ;
+        sh:class rico:RecordSet ;
         sh:minCount 1 ;
     ] ;
     sh:property [
@@ -151,7 +187,111 @@
 
 # ===== DIGITAL RECORD =====
 :DigitalRecord a sh:NodeShape ;
-    rdfs:label "Digitaal informatieobject"@nl .
+    rdfs:label "Digitaal informatieobject"@nl ;
+    rdfs:comment "Een digitaal informatieobject is een specifiek voor rico:Record. Van belang bij deze digitaal geboren archiefstukken zijn vooral de openbaarheidsaspecten."@nl ;
+    sh:property [
+        rdfs:label "Volgende archiefbeschrijving in de volgorde"@nl ;
+        sh:path rico:precedesOrPreceded ;
+    ] ;
+    sh:property [
+        rdfs:label "Maakt onderdeel uit van"@nl ;
+        sh:path rico:isOrWasIncludedIn ;
+        sh:class rico:RecordSet ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        rdfs:label "Beschrijving"@nl ;
+        sh:path rico:hasOrHadTitle ;
+        sh:class rico:Title ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:node :Title ;
+    ] ;    
+    sh:property [
+        rdfs:label "Documenttype"@nl ;
+        sh:path rico:hasDocumentaryFormType ;
+        sh:class rico:DocumentaryFormType ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+    ] ;
+    sh:property [
+        rdfs:label "Datering"@nl ;
+        sh:path rico:isAssociatedWithDate ;
+        sh:maxCount 1 ;
+        sh:class rico:SingleDate ;
+        sh:node :SingleDate ;
+    ] ;
+    sh:property [
+        rdfs:label "Adres of huisnaam" ;
+        sh:path rico:isAssociatedWithPlace ;
+        sh:class rico:Place ;
+    ] ;
+    sh:property [
+        rdfs:label "Gerelateerd materiaal"@nl ;
+        sh:path rdfs:seeAlso ;
+        sh:class rico:Record ;       
+    ] ;
+    sh:property [
+        rdfs:label "Gekoppeld persoon, familie of organisatie" ;
+        sh:path rico:hasOrHadSubject ;
+        sh:class schema:Role ;
+        sh:node :SubjectAgent ;
+    ] ;
+    sh:property [
+        rdfs:label "Interne opmerking"@nl ;
+        sh:path rico:descriptiveNote ;
+        sh:datatype xsd:string ;
+    ] ;
+    sh:property [
+        rdfs:label "Activiteit" ;
+        sh:path rico:isAssociatedWithEvent ;
+        sh:class rico:Activity ;
+        sh:node :Activity ;
+    ] .
+
+# ====== DIGITAL RECORD ====== SubjectAgent
+:SubjectAgent a sh:NodeShape ;
+    sh:property [
+        sh:path rico:hasOrHadSubject ;
+        sh:or (
+           [ sh:class rico:Person ; ]
+           [ sh:class rico:Family ; ]
+           [ sh:class rico:CorporateBody ; ]            
+        ) ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+    ] ;
+    sh:property [
+        sh:path schema:roleName ;
+        sh:class rico:Type ;
+        sh:node :Type ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+    ] .
+
+# ====== DIGITAL RECORD ====== Activity
+:Activity a sh:NodeShape ;
+    sh:property [
+        sh:path rico:hasActivityType ;
+        sh:class rico:Type ;
+        sh:node :Type ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+    ] ;
+    sh:property [
+        sh:path rico:isAssociatedWithDate ;
+        sh:class rico:SingleDate ;
+        sh:node :SingleDate ;        
+        sh:maxCount 1 ;
+        sh:minCount 1 ;
+    ] ;
+    sh:property [
+        sh:path rico:descriptiveNote ;
+        sh:datatype xsd:string ;
+        sh:maxCount 1 ;
+        sh:minCount 1 ;
+    ] .
+
 
 # ===== :Title =====
 :Title a sh:NodeShape ;
@@ -298,27 +438,3 @@
         sh:maxCount 1 ;
     ] .
 
-# ==== :PhysicalLocation =====
-:PhysicalLocation a sh:NodeShape ;
-    sh:targetClass rico:PhysicalLocation ;
-    sh:property [
-        sh:path rico:hasOrHadCoordinates ;
-        sh:class rico:Coordinates ;
-        sh:node :Coordinates ;
-        sh:maxCount 1 ;
-        sh:minCount 1 ;
-    ] .
-
-:Coordinates a sh:NodeShape ;
-    sh:property [
-        sh:path rico:longitude ;
-        sh:datatype xsd:decimal ;
-        sh:maxCount 1 ;
-        sh:minCount 1 ;
-    ] ;
-    sh:property [
-        sh:path rico:latitude ;
-        sh:datatype xsd:decimal ;
-        sh:maxCount 1 ;
-        sh:minCount 1 ;
-    ] .

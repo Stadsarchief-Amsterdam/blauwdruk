@@ -52,8 +52,8 @@ rt:Series
     sh:closed                       true ;
     sh:ignoredProperties            ( rdf:type ) ;
     sh:property                     [ memorix:typeOf       memorix:Identifier ;
-                                      rdfs:label           "Rubriekscode"@nl, "Archival (government) code"@en ;
-                                      rdfs:comment         "Voor het vastleggen van o.a. de basis archiefcode"@nl, "Code "@en ;
+                                      rdfs:label           "Groepscode"@nl, "Archival (government) code"@en ;
+                                      rdfs:comment         "Voor het vastleggen van o.a. de basis archiefcode"@nl, "Code used by government archives"@en ;
                                       dash:singleLine      true ;
                                       memorix:inTitleAt    1.0 ;
                                       memorix:searchWeight 3.0 ;

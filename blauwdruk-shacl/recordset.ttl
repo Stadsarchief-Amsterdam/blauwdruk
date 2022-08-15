@@ -1,4 +1,4 @@
-@prefix :              <https://data.archief.amsterdam/blauwdruk#>
+@prefix :              <https://data.archief.amsterdam/blauwdruk#> .
 
 @prefix rdf:           <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs:          <http://www.w3.org/2000/01/rdf-schema#> .
@@ -16,6 +16,7 @@
 # ==================================================
 :RecordSet a sh:NodeShape ;
     sh:targetClass rico:RecordSet ;
+    rdfs:comment "Een rico:RecordSet is een aggregatie van archiefstukken ('records'). We stellen aan verschillende soorten rico:RecordSet's (Fonds: het archief als geheel; Series: rubrieken en verzamelbeschrijvingen; File: dossier, bestandeel, enkelvoudige of deelbeschrijving."@nl ;
     sh:xone ( 
         [ sh:node :Fonds ]
         [ sh:node :Series ]
@@ -25,6 +26,7 @@
 # ===== FONDS =====
 :Fonds a sh:NodeShape ;
     rdfs:label "Archiefblok"@nl ;
+    rdfs:comment "Een rico:RecordSet van het type 'Fonds' is het hoogste aggregatieniveau: het archief als geheel."@nl ;
     sh:property [ 
         rdfs:label "Soort archiefblok"@nl ;
         sh:path rico:hasRecordSetType ;
@@ -239,6 +241,7 @@
 # ===== SERIES =====
 :Series a sh:NodeShape ;
     rdfs:label "Groep"@nl ;
+    rdfs:comment "Een rico:RecordSet van het type 'Series' is het tussenliggende aggregatieniveau, een rubriek of een verzamelbeschrijving. Als algemene term daarvan hebben we de term 'Groep' geintroduceerd."@nl ;
     sh:property [ 
         rdfs:label "Groep"@nl ;
         sh:path rico:hasRecordSetType ;
@@ -270,7 +273,6 @@
     sh:property [
         rdfs:label "Datering"@nl ;
         sh:path rico:isAssociatedWithDate ;
-        sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:class rico:DateRange ;
         sh:node :DateRange ;
@@ -283,12 +285,14 @@
     ] ;
     sh:property [
         rdfs:label "Volgende archiefbeschrijving in de volgorde"@nl ;
-        sh:path rico:precedesOrPreceded ;
+        sh:path rico:precedesOrPreceded ; 
+        sh:nodeKind sh:IRI ;
     ] ;
     sh:property [
         rdfs:label "Maakt onderdeel uit van"@nl ;
         sh:path rico:isOrWasIncludedIn ;
-        sh:class rico:RecordSet 
+        sh:nodeKind sh:IRI ;
+        sh:minCount 1 ;
     ] ;
     sh:property [
         rdfs:label "Interne opmerking"@nl ;
@@ -370,6 +374,7 @@
 
 # ===== FILE =====
 :File a sh:NodeShape ;
+    rdfs:comment "Een rico:RecordSet van het type 'File' is het laagste aggregatieniveau, een enkelvoudige of deelbeschrijving. Een File (in het Nederlands 'dossier' of 'bestanddeel') is de kleinste eenheid in een (klassieke) archiefinventaris Als algemene term daarvan hebben we de term 'Groep' geintroduceerd."@nl ;
     rdfs:label "Bestanddeel"@nl ;
     sh:property [ 
         rdfs:label "Bestanddeel"@nl ;
@@ -388,12 +393,20 @@
         sh:qualifiedMinCount 1 ;        
     ] ;
     sh:property [
-        rdfs:label "Nummer"@nl ;
+        rdfs:label "Oude nummers"@nl ;
         sh:path rico:hasOrHadIdentifier ;
         sh:class rico:Identifier ; 
         sh:qualifiedValueShapeDisjoint true ; 
-        sh:qualifiedValueShape :IdentifierFileAlt ;
-        sh:qualifiedMaxCount 2 ;
+        sh:qualifiedValueShape :IdentifierFileOudeNummers ;
+        sh:qualifiedMaxCount 1 ; 
+    ] ;
+    sh:property [
+        rdfs:label "Bergingsnummer"@nl ;
+        sh:path rico:hasOrHadIdentifier ;
+        sh:class rico:Identifier ; 
+        sh:qualifiedValueShapeDisjoint true ; 
+        sh:qualifiedValueShape :IdentifierFileBergingsNummer ;
+        sh:qualifiedMaxCount 1 ; 
     ] ;
     sh:property [
         rdfs:label "Bestanddeelbeschrijving"@nl ;
@@ -413,13 +426,22 @@
         sh:datatype xsd:string ; 
     ] ;
     sh:property [
+        rdfs:label "Datering"@nl ;
+        sh:path rico:isAssociatedWithDate ;
+        sh:maxCount 1 ;
+        sh:class rico:DateRange ;
+        sh:node :DateRange ;
+    ] ;
+    sh:property [
         rdfs:label "Volgende archiefbeschrijving in de volgorde"@nl ;
         sh:path rico:precedesOrPreceded ;
+        sh:nodeKind sh:IRI ;
     ] ;
     sh:property [
         rdfs:label "Maakt onderdeel uit van"@nl ;
         sh:path rico:isOrWasIncludedIn ;
-        sh:class rico:RecordSet 
+        sh:nodeKind sh:IRI ;
+        sh:minCount 1 ;
     ] ;
     sh:property [
         rdfs:label "Interne opmerking"@nl ;
@@ -500,7 +522,7 @@
         sh:hasValue "Inventarisnummer" ; 
     ] .
 
-:IdentifierFileAlt a sh:NodeShape ;
+:IdentifierFileOudeNummers a sh:NodeShape ;
     sh:property [
         rdfs:label "Nummers"@nl ;
         sh:path rico:textualValue ;
@@ -511,29 +533,59 @@
     sh:property [
         rdfs:label "Type identifier"@nl ;
         sh:path rico:hasIdentifierType ;
-        sh:node :IdentifierTypeFileAlt ; 
+        sh:node :IdentifierTypeFileOudeNummers ; 
         sh:class rico:IdentifierType ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
     ] .
 
-:IdentifierTypeFileAlt a sh:NodeShape ;
+:IdentifierFileBergingsNummer a sh:NodeShape ;
     sh:property [
-        sh:path rico:hasOrHadName ;
-        sh:class rico:Name ;
-        sh:node :IdentifierTypeNameFileAlt ;
+        rdfs:label "Nummers"@nl ;
+        sh:path rico:textualValue ;
+        sh:datatype xsd:string ; 
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+    ] ;
+    sh:property [
+        rdfs:label "Type identifier"@nl ;
+        sh:path rico:hasIdentifierType ;
+        sh:node :IdentifierTypeFileBergingsNummer ; 
+        sh:class rico:IdentifierType ;
         sh:minCount 1 ;
         sh:maxCount 1 ;
     ] .
 
-:IdentifierTypeNameFileAlt a sh:NodeShape ;
+:IdentifierTypeFileOudeNummers a sh:NodeShape ;
+    sh:property [
+        sh:path rico:hasOrHadName ;
+        sh:class rico:Name ;
+        sh:node :IdentifierTypeNameFileOudeNummers ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+    ] .
+
+:IdentifierTypeFileBergingsNummer a sh:NodeShape ;
+    sh:property [
+        sh:path rico:hasOrHadName ;
+        sh:class rico:Name ;
+        sh:node :IdentifierTypeNameFileBergingsNummer ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+    ] .
+
+:IdentifierTypeNameFileOudeNummers a sh:NodeShape ;
     sh:property [
         sh:path rico:textualValue ;
-        sh:xone (
-            [ sh:hasValue "Bergingsnummer" ; ]
-            [ sh:hasValue "Oude nummers" ; ]
-        )
+        sh:hasValue "Oude nummers" ;
     ] .
+
+:IdentifierTypeNameFileBergingsNummer a sh:NodeShape ;
+    sh:property [
+        sh:path rico:textualValue ;
+        sh:hasValue "Bergingsnummer" ;
+    ] .
+
 
 # ===== FILE ===== Title
 :TitleFile a sh:NodeShape ;
@@ -576,12 +628,16 @@
            [ sh:class rico:Person ; ]
            [ sh:class rico:Family ; ]
            [ sh:class rico:CorporateBody ; ]            
-        )
+        ) ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
     ] ;
     sh:property [
         sh:path schema:roleName ;
         sh:class rico:Type ;
         sh:node :Type ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
     ] .
 
 # ====== FILE ====== Instantiation
@@ -655,40 +711,6 @@
         sh:minCount 1 ;
         sh:maxCount 1 ;
         sh:datatype xsd:date ;
-    ] .
-
-# ==== :PhysicalLocation =====
-:PhysicalLocation a sh:NodeShape ;
-    sh:targetClass rico:PhysicalLocation ;
-    sh:property [
-        sh:path rico:hasOrHadCoordinates ;
-        sh:class rico:Coordinates ;
-        sh:node :Coordinates ;
-        sh:maxCount 1 ;
-        sh:minCount 1 ;
-    ] .
-
-:Coordinates a sh:NodeShape ;
-    sh:property [
-        sh:path rico:longitude ;
-        sh:datatype xsd:decimal ;
-        sh:maxCount 1 ;
-        sh:minCount 1 ;
-    ] ;
-    sh:property [
-        sh:path rico:latitude ;
-        sh:datatype xsd:decimal ;
-        sh:maxCount 1 ;
-        sh:minCount 1 ;
-    ] .
-
-# ====== :LegalStatus ======
-:LegalStatus a sh:NodeShape ;
-    sh:property [
-        rdfs:label "Auteursrecht opmerking"@nl ;
-        sh:path rico:descriptiveNote ;
-        sh:maxCount 1 ;
-        sh:minCount 1 ;
     ] .
 
 # ===== :Type =====

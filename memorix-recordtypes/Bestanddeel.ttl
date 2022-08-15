@@ -132,7 +132,7 @@ rt:File
                                       sh:order    3.0 ;
                                       sh:path     rico:physicalOrLogicalExtent
                                     ] ;
-    sh:property                     [ rdfs:label           "Gekoppelde personen"@nl, "Linked persons"@en ;
+    sh:property                     [ rdfs:label           "Gerelateerde actoren"@nl, "Linked agents"@en ;
                                       memorix:searchWeight 3.0 ;
                                       sh:class             saa:RelatedAgent ;
                                       sh:group             file:contentDescriptionGroup ;
@@ -226,7 +226,7 @@ rt:File
                                       sh:order         6.0 ;
                                       sh:path          saa:internalRemarks
                                     ] ;
-    sh:property                     [ rdfs:label       "Auteursrecht opmerking (intern)"@nl, "Copyright remarks (internal)"@en ;
+    sh:property                     [ rdfs:label       "Auteursrechtopmerking (intern)"@nl, "Copyright remarks (internal)"@en ;
                                       rdfs:comment     "Bijvoorbeeld: niet gecontroleerd, niet geregeld"@nl ;
                                       memorix:audience memorix:audienceInternal ;
                                       sh:datatype      xsd:string ;
@@ -261,7 +261,7 @@ rt:File
                                       sh:minCount  1 ;
                                       sh:maxCount  1 ;
                                       memorix:audience memorix:audienceInternal ;
-                                      sh:in        ( "aanwezig" "vervallen" "te vernietigen" "vermist" "vernietigd" ) ;
+                                      sh:in        ( "aanwezig" "in bewerking" "te vernietigen" "vermist" "vernietigd" "vervallen" ) ;
                                       sh:group     file:managementGroup ;
                                       sh:order     10.0 ;
                                       sh:path      file:status ;
@@ -294,13 +294,14 @@ rico:Instantiation
     sh:targetClass       rico:Instantiation ;
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property          [ rdfs:label  "Object type toelichting"@nl, "Object type explanation"@en ;
+    sh:property          [ rdfs:label  "Objecttype werkveld"@nl, "Migrated Object type"@en ;
+                           rdfs:comment "Tijdelijk veld om huidge data te migreren en later te standaardiseren";
                            sh:path     saa:objectTypeTextualValue ;
                            sh:datatype xsd:string ;
                            sh:order    1.0 ;
                          ] ;
-    sh:property          [  rdfs:label              "Object type"@nl, "Object type "@en ;
-                            sh:message              "Kies een object type uit de keuzelijst."@nl, "Please choose a object type from the list."@en ;
+    sh:property          [  rdfs:label              "Objecttype"@nl, "Object type "@en ;
+                            sh:message              "Kies een objecttype uit de keuzelijst."@nl, "Please choose a object type from the list."@en ;
                             dash:editor             memorix:VocabularyEditor ;
                             memorix:conceptSchemeIn vocabularies:1cc20db0-62dc-45cf-b7f7-c7b2fb2074a2 ;
                             sh:class                skos:Concept ;
@@ -309,12 +310,13 @@ rico:Instantiation
                             sh:order                2.0 ;
                             sh:path                 saa:objectType ;
                          ] ;
-    sh:property          [ rdfs:label  "Techniek toelichting"@nl, "Technique explanation"@en ;
+    sh:property          [ rdfs:label  "Techniek werkveld"@nl, "Migrated Technique"@en ;
+                           rdfs:comment "Tijdelijk veld om huidge data te migreren en later te standaardiseren";
                            sh:path     saa:techniqueTextualValue ;
                            sh:datatype xsd:string ;
                            sh:order    3.0 ;
                          ] ;
-    sh:property          [  rdfs:label              "Techniek"@nl, "Technique"@en ;
+    sh:property          [  rdfs:label             "Techniek"@nl, "Technique"@en ;
                            sh:message              "Kies een techniek uit de keuzelijst."@nl, "Please choose a technique from the list."@en ;
                            dash:editor             memorix:VocabularyEditor ;
                            memorix:conceptSchemeIn vocabularies:d0fc28e9-e1c0-47c0-ad66-f496c8d12f90 ;
@@ -324,7 +326,8 @@ rico:Instantiation
                            sh:order                4.0 ;
                            sh:path                 saa:technique ;
                          ] ;
-    sh:property          [ rdfs:label  "Materialen toelichting"@nl, "Materials explanation"@en ;
+    sh:property          [ rdfs:label  "Materialen werkveld"@nl, "Migrated Materials"@en ;
+                           rdfs:comment "Tijdelijk veld om huidge data te migreren en later te standaardiseren";
                            sh:path     saa:materialTextualValue ;
                            sh:datatype xsd:string ;
                            sh:order    5.0 ;
@@ -379,7 +382,8 @@ saa:RelatedAgent
     rdf:type             sh:NodeShape ;
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property          [ rdfs:label              "Rol gekoppeld persoon, organisatie of familie"@nl, "Role of related person, organisation or family"@en ;
+    sh:property          [ rdfs:label              "Rol actor"@nl, "Role of related agent"@en ;
+                           rdfs:comment            "Rol van gerelateerd persoon, organisatie of familie"@nl, "Role of related person, organisation or family"@en ;
                            dash:editor             memorix:VocabularyEditor ;
                            memorix:conceptSchemeIn vocabularies:0dada355-9e1e-4f1f-8d86-0455d6067bb7 ;
                            sh:class                skos:Concept ;
@@ -387,7 +391,8 @@ saa:RelatedAgent
                            sh:order                1.0 ;
                            sh:path                 saa:hasRole ;
                          ] ;
-    sh:property          [ rdfs:label  "Persoon, Organisatie of Familie"@nl, "Person, Organisation or Family"@en ;
+    sh:property          [ rdfs:label  "Actor"@nl, "Agent"@en ;
+                           rdfs:comment "Actoren, bestaande uit een persoon, organisatie of familie"@nl, "Agent is a person, organisation or family"@en ;
                            dash:editor memorix:LinkedRecordEditor ;
                            sh:message  "Kies een persoon, organisatie of familie uit de lijst."@nl, "Please choose a person, organisation or family"@en ;
                            sh:nodeKind sh:IRI ;

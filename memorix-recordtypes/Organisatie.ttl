@@ -69,6 +69,15 @@ rt:Organisation
                                     sh:order             1.0 ;
                                     sh:path              schema:name
                                   ] ;
+  sh:property                     [ rdfs:label  "Onderdeel van organisatie"@nl, "Part of organisation"@en ;
+                                      dash:editor memorix:LinkedRecordEditor ;
+                                      sh:message  "Kies een organisatie uit de lijst."@nl, "Please choose an organisation."@en ;
+                                      sh:nodeKind sh:IRI ;
+                                      sh:group    organisation:identificationGroup ;
+                                      sh:or       ( [ sh:class rt:Organisation ] ) ;
+                                      sh:order    2.0 ;
+                                      sh:path     rico:isOrWasSubordinateTo ;
+                                  ] ;                                  
     sh:property                   [ rdfs:label  "Rechtsopvolger van"@nl, "Successor of"@en ;
                                     dash:editor memorix:LinkedRecordEditor ;
                                     sh:message  "Kies een organisatie uit de lijst."@nl, "Please choose an organisation"@en ;
@@ -109,15 +118,6 @@ rt:Organisation
                                     sh:order             4.5 ;
                                     sh:path              saa:dissolutionDateSource
                                   ] ;
-
-    sh:property                     [ rdfs:label  "Gerelateerde organisatie"@nl, "Related organisation"@en ;
-                                      sh:path     saa:hasOrHadRelatedAgent ;
-                                      sh:class    saa:RelatedAgent ;
-                                      sh:maxCount 100 ;
-                                      sh:order    5.0 ;
-                                      sh:group    organisation:identificationGroup ;
-                                      sh:nodeKind sh:BlankNode ;
-                                    ] ;
     sh:property                   [ rdfs:label           "Alternatieve namen"@nl, "Alternate names"@en ;
                                     memorix:searchWeight 2.0 ;
                                     sh:datatype          xsd:string ;
@@ -126,9 +126,10 @@ rt:Organisation
                                     sh:order             3.0 ;
                                     sh:path              schema:alternateName
                                   ] ;
-    sh:property                   [ rdfs:label              "Identiek aan"@nl, "Is same as"@en ;
+    sh:property                   [ rdfs:label              "Identiek aan (extern)"@nl, "Is same as (external)"@en ;
+                                    rdfs:comment            "Is identiek aan organisatie in andere terminologiebron"@nl, "Is same as organisation in external vocabulary"@en ;
                                     dash:editor             memorix:VocabularyEditor ;
-                                    memorix:conceptSchemeIn <https://data.rkd.nl/rkdartists>, <https://www.wikidata.org/wiki/Q202444> ;
+                                    memorix:conceptSchemeIn <https://data.rkd.nl/rkdartists> ;
                                     memorix:searchWeight    1.0 ;
                                     sh:class                skos:Concept ;
                                     sh:group                organisation:alternativeGroup ;
@@ -168,22 +169,3 @@ rt:Organisation
                            sh:order                 9.0 ;
                            sh:path                  saa:copyrightsRemarks ] ;
 .
-
-saa:RelatedAgent
-    rdf:type             sh:NodeShape ;
-    sh:closed            true ;
-    sh:ignoredProperties ( rdf:type ) ;
-    sh:property          [ rdfs:label              "Type relatie"@nl, "Type relation"@en ;
-                           sh:datatype             xsd:string ;
-                           sh:order                1.0 ;
-                           sh:path                 saa:hasRole ;
-                         ] ;
-    sh:property          [ rdfs:label  "Gerelateerde organisatie"@nl, "Related organisation"@en ;
-                           dash:editor memorix:LinkedRecordEditor ;
-                           sh:message  "Kies een organisatie uit de lijst."@nl, "Please choose an organisation."@en ;
-                           sh:nodeKind sh:IRI ;
-                           sh:or       ( [ sh:class rt:Organisation ] ) ;
-                           sh:order    2.0 ;
-                           sh:path     saa:hasAgent ;
-                         ] ;
-    sh:targetClass       saa:RelatedAgent .

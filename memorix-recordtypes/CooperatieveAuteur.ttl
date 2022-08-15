@@ -1,0 +1,99 @@
+@prefix rdf:            <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:           <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:            <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:            <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos:           <http://www.w3.org/2004/02/skos/core#> .
+
+@prefix rt:             </resources/recordtypes/> .
+@prefix cooperativeAuthor:   </resources/recordtypes/CooperativeAuthor#> .
+@prefix vocabularies:   </resources/vocabularies/conceptschemes/> .
+
+@prefix dc:             <http://purl.org/dc/elements/1.1/> .
+@prefix sh:             <http://www.w3.org/ns/shacl#> .
+@prefix dash:           <http://datashapes.org/dash#> .
+@prefix memorix:        <http://memorix.io/ontology#> .
+@prefix html:           <http://www.w3.org/1999/xhtml/> .
+
+@prefix rico:           <https://www.ica.org/standards/RiC/ontology#> .
+@prefix ric-rst:        <https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#> .
+@prefix ric-dft:        <https://www.ica.org/standards/RiC/vocabularies/documentaryFormTypes#> .
+@prefix saa:            <https://data.archief.amsterdam/ontology#> . #TBD
+
+@prefix pnv:            <https://w3id.org/pnv#> .
+@prefix schema:         <http://schema.org/> .
+
+
+cooperativeAuthor:identificationGroup
+    rdf:type   sh:PropertyGroup ;
+    rdfs:label "Identificatie"@nl ;
+    sh:order   1.0 .
+
+cooperativeAuthor:alternativeGroup
+    rdf:type   sh:PropertyGroup ;
+    rdfs:label "Ook bekend als"@nl, "Also known as"@en ;
+    sh:order   2.0 .
+
+cooperativeAuthor:managementGroup
+    rdf:type   sh:PropertyGroup ;
+    rdfs:label "Beheer"@nl, "Management"@en ;
+    sh:order   3.0 .
+
+
+rt:CooperativeAuthor
+    rdf:type                      memorix:Recordtype, sh:NodeShape ;
+    rdfs:label                    "Coöperatieve Auteur"@nl, "Cooperative Author"@en ;
+    rdfs:comment                  "Stadsarchief recordtype voor Coöperatieve Auteur"@nl, "Amsterdam City Archives record type for cooperative Author"@en ;
+    dc:identifier                 "CooperativeAuthor" ;
+    sh:targetClass                rt:CooperativeAuthor ;
+    memorix:copyrightHolderSource true ;
+    sh:closed                     true ;
+    sh:ignoredProperties          ( rdf:type ) ;
+    sh:property                   [ rdfs:label           "Naam"@nl, "Name"@en ;
+                                    rdfs:comment         "Naam van de organisatie"@nl, "Name of the organisation"@en ;
+                                    dash:singleLine      true ;
+                                    memorix:inTitleAt    1.0 ;
+                                    memorix:searchWeight 3.0 ;
+                                    sh:datatype          xsd:string ;
+                                    sh:group             cooperativeAuthor:identificationGroup ;
+                                    sh:maxCount          1 ;
+                                    sh:order             1.0 ;
+                                    sh:path              schema:name
+                                  ] ;
+    sh:property                   [ rdfs:label           "Alternatieve namen"@nl, "Alternate names"@en ;
+                                    memorix:searchWeight 2.0 ;
+                                    sh:datatype          xsd:string ;
+                                    sh:group             cooperativeAuthor:alternativeGroup ;
+                                    sh:maxCount          10 ;
+                                    sh:order             3.0 ;
+                                    sh:path              schema:alternateName
+                                  ] ;
+    sh:property                  [ rdfs:label   "Identiek aan (actor)"@nl, "Is same as (agent)"@en ;
+                                    rdfs:comment "Verwijzing naar dezelfde interne organisatie"@nl, "Link to a organisation in internal source"@en ;
+                                    dash:editor  memorix:LinkedRecordEditor ;
+                                    sh:group     cooperativeAuthor:alternativeGroup ;
+                                    sh:nodeKind  sh:IRI ;
+                                    sh:order     4.0 ;
+                                    sh:maxCount  100 ;
+                                    sh:nodeKind  sh:IRI ;
+                                    sh:or        ( [ sh:class rt:Organisation ] ) ;
+                                    sh:path      saa:sameAsInternal
+                                    ] ;                                  
+    sh:property                   [ rdfs:label              "Identiek aan (extern)"@nl, "Is same as (external)"@en ;
+                                    dash:editor             memorix:VocabularyEditor ;
+                                    memorix:searchWeight    1.0 ;
+                                    sh:class                skos:Concept ;
+                                    memorix:conceptSchemeIn  <http://data.bibliotheken.nl/id/dataset/persons>, <https://www.wikidata.org/wiki/Q36180>;
+                                    sh:group                cooperativeAuthor:alternativeGroup ;
+                                    sh:maxCount             100 ;
+                                    sh:nodeKind             sh:IRI ;
+                                    sh:order                5.0 ;
+                                    sh:path                 owl:sameAs
+                                  ] ;
+    sh:property                   [ rdfs:label  "Interne opmerkingen"@nl, "Internal remarks"@en ;
+                                    dash:editor dash:TextAreaEditor ;
+                                    sh:datatype xsd:string ;
+                                    sh:group    cooperativeAuthor:managementGroup ;
+                                    sh:order    5.0 ;
+                                    sh:path     cooperativeAuthor:internalRemarks ;
+                                  ] ;
+.
