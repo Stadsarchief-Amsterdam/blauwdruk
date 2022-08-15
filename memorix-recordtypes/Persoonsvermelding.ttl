@@ -31,9 +31,9 @@ personObservation:detailsGroup
     sh:order   2.0 ;
 .
 
-personObservation:relationsGroup
+personObservation:alternativeGroup
     rdf:type   sh:PropertyGroup ;
-    rdfs:label "Relaties"@nl, "Relations"@en ;
+    rdfs:label "Ook bekend als"@nl, "Also known as"@en  ;
     sh:order   3.0 ;
 .
 
@@ -46,7 +46,7 @@ personObservation:managementGroup
 rt:PersonObservation
     rdf:type             sh:NodeShape,
                          memorix:Recordtype ;
-    rdfs:comment         "Stadsarchief recordtype voor persoonsvermeldingen in Indexen"@nl ;
+    rdfs:comment         "Stadsarchief recordtype voor persoonsvermeldingen in Indexen"@nl ,"Amsterdam City Archives record type for people in genealogical sources"@en ;
     rdfs:label           "Persoonsvermelding"@nl,
                          "Person observation"@en ;
     dc:identifier        "PersonObservation" ;
@@ -122,28 +122,27 @@ rt:PersonObservation
                            sh:order    11.0 ;
                            sh:path     saa:hasSpecification
                          ] ;
-    sh:property          [ rdfs:label              "Identiek aan"@nl, "Is same as"@en ;
-                           rdfs:comment            "Is identiek aan geïdentificeerde persoon in andere terminologiebron"@nl, "Is same as identified person in external vocabulary"@en ;
-                           dash:editor             memorix:VocabularyEditor ;
-                           memorix:conceptSchemeIn <https://data.rkd.nl/rkdartists>,
-                                                   <https://www.wikidata.org/wiki/Q202444> ; #wikidata given names
-                           sh:class                skos:Concept ;
-                           sh:group                personObservation:relationsGroup ;
-                           sh:nodeKind             sh:IRI ;
-                           sh:order                12.0 ;
-                           sh:maxCount             100 ;
-                           sh:path                 owl:sameAs
-                         ] ;
-    sh:property          [ rdfs:label   "Is identiek aan (koppeling met interne persoon of persoonsvermelding)"@nl, "Is identical to (person in internal sources)"@en ;
-                           rdfs:comment "Verwijzing naar dezelfde persoon in (genealogische) bronnen"@nl, "Link to a person or personObservation in internal source"@en ;
+    sh:property          [ rdfs:label   "Identiek aan (intern)"@nl, "Is same as (internal)"@en ;
+                           rdfs:comment "Verwijzing naar dezelfde interne persoon of persoonsvermelding"@nl, "Link to a person or personObservation in internal source"@en ;
                            dash:editor  memorix:LinkedRecordEditor ;
-                           sh:group     personObservation:relationsGroup ;
+                           sh:group     personObservation:alternativeGroup ;
                            sh:nodeKind  sh:IRI ;
-                           sh:order     13.0 ;
+                           sh:order     12.0 ;
                            sh:maxCount  100 ;
                            sh:nodeKind  sh:IRI ;
                            sh:or        ( [ sh:class rt:Person ] [ sh:class rt:PersonObservation ] ) ;
                            sh:path      saa:sameAsInternal
+                         ] ;
+    sh:property          [ rdfs:label              "Identiek aan (extern)"@nl, "Is same as (external)"@en ;
+                           rdfs:comment            "Is identiek aan geïdentificeerde persoon in andere terminologiebron"@nl, "Is same as identified person in external vocabulary"@en ;
+                           dash:editor             memorix:VocabularyEditor ;
+                           memorix:conceptSchemeIn <https://www.wikidata.org#entities-persons>; #wikidata personen
+                           sh:class                skos:Concept ;
+                           sh:group                personObservation:alternativeGroup ;
+                           sh:nodeKind             sh:IRI ;
+                           sh:order                13.0 ;
+                           sh:maxCount             100 ;
+                           sh:path                 owl:sameAs
                          ] ;
     sh:targetClass       rt:PersonObservation
     .

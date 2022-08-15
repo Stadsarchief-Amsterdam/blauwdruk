@@ -72,9 +72,9 @@ rt:Family
                                     sh:order             1.0 ;
                                     sh:path              schema:alternateName
                                   ] ;
-    sh:property                   [ rdfs:label              "Identiek aan"@nl, "Is same as"@en ;
+    sh:property                   [ rdfs:label              "Identiek aan (extern)"@nl, "Is same as (external)"@en ;
+                                    rdfs:comment            "Is identiek aan familie in andere terminologiebron"@nl, "Is same as family in external vocabulary"@en ;
                                     dash:editor             memorix:VocabularyEditor ;
-                                    memorix:conceptSchemeIn <https://data.rkd.nl/rkdartists>, <https://www.wikidata.org/wiki/Q202444> ;
                                     memorix:searchWeight    2.0 ;
                                     sh:class                skos:Concept ;
                                     sh:group                family:alternativeGroup ;
