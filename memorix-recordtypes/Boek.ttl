@@ -73,7 +73,7 @@ book:NotaBeneShape
     sh:group        book:identificationGroup ;
     sh:maxCount     1 ;
     sh:order        3.0 ;
-    sh:path         schema:desc8ription .
+    sh:path         schema:description .
 
 book:ISBNShape
     rdf:type             sh:PropertyShape ;
