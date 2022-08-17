@@ -40,7 +40,7 @@ rt:Periodical
     memorix:hasInformationComponent [ rdf:type memorix:DigitalAssetComponent ] ;
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property          periodical:IsOrWasIncludedInShape, periodical:InventorynumberShape, periodical:TitleShape, periodical:ISBNShape, periodical:NotaBeneShape, periodical:HasPublicationShape, periodical:AuthorShape, periodical:editionShape, periodical:physicalDescriptionShape, periodical:typeOfPublicationShape, periodical:sameAsShape ;
+    sh:property          periodical:IsOrWasIncludedInShape, periodical:TitleShape, periodical:ISBNShape, periodical:NotaBeneShape, periodical:HasPublicationShape, periodical:AuthorShape, periodical:editionShape, periodical:physicalDescriptionShape, periodical:typeOfPublicationShape, periodical:sameAsShape ;
     sh:property          periodical:InternalRemarksShape, periodical:StatusShape ;
     sh:targetClass       rt:Periodical .
 
@@ -56,16 +56,6 @@ periodical:IsOrWasIncludedInShape
     sh:or        ( [ sh:class rt:Fonds ] ) ;
     sh:order     1.0 ;
     sh:path      rico:isOrWasIncludedIn .
-
-periodical:InventorynumberShape
-    rdf:type             sh:PropertyShape ;
-    rdfs:label           "Inventarisnummer"@nl, "Inventory number"@en ;
-    memorix:inTitleAt    1.0 ;
-    memorix:searchWeight 5.0 ;
-    sh:datatype          xsd:string ;
-    sh:group             periodical:identificationGroup ;
-    sh:order             2.0 ;
-    sh:path              rico:Identifier .
 
 periodical:TitleShape
     rdf:type             sh:PropertyShape ;

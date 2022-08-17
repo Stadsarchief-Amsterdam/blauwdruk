@@ -1,0 +1,138 @@
+@prefix volume:       </resources/recordtypes/PublicationVolume#> .
+@prefix dash:         <http://datashapes.org/dash#> .
+@prefix dc:           <http://purl.org/dc/elements/1.1/> .
+@prefix html:         <http://www.w3.org/1999/xhtml/> .
+@prefix memorix:      <http://memorix.io/ontology#> .
+@prefix owl:          <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:          <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:         <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ric-dft:      <https://www.ica.org/standards/RiC/vocabularies/documentaryFormTypes#> .
+@prefix ric-rst:      <https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#> .
+@prefix rico:         <https://www.ica.org/standards/RiC/ontology#> .
+@prefix rt:           </resources/recordtypes/> .
+@prefix saa:          <https://data.archief.amsterdam/ontology#> .
+@prefix schema:       <http://schema.org/> .
+@prefix sh:           <http://www.w3.org/ns/shacl#> .
+@prefix skos:         <http://www.w3.org/2004/02/skos/core#> .
+@prefix vocabularies: </resources/vocabularies/conceptschemes/> .
+@prefix xsd:          <http://www.w3.org/2001/XMLSchema#> .
+
+volume:identificationGroup
+    rdf:type   sh:PropertyGroup ;
+    rdfs:label "Identificatie"@nl, "Identification"@en ;
+    sh:order   1.0 .
+
+volume:descriptionGroup
+    rdf:type   sh:PropertyGroup ;
+    rdfs:label "Description"@en, "Beschrijving"@nl ;
+    sh:order   2.0 .
+
+volume:managementGroup
+    rdf:type   sh:PropertyGroup ;
+    rdfs:label "Manage"@en, "Beheer"@nl ;
+    sh:order   3.0 .
+
+rt:PublicationVolume
+    rdf:type             memorix:Recordtype, sh:NodeShape ;
+    rdfs:comment         "Stadsarchief recordtype voor Aflevering"@nl, "Amsterdam City Archives record type for Publication Volume"@en ; ;
+    rdfs:label           "PublicationVolume"@en, "Aflevering"@nl ;
+    dc:identifier        "PublicationVolume" ;
+    memorix:hasInformationComponent [ rdf:type memorix:DepotLocationComponent ] ;
+    sh:closed            true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property          volume:IsOrWasIncludedInShape, volume:InventorynumberShape, volume:TitleShape, volume:NotaBeneShape, volume:HasPublicationShape ;
+    sh:property          volume:InternalRemarksShape, volume:StatusShape ;
+    sh:targetClass       rt:PublicationVolume .
+
+volume:IsOrWasIncludedInShape
+    rdf:type            sh:PropertyShape ;
+    rdfs:label   "Periodiek"@nl, "Periodical"@en ;
+    rdfs:comment "Periodiek waar deze aflevering bij hoort."@nl, "Periodical where this publication volume is a part of."@en ;
+    sh:message   "Kies een periodiek waar deze aflevering deel van uitmaakt."@nl, "Choose the periodical this volume is part of."@en ;
+    dash:editor  memorix:LinkedRecordEditor ;
+    sh:group     volume:identificationGroup ;
+    sh:maxCount  1 ;
+    sh:nodeKind  sh:IRI ;
+    sh:or        ( [ sh:class rt:Periodical ] ) ;
+    sh:order     1.0 ;
+    sh:path      schema:isPartOf .
+
+volume:InventorynumberShape
+    rdf:type             sh:PropertyShape ;
+    rdfs:label           "Inventarisnummer"@nl, "Inventory number"@en ;
+    memorix:inTitleAt    1.0 ;
+    memorix:searchWeight 5.0 ;
+    sh:datatype          xsd:string ;
+    sh:group             volume:identificationGroup ;
+    sh:order             2.0 ;
+    sh:path              rico:Identifier .
+
+volume:TitleShape
+    rdf:type             sh:PropertyShape ;
+    rdfs:label           "Title"@en, "Titel"@nl ;
+    memorix:inTitleAt    2.0 ;
+    memorix:searchWeight 8.0 ;
+    sh:datatype          xsd:string ;
+    sh:group             volume:identificationGroup ;
+    sh:order             3.0 ;
+    sh:path              schema:name .
+
+volume:NotaBeneShape
+    rdf:type        sh:PropertyShape ;
+    rdfs:label      "Nota bene"@nl, "Note"@en ;
+    rdfs:comment    "Uitgebreidere beschrijving, afkomstig uit NB velden"@nl, "A more descriptive note"@en ;
+    dash:singleLine false ;
+    dash:editor     dash:TextAreaEditor ;
+    sh:datatype     xsd:string ;
+    sh:group        volume:identificationGroup ;
+    sh:maxCount     1 ;
+    sh:order        4.0 ;
+    sh:path         schema:description .
+
+volume:HasPublicationShape
+    rdf:type    sh:PropertyShape ;
+    rdfs:label  "Uitgave"@nl, "Publicatie"@en ;
+    sh:nodeKind sh:BlankNode ;
+    sh:group    volume:descriptionGroup ;
+    sh:order    2.0 ;
+    sh:class    schema:PublicationEvent ;
+    sh:path     schema:publication .
+
+
+schema:PublicationEvent
+    a                    sh:NodeShape ;
+    sh:closed            true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:targetClass       schema:PublicationEvent ;
+    sh:property          [ rdfs:label  "Jaar van uitgave"@nl, "Year of publication"@en ;
+                           sh:path     schema:startDate ;
+                           sh:order    1.0 ;
+                           sh:maxCount 1 ;
+                           sh:datatype xsd:gYear ;
+                         ] ;
+.
+
+volume:InternalRemarksShape
+    rdf:type    sh:PropertyShape ;
+    rdfs:label  "Internal remark"@en, "Interne opmerking"@nl ;
+    dash:editor dash:TextAreaEditor ;
+    sh:datatype xsd:string ;
+    sh:group    volume:managementGroup ;
+    sh:maxCount 1 ;
+    sh:order    1.0 ;
+    sh:path     volume:internalRemarks .
+
+volume:StatusShape
+    rdf:type         sh:PropertyShape ;
+    rdfs:label       "Status"@nl, "Status"@en ;
+    rdfs:comment     "Status van het inventarisnummer/Periodiek."@nl, "Status of the book in the archive"@en ;
+    dash:editor      dash:EnumSelectEditor ;
+    memorix:audience memorix:audienceInternal ;
+    sh:group         volume:managementGroup ;
+    sh:in            ( "aanwezig" "in bewerking" "vervallen" "vermist" "vernietigd" ) ;
+    sh:message       "Status is verplicht. Kies uit de lijst"@nl, "Status is mandatory. Please choose from the list." ;
+    sh:minCount      1 ;
+    sh:maxCount      1 ;
+    sh:order         2.0 ;
+    sh:path          volume:status .
+
