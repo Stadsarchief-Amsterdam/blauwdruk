@@ -145,7 +145,7 @@ book:sameAsShape
 
 book:HasPublicationShape
     rdf:type    sh:PropertyShape ;
-    rdfs:label  "Uitgave"@en, "Publicatie"@nl ;
+    rdfs:label  "Uitgave"@nl, "Publication"@en ;
     sh:nodeKind sh:BlankNode ;
     sh:group    book:descriptionGroup ;
     sh:order    2.0 ;

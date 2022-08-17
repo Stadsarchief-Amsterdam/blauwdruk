@@ -22,15 +22,10 @@ volume:identificationGroup
     rdfs:label "Identificatie"@nl, "Identification"@en ;
     sh:order   1.0 .
 
-volume:descriptionGroup
-    rdf:type   sh:PropertyGroup ;
-    rdfs:label "Description"@en, "Beschrijving"@nl ;
-    sh:order   2.0 .
-
 volume:managementGroup
     rdf:type   sh:PropertyGroup ;
     rdfs:label "Manage"@en, "Beheer"@nl ;
-    sh:order   3.0 .
+    sh:order   2.0 .
 
 rt:PublicationVolume
     rdf:type             memorix:Recordtype, sh:NodeShape ;
@@ -40,7 +35,7 @@ rt:PublicationVolume
     memorix:hasInformationComponent [ rdf:type memorix:DepotLocationComponent ] ;
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property          volume:IsOrWasIncludedInShape, volume:InventorynumberShape, volume:TitleShape, volume:NotaBeneShape, volume:HasPublicationShape ;
+    sh:property          volume:IsOrWasIncludedInShape, volume:InventorynumberShape, volume:TitleShape, volume:NotaBeneShape, volume:PublicationDateShape ;
     sh:property          volume:InternalRemarksShape, volume:StatusShape ;
     sh:targetClass       rt:PublicationVolume .
 
@@ -86,30 +81,17 @@ volume:NotaBeneShape
     sh:datatype     xsd:string ;
     sh:group        volume:identificationGroup ;
     sh:maxCount     1 ;
-    sh:order        4.0 ;
+    sh:order        5.0 ;
     sh:path         schema:description .
 
-volume:HasPublicationShape
+volume:PublicationDateShape
     rdf:type    sh:PropertyShape ;
-    rdfs:label  "Uitgave"@nl, "Publicatie"@en ;
-    sh:nodeKind sh:BlankNode ;
-    sh:group    volume:descriptionGroup ;
-    sh:order    2.0 ;
-    sh:class    schema:PublicationEvent ;
-    sh:path     schema:publication .
-
-
-schema:PublicationEvent
-    a                    sh:NodeShape ;
-    sh:closed            true ;
-    sh:ignoredProperties ( rdf:type ) ;
-    sh:targetClass       schema:PublicationEvent ;
-    sh:property          [ rdfs:label  "Jaar van uitgave"@nl, "Year of publication"@en ;
-                           sh:path     schema:startDate ;
-                           sh:order    1.0 ;
-                           sh:maxCount 1 ;
-                           sh:datatype xsd:gYear ;
-                         ] ;
+    rdfs:label  "Datering"@nl, "Date"@en ;
+    sh:group    volume:identificationGroup ;
+    sh:order    4.0 ;
+    sh:path     schema:startDate ;
+    sh:maxCount 1 ;
+    sh:datatype xsd:gYear ;
 .
 
 volume:InternalRemarksShape
