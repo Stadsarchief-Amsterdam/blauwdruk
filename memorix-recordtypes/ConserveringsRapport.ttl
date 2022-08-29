@@ -117,6 +117,7 @@ report:ObjectTypeShape
     sh:message              "Kies een objecttype uit de keuzelijst."@nl, "Please choose a object type from the list."@en ;
     dash:editor             memorix:VocabularyEditor ;
     memorix:conceptSchemeIn vocabularies:1cc20db0-62dc-45cf-b7f7-c7b2fb2074a2 ;
+    memorix:inSummaryAt     1.0 ;
     sh:class                skos:Concept ;
     sh:group                report:descriptionGroup ;
     sh:maxCount             1 ;
