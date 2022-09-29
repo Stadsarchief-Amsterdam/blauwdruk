@@ -81,6 +81,7 @@ deed:AssociatedWithDateShape
     rdfs:label  "Date of the record"@en, "Datum van de akte"@nl ;
     sh:datatype xsd:date ;
     sh:group    deed:identificationGroup ;
+    sh:maxCount 1 ;
     sh:order    3.0 ;
     sh:path     rico:normalizedDateValue .
 
@@ -104,6 +105,7 @@ deed:SourceShape
     rdfs:label  "Mention of the source"@en, "Bronverwijzing"@nl ;
     sh:datatype xsd:string ;
     sh:group    deed:identificationGroup ;
+    sh:maxCount 1 ;
     sh:order    6.0 ;
     sh:path     saa:source .
 
@@ -114,6 +116,7 @@ deed:IndexNameShape
     sh:datatype         xsd:string ;
     memorix:inSummaryAt 1.0 ;
     sh:group            deed:identificationGroup ;
+    sh:maxCount         1 ;
     sh:order            7.0 ;
     sh:path             saa:indexName .
 
@@ -147,6 +150,7 @@ saa:LinkedPersonObservation
     sh:ignoredProperties ( rdf:type ) ;
     sh:property          [ rdfs:label  "Role"@en, "Rol"@nl ;
                            sh:datatype xsd:string ;
+                           sh:maxCount 1 ;
                            sh:order    1.0 ;
                            sh:path     saa:relatedPersonObservationRole
                          ] ;
@@ -154,6 +158,7 @@ saa:LinkedPersonObservation
                            dash:editor memorix:LinkedRecordEditor ;
                            sh:nodeKind sh:IRI ;
                            sh:or       ( rt:PersonObservation ) ;
+                           sh:maxCount  1 ;
                            sh:order    2.0 ;
                            sh:path     saa:relatedPersonObservation
                          ] ;
@@ -177,11 +182,13 @@ saa:HistoricalAddress1851
     sh:ignoredProperties ( rdf:type ) ;
     sh:property          [ rdfs:label  "Klein number"@en, "Kleinnummer"@nl ;
                            sh:datatype xsd:string ;
+                           sh:maxCount       1 ;
                            sh:order    2.0 ;
                            sh:path     saa:historicalAddressKleinNumber
                          ] ;
     sh:property          [ rdfs:label  "Street name (1851-53)"@en, "Straatnaam (1851-53)"@nl ;
                            sh:datatype xsd:string ;
+                           sh:maxCount  1 ;
                            sh:order    1.0 ;
                            sh:path     saa:historicalAddress1851Street
                          ] ;
@@ -204,16 +211,19 @@ saa:HistoricalAddress1853
     sh:ignoredProperties ( rdf:type ) ;
     sh:property          [ rdfs:label  "Neighbourhood number"@en, "Buurtnummer"@nl ;
                            sh:datatype xsd:string ;
+                           sh:maxCount 1 ;
                            sh:order    5.0 ;
                            sh:path     saa:historicalAddressNeighbourhoodNumber
                          ] ;
     sh:property          [ rdfs:label  "Neighbourhood code"@en, "Buurtcode"@nl ;
                            sh:datatype xsd:string ;
+                           sh:maxCount 1 ;
                            sh:order    4.0 ;
                            sh:path     saa:historicalAddressNeighbourhoodCode
                          ] ;
     sh:property          [ rdfs:label  "Street name (1853-74)"@en, "Straatnaam (1853-74)"@nl ;
                            sh:datatype xsd:string ;
+                           sh:maxCount 1 ;
                            sh:order    3.0 ;
                            sh:path     saa:historicalAddress1853Street
                          ] ;
@@ -286,5 +296,4 @@ deed:AddressDescriptionShape
     sh:maxCount 1 ;
     sh:order    9.0 ;
     sh:path     saa:addressDescription .
-
 

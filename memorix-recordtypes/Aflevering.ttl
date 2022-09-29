@@ -59,6 +59,8 @@ volume:InventorynumberShape
     memorix:searchWeight 5.0 ;
     sh:datatype          xsd:string ;
     sh:group             volume:identificationGroup ;
+    sh:minCount          1 ;
+    sh:maxCount          1 ;
     sh:order             2.0 ;
     sh:path              rico:Identifier .
 
@@ -69,6 +71,7 @@ volume:TitleShape
     memorix:searchWeight 8.0 ;
     sh:datatype          xsd:string ;
     sh:group             volume:identificationGroup ;
+    sh:maxCount          1 ;
     sh:order             3.0 ;
     sh:path              schema:name .
 

@@ -178,6 +178,7 @@ rt:Image
     sh:property             [ rdfs:label       "Interne opmerking"@nl, "Internal remarks"@en ;
                               memorix:audience memorix:audienceInternal ;
                               sh:datatype      xsd:string ;
+                              sh:maxCount      1 ;
                               sh:group         image:managementGroup ;
                               sh:order         4.0 ;
                               sh:path          image:internalRemarks ;
@@ -186,6 +187,7 @@ rt:Image
     sh:property             [ rdfs:label       "Auteursrecht opmerking (intern)"@nl, "Copyright remarks (internal)"@en ;
                               memorix:audience memorix:audienceInternal ;
                               sh:datatype      xsd:string ;
+                              sh:maxCount      1 ;
                               sh:group         image:managementGroup ;
                               sh:order         5.0 ;
                               sh:path          saa:copyrightsRemarks ;
@@ -226,6 +228,7 @@ rico:Instantiation
     sh:property          [ rdfs:label  "Objecttype werkveld"@nl, "Migrated Object type"@en ;
                            rdfs:comment "Tijdelijk veld om huidge data te migreren en later te standaardiseren";
                            sh:path     saa:objectTypeTextualValue ;
+                           sh:maxCount       1 ;
                            sh:datatype xsd:string ;
                            sh:order    1.0 ;
                          ] ;
@@ -242,6 +245,7 @@ rico:Instantiation
     sh:property          [ rdfs:label  "Techniek werkveld"@nl, "Migrated Technique"@en ;
                            rdfs:comment "Tijdelijk veld om huidge data te migreren en later te standaardiseren";
                            sh:path     saa:techniqueTextualValue ;
+                           sh:maxCount       1 ;
                            sh:datatype xsd:string ;
                            sh:order    3.0 ;
                          ] ;
@@ -258,6 +262,7 @@ rico:Instantiation
     sh:property          [ rdfs:label  "Materialen werkveld"@nl, "Migrated Materials"@en ;
                            rdfs:comment "Tijdelijk veld om huidge data te migreren en later te standaardiseren";
                            sh:path     saa:materialTextualValue ;
+                           sh:maxCount       1 ;
                            sh:datatype xsd:string ;
                            sh:order    5.0 ;
                         ] ;
@@ -273,6 +278,7 @@ rico:Instantiation
                          ] ;
     sh:property          [ rdfs:label  "Afmetingen"@nl, "Dimensions"@en ;
                            sh:path     rico:hasExtent ;
+                           sh:maxCount       1 ;
                            sh:datatype xsd:string ;
                            sh:order    7.0 ;
                          ] ;
@@ -341,6 +347,7 @@ saa:RelatedAgent
                            memorix:conceptSchemeIn vocabularies:0dada355-9e1e-4f1f-8d86-0455d6067bb7 ;
                            sh:class                skos:Concept ;
                            sh:nodeKind             sh:IRI ;
+                           sh:maxCount       1 ;
                            sh:order                1.0 ;
                            sh:path                 saa:hasRole ;
                          ] ;
@@ -351,6 +358,7 @@ saa:RelatedAgent
                            sh:or       ( [ sh:class rt:Person ]
                                          [ sh:class rt:Organisation ]
                                          [ sh:class rt:Family ] ) ;
+                           sh:maxCount       1 ;
                            sh:order    2.0 ;
                            sh:path     saa:hasAgent ;
                          ] ;
