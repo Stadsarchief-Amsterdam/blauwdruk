@@ -76,6 +76,7 @@ rt:Acquisition
                                       rdfs:comment "Omschrijving van het binnengekomen materiaal"@nl, "Description of the material received"@en ;
                                       dash:editor  dash:TextAreaEditor ;
                                       sh:datatype  xsd:string ;
+                                      sh:maxCount       1 ;
                                       sh:group     acquisition:identificationGroup ;
                                       sh:order     4.0 ;
                                       sh:path      acquisition:descriptionOfMaterial ;
@@ -84,6 +85,7 @@ rt:Acquisition
                                       rdfs:comment        "Daadwerkelijke datum van ontvangst"@nl, "Actual date of reception. May differ from year of transfer."@en ;
                                       memorix:inSummaryAt 2.0 ;
                                       sh:datatype         xsd:date ;
+                                      sh:maxCount       1 ;
                                       sh:group            acquisition:contentDescriptionGroup ;
                                       sh:order            1.0 ;
                                       sh:path             acquisition:dateReceived ;
@@ -116,6 +118,7 @@ rt:Acquisition
                                       sh:nodeKind             sh:IRI ;
                                       sh:class                skos:Concept ;
                                       memorix:conceptSchemeIn vocabularies:80216597-805e-4439-abab-f7a323dde6ec ;
+                                      sh:maxCount       1 ;
                                       sh:group                acquisition:contentDescriptionGroup ;
                                       sh:order                4.0 ;
                                       sh:path                 acquisition:careTaker
@@ -138,6 +141,7 @@ rt:Acquisition
                                     ] ;
     sh:property                     [ rdfs:label  "Referentie (AVO) dossier"@nl, "Reference to the (AVO) file of acquisition"@en ;
                                       sh:datatype xsd:string ;
+                                      sh:maxCount       1 ;
                                       sh:group    acquisition:managementGroup ;
                                       sh:order    9.0 ;
                                       sh:path     acquisition:acquisitionFile ;
@@ -152,6 +156,7 @@ rt:Acquisition
     sh:property                     [ rdfs:label  "Interne opmerkingen"@nl, "Internal remarks"@en ;
                                       dash:editor dash:TextAreaEditor ;
                                       sh:datatype xsd:string ;
+                                      sh:maxCount       1 ;
                                       sh:group    acquisition:managementGroup ;
                                       sh:order    11.0 ;
                                       sh:path     saa:internalRemarks ;

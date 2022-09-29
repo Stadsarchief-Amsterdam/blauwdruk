@@ -8,22 +8,24 @@ Wat is de stand van zaken mbt de recordtypes en wie is waarmee klaar of bezig.
 | Organisatie.ttl  | ja | ja | - | ja
 | Persoon.ttl  |  af | af | - | ja
 | Familie.ttl  |  af | af | - | ja
-| Aanwinst.ttl     | af | af | LOD nakijken | 
+| Aanwinst.ttl     | af | af | concept schemes nakijken | 
 | Archiefblok.ttl | af| af | - | ja
 | Groep.ttl     | af | af | - | ja
 | Bestanddeel.ttl     | af | af | - | ja
-| Informatieobject.ttl     | af | af | - | ja
-| InformatieobjectOnderdeel.ttl     | af | af | - | ja
-| Akte.ttl     | ja | ja | concept scheme type nakijken
+| Informatieobject.ttl     | af | af | concept schemes nakijken | ja
+| InformatieobjectOnderdeel.ttl     | af | af | concept schemes nakijken | ja
+| Akte.ttl     | ja | ja | concept schemes nakijken
 | Persoonsvermelding.ttl     | ja | ja | - | ja
 | Boek.ttl     | - | - | -
 | Periodiek.ttl     | - | - | -
 | Aflevering.ttl     | - | - | -
-| AV.ttl     | - | - | -
-| MAI.ttl     | - | - | -
+| Auteur.ttl     | - | - | -
+| CooperatiefAuteur.ttl     | - | - | -
+| AV.ttl     | - | - | na migratie
+| MAI.ttl     | - | - | na migratie
 | Duplicaat.ttl     | - | - | -
-| Conserveringsrapport.ttl     | ja | - | -
-| Bruikleen.ttl     | - | - | -
+| Conserveringsrapport.ttl     | ja | ja | -
+| Bruikleen.ttl     | ja | - | -
 
 
 ## Andere richtlijnen
