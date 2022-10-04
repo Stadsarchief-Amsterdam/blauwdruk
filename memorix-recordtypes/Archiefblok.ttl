@@ -44,7 +44,7 @@ rt:Fonds
     memorix:hasInformationComponent [
         a memorix:TreeComponent ;
         # Title of the tab
-        dc:title "Series";
+        dc:title "Series"@en, "Groepen"@nl;
         # Branches of the tree
         memorix:hasNode [
             memorix:hasRecordType rt:Series ;
@@ -69,7 +69,7 @@ rt:Fonds
     memorix:hasInformationComponent [
         a memorix:HasRecordsComponent ;
         # Title of the tab
-        dc:title "Files";
+        dc:title "Files"@en, "Bestanddelen"@nl;
         memorix:hasRecordType rt:File ;
         # Field in the File recordtype with the current Fonds record as parent
         memorix:path file:fonds ;
@@ -186,6 +186,7 @@ fonds:DateRangeAccumulation
                            memorix:searchWeight 3.0 ;
                            sh:message      "Het jaar moet liggen tussen 1200 en 2200"@nl , "The year must be between 1200 and 2200"@en ;
                            sh:datatype     xsd:gYear ;
+                           sh:maxCount     1 ;
                            sh:order        1.0 ;
                            sh:minInclusive "1200"^^xsd:gYear ;
                            sh:maxInclusive "2200"^^xsd:gYear ;
@@ -195,6 +196,7 @@ fonds:DateRangeAccumulation
                            memorix:searchWeight 3.0 ;
                            sh:message      "Het jaar moet liggen tussen 1200 en 2200"@nl , "The year must be between 1200 and 2200"@en ;
                            sh:datatype     xsd:gYear ;
+                           sh:maxCount     1 ;
                            sh:order        2.0 ;
                            sh:minInclusive "1200"^^xsd:gYear ;
                            sh:maxInclusive "2200"^^xsd:gYear ;
@@ -209,11 +211,13 @@ fonds:FindingAid
     sh:ignoredProperties ( rdf:type ) ;
     sh:property          [ rdfs:label  "Inventarisatie door"@nl , "Inventory creator"@en;
                            sh:datatype xsd:string ;
+                           sh:maxCount 1 ;
                            sh:order    1.0 ;
                            sh:path     rico:hasAuthor ] ;
     sh:property          [ rdfs:label      "Inventarisatie jaar"@nl , "Year of inventory creation"@en ;
                            sh:message      "Het jaar moet liggen tussen 1800 en 2200"@nl , "The year must be between 1800 and 2200"@en ;
                            sh:datatype     xsd:gYear ;
+                           sh:maxCount     1 ;
                            sh:order        1.0 ;
                            sh:minInclusive "1800"^^xsd:gYear ;
                            sh:maxInclusive "2200"^^xsd:gYear ;
@@ -226,14 +230,17 @@ fonds:DateRangeOldest
     sh:ignoredProperties ( rdf:type ) ;
     sh:property          [ rdfs:label  "Datum (tekst)"@nl, "Date (text)"@en ;
                            sh:datatype xsd:string ;
+                           sh:maxCount 1 ;
                            sh:order    1.0 ;
                            sh:path     rico:expressedDate ] ;
     sh:property          [ rdfs:label  "Begindatum"@nl, "Begin Date"@en ;
                            sh:datatype xsd:date ;
+                           sh:maxCount 1 ;
                            sh:order    2.0 ;
                            sh:path     rico:hasBeginningDate ] ;
     sh:property          [ rdfs:label  "Einddatum"@nl, "End Date"@en ;
                            sh:datatype xsd:date ;
+                           sh:maxCount 1 ;
                            sh:order    3.0 ;
                            sh:path     rico:hasEndDate ] ;
     sh:targetClass       fonds:DateRangeOldest ;
@@ -245,14 +252,17 @@ fonds:DateRangeYoungest
     sh:ignoredProperties ( rdf:type ) ;
     sh:property          [ rdfs:label  "Datum (tekst)"@nl, "Date (text)"@en ;
                            sh:datatype xsd:string ;
+                           sh:maxCount 1 ;
                            sh:order    1.0 ;
                            sh:path     rico:expressedDate ] ;
     sh:property          [ rdfs:label  "Begindatum"@nl, "Begin Date"@en ;
                            sh:datatype xsd:date ;
+                           sh:maxCount 1 ;
                            sh:order    2.0 ;
                            sh:path     rico:hasBeginningDate ] ;
     sh:property          [ rdfs:label  "Einddatum"@nl, "End Date"@en ;
                            sh:datatype xsd:date ;
+                           sh:maxCount 1 ;
                            sh:order    3.0 ;
                            sh:path     rico:hasEndDate ] ;
     sh:targetClass       fonds:DateRangeYoungest ;
