@@ -63,6 +63,7 @@ rt:DigitalRecord
                                       memorix:inTitleAt    2 ;
                                       memorix:searchWeight 5.0 ;
                                       sh:path              rico:title ;
+                                      sh:maxCount          1 ;
                                       sh:order             3.0 ;
                                       sh:group             io:identificationGroup ;
                                       dash:editor          dash:TextAreaEditor ;
@@ -76,6 +77,7 @@ rt:DigitalRecord
                                       sh:path             io:dateRecordResource ;
                                       sh:group            io:contentDescriptionGroup ;
                                       sh:datatype         xsd:date ;
+                                      sh:maxCount         1 ;
                                       sh:order            1.0 ;
                                       sh:maxCount         1 ;
                                     ] ;
@@ -102,6 +104,7 @@ rt:DigitalRecord
                                       sh:path     rico:hasOrHadIdentifier ;
                                       sh:class    rico:Identifier ;
                                       sh:nodeKind sh:BlankNode ;
+                                      sh:maxCount 1 ;
                                       sh:order    9.0 ;
                                       sh:group    io:contentDescriptionGroup ;
                                     ] ;
@@ -110,7 +113,7 @@ rt:DigitalRecord
                                       sh:class     saa:Address ;
                                       sh:path      io:isAssociatedWithAddress ;
                                       sh:order     1.0 ;
-                                      sh:maxCount  100 ;
+                                      sh:maxCount  1000 ;
                                       sh:nodeKind  sh:BlankNode ;
                                       sh:group     io:locationsGroup ;
                                     ] ;
@@ -119,7 +122,7 @@ rt:DigitalRecord
                                       sh:class    memorix:GeoCoordinates ;
                                       sh:group    io:locationsGroup ;
                                       sh:order    2.0 ;
-                                      sh:maxCount 100 ;
+                                      sh:maxCount 1000 ;
                                       sh:path     io:hasOrHadSubjectLocation
                                     ] ;
     sh:property                     [ rdfs:label  "Locatie coördinaten"@nl, "Locatie coordinates"@en ;
@@ -127,12 +130,13 @@ rt:DigitalRecord
                                       sh:class    memorix:GeoCoordinates ;
                                       sh:group    io:locationsGroup ;
                                       sh:order    3.0 ;
-                                      sh:maxCount 100 ;
+                                      sh:maxCount 1000 ;
                                       sh:path     io:hasOrHadSubjectCoordinates
                                     ] ;
     sh:property                     [ rdfs:label  "Interne opmerkingen"@nl, "Internal Remarks"@en ;
                                       sh:path     io:internalRemarks ;
                                       sh:datatype xsd:string ;
+                                      sh:maxCount 1 ;
                                       sh:order    1.0 ;
                                       sh:group    io:managementGroup ;
                                       dash:editor dash:TextAreaEditor ;
@@ -150,6 +154,7 @@ rt:DigitalRecord
                                       sh:class     rico:Activity ;
                                       sh:nodeKind  sh:BlankNode ;
                                       sh:group     io:managementGroup ;
+                                      sh:maxCount  1 ;
                                       sh:order     3.0 ;
                                       sh:path      rico:isAssociatedWithEvent
                                     ] ;
@@ -164,16 +169,16 @@ rico:Identifier
     sh:property          [ rdfs:label  "Identifier type"@en, "Type identificatie"@nl ;
                            sh:message  "rico:Identifier MUST link to exactly 1 rico:IdentifierType with rico:hasIdentifierType"@en ;
                            sh:path     rico:hasIdentifierType ;
+                           sh:maxCount 1 ;
                            sh:order    1.0 ;
                            sh:datatype xsd:string ;
-                           sh:maxCount 1 ;
                          ] ;
     sh:property          [ rdfs:label  "External Identifier"@en, "Identificatie"@nl ;
                            sh:message  "This node MUST link to exactly 1 xsd:string with rico:textualValue"@en ;
                            sh:path     rico:textualValue ;
+                           sh:maxCount 1 ;
                            sh:order    2.0 ;
                            sh:datatype xsd:string ;
-                           sh:maxCount 1 ;
                          ] .
 
 saa:Address
@@ -215,6 +220,7 @@ saa:RelatedAgent
                            memorix:conceptSchemeIn vocabularies:0dada355-9e1e-4f1f-8d86-0455d6067bb7 ;
                            sh:class                skos:Concept ;
                            sh:nodeKind             sh:IRI ;
+                           sh:maxCount             1 ;
                            sh:order                1.0 ;
                            sh:path                 saa:hasRole ;
                          ] ;
@@ -224,6 +230,7 @@ saa:RelatedAgent
                            sh:message  "Kies een persoon, organisatie of familie uit de lijst."@nl, "Please choose a person, organisation or family"@en ;
                            sh:nodeKind sh:IRI ;
                            sh:or       ( [ sh:class rt:Person ] [ sh:class rt:Organisation ] [ sh:class rt:Family ] ) ;
+                           sh:maxCount 1 ;
                            sh:order    2.0 ;
                            sh:path     saa:hasAgent ;
                          ] ;
@@ -265,13 +272,15 @@ saa:Specification
     sh:ignoredProperties ( rdf:type ) ;
     sh:property          [ rdfs:label  "Type Kenmerk"@nl, "Detail type"@en ;
                            sh:datatype xsd:string ;
+                           sh:maxCount 1 ;
                            sh:order    1.0 ;
                            sh:path     saa:specificationType
                          ] ;
     sh:property          [ rdfs:label  "Kenmerk"@nl, "Detail"@en ;
                            sh:datatype xsd:string ;
+                           sh:maxCount 1 ;
                            sh:order    2.0 ;
                            sh:path     saa:specificationTextualValue
                          ] ;
-    sh:targetClass       saa:Specification .
-
+    sh:targetClass       saa:Specification 
+    .

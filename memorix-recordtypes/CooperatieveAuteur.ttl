@@ -93,6 +93,7 @@ rt:CooperativeAuthor
                                     dash:editor dash:TextAreaEditor ;
                                     sh:datatype xsd:string ;
                                     sh:group    cooperativeAuthor:managementGroup ;
+                                    sh:maxCount 1 ;
                                     sh:order    5.0 ;
                                     sh:path     cooperativeAuthor:internalRemarks ;
                                   ] ;

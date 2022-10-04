@@ -124,16 +124,19 @@ rico:DateRange
     sh:ignoredProperties ( rdf:type ) ;
     sh:property          [ rdfs:label  "Datum (tekst)"@nl, "Date (text)"@en ;
                            sh:datatype xsd:string ;
+                           sh:maxCount 1 ;
                            sh:order    1.0 ;
                            sh:path     rico:expressedDate
                          ] ;
     sh:property          [ rdfs:label  "Begindatum"@nl, "Begin date"@en ;
                            sh:datatype xsd:date ;
+                           sh:maxCount 1 ;
                            sh:order    2.0 ;
                            sh:path     rico:hasBeginningDate
                          ] ;
     sh:property          [ rdfs:label  "Einddatum"@nl, "End date"@en ;
                            sh:datatype xsd:date ;
+                           sh:maxCount 1 ;
                            sh:order    3.0 ;
                            sh:path     rico:hasEndDate
                          ] ;

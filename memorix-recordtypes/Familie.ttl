@@ -88,6 +88,7 @@ rt:Family
                                     memorix:audience memorix:audienceInternal ;
                                     sh:datatype      xsd:string ;
                                     sh:group         family:managementGroup ;
+                                    sh:maxCount      1 ;
                                     sh:order         1.0 ;
                                     sh:path          family:internalRemarks ;
                                   ] ;
