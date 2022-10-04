@@ -86,6 +86,7 @@ report:BeginDateShape
     sh:datatype          xsd:date ;
     sh:group             report:identificationGroup ;
     sh:minCount          1 ;
+    sh:maxCount          1 ;
     sh:message          "Vul tenminste een begindatum in. Dit is verplicht."@nl, "Please provide a begin date. This is mandatory."@en ;
     sh:order             2.0 ;
     sh:path              rico:hasBeginningDate ;
@@ -96,6 +97,7 @@ report:EndDateShape
     rdfs:label           "Einddatum"@nl, "End date"@en ;
     sh:datatype          xsd:date ;
     sh:group             report:identificationGroup ;
+    sh:maxCount          1 ;
     sh:order             3.0 ;
     sh:path              rico:hasEndDate ;
 .
@@ -107,6 +109,7 @@ report:ObjectDescriptionShape
     memorix:searchWeight 3.0 ;
     sh:datatype          xsd:string ;
     sh:group             report:descriptionGroup ;
+    sh:maxCount          1 ;
     sh:order             1.0 ;
     sh:path              rico:title ;
 .
@@ -247,6 +250,7 @@ report:CarriedOutTests
     sh:property          [ rdfs:label  "Uitslag"@nl, "Result"@en ;
                            html:placeholder  "positief/negatief"@nl ;
                            sh:datatype xsd:string ;
+                           sh:maxCount 1 ;
                            sh:order    2.0 ;
                            sh:path     report:resultOfTest
                          ] ;
@@ -273,8 +277,8 @@ report:OtherFindingsShape
     dash:editor dash:TextAreaEditor ;
     sh:datatype xsd:string ;
     sh:group    report:investigationGroup ;
-    sh:order    9.0 ;
     sh:maxCount 1 ;
+    sh:order    9.0 ;
     sh:path     report:otherFindings
 .
 
@@ -284,8 +288,8 @@ report:HasDamageTreatmentShape
     rdfs:label  "Behandelingen"@nl, "Treatments"@en ;
     sh:class    report:DamageTreatment ;
     sh:group    report:treatmentGroup ;
-    sh:maxCount 50 ;
     sh:nodeKind sh:BlankNode ;
+    sh:maxCount 50 ;
     sh:order    1.0 ;
     sh:path     report:hasDamageTreatment
 .
@@ -343,8 +347,8 @@ report:ExternalConservatorShape
     memorix:audience memorix:audienceInternal ;
     sh:datatype      xsd:string ;
     sh:group         report:treatmentGroup ;
-    sh:order         3.0 ;
     sh:maxCount      1 ;
+    sh:order         3.0 ;
     sh:path          report:externalConservator
 .
 
@@ -355,8 +359,8 @@ report:InternalRemarksShape
     memorix:audience memorix:audienceInternal ;
     sh:datatype      xsd:string ;
     sh:group         report:managementGroup ;
-    sh:order         1.0 ;
     sh:maxCount      1 ;
+    sh:order         1.0 ;
     sh:path          saa:internalRemarks
 .
 

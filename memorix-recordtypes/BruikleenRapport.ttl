@@ -128,6 +128,7 @@ loan:ExhibitionBeginDateShape
     memorix:searchWeight 5.0 ;
     sh:datatype          xsd:date ;
     sh:group             loan:exhibitionGroup ;
+    sh:maxCount          1 ;
     sh:order             8.0 ;
     sh:path              rico:hasBeginningDate
 .
@@ -138,6 +139,7 @@ loan:ExhibitionEndDateShape
     memorix:inTitleAt    2.0 ;
     sh:datatype          xsd:date ;
     sh:group             loan:exhibitionGroup ;
+    sh:maxCount          1 ;
     sh:order             9.0 ;
     sh:path              rico:hasEndDate
 .
@@ -193,7 +195,7 @@ loan:InternalRemarksShape
     memorix:audience memorix:audienceInternal ;
     sh:datatype      xsd:string ;
     sh:group         loan:managementGroup ;
-    sh:order         1.0 ;
     sh:maxCount      1 ;
+    sh:order         1.0 ;
     sh:path          saa:internalRemarks
 .
