@@ -69,6 +69,7 @@ book:InventorynumberShape
     memorix:searchWeight 5.0 ;
     sh:datatype          xsd:string ;
     sh:group             book:identificationGroup ;
+    sh:maxCount  1 ;
     sh:order             2.0 ;
     sh:path              rico:Identifier .
 
@@ -79,6 +80,7 @@ book:TitleShape
     memorix:searchWeight 8.0 ;
     sh:datatype          xsd:string ;
     sh:group             book:identificationGroup ;
+    sh:maxCount  1 ;
     sh:order             3.0 ;
     sh:path              schema:name .
 
@@ -101,6 +103,7 @@ book:ISBNShape
     memorix:searchWeight 5.0 ;
     sh:datatype          xsd:string ;
     sh:group             book:identificationGroup ;
+    sh:maxCount          1 ;
     sh:order             5.0 ;
     sh:path              schema:isbn .
 
@@ -109,6 +112,7 @@ book:editionShape
     rdfs:label           "Editie"@nl, "Edition"@en ;
     sh:datatype          xsd:string ;
     sh:group             book:descriptionGroup ;
+    sh:maxCount          1 ;
     sh:order             10.0 ;
     sh:path              schema:bookEdition .
 
@@ -121,6 +125,7 @@ book:typeOfPublicationShape
     memorix:conceptSchemeIn vocabularies:d9859e1d-de72-4604-b794-5e0be9f74664 ; # Bibliotheek - type publicatie 
     sh:nodeKind             sh:IRI ;
     sh:group             book:descriptionGroup ;
+    sh:maxCount          1 ;
     sh:order             11.0 ;
     sh:path              schema:additionalType .
 
@@ -129,6 +134,7 @@ book:physicalDescriptionShape
     rdfs:label           "Collatie"@nl, "Physical description"@en ;
     sh:datatype          xsd:string ;
     sh:group             book:descriptionGroup ;
+    sh:maxCount          1 ;
     sh:order             12.0 ;
     sh:path              saa:physicalDescription . # combination of schema:numberOfPages and schema:materialExtent
 
@@ -139,6 +145,7 @@ book:sameAsShape
     sh:datatype             xsd:string ;
     sh:group                book:descriptionGroup ;
     #sh:nodeKind             sh:IRI ;
+    sh:maxCount             1 ;
     sh:order                15.0 ;
     sh:path                 owl:sameAs 
     .
@@ -148,6 +155,7 @@ book:HasPublicationShape
     rdfs:label  "Uitgave"@nl, "Publication"@en ;
     sh:nodeKind sh:BlankNode ;
     sh:group    book:descriptionGroup ;
+    sh:maxCount 1 ;
     sh:order    2.0 ;
     sh:class    schema:PublicationEvent ;
     sh:path     schema:publication .
