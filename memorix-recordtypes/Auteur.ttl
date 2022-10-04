@@ -100,7 +100,7 @@ rt:Author
                            sh:group     author:alternativeGroup ;
                            sh:nodeKind  sh:IRI ;
                            sh:order     2.0 ;
-                           sh:maxCount  100 ;
+                           #sh:maxCount  100 ;
                            sh:nodeKind  sh:IRI ;
                            sh:or        ( [ sh:class rt:Person ] ) ;
                            sh:path      saa:sameAsInternal
@@ -112,7 +112,7 @@ rt:Author
                            sh:group                author:alternativeGroup ;
                            sh:nodeKind             sh:IRI ;
                            sh:order                3.0 ;
-                           sh:maxCount             100 ;
+                           #sh:maxCount             100 ;
                            sh:path                 owl:sameAs
                          ] ;
     sh:property          [ rdfs:label               "Interne opmerking"@nl, "Internal remarks"@en ;

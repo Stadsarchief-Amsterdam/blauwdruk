@@ -231,6 +231,7 @@ rt:File
                                       memorix:audience memorix:audienceInternal ;
                                       sh:datatype      xsd:string ;
                                       sh:group         file:managementGroup ;
+                                      sh:maxCount      1 ;
                                       sh:order         7.0 ;
                                       sh:path          saa:copyrightsRemarks ;
                                       dash:editor      dash:TextAreaEditor ;
@@ -273,16 +274,19 @@ rico:DateRange
     sh:ignoredProperties ( rdf:type ) ;
     sh:property          [ rdfs:label  "Datum (tekst)"@nl, "Date (text)"@en ;
                            sh:datatype xsd:string ;
+                           sh:maxCount 1 ;
                            sh:order    1.0 ;
                            sh:path     rico:expressedDate
                          ] ;
     sh:property          [ rdfs:label  "Begindatum"@nl, "Begin date"@en ;
                            sh:datatype xsd:date ;
+                           sh:maxCount 1 ;
                            sh:order    2.0 ;
                            sh:path     rico:hasBeginningDate
                          ] ;
     sh:property          [ rdfs:label  "Einddatum"@nl, "End date"@en ;
                            sh:datatype xsd:date ;
+                           sh:maxCount 1 ;
                            sh:order    3.0 ;
                            sh:path     rico:hasEndDate
                          ] ;
@@ -296,6 +300,7 @@ rico:Instantiation
     sh:ignoredProperties ( rdf:type ) ;
     sh:property          [ rdfs:label  "Objecttype werkveld"@nl, "Migrated Object type"@en ;
                            rdfs:comment "Tijdelijk veld om huidge data te migreren en later te standaardiseren";
+                           sh:maxCount 1 ;
                            sh:path     saa:objectTypeTextualValue ;
                            sh:datatype xsd:string ;
                            sh:order    1.0 ;
@@ -312,6 +317,7 @@ rico:Instantiation
                          ] ;
     sh:property          [ rdfs:label  "Techniek werkveld"@nl, "Migrated Technique"@en ;
                            rdfs:comment "Tijdelijk veld om huidge data te migreren en later te standaardiseren";
+                           sh:maxCount 1 ;
                            sh:path     saa:techniqueTextualValue ;
                            sh:datatype xsd:string ;
                            sh:order    3.0 ;
@@ -328,6 +334,7 @@ rico:Instantiation
                          ] ;
     sh:property          [ rdfs:label  "Materialen werkveld"@nl, "Migrated Materials"@en ;
                            rdfs:comment "Tijdelijk veld om huidge data te migreren en later te standaardiseren";
+                           sh:maxCount 1 ;
                            sh:path     saa:materialTextualValue ;
                            sh:datatype xsd:string ;
                            sh:order    5.0 ;
@@ -343,6 +350,7 @@ rico:Instantiation
                             sh:path                 saa:material ;
                          ] ;
     sh:property          [ rdfs:label  "Afmetingen"@nl, "Dimensions"@en ;
+                           sh:maxCount 1 ;
                            sh:path     rico:hasExtent ;
                            sh:datatype xsd:string ;
                            sh:order    7.0 ;
@@ -388,6 +396,7 @@ saa:RelatedAgent
                            memorix:conceptSchemeIn vocabularies:0dada355-9e1e-4f1f-8d86-0455d6067bb7 ;
                            sh:class                skos:Concept ;
                            sh:nodeKind             sh:IRI ;
+                           sh:maxCount             1 ;
                            sh:order                1.0 ;
                            sh:path                 saa:hasRole ;
                          ] ;
@@ -397,6 +406,7 @@ saa:RelatedAgent
                            sh:message  "Kies een persoon, organisatie of familie uit de lijst."@nl, "Please choose a person, organisation or family"@en ;
                            sh:nodeKind sh:IRI ;
                            sh:or       ( [ sh:class rt:Person ] [ sh:class rt:Organisation ] [ sh:class rt:Family ] ) ;
+                           sh:maxCount 1 ;
                            sh:order    2.0 ;
                            sh:path     saa:hasAgent ;
                          ] ;
