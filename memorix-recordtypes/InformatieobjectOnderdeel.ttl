@@ -44,6 +44,7 @@ rt:DigitalRecordPart
                                       memorix:inTitleAt    1 ;
                                       memorix:searchWeight 5.0 ;
                                       sh:path              rico:title ;
+                                      sh:maxCount          1 ;
                                       sh:order             1.0 ;
                                       sh:group             iop:contentDescriptionGroup ;
                                       dash:editor          dash:TextAreaEditor ;
@@ -75,12 +76,14 @@ rt:DigitalRecordPart
                                       sh:path     rico:hasOrHadIdentifier ;
                                       sh:class    rico:Identifier ;
                                       sh:nodeKind sh:BlankNode ;
+                                      sh:maxCount 1 ;
                                       sh:order    9.0 ;
                                       sh:group    iop:contentDescriptionGroup ;
                                     ] ;
     sh:property                     [ rdfs:label  "Interne opmerkingen"@nl, "Internal Remarks"@en ;
                                       sh:path     iop:internalRemarks ;
                                       sh:datatype xsd:string ;
+                                      sh:maxCount 1 ;
                                       sh:order    1.0 ;
                                       sh:group    iop:managementGroup ;
                                       dash:editor dash:TextAreaEditor ;
@@ -115,11 +118,13 @@ saa:Specification
     sh:ignoredProperties ( rdf:type ) ;
     sh:property          [ rdfs:label  "Type Kenmerk"@nl, "Detail type"@en ;
                            sh:datatype xsd:string ;
+                           sh:maxCount 1 ;
                            sh:order    1.0 ;
                            sh:path     saa:specificationType
                          ] ;
     sh:property          [ rdfs:label  "Kenmerk"@nl, "Detail"@en ;
                            sh:datatype xsd:string ;
+                           sh:maxCount 1 ;
                            sh:order    2.0 ;
                            sh:path     saa:specificationTextualValue
                          ] ;

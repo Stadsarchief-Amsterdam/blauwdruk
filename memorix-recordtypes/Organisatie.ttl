@@ -75,6 +75,7 @@ rt:Organisation
                                       sh:nodeKind sh:IRI ;
                                       sh:group    organisation:identificationGroup ;
                                       sh:or       ( [ sh:class rt:Organisation ] ) ;
+                                      sh:maxCount 1 ;
                                       sh:order    2.0 ;
                                       sh:path     rico:isOrWasSubordinateTo ;
                                   ] ;                                  
@@ -142,6 +143,7 @@ rt:Organisation
                                     dash:editor dash:TextAreaEditor ;
                                     sh:datatype xsd:string ;
                                     sh:group    organisation:managementGroup ;
+                                    sh:maxCount 1 ;
                                     sh:order    5.0 ;
                                     sh:path     organisation:internalRemarks ;
                                   ] ;

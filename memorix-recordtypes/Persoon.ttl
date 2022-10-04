@@ -153,6 +153,7 @@ pnv:PersonName
                            memorix:inTitleAt 3.0 ;
                            sh:datatype       xsd:string ;
                            sh:group          person:identificationGroup ;
+                           sh:maxCount       1 ;
                            sh:order          1.0 ;
                            sh:path           pnv:givenName
                          ] ;
@@ -168,6 +169,7 @@ pnv:PersonName
                            memorix:inTitleAt 2.0 ;
                            sh:datatype       xsd:string ;
                            sh:group          person:identificationGroup ;
+                           sh:maxCount       1 ;
                            sh:order          3.0 ;
                            sh:path           pnv:surnamePrefix
                          ] ;
@@ -176,8 +178,8 @@ pnv:PersonName
                            sh:datatype       xsd:string ;
                            sh:group          person:identificationGroup ;
                            sh:order          4.0 ;
-                           sh:message        "Achternaam is verplicht"@nl, "Surname is required"@en ;
                            sh:maxCount       1 ;
+                           sh:message        "Achternaam is verplicht"@nl, "Surname is required"@en ;
                            sh:path           pnv:baseSurname
                          ] ;
     sh:targetClass       pnv:PersonName ;
