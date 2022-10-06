@@ -67,7 +67,7 @@ rt:File
     sh:closed                       true ;
     sh:ignoredProperties            ( rdf:type ) ;
     sh:property                     [ memorix:typeOf memorix:FondsFieldLink ;
-                                      rdfs:label     "Fonds/Archive" ;
+                                      rdfs:label     "Archief"@nl, "Fonds"@en ;
                                       sh:nodeKind    sh:IRI ;
                                       sh:or          ( [ sh:class rt:Fonds ] ) ;
                                       sh:group       file:identificationGroup ;
@@ -257,7 +257,7 @@ rt:File
                                       sh:path      rdfs:seeAlso
                                     ] ;
     sh:property                     [ rdfs:label   "Status"@nl, "Status"@en ;
-                                      sh:message   "Status is verplicht. Kies uit de lijst"@nl, "Status is mandatory. Please choose from the list." ;
+                                      sh:message   "Status is verplicht. Kies uit de lijst"@nl, "Status is mandatory. Please choose from the list."@en ;
                                       dash:editor  dash:EnumSelectEditor ;
                                       sh:minCount  1 ;
                                       sh:maxCount  1 ;
