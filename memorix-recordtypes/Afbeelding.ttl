@@ -10,6 +10,7 @@
 @prefix memorix:        <http://memorix.io/ontology#> .
 @prefix vocabularies:   </resources/vocabularies/conceptschemes/> .
 @prefix rt:             </resources/recordtypes/> .
+@prefix file:           </resources/recordtypes/File#> .
 @prefix image:          </resources/recordtypes/Image#> .
 @prefix saa:            <https://data.archief.amsterdam/ontology#> .
 @prefix rico:           <https://www.ica.org/standards/RiC/ontology#> .
@@ -65,7 +66,12 @@ rt:Image
     sh:property             [ rdfs:label   "Gekoppeld bestanddeel"@nl, "Related file"@en ;
                               rdfs:comment "Bestanddeel waaraan deze afbeelding gekoppeld is."@nl, "Description of the file to which this image belongs."@en ;
                               sh:message   "Kies een bestanddeel waar deze afbeelding uit komt."@nl, "Choose a file where this image belongs to."@en ;
-                              dash:editor  memorix:LinkedRecordEditor ;
+                              dash:editor  memorix:ConditionalLinkFieldEditor ;
+                              memorix:conditionalLinkField rico:isOrWasIncludedIn ;
+                              memorix:linkField [
+                                  memorix:hasRecordType rt:File ;
+                                  memorix:path file:fonds ;
+                              ];
                               sh:group     image:identificationGroup ;
                               sh:maxCount  1 ;
                               sh:nodeKind  sh:IRI ;
