@@ -75,7 +75,6 @@ rt:Series
                                       sh:order             2.0 ;
                                       sh:path              rico:title
                                     ] ;
-    # @todo misschien in FindingAid oplossing beschrijving + NB samenvoegen
     sh:property                     [ rdfs:label           "Nota bene"@nl, "Note"@en ;
                                       rdfs:comment         "Uitgebreidere beschrijving, afkomstig uit NB velden"@nl, "A more descriptive note"@en ;
                                       dash:singleLine      false ;
@@ -87,7 +86,7 @@ rt:Series
                                       sh:order             4.0 ;
                                       sh:path              rico:scopeAndContent
                                     ] ;
-    sh:property                     [ rdfs:label          "Datering"@nl, "Dated"@en ;
+    sh:property                     [ rdfs:label          "Datering VB"@nl, "Dated"@en ;
                                       rdfs:comment        "Kan een exacte datum of een periode zijn"@nl, "Exact date or date range"@en ;
                                       memorix:inSummaryAt 2 ;
                                       sh:class            rico:DateRange ;
@@ -97,7 +96,7 @@ rt:Series
                                       sh:nodeKind         sh:BlankNode ;
                                       sh:path             rico:isAssociatedWithDate
                                     ] ;
-    sh:property                     [ rdfs:label          "Uiterlijke vorm"@nl, "Resource extent"@en ;
+    sh:property                     [ rdfs:label          "Uiterlijke vorm VB"@nl, "Resource extent"@en ;
                                       html:placeholder    "Bv 2 pakken"@nl, "eg 2 photographs" ;
                                       dash:editor         dash:TextFieldEditor ;
                                       sh:datatype         xsd:string ;
