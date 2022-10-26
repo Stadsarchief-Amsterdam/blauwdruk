@@ -232,7 +232,8 @@ rico:Instantiation
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property          [ rdfs:label  "Objecttype werkveld"@nl, "Migrated Object type"@en ;
-                           rdfs:comment "Tijdelijk veld om huidge data te migreren en later te standaardiseren";
+                           memorix:audience memorix:audienceInternal ;
+                           sh:description "Tijdelijk veld om huidige data te migreren en later te standaardiseren"@nl, "Temporary field to migrate data and standardize afterwards"@en;
                            sh:path     saa:objectTypeTextualValue ;
                            sh:maxCount       1 ;
                            sh:datatype xsd:string ;
@@ -249,7 +250,8 @@ rico:Instantiation
                             sh:path                 saa:objectType ;
                          ] ;
     sh:property          [ rdfs:label  "Techniek werkveld"@nl, "Migrated Technique"@en ;
-                           rdfs:comment "Tijdelijk veld om huidge data te migreren en later te standaardiseren";
+                           memorix:audience memorix:audienceInternal ;
+                           sh:description "Tijdelijk veld om huidige data te migreren en later te standaardiseren"@nl, "Temporary field to migrate data and standardize afterwards"@en;
                            sh:path     saa:techniqueTextualValue ;
                            sh:maxCount       1 ;
                            sh:datatype xsd:string ;
@@ -266,7 +268,8 @@ rico:Instantiation
                            sh:path                 saa:technique ;
                          ] ;
     sh:property          [ rdfs:label  "Materialen werkveld"@nl, "Migrated Materials"@en ;
-                           rdfs:comment "Tijdelijk veld om huidge data te migreren en later te standaardiseren";
+                           memorix:audience memorix:audienceInternal ;
+                           sh:description "Tijdelijk veld om huidige data te migreren en later te standaardiseren"@nl, "Temporary field to migrate data and standardize afterwards"@en;
                            sh:path     saa:materialTextualValue ;
                            sh:maxCount       1 ;
                            sh:datatype xsd:string ;
