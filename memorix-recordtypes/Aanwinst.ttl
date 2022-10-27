@@ -60,6 +60,18 @@ rt:Acquisition
                                       sh:order          1.0 ;
                                       sh:path           rico:identifier ;
                                     ] ;
+    sh:property                     [ rdfs:label      "Jaar van overdracht"@nl, "Year of transfer"@en ;
+                                      rdfs:comment    "Jaar dat het archief wordt overgedragen."@nl, "Year in which the acquisition is transferred"@en ;
+                                      sh:message      "Vul tenminste een jaartal in. Dit is verplicht."@nl, "Enter at least a year. This is mandatory"@en ;
+                                      sh:datatype     xsd:integer ;
+                                      sh:minInclusive 1800 ;
+                                      sh:maxInclusive 2200 ;
+                                      sh:minCount     1 ;
+                                      sh:maxCount     1 ;
+                                      sh:group        acquisition:identificationGroup ;
+                                      sh:order        2.0 ;
+                                      sh:path         acquisition:yearOfTransfer ;
+                                    ] ;                                    
     sh:property                     [ rdfs:label   "Omschrijving"@nl, "Description"@en ;
                                       rdfs:comment "Omschrijving van het binnengekomen materiaal"@nl, "Description of the material received"@en ;
                                       dash:editor  dash:TextAreaEditor ;
