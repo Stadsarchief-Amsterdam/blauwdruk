@@ -5,7 +5,8 @@
 
 @prefix rt:              </resources/recordtypes/> .
 @prefix deed:            </resources/recordtypes/Deed#> .
-@prefix saa:             <https://data.archief.amsterdam/ontology#> . #TBD
+@prefix file:           </resources/recordtypes/File#> .
+@prefix saa:             <https://data.archief.amsterdam/ontology#> .
 
 @prefix dc:              <http://purl.org/dc/elements/1.1/> .
 @prefix sh:              <http://www.w3.org/ns/shacl#> .
@@ -48,11 +49,46 @@ rt:Deed
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
     memorix:hasInformationComponent [ rdf:type memorix:DigitalAssetComponent ] ;
-    sh:property          deed:TitleShape, deed:DocumentaryFormShape, deed:AssociatedWithDateShape, deed:SourceShape, deed:IndexNameShape,
+    sh:property          deed:FondsShape, deed:FileShape, deed:TitleShape, deed:DocumentaryFormShape, deed:AssociatedWithDateShape, deed:SourceShape, deed:IndexNameShape,
                          deed:HasOrHadSubjectShape, deed:HasOrHadLocation1851Shape, deed:HasOrHadLocation1853Shape, deed:HasOrHadModernLocationShape,
                          deed:AddressHouseNameShape, deed:AddressPlaceShape, deed:AddressDescriptionShape,
-                         deed:InternalRemarksShape, deed:IsOrWasIncludedInShape ;
+                         deed:InternalRemarksShape;
     sh:targetClass       rt:Deed .
+
+
+deed:FondsShape
+    rdf:type       sh:PropertyShape;
+    memorix:typeOf memorix:FondsFieldLink ;
+    rdfs:label     "Archief"@nl, "Fonds"@en ;
+    sh:nodeKind    sh:IRI ;
+    sh:or          ( [ sh:class rt:Fonds ] ) ;
+    sh:group       deed:identificationGroup ;
+    dash:editor    memorix:LinkedRecordEditor ;
+    #sh:minCount    1 ;
+    sh:maxCount    1 ;
+    sh:order       1.0 ;
+    sh:path        rico:isOrWasIncludedIn .
+
+
+deed:FileShape
+    rdf:type     sh:PropertyShape ;
+    rdfs:label   "Gekoppeld bestanddeel"@nl , "Linked file"@en ;
+    sh:desciption "Bestanddeel waartoe deze akte behoort."@nl, "The file where this deed originated from"@en ;
+    dash:editor  memorix:ConditionalLinkFieldEditor ;
+    memorix:conditionalLinkField rico:isOrWasIncludedIn ;
+    memorix:linkField [
+        memorix:hasRecordType rt:File ;
+        memorix:path file:fonds ;
+    ];
+    sh:group     deed:identificationGroup ;
+    sh:minCount  1 ;
+    sh:maxCount  1 ;
+    sh:message   "Kies een bestanddeel om aan te koppelen. Dit is verplicht."@nl, "Choose a related (inventory) file. It is required."@en ;
+    sh:nodeKind  sh:IRI ;
+    sh:or        ( [ sh:class rt:File ] ) ;
+    sh:order     2.0 ;
+    sh:path      deed:isDescribedIn .
+
 
 deed:TitleShape
     rdf:type          sh:PropertyShape ;
@@ -63,17 +99,20 @@ deed:TitleShape
     sh:group          deed:identificationGroup ;
     sh:minCount       1 ;
     sh:maxCount       1 ;
-    sh:order          1.0 ;
+    sh:order          3.0 ;
     sh:path           rico:title .
 
 deed:DocumentaryFormShape
     rdf:type    sh:PropertyShape ;
     rdfs:label  "Type of record"@en, "Aktetype"@nl ;
-    sh:datatype xsd:string ;
+    dash:editor memorix:VocabularyEditor ;
+    sh:nodeKind sh:IRI ;
+    sh:class    skos:Concept ;
+    memorix:conceptSchemeIn vocabularies:507fab73-142b-4076-a18c-df21a21cb3b0 ;
     sh:group    deed:identificationGroup ;
     sh:minCount 1 ;
     sh:maxCount 1 ;
-    sh:order    2.0 ;
+    sh:order    4.0 ;
     sh:path     rico:hasDocumentaryFormType .
 
 deed:AssociatedWithDateShape
@@ -82,23 +121,10 @@ deed:AssociatedWithDateShape
     sh:datatype xsd:date ;
     sh:group    deed:identificationGroup ;
     sh:maxCount 1 ;
-    sh:order    3.0 ;
+    sh:order    5.0 ;
     sh:path     rico:normalizedDateValue .
 
 # @todo geo component
-deed:IsOrWasIncludedInShape
-    rdf:type     sh:PropertyShape ;
-    rdfs:label   "Gekoppeld bestanddeel"@nl , "Linked file"@en ;
-    rdfs:comment "Bestanddeel waartoe deze akte behoort."@nl ;
-    dash:editor  memorix:LinkedRecordEditor ;
-    sh:group     deed:identificationGroup ;
-    sh:minCount  1 ;
-    sh:maxCount  1 ;
-    sh:message   "Kies een bestanddeel om aan te koppelen. Dit is verplicht."@nl, "Choose a related (inventory) file. It is required."@en ;
-    sh:nodeKind  sh:IRI ;
-    sh:or        ( [ sh:class rt:File ] ) ;
-    sh:order     4.0 ;
-    sh:path      rico:isOrWasIncludedIn .
 
 deed:SourceShape
     rdf:type    sh:PropertyShape ;
@@ -163,6 +189,7 @@ saa:LinkedPersonObservation
                            sh:path     saa:relatedPersonObservation
                          ] ;
     sh:targetClass       saa:LinkedPersonObservation .
+
 
 deed:HasOrHadLocation1851Shape
     rdf:type     sh:PropertyShape ;
