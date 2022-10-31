@@ -5,7 +5,7 @@
 
 @prefix rt:              </resources/recordtypes/> .
 @prefix deed:            </resources/recordtypes/Deed#> .
-@prefix file:           </resources/recordtypes/File#> .
+@prefix file:            </resources/recordtypes/File#> .
 @prefix saa:             <https://data.archief.amsterdam/ontology#> .
 
 @prefix dc:              <http://purl.org/dc/elements/1.1/> .
@@ -51,8 +51,8 @@ rt:Deed
     memorix:hasInformationComponent [ rdf:type memorix:DigitalAssetComponent ] ;
     sh:property          deed:FondsShape, deed:FileShape, deed:TitleShape, deed:DocumentaryFormShape, deed:AssociatedWithDateShape, deed:SourceShape, deed:IndexNameShape,
                          deed:HasOrHadSubjectShape, deed:HasOrHadLocation1851Shape, deed:HasOrHadLocation1853Shape, deed:HasOrHadModernLocationShape,
-                         deed:AddressHouseNameShape, deed:AddressPlaceShape, deed:AddressDescriptionShape,
-                         deed:InternalRemarksShape;
+                         deed:AddressHouseNameShape, deed:AddressPlaceShape, deed:AddressDescriptionShape, 
+                         deed:InternalRemarksShape, deed:SpecificationShape ;
     sh:targetClass       rt:Deed .
 
 
@@ -175,7 +175,10 @@ saa:LinkedPersonObservation
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property          [ rdfs:label  "Role"@en, "Rol"@nl ;
-                           sh:datatype xsd:string ;
+                           dash:editor              memorix:VocabularyEditor ;
+                           memorix:conceptSchemeIn vocabularies:a507438b-22fb-4a17-8f72-9c528cd6d1e9 ;  #Indexen - rol persoon akte
+                           sh:class                 skos:Concept ;
+                           sh:nodeKind              sh:IRI ;
                            sh:maxCount 1 ;
                            sh:order    1.0 ;
                            sh:path     saa:relatedPersonObservationRole
@@ -183,7 +186,7 @@ saa:LinkedPersonObservation
     sh:property          [ rdfs:label  "Person observation"@en, "Persoonsvermelding"@nl ;
                            dash:editor memorix:LinkedRecordEditor ;
                            sh:nodeKind sh:IRI ;
-                           sh:or       ( rt:PersonObservation ) ;
+                           sh:or       ( [ sh:class rt:PersonObservation ] ) ;
                            sh:maxCount  1 ;
                            sh:order    2.0 ;
                            sh:path     saa:relatedPersonObservation
@@ -323,4 +326,35 @@ deed:AddressDescriptionShape
     sh:maxCount 1 ;
     sh:order    9.0 ;
     sh:path     saa:addressDescription .
+
+deed:SpecificationShape
+    rdf:type    sh:PropertyShape;
+        rdfs:label  "Bijzonderheden"@nl, "Details"@en ;
+        sh:class    saa:Specification ;
+        sh:group    deed:identificationGroup ;
+        sh:maxCount 100 ;
+        sh:nodeKind sh:BlankNode ;
+        sh:order    11.0 ;
+        sh:path     saa:hasSpecification .
+
+saa:Specification
+    rdf:type             sh:NodeShape ;
+    sh:closed            true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property          [ rdfs:label  "Bijzonderheid - Type"@nl, "Detail type"@en ;
+                           dash:editor              memorix:VocabularyEditor ;
+                           memorix:conceptSchemeIn vocabularies:6a1549c9-dd85-44e2-8424-2df0fbdf6fdc ;  #Indexen - bijzonderheid type
+                           sh:class                 skos:Concept ;
+                           sh:nodeKind              sh:IRI ;
+                           sh:maxCount 1 ;
+                           sh:order    1.0 ;
+                           sh:path     saa:specificationType
+                         ] ;
+    sh:property          [ rdfs:label  "Bijzonderheid"@nl, "Detail"@en ;
+                           sh:datatype xsd:string ;
+                           sh:maxCount 1 ;
+                           sh:order    2.0 ;
+                           sh:path     saa:specificationTextualValue
+                         ] ;
+    sh:targetClass       saa:Specification .
 
