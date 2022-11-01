@@ -10,7 +10,8 @@
 @prefix vocabularies:   </resources/vocabularies/conceptschemes/> .
 @prefix rt:             </resources/recordtypes/> .
 @prefix io:             </resources/recordtypes/DigitalRecord#> .
-@prefix saa:            <https://data.archief.amsterdam/ontology#> . #TBD
+@prefix file:           </resources/recordtypes/File#> .
+@prefix saa:            <https://data.archief.amsterdam/ontology#> .
 @prefix rico:           <https://www.ica.org/standards/RiC/ontology#> .
 @prefix ric-rst:        <https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#> .
 @prefix ric-dft:        <https://www.ica.org/standards/RiC/vocabularies/documentaryFormTypes#> .
@@ -45,16 +46,40 @@ rt:DigitalRecord
     sh:closed                       true ;
     sh:ignoredProperties            ( rdf:type ) ;
     sh:targetClass                  rt:DigitalRecord ;
-    memorix:hasInformationComponent [ rdf:type              memorix:TreePathComponent ;
-                                      memorix:hasRecordtype rt:Fonds, rt:Series, rt:File ;
-                                        # sh:path      rico:isOrWasIncludedIn we would like to have this as a pro
-                                    ] ;
+    memorix:hasInformationComponent [ rdf:type memorix:DigitalAssetComponent ] ;
+    sh:property             [ rdfs:label   "Archief"@nl, "Fonds"@en ;
+                              sh:description "Archief waar dit object bij hoort"@nl, "Fonds to which this object belongs"@en ;
+                              sh:message   "Kies een archief waar dit object uit komt."@nl, "Choose a fonds where this object belongs to."@en ;
+                              dash:editor  memorix:LinkedRecordEditor ;
+                              sh:group     io:identificationGroup ;
+                              sh:maxCount  1 ;
+                              sh:nodeKind  sh:IRI ;
+                              sh:or        ( [ sh:class rt:Fonds ] ) ;
+                              sh:order     1.0 ;
+                              sh:path      rico:isOrWasIncludedIn ;
+                            ] ;
+    sh:property             [ rdfs:label   "Bestanddeel"@nl, "File"@en ;
+                              sh:description "Bestanddeel waaraan dit object gekoppeld is"@nl, "Description of the file to which this object belongs"@en ;
+                              sh:message   "Kies een bestanddeel waar dit object uit komt."@nl, "Choose a file where this object belongs to."@en ;
+                              dash:editor  memorix:ConditionalLinkFieldEditor ;
+                              memorix:conditionalLinkField rico:isOrWasIncludedIn ;
+                              memorix:linkField [
+                                  memorix:hasRecordType rt:File ;
+                                  memorix:path file:fonds ;
+                              ];
+                              sh:group     io:identificationGroup ;
+                              sh:maxCount  1 ;
+                              sh:nodeKind  sh:IRI ;
+                              sh:or        ( [ sh:class rt:File ] ) ;
+                              sh:order     2.0 ;
+                              sh:path      io:isDescribedIn ;
+                            ] ;                                    
     sh:property                     [ rdfs:label        "Documentsoort"@nl, "Document Type"@en ;
-                                      rdfs:comment      "Selecteer een waarde uit de lijst."@nl, "Select a value from the list"@en ;
+                                      sh:message        "Selecteer een waarde uit de lijst."@nl, "Select a value from the list"@en ;
                                       memorix:inTitleAt 1 ;
                                       sh:path           rico:hasDocumentaryFormType ;
                                       sh:maxCount       1 ;
-                                      sh:order          2.0 ;
+                                      sh:order          3.0 ;
                                       sh:datatype       xsd:string ;
                                       sh:group          io:identificationGroup ;
                                     ] ;
@@ -64,7 +89,7 @@ rt:DigitalRecord
                                       memorix:searchWeight 5.0 ;
                                       sh:path              rico:title ;
                                       sh:maxCount          1 ;
-                                      sh:order             3.0 ;
+                                      sh:order             4.0 ;
                                       sh:group             io:identificationGroup ;
                                       dash:editor          dash:TextAreaEditor ;
                                       dash:singleLine      false ;
@@ -225,7 +250,7 @@ saa:RelatedAgent
                            sh:path                 saa:hasRole ;
                          ] ;
     sh:property          [ rdfs:label  "Actor"@nl, "Agent"@en ;
-                           rdfs:comment "Actoren, bestaande uit een persoon, organisatie of familie"@nl, "Agent is a person, organisation or family"@en ;
+                           sh:desciption "Kies hier alleen geïdentificeerde personen, organisaties of families"@nl, "Only select identified agents from the person, organisation or family recordtypes"@en ;
                            dash:editor memorix:LinkedRecordEditor ;
                            sh:message  "Kies een persoon, organisatie of familie uit de lijst."@nl, "Please choose a person, organisation or family"@en ;
                            sh:nodeKind sh:IRI ;
