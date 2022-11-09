@@ -193,7 +193,10 @@ saa:Specification
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property          [ rdfs:label  "Bijzonderheid - Type"@nl, "Detail type"@en ;
-                           sh:datatype xsd:string ;
+                           dash:editor              memorix:VocabularyEditor ;
+                           memorix:conceptSchemeIn  vocabularies:6a1549c9-dd85-44e2-8424-2df0fbdf6fdc ;  #Indexen - bijzonderheid type
+                           sh:class                 skos:Concept ;
+                           sh:nodeKind              sh:IRI ;
                            sh:maxCount 1 ;
                            sh:order    1.0 ;
                            sh:path     saa:specificationType
