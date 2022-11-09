@@ -6,6 +6,7 @@
 @prefix schema:          <http://schema.org/> .
 @prefix rt:              </resources/recordtypes/> .
 @prefix loan:            </resources/recordtypes/LoanReport#> .
+@prefix file:            </resources/recordtypes/File#> .
 @prefix saa:             <https://data.archief.amsterdam/ontology#> .
 @prefix dc:              <http://purl.org/dc/elements/1.1/> .
 @prefix sh:              <http://www.w3.org/ns/shacl#> .
@@ -45,25 +46,48 @@ rt:LoanReport
     sh:targetClass       rt:LoanReport ;
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property          loan:IsOrWasIncludedInShape, loan:ExhibitionOrganisationNameShape, loan:ExhibitionOrganisationShape, loan:ExhibitionTitleShape, loan:ExhibitionInsuredValueShape, loan:ExhibitionApprovedShape, loan:ExhibitionBeginDateShape, loan:ExhibitionEndDateShape ;
+    sh:property          loan:FondsShape, loan:FileShape, loan:ExhibitionOrganisationNameShape, loan:ExhibitionOrganisationShape, loan:ExhibitionTitleShape, loan:ExhibitionInsuredValueShape, loan:ExhibitionApprovedShape, loan:ExhibitionBeginDateShape, loan:ExhibitionEndDateShape ;
     sh:property          loan:ExhibitedPageShape, loan:LightSensitivityShape, loan:openingHoursShape, loan:LumenShape ;
     sh:property          loan:InternalRemarksShape ;
 .
 
-loan:IsOrWasIncludedInShape
+loan:FondsShape
+    rdf:type       sh:PropertyShape;
+    memorix:typeOf memorix:FondsFieldLink ;
+    rdfs:label     "Archief"@nl, "Fonds"@en ;
+    sh:desciption  "Archief waar dit rapport bij hoort"@nl, "Fonds to which this report belongs"@en ;
+    sh:message     "Kies het archief waar dit rapport uit komt"@nl, "Choose a fonds where this report belongs to"@en ;
+    sh:nodeKind    sh:IRI ;
+    sh:or          ( [ sh:class rt:Fonds ] ) ;
+    sh:group       loan:identificationGroup ;
+    dash:editor    memorix:LinkedRecordEditor ;
+    sh:minCount    1 ;
+    sh:maxCount    1 ;
+    sh:order       1.0 ;
+    sh:path        rico:isOrWasIncludedIn 
+.
+
+loan:FileShape
     rdf:type     sh:PropertyShape ;
-    rdfs:label   "Gekoppeld bestanddeel"@nl, "Linked file"@en ;
-    rdfs:comment "Bestanddeel waartoe dit rapport behoort."@nl, "Related file from the inventory."@en ;
-    dash:editor  memorix:LinkedRecordEditor ;
+    rdfs:label   "Bestanddeel"@nl , "Linked file"@en ;
+    sh:desciption "Bestanddeel waartoe dit rapport behoort"@nl, "The file where this report belongs to"@en ;
+    sh:message   "Kies een bestanddeel om aan te koppelen. Dit is verplicht."@nl, "Choose a related (inventory) file. It is required."@en ;
+    dash:editor  memorix:ConditionalLinkFieldEditor ;
+    memorix:conditionalLinkField rico:isOrWasIncludedIn ;
+    memorix:linkField [
+        memorix:hasRecordType rt:File ;
+        memorix:path file:fonds ;
+    ];
     sh:group     loan:identificationGroup ;
     sh:minCount  1 ;
     sh:maxCount  1 ;
     sh:message   "Kies een bestanddeel om aan te koppelen. Dit is verplicht."@nl, "Choose a related (inventory) file. It is required."@en ;
     sh:nodeKind  sh:IRI ;
     sh:or        ( [ sh:class rt:File ] ) ;
-    sh:order     1.0 ;
-    sh:path      rico:describesOrDescribed
+    sh:order     2.0 ;
+    sh:path      loan:describesOrDescribed 
 .
+
 
 loan:ExhibitionOrganisationNameShape
     a                    sh:PropertyShape ;
@@ -72,7 +96,7 @@ loan:ExhibitionOrganisationNameShape
     sh:datatype          xsd:string ;
     sh:group             loan:exhibitionGroup ;
     sh:maxCount          1 ;
-    sh:order             2.0 ;
+    sh:order             3.0 ;
     sh:path              loan:migratedOrganisationName
 .
 

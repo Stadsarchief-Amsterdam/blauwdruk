@@ -75,7 +75,7 @@ report:FondsShape
     sh:or          ( [ sh:class rt:Fonds ] ) ;
     sh:group       report:identificationGroup ;
     dash:editor    memorix:LinkedRecordEditor ;
-    #sh:minCount    1 ;
+    sh:minCount    1 ;
     sh:maxCount    1 ;
     sh:order       1.0 ;
     sh:path        rico:isOrWasIncludedIn .
