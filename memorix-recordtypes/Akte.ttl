@@ -60,6 +60,8 @@ deed:FondsShape
     rdf:type       sh:PropertyShape;
     memorix:typeOf memorix:FondsFieldLink ;
     rdfs:label     "Archief"@nl, "Fonds"@en ;
+    sh:desciption  "Archief waar deze akte bij hoort"@nl, "Fonds to which this deed belongs"@en ;
+    sh:message     "Kies het archief waar deze akte uit komt"@nl, "Choose a fonds where this deed belongs to"@en ;
     sh:nodeKind    sh:IRI ;
     sh:or          ( [ sh:class rt:Fonds ] ) ;
     sh:group       deed:identificationGroup ;
@@ -73,7 +75,7 @@ deed:FondsShape
 deed:FileShape
     rdf:type     sh:PropertyShape ;
     rdfs:label   "Bestanddeel"@nl , "Linked file"@en ;
-    sh:desciption "Bestanddeel waartoe deze akte behoort."@nl, "The file where this deed originated from"@en ;
+    sh:desciption "Bestanddeel waartoe deze akte behoort"@nl, "The file where this deed belongs to"@en ;
     dash:editor  memorix:ConditionalLinkFieldEditor ;
     memorix:conditionalLinkField rico:isOrWasIncludedIn ;
     memorix:linkField [
