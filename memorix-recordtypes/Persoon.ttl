@@ -102,8 +102,7 @@ rt:Person
                            sh:path                  schema:alternateName ] ;
     sh:property          [ rdfs:label               "Identiek aan (extern)"@nl, "Is same as (external)"@en ;
                            dash:editor              memorix:VocabularyEditor ;
-                           memorix:conceptSchemeIn  <https://data.rkd.nl/rkdartists> ,
-                                                    <https://www.wikidata.org#entities-persons>; #wikidata personen
+                           memorix:conceptSchemeIn  <https://www.wikidata.org#entities-persons>; #wikidata personen
                            memorix:searchWeight     1.0 ;
                            sh:class                 skos:Concept ;
                            sh:group                 person:alternativeGroup ;
@@ -123,7 +122,8 @@ rt:Person
                            dash:editor              memorix:VocabularyEditor ;
                            sh:nodeKind              sh:IRI ;
                            sh:class                 skos:Concept ;
-                           memorix:conceptSchemeIn  vocabularies:80216597-805e-4439-abab-f7a323dde6ec ;
+                           memorix:conceptSchemeIn  vocabularies:80216597-805e-4439-abab-f7a323dde6ec ; # wrong conceptscheme
+                           memorix:hidden           true ; # tijdelijk niet zichtbaar
                            sh:group                 person:rightsGroup ;
                            sh:maxCount              1 ;
                            sh:order                 7.0 ;

@@ -96,7 +96,8 @@ rt:Family
                            dash:editor              memorix:VocabularyEditor ;
                            sh:nodeKind              sh:IRI ;
                            sh:class                 skos:Concept ;
-                           memorix:conceptSchemeIn  vocabularies:80216597-805e-4439-abab-f7a323dde6ec ;
+                           memorix:conceptSchemeIn  vocabularies:80216597-805e-4439-abab-f7a323dde6ec ; # wrong conceptscheme
+                           memorix:hidden           true ; # tijdelijk niet zichtbaar
                            sh:group                 family:rightsGroup ;
                            sh:maxCount              1 ;
                            sh:order                 7.0 ;
