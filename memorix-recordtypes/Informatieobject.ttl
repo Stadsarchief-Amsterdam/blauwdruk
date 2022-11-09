@@ -80,8 +80,11 @@ rt:DigitalRecord
                                       sh:path           rico:hasDocumentaryFormType ;
                                       sh:maxCount       1 ;
                                       sh:order          3.0 ;
-                                      sh:datatype       xsd:string ;
-                                      sh:group          io:identificationGroup ;
+                                      dash:editor             memorix:VocabularyEditor ;
+                                      memorix:conceptSchemeIn vocabularies:af136f00-7211-4355-a236-5a7ff7c25059 ; # Archieven - Digitaal documentsoort
+                                      sh:class                skos:Concept ;
+                                      sh:nodeKind             sh:IRI ;
+                                      sh:group                io:identificationGroup ;
                                     ] ;
     sh:property                     [ rdf:type             sh:PropertyShape ;
                                       rdfs:label           "Beschrijving"@nl, "Description"@en ;
@@ -104,7 +107,6 @@ rt:DigitalRecord
                                       sh:datatype         xsd:date ;
                                       sh:maxCount         1 ;
                                       sh:order            1.0 ;
-                                      sh:maxCount         1 ;
                                     ] ;
     sh:property                     [ rdfs:label  "Gerelateerde actoren"@nl, "Linked agents"@en ;
                                       sh:path     io:hasOrHadRelatedAgent ;
@@ -196,7 +198,10 @@ rico:Identifier
                            sh:path     rico:hasIdentifierType ;
                            sh:maxCount 1 ;
                            sh:order    1.0 ;
-                           sh:datatype xsd:string ;
+                           dash:editor             memorix:VocabularyEditor ;
+                           memorix:conceptSchemeIn vocabularies:c1b2081a-0590-47bb-b83e-08b9c0a8b429 ; # Archieven - Digitaal type identificatie
+                           sh:class                skos:Concept ;
+                           sh:nodeKind             sh:IRI ;
                          ] ;
     sh:property          [ rdfs:label  "External Identifier"@en, "Identificatie"@nl ;
                            sh:message  "This node MUST link to exactly 1 xsd:string with rico:textualValue"@en ;
@@ -240,7 +245,7 @@ saa:RelatedAgent
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property          [ rdfs:label              "Rol actor"@nl, "Role of related agent"@en ;
-                           rdfs:comment            "Rol van gerelateerd persoon, organisatie of familie"@nl, "Role of related person, organisation or family"@en ;
+                           sh:desciption           "Rol van gerelateerd persoon, organisatie of familie"@nl, "Role of related person, organisation or family"@en ;
                            dash:editor             memorix:VocabularyEditor ;
                            memorix:conceptSchemeIn vocabularies:0dada355-9e1e-4f1f-8d86-0455d6067bb7 ;
                            sh:class                skos:Concept ;
@@ -296,10 +301,13 @@ saa:Specification
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property          [ rdfs:label  "Type Kenmerk"@nl, "Detail type"@en ;
-                           sh:datatype xsd:string ;
                            sh:maxCount 1 ;
                            sh:order    1.0 ;
-                           sh:path     saa:specificationType
+                           sh:path     saa:specificationType ;
+                           dash:editor             memorix:VocabularyEditor ;
+                           memorix:conceptSchemeIn vocabularies:ddc09257-ebd7-404f-93bf-fe95e1412cb0 ; # Archieven - Digitaal type kenmerk
+                           sh:class                skos:Concept ;
+                           sh:nodeKind             sh:IRI ;
                          ] ;
     sh:property          [ rdfs:label  "Kenmerk"@nl, "Detail"@en ;
                            sh:datatype xsd:string ;
@@ -309,3 +317,27 @@ saa:Specification
                          ] ;
     sh:targetClass       saa:Specification 
     .
+
+# todo fix date properties
+# saa:RelatedDate
+#     rdf:type             sh:NodeShape ;
+#     sh:closed            true ;
+#     sh:ignoredProperties ( rdf:type ) ;
+#     sh:property          [ rdfs:label              "Type datum"@nl, "Type of date"@en ;
+#                            dash:editor             memorix:VocabularyEditor ;
+#                            memorix:conceptSchemeIn vocabularies:0dada355-9e1e-4f1f-8d86-0455d6067bb7 ; 
+#                            sh:class                skos:Concept ;
+#                            sh:nodeKind             sh:IRI ;
+#                            sh:maxCount             1 ;
+#                            sh:order                1.0 ;
+#                            sh:path                 saa:typeOfDate ;
+#                          ] ;
+#     sh:property          [ rdfs:label  "Datum"@nl, "Date"@en ;
+#                            sh:desciption "Datum"@nl, "Date registration"@en ;
+#                            sh:path             rico:normalizedDateValue ;
+#                            sh:group            io:contentDescriptionGroup ;
+#                            sh:datatype         xsd:date ;
+#                            sh:maxCount         1 ;
+#                          ] ;
+#     sh:targetClass       saa:RelatedDate
+# .
