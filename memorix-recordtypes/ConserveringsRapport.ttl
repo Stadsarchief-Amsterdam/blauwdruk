@@ -6,6 +6,7 @@
 @prefix schema:          <http://schema.org/> .
 @prefix rt:              </resources/recordtypes/> .
 @prefix report:          </resources/recordtypes/ConservationReport#> .
+@prefix file:            </resources/recordtypes/File#> .
 @prefix saa:             <https://data.archief.amsterdam/ontology#> .
 @prefix dc:              <http://purl.org/dc/elements/1.1/> .
 @prefix sh:              <http://www.w3.org/ns/shacl#> .
@@ -56,7 +57,7 @@ rt:ConservationReport
     sh:targetClass       rt:ConservationReport ;
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property          report:BeginDateShape, report:EndDateShape, report:IsOrWasIncludedInShape, report:ObjectDescriptionShape, report:ObjectTypeShape, report:ObjectMaterialShape,
+    sh:property          report:FondsShape, report:FileShape, report:BeginDateShape, report:EndDateShape, report:ObjectDescriptionShape, report:ObjectTypeShape, report:ObjectMaterialShape,
                          report:ObjectTechniqueShape ;
     sh:property          report:PrimaryCarrierShape, report:MediumShape, report:SecondaryAdditionShape, report:DamageShape, report:HasCarriedOutTestsShape ;
     sh:property          report:AcidityShape, report:OtherFindingsShape ;
@@ -64,19 +65,42 @@ rt:ConservationReport
     sh:property          report:InternalRemarksShape ;
 .
 
-report:IsOrWasIncludedInShape
+report:FondsShape
+    rdf:type       sh:PropertyShape;
+    memorix:typeOf memorix:FondsFieldLink ;
+    rdfs:label     "Archief"@nl, "Fonds"@en ;
+    sh:desciption  "Archief waar dit rapport bij hoort"@nl, "Fonds to which this report belongs"@en ;
+    sh:message     "Kies het archief waar dit rapport uit komt"@nl, "Choose a fonds where this report belongs to"@en ;
+    sh:nodeKind    sh:IRI ;
+    sh:or          ( [ sh:class rt:Fonds ] ) ;
+    sh:group       report:identificationGroup ;
+    dash:editor    memorix:LinkedRecordEditor ;
+    #sh:minCount    1 ;
+    sh:maxCount    1 ;
+    sh:order       1.0 ;
+    sh:path        rico:isOrWasIncludedIn .
+
+
+report:FileShape
     rdf:type     sh:PropertyShape ;
-    rdfs:label   "Gekoppeld bestanddeel"@nl, "Linked file"@en ;
-    rdfs:comment "Bestanddeel waartoe dit rapport behoort."@nl, "Related file from the inventory."@en ;
-    dash:editor  memorix:LinkedRecordEditor ;
+    rdfs:label   "Bestanddeel"@nl , "Linked file"@en ;
+    sh:desciption "Bestanddeel waartoe dit rapport behoort"@nl, "The file where this report belongs to"@en ;
+    sh:message   "Kies een bestanddeel om aan te koppelen. Dit is verplicht."@nl, "Choose a related (inventory) file. It is required."@en ;
+    dash:editor  memorix:ConditionalLinkFieldEditor ;
+    memorix:conditionalLinkField rico:isOrWasIncludedIn ;
+    memorix:linkField [
+        memorix:hasRecordType rt:File ;
+        memorix:path file:fonds ;
+    ];
     sh:group     report:identificationGroup ;
     sh:minCount  1 ;
-    sh:maxCount  1;
+    sh:maxCount  1 ;
     sh:message   "Kies een bestanddeel om aan te koppelen. Dit is verplicht."@nl, "Choose a related (inventory) file. It is required."@en ;
     sh:nodeKind  sh:IRI ;
     sh:or        ( [ sh:class rt:File ] ) ;
-    sh:order     1.0 ;
-    sh:path      rico:describesOrDescribed .
+    sh:order     2.0 ;
+    sh:path      report:describesOrDescribed .
+
 
 report:BeginDateShape
     a                    sh:PropertyShape ;
@@ -88,7 +112,7 @@ report:BeginDateShape
     sh:minCount          1 ;
     sh:maxCount          1 ;
     sh:message          "Vul tenminste een begindatum in. Dit is verplicht."@nl, "Please provide a begin date. This is mandatory."@en ;
-    sh:order             2.0 ;
+    sh:order             3.0 ;
     sh:path              rico:hasBeginningDate ;
 .
 
@@ -98,7 +122,7 @@ report:EndDateShape
     sh:datatype          xsd:date ;
     sh:group             report:identificationGroup ;
     sh:maxCount          1 ;
-    sh:order             3.0 ;
+    sh:order             4.0 ;
     sh:path              rico:hasEndDate ;
 .
 
