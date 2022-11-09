@@ -72,7 +72,7 @@ deed:FondsShape
 
 deed:FileShape
     rdf:type     sh:PropertyShape ;
-    rdfs:label   "Gekoppeld bestanddeel"@nl , "Linked file"@en ;
+    rdfs:label   "Bestanddeel"@nl , "Linked file"@en ;
     sh:desciption "Bestanddeel waartoe deze akte behoort."@nl, "The file where this deed originated from"@en ;
     dash:editor  memorix:ConditionalLinkFieldEditor ;
     memorix:conditionalLinkField rico:isOrWasIncludedIn ;
