@@ -57,7 +57,7 @@ loan:IsOrWasIncludedInShape
     dash:editor  memorix:LinkedRecordEditor ;
     sh:group     loan:identificationGroup ;
     sh:minCount  1 ;
-    sh:maxCount  100 ;
+    sh:maxCount  1 ;
     sh:message   "Kies een bestanddeel om aan te koppelen. Dit is verplicht."@nl, "Choose a related (inventory) file. It is required."@en ;
     sh:nodeKind  sh:IRI ;
     sh:or        ( [ sh:class rt:File ] ) ;
