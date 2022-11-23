@@ -40,8 +40,8 @@ rt:Periodical
     memorix:hasInformationComponent [ rdf:type memorix:DigitalAssetComponent ] ;
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property          periodical:IsOrWasIncludedInShape, periodical:TitleShape, periodical:ISBNShape, periodical:NotaBeneShape, periodical:HasPublicationShape, periodical:AuthorShape, periodical:editionShape, periodical:physicalDescriptionShape, periodical:typeOfPublicationShape, periodical:sameAsShape ;
-    sh:property          periodical:InternalRemarksShape, periodical:StatusShape ;
+    sh:property          periodical:IsOrWasIncludedInShape, periodical:TitleShape, periodical:ISBNShape, periodical:NotaBeneShape, periodical:HasPublicationShape, periodical:AuthorShape, periodical:typeOfPublicationShape, periodical:sameAsShape ;
+    sh:property          periodical:InternalRemarksShape ;
     sh:targetClass       rt:Periodical .
 
 periodical:IsOrWasIncludedInShape
@@ -91,15 +91,6 @@ periodical:ISBNShape
     sh:order             5.0 ;
     sh:path              schema:issn .
 
-periodical:editionShape
-    rdf:type             sh:PropertyShape ;
-    rdfs:label           "Editie"@nl, "Edition"@en ;
-    sh:datatype          xsd:string ;
-    sh:group             periodical:descriptionGroup ;
-    sh:maxCount          1 ;
-    sh:order             10.0 ;
-    sh:path              schema:bookEdition .
-
 periodical:typeOfPublicationShape
     rdf:type             sh:PropertyShape ;
     rdfs:label           "Type publicatie"@nl, "Type of publication"@en ;
@@ -113,22 +104,12 @@ periodical:typeOfPublicationShape
     sh:order             11.0 ;
     sh:path              schema:additionalType .
 
-periodical:physicalDescriptionShape
-    rdf:type             sh:PropertyShape ;
-    rdfs:label           "Collatie"@nl, "Physical description"@en ;
-    sh:datatype          xsd:string ;
-    sh:group             periodical:descriptionGroup ;
-    sh:maxCount          1 ;
-    sh:order             12.0 ;
-    sh:path              saa:physicalDescription . # combination of schema:numberOfPages and schema:materialExtent
-
-# todo when Memorix allows, make this an IRI
 periodical:sameAsShape
     rdf:type                sh:PropertyShape; 
     rdfs:label              "Identiek aan (worldcat)"@nl, "Is same as (worldcat)"@en ;
     sh:datatype             xsd:string ;
     sh:group                periodical:descriptionGroup ;
-    #sh:nodeKind             sh:IRI ;
+    sh:nodeKind             sh:IRI ;
     sh:maxCount             1 ;
     sh:order                15.0 ;
     sh:path                 owl:sameAs .
