@@ -35,7 +35,7 @@ rt:PublicationVolume
     memorix:hasInformationComponent [ rdf:type memorix:DepotLocationComponent ] ;
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property          volume:IsOrWasIncludedInShape, volume:InventorynumberShape, volume:TitleShape, volume:NotaBeneShape, volume:PublicationDateShape ;
+    sh:property          volume:IsOrWasIncludedInShape, volume:InventorynumberShape, volume:TitleShape, volume:volumeNumberShape, volume:NotaBeneShape, volume:PublicationDateShape ;
     sh:property          volume:InternalRemarksShape, volume:StatusShape ;
     sh:targetClass       rt:PublicationVolume .
 
@@ -74,6 +74,16 @@ volume:TitleShape
     sh:maxCount          1 ;
     sh:order             3.0 ;
     sh:path              schema:name .
+
+volume:volumeNumberShape
+    rdf:type             sh:PropertyShape ;
+    rdfs:label           "Volume number"@en, "Nummer aflevering"@nl ;
+    sh:description       "Identifies the volume of a publication (e.g. iii or 2)"@en, "Het volgnummer van de aflevering (b.v. iii of 2) "@nl;
+    sh:datatype          xsd:string ;
+    sh:group             volume:identificationGroup ;
+    sh:maxCount          1 ;
+    sh:order             4.0 ;
+    sh:path              schema:volumeNumber .
 
 volume:NotaBeneShape
     rdf:type        sh:PropertyShape ;
