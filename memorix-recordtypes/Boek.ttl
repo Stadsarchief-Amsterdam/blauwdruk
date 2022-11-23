@@ -45,7 +45,7 @@ rt:Book
                                     ] ;
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property          book:IsOrWasIncludedInShape, book:InventorynumberShape, book:TitleShape, book:ISBNShape, book:NotaBeneShape, book:HasPublicationShape, book:AuthorShape, book:editionShape, book:physicalDescriptionShape, book:typeOfPublicationShape, book:sameAsShape ;
+    sh:property          book:IsOrWasIncludedInShape, book:InventorynumberShape, book:TitleShape, book:SeriesTitleShape, book:ISBNShape, book:NotaBeneShape, book:HasPublicationShape, book:AuthorShape, book:editionShape, book:physicalDescriptionShape, book:typeOfPublicationShape, book:sameAsShape ;
     sh:property          book:InternalRemarksShape, book:StatusShape ;
     sh:targetClass       rt:Book .
 
@@ -82,7 +82,18 @@ book:TitleShape
     sh:group             book:identificationGroup ;
     sh:maxCount  1 ;
     sh:order             3.0 ;
-    sh:path              schema:name .
+    sh:path              schema:name . 
+
+book:SeriesTitleShape
+    rdf:type             sh:PropertyShape ;
+    rdfs:label           "Title of series"@en, "Serietitel"@nl ;
+    sh:desciption        "Als de titel onderdeel uitmaakt van een serie, geef ook de serietitel"@nl, "If this book is part of a series, also enter the Serie title"@en ;
+    memorix:searchWeight 5.0 ;
+    sh:datatype          xsd:string ;
+    sh:group             book:identificationGroup ;
+    sh:maxCount          1 ;
+    sh:order             4.0 ;
+    sh:path              book:seriesTitle . #Serie zou je eigenlijk moeten modelleren met schema:isPartOf -> ander boek
 
 book:NotaBeneShape
     rdf:type        sh:PropertyShape ;
@@ -93,7 +104,7 @@ book:NotaBeneShape
     sh:datatype     xsd:string ;
     sh:group        book:identificationGroup ;
     sh:maxCount     1 ;
-    sh:order        4.0 ;
+    sh:order        6.0 ;
     sh:path         schema:description .
 
 book:ISBNShape
@@ -104,7 +115,7 @@ book:ISBNShape
     sh:datatype          xsd:string ;
     sh:group             book:identificationGroup ;
     sh:maxCount          1 ;
-    sh:order             5.0 ;
+    sh:order             7.0 ;
     sh:path              schema:isbn .
 
 book:editionShape
@@ -144,7 +155,7 @@ book:sameAsShape
     rdfs:label              "Identiek aan (worldcat)"@nl, "Is same as (worldcat)"@en ;
     sh:datatype             xsd:string ;
     sh:group                book:descriptionGroup ;
-    #sh:nodeKind             sh:IRI ;
+    sh:nodeKind             sh:IRI ;
     sh:maxCount             1 ;
     sh:order                15.0 ;
     sh:path                 owl:sameAs 
