@@ -88,7 +88,6 @@ loan:FileShape
     sh:path      loan:describesOrDescribed 
 .
 
-
 loan:ExhibitionOrganisationNameShape
     a                    sh:PropertyShape ;
     rdfs:label           "Organisatie werkveld"@nl, "Migrated Organisation"@en ;
@@ -120,6 +119,7 @@ loan:ExhibitionTitleShape
     memorix:searchWeight 3.0 ;
     sh:datatype          xsd:string ;
     sh:group             loan:exhibitionGroup ;
+    sh:minCount          1 ;
     sh:maxCount          1 ;
     sh:order             5.0 ;
     sh:path              loan:exhibitionTitle
@@ -152,6 +152,7 @@ loan:ExhibitionBeginDateShape
     memorix:searchWeight 5.0 ;
     sh:datatype          xsd:date ;
     sh:group             loan:exhibitionGroup ;
+    sh:minCount          1 ;
     sh:maxCount          1 ;
     sh:order             8.0 ;
     sh:path              rico:hasBeginningDate
@@ -160,7 +161,6 @@ loan:ExhibitionBeginDateShape
 loan:ExhibitionEndDateShape
     a                    sh:PropertyShape ;
     rdfs:label           "Einddatum tentoonstelling"@nl, "Exhibition end date"@en ;
-    memorix:inTitleAt    2.0 ;
     sh:datatype          xsd:date ;
     sh:group             loan:exhibitionGroup ;
     sh:maxCount          1 ;
