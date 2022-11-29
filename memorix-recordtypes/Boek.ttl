@@ -149,13 +149,16 @@ book:physicalDescriptionShape
     sh:order             12.0 ;
     sh:path              saa:physicalDescription . # combination of schema:numberOfPages and schema:materialExtent
 
-# todo when Memorix allows, make this an IRI
 book:sameAsShape
     rdf:type                sh:PropertyShape; 
     rdfs:label              "Identiek aan (worldcat)"@nl, "Is same as (worldcat)"@en ;
-    sh:datatype             xsd:string ;
-    sh:group                book:descriptionGroup ;
+    dash:editor             memorix:IriEditor ;
     sh:nodeKind             sh:IRI ;
+    sh:desciption           "Plak hier eeen worldcat URI in"@nl, "Please provide a worldcat URI"@en ; 
+    sh:message              "Waarde moet beginnen met http of https"@nl, "Value must start with http:// or https:// consist of a valid IRI"@en ;
+    sh:pattern              "^https?://" ;
+    sh:flags                "i" ;
+    sh:group                book:descriptionGroup ;
     sh:maxCount             1 ;
     sh:order                15.0 ;
     sh:path                 owl:sameAs 
