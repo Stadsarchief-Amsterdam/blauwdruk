@@ -64,16 +64,17 @@ loan:FondsShape
     sh:minCount    1 ;
     sh:maxCount    1 ;
     sh:order       1.0 ;
-    sh:path        rico:isOrWasIncludedIn 
-.
+    sh:path        loan:isOrWasAlsoIncludedIn 
+    .
+
 
 loan:FileShape
     rdf:type     sh:PropertyShape ;
     rdfs:label   "Bestanddeel"@nl , "Linked file"@en ;
-    sh:desciption "Bestanddeel waartoe dit rapport behoort"@nl, "The file where this report belongs to"@en ;
+    sh:desciption "Bestanddeel waartoe dit rapport behoort"@nl, "The file where this loan belongs to"@en ;
     sh:message   "Kies een bestanddeel om aan te koppelen. Dit is verplicht."@nl, "Choose a related (inventory) file. It is required."@en ;
     dash:editor  memorix:ConditionalLinkFieldEditor ;
-    memorix:conditionalLinkField rico:isOrWasIncludedIn ;
+    memorix:conditionalLinkField loan:isOrWasAlsoIncludedIn ;
     memorix:linkField [
         memorix:hasRecordType rt:File ;
         memorix:path file:fonds ;
@@ -85,7 +86,7 @@ loan:FileShape
     sh:nodeKind  sh:IRI ;
     sh:or        ( [ sh:class rt:File ] ) ;
     sh:order     2.0 ;
-    sh:path      loan:describesOrDescribed 
+    sh:path      rico::isOrWasIncludedIn 
 .
 
 loan:ExhibitionOrganisationNameShape
