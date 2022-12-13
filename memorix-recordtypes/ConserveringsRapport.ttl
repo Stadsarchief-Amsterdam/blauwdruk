@@ -78,7 +78,7 @@ report:FondsShape
     sh:minCount    1 ;
     sh:maxCount    1 ;
     sh:order       1.0 ;
-    sh:path        rico:isOrWasIncludedIn .
+    sh:path        report:isOrWasAlsoIncludedIn .
 
 
 report:FileShape
@@ -87,7 +87,7 @@ report:FileShape
     sh:desciption "Bestanddeel waartoe dit rapport behoort"@nl, "The file where this report belongs to"@en ;
     sh:message   "Kies een bestanddeel om aan te koppelen. Dit is verplicht."@nl, "Choose a related (inventory) file. It is required."@en ;
     dash:editor  memorix:ConditionalLinkFieldEditor ;
-    memorix:conditionalLinkField rico:isOrWasIncludedIn ;
+    memorix:conditionalLinkField report:isOrWasAlsoIncludedIn ;
     memorix:linkField [
         memorix:hasRecordType rt:File ;
         memorix:path file:fonds ;
@@ -99,7 +99,7 @@ report:FileShape
     sh:nodeKind  sh:IRI ;
     sh:or        ( [ sh:class rt:File ] ) ;
     sh:order     2.0 ;
-    sh:path      report:describesOrDescribed .
+    sh:path      rico::isOrWasIncludedIn .
 
 
 report:BeginDateShape
@@ -147,7 +147,7 @@ report:ObjectTypeShape
     memorix:inSummaryAt     1.0 ;
     sh:class                skos:Concept ;
     sh:group                report:descriptionGroup ;
-    sh:minCount             1 ;
+    #sh:minCount             1 ; Dit kan nu nog niet bij de migratie
     sh:maxCount             1 ;
     sh:nodeKind             sh:IRI ;
     sh:order                2.0 ;
