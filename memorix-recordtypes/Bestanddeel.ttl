@@ -5,8 +5,8 @@
 @prefix skos:           <http://www.w3.org/2004/02/skos/core#> .
 
 @prefix rt:             </resources/recordtypes/> .
-@prefix file:           </resources/recordtypes/File#> .
-@prefix saa:            <https://data.archief.amsterdam/ontology#> . #TBD
+@prefix file:           </resources/recordtypes/Filetest#> .
+@prefix saa:            <https://data.archief.amsterdam/ontology#> . 
 
 @prefix dc:             <http://purl.org/dc/elements/1.1/> .
 @prefix sh:             <http://www.w3.org/ns/shacl#> .
@@ -51,7 +51,7 @@ file:managementGroup
     sh:order   5.0 ;
 .
 
-rt:File
+rt:Filetest
     a                               memorix:Recordtype, sh:NodeShape ;
     rdfs:comment                    "Stadsarchief recordtype voor Bestanddeel"@nl ;
     rdfs:label                      "Bestanddeel"@nl, "File"@en ;
@@ -62,8 +62,8 @@ rt:File
     memorix:hasInformationComponent [ rdf:type memorix:DepotLocationComponent ;
                                       rdf:type memorix:DigitalAssetComponent ;
                                     ] ;
-    dc:identifier                   "File" ;
-    sh:targetClass                  rt:File ;
+    dc:identifier                   "Filetest" ;
+    sh:targetClass                  rt:Filetest ;
     sh:closed                       true ;
     sh:ignoredProperties            ( rdf:type ) ;
     sh:property                     [ memorix:typeOf memorix:FondsFieldLink ;
@@ -115,7 +115,6 @@ rt:File
                                     ] ;
     sh:property                     [ rdfs:label           "Datering"@nl, "Dated"@en ;
                                       rdfs:comment         "Kan een exacte datum of een periode zijn"@nl, "Exact date or date range"@en ;
-                                      memorix:inSummaryAt  1 ;
                                       memorix:searchWeight 3.0 ;
                                       sh:class             rico:DateRange ;
                                       sh:nodeKind          sh:BlankNode ;
@@ -266,7 +265,15 @@ rt:File
                                       sh:group     file:managementGroup ;
                                       sh:order     10.0 ;
                                       sh:path      file:status ;
-                                    ] .
+                                    ] ;
+      sh:property                   [ rdfs:label  "Vermist sinds"@nl, "Missing since"@en ;
+                                      sh:datatype xsd:date ;
+                                      sh:group     file:managementGroup ;
+                                      sh:maxCount 1 ;
+                                      sh:order    11.0 ;
+                                      sh:path     file:missingDate
+                                    ] 
+                                    .
 
 rico:DateRange
     rdf:type             sh:NodeShape ;
@@ -279,12 +286,14 @@ rico:DateRange
                            sh:path     rico:expressedDate
                          ] ;
     sh:property          [ rdfs:label  "Begindatum"@nl, "Begin date"@en ;
+                           memorix:inSummaryAt  1 ;
                            sh:datatype xsd:date ;
                            sh:maxCount 1 ;
                            sh:order    2.0 ;
                            sh:path     rico:hasBeginningDate
                          ] ;
     sh:property          [ rdfs:label  "Einddatum"@nl, "End date"@en ;
+                           memorix:inSummaryAt  2 ;
                            sh:datatype xsd:date ;
                            sh:maxCount 1 ;
                            sh:order    3.0 ;
