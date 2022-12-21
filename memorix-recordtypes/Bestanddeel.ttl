@@ -5,7 +5,7 @@
 @prefix skos:           <http://www.w3.org/2004/02/skos/core#> .
 
 @prefix rt:             </resources/recordtypes/> .
-@prefix file:           </resources/recordtypes/Filetest#> .
+@prefix file:           </resources/recordtypes/File#> .
 @prefix saa:            <https://data.archief.amsterdam/ontology#> . 
 
 @prefix dc:             <http://purl.org/dc/elements/1.1/> .
@@ -51,7 +51,7 @@ file:managementGroup
     sh:order   5.0 ;
 .
 
-rt:Filetest
+rt:File
     a                               memorix:Recordtype, sh:NodeShape ;
     rdfs:comment                    "Stadsarchief recordtype voor Bestanddeel"@nl ;
     rdfs:label                      "Bestanddeel"@nl, "File"@en ;
@@ -62,8 +62,8 @@ rt:Filetest
     memorix:hasInformationComponent [ rdf:type memorix:DepotLocationComponent ;
                                       rdf:type memorix:DigitalAssetComponent ;
                                     ] ;
-    dc:identifier                   "Filetest" ;
-    sh:targetClass                  rt:Filetest ;
+    dc:identifier                   "File" ;
+    sh:targetClass                  rt:File ;
     sh:closed                       true ;
     sh:ignoredProperties            ( rdf:type ) ;
     sh:property                     [ memorix:typeOf memorix:FondsFieldLink ;
