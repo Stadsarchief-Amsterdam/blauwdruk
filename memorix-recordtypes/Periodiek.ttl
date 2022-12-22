@@ -147,12 +147,14 @@ schema:PublicationEvent
     sh:ignoredProperties ( rdf:type ) ;
     sh:targetClass       schema:PublicationEvent ;
     sh:property          [ rdfs:label  "Jaar van uitgave"@nl, "Year of publication"@en ;
+                           memorix:inSummaryAt  3.0 ;
                            sh:path     schema:startDate ;
                            sh:maxCount 1 ;
                            sh:order    1.0 ;
                            sh:datatype xsd:gYear ;
                          ] ;
     sh:property          [ rdfs:label  "Plaats van uitgave"@nl, "Publication place"@en ;
+                           memorix:inSummaryAt  2.0 ;
                            sh:path     schema:location ; # todo sould be a location with schema:Place 
                            sh:maxCount 1 ;
                            sh:order    3.0 ;
