@@ -56,13 +56,13 @@ rt:DigitalRecord
                               sh:nodeKind  sh:IRI ;
                               sh:or        ( [ sh:class rt:Fonds ] ) ;
                               sh:order     1.0 ;
-                              sh:path      rico:isOrWasIncludedIn ;
+                              sh:path      io:isOrWasAlsoIncludedIn ;
                             ] ;
     sh:property             [ rdfs:label   "Bestanddeel"@nl, "File"@en ;
                               sh:description "Bestanddeel waaraan dit object gekoppeld is"@nl, "Description of the file to which this object belongs"@en ;
                               sh:message   "Kies een bestanddeel waar dit object uit komt."@nl, "Choose a file where this object belongs to."@en ;
                               dash:editor  memorix:ConditionalLinkFieldEditor ;
-                              memorix:conditionalLinkField rico:isOrWasIncludedIn ;
+                              memorix:conditionalLinkField io:isOrWasAlsoIncludedIn ;
                               memorix:linkField [
                                   memorix:hasRecordType rt:File ;
                                   memorix:path file:fonds ;
@@ -72,11 +72,11 @@ rt:DigitalRecord
                               sh:nodeKind  sh:IRI ;
                               sh:or        ( [ sh:class rt:File ] ) ;
                               sh:order     2.0 ;
-                              sh:path      io:isDescribedIn ;
+                              sh:path      rico:isOrWasIncludedIn ;
                             ] ;                                    
     sh:property                     [ rdfs:label        "Documentsoort"@nl, "Document Type"@en ;
                                       sh:message        "Selecteer een waarde uit de lijst."@nl, "Select a value from the list"@en ;
-                                      memorix:inTitleAt 1 ;
+                                      memorix:inTitleAt 2 ;
                                       sh:path           rico:hasDocumentaryFormType ;
                                       sh:maxCount       1 ;
                                       sh:order          3.0 ;
@@ -88,7 +88,7 @@ rt:DigitalRecord
                                     ] ;
     sh:property                     [ rdf:type             sh:PropertyShape ;
                                       rdfs:label           "Beschrijving"@nl, "Description"@en ;
-                                      memorix:inTitleAt    2 ;
+                                      memorix:inTitleAt    1 ;
                                       memorix:searchWeight 5.0 ;
                                       sh:path              rico:title ;
                                       sh:maxCount          1 ;
@@ -317,27 +317,3 @@ saa:Specification
                          ] ;
     sh:targetClass       saa:Specification 
     .
-
-# todo fix date properties
-# saa:RelatedDate
-#     rdf:type             sh:NodeShape ;
-#     sh:closed            true ;
-#     sh:ignoredProperties ( rdf:type ) ;
-#     sh:property          [ rdfs:label              "Type datum"@nl, "Type of date"@en ;
-#                            dash:editor             memorix:VocabularyEditor ;
-#                            memorix:conceptSchemeIn vocabularies:0dada355-9e1e-4f1f-8d86-0455d6067bb7 ; 
-#                            sh:class                skos:Concept ;
-#                            sh:nodeKind             sh:IRI ;
-#                            sh:maxCount             1 ;
-#                            sh:order                1.0 ;
-#                            sh:path                 saa:typeOfDate ;
-#                          ] ;
-#     sh:property          [ rdfs:label  "Datum"@nl, "Date"@en ;
-#                            sh:desciption "Datum"@nl, "Date registration"@en ;
-#                            sh:path             rico:normalizedDateValue ;
-#                            sh:group            io:contentDescriptionGroup ;
-#                            sh:datatype         xsd:date ;
-#                            sh:maxCount         1 ;
-#                          ] ;
-#     sh:targetClass       saa:RelatedDate
-# .

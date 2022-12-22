@@ -66,10 +66,10 @@ deed:FondsShape
     sh:or          ( [ sh:class rt:Fonds ] ) ;
     sh:group       deed:identificationGroup ;
     dash:editor    memorix:LinkedRecordEditor ;
-    #sh:minCount    1 ;
+    sh:minCount    1 ;
     sh:maxCount    1 ;
     sh:order       1.0 ;
-    sh:path        rico:isOrWasIncludedIn .
+    sh:path        deed:isOrWasAlsoIncludedIn .
 
 
 deed:FileShape
@@ -77,7 +77,7 @@ deed:FileShape
     rdfs:label   "Bestanddeel"@nl , "Linked file"@en ;
     sh:desciption "Bestanddeel waartoe deze akte behoort"@nl, "The file where this deed belongs to"@en ;
     dash:editor  memorix:ConditionalLinkFieldEditor ;
-    memorix:conditionalLinkField rico:isOrWasIncludedIn ;
+    memorix:conditionalLinkField deed:isOrWasAlsoIncludedIn ;
     memorix:linkField [
         memorix:hasRecordType rt:File ;
         memorix:path file:fonds ;
@@ -89,7 +89,7 @@ deed:FileShape
     sh:nodeKind  sh:IRI ;
     sh:or        ( [ sh:class rt:File ] ) ;
     sh:order     2.0 ;
-    sh:path      deed:isDescribedIn .
+    sh:path      rico:isOrWasIncludedIn .
 
 
 deed:TitleShape
