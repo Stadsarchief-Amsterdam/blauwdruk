@@ -61,13 +61,13 @@ rt:Image
                               sh:nodeKind  sh:IRI ;
                               sh:or        ( [ sh:class rt:Fonds ] ) ;
                               sh:order     1.0 ;
-                              sh:path      rico:isOrWasIncludedIn ;
+                              sh:path      saa:isOrWasAlsoIncludedIn ;
                             ] ;
     sh:property             [ rdfs:label   "Bestanddeel"@nl, "File"@en ;
                               sh:desciption "Bestanddeel waaraan deze afbeelding gekoppeld is"@nl, "Description of the file to which this image belongs"@en ;
                               sh:message   "Kies een bestanddeel waar deze afbeelding uit komt."@nl, "Choose a file where this image belongs to."@en ;
                               dash:editor  memorix:ConditionalLinkFieldEditor ;
-                              memorix:conditionalLinkField rico:isOrWasIncludedIn ;
+                              memorix:conditionalLinkField saa:isOrWasAlsoIncludedIn ;
                               memorix:linkField [
                                   memorix:hasRecordType rt:File ;
                                   memorix:path file:fonds ;
@@ -77,7 +77,7 @@ rt:Image
                               sh:nodeKind  sh:IRI ;
                               sh:or        ( [ sh:class rt:File ] ) ;
                               sh:order     2.0 ;
-                              sh:path      image:isDescribedIn ;
+                              sh:path      rico:isOrWasIncludedIn ;
                             ] ;
     sh:property             [ rdfs:label              "Type afbeelding"@nl, "Type of image"@en ;
                               rdfs:comment            "Selecteer een waarde uit de lijst."@nl ;
