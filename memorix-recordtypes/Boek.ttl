@@ -204,7 +204,7 @@ schema:PublicationEvent
                            sh:maxCount 1 ;
                            sh:datatype xsd:string ;
                          ] ;
-    sh:property          [ rdfs:label  "Uitgever"@nl, "Organizer"@en ;
+    sh:property          [ rdfs:label  "Uitgever"@nl, "Publisher"@en ;
                            sh:path     schema:name ; # should be schema:organizer with schema:Organization 
                            sh:order    3.0 ;
                            sh:maxCount 1 ;
