@@ -100,7 +100,7 @@ rt:Series
                                       html:placeholder    "Bv 2 pakken"@nl, "eg 2 photographs" ;
                                       dash:editor         dash:TextFieldEditor ;
                                       sh:datatype         xsd:string ;
-                                      memorix:inSummaryAt 1 ;
+                                      memorix:inSummaryAt 3 ;
                                       sh:group            series:contentDescriptionGroup ;
                                       sh:maxCount         1 ;
                                       sh:order            3.0 ;
@@ -128,12 +128,14 @@ rico:DateRange
                            sh:path     rico:expressedDate
                          ] ;
     sh:property          [ rdfs:label  "Begindatum"@nl, "Begin date"@en ;
+                           memorix:inSummaryAt 1 ;
                            sh:datatype xsd:date ;
                            sh:maxCount 1 ;
                            sh:order    2.0 ;
                            sh:path     rico:hasBeginningDate
                          ] ;
     sh:property          [ rdfs:label  "Einddatum"@nl, "End date"@en ;
+                           memorix:inSummaryAt  2 ;
                            sh:datatype xsd:date ;
                            sh:maxCount 1 ;
                            sh:order    3.0 ;
