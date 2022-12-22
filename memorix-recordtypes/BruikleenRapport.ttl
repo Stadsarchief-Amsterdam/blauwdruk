@@ -64,7 +64,7 @@ loan:FondsShape
     sh:minCount    1 ;
     sh:maxCount    1 ;
     sh:order       1.0 ;
-    sh:path        loan:isOrWasAlsoIncludedIn 
+    sh:path        saa:isOrWasAlsoIncludedIn 
     .
 
 
@@ -74,7 +74,7 @@ loan:FileShape
     sh:desciption "Bestanddeel waartoe dit rapport behoort"@nl, "The file where this loan belongs to"@en ;
     sh:message   "Kies een bestanddeel om aan te koppelen. Dit is verplicht."@nl, "Choose a related (inventory) file. It is required."@en ;
     dash:editor  memorix:ConditionalLinkFieldEditor ;
-    memorix:conditionalLinkField loan:isOrWasAlsoIncludedIn ;
+    memorix:conditionalLinkField saa:isOrWasAlsoIncludedIn ;
     memorix:linkField [
         memorix:hasRecordType rt:File ;
         memorix:path file:fonds ;

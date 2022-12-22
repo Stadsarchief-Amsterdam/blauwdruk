@@ -56,13 +56,13 @@ rt:DigitalRecord
                               sh:nodeKind  sh:IRI ;
                               sh:or        ( [ sh:class rt:Fonds ] ) ;
                               sh:order     1.0 ;
-                              sh:path      io:isOrWasAlsoIncludedIn ;
+                              sh:path      saa:isOrWasAlsoIncludedIn ;
                             ] ;
     sh:property             [ rdfs:label   "Bestanddeel"@nl, "File"@en ;
                               sh:description "Bestanddeel waaraan dit object gekoppeld is"@nl, "Description of the file to which this object belongs"@en ;
                               sh:message   "Kies een bestanddeel waar dit object uit komt."@nl, "Choose a file where this object belongs to."@en ;
                               dash:editor  memorix:ConditionalLinkFieldEditor ;
-                              memorix:conditionalLinkField io:isOrWasAlsoIncludedIn ;
+                              memorix:conditionalLinkField saa:isOrWasAlsoIncludedIn ;
                               memorix:linkField [
                                   memorix:hasRecordType rt:File ;
                                   memorix:path file:fonds ;
