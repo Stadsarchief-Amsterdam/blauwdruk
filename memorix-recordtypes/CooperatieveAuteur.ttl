@@ -17,7 +17,7 @@
 @prefix rico:           <https://www.ica.org/standards/RiC/ontology#> .
 @prefix ric-rst:        <https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#> .
 @prefix ric-dft:        <https://www.ica.org/standards/RiC/vocabularies/documentaryFormTypes#> .
-@prefix saa:            <https://data.archief.amsterdam/ontology#> . #TBD
+@prefix saa:            <https://data.archief.amsterdam/ontology#> . 
 
 @prefix pnv:            <https://w3id.org/pnv#> .
 @prefix schema:         <http://schema.org/> .
@@ -61,6 +61,7 @@ rt:CooperativeAuthor
                                   ] ;
     sh:property                   [ rdfs:label           "Alternatieve namen"@nl, "Alternate names"@en ;
                                     memorix:searchWeight 2.0 ;
+                                    memorix:inSummaryAt  1.0 ;
                                     sh:datatype          xsd:string ;
                                     sh:group             cooperativeAuthor:alternativeGroup ;
                                     sh:maxCount          10 ;

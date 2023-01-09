@@ -17,7 +17,7 @@
 @prefix rico:           <https://www.ica.org/standards/RiC/ontology#> .
 @prefix ric-rst:        <https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#> .
 @prefix ric-dft:        <https://www.ica.org/standards/RiC/vocabularies/documentaryFormTypes#> .
-@prefix saa:            <https://data.archief.amsterdam/ontology#> . #TBD
+@prefix saa:            <https://data.archief.amsterdam/ontology#> . 
 
 @prefix pnv:            <https://w3id.org/pnv#> .
 @prefix schema:         <http://schema.org/> .
@@ -90,6 +90,7 @@ rt:Organisation
                                     sh:path     rico:isSuccessorOf ;
                                   ] ;
     sh:property                   [ rdfs:label           "Oprichtingsdatum"@nl, "Date of establishment"@en ;
+                                    memorix:inSummaryAt  1.0 ;
                                     sh:datatype          xsd:date ;
                                     sh:group             organisation:historyGroup ;
                                     sh:maxCount          1 ;
@@ -105,6 +106,7 @@ rt:Organisation
                                   ] ;
 
     sh:property                   [ rdfs:label           "Opheffingsdatum"@nl, "Date of dissolution"@en ;
+                                    memorix:inSummaryAt  2.0 ;
                                     sh:datatype          xsd:date ;
                                     sh:group             organisation:historyGroup ;
                                     sh:maxCount          1 ;

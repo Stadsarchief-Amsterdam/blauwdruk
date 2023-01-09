@@ -95,6 +95,7 @@ rt:Person
                            sh:path                  schema:deathPlace ] ;
     sh:property          [ rdfs:label               "Alternatieve namen"@nl, "Alternate names"@en  ;
                            memorix:searchWeight     2.0 ;
+                           memorix:inSummaryAt      1.0 ;
                            sh:datatype              xsd:string ;
                            sh:group                 person:alternativeGroup ;
                            sh:maxCount              10 ;

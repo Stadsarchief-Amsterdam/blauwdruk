@@ -157,6 +157,7 @@ rt:Image
                               sh:group    image:contentDescriptionGroup ;
                             ] ;
     sh:property             [ rdfs:label  "Vervaardigingsdatum"@nl, "Date of Creation"@en ;
+                              memorix:inSummaryAt    1.0 ;
                               sh:path     saa:creationDate ;
                               sh:order    7.0 ;
                               sh:maxCount 1 ;

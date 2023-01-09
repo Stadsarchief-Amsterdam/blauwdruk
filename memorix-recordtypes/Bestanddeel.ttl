@@ -95,7 +95,7 @@ rt:File
                                       rdfs:comment         "Korte beschrijving van dit inventarisnummer"@nl, "Title or short description"@en ;
                                       dash:singleLine      false ;
                                       dash:editor          dash:TextAreaEditor ;
-                                      memorix:inTitleAt    3 ;
+                                      memorix:inTitleAt    2 ;
                                       memorix:searchWeight 5.0 ;
                                       sh:datatype          xsd:string ;
                                       sh:group             file:identificationGroup ;
@@ -125,6 +125,7 @@ rt:File
                                     ] ;
     sh:property                     [ rdfs:label  "Uiterlijke vorm"@nl, "Resource extent"@en ;
                                       html:placeholder  "Bv 2 pakken"@nl, "eg 2 photographs"@en ;
+                                      memorix:inSummaryAt  3 ;
                                       sh:datatype xsd:string ;
                                       sh:group    file:contentDescriptionGroup ;
                                       sh:maxCount 1 ;

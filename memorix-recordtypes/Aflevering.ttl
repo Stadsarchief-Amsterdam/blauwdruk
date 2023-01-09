@@ -100,6 +100,7 @@ volume:NotaBeneShape
 volume:PublicationDateShape
     rdf:type    sh:PropertyShape ;
     rdfs:label  "Datering"@nl, "Date"@en ;
+    memorix:inSummaryAt  1.0 ;
     sh:group    volume:identificationGroup ;
     sh:order    4.0 ;
     sh:path     schema:startDate ;
