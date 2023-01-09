@@ -82,7 +82,6 @@ loan:FileShape
     sh:group     loan:identificationGroup ;
     sh:minCount  1 ;
     sh:maxCount  1 ;
-    sh:message   "Kies een bestanddeel om aan te koppelen. Dit is verplicht."@nl, "Choose a related (inventory) file. It is required."@en ;
     sh:nodeKind  sh:IRI ;
     sh:or        ( [ sh:class rt:File ] ) ;
     sh:order     2.0 ;
@@ -93,7 +92,7 @@ loan:ExhibitionOrganisationNameShape
     a                    sh:PropertyShape ;
     rdfs:label           "Organisatie werkveld"@nl, "Migrated Organisation"@en ;
     rdfs:comment         "Tijdelijk veld waarin data uit Scope gemigreerd wordt" ;
-    sh:description        ""@nl, ""@en ;
+    sh:description        "Dit veld wordt vanuit de migratie uit Scope gevuld, om daarna te worden bewerkt naar het veld Organisatie. Het is niet de bedoeling dat handmatig organisaties aan dit werkveld worden toegevoegd."@nl, "This field is solely for migration purposes and should not be used to enter new data."@en ;
     sh:datatype          xsd:string ;
     sh:group             loan:exhibitionGroup ;
     sh:maxCount          1 ;
@@ -104,7 +103,7 @@ loan:ExhibitionOrganisationNameShape
 loan:ExhibitionOrganisationShape
     a                    sh:PropertyShape ;
     rdfs:label           "Organisatie"@nl, "Organisation"@en ;
-    sh:description        ""@nl, ""@en ;
+    sh:description       "Kies een organisatie uit de lijst 'Organisatie'. Indien de Organisatie nog niet voorkomt, dient deze eerst te worden aangemaakt en daarna de koppeling te worden gelegd."@nl, "Link to Organisation."@en ;
     dash:editor          memorix:LinkedRecordEditor ;
     memorix:inSummaryAt  2.0 ;
     sh:nodeKind          sh:IRI ;
@@ -118,7 +117,6 @@ loan:ExhibitionOrganisationShape
 loan:ExhibitionTitleShape
     a                    sh:PropertyShape ;
     rdfs:label           "Titel tentoonstelling"@nl, "Exhibition title"@en ;
-    sh:description        ""@nl, ""@en ;
     memorix:inSummaryAt  1.0 ;
     memorix:searchWeight 3.0 ;
     sh:datatype          xsd:string ;
@@ -132,7 +130,7 @@ loan:ExhibitionTitleShape
 loan:ExhibitionInsuredValueShape
     a                    sh:PropertyShape ;
     rdfs:label           "Verzekeringswaarde"@nl, "Insured value"@en ;
-    sh:description        ""@nl, ""@en ;
+    sh:description        "Noteer verzekeringswaarde in euro."@nl, "Enter insurance value in euros."@en ;
     sh:datatype          xsd:integer ;
     sh:group             loan:exhibitionGroup ;
     sh:maxCount          1 ;
@@ -143,7 +141,6 @@ loan:ExhibitionInsuredValueShape
 loan:ExhibitionApprovedShape
     a                    sh:PropertyShape ;
     rdfs:label           "Aanvraag gehonoreerd?"@nl, "Request approved?"@en ;
-    sh:description        ""@nl, ""@en ;
     sh:datatype          xsd:boolean ;
     sh:group             loan:exhibitionGroup ;
     sh:maxCount          1 ;
@@ -153,8 +150,7 @@ loan:ExhibitionApprovedShape
 
 loan:ExhibitionBeginDateShape
     a                    sh:PropertyShape ;
-    rdfs:label           "Begindatum tentoonstelling"@nl, "Exhibition begin date"@en ;
-    sh:description        ""@nl, ""@en ;
+    rdfs:label           "Begindatum tentoonstelling"@nl, "Start date exhibition"@en ;
     memorix:inTitleAt    1.0 ;
     memorix:searchWeight 5.0 ;
     sh:datatype          xsd:date ;
@@ -167,8 +163,7 @@ loan:ExhibitionBeginDateShape
 
 loan:ExhibitionEndDateShape
     a                    sh:PropertyShape ;
-    rdfs:label           "Einddatum tentoonstelling"@nl, "Exhibition end date"@en ;
-    sh:description        ""@nl, ""@en ;
+    rdfs:label           "Einddatum tentoonstelling"@nl, "End date exhibition"@en ;
     sh:datatype          xsd:date ;
     sh:group             loan:exhibitionGroup ;
     sh:maxCount          1 ;
@@ -180,7 +175,7 @@ loan:ExhibitedPageShape
     a                    sh:PropertyShape ;
     rdfs:label           "Tentoongestelde pagina"@nl, "Exhibited page"@en ;
     rdfs:comment         "Het object dat daadwerkelijk blootgesteld wordt aan licht"@nl, "Exhibited page"@en ;
-    sh:description        ""@nl, ""@en ;
+    sh:description        "Noteer welk gedeelte van de bruikleen getoond zal worden."@nl, "Enter part of loan to be exhibited."@en ;
     sh:datatype          xsd:string ;
     sh:group             loan:conditionGroup ;
     sh:maxCount          1 ;
@@ -190,8 +185,7 @@ loan:ExhibitedPageShape
 
 loan:LightSensitivityShape
     a                    sh:PropertyShape ;
-    rdfs:label           "Lichtgevoeligheid (ISO 105-B02)"@nl, "Light sensitivity (ISO 105-B02)"@en ;
-    sh:description        ""@nl, ""@en ;
+    rdfs:label           "Lichtgevoeligheid (ISO 105-B02)"@nl, "Photosensitivity (ISO 105-B02)"@en ;
     sh:datatype          xsd:integer ;
     sh:group             loan:conditionGroup ;
     sh:maxCount          1 ;
@@ -205,7 +199,7 @@ loan:LightSensitivityShape
 loan:openingHoursShape
     a                    sh:PropertyShape ;
     rdfs:label           "Openingsuren per week"@nl, "Opening hours per week"@en ;
-    sh:description        ""@nl, ""@en ;
+    #sh:description        "Noteer aantal openingsuren per week."@nl, "Enter amount of hours opened a week."@en ;
     sh:datatype          xsd:integer ;
     sh:group             loan:conditionGroup ;
     sh:maxCount          1 ;
@@ -215,8 +209,8 @@ loan:openingHoursShape
 
 loan:LumenShape
     a                    sh:PropertyShape ;
-    rdfs:label           "Belichtingsduur in uren (totaal)"@nl, "Lumen"@en ;
-    sh:description        "Noteer belichtingsduur in uren"@nl, "Enter exposure time in hours"@en ;
+    rdfs:label           "Belichtingsduur in uren"@nl, "Exposure time in hours"@en ;
+    #sh:description       "Noteer belichtingsduur in uren."@nl, "Enter exposure time in hours."@en ;
     sh:datatype          xsd:integer ;
     sh:group             loan:conditionGroup ;
     sh:maxCount          1 ;
