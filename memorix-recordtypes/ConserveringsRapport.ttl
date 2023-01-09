@@ -69,7 +69,7 @@ report:FondsShape
     rdf:type       sh:PropertyShape;
     memorix:typeOf memorix:FondsFieldLink ;
     rdfs:label     "Archief"@nl, "Fonds"@en ;
-    sh:desciption  "Archief waar dit rapport bij hoort"@nl, "Fonds to which this report belongs"@en ;
+    sh:description  "Archief waar dit rapport bij hoort"@nl, "Fonds to which this report belongs"@en ;
     sh:message     "Kies het archief waar dit rapport uit komt"@nl, "Choose a fonds where this report belongs to"@en ;
     sh:nodeKind    sh:IRI ;
     sh:or          ( [ sh:class rt:Fonds ] ) ;
@@ -84,7 +84,7 @@ report:FondsShape
 report:FileShape
     rdf:type     sh:PropertyShape ;
     rdfs:label   "Bestanddeel"@nl , "Linked file"@en ;
-    sh:desciption "Bestanddeel waartoe dit rapport behoort"@nl, "The file where this report belongs to"@en ;
+    sh:description "Bestanddeel waartoe dit rapport behoort"@nl, "The file where this report belongs to"@en ;
     sh:message   "Kies een bestanddeel om aan te koppelen. Dit is verplicht."@nl, "Choose a related (inventory) file. It is required."@en ;
     dash:editor  memorix:ConditionalLinkFieldEditor ;
     memorix:conditionalLinkField saa:isOrWasAlsoIncludedIn ;

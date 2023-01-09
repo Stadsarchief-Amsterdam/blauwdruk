@@ -48,14 +48,14 @@ rt:LoanReport
     sh:ignoredProperties ( rdf:type ) ;
     sh:property          loan:FondsShape, loan:FileShape, loan:ExhibitionOrganisationNameShape, loan:ExhibitionOrganisationShape, loan:ExhibitionTitleShape, loan:ExhibitionInsuredValueShape, loan:ExhibitionApprovedShape, loan:ExhibitionBeginDateShape, loan:ExhibitionEndDateShape ;
     sh:property          loan:ExhibitedPageShape, loan:LightSensitivityShape, loan:openingHoursShape, loan:LumenShape ;
-    sh:property          loan:InternalRemarksShape ;
+    sh:property          loan:InternalRemarksShape, loan:MannerOfDisplayShape ;
 .
 
 loan:FondsShape
     rdf:type       sh:PropertyShape;
     memorix:typeOf memorix:FondsFieldLink ;
     rdfs:label     "Archief"@nl, "Fonds"@en ;
-    sh:desciption  "Archief waar dit rapport bij hoort"@nl, "Fonds to which this report belongs"@en ;
+    sh:description  "Archief waar dit rapport bij hoort"@nl, "Fonds to which this report belongs"@en ;
     sh:message     "Kies het archief waar dit rapport uit komt"@nl, "Choose a fonds where this report belongs to"@en ;
     sh:nodeKind    sh:IRI ;
     sh:or          ( [ sh:class rt:Fonds ] ) ;
@@ -71,7 +71,7 @@ loan:FondsShape
 loan:FileShape
     rdf:type     sh:PropertyShape ;
     rdfs:label   "Bestanddeel"@nl , "Linked file"@en ;
-    sh:desciption "Bestanddeel waartoe dit rapport behoort"@nl, "The file where this loan belongs to"@en ;
+    sh:description "Bestanddeel waartoe dit rapport behoort"@nl, "The file where this loan belongs to"@en ;
     sh:message   "Kies een bestanddeel om aan te koppelen. Dit is verplicht."@nl, "Choose a related (inventory) file. It is required."@en ;
     dash:editor  memorix:ConditionalLinkFieldEditor ;
     memorix:conditionalLinkField saa:isOrWasAlsoIncludedIn ;
@@ -93,6 +93,7 @@ loan:ExhibitionOrganisationNameShape
     a                    sh:PropertyShape ;
     rdfs:label           "Organisatie werkveld"@nl, "Migrated Organisation"@en ;
     rdfs:comment         "Tijdelijk veld waarin data uit Scope gemigreerd wordt" ;
+    sh:description        ""@nl, ""@en ;
     sh:datatype          xsd:string ;
     sh:group             loan:exhibitionGroup ;
     sh:maxCount          1 ;
@@ -103,6 +104,7 @@ loan:ExhibitionOrganisationNameShape
 loan:ExhibitionOrganisationShape
     a                    sh:PropertyShape ;
     rdfs:label           "Organisatie"@nl, "Organisation"@en ;
+    sh:description        ""@nl, ""@en ;
     dash:editor          memorix:LinkedRecordEditor ;
     memorix:inSummaryAt  2.0 ;
     sh:nodeKind          sh:IRI ;
@@ -116,6 +118,7 @@ loan:ExhibitionOrganisationShape
 loan:ExhibitionTitleShape
     a                    sh:PropertyShape ;
     rdfs:label           "Titel tentoonstelling"@nl, "Exhibition title"@en ;
+    sh:description        ""@nl, ""@en ;
     memorix:inSummaryAt  1.0 ;
     memorix:searchWeight 3.0 ;
     sh:datatype          xsd:string ;
@@ -129,6 +132,7 @@ loan:ExhibitionTitleShape
 loan:ExhibitionInsuredValueShape
     a                    sh:PropertyShape ;
     rdfs:label           "Verzekeringswaarde"@nl, "Insured value"@en ;
+    sh:description        ""@nl, ""@en ;
     sh:datatype          xsd:integer ;
     sh:group             loan:exhibitionGroup ;
     sh:maxCount          1 ;
@@ -139,6 +143,7 @@ loan:ExhibitionInsuredValueShape
 loan:ExhibitionApprovedShape
     a                    sh:PropertyShape ;
     rdfs:label           "Aanvraag gehonoreerd?"@nl, "Request approved?"@en ;
+    sh:description        ""@nl, ""@en ;
     sh:datatype          xsd:boolean ;
     sh:group             loan:exhibitionGroup ;
     sh:maxCount          1 ;
@@ -149,6 +154,7 @@ loan:ExhibitionApprovedShape
 loan:ExhibitionBeginDateShape
     a                    sh:PropertyShape ;
     rdfs:label           "Begindatum tentoonstelling"@nl, "Exhibition begin date"@en ;
+    sh:description        ""@nl, ""@en ;
     memorix:inTitleAt    1.0 ;
     memorix:searchWeight 5.0 ;
     sh:datatype          xsd:date ;
@@ -162,6 +168,7 @@ loan:ExhibitionBeginDateShape
 loan:ExhibitionEndDateShape
     a                    sh:PropertyShape ;
     rdfs:label           "Einddatum tentoonstelling"@nl, "Exhibition end date"@en ;
+    sh:description        ""@nl, ""@en ;
     sh:datatype          xsd:date ;
     sh:group             loan:exhibitionGroup ;
     sh:maxCount          1 ;
@@ -173,6 +180,7 @@ loan:ExhibitedPageShape
     a                    sh:PropertyShape ;
     rdfs:label           "Tentoongestelde pagina"@nl, "Exhibited page"@en ;
     rdfs:comment         "Het object dat daadwerkelijk blootgesteld wordt aan licht"@nl, "Exhibited page"@en ;
+    sh:description        ""@nl, ""@en ;
     sh:datatype          xsd:string ;
     sh:group             loan:conditionGroup ;
     sh:maxCount          1 ;
@@ -183,6 +191,7 @@ loan:ExhibitedPageShape
 loan:LightSensitivityShape
     a                    sh:PropertyShape ;
     rdfs:label           "Lichtgevoeligheid (ISO 105-B02)"@nl, "Light sensitivity (ISO 105-B02)"@en ;
+    sh:description        ""@nl, ""@en ;
     sh:datatype          xsd:integer ;
     sh:group             loan:conditionGroup ;
     sh:maxCount          1 ;
@@ -196,6 +205,7 @@ loan:LightSensitivityShape
 loan:openingHoursShape
     a                    sh:PropertyShape ;
     rdfs:label           "Openingsuren per week"@nl, "Opening hours per week"@en ;
+    sh:description        ""@nl, ""@en ;
     sh:datatype          xsd:integer ;
     sh:group             loan:conditionGroup ;
     sh:maxCount          1 ;
@@ -206,6 +216,7 @@ loan:openingHoursShape
 loan:LumenShape
     a                    sh:PropertyShape ;
     rdfs:label           "Belichtingsduur in uren (totaal)"@nl, "Lumen"@en ;
+    sh:description        "Noteer belichtingsduur in uren"@nl, "Enter exposure time in hours"@en ;
     sh:datatype          xsd:integer ;
     sh:group             loan:conditionGroup ;
     sh:maxCount          1 ;
@@ -216,11 +227,25 @@ loan:LumenShape
 loan:InternalRemarksShape
     a                sh:PropertyShape ;
     rdfs:label       "Interne opmerking"@nl, "Internal remarks"@en ;
+    sh:description    "Gebruik spaarzaam voor informatie van belang en elders geen plek heeft, met vermelding van je naam en jaar van opmerking."@nl, "Use sparingly for information of interest that has no other place and state your name and year of remark."@en ;
+    dash:editor      dash:TextAreaEditor ;
+    memorix:audience memorix:audienceInternal ;
+    sh:datatype      xsd:string ;
+    sh:group         loan:managementGroup ;
+    sh:maxCount      1 ;
+    sh:order         2.0 ;
+    sh:path          saa:internalRemarks
+.
+
+loan:MannerOfDisplayShape
+    a                sh:PropertyShape ;
+    rdfs:label       "Tentoonstellingswijze"@nl, "Manner of display"@en ;
+    sh:description    "Noteer de manier waarop de bruikleen getoond zal worden."@nl, "Enter the manner in which the loan will be exhibited."@en ;
     dash:editor      dash:TextAreaEditor ;
     memorix:audience memorix:audienceInternal ;
     sh:datatype      xsd:string ;
     sh:group         loan:managementGroup ;
     sh:maxCount      1 ;
     sh:order         1.0 ;
-    sh:path          saa:internalRemarks
+    sh:path          saa:mannerOfDisplay
 .

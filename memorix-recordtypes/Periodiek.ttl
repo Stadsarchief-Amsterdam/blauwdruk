@@ -109,7 +109,7 @@ periodical:sameAsShape
     rdfs:label              "Identiek aan (worldcat)"@nl, "Is same as (worldcat)"@en ;
     dash:editor             memorix:IriEditor ;
     sh:nodeKind             sh:IRI ;
-    sh:desciption           "Plak hier eeen worldcat URI in"@nl, "Please provide a worldcat URI"@en ; 
+    sh:description           "Plak hier eeen worldcat URI in"@nl, "Please provide a worldcat URI"@en ; 
     sh:message              "Waarde moet beginnen met http of https"@nl, "Value must start with http:// or https:// consist of a valid IRI"@en ;
     sh:pattern              "^https?://" ;
     sh:flags                "i" ;

@@ -245,7 +245,7 @@ saa:RelatedAgent
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property          [ rdfs:label              "Rol actor"@nl, "Role of related agent"@en ;
-                           sh:desciption           "Rol van gerelateerd persoon, organisatie of familie"@nl, "Role of related person, organisation or family"@en ;
+                           sh:description           "Rol van gerelateerd persoon, organisatie of familie"@nl, "Role of related person, organisation or family"@en ;
                            dash:editor             memorix:VocabularyEditor ;
                            memorix:conceptSchemeIn vocabularies:0dada355-9e1e-4f1f-8d86-0455d6067bb7 ;
                            sh:class                skos:Concept ;
@@ -255,7 +255,7 @@ saa:RelatedAgent
                            sh:path                 saa:hasRole ;
                          ] ;
     sh:property          [ rdfs:label  "Actor"@nl, "Agent"@en ;
-                           sh:desciption "Kies hier alleen geïdentificeerde personen, organisaties of families"@nl, "Only select identified agents from the person, organisation or family recordtypes"@en ;
+                           sh:description "Kies hier alleen geïdentificeerde personen, organisaties of families"@nl, "Only select identified agents from the person, organisation or family recordtypes"@en ;
                            dash:editor memorix:LinkedRecordEditor ;
                            sh:message  "Kies een persoon, organisatie of familie uit de lijst."@nl, "Please choose a person, organisation or family"@en ;
                            sh:nodeKind sh:IRI ;

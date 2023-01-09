@@ -87,7 +87,7 @@ book:TitleShape
 book:SeriesTitleShape
     rdf:type             sh:PropertyShape ;
     rdfs:label           "Title of series"@en, "Serietitel"@nl ;
-    sh:desciption        "Als de titel onderdeel uitmaakt van een serie, geef ook de serietitel"@nl, "If this book is part of a series, also enter the Serie title"@en ;
+    sh:description        "Als de titel onderdeel uitmaakt van een serie, geef ook de serietitel"@nl, "If this book is part of a series, also enter the Serie title"@en ;
     memorix:searchWeight 5.0 ;
     sh:datatype          xsd:string ;
     sh:group             book:identificationGroup ;
@@ -154,7 +154,7 @@ book:sameAsShape
     rdfs:label              "Identiek aan (worldcat)"@nl, "Is same as (worldcat)"@en ;
     dash:editor             memorix:IriEditor ;
     sh:nodeKind             sh:IRI ;
-    sh:desciption           "Plak hier eeen worldcat URI in"@nl, "Please provide a worldcat URI"@en ; 
+    sh:description           "Plak hier eeen worldcat URI in"@nl, "Please provide a worldcat URI"@en ; 
     sh:message              "Waarde moet beginnen met http of https"@nl, "Value must start with http:// or https:// consist of a valid IRI"@en ;
     sh:pattern              "^https?://" ;
     sh:flags                "i" ;

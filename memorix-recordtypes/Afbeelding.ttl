@@ -53,7 +53,7 @@ rt:Image
     dash:defaultViewForRole dash:all ;
     sh:targetClass          rt:Image ;
     sh:property             [ rdfs:label   "Archief"@nl, "Fonds"@en ;
-                              sh:desciption "Archief waar deze afbeelding bij hoort"@nl, "Fonds to which this image belongs"@en ;
+                              sh:description "Archief waar deze afbeelding bij hoort"@nl, "Fonds to which this image belongs"@en ;
                               sh:message   "Kies het archief waar deze afbeelding uit komt."@nl, "Choose a fonds where this image belongs to."@en ;
                               dash:editor  memorix:LinkedRecordEditor ;
                               sh:group     image:identificationGroup ;
@@ -64,7 +64,7 @@ rt:Image
                               sh:path      rico:isOrWasIncludedIn ;
                             ] ;
     sh:property             [ rdfs:label   "Bestanddeel"@nl, "File"@en ;
-                              sh:desciption "Bestanddeel waaraan deze afbeelding gekoppeld is"@nl, "Description of the file to which this image belongs"@en ;
+                              sh:description "Bestanddeel waaraan deze afbeelding gekoppeld is"@nl, "Description of the file to which this image belongs"@en ;
                               sh:message   "Kies een bestanddeel waar deze afbeelding uit komt."@nl, "Choose a file where this image belongs to."@en ;
                               dash:editor  memorix:ConditionalLinkFieldEditor ;
                               memorix:conditionalLinkField rico:isOrWasIncludedIn ;
