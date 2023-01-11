@@ -105,7 +105,7 @@ rt:PersonObservation
                            sh:maxCount 1 ;
                            sh:order    7.0 ;
                            sh:path     saa:internalRemarks ;
-                           memorix:audience memorix:audienceInternal 
+                           memorix:audience memorix:AudienceInternal 
                          ] ;
     sh:property          [ rdfs:label  "Overleden"@nl, "Deceased"@en ;
                            sh:datatype xsd:boolean ;

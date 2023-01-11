@@ -113,7 +113,7 @@ rt:Person
                            sh:path                  owl:sameAs ] ;
     sh:property          [ rdfs:label               "Interne opmerking"@nl, "Internal remarks"@en ;
                            dash:editor              dash:TextAreaEditor ;
-                           memorix:audience         memorix:audienceInternal ;
+                           memorix:audience         memorix:AudienceInternal ;
                            sh:datatype              xsd:string ;
                            sh:group                 person:managementGroup ;
                            sh:maxCount              1 ;

@@ -85,7 +85,7 @@ rt:Family
                                   ] ;
     sh:property                   [ rdfs:label       "Interne opmerking"@nl, "Internal remarks"@en ;
                                     dash:editor      dash:TextAreaEditor ;
-                                    memorix:audience memorix:audienceInternal ;
+                                    memorix:audience memorix:AudienceInternal ;
                                     sh:datatype      xsd:string ;
                                     sh:group         family:managementGroup ;
                                     sh:maxCount      1 ;

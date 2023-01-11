@@ -358,7 +358,7 @@ report:OtherTreatmentShape
     a                sh:PropertyShape ;
     rdfs:label       "Behandeling overig"@nl, "Treatment other"@en ;
     dash:editor      dash:TextAreaEditor ;
-    memorix:audience memorix:audienceInternal ;
+    memorix:audience memorix:AudienceInternal ;
     sh:datatype      xsd:string ;
     sh:group         report:treatmentGroup ;
     sh:order         2.0 ;
@@ -369,7 +369,7 @@ report:OtherTreatmentShape
 report:ExternalConservatorShape
     a                sh:PropertyShape ;
     rdfs:label       "Externe behandelaar"@nl, "External conservator"@en ;
-    memorix:audience memorix:audienceInternal ;
+    memorix:audience memorix:AudienceInternal ;
     sh:datatype      xsd:string ;
     sh:group         report:treatmentGroup ;
     sh:maxCount      1 ;
@@ -381,7 +381,7 @@ report:InternalRemarksShape
     a                sh:PropertyShape ;
     rdfs:label       "Interne opmerking"@nl, "Internal remarks"@en ;
     dash:editor      dash:TextAreaEditor ;
-    memorix:audience memorix:audienceInternal ;
+    memorix:audience memorix:AudienceInternal ;
     sh:datatype      xsd:string ;
     sh:group         report:managementGroup ;
     sh:maxCount      1 ;

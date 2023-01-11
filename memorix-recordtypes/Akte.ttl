@@ -168,7 +168,7 @@ deed:InternalRemarksShape
     sh:group    deed:managementGroup ;
     sh:maxCount 1 ;
     sh:order    8.0 ;
-    memorix:audience memorix:audienceInternal ;
+    memorix:audience memorix:AudienceInternal ;
     sh:path     saa:internalRemarks .
 
 ## shapes

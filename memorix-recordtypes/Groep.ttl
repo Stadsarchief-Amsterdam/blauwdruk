@@ -108,7 +108,7 @@ rt:Series
                                     ] ;
     sh:property                     [ rdfs:label       "Interne opmerking"@nl, "Internal remarks"@en ;
                                       dash:editor      dash:TextAreaEditor ;
-                                      memorix:audience memorix:audienceInternal ;
+                                      memorix:audience memorix:AudienceInternal ;
                                       sh:datatype      xsd:string ;
                                       sh:group         series:managementGroup ;
                                       sh:order         4.0 ;

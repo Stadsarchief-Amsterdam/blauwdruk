@@ -44,7 +44,7 @@ rt:Acquisition
     sh:closed                       true ;
     sh:ignoredProperties            ( rdf:type ) ;
     memorix:hasInformationComponent memorix:DepotLocationComponent ;
-    memorix:audience                memorix:audienceInternal ;
+    memorix:audience                memorix:AudienceInternal ;
     sh:property                     [ rdfs:label        "Nummer aanwinst"@nl, "Number of the acquisition"@en ;
                                       rdfs:comment      "Unieke nummer dat correspondeert met de mappenstructuur waarin de AVO-dossiers bewaard worden."@nl,
                                                         "Unique number corresponding to the directory where the AVO-file is stored."@en ;
@@ -155,7 +155,7 @@ acquisition:AcquisitionRecordSet
                            sh:maxCount 1 ;
                          ] ;
     sh:property          [ rdfs:label  "Stuksoort werkveld"@nl, "Migrated DocumentaryFormType"@en ;
-                           memorix:audience memorix:audienceInternal ;
+                           memorix:audience memorix:AudienceInternal ;
                            sh:description "Tijdelijk veld om huidige data te migreren en later te standaardiseren"@nl, "Temporary field to migrate data and standardize afterwards"@en;
                            sh:path     acquisition:documentaryFormTypeTextualValue ;
                            sh:order    2.0 ;

@@ -160,7 +160,7 @@ rt:Fonds
     sh:property          [ rdfs:label   "Interne opmerkingen"@nl, "Internal remarks"@en ;
                            rdfs:comment "Veld voor allerlei interne opmerkingen. Wordt niet gepubliceerd."@nl , "Divers remarks intended for internal administration"@en;
                            dash:editor  dash:TextAreaEditor ;
-                           memorix:audience memorix:audienceInternal ;
+                           memorix:audience memorix:AudienceInternal ;
                            sh:maxCount  1 ;
                            sh:datatype  xsd:string ;
                            sh:group     fonds:managementGroup ;
@@ -168,7 +168,7 @@ rt:Fonds
                            sh:path      saa:internalRemarks ; ] ;
     sh:property          [ rdfs:label   "Status"@nl , "Status"@en;
                            rdfs:comment "Status van het archief."@nl , "Status of the fonds"@en ;
-                           memorix:audience memorix:audienceInternal ;
+                           memorix:audience memorix:AudienceInternal ;
                            sh:message   "Status is verplicht. Moet een van de volgende waardes zijn: aanwezig, nog niet aanwezig, vervallen, te vernietigen, vernietigd"@nl , "Must be one of the following (Dutch) terms: aanwezig, nog niet aanwezig, vervallen, te vernietigen, vernietigd. Mandatory."@en ;
                            dash:editor  dash:EnumSelectEditor ;
                            sh:minCount  1 ;

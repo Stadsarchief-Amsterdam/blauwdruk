@@ -229,7 +229,7 @@ book:StatusShape
     rdfs:label       "Status"@nl, "Status"@en ;
     rdfs:comment     "Status van het inventarisnummer/boek."@nl, "Status of the book in the archive"@en ;
     dash:editor      dash:EnumSelectEditor ;
-    memorix:audience memorix:audienceInternal ;
+    memorix:audience memorix:AudienceInternal ;
     sh:group         book:managementGroup ;
     sh:in            ( "aanwezig" "in bewerking" "vervallen" "vermist" "vernietigd" ) ;
     sh:message       "Status is verplicht. Kies uit de lijst"@nl, "Status is mandatory. Please choose from the list." ;

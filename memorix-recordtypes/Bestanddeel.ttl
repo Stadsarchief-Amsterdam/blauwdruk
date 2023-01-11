@@ -201,7 +201,7 @@ rt:File
                                     ] ;
     sh:property                     [ rdfs:label  "Bergingsnummers"@nl, "Old storage numbers (bergingsnummers)"@en  ;
                                       dash:editor dash:TextAreaEditor ;
-                                      memorix:audience memorix:audienceInternal ;
+                                      memorix:audience memorix:AudienceInternal ;
                                       sh:datatype xsd:string ;
                                       sh:group    file:managementGroup ;
                                       sh:maxCount 1 ;
@@ -210,7 +210,7 @@ rt:File
                                     ] ;
     sh:property             [ rdfs:label       "Oude nummers"@nl, "Old numbers"@en ;
                               dash:editor      dash:TextAreaEditor ;
-                              memorix:audience memorix:audienceInternal ;
+                              memorix:audience memorix:AudienceInternal ;
                               sh:path          file:oldNumbers ;
                               sh:datatype      xsd:string ;
                               sh:maxCount      1 ;
@@ -219,7 +219,7 @@ rt:File
                             ] ;
     sh:property                     [ rdfs:label       "Interne opmerking"@nl, "Internal remarks"@en ;
                                       dash:editor      dash:TextAreaEditor ;
-                                      memorix:audience memorix:audienceInternal ;
+                                      memorix:audience memorix:AudienceInternal ;
                                       sh:datatype      xsd:string ;
                                       sh:group         file:managementGroup ;
                                       sh:maxCount      1 ;
@@ -228,7 +228,7 @@ rt:File
                                     ] ;
     sh:property                     [ rdfs:label       "Auteursrechtopmerking (intern)"@nl, "Copyright remarks (internal)"@en ;
                                       rdfs:comment     "Bijvoorbeeld: niet gecontroleerd, niet geregeld"@nl ;
-                                      memorix:audience memorix:audienceInternal ;
+                                      memorix:audience memorix:AudienceInternal ;
                                       sh:datatype      xsd:string ;
                                       sh:group         file:managementGroup ;
                                       sh:maxCount      1 ;
@@ -261,7 +261,7 @@ rt:File
                                       dash:editor  dash:EnumSelectEditor ;
                                       sh:minCount  1 ;
                                       sh:maxCount  1 ;
-                                      memorix:audience memorix:audienceInternal ;
+                                      memorix:audience memorix:AudienceInternal ;
                                       sh:in        ( "aanwezig" "in bewerking" "te vernietigen" "vermist" "vernietigd" "vervallen" ) ;
                                       sh:group     file:managementGroup ;
                                       sh:order     10.0 ;

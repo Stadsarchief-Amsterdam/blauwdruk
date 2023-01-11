@@ -175,7 +175,7 @@ rt:Image
                             ] ;
     sh:property             [ rdfs:label       "Oude nummers"@nl, "Old numbers"@en ;
                               dash:editor      dash:TextAreaEditor ;
-                              memorix:audience memorix:audienceInternal ;
+                              memorix:audience memorix:AudienceInternal ;
                               sh:path          image:oldNumbers ;
                               sh:datatype      xsd:string ;
                               sh:maxCount      1 ;
@@ -183,7 +183,7 @@ rt:Image
                               sh:group         image:managementGroup ;
                             ] ;
     sh:property             [ rdfs:label       "Interne opmerking"@nl, "Internal remarks"@en ;
-                              memorix:audience memorix:audienceInternal ;
+                              memorix:audience memorix:AudienceInternal ;
                               sh:datatype      xsd:string ;
                               sh:maxCount      1 ;
                               sh:group         image:managementGroup ;
@@ -192,7 +192,7 @@ rt:Image
                               dash:editor      dash:TextAreaEditor ;
                             ] ;
     sh:property             [ rdfs:label       "Auteursrecht opmerking (intern)"@nl, "Copyright remarks (internal)"@en ;
-                              memorix:audience memorix:audienceInternal ;
+                              memorix:audience memorix:AudienceInternal ;
                               sh:datatype      xsd:string ;
                               sh:maxCount      1 ;
                               sh:group         image:managementGroup ;
@@ -233,7 +233,7 @@ rico:Instantiation
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property          [ rdfs:label  "Objecttype werkveld"@nl, "Migrated Object type"@en ;
-                           memorix:audience memorix:audienceInternal ;
+                           memorix:audience memorix:AudienceInternal ;
                            sh:description "Tijdelijk veld om huidige data te migreren en later te standaardiseren"@nl, "Temporary field to migrate data and standardize afterwards"@en;
                            sh:path     saa:objectTypeTextualValue ;
                            sh:maxCount       1 ;
@@ -251,7 +251,7 @@ rico:Instantiation
                             sh:path                 saa:objectType ;
                          ] ;
     sh:property          [ rdfs:label  "Techniek werkveld"@nl, "Migrated Technique"@en ;
-                           memorix:audience memorix:audienceInternal ;
+                           memorix:audience memorix:AudienceInternal ;
                            sh:description "Tijdelijk veld om huidige data te migreren en later te standaardiseren"@nl, "Temporary field to migrate data and standardize afterwards"@en;
                            sh:path     saa:techniqueTextualValue ;
                            sh:maxCount       1 ;
@@ -269,7 +269,7 @@ rico:Instantiation
                            sh:path                 saa:technique ;
                          ] ;
     sh:property          [ rdfs:label  "Materialen werkveld"@nl, "Migrated Materials"@en ;
-                           memorix:audience memorix:audienceInternal ;
+                           memorix:audience memorix:AudienceInternal ;
                            sh:description "Tijdelijk veld om huidige data te migreren en later te standaardiseren"@nl, "Temporary field to migrate data and standardize afterwards"@en;
                            sh:path     saa:materialTextualValue ;
                            sh:maxCount       1 ;

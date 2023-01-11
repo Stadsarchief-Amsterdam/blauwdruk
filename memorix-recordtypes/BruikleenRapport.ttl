@@ -85,7 +85,7 @@ loan:FileShape
     sh:nodeKind  sh:IRI ;
     sh:or        ( [ sh:class rt:File ] ) ;
     sh:order     2.0 ;
-    sh:path      rico::isOrWasIncludedIn 
+    sh:path      rico:isOrWasIncludedIn 
 .
 
 loan:ExhibitionOrganisationNameShape
@@ -223,7 +223,7 @@ loan:InternalRemarksShape
     rdfs:label       "Interne opmerking"@nl, "Internal remarks"@en ;
     sh:description    "Gebruik spaarzaam voor informatie van belang en elders geen plek heeft, met vermelding van je naam en jaar van opmerking."@nl, "Use sparingly for information of interest that has no other place and state your name and year of remark."@en ;
     dash:editor      dash:TextAreaEditor ;
-    memorix:audience memorix:audienceInternal ;
+    memorix:audience memorix:AudienceInternal ;
     sh:datatype      xsd:string ;
     sh:group         loan:managementGroup ;
     sh:maxCount      1 ;
@@ -236,7 +236,7 @@ loan:MannerOfDisplayShape
     rdfs:label       "Tentoonstellingswijze"@nl, "Manner of display"@en ;
     sh:description    "Noteer de manier waarop de bruikleen getoond zal worden."@nl, "Enter the manner in which the loan will be exhibited."@en ;
     dash:editor      dash:TextAreaEditor ;
-    memorix:audience memorix:audienceInternal ;
+    memorix:audience memorix:AudienceInternal ;
     sh:datatype      xsd:string ;
     sh:group         loan:managementGroup ;
     sh:maxCount      1 ;
