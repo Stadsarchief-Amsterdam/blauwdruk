@@ -280,7 +280,7 @@ rt:File
                                       sh:group     file:managementGroup ;
                                       sh:maxCount 1 ;
                                       sh:order    12.0 ;
-                                      sh:path     file:missingDate
+                                      sh:path     file:missingSinceDate
                                     ] 
                                     .
 
