@@ -190,22 +190,22 @@ rt:File
                                       sh:maxCount  1 ;
                                       sh:order     2.0 ;
                                       sh:path      file:digitalBorn
-                                    ] ;
-    sh:property                     [ rdfs:label   "Oorspronkelijke bestandsnaam"@nl, "Original filename"@en ;
-                                      rdfs:comment "De oorspronkelijke bestandsnaam in het geval die hernoemd is."@nl, "Original filename, in case the file had to be renamed."@en  ;
-                                      sh:datatype  xsd:string ;
-                                      sh:group     file:managementGroup ;
-                                      sh:maxCount  1 ;
-                                      sh:order     3.0 ;
-                                      sh:path      file:originalFilename
-                                    ] ;                                    
+                                    ] ;                              
     sh:property                     [ rdfs:label   "Gedigitaliseerd?"@nl, "Digitized?"@en ;
                                       rdfs:comment "Geeft aan of dit stuk gedigitaliseerd is"@nl, "Whether the records were digitized or not"@en ;
                                       sh:datatype  xsd:boolean ;
                                       sh:group     file:managementGroup ;
                                       sh:maxCount  1 ;
-                                      sh:order     4.0 ;
+                                      sh:order     3.0 ;
                                       sh:path      file:digitised
+                                    ] ;
+    sh:property                     [ rdfs:label   "Hernoemde bestanden"@nl, "Renamed files"@en ;
+                                      sh:class     file:DigitalFilename ;
+                                      sh:group     file:managementGroup ;
+                                      sh:path      file:hasRenamedFile ;
+                                      sh:order     4.0 ;
+                                     # sh:maxCount  1000 ;
+                                      sh:nodeKind  sh:BlankNode ;
                                     ] ;
     sh:property                     [ rdfs:label  "Bergingsnummers"@nl, "Old storage numbers (bergingsnummers)"@en  ;
                                       dash:editor dash:TextAreaEditor ;
@@ -430,3 +430,23 @@ saa:RelatedAgent
                          ] ;
     sh:targetClass       saa:RelatedAgent
 .
+
+file:DigitalFilename
+    a                    sh:NodeShape ;
+    sh:closed            true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:targetClass       file:DigitalFilename ;
+    sh:property          [ rdfs:label   "Oorspronkelijke bestandsnaam"@nl, "Original filename"@en ;
+                           sh:description "De oorspronkelijke bestandsnaam in het geval die hernoemd is."@nl, "Original filename, in case the file had to be renamed."@en  ;
+                           sh:datatype  xsd:string ;
+                           sh:maxCount  1 ;
+                           sh:order     1.0 ;
+                           sh:path      file:originalFilename
+                         ] ;      
+    sh:property          [ rdfs:label   "Bestandsnaam"@nl, "Filename"@en ;
+                           sh:description "Nieuwe (hernoemde) bestandsnaam."@nl, "New renamed filename."@en  ;
+                           sh:datatype xsd:string ;
+                           sh:path     file:currentFilename ;
+                           sh:order    2.0 ;
+                           sh:maxCount 1 ;
+                         ] .
