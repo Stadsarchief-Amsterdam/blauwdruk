@@ -191,12 +191,20 @@ rt:File
                                       sh:order     2.0 ;
                                       sh:path      file:digitalBorn
                                     ] ;
+    sh:property                     [ rdfs:label   "Oorspronkelijke bestandsnaam"@nl, "Original filename"@en ;
+                                      rdfs:comment "De oorspronkelijke bestandsnaam in het geval die hernoemd is."@nl, "Original filename, in case the file had to be renamed."@en  ;
+                                      sh:datatype  xsd:string ;
+                                      sh:group     file:managementGroup ;
+                                      sh:maxCount  1 ;
+                                      sh:order     3.0 ;
+                                      sh:path      file:originalFilename
+                                    ] ;                                    
     sh:property                     [ rdfs:label   "Gedigitaliseerd?"@nl, "Digitized?"@en ;
                                       rdfs:comment "Geeft aan of dit stuk gedigitaliseerd is"@nl, "Whether the records were digitized or not"@en ;
                                       sh:datatype  xsd:boolean ;
                                       sh:group     file:managementGroup ;
                                       sh:maxCount  1 ;
-                                      sh:order     3.0 ;
+                                      sh:order     4.0 ;
                                       sh:path      file:digitised
                                     ] ;
     sh:property                     [ rdfs:label  "Bergingsnummers"@nl, "Old storage numbers (bergingsnummers)"@en  ;
@@ -205,7 +213,7 @@ rt:File
                                       sh:datatype xsd:string ;
                                       sh:group    file:managementGroup ;
                                       sh:maxCount 1 ;
-                                      sh:order    4.0 ;
+                                      sh:order    5.0 ;
                                       sh:path     file:storageNumber
                                     ] ;
     sh:property             [ rdfs:label       "Oude nummers"@nl, "Old numbers"@en ;
@@ -214,7 +222,7 @@ rt:File
                               sh:path          file:oldNumbers ;
                               sh:datatype      xsd:string ;
                               sh:maxCount      1 ;
-                              sh:order         5.0 ;
+                              sh:order         6.0 ;
                               sh:group         file:managementGroup ;
                             ] ;
     sh:property                     [ rdfs:label       "Interne opmerking"@nl, "Internal remarks"@en ;
@@ -223,7 +231,7 @@ rt:File
                                       sh:datatype      xsd:string ;
                                       sh:group         file:managementGroup ;
                                       sh:maxCount      1 ;
-                                      sh:order         6.0 ;
+                                      sh:order         7.0 ;
                                       sh:path          saa:internalRemarks
                                     ] ;
     sh:property                     [ rdfs:label       "Auteursrechtopmerking (intern)"@nl, "Copyright remarks (internal)"@en ;
@@ -232,7 +240,7 @@ rt:File
                                       sh:datatype      xsd:string ;
                                       sh:group         file:managementGroup ;
                                       sh:maxCount      1 ;
-                                      sh:order         7.0 ;
+                                      sh:order         8.0 ;
                                       sh:path          saa:copyrightsRemarks ;
                                       dash:editor      dash:TextAreaEditor ;
                                     ] ;
@@ -243,7 +251,7 @@ rt:File
                                       sh:maxCount  1 ;
                                       sh:nodeKind  sh:IRI ;
                                       sh:or        ( [ sh:class rt:Duplicate ] ) ;
-                                      sh:order     8.0 ;
+                                      sh:order     9.0 ;
                                       sh:path      file:duplicate
                                     ] ;
     sh:property                     [ rdfs:label   "Zie ook - verwijzing naar ander bestanddeel"@nl, "See also - link to another file"@en ;
@@ -253,7 +261,7 @@ rt:File
                                       sh:maxCount  1 ;
                                       sh:nodeKind  sh:IRI ;
                                       sh:or        ( [ sh:class rt:File ] ) ;
-                                      sh:order     9.0 ;
+                                      sh:order     10.0 ;
                                       sh:path      rdfs:seeAlso
                                     ] ;
     sh:property                     [ rdfs:label   "Status"@nl, "Status"@en ;
@@ -264,14 +272,14 @@ rt:File
                                       memorix:audience memorix:AudienceInternal ;
                                       sh:in        ( "aanwezig" "in bewerking" "te vernietigen" "vermist" "vernietigd" "vervallen" ) ;
                                       sh:group     file:managementGroup ;
-                                      sh:order     10.0 ;
+                                      sh:order     11.0 ;
                                       sh:path      file:status ;
                                     ] ;
       sh:property                   [ rdfs:label  "Vermist sinds"@nl, "Missing since"@en ;
                                       sh:datatype xsd:date ;
                                       sh:group     file:managementGroup ;
                                       sh:maxCount 1 ;
-                                      sh:order    11.0 ;
+                                      sh:order    12.0 ;
                                       sh:path     file:missingDate
                                     ] 
                                     .
