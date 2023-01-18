@@ -6,7 +6,7 @@
 @prefix rt:            </resources/recordtypes/> .
 @prefix fonds:         </resources/recordtypes/Fonds#> .
 @prefix file:         </resources/recordtypes/File#> .
-@prefix saa:           <https://data.archief.amsterdam/ontology#> . #TBD
+@prefix saa:           <https://data.archief.amsterdam/ontology#> . 
 
 @prefix dc:            <http://purl.org/dc/elements/1.1/> .
 @prefix sh:            <http://www.w3.org/ns/shacl#> .
@@ -132,19 +132,21 @@ rt:Fonds
                            sh:order    1.0 ;
                            sh:datatype xsd:string ;
                            dash:editor dash:TextAreaEditor ; ] ;
-    sh:property          [ rdfs:label   "Datering Oudste Stuk"@nl , "Date oldest record"@en;
-                           rdfs:comment "Datum van het oudste stuk in dit archief."@nl , "Date of the oldest record in the fonds"@en ;
-                           memorix:hidden true ; #  niet meer zichtbaar, misschien vervangen
-                           sh:class     fonds:DateRangeOldest ;
+    sh:property          [ rdfs:label   "Datering (jaartal) oudste stuk"@nl , "Date oldest record"@en;
+                           rdfs:comment "Jaartal van het oudste stuk in dit archief."@nl , "Year of the oldest record in the fonds"@en ;
+                           sh:datatype              xsd:gYear ;
+                           sh:minInclusive          "1200"^^xsd:gYear ;
+                           sh:maxInclusive          "2200"^^xsd:gYear ;
                            sh:group     fonds:contentDescriptionGroup ;
                            sh:maxCount  1 ;
                            sh:nodeKind  sh:BlankNode ;
                            sh:order     5.0 ;
                            sh:path      fonds:hasOldestRecord ] ;
-    sh:property          [ rdfs:label   "Datering Jongste Stuk"@nl , "Date youngest record"@en;
-                           rdfs:comment "Datum van het jongste stuk in dit archief."@nl , "Date of the youngest record in the fonds"@en  ;
-                           memorix:hidden true ; #  niet meer zichtbaar, misschien vervangen
-                           sh:class     fonds:DateRangeYoungest ;
+    sh:property          [ rdfs:label   "Datering (jaartal) jongste stuk"@nl , "Date youngest record"@en;
+                           rdfs:comment "Jaartal van het jongste stuk in dit archief."@nl , "Year of the youngest record in the fonds"@en  ;
+                           sh:datatype              xsd:gYear ;
+                           sh:minInclusive          "1200"^^xsd:gYear ;
+                           sh:maxInclusive          "2200"^^xsd:gYear ;
                            sh:group     fonds:contentDescriptionGroup ;
                            sh:maxCount  1 ;
                            sh:nodeKind  sh:BlankNode ;
