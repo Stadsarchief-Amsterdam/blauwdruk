@@ -4,7 +4,7 @@
 @prefix xsd:           <http://www.w3.org/2001/XMLSchema#> .
 
 @prefix rt:            </resources/recordtypes/> .
-@prefix fonds:         </resources/recordtypes/Fondsje#> .
+@prefix fonds:         </resources/recordtypes/Fonds#> .
 @prefix file:         </resources/recordtypes/File#> .
 @prefix saa:           <https://data.archief.amsterdam/ontology#> . 
 
