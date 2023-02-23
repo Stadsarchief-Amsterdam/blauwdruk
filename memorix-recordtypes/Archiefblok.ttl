@@ -139,7 +139,6 @@ rt:Fonds
                            sh:maxInclusive          "2200"^^xsd:gYear ;
                            sh:group     fonds:contentDescriptionGroup ;
                            sh:maxCount  1 ;
-                           sh:nodeKind  sh:BlankNode ;
                            sh:order     5.0 ;
                            sh:path      fonds:hasOldestRecord ] ;
     sh:property          [ rdfs:label   "Datering (jaartal) jongste stuk"@nl , "Date youngest record"@en;
@@ -149,7 +148,6 @@ rt:Fonds
                            sh:maxInclusive          "2200"^^xsd:gYear ;
                            sh:group     fonds:contentDescriptionGroup ;
                            sh:maxCount  1 ;
-                           sh:nodeKind  sh:BlankNode ;
                            sh:order     6.0 ;
                            sh:path      fonds:hasYoungestRecord ] ;
     sh:property          [ rdfs:label  "Inventarisatie"@nl , "About the description"@en;
@@ -226,48 +224,4 @@ fonds:FindingAid
                            sh:minInclusive "1800"^^xsd:gYear ;
                            sh:maxInclusive "2200"^^xsd:gYear ;
                            sh:path         rico:publicationDate ] ;
-.
-
-fonds:DateRangeOldest
-    rdf:type             sh:NodeShape ;
-    sh:closed            true ;
-    sh:ignoredProperties ( rdf:type ) ;
-    sh:property          [ rdfs:label  "Datum (tekst)"@nl, "Date (text)"@en ;
-                           sh:datatype xsd:string ;
-                           sh:maxCount 1 ;
-                           sh:order    1.0 ;
-                           sh:path     rico:expressedDate ] ;
-    sh:property          [ rdfs:label  "Begindatum"@nl, "Begin Date"@en ;
-                           sh:datatype xsd:date ;
-                           sh:maxCount 1 ;
-                           sh:order    2.0 ;
-                           sh:path     rico:hasBeginningDate ] ;
-    sh:property          [ rdfs:label  "Einddatum"@nl, "End Date"@en ;
-                           sh:datatype xsd:date ;
-                           sh:maxCount 1 ;
-                           sh:order    3.0 ;
-                           sh:path     rico:hasEndDate ] ;
-    sh:targetClass       fonds:DateRangeOldest ;
-.
-
-fonds:DateRangeYoungest
-    rdf:type             sh:NodeShape ;
-    sh:closed            true ;
-    sh:ignoredProperties ( rdf:type ) ;
-    sh:property          [ rdfs:label  "Datum (tekst)"@nl, "Date (text)"@en ;
-                           sh:datatype xsd:string ;
-                           sh:maxCount 1 ;
-                           sh:order    1.0 ;
-                           sh:path     rico:expressedDate ] ;
-    sh:property          [ rdfs:label  "Begindatum"@nl, "Begin Date"@en ;
-                           sh:datatype xsd:date ;
-                           sh:maxCount 1 ;
-                           sh:order    2.0 ;
-                           sh:path     rico:hasBeginningDate ] ;
-    sh:property          [ rdfs:label  "Einddatum"@nl, "End Date"@en ;
-                           sh:datatype xsd:date ;
-                           sh:maxCount 1 ;
-                           sh:order    3.0 ;
-                           sh:path     rico:hasEndDate ] ;
-    sh:targetClass       fonds:DateRangeYoungest ;
 .
