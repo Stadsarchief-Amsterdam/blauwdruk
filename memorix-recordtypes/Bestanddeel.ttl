@@ -281,6 +281,17 @@ rt:File
                                       sh:maxCount 1 ;
                                       sh:order    12.0 ;
                                       sh:path     file:missingSinceDate
+                                    ] ;
+      sh:property                   [ rdfs:comment     "Volgorde van bestanddelen"@nl , "Order of files"@en ;
+                                      rdfs:label       "Volgorde"@nl , "Ordering"@en ;
+                                      dash:editor      dash:TextAreaEditor ;
+                                      dash:singleLine  true ;
+                                      memorix:hidden   true ;
+                                      sh:datatype      xsd:string ;
+                                      sh:group         file:managementGroup ;
+                                      sh:maxCount      1 ;
+                                      sh:order         99.0 ;
+                                      sh:path          file:order
                                     ] 
                                     .
 
@@ -443,7 +454,7 @@ file:DigitalFilename
                            sh:order     1.0 ;
                            sh:path      file:originalFilename
                          ] ;      
-    sh:property          [ rdfs:label   "Bestandsnaam"@nl, "Filename"@en ;
+    sh:property          [ rdfs:label   "Hernoemde Bestandsnaam"@nl, "Filename"@en ;
                            sh:description "Nieuwe (hernoemde) bestandsnaam."@nl, "New renamed filename."@en  ;
                            sh:datatype xsd:string ;
                            sh:path     file:currentFilename ;
