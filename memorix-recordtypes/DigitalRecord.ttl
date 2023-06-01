@@ -1,0 +1,332 @@
+@prefix dc:             <http://purl.org/dc/elements/1.1/> .
+@prefix sh:             <http://www.w3.org/ns/shacl#> .
+@prefix rdf:            <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:           <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dash:           <http://datashapes.org/dash#> .
+@prefix xsd:            <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos:           <http://www.w3.org/2004/02/skos/core#> .
+@prefix html:           <http://www.w3.org/1999/xhtml/> .
+@prefix memorix:        <http://memorix.io/ontology#> .
+@prefix vocabularies:   </resources/vocabularies/conceptschemes/> .
+@prefix rt:             </resources/recordtypes/> .
+@prefix df:             </resources/recordtypes/DigitalFonds#> .
+@prefix dd:             </resources/recordtypes/DigitalDossier#> .
+@prefix dr:             </resources/recordtypes/DigitalRecord#> .
+@prefix file:           </resources/recordtypes/File#> .
+@prefix saa:            <https://data.archief.amsterdam/ontology#> .
+@prefix rico:           <https://www.ica.org/standards/RiC/ontology#> .
+@prefix ric-rst:        <https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#> .
+@prefix ric-dft:        <https://www.ica.org/standards/RiC/vocabularies/documentaryFormTypes#> .
+
+
+dr:identificationGroup
+    rdf:type   sh:PropertyGroup ;
+    rdfs:label "Identificatie"@nl, "Identification"@en ;
+    sh:order   1.0 .
+
+dr:contentDescriptionGroup
+    rdf:type   sh:PropertyGroup ;
+    rdfs:label "Beschrijving"@nl, "Description"@en ;
+    sh:order   2.0 .
+
+dr:locationsGroup
+    rdf:type   sh:PropertyGroup ;
+    rdfs:label "Locaties"@nl, "Locations"@en ;
+    sh:order   3.0 .
+
+dr:managementGroup
+    rdf:type   sh:PropertyGroup ;
+    rdfs:label "Beheer"@nl, "Manage"@en ;
+    sh:order   4.0 ;
+.
+
+rt:DigitalRecord
+    a                               memorix:Recordtype, sh:NodeShape ;
+    rdfs:label                      "Digitaal informatieobject"@nl, "Digital Record"@en ;
+    rdfs:comment                    "Beschrijvingen van computerbestanden Stadsarchief Amsterdam"@nl ;
+    dc:identifier                   "DigitalRecord" ;
+    sh:closed                       true ;
+    sh:ignoredProperties            ( rdf:type ) ;
+    #memorix:typeOf                  memorix:File ;
+    sh:targetClass                  rt:DigitalRecord ;
+    memorix:hasInformationComponent [ rdf:type memorix:DigitalAssetComponent ] ;
+    sh:property             [ rdfs:label   "Archief"@nl, "Fonds"@en ;
+                              sh:description "Archief waar dit object bij hoort"@nl, "Fonds to which this object belongs"@en ;
+                              sh:message   "Kies een archief waar dit object uit komt."@nl, "Choose a fonds where this object belongs to."@en ;
+                              dash:editor  memorix:LinkedRecordEditor ;
+                              sh:group     dr:identificationGroup ;
+                              sh:maxCount  1 ;
+                              sh:nodeKind  sh:IRI ;
+                              sh:or        ( [ sh:class rt:DigitalFonds ] ) ;
+                              sh:order     1.0 ;
+                              sh:path      dr:fondsLink ;
+                              #sh:path      dr:fonds ;
+                            ] ;
+    sh:property             [ rdfs:label   "Dossier"@nl, "Dossier"@en ;
+                              sh:description "Digitaal dossier waar dit informatieobject bij hoort"@nl, "Digital Dossier to which this object belongs"@en ;
+                              sh:message   "Kies een dossier waar dit object in hoort."@nl, "Choose a dossier where this object belongs to."@en ;
+                              dash:editor  memorix:ConditionalLinkFieldEditor ;
+                              memorix:conditionalLinkField  dr:fondsLink ;
+                              memorix:linkField [
+                                  memorix:hasRecordType rt:DigitalDossier ;
+                                  memorix:path dd:fonds ;
+                              ] ;
+                              sh:group     dr:identificationGroup ;
+                              sh:maxCount  100 ;
+                              sh:nodeKind  sh:IRI ;
+                              sh:or        ( [ sh:class rt:DigitalDossier ] ) ;
+                              sh:order     2.0 ;
+                              sh:path      dr:dossierLink ;
+                            ] ;                               
+    sh:property                     [ rdfs:label        "Documenttype"@nl, "Type of document"@en ;
+                                      sh:message        "Selecteer een waarde uit de lijst."@nl, "Select a value from the list"@en ;
+                                      memorix:inTitleAt 2 ;
+                                      sh:path           rico:hasDocumentaryFormType ;
+                                      sh:maxCount       1 ;
+                                      sh:order          3.0 ;
+                                      dash:editor             memorix:VocabularyEditor ;
+                                      memorix:conceptSchemeIn vocabularies:af136f00-7211-4355-a236-5a7ff7c25059 ; # Archieven - Digitaal documentsoort
+                                      sh:class                skos:Concept ;
+                                      sh:nodeKind             sh:IRI ;
+                                      sh:group                dr:identificationGroup ;
+                                    ] ;
+    sh:property                     [ rdf:type             sh:PropertyShape ;
+                                      rdfs:label           "Beschrijving"@nl, "Description"@en ;
+                                      memorix:inTitleAt    1 ;
+                                      memorix:searchWeight 5.0 ;
+                                      sh:path              rico:title ;
+                                      sh:maxCount          1 ;
+                                      sh:order             4.0 ;
+                                      sh:group             dr:identificationGroup ;
+                                      dash:editor          dash:TextAreaEditor ;
+                                      dash:singleLine      false ;
+                                      sh:datatype          xsd:string ;
+                                    ] ;
+    sh:property                     [ rdf:type            sh:PropertyShape ;
+                                      rdfs:label          "Datering"@nl, "Dates Resource"@en ;
+                                      rdfs:comment        "Datum van vorming van het archiefstuk"@nl, "Date of creation of the record"@en ;
+                                      memorix:inSummaryAt 1 ;
+                                      sh:path             dr:dateRecordResource ;
+                                      sh:group            dr:contentDescriptionGroup ;
+                                      sh:datatype         xsd:date ;
+                                      sh:maxCount         1 ;
+                                      sh:order            1.0 ;
+                                    ] ;
+    sh:property                     [ rdfs:label  "Gerelateerde actoren"@nl, "Linked agents"@en ;
+                                      sh:path     dr:hasOrHadRelatedAgent ;
+                                      sh:class    saa:RelatedAgent ;
+                                      sh:maxCount 100 ;
+                                      sh:order    5.0 ;
+                                      sh:group    dr:contentDescriptionGroup ;
+                                      sh:nodeKind sh:BlankNode ;
+                                    ] ;
+    sh:property                     [ rdfs:label  "Kenmerk"@nl, "Specification"@en ;
+                                      sh:class    saa:Specification ;
+                                      sh:group    dr:contentDescriptionGroup ;
+                                      sh:maxCount 100 ;
+                                      sh:nodeKind sh:BlankNode ;
+                                      sh:order    7.0 ;
+                                      sh:path     saa:hasSpecification
+                                    ] ;
+    sh:property                     [ rdfs:label  "Externe identificatie"@nl, "Identifier"@en ;
+                                      rdfs:comment
+                                                  "Allerlei identificeren kenmerken die in de oorspronkelijk data was opgenomen. Kan bijvoorbeeld ook de oorspronkelijke bestandsnaam zijn al dan niet met pad."@nl,
+                                                  "All kinds of identifying string, included in the original data. Might be the original filename with or without path."@en ;
+                                      sh:path     rico:hasOrHadIdentifier ;
+                                      sh:class    rico:Identifier ;
+                                      sh:nodeKind sh:BlankNode ;
+                                      sh:maxCount 1 ;
+                                      sh:order    9.0 ;
+                                      sh:group    dr:contentDescriptionGroup ;
+                                    ] ;
+    sh:property                     [ rdfs:label  "Zie ook - digitaal informatieobject"@nl, "See related digital record"@en ;
+                                      dash:editor memorix:LinkedRecordEditor ;
+                                      sh:group    dr:contentDescriptionGroup ;
+                                      sh:maxCount 50 ;
+                                      sh:nodeKind sh:IRI ;
+                                      sh:or       ( [ sh:class rt:DigitalRecord ] ) ;
+                                      sh:order    10.0 ;
+                                      sh:path     rdfs:seeAlso
+                                    ] ;                                    
+    sh:property                     [ rdfs:label   "Betreffend adres"@nl, "Addresses"@en ;
+                                      rdfs:comment "Vermelde straatnamen en huisnummers"@nl , "Mentioned streetnames and housenumbers"@en ;
+                                      sh:class     saa:Address ;
+                                      sh:path      dr:isAssociatedWithAddress ;
+                                      sh:order     1.0 ;
+                                      sh:maxCount  1000 ;
+                                      sh:nodeKind  sh:BlankNode ;
+                                      sh:group     dr:locationsGroup ;
+                                    ] ;
+    sh:property                     [ rdfs:label  "Interne opmerkingen"@nl, "Internal Remarks"@en ;
+                                      sh:path     dr:internalRemarks ;
+                                      sh:datatype xsd:string ;
+                                      sh:maxCount 1 ;
+                                      sh:order    1.0 ;
+                                      sh:group    dr:managementGroup ;
+                                      dash:editor dash:TextAreaEditor ;
+                                    ] ;
+    sh:property                     [ rdfs:label   "Activiteit"@nl, "Activity"@en ;
+                                      sh:class     rico:Activity ;
+                                      sh:nodeKind  sh:BlankNode ;
+                                      sh:group     dr:managementGroup ;
+                                      sh:maxCount  1 ;
+                                      sh:order     3.0 ;
+                                      sh:path      rico:isAssociatedWithEvent
+                                    ] ;
+.
+
+## Identifier
+rico:Identifier
+    a                    sh:NodeShape ;
+    sh:targetClass       rico:Identifier ;
+    sh:closed            true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property          [ rdfs:label  "Identifier type"@en, "Type identificatie"@nl ;
+                           sh:message  "rico:Identifier MUST link to exactly 1 rico:IdentifierType with rico:hasIdentifierType"@en ;
+                           sh:path     rico:hasIdentifierType ;
+                           sh:maxCount 1 ;
+                           sh:order    1.0 ;
+                           dash:editor             memorix:VocabularyEditor ;
+                           memorix:conceptSchemeIn vocabularies:c1b2081a-0590-47bb-b83e-08b9c0a8b429 ; # Archieven - Digitaal type identificatie
+                           sh:class                skos:Concept ;
+                           sh:nodeKind             sh:IRI ;
+                         ] ;
+    sh:property          [ rdfs:label  "External Identifier"@en, "Identificatie"@nl ;
+                           sh:message  "This node MUST link to exactly 1 xsd:string with rico:textualValue"@en ;
+                           sh:path     rico:textualValue ;
+                           sh:maxCount 1 ;
+                           sh:order    2.0 ;
+                           sh:datatype xsd:string ;
+                         ] .
+
+saa:Address
+    a                    sh:NodeShape ;
+    sh:closed            true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:targetClass       saa:Address ;
+    rdfs:subClassOf      rico:Place ;
+    sh:property          [ rdfs:label              "Straatnaam"@nl, "Street name"@en ;
+                           sh:path                 saa:street ;
+                           sh:order                1.0 ;
+                           sh:maxCount             1 ;
+                           dash:editor             memorix:VocabularyEditor ;
+                           memorix:conceptSchemeIn vocabularies:a4863c0c-d9e5-3902-831a-d0960e381a41 ;
+                           sh:class                skos:Concept ;
+                           sh:nodeKind             sh:IRI ;
+                         ] ;
+    sh:property          [ rdfs:label  "Huisnummer van"@nl, "House number from"@en ;
+                           sh:path     saa:houseNumberBegin ;
+                           sh:order    2.0 ;
+                           sh:maxCount 1 ;
+                           sh:datatype xsd:string ;
+                         ] ;
+    sh:property          [ rdfs:label  "Huisnummer tot"@nl, "House number from"@en ;
+                           sh:path     saa:houseNumberEnd ;
+                           sh:order    3.0 ;
+                           sh:maxCount 1 ;
+                           sh:datatype xsd:string ;
+                         ] ;
+    sh:property          [ rdfs:label  "Locatie URI (BAG)"@nl, "Location URI (BAG)"@en ;
+                            dash:editor memorix:LocationBagEditor ;
+                            sh:class    memorix:GeoCoordinates ;
+                            sh:order    10.0 ;
+                            sh:maxCount 100 ;
+                            sh:path     dr:hasOrHadSubjectBAGLocation
+                          ] ;
+    sh:property          [ rdfs:label  "Locatie URI (Adamlink)"@nl, "Location URI (Adamlink)"@en ;
+                            dash:editor             memorix:IriEditor ;
+                            sh:nodeKind             sh:IRI ;
+                            sh:description           "Plak hier eeen Adamlink URI in"@nl, "Please provide a Adamlink URI"@en ; 
+                            sh:message              "Waarde moet beginnen met http of https"@nl, "Value must start with http:// or https://"@en ;
+                            sh:pattern              "^https?://" ;
+                            sh:flags                "i" ;
+                            sh:order    11.0 ;
+                            sh:maxCount 100 ;
+                            sh:path     dr:hasOrHadSubjectLocation
+                          ] ;
+    sh:property           [ rdfs:label  "Locatie coördinaten"@nl, "Locatie coordinates"@en ;
+                            dash:editor memorix:LocationCoordinatesEditor ;
+                            sh:class    memorix:GeoCoordinates ;
+                            sh:order    12.0 ;
+                            sh:maxCount 100 ;
+                            sh:path     dr:hasOrHadSubjectCoordinates
+                          ] .
+
+
+saa:RelatedAgent
+    rdf:type             sh:NodeShape ;
+    sh:closed            true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property          [ rdfs:label              "Rol actor"@nl, "Role of related agent"@en ;
+                           sh:description           "Rol van gerelateerd persoon, organisatie of familie"@nl, "Role of related person, organisation or family"@en ;
+                           dash:editor             memorix:VocabularyEditor ;
+                           memorix:conceptSchemeIn vocabularies:0dada355-9e1e-4f1f-8d86-0455d6067bb7 ;
+                           sh:class                skos:Concept ;
+                           sh:nodeKind             sh:IRI ;
+                           sh:maxCount             1 ;
+                           sh:order                1.0 ;
+                           sh:path                 saa:hasRole ;
+                         ] ;
+    sh:property          [ rdfs:label  "Actor"@nl, "Agent"@en ;
+                           sh:description "Kies hier alleen geïdentificeerde personen, organisaties of families"@nl, "Only select identified agents from the person, organisation or family recordtypes"@en ;
+                           dash:editor memorix:LinkedRecordEditor ;
+                           sh:message  "Kies een persoon, organisatie of familie uit de lijst."@nl, "Please choose a person, organisation or family"@en ;
+                           sh:nodeKind sh:IRI ;
+                           sh:or       ( [ sh:class rt:Person ] [ sh:class rt:Organisation ] [ sh:class rt:Family ] ) ;
+                           sh:maxCount 1 ;
+                           sh:order    2.0 ;
+                           sh:path     saa:hasAgent ;
+                         ] ;
+    sh:targetClass       saa:RelatedAgent
+.
+
+## Activity
+rico:Activity
+    rdf:type             sh:NodeShape ;
+    sh:closed            true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property          [ rdfs:label  "Geplande activiteit"@nl , "Planned activity"@en;
+                           sh:order    1.0 ;
+                           sh:path     rico:hasActivityType ;
+                           sh:datatype xsd:string ;
+                           sh:maxCount 1 ;
+                         ] ;
+    sh:property          [ rdfs:label   "Datering activiteit"@nl, "Dates"@en ;
+                           rdfs:comment "Kan een exacte datum (vul dan twee keer dezelfde datum in) of een periode zijn"@nl,
+                                        "Can be a specific date (than fill in the same date twice) or a daterange"@en ;
+                           sh:path      dr:dateActivity ;
+                           sh:datatype  xsd:date ;
+                           sh:order     2.0 ;
+                           sh:maxCount  1 ;
+                         ] ;
+    sh:property          [ rdfs:label  "Grondslag"@nl, "Reason/background of the activity"@en ;
+                           sh:path     dr:activityBackground ;
+                           sh:datatype xsd:string ;
+                           sh:order    3.0 ;
+                           sh:maxCount 1 ;
+                         ] ;
+    sh:targetClass       rico:Activity ;
+.
+
+## Detail
+saa:Specification
+    rdf:type             sh:NodeShape ;
+    sh:closed            true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property          [ rdfs:label  "Type Kenmerk"@nl, "Detail type"@en ;
+                           sh:maxCount 1 ;
+                           sh:order    1.0 ;
+                           sh:path     saa:specificationType ;
+                           dash:editor             memorix:VocabularyEditor ;
+                           memorix:conceptSchemeIn vocabularies:ddc09257-ebd7-404f-93bf-fe95e1412cb0 ; # Archieven - Digitaal type kenmerk
+                           sh:class                skos:Concept ;
+                           sh:nodeKind             sh:IRI ;
+                         ] ;
+    sh:property          [ rdfs:label  "Kenmerk"@nl, "Detail"@en ;
+                           sh:datatype xsd:string ;
+                           sh:maxCount 1 ;
+                           sh:order    2.0 ;
+                           sh:path     saa:specificationTextualValue
+                         ] ;
+    sh:targetClass       saa:Specification 
+    .
