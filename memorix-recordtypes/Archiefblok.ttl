@@ -5,7 +5,7 @@
 
 @prefix rt:            </resources/recordtypes/> .
 @prefix fonds:         </resources/recordtypes/Fonds#> .
-@prefix file:         </resources/recordtypes/File#> .
+@prefix file:          </resources/recordtypes/File#> .
 @prefix saa:           <https://data.archief.amsterdam/ontology#> . 
 
 @prefix dc:            <http://purl.org/dc/elements/1.1/> .
