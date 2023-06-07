@@ -48,6 +48,7 @@ rt:Deed
     dc:identifier        "Deed" ;
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
+    owl:equivalentClass  rico:Record ;
     memorix:hasInformationComponent [ rdf:type memorix:DigitalAssetComponent ] ;
     sh:property          deed:FondsShape, deed:FileShape, deed:TitleShape, deed:DocumentaryFormShape, deed:AssociatedWithDateShape, deed:SourceShape, deed:IndexNameShape,
                          deed:HasOrHadSubjectShape, deed:HasOrHadLocation1851Shape, deed:HasOrHadLocation1853Shape, deed:HasOrHadModernLocationShape,
@@ -153,6 +154,7 @@ deed:HasOrHadSubjectShape
     rdf:type     sh:PropertyShape ;
     rdfs:comment "Personen die voorkomen op de akte."@nl, "People mentioned in the source"@en ;
     rdfs:label   "Personen"@nl, "People"@en ;
+    dash:viewer   dash:DetailsEditor ;
     sh:class     saa:LinkedPersonObservation ;
     sh:group     deed:personGroup ;
     sh:maxCount  999 ;
@@ -176,6 +178,15 @@ saa:LinkedPersonObservation
     rdf:type             sh:NodeShape ;
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
+    sh:property          [ rdfs:label      "order"@en ;
+                            memorix:hidden  true ;
+                            sh:datatype     xsd:integer ;
+                            sh:description  "This field is required for persistent order of group items" ;
+                            sh:maxCount     1 ;
+                            sh:minCount     1 ;
+                            sh:order        0.0 ;
+                            sh:path         memorix:order
+                         ] ;
     sh:property          [ rdfs:label  "Role"@en, "Rol"@nl ;
                            dash:editor              memorix:VocabularyEditor ;
                            memorix:conceptSchemeIn vocabularies:a507438b-22fb-4a17-8f72-9c528cd6d1e9 ;  #Indexen - rol persoon akte
