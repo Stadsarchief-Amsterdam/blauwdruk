@@ -9,9 +9,9 @@
 @prefix memorix:        <http://memorix.io/ontology#> .
 @prefix vocabularies:   </resources/vocabularies/conceptschemes/> .
 @prefix rt:             </resources/recordtypes/> .
-@prefix df:             </resources/recordtypes/DigitalFonds#> .
-@prefix dd:             </resources/recordtypes/DigitalDossier#> .
-@prefix dr:             </resources/recordtypes/DigitalRecord#> .
+@prefix digitalFonds:   </resources/recordtypes/DigitalFonds#> .
+@prefix digitalDossier: </resources/recordtypes/DigitalDossier#> .
+@prefix digitalRecord:  </resources/recordtypes/DigitalRecord#> .
 @prefix file:           </resources/recordtypes/File#> .
 @prefix saa:            <https://data.archief.amsterdam/ontology#> .
 @prefix rico:           <https://www.ica.org/standards/RiC/ontology#> .
@@ -19,22 +19,22 @@
 @prefix ric-dft:        <https://www.ica.org/standards/RiC/vocabularies/documentaryFormTypes#> .
 
 
-dr:identificationGroup
+digitalRecord:identificationGroup
     rdf:type   sh:PropertyGroup ;
     rdfs:label "Identificatie"@nl, "Identification"@en ;
     sh:order   1.0 .
 
-dr:contentDescriptionGroup
+digitalRecord:contentDescriptionGroup
     rdf:type   sh:PropertyGroup ;
     rdfs:label "Beschrijving"@nl, "Description"@en ;
     sh:order   2.0 .
 
-dr:locationsGroup
+digitalRecord:locationsGroup
     rdf:type   sh:PropertyGroup ;
     rdfs:label "Locaties"@nl, "Locations"@en ;
     sh:order   3.0 .
 
-dr:managementGroup
+digitalRecord:managementGroup
     rdf:type   sh:PropertyGroup ;
     rdfs:label "Beheer"@nl, "Manage"@en ;
     sh:order   4.0 ;
@@ -47,36 +47,37 @@ rt:DigitalRecord
     dc:identifier                   "DigitalRecord" ;
     sh:closed                       true ;
     sh:ignoredProperties            ( rdf:type ) ;
-    #memorix:typeOf                  memorix:File ;
+    memorix:typeOf                  memorix:File ;
     sh:targetClass                  rt:DigitalRecord ;
     memorix:hasInformationComponent [ rdf:type memorix:DigitalAssetComponent ] ;
     sh:property             [ rdfs:label   "Archief"@nl, "Fonds"@en ;
                               sh:description "Archief waar dit object bij hoort"@nl, "Fonds to which this object belongs"@en ;
                               sh:message   "Kies een archief waar dit object uit komt."@nl, "Choose a fonds where this object belongs to."@en ;
                               dash:editor  memorix:LinkedRecordEditor ;
-                              sh:group     dr:identificationGroup ;
+                              sh:group     digitalRecord:identificationGroup ;
                               sh:maxCount  1 ;
                               sh:nodeKind  sh:IRI ;
                               sh:or        ( [ sh:class rt:DigitalFonds ] ) ;
                               sh:order     1.0 ;
-                              sh:path      dr:fondsLink ;
-                              #sh:path      dr:fonds ;
+                              sh:path      digitalRecord:fondsLink ;
+                              #sh:path      digitalRecord:fonds ;
                             ] ;
     sh:property             [ rdfs:label   "Dossier"@nl, "Dossier"@en ;
                               sh:description "Digitaal dossier waar dit informatieobject bij hoort"@nl, "Digital Dossier to which this object belongs"@en ;
                               sh:message   "Kies een dossier waar dit object in hoort."@nl, "Choose a dossier where this object belongs to."@en ;
+                              #dash:editor  memorix:LinkedRecordEditor ;
                               dash:editor  memorix:ConditionalLinkFieldEditor ;
-                              memorix:conditionalLinkField  dr:fondsLink ;
+                              memorix:conditionalLinkField  digitalRecord:fondsLink ;
                               memorix:linkField [
                                   memorix:hasRecordType rt:DigitalDossier ;
-                                  memorix:path dd:fonds ;
+                                  memorix:path digitalDossier:fonds ;
                               ] ;
-                              sh:group     dr:identificationGroup ;
+                              sh:group     digitalRecord:identificationGroup ;
                               sh:maxCount  100 ;
                               sh:nodeKind  sh:IRI ;
                               sh:or        ( [ sh:class rt:DigitalDossier ] ) ;
                               sh:order     2.0 ;
-                              sh:path      dr:dossierLink ;
+                              sh:path      digitalRecord:dossierLink ;
                             ] ;                               
     sh:property                     [ rdfs:label        "Documenttype"@nl, "Type of document"@en ;
                                       sh:message        "Selecteer een waarde uit de lijst."@nl, "Select a value from the list"@en ;
@@ -88,7 +89,7 @@ rt:DigitalRecord
                                       memorix:conceptSchemeIn vocabularies:af136f00-7211-4355-a236-5a7ff7c25059 ; # Archieven - Digitaal documentsoort
                                       sh:class                skos:Concept ;
                                       sh:nodeKind             sh:IRI ;
-                                      sh:group                dr:identificationGroup ;
+                                      sh:group                digitalRecord:identificationGroup ;
                                     ] ;
     sh:property                     [ rdf:type             sh:PropertyShape ;
                                       rdfs:label           "Beschrijving"@nl, "Description"@en ;
@@ -97,7 +98,7 @@ rt:DigitalRecord
                                       sh:path              rico:title ;
                                       sh:maxCount          1 ;
                                       sh:order             4.0 ;
-                                      sh:group             dr:identificationGroup ;
+                                      sh:group             digitalRecord:identificationGroup ;
                                       dash:editor          dash:TextAreaEditor ;
                                       dash:singleLine      false ;
                                       sh:datatype          xsd:string ;
@@ -106,23 +107,23 @@ rt:DigitalRecord
                                       rdfs:label          "Datering"@nl, "Dates Resource"@en ;
                                       rdfs:comment        "Datum van vorming van het archiefstuk"@nl, "Date of creation of the record"@en ;
                                       memorix:inSummaryAt 1 ;
-                                      sh:path             dr:dateRecordResource ;
-                                      sh:group            dr:contentDescriptionGroup ;
+                                      sh:path             digitalRecord:dateRecordResource ;
+                                      sh:group            digitalRecord:contentDescriptionGroup ;
                                       sh:datatype         xsd:date ;
                                       sh:maxCount         1 ;
                                       sh:order            1.0 ;
                                     ] ;
     sh:property                     [ rdfs:label  "Gerelateerde actoren"@nl, "Linked agents"@en ;
-                                      sh:path     dr:hasOrHadRelatedAgent ;
+                                      sh:path     digitalRecord:hasOrHadRelatedAgent ;
                                       sh:class    saa:RelatedAgent ;
                                       sh:maxCount 100 ;
                                       sh:order    5.0 ;
-                                      sh:group    dr:contentDescriptionGroup ;
+                                      sh:group    digitalRecord:contentDescriptionGroup ;
                                       sh:nodeKind sh:BlankNode ;
                                     ] ;
     sh:property                     [ rdfs:label  "Kenmerk"@nl, "Specification"@en ;
                                       sh:class    saa:Specification ;
-                                      sh:group    dr:contentDescriptionGroup ;
+                                      sh:group    digitalRecord:contentDescriptionGroup ;
                                       sh:maxCount 100 ;
                                       sh:nodeKind sh:BlankNode ;
                                       sh:order    7.0 ;
@@ -137,11 +138,11 @@ rt:DigitalRecord
                                       sh:nodeKind sh:BlankNode ;
                                       sh:maxCount 1 ;
                                       sh:order    9.0 ;
-                                      sh:group    dr:contentDescriptionGroup ;
+                                      sh:group    digitalRecord:contentDescriptionGroup ;
                                     ] ;
     sh:property                     [ rdfs:label  "Zie ook - digitaal informatieobject"@nl, "See related digital record"@en ;
                                       dash:editor memorix:LinkedRecordEditor ;
-                                      sh:group    dr:contentDescriptionGroup ;
+                                      sh:group    digitalRecord:contentDescriptionGroup ;
                                       sh:maxCount 50 ;
                                       sh:nodeKind sh:IRI ;
                                       sh:or       ( [ sh:class rt:DigitalRecord ] ) ;
@@ -151,24 +152,24 @@ rt:DigitalRecord
     sh:property                     [ rdfs:label   "Betreffend adres"@nl, "Addresses"@en ;
                                       rdfs:comment "Vermelde straatnamen en huisnummers"@nl , "Mentioned streetnames and housenumbers"@en ;
                                       sh:class     saa:Address ;
-                                      sh:path      dr:isAssociatedWithAddress ;
+                                      sh:path      digitalRecord:isAssociatedWithAddress ;
                                       sh:order     1.0 ;
                                       sh:maxCount  1000 ;
                                       sh:nodeKind  sh:BlankNode ;
-                                      sh:group     dr:locationsGroup ;
+                                      sh:group     digitalRecord:locationsGroup ;
                                     ] ;
     sh:property                     [ rdfs:label  "Interne opmerkingen"@nl, "Internal Remarks"@en ;
-                                      sh:path     dr:internalRemarks ;
+                                      sh:path     digitalRecord:internalRemarks ;
                                       sh:datatype xsd:string ;
                                       sh:maxCount 1 ;
                                       sh:order    1.0 ;
-                                      sh:group    dr:managementGroup ;
+                                      sh:group    digitalRecord:managementGroup ;
                                       dash:editor dash:TextAreaEditor ;
                                     ] ;
     sh:property                     [ rdfs:label   "Activiteit"@nl, "Activity"@en ;
                                       sh:class     rico:Activity ;
                                       sh:nodeKind  sh:BlankNode ;
-                                      sh:group     dr:managementGroup ;
+                                      sh:group     digitalRecord:managementGroup ;
                                       sh:maxCount  1 ;
                                       sh:order     3.0 ;
                                       sh:path      rico:isAssociatedWithEvent
@@ -231,7 +232,7 @@ saa:Address
                             sh:class    memorix:GeoCoordinates ;
                             sh:order    10.0 ;
                             sh:maxCount 100 ;
-                            sh:path     dr:hasOrHadSubjectBAGLocation
+                            sh:path     digitalRecord:hasOrHadSubjectBAGLocation
                           ] ;
     sh:property          [ rdfs:label  "Locatie URI (Adamlink)"@nl, "Location URI (Adamlink)"@en ;
                             dash:editor             memorix:IriEditor ;
@@ -242,14 +243,14 @@ saa:Address
                             sh:flags                "i" ;
                             sh:order    11.0 ;
                             sh:maxCount 100 ;
-                            sh:path     dr:hasOrHadSubjectLocation
+                            sh:path     digitalRecord:hasOrHadSubjectLocation
                           ] ;
     sh:property           [ rdfs:label  "Locatie coördinaten"@nl, "Locatie coordinates"@en ;
                             dash:editor memorix:LocationCoordinatesEditor ;
                             sh:class    memorix:GeoCoordinates ;
                             sh:order    12.0 ;
                             sh:maxCount 100 ;
-                            sh:path     dr:hasOrHadSubjectCoordinates
+                            sh:path     digitalRecord:hasOrHadSubjectCoordinates
                           ] .
 
 
@@ -294,13 +295,13 @@ rico:Activity
     sh:property          [ rdfs:label   "Datering activiteit"@nl, "Dates"@en ;
                            rdfs:comment "Kan een exacte datum (vul dan twee keer dezelfde datum in) of een periode zijn"@nl,
                                         "Can be a specific date (than fill in the same date twice) or a daterange"@en ;
-                           sh:path      dr:dateActivity ;
+                           sh:path      digitalRecord:dateActivity ;
                            sh:datatype  xsd:date ;
                            sh:order     2.0 ;
                            sh:maxCount  1 ;
                          ] ;
     sh:property          [ rdfs:label  "Grondslag"@nl, "Reason/background of the activity"@en ;
-                           sh:path     dr:activityBackground ;
+                           sh:path     digitalRecord:activityBackground ;
                            sh:datatype xsd:string ;
                            sh:order    3.0 ;
                            sh:maxCount 1 ;

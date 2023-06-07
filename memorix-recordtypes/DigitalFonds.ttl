@@ -4,9 +4,9 @@
 @prefix xsd:           <http://www.w3.org/2001/XMLSchema#> .
 
 @prefix rt:            </resources/recordtypes/> .
-@prefix df:            </resources/recordtypes/DigitalFonds#> .
-@prefix dd:            </resources/recordtypes/DigitalDossier#> .
-@prefix dr:            </resources/recordtypes/DigitalRecord#> .
+@prefix digitalFonds:   </resources/recordtypes/DigitalFonds#> .
+@prefix digitalDossier: </resources/recordtypes/DigitalDossier#> .
+@prefix digitalRecord:  </resources/recordtypes/DigitalRecord#> .
 @prefix saa:           <https://data.archief.amsterdam/ontology#> . 
 
 @prefix dc:            <http://purl.org/dc/elements/1.1/> .
@@ -19,17 +19,17 @@
 @prefix ric-rst:       <https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#> .
 @prefix ric-dft:       <https://www.ica.org/standards/RiC/vocabularies/documentaryFormTypes#> .
 
-df:identificationGroup
+digitalFonds:identificationGroup
     rdf:type   sh:PropertyGroup ;
     rdfs:label "Identificatie"@nl , "Identification"@en ;
     sh:order   1.0 .
 
-df:contentDescriptionGroup
+digitalFonds:contentDescriptionGroup
     rdf:type   sh:PropertyGroup ;
     rdfs:label "Beschrijving"@nl, "Description"@en ;
     sh:order   2.0 .
 
-df:managementGroup
+digitalFonds:managementGroup
     rdf:type   sh:PropertyGroup ;
     rdfs:label "Beheer"@nl , "Manage"@en;
     sh:order   3.0 .
@@ -81,7 +81,7 @@ rt:DigitalFonds
                            html:placeholder  "Bv 10003.A …"@nl ;
                            memorix:inTitleAt 1.0 ;
                            memorix:searchWeight 5.0 ;
-                           sh:group          df:identificationGroup ;
+                           sh:group          digitalFonds:identificationGroup ;
                            sh:order          1.0 ;
                            sh:path           rico:identifier ;
                            sh:datatype       xsd:string ] ;
@@ -95,14 +95,14 @@ rt:DigitalFonds
                            memorix:inTitleAt 2.0 ;
                            memorix:searchWeight 5.0 ;
                            sh:message        "Naam toegang is verplicht."@nl , "The title of a fonds is mandatory"@en;
-                           sh:group          df:identificationGroup ;
+                           sh:group          digitalFonds:identificationGroup ;
                            sh:order          2.0 ;
                            sh:path           rico:title ] ;
     sh:property          [ rdfs:label          "Periode vorming"@nl , "Dates of accumulation"@en ;
                            rdfs:comment        "Jaartal of periode van vorming."@nl , "Year or range of years of accumulation"@en ;
                            sh:message          "Geef een of twee jaartallen"@nl , "Enter one or two years"@en ;
-                           sh:class            df:DateRangeAccumulation ;
-                           sh:group            df:identificationGroup ;
+                           sh:class            digitalFonds:DateRangeAccumulation ;
+                           sh:group            digitalFonds:identificationGroup ;
                            sh:maxCount         1 ;
                            sh:nodeKind         sh:BlankNode ;
                            sh:order            3.0 ;
@@ -112,7 +112,7 @@ rt:DigitalFonds
                            sh:message          "Kies een archiefvormer uit de lijst."@nl ;
                            sh:path             rico:hasAccumulator ;
                            dash:editor         memorix:LinkedRecordEditor ;
-                           sh:group            df:identificationGroup ;
+                           sh:group            digitalFonds:identificationGroup ;
                            sh:maxCount         1000 ;
                            sh:order            4.0 ;
                            sh:nodeKind         sh:IRI ;
@@ -121,7 +121,7 @@ rt:DigitalFonds
                                                  [ sh:class rt:Family ] ) ; ] ;
     sh:property          [ rdfs:label  "Inleiding"@nl , "Introduction"@en;
                            sh:path     rico:scopeAndContent ;
-                           sh:group    df:contentDescriptionGroup ;
+                           sh:group    digitalFonds:contentDescriptionGroup ;
                            sh:maxCount 1 ;
                            sh:order    1.0 ;
                            sh:datatype xsd:string ;
@@ -131,22 +131,22 @@ rt:DigitalFonds
                            sh:datatype              xsd:gYear ;
                            sh:minInclusive          "1200"^^xsd:gYear ;
                            sh:maxInclusive          "2200"^^xsd:gYear ;
-                           sh:group     df:contentDescriptionGroup ;
+                           sh:group     digitalFonds:contentDescriptionGroup ;
                            sh:maxCount  1 ;
                            sh:order     5.0 ;
-                           sh:path      df:hasOldestRecord ] ;
+                           sh:path      digitalFonds:hasOldestRecord ] ;
     sh:property          [ rdfs:label   "Datering (jaartal) jongste stuk"@nl , "Date youngest record"@en;
                            rdfs:comment "Jaartal van het jongste stuk in dit archief."@nl , "Year of the youngest record in the fonds"@en  ;
                            sh:datatype              xsd:gYear ;
                            sh:minInclusive          "1200"^^xsd:gYear ;
                            sh:maxInclusive          "2200"^^xsd:gYear ;
-                           sh:group     df:contentDescriptionGroup ;
+                           sh:group     digitalFonds:contentDescriptionGroup ;
                            sh:maxCount  1 ;
                            sh:order     6.0 ;
-                           sh:path      df:hasYoungestRecord ] ;
+                           sh:path      digitalFonds:hasYoungestRecord ] ;
     sh:property          [ rdfs:label  "Inventarisatie"@nl , "About the description"@en;
-                           sh:class    df:FindingAid ;
-                           sh:group    df:contentDescriptionGroup ;
+                           sh:class    digitalFonds:FindingAid ;
+                           sh:group    digitalFonds:contentDescriptionGroup ;
                            sh:maxCount 10 ;
                            sh:nodeKind sh:BlankNode ;
                            sh:order    8.0 ;
@@ -157,7 +157,7 @@ rt:DigitalFonds
                            memorix:audience memorix:AudienceInternal ;
                            sh:maxCount  1 ;
                            sh:datatype  xsd:string ;
-                           sh:group     df:managementGroup ;
+                           sh:group     digitalFonds:managementGroup ;
                            sh:order     9.0 ;
                            sh:path      saa:internalRemarks ; ] ;
     sh:property          [ rdfs:label   "Status"@nl , "Status"@en;
@@ -168,13 +168,13 @@ rt:DigitalFonds
                            sh:minCount  1 ;
                            sh:maxCount  1 ;
                            sh:in       ( "aanwezig" "nog niet aanwezig" "vervallen" "te vernietigen" "vernietigd" ) ;
-                           sh:group     df:managementGroup ;
+                           sh:group     digitalFonds:managementGroup ;
                            sh:order     10.0 ;
-                           sh:path      df:status ; 
+                           sh:path      digitalFonds:status ; 
                            ] 
 .
 
-df:DateRangeAccumulation
+digitalFonds:DateRangeAccumulation
     rdf:type             sh:NodeShape , rdfs:Class ;
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
@@ -198,12 +198,12 @@ df:DateRangeAccumulation
                            sh:minInclusive "1200"^^xsd:gYear ;
                            sh:maxInclusive "2200"^^xsd:gYear ;
                            sh:path         rico:hasEndDate ] ;
-    sh:targetClass       df:DateRangeAccumulation ;
+    sh:targetClass       digitalFonds:DateRangeAccumulation ;
 .
 
-df:FindingAid
+digitalFonds:FindingAid
     rdf:type             sh:NodeShape ;
-    sh:targetClass       df:FindingAid ;
+    sh:targetClass       digitalFonds:FindingAid ;
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property          [ rdfs:label  "Inventarisatie door"@nl , "Inventory creator"@en;
