@@ -166,6 +166,15 @@ rt:Fonds
                            sh:group     fonds:managementGroup ;
                            sh:order     9.0 ;
                            sh:path      saa:internalRemarks ; ] ;
+    sh:property          [ rdfs:label   "Digitaal geboren?"@nl, "Digital born?"@en ;
+                            rdfs:comment "Geeft aan of dit om een digitaal geboren archief gaat"@nl, "Whether the archive is digital born"@en  ;
+                            sh:datatype  xsd:boolean ;
+                            sh:group     fonds:managementGroup ;
+                            memorix:hidden   true ;
+                            sh:maxCount  1 ;
+                            sh:order     10.0 ;
+                            sh:path      fonds:digitalBorn
+                         ] ;          
     sh:property          [ rdfs:label   "Status"@nl , "Status"@en;
                            rdfs:comment "Status van het archief."@nl , "Status of the fonds"@en ;
                            memorix:audience memorix:AudienceInternal ;
@@ -175,7 +184,7 @@ rt:Fonds
                            sh:maxCount  1 ;
                            sh:in       ( "aanwezig" "nog niet aanwezig" "vervallen" "te vernietigen" "vernietigd" ) ;
                            sh:group     fonds:managementGroup ;
-                           sh:order     10.0 ;
+                           sh:order     11.0 ;
                            sh:path      fonds:status ; ] ;
 .
 
