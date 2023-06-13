@@ -9,7 +9,6 @@
 @prefix memorix:        <http://memorix.io/ontology#> .
 @prefix vocabularies:   </resources/vocabularies/conceptschemes/> .
 @prefix rt:             </resources/recordtypes/> .
-@prefix digitalFonds:   </resources/recordtypes/DigitalFonds#> .
 @prefix digitalDossier: </resources/recordtypes/DigitalDossier#> .
 @prefix digitalRecord:  </resources/recordtypes/DigitalRecord#> .
 @prefix file:           </resources/recordtypes/File#> .
@@ -57,10 +56,11 @@ rt:DigitalRecord
                               sh:group     digitalRecord:identificationGroup ;
                               sh:maxCount  1 ;
                               sh:nodeKind  sh:IRI ;
-                              sh:or        ( [ sh:class rt:DigitalFonds ] ) ;
+                              #sh:or        ( [ sh:class rt:Fonds ] ) ;
+                              sh:or       ( [ sh:class rt:Fonds ]
+                                         [ sh:class rt:DigitalFonds ] ) ;
                               sh:order     1.0 ;
                               sh:path      digitalRecord:fondsLink ;
-                              #sh:path      digitalRecord:fonds ;
                             ] ;
     sh:property             [ rdfs:label   "Dossier"@nl, "Dossier"@en ;
                               sh:description "Digitaal dossier waar dit informatieobject bij hoort"@nl, "Digital Dossier to which this object belongs"@en ;
@@ -140,12 +140,14 @@ rt:DigitalRecord
                                       sh:order    9.0 ;
                                       sh:group    digitalRecord:contentDescriptionGroup ;
                                     ] ;
-    sh:property                     [ rdfs:label  "Zie ook - digitaal informatieobject"@nl, "See related digital record"@en ;
+    sh:property                     [ rdfs:label  "Zie ook"@nl, "See related record"@en ;
                                       dash:editor memorix:LinkedRecordEditor ;
+                                      sh:description "Link naar een ander digitaal informatieobject of dossier"@nl, "Link to a different digital record or dossier"@en ;
                                       sh:group    digitalRecord:contentDescriptionGroup ;
                                       sh:maxCount 50 ;
                                       sh:nodeKind sh:IRI ;
-                                      sh:or       ( [ sh:class rt:DigitalRecord ] ) ;
+                                      sh:or       ( [ sh:class rt:DigitalRecord ]
+                                                  [ sh:class rt:DigitalDossier ] ) ;
                                       sh:order    10.0 ;
                                       sh:path     rdfs:seeAlso
                                     ] ;                                    
