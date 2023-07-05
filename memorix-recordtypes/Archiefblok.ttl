@@ -166,20 +166,21 @@ rt:Fonds
                            sh:group     fonds:managementGroup ;
                            sh:order     9.0 ;
                            sh:path      saa:internalRemarks ; ] ;
-    sh:property          [ rdfs:label   "Digitaal geboren?"@nl, "Digital born?"@en ;
-                            rdfs:comment "Geeft aan of dit om een digitaal geboren archief gaat"@nl, "Whether the archive is digital born"@en  ;
-                            sh:datatype  xsd:boolean ;
-                            sh:group     fonds:managementGroup ;
-                            memorix:hidden   true ;
-                            sh:maxCount  1 ;
-                            sh:order     10.0 ;
-                            sh:path      fonds:digitalBorn
-                         ] ;          
+    # sh:property          [ rdfs:label   "Digitaal geboren?"@nl, "Digital born?"@en ;
+    #                         rdfs:comment "Geeft aan of dit om een digitaal geboren archief gaat"@nl, "Whether the archive is digital born"@en  ;
+    #                         sh:datatype  xsd:boolean ;
+    #                         sh:group     fonds:managementGroup ;
+    #                         memorix:hidden   true ;
+    #                         sh:maxCount  1 ;
+    #                         sh:order     10.0 ;
+    #                         sh:path      fonds:digitalBorn
+    #                      ] ;          
     sh:property          [ rdfs:label   "Status"@nl , "Status"@en;
                            rdfs:comment "Status van het archief."@nl , "Status of the fonds"@en ;
                            memorix:audience memorix:AudienceInternal ;
                            sh:message   "Status is verplicht. Moet een van de volgende waardes zijn: aanwezig, nog niet aanwezig, vervallen, te vernietigen, vernietigd"@nl , "Must be one of the following (Dutch) terms: aanwezig, nog niet aanwezig, vervallen, te vernietigen, vernietigd. Mandatory."@en ;
                            dash:editor  dash:EnumSelectEditor ;
+                           sh:datatype  xsd:string ; 
                            sh:minCount  1 ;
                            sh:maxCount  1 ;
                            sh:in       ( "aanwezig" "nog niet aanwezig" "vervallen" "te vernietigen" "vernietigd" ) ;

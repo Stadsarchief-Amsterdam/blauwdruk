@@ -267,6 +267,7 @@ rt:File
     sh:property                     [ rdfs:label   "Status"@nl, "Status"@en ;
                                       sh:message   "Status is verplicht. Kies uit de lijst"@nl, "Status is mandatory. Please choose from the list."@en ;
                                       dash:editor  dash:EnumSelectEditor ;
+                                      sh:datatype  xsd:string ; 
                                       sh:minCount  1 ;
                                       sh:maxCount  1 ;
                                       memorix:audience memorix:AudienceInternal ;

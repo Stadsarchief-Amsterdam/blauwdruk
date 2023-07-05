@@ -123,6 +123,7 @@ volume:StatusShape
     rdfs:label       "Status"@nl, "Status"@en ;
     rdfs:comment     "Status van het inventarisnummer/Periodiek."@nl, "Status of the book in the archive"@en ;
     dash:editor      dash:EnumSelectEditor ;
+    sh:datatype      xsd:string ; 
     memorix:audience memorix:AudienceInternal ;
     sh:group         volume:managementGroup ;
     sh:in            ( "aanwezig" "in bewerking" "vervallen" "vermist" "vernietigd" ) ;

@@ -1,0 +1,83 @@
+@prefix rdf:           <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:          <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:           <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:           <http://www.w3.org/2001/XMLSchema#> .
+
+@prefix rt:            </resources/recordtypes/> .
+@prefix libraryfonds:  </resources/recordtypes/LibraryFonds#> .
+@prefix book:          </resources/recordtypes/Book#> .
+@prefix saa:           <https://data.archief.amsterdam/ontology#> . 
+
+@prefix dc:            <http://purl.org/dc/elements/1.1/> .
+@prefix sh:            <http://www.w3.org/ns/shacl#> .
+@prefix dash:          <http://datashapes.org/dash#> .
+@prefix memorix:       <http://memorix.io/ontology#> .
+@prefix html:          <http://www.w3.org/1999/xhtml/> .
+
+@prefix rico:          <https://www.ica.org/standards/RiC/ontology#> .
+@prefix ric-rst:       <https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#> .
+@prefix ric-dft:       <https://www.ica.org/standards/RiC/vocabularies/documentaryFormTypes#> .
+
+libraryfonds:identificationGroup
+    rdf:type   sh:PropertyGroup ;
+    rdfs:label "Identificatie"@nl , "Identification"@en ;
+    sh:order   1.0 .
+
+libraryfonds:contentDescriptionGroup
+    rdf:type   sh:PropertyGroup ;
+    rdfs:label "Beschrijving"@nl, "Description"@en ;
+    sh:order   2.0 .
+
+libraryfonds:managementGroup
+    rdf:type   sh:PropertyGroup ;
+    rdfs:label "Beheer"@nl , "Manage"@en;
+    sh:order   3.0 .
+
+
+rt:LibraryFonds
+        rdf:type                 memorix:Recordtype , sh:NodeShape ;
+        rdfs:comment             "LibraryFonds"@nl ;
+        rdfs:label               "Bibliotheek Archief"@nl, "LibraryFonds"@en ;
+        rdfs:subClassOf          rico:RecordSet ;
+        dash:defaultViewForRole  dash:all ;
+        memorix:hasInformationComponent
+                [ rdf:type  memorix:DepotLocationComponent ] ;
+        memorix:hasInformationComponent
+                [ rdf:type               memorix:HasRecordsComponent ;
+                  memorix:hasRecordType  rt:Book ;
+                  memorix:path           book:archiefbibliotheek ;
+                  dc:title               "Boeken etc"
+                ] ;
+        memorix:typeOf           memorix:Fonds ;
+        dc:identifier            "LibraryFonds" ;
+        sh:closed                true ;
+        sh:targetClass           rt:LibraryFonds ;
+        sh:ignoredProperties     ( rdf:type ) ;
+        
+        sh:property          [ memorix:typeOf    memorix:Identifier ;
+                           rdfs:label        "Nummer toegang"@nl , "Fonds Number"@en ;
+                           rdfs:comment      "Unieke nummer van deze toegang"@nl , "Unique number to identify the fonds"@en;
+                           sh:minCount       1 ;
+                           sh:maxCount       1 ;
+                           html:placeholder  "Bv 10003.A …"@nl ;
+                           memorix:inTitleAt 1.0 ;
+                           memorix:searchWeight 5.0 ;
+                           sh:group          libraryfonds:identificationGroup ;
+                           sh:order          1.0 ;
+                           sh:path           rico:identifier ;
+                           sh:datatype       xsd:string ] ;
+    sh:property          [ rdfs:label        "Naam toegang"@nl , "Name of the fonds"@en ;
+                           rdfs:comment      "Naam of beschrijving van de toegang. Moet altijd beginnen met Archief of Collectie."@nl , "Title or description of the fonds. Must start with 'Archief' or 'Collectie' (Dutch)"@en;
+                           sh:datatype       xsd:string ;
+                           sh:minCount       1 ;
+                           sh:maxCount       1 ;
+                           dash:editor       dash:TextAreaEditor ;
+                           html:placeholder  "Archief of Collectie van …"@nl ;
+                           memorix:inTitleAt 2.0 ;
+                           memorix:searchWeight 5.0 ;
+                           sh:message        "Naam toegang is verplicht."@nl , "The title of a fonds is mandatory"@en;
+                           sh:group          libraryfonds:identificationGroup ;
+                           sh:order          2.0 ;
+                           sh:path           rico:title ] ;
+                                 .
+        

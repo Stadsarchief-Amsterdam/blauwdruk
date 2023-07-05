@@ -1,4 +1,5 @@
 @prefix book:         </resources/recordtypes/Book#> .
+@prefix libraryfonds: </resources/recordtypes/LibraryFonds#> .
 @prefix dash:         <http://datashapes.org/dash#> .
 @prefix dc:           <http://purl.org/dc/elements/1.1/> .
 @prefix html:         <http://www.w3.org/1999/xhtml/> .
@@ -37,9 +38,7 @@ rt:Book
     rdfs:comment         "Stadsarchief recordtype voor Boek"@nl, "Amsterdam City Archives record type for Book"@en ; ;
     rdfs:label           "Book"@en, "Boek"@nl ;
     dc:identifier        "Book" ;
-    # memorix:hasInformationComponent [ rdf:type              memorix:TreePathComponent ;
-    #                                   memorix:hasRecordtype rt:Fonds, rt:Series
-    #                                 ] ;
+    memorix:typeOf       memorix:File ;
     memorix:hasInformationComponent [ rdf:type memorix:DepotLocationComponent ;
                                       rdf:type memorix:DigitalAssetComponent ;
                                     ] ;
@@ -55,12 +54,15 @@ book:IsOrWasIncludedInShape
     rdfs:comment "Archief waar dit boek bij hoort."@nl, "Fonds to which this book belongs."@en ;
     sh:message   "Kies een archief waar dit boek uit komt."@nl, "Choose a fonds where this book belongs to."@en ;
     dash:editor  memorix:LinkedRecordEditor ;
+    memorix:typeOf  memorix:FondsFieldLink ;
     sh:group     book:identificationGroup ;
     sh:maxCount  1 ;
     sh:nodeKind  sh:IRI ;
-    sh:or        ( [ sh:class rt:Fonds ] ) ;
+    sh:or        ( [ sh:class rt:LibraryFonds ] ) ;
     sh:order     1.0 ;
-    sh:path      rico:isOrWasIncludedIn .
+    #sh:path      rico:isOrWasIncludedIn
+    sh:path         book:archiefbibliotheek
+    .
     
 book:InventorynumberShape
     rdf:type             sh:PropertyShape ;
@@ -229,7 +231,6 @@ book:StatusShape
     rdfs:label       "Status"@nl, "Status"@en ;
     rdfs:comment     "Status van het inventarisnummer/boek."@nl, "Status of the book in the archive"@en ;
     dash:editor      dash:EnumSelectEditor ;
-    sh:datatype      xsd:string ; 
     memorix:audience memorix:AudienceInternal ;
     sh:group         book:managementGroup ;
     sh:in            ( "aanwezig" "in bewerking" "vervallen" "vermist" "vernietigd" ) ;
