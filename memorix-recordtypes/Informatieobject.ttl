@@ -40,8 +40,8 @@ io:managementGroup
 
 rt:DigitalRecord
     a                               memorix:Recordtype, sh:NodeShape ;
-    rdfs:label                      "Digitaal informatieobject"@nl, "Digital Record"@en ;
-    rdfs:comment                    "Beschrijvingen van computerbestanden Stadsarchief Amsterdam"@nl ;
+    rdfs:label                      "Digitaal informatieobject (oud)"@nl, "Digital Record (old)"@en ;
+    rdfs:comment                    "Beschrijvingen van computerbestanden Stadsarchief Amsterdam. Eerste, nu achterhaalde versie. Niet meer gebruiken."@nl ;
     dc:identifier                   "DigitalRecord" ;
     sh:closed                       true ;
     sh:ignoredProperties            ( rdf:type ) ;
