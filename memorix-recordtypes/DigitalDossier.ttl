@@ -41,10 +41,16 @@ digitalDossier:locationsGroup
     sh:order   4.0 ;
 .
 
+digitalDossier:specialGroup
+    rdf:type   sh:PropertyGroup ;
+    rdfs:label "Specifieke kenmerken"@nl, "Specific details"@en ;
+    sh:order   5.0 ;
+.
+
 digitalDossier:managementGroup
     rdf:type   sh:PropertyGroup ;
     rdfs:label "Beheer"@nl, "Manage"@en ;
-    sh:order   5.0 ;
+    sh:order   6.0 ;
 .
 
 rt:DigitalDossier
@@ -65,49 +71,58 @@ rt:DigitalDossier
                               sh:group     digitalDossier:identificationGroup ;
                               sh:maxCount  1 ;
                               sh:nodeKind  sh:IRI ;
-                              #sh:or        ( [ sh:class rt:Fonds ] ) ;
-                              sh:or       ( [ sh:class rt:Fonds ]
-                                         [ sh:class rt:DigitalFonds ] ) ;
+                              sh:or        ( [ sh:class rt:Fonds ] ) ;
                               sh:order     1.0 ;
-                              sh:path      digitalDossier:fonds ; #should be rico:IsOrWasIncludedIn
+                              #sh:path      digitalDossier:fonds ; #should be rico:IsOrWasIncludedIn
+                              sh:path      rico:isOrWasIncludedIn ; 
                             ] ;
     sh:property                     [ memorix:typeOf       memorix:Identifier ;
                                       rdfs:label           "Dossiernummer"@nl, "Dossier number"@en ;
-                                      sh:message           "Vul tenminste een (uniek) inventarisnummer in. Dit nummer is verplicht."@nl, "Please provide at least an inventory number. It is required."@en ;
+                                      sh:description       "Vul als het kan een dossiernummer in. Niet verplicht maar handig ter identificatie."@nl, "Please provide a dossier number if possible."@en ;
                                       dash:singleLine      true ;
                                       memorix:inTitleAt    1.0 ;
                                       memorix:searchWeight 3.0 ;
                                       sh:datatype          xsd:string ;
                                       sh:group             digitalDossier:identificationGroup ;
-                                      sh:minCount          1 ;
+                                      #sh:minCount          1 ; # niet verplicht want niet alle archiefvormers leveren dit zo aan
                                       sh:maxCount          1 ;
                                       sh:order             2.0 ;
                                       sh:path              rico:identifier ;
                                     ] ;
-    sh:property                     [ rdfs:label           "Beschrijving"@nl, "Title"@en ;
-                                      rdfs:comment         "Korte beschrijving van dit dossier"@nl, "Title or short description"@en ;
-                                      dash:singleLine      false ;
-                                      dash:editor          dash:TextAreaEditor ;
-                                      memorix:inTitleAt    2 ;
-                                      memorix:searchWeight 5.0 ;
-                                      sh:datatype          xsd:string ;
-                                      sh:group             digitalDossier:identificationGroup ;
-                                      sh:maxCount          1 ;
-                                      sh:order             3.0 ;
-                                      sh:path              rico:title ;
-                                    ] ;
     sh:property                     [ rdfs:label              "Dossiertype"@nl, "Type of dossier"@en ;
-                                      rdfs:comment            "Selecteer een waarde uit de lijst."@nl ;
                                       sh:path                 rico:hasDocumentaryFormType ;
                                       sh:maxCount             1 ;
                                       sh:order                1.0 ;
-                                      sh:group                digitalDossier:contentDescriptionGroup ;
+                                      sh:group                digitalDossier:identificationGroup ;
                                       dash:editor             memorix:VocabularyEditor ;
                                       memorix:inTitleAt       2.0 ;
                                       memorix:searchWeight    3.0 ;
                                       sh:class                skos:Concept ;
                                       memorix:conceptSchemeIn vocabularies:dc9f4245-fd42-4d5f-bc8f-0d0afd9aed53 ; # Archieven - Dossiertypes ten behoeve van digitale informatieobjecten
                                       sh:nodeKind             sh:IRI ;
+                                    ] ;
+    sh:property                     [ rdfs:label           "Beschrijving"@nl, "Title"@en ;
+                                      sh:description         "Korte beschrijving van dit dossier"@nl, "Title or short description"@en ;
+                                      dash:singleLine      false ;
+                                      dash:editor          dash:TextAreaEditor ;
+                                      memorix:inTitleAt    2 ;
+                                      memorix:searchWeight 5.0 ;
+                                      sh:datatype          xsd:string ;
+                                      sh:group             digitalDossier:identificationGroup ;
+                                      sh:minCount          1 ;
+                                      sh:maxCount          1 ;
+                                      sh:order             3.0 ;
+                                      sh:path              rico:title ;
+                                    ] ;
+    sh:property                     [ rdfs:label  "Externe identificatie"@nl, "External Identifier"@en ;
+                                      rdfs:comment "Allerlei identificerende kenmerken die in de oorspronkelijk data was opgenomen. Kan bijvoorbeeld ook de oorspronkelijke bestandsnaam zijn al dan niet met pad."@nl,
+                                                  "All kinds of identifying string, included in the original data. Might be the original filename with or without path."@en ;
+                                      sh:path     rico:hasOrHadIdentifier ;
+                                      sh:class    rico:Identifier ;
+                                      sh:nodeKind sh:BlankNode ;
+                                      sh:maxCount 1 ;
+                                      sh:order    9.0 ;
+                                      sh:group    digitalDossier:identificationGroup ;
                                     ] ;
     sh:property                     [ rdfs:label           "Publicatiedatum"@nl, "Date of publication"@en ;
                                       memorix:searchWeight 3.0 ;
@@ -118,15 +133,16 @@ rt:DigitalDossier
                                       sh:path              rico:isAssociatedWithDate ;
                                     ] ;
     sh:property                     [ rdfs:label   "Overige dateringen"@nl, "Associated dates"@en ;
-                                      rdfs:comment "Andere dateringen zoals b.v. aanvraagdatum"@nl, "Other associated dates"@en ;
+                                      sh:description "Andere dateringen zoals b.v. aanvraagdatum"@nl, "Other associated dates"@en ;
                                       sh:class     saa:RelatedDate ;
                                       sh:nodeKind  sh:BlankNode ;
                                       sh:path      digitalDossier:isAssociatedWithDate ;
                                       sh:order     2.0 ;
                                       sh:maxCount  10 ;
-                                      sh:group     digitalDossier:locationsGroup ;
+                                      sh:group     digitalDossier:contentDescriptionGroup ;
                                     ] ; 
     sh:property                     [ rdfs:label  "Zie ook - dossier"@nl, "See related digital dossier"@en ;
+                                      sh:description "Verwijzing naar een ander dossier. Spaarzaam gebruiken."@nl, "Link to a related digital dossier. Use sparingly."@en ;
                                       dash:editor memorix:LinkedRecordEditor ;
                                       sh:group    digitalDossier:contentDescriptionGroup ;
                                       sh:maxCount 50 ;
@@ -136,10 +152,12 @@ rt:DigitalDossier
                                       sh:path     rdfs:seeAlso
                                     ] ; 
     sh:property                     [ rdfs:label  "Gebruiksfunctie gebouw"@nl, "Type of use function (building)"@en ;
-                                       sh:group    digitalDossier:contentDescriptionGroup ;
-                                       sh:order    10.0 ;
+                                       sh:description "Specifiek veld voor bouwdossiers. Alleen dan invullen."@nl, "Specific field for building dossiers. Only use when applicable."@en ;
+                                       sh:group    digitalDossier:specialGroup ;
+                                       sh:order    1.0 ;
                                        sh:path     saa:buildingUseFunctionType ;
                                        dash:editor  dash:EnumSelectEditor ;
+                                       sh:datatype xsd:string ; 
                                        sh:maxCount  1 ;
                                        sh:in       ( "winkelfunctie" "gezondheidszorgfunctie" "gesloopt" "industriefunctie" "sportfunctie" "onderwijsfunctie" "bouwwerk geen gebouw zijnde") ;
                                     ] ;                                                                 
@@ -153,7 +171,7 @@ rt:DigitalDossier
                                       sh:group     digitalDossier:locationsGroup ;
                                     ] ;
     sh:property          [ rdfs:label   "Interne opmerkingen"@nl, "Internal remarks"@en ;
-                           rdfs:comment "Veld voor allerlei interne opmerkingen. Wordt niet gepubliceerd."@nl , "Divers remarks intended for internal administration"@en;
+                           sh:description "Veld voor allerlei interne opmerkingen. Wordt niet gepubliceerd."@nl , "Divers remarks intended for internal administration"@en;
                            dash:editor  dash:TextAreaEditor ;
                            memorix:audience memorix:AudienceInternal ;
                            sh:maxCount  1 ;
@@ -163,7 +181,32 @@ rt:DigitalDossier
                            sh:path      saa:internalRemarks ; ] ;
 .
 
-
+## Identifier
+rico:Identifier
+    a                    sh:NodeShape ;
+    sh:targetClass       rico:Identifier ;
+    sh:closed            true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property          [ rdfs:label  "Type externe identificatie"@nl, "External identifier type"@en ;
+                           sh:message  "rico:Identifier MUST link to exactly 1 rico:IdentifierType with rico:hasIdentifierType"@en ;
+                           sh:description "Type extern identificatiekenmerk zoals aangeleverd."@nl, "Type of external identification."@en ;
+                           sh:path     rico:hasIdentifierType ;
+                           sh:maxCount 1 ;
+                           sh:order    1.0 ;
+                           dash:editor             memorix:VocabularyEditor ;
+                           memorix:conceptSchemeIn vocabularies:c1b2081a-0590-47bb-b83e-08b9c0a8b429 ; # Archieven - Digitaal type identificatie
+                           sh:class                skos:Concept ;
+                           sh:nodeKind             sh:IRI ;
+                         ] ;
+    sh:property          [ rdfs:label  "Externe identificatiewaarde"@nl, "External Identifier"@en ;
+                           sh:message  "This node MUST link to exactly 1 xsd:string with rico:textualValue"@en ;
+                           sh:description "Extern identificatiekenmerk dat meegeleverd is en dat gebruikt wordt om naar te verwijzen of te koppelen."@nl, "Identification originating from an external system or application. Used for linking purposes."@en ;
+                           sh:path     rico:textualValue ;
+                           #sh:minCount 1 ;
+                           sh:maxCount 1 ;
+                           sh:order    2.0 ;
+                           sh:datatype xsd:string ;
+                         ] .
 
 saa:Address
     a                    sh:NodeShape ;
@@ -228,8 +271,9 @@ saa:RelatedDate
                            sh:order    1.0 ;
                            sh:path     saa:relatedDateType ;
                            dash:editor  dash:EnumSelectEditor ;
+                           sh:datatype xsd:string ; # new required property
                            sh:maxCount  1 ;
-                           sh:in       ( "aanvraagdatum" "vaststellingsdatum" "rapportdatum" "einddatum" ) ;
+                           sh:in       ( "aanvraagdatum" "begindatum" "besluitdatum" "einddatum" "rapportdatum" "vaststellingsdatum" ) ;
                           #  dash:editor             memorix:VocabularyEditor ;
                           #  memorix:conceptSchemeIn vocabularies:ddc09257-ebd7-404f-93bf-fe95e1412cb0 ; # Archieven - Related
                           #  sh:class                skos:Concept ;

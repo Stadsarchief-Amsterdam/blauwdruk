@@ -50,27 +50,25 @@ rt:DigitalRecord
     sh:targetClass                  rt:DigitalRecord ;
     memorix:hasInformationComponent [ rdf:type memorix:DigitalAssetComponent ] ;
     sh:property             [ rdfs:label   "Archief"@nl, "Fonds"@en ;
-                              sh:description "Archief waar dit object bij hoort"@nl, "Fonds to which this object belongs"@en ;
-                              sh:message   "Kies een archief waar dit object uit komt."@nl, "Choose a fonds where this object belongs to."@en ;
+                              sh:description "Archief waar dit informatieobject bij hoort"@nl, "Fonds to which this digital record belongs"@en ;
+                              sh:message   "Kies een archief waar dit informatieobject uit komt."@nl, "Choose a fonds where this digital record belongs to."@en ;
                               dash:editor  memorix:LinkedRecordEditor ;
                               sh:group     digitalRecord:identificationGroup ;
                               sh:maxCount  1 ;
                               sh:nodeKind  sh:IRI ;
-                              #sh:or        ( [ sh:class rt:Fonds ] ) ;
-                              sh:or       ( [ sh:class rt:Fonds ]
-                                         [ sh:class rt:DigitalFonds ] ) ;
+                              sh:or        ( [ sh:class rt:Fonds ] ) ;
                               sh:order     1.0 ;
                               sh:path      digitalRecord:fondsLink ;
                             ] ;
     sh:property             [ rdfs:label   "Dossier"@nl, "Dossier"@en ;
-                              sh:description "Digitaal dossier waar dit informatieobject bij hoort"@nl, "Digital Dossier to which this object belongs"@en ;
-                              sh:message   "Kies een dossier waar dit object in hoort."@nl, "Choose a dossier where this object belongs to."@en ;
-                              #dash:editor  memorix:LinkedRecordEditor ;
+                              sh:description "Digitaal dossier waar dit informatieobject bij hoort"@nl, "Digital Dossier to which this digital record belongs"@en ;
+                              sh:message   "Kies een dossier waar dit informatieobject in hoort."@nl, "Choose a dossier where this digital record belongs to."@en ;
                               dash:editor  memorix:ConditionalLinkFieldEditor ;
                               memorix:conditionalLinkField  digitalRecord:fondsLink ;
                               memorix:linkField [
                                   memorix:hasRecordType rt:DigitalDossier ;
-                                  memorix:path digitalDossier:fonds ;
+                                  memorix:path rico:IsOrWasIncludedIn ;
+                                  #memorix:path digitalDossier:fonds ;
                               ] ;
                               sh:group     digitalRecord:identificationGroup ;
                               sh:maxCount  100 ;
@@ -103,6 +101,17 @@ rt:DigitalRecord
                                       dash:singleLine      false ;
                                       sh:datatype          xsd:string ;
                                     ] ;
+    sh:property                     [ rdfs:label  "Externe identificatie"@nl, "External Identifier"@en ;
+                                      rdfs:comment "Allerlei identificerende kenmerken die in de oorspronkelijk data was opgenomen. Kan bijvoorbeeld ook de oorspronkelijke bestandsnaam zijn al dan niet met pad."@nl,
+                                                  "All kinds of identifying string, included in the original data. Might be the original filename with or without path."@en ;
+                                      sh:description "Extern identificatiekenmerk dat meegeleverd is en dat gebruikt wordt om naar te verwijzen of te koppelen."@nl, "Identification originating from an external system or application. Used for linking purposes."@en ;
+                                      sh:path     rico:hasOrHadIdentifier ;
+                                      sh:class    rico:Identifier ;
+                                      sh:nodeKind sh:BlankNode ;
+                                      sh:maxCount 1 ;
+                                      sh:order    9.0 ;
+                                      sh:group    digitalRecord:identificationGroup ;
+                                    ] ;
     sh:property                     [ rdf:type            sh:PropertyShape ;
                                       rdfs:label          "Datering"@nl, "Dates Resource"@en ;
                                       rdfs:comment        "Datum van vorming van het archiefstuk"@nl, "Date of creation of the record"@en ;
@@ -113,6 +122,17 @@ rt:DigitalRecord
                                       sh:maxCount         1 ;
                                       sh:order            1.0 ;
                                     ] ;
+    sh:property                     [ rdfs:label  "Zie ook"@nl, "See related record"@en ;
+                                      sh:description "Link naar een ander digitaal informatieobject of dossier"@nl, "Link to a different digital record or dossier"@en ;
+                                      dash:editor memorix:LinkedRecordEditor ;
+                                      sh:group    digitalRecord:contentDescriptionGroup ;
+                                      sh:maxCount 50 ;
+                                      sh:nodeKind sh:IRI ;
+                                      sh:or       ( [ sh:class rt:DigitalRecord ]
+                                                  [ sh:class rt:DigitalDossier ] ) ;
+                                      sh:order    3.0 ;
+                                      sh:path     rdfs:seeAlso
+                                    ] ;                                    
     sh:property                     [ rdfs:label  "Gerelateerde actoren"@nl, "Linked agents"@en ;
                                       sh:path     digitalRecord:hasOrHadRelatedAgent ;
                                       sh:class    saa:RelatedAgent ;
@@ -129,28 +149,6 @@ rt:DigitalRecord
                                       sh:order    7.0 ;
                                       sh:path     saa:hasSpecification
                                     ] ;
-    sh:property                     [ rdfs:label  "Externe identificatie"@nl, "Identifier"@en ;
-                                      rdfs:comment
-                                                  "Allerlei identificeren kenmerken die in de oorspronkelijk data was opgenomen. Kan bijvoorbeeld ook de oorspronkelijke bestandsnaam zijn al dan niet met pad."@nl,
-                                                  "All kinds of identifying string, included in the original data. Might be the original filename with or without path."@en ;
-                                      sh:path     rico:hasOrHadIdentifier ;
-                                      sh:class    rico:Identifier ;
-                                      sh:nodeKind sh:BlankNode ;
-                                      sh:maxCount 1 ;
-                                      sh:order    9.0 ;
-                                      sh:group    digitalRecord:contentDescriptionGroup ;
-                                    ] ;
-    sh:property                     [ rdfs:label  "Zie ook"@nl, "See related record"@en ;
-                                      dash:editor memorix:LinkedRecordEditor ;
-                                      sh:description "Link naar een ander digitaal informatieobject of dossier"@nl, "Link to a different digital record or dossier"@en ;
-                                      sh:group    digitalRecord:contentDescriptionGroup ;
-                                      sh:maxCount 50 ;
-                                      sh:nodeKind sh:IRI ;
-                                      sh:or       ( [ sh:class rt:DigitalRecord ]
-                                                  [ sh:class rt:DigitalDossier ] ) ;
-                                      sh:order    10.0 ;
-                                      sh:path     rdfs:seeAlso
-                                    ] ;                                    
     sh:property                     [ rdfs:label   "Betreffend adres"@nl, "Addresses"@en ;
                                       rdfs:comment "Vermelde straatnamen en huisnummers"@nl , "Mentioned streetnames and housenumbers"@en ;
                                       sh:class     saa:Address ;
