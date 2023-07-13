@@ -68,7 +68,6 @@ rt:DigitalRecord
                               memorix:linkField [
                                   memorix:hasRecordType rt:DigitalDossier ;
                                   memorix:path rico:IsOrWasIncludedIn ;
-                                  #memorix:path digitalDossier:fonds ;
                               ] ;
                               sh:group     digitalRecord:identificationGroup ;
                               sh:maxCount  100 ;
@@ -128,8 +127,7 @@ rt:DigitalRecord
                                       sh:group    digitalRecord:contentDescriptionGroup ;
                                       sh:maxCount 50 ;
                                       sh:nodeKind sh:IRI ;
-                                      sh:or       ( [ sh:class rt:DigitalRecord ]
-                                                  [ sh:class rt:DigitalDossier ] ) ;
+                                      sh:or       ( [ sh:class rt:DigitalRecord ]) ;
                                       sh:order    3.0 ;
                                       sh:path     rdfs:seeAlso
                                     ] ;                                    
