@@ -33,10 +33,16 @@ digitalRecord:locationsGroup
     rdfs:label "Locaties"@nl, "Locations"@en ;
     sh:order   3.0 .
 
+digitalRecord:specialGroup
+    rdf:type   sh:PropertyGroup ;
+    rdfs:label "Specifieke kenmerken"@nl, "Specific details"@en ;
+    sh:order   4.0 ;
+.
+
 digitalRecord:managementGroup
     rdf:type   sh:PropertyGroup ;
     rdfs:label "Beheer"@nl, "Manage"@en ;
-    sh:order   4.0 ;
+    sh:order   5.0 ;
 .
 
 rt:DigitalRecord
@@ -78,48 +84,61 @@ rt:DigitalRecord
                             ] ;                               
     sh:property                     [ rdfs:label        "Documenttype"@nl, "Type of document"@en ;
                                       sh:message        "Selecteer een waarde uit de lijst."@nl, "Select a value from the list"@en ;
-                                      memorix:inTitleAt 2 ;
-                                      sh:path           rico:hasDocumentaryFormType ;
-                                      sh:maxCount       1 ;
-                                      sh:order          3.0 ;
                                       dash:editor             memorix:VocabularyEditor ;
+                                      memorix:inTitleAt       1 ;
+                                      memorix:searchWeight    3.0 ;
                                       memorix:conceptSchemeIn vocabularies:af136f00-7211-4355-a236-5a7ff7c25059 ; # Archieven - Digitaal documentsoort
                                       sh:class                skos:Concept ;
                                       sh:nodeKind             sh:IRI ;
                                       sh:group                digitalRecord:identificationGroup ;
+                                      sh:maxCount       1 ;
+                                      sh:order          3.0 ;
+                                      sh:path           rico:hasDocumentaryFormType ;
                                     ] ;
-    sh:property                     [ rdf:type             sh:PropertyShape ;
-                                      rdfs:label           "Beschrijving"@nl, "Description"@en ;
-                                      memorix:inTitleAt    1 ;
-                                      memorix:searchWeight 5.0 ;
-                                      sh:path              rico:title ;
+    sh:property                     [ rdfs:label           "Documentnummer"@nl, "Document number"@en ;
+                                      sh:description       "Vul als het kan een documentnummer in. Niet verplicht maar handig ter identificatie."@nl, "Please provide a document number if possible."@en ;
+                                      dash:singleLine      true ;
+                                      memorix:inSummaryAt  1.0 ;
+                                      memorix:searchWeight 3.0 ;
+                                      sh:datatype          xsd:string ;
+                                      sh:group             digitalRecord:identificationGroup ;
                                       sh:maxCount          1 ;
                                       sh:order             4.0 ;
-                                      sh:group             digitalRecord:identificationGroup ;
+                                      sh:path              rico:name ;
+                                    ] ;                                    
+    sh:property                     [ rdf:type             sh:PropertyShape ;
+                                      rdfs:label           "Beschrijving"@nl, "Description"@en ;
+                                      memorix:inTitleAt    2 ;
+                                      memorix:searchWeight 5.0 ;
                                       dash:editor          dash:TextAreaEditor ;
                                       dash:singleLine      false ;
                                       sh:datatype          xsd:string ;
+                                      sh:group             digitalRecord:identificationGroup ;
+                                      sh:maxCount          1 ;
+                                      sh:order             5.0 ;
+                                      sh:path              rico:title ;
                                     ] ;
-    sh:property                     [ rdfs:label  "Externe identificatie"@nl, "External Identifier"@en ;
-                                      rdfs:comment "Allerlei identificerende kenmerken die in de oorspronkelijk data was opgenomen. Kan bijvoorbeeld ook de oorspronkelijke bestandsnaam zijn al dan niet met pad."@nl,
-                                                  "All kinds of identifying string, included in the original data. Might be the original filename with or without path."@en ;
-                                      sh:description "Extern identificatiekenmerk dat meegeleverd is en dat gebruikt wordt om naar te verwijzen of te koppelen."@nl, "Identification originating from an external system or application. Used for linking purposes."@en ;
-                                      sh:path     rico:hasOrHadIdentifier ;
-                                      sh:class    rico:Identifier ;
-                                      sh:nodeKind sh:BlankNode ;
-                                      sh:maxCount 1 ;
-                                      sh:order    9.0 ;
-                                      sh:group    digitalRecord:identificationGroup ;
-                                    ] ;
+    sh:property                     [ memorix:typeOf       memorix:Identifier ;
+                                      rdfs:label           "Identificatiekenmerk"@nl, "Identification value"@en ;
+                                      sh:description       "Unieke externe identificatiekenmerk, zoals aangeleverd in de metadata."@nl, "External identification value, as provided upon intake."@en ;
+                                      dash:singleLine      true ;
+                                      memorix:inSummaryAt  2.0 ;
+                                      memorix:searchWeight 3.0 ;
+                                      sh:datatype          xsd:string ;
+                                      sh:group             digitalRecord:identificationGroup ;
+                                      sh:maxCount          1 ;
+                                      sh:order             6.0 ;
+                                      sh:path              rico:identifier ;
+                                    ] ;    
     sh:property                     [ rdf:type            sh:PropertyShape ;
                                       rdfs:label          "Datering"@nl, "Dates Resource"@en ;
                                       rdfs:comment        "Datum van vorming van het archiefstuk"@nl, "Date of creation of the record"@en ;
                                       memorix:inSummaryAt 1 ;
-                                      sh:path             digitalRecord:dateRecordResource ;
                                       sh:group            digitalRecord:contentDescriptionGroup ;
                                       sh:datatype         xsd:date ;
                                       sh:maxCount         1 ;
                                       sh:order            1.0 ;
+                                      sh:path             digitalRecord:dateRecordResource ;
                                     ] ;
     sh:property                     [ rdfs:label  "Zie ook"@nl, "See related record"@en ;
                                       sh:description "Link naar een ander digitaal informatieobject of dossier"@nl, "Link to a different digital record or dossier"@en ;
@@ -173,30 +192,6 @@ rt:DigitalRecord
                                       sh:path      rico:isAssociatedWithEvent
                                     ] ;
 .
-
-## Identifier
-rico:Identifier
-    a                    sh:NodeShape ;
-    sh:targetClass       rico:Identifier ;
-    sh:closed            true ;
-    sh:ignoredProperties ( rdf:type ) ;
-    sh:property          [ rdfs:label  "Identifier type"@en, "Type identificatie"@nl ;
-                           sh:message  "rico:Identifier MUST link to exactly 1 rico:IdentifierType with rico:hasIdentifierType"@en ;
-                           sh:path     rico:hasIdentifierType ;
-                           sh:maxCount 1 ;
-                           sh:order    1.0 ;
-                           dash:editor             memorix:VocabularyEditor ;
-                           memorix:conceptSchemeIn vocabularies:c1b2081a-0590-47bb-b83e-08b9c0a8b429 ; # Archieven - Digitaal type identificatie
-                           sh:class                skos:Concept ;
-                           sh:nodeKind             sh:IRI ;
-                         ] ;
-    sh:property          [ rdfs:label  "External Identifier"@en, "Identificatie"@nl ;
-                           sh:message  "This node MUST link to exactly 1 xsd:string with rico:textualValue"@en ;
-                           sh:path     rico:textualValue ;
-                           sh:maxCount 1 ;
-                           sh:order    2.0 ;
-                           sh:datatype xsd:string ;
-                         ] .
 
 saa:Address
     a                    sh:NodeShape ;
