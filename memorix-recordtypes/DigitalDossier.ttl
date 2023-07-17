@@ -157,10 +157,19 @@ rt:DigitalDossier
                                        sh:order    1.0 ;
                                        sh:path     saa:buildingUseFunctionType ;
                                        dash:editor  dash:EnumSelectEditor ;
+                                       memorix:hidden true ;
                                        sh:datatype xsd:string ; 
                                        sh:maxCount  1 ;
                                        sh:in       ( "winkelfunctie" "gezondheidszorgfunctie" "gesloopt" "industriefunctie" "sportfunctie" "onderwijsfunctie" "bouwwerk geen gebouw zijnde") ;
-                                    ] ;                                                                 
+                                    ] ; 
+    sh:property                     [ rdfs:label  "Kenmerk"@nl, "Specification"@en ;
+                                      sh:class    saa:Specification ;
+                                      sh:group    digitalDossier:specialGroup ;
+                                      sh:maxCount 100 ;
+                                      sh:nodeKind sh:BlankNode ;
+                                      sh:order    7.0 ;
+                                      sh:path     saa:hasSpecification 
+                                    ] ;                                                                                                       
     sh:property                     [ rdfs:label   "Betreffend adres"@nl, "Associated with address"@en ;
                                       rdfs:comment "Straatnamen en huisnummers"@nl, "Street and house number"@en ;
                                       sh:class     saa:Address ;
@@ -273,7 +282,7 @@ saa:RelatedDate
                            dash:editor  dash:EnumSelectEditor ;
                            sh:datatype xsd:string ; # new required property
                            sh:maxCount  1 ;
-                           sh:in       ( "aanvraagdatum" "begindatum" "besluitdatum" "einddatum" "rapportdatum" "vaststellingsdatum" ) ;
+                           sh:in       ( "aanvraagdatum" "begindatum" "besluitdatum" "einddatum" "rapportdatum" "vaststellingsdatum" "vergaderdatum") ;
                           #  dash:editor             memorix:VocabularyEditor ;
                           #  memorix:conceptSchemeIn vocabularies:ddc09257-ebd7-404f-93bf-fe95e1412cb0 ; # Archieven - Related
                           #  sh:class                skos:Concept ;
@@ -294,4 +303,27 @@ saa:RelatedDate
                            sh:path     saa:relatedYearValue
                          ] ;
     sh:targetClass       saa:RelatedDate 
+    .
+
+## Detail
+saa:Specification
+    rdf:type             sh:NodeShape ;
+    sh:closed            true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property          [ rdfs:label  "Type Kenmerk"@nl, "Detail type"@en ;
+                           sh:maxCount 1 ;
+                           sh:order    1.0 ;
+                           sh:path     saa:specificationType ;
+                           dash:editor             memorix:VocabularyEditor ;
+                           memorix:conceptSchemeIn vocabularies:ddc09257-ebd7-404f-93bf-fe95e1412cb0 ; # Archieven - Digitaal type kenmerk
+                           sh:class                skos:Concept ;
+                           sh:nodeKind             sh:IRI ;
+                         ] ;
+    sh:property          [ rdfs:label  "Kenmerk"@nl, "Detail"@en ;
+                           sh:datatype xsd:string ;
+                           sh:maxCount 1 ;
+                           sh:order    2.0 ;
+                           sh:path     saa:specificationTextualValue
+                         ] ;
+    sh:targetClass       saa:Specification 
     .
