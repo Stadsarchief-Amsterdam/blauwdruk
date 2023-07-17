@@ -271,7 +271,7 @@ rt:File
                                       sh:minCount  1 ;
                                       sh:maxCount  1 ;
                                       memorix:audience memorix:AudienceInternal ;
-                                      sh:in        ( "aanwezig" "in bewerking" "te vernietigen" "vermist" "vernietigd" "vervallen" ) ;
+                                      sh:in        ( "aanwezig" "depotlocatie elders" "in bewerking" "te vernietigen" "vermist" "vernietigd" "vervallen" ) ;
                                       sh:group     file:managementGroup ;
                                       sh:order     11.0 ;
                                       sh:path      file:status ;
