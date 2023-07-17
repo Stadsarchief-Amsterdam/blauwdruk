@@ -160,7 +160,7 @@ rt:DigitalRecord
                                     ] ;
     sh:property                     [ rdfs:label  "Kenmerk"@nl, "Specification"@en ;
                                       sh:class    saa:Specification ;
-                                      sh:group    digitalRecord:contentDescriptionGroup ;
+                                      sh:group    digitalRecord:specialGroup ;
                                       sh:maxCount 100 ;
                                       sh:nodeKind sh:BlankNode ;
                                       sh:order    7.0 ;
