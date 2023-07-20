@@ -64,13 +64,13 @@ rt:DigitalRecord
                               sh:nodeKind  sh:IRI ;
                               sh:or        ( [ sh:class rt:Fonds ] ) ;
                               sh:order     1.0 ;
-                              sh:path      digitalRecord:fondsLink ;
+                              sh:path      saa:isOrWasAlsoIncludedIn ;
                             ] ;
     sh:property             [ rdfs:label   "Dossier"@nl, "Dossier"@en ;
                               sh:description "Digitaal dossier waar dit informatieobject bij hoort"@nl, "Digital Dossier to which this digital record belongs"@en ;
                               sh:message   "Kies een dossier waar dit informatieobject in hoort."@nl, "Choose a dossier where this digital record belongs to."@en ;
                               dash:editor  memorix:ConditionalLinkFieldEditor ;
-                              memorix:conditionalLinkField  digitalRecord:fondsLink ;
+                              memorix:conditionalLinkField saa:isOrWasAlsoIncludedIn ;
                               memorix:linkField [
                                   memorix:hasRecordType rt:DigitalDossier ;
                                   memorix:path rico:IsOrWasIncludedIn ;
@@ -80,7 +80,7 @@ rt:DigitalRecord
                               sh:nodeKind  sh:IRI ;
                               sh:or        ( [ sh:class rt:DigitalDossier ] ) ;
                               sh:order     2.0 ;
-                              sh:path      digitalRecord:dossierLink ;
+                              sh:path      rico:isOrWasIncludedIn ;
                             ] ;                               
     sh:property                     [ rdfs:label        "Documenttype"@nl, "Type of document"@en ;
                                       sh:message        "Selecteer een waarde uit de lijst."@nl, "Select a value from the list"@en ;
