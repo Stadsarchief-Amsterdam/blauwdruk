@@ -73,14 +73,16 @@ rt:DigitalRecord
                               memorix:conditionalLinkField saa:isOrWasAlsoIncludedIn ;
                               memorix:linkField [
                                   memorix:hasRecordType rt:DigitalDossier ;
-                                  memorix:path rico:IsOrWasIncludedIn ;
+                                  memorix:path rico:isOrWasIncludedIn ;
                               ] ;
                               sh:group     digitalRecord:identificationGroup ;
                               sh:maxCount  100 ;
                               sh:nodeKind  sh:IRI ;
                               sh:or        ( [ sh:class rt:DigitalDossier ] ) ;
                               sh:order     2.0 ;
+                              #sh:path      digitalRecord:dossierLink ;
                               sh:path      rico:isOrWasIncludedIn ;
+
                             ] ;                               
     sh:property                     [ rdfs:label        "Documenttype"@nl, "Type of document"@en ;
                                       sh:message        "Selecteer een waarde uit de lijst."@nl, "Select a value from the list"@en ;
@@ -176,7 +178,7 @@ rt:DigitalRecord
                                       sh:group     digitalRecord:locationsGroup ;
                                     ] ;
     sh:property                     [ rdfs:label  "Interne opmerkingen"@nl, "Internal Remarks"@en ;
-                                      sh:path     digitalRecord:internalRemarks ;
+                                      sh:path     saa:internalRemarks ;
                                       sh:datatype xsd:string ;
                                       sh:maxCount 1 ;
                                       sh:order    1.0 ;
