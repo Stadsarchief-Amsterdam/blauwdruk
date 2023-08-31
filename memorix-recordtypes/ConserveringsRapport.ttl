@@ -99,7 +99,7 @@ report:FileShape
     sh:nodeKind  sh:IRI ;
     sh:or        ( [ sh:class rt:File ] ) ;
     sh:order     2.0 ;
-    sh:path      rico::isOrWasIncludedIn .
+    sh:path      rico:isOrWasIncludedIn .
 
 
 report:BeginDateShape
