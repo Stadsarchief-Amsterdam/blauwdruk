@@ -245,7 +245,7 @@ saa:RelatedDate
                            dash:editor  dash:EnumSelectEditor ;
                            sh:datatype xsd:string ; # new required property
                            sh:maxCount  1 ;
-                           sh:in       ( "aanvraagdatum" "begindatum" "besluitdatum" "einddatum" "rapportdatum" "vaststellingsdatum" "vergaderdatum") ;
+                           sh:in       ( "aanvraagdatum" "adviesdatum" "begindatum" "besluitdatum" "einddatum" "ondertekendatum" "rapportdatum" "vaststellingsdatum" "vergaderdatum") ;
                           #  dash:editor             memorix:VocabularyEditor ;
                           #  memorix:conceptSchemeIn vocabularies:ddc09257-ebd7-404f-93bf-fe95e1412cb0 ; # Archieven - Related
                           #  sh:class                skos:Concept ;
