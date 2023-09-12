@@ -59,6 +59,7 @@ rt:DigitalRecord
                               sh:description "Archief waar dit informatieobject bij hoort"@nl, "Fonds to which this digital record belongs"@en ;
                               sh:message   "Kies een archief waar dit informatieobject uit komt."@nl, "Choose a fonds where this digital record belongs to."@en ;
                               dash:editor  memorix:LinkedRecordEditor ;
+                              memorix:typeOf memorix:FondsFieldLink ;
                               sh:group     digitalRecord:identificationGroup ;
                               sh:maxCount  1 ;
                               sh:nodeKind  sh:IRI ;
