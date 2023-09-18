@@ -207,13 +207,33 @@ saa:Address
                            sh:maxCount 1 ;
                            sh:datatype xsd:string ;
                          ] ;
+    sh:property          [ rdfs:label  "Postcode"@nl, "Postal code"@en ;
+                           dash:singleLine      true ;
+                           sh:path     saa:postalCode ;
+                           sh:order    4.0 ;
+                           sh:maxCount 1 ;
+                           sh:datatype xsd:string ;
+                         ] ;
     sh:property          [ rdfs:label  "Locatie URI (BAG)"@nl, "Location URI (BAG)"@en ;
-                            dash:editor memorix:LocationBagEditor ;
-                            sh:class    memorix:GeoCoordinates ;
+                            dash:editor             memorix:IriEditor ;
+                            sh:nodeKind             sh:IRI ;
+                            sh:description           "Plak hier eeen BAG URI in"@nl, "Please provide a BAG URI"@en ; 
+                            sh:message              "Waarde moet beginnen met http of https"@nl, "Value must start with http:// or https://"@en ;
+                            sh:pattern              "^https?://" ;
+                            sh:flags                "i" ;
                             sh:order    10.0 ;
-                            sh:maxCount 100 ;
-                            sh:path     digitalDossier:hasOrHadSubjectBAGLocation
+                            sh:maxCount 1 ;
+                            sh:path     digitalDossier:hasOrHadSubjectBAGLocation 
                           ] ;
+    sh:property          [ rdfs:label  "Locatie (BAG) identifier"@nl, "Location (BAG) identifier"@en ;
+                            dash:singleLine      true ;
+                            sh:datatype          xsd:string ;
+                            sh:description          "BAG identifier (alleen cijfers)"@nl, "BAG identifier, containing only numbers"@en ; 
+                            sh:message              "De waarde moet een BAG identifier zijn (uitsluitend cijfers)"@nl, "Value must be a BAG ID conatining solely numbers"@en ;
+                            sh:order    11.0 ;
+                            sh:maxCount 1 ;
+                            sh:path     digitalDossier:hasOrHadSubjectBAGIdentifier 
+                          ] ;                          
     sh:property          [ rdfs:label  "Locatie URI (Adamlink)"@nl, "Location URI (Adamlink)"@en ;
                             dash:editor             memorix:IriEditor ;
                             sh:nodeKind             sh:IRI ;
@@ -221,15 +241,15 @@ saa:Address
                             sh:message              "Waarde moet beginnen met http of https"@nl, "Value must start with http:// or https://"@en ;
                             sh:pattern              "^https?://" ;
                             sh:flags                "i" ;
-                            sh:order    11.0 ;
-                            sh:maxCount 100 ;
+                            sh:order    12.0 ;
+                            sh:maxCount 1 ;
                             sh:path     digitalDossier:hasOrHadSubjectLocation
                           ] ;
     sh:property           [ rdfs:label  "Locatie coördinaten"@nl, "Locatie coordinates"@en ;
                             dash:editor memorix:LocationCoordinatesEditor ;
                             sh:class    memorix:GeoCoordinates ;
-                            sh:order    12.0 ;
-                            sh:maxCount 100 ;
+                            sh:order    13.0 ;
+                            sh:maxCount 1 ;
                             sh:path     digitalDossier:hasOrHadSubjectCoordinates
                           ] 
 .
