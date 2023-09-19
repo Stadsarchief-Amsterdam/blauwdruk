@@ -2,7 +2,7 @@
 @prefix rdfs:            <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd:             <http://www.w3.org/2001/XMLSchema#> .
 @prefix skos:            <http://www.w3.org/2004/02/skos/core#> .
-
+@prefix owl:               <http://www.w3.org/2002/07/owl#> .
 @prefix rt:              </resources/recordtypes/> .
 @prefix deed:            </resources/recordtypes/Deed#> .
 @prefix file:            </resources/recordtypes/File#> .
@@ -53,7 +53,7 @@ rt:Deed
     sh:property          deed:FondsShape, deed:FileShape, deed:TitleShape, deed:DocumentaryFormShape, deed:AssociatedWithDateShape, deed:SourceShape, deed:IndexNameShape,
                          deed:HasOrHadSubjectShape, deed:HasOrHadLocation1851Shape, deed:HasOrHadLocation1853Shape, deed:HasOrHadModernLocationShape,
                          deed:AddressHouseNameShape, deed:AddressPlaceShape, deed:AddressDescriptionShape, 
-                         deed:InternalRemarksShape, deed:SpecificationShape ;
+                         deed:InternalRemarksShape, deed:SpecificationShape, deed:LodationIRIShape ;
     sh:targetClass       rt:Deed .
 
 
@@ -288,19 +288,14 @@ saa:Address
     rdf:type             sh:NodeShape ;
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property          [ rdfs:label  "Huisnummer tot"@nl , "House number to"@en;
+    sh:property          [ rdfs:label  "Straatnaam werkveld"@nl, "Migrated street name (textual value)"@en ;
+                           sh:description "Tijdelijk veld om huidge data te migreren en later te standaardiseren"@nl ;
                            sh:datatype xsd:string ;
                            sh:maxCount 1 ;
-                           sh:order    8.0 ;
-                           sh:path     saa:houseNumberEnd
+                           sh:order    3.0 ;
+                           sh:path     saa:streetTextualValue
                          ] ;
-    sh:property          [ rdfs:label  "Huisnummer van"@nl , "House number from"@en;
-                           sh:datatype xsd:string ;
-                           sh:maxCount 1 ;
-                           sh:order    7.0 ;
-                           sh:path     saa:houseNumberBegin
-                         ] ;
-    sh:property          [ rdfs:label              "Straatnaam"@nl, "Street name"@en;
+    sh:property          [ rdfs:label              "Gestandaardiseerde straatnaam"@nl, "Street name"@en;
                            dash:editor             memorix:VocabularyEditor ;
                            memorix:conceptSchemeIn vocabularies:a4863c0c-d9e5-3902-831a-d0960e381a41 ;
                            sh:class                skos:Concept ;
@@ -309,8 +304,34 @@ saa:Address
                            sh:order                6.0 ;
                            sh:path                 saa:street
                          ] ;
+    sh:property          [ rdfs:label  "Huisnummer van"@nl , "House number from"@en;
+                           sh:datatype xsd:string ;
+                           sh:maxCount 1 ;
+                           sh:order    7.0 ;
+                           sh:path     saa:houseNumberBegin
+                         ] ;
+    sh:property          [ rdfs:label  "Huisnummer tot"@nl , "House number to"@en;
+                           sh:datatype xsd:string ;
+                           sh:maxCount 1 ;
+                           sh:order    8.0 ;
+                           sh:path     saa:houseNumberEnd
+                         ] ;                         
     sh:targetClass       saa:Address .
 
+deed:LodationIRIShape
+    rdf:type    sh:PropertyShape ;
+    rdfs:label  "Locatie IRI"@nl, "Location IRI"@en ;
+    sh:description "IRI naar een externe locatie identifier (BAG, Adamlink of anders)"@nl, "IRI of external location (BAG, Adamlink or other)"@en ;
+    dash:editor             memorix:IriEditor ;
+    sh:nodeKind             sh:IRI ;
+    sh:description           "Plak hier eeen BAG/Adamlink URI in"@nl, "Please provide a BAG/Adamlink URI"@en ; 
+    sh:message              "Waarde moet beginnen met http of https"@nl, "Value must start with http:// or https://"@en ;
+    sh:pattern              "^https?://" ;
+    sh:flags                "i" ;
+    sh:group    deed:locationGroup ;
+    sh:order    12.0 ;
+    sh:maxCount 1 ;
+    sh:path     deed:hasOrHadSubjectLocation .
 
 deed:AddressHouseNameShape
     rdf:type    sh:PropertyShape ;
