@@ -67,9 +67,11 @@ rt:PersonObservation
                            sh:maxCount 1 ;
                            sh:order    2.0 ;
                            memorix:inSummaryAt 1.0 ;
+                           memorix:searchWeight 3.0 ;
                            sh:path     schema:birthDate
                          ] ;
     sh:property          [ rdfs:label  "Geboorteplaats"@nl, "Place of birth"@en ;
+                           memorix:searchWeight 3.0 ;
                            sh:datatype xsd:string ;
                            sh:group    personObservation:personListingGroup ;
                            sh:maxCount 1 ;
@@ -80,11 +82,13 @@ rt:PersonObservation
                            sh:datatype xsd:date ;
                            sh:group    personObservation:personListingGroup ;
                            memorix:inSummaryAt 2.0 ;
+                           memorix:searchWeight 3.0 ;
                            sh:maxCount 1 ;
                            sh:order    4.0 ;
                            sh:path     schema:deathDate
                          ] ;
     sh:property          [ rdfs:label  "Overlijdensplaats"@nl, "Place of death"@en ;
+                           memorix:searchWeight 3.0 ;
                            sh:datatype xsd:string ;
                            sh:group    personObservation:personListingGroup ;
                            sh:maxCount 1 ;
@@ -161,8 +165,8 @@ pnv:PersonName
     sh:property          [ rdfs:label        "Voornaam"@nl,
                                              "First name"@en ;
                            memorix:inTitleAt 3.0 ;
+                           memorix:searchWeight 5.0 ;
                            sh:datatype       xsd:string ;
-                           sh:group          personObservation:personListingGroup ;
                            sh:maxCount       1 ;
                            sh:order          1.0 ;
                            sh:path           pnv:givenName
@@ -170,20 +174,26 @@ pnv:PersonName
     sh:property          [ rdfs:label        "Tussenvoegsel"@nl, "Surname prefix"@en ;
                            memorix:inTitleAt 2.0 ;
                            sh:datatype       xsd:string ;
-                           sh:group          personObservation:personListingGroup ;
                            sh:maxCount       1 ;
                            sh:order          2.0 ;
                            sh:path           pnv:surnamePrefix
                          ] ;
     sh:property          [ rdfs:label        "Achternaam"@nl, "Surname"@en ;
                            memorix:inTitleAt 1.0 ;
+                           memorix:searchWeight 8.0 ;
                            sh:datatype       xsd:string ;
-                           sh:group          personObservation:personListingGroup ;
                            sh:maxCount       1 ;
                            sh:order          3.0 ;
                            sh:message        "Achternaam is verplicht"@nl, "Surname is required"@en ;
-                           sh:maxCount       1 ;
                            sh:path           pnv:baseSurname
+                         ] ;
+    sh:property          [ rdfs:label        "Letterlijke naam"@nl, "Literal name"@en ;
+                           memorix:searchWeight 3.0 ;
+                           rdfs:comment     "Verplicht veld voor PNV ontologie; de volledige naam als label"@nl, "Required field for PNV ontology"@en ;
+                           sh:datatype       xsd:string ;
+                           sh:maxCount       1 ;
+                           sh:order          10.0 ;
+                           sh:path           pnv:literalName
                          ] ;
     sh:targetClass       pnv:PersonName ;
 .

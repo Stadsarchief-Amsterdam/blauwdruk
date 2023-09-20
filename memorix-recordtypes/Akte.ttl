@@ -98,6 +98,7 @@ deed:TitleShape
     rdfs:comment      "Gemigreerde titel, t.b.v. de Memorix interface"@nl ;
     rdfs:label        "Titel"@nl, "Title"@en ;
     memorix:inTitleAt 1.0 ;
+    memorix:searchWeight 5.0 ;
     sh:datatype       xsd:string ;
     sh:group          deed:identificationGroup ;
     sh:minCount       1 ;
@@ -112,6 +113,7 @@ deed:DocumentaryFormShape
     sh:nodeKind sh:IRI ;
     sh:class    skos:Concept ;
     memorix:conceptSchemeIn vocabularies:507fab73-142b-4076-a18c-df21a21cb3b0 ;
+    memorix:searchWeight 3.0 ;
     sh:group    deed:identificationGroup ;
     sh:minCount 1 ;
     sh:maxCount 1 ;
@@ -121,6 +123,7 @@ deed:DocumentaryFormShape
 deed:AssociatedWithDateShape
     rdf:type    sh:PropertyShape ;
     rdfs:label  "Date of the record"@en, "Datum van de akte"@nl ;
+    memorix:searchWeight 3.0 ;
     sh:datatype xsd:date ;
     sh:group    deed:identificationGroup ;
     sh:maxCount 1 ;
@@ -288,14 +291,15 @@ saa:Address
     rdf:type             sh:NodeShape ;
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property          [ rdfs:label  "Straatnaam werkveld"@nl, "Migrated street name (textual value)"@en ;
-                           sh:description "Tijdelijk veld om huidge data te migreren en later te standaardiseren"@nl ;
+    sh:property          [ rdfs:label  "Straatnaam in bron (werkveld)"@nl, "Migrated streetname"@en;
+                           sh:description "Tijdelijk veld om huidige straten te migreren en later te standaardiseren"@nl, "Temporary field to migrate streets into"@en; ;
                            sh:datatype xsd:string ;
                            sh:maxCount 1 ;
-                           sh:order    3.0 ;
-                           sh:path     saa:streetTextualValue
+                           sh:order    5.0 ;
+                           sh:path     deed:streetTextualValue
                          ] ;
-    sh:property          [ rdfs:label              "Gestandaardiseerde straatnaam"@nl, "Street name"@en;
+    sh:property          [ rdfs:label              "Straatnaam"@nl, "Street name"@en;
+                           sh:description          "Gestandaardiseerde straatnaam uit het conceptschema"@nl, "Standardized street name from concept scheme"@en;
                            dash:editor             memorix:VocabularyEditor ;
                            memorix:conceptSchemeIn vocabularies:a4863c0c-d9e5-3902-831a-d0960e381a41 ;
                            sh:class                skos:Concept ;
