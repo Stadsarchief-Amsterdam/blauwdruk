@@ -259,7 +259,7 @@ saa:Address
                             sh:pattern              "^https?://" ;
                             sh:flags                "i" ;
                             sh:order    10.0 ;
-                            sh:maxCount 1 ;
+                            sh:maxCount 1000 ;
                             sh:path     digitalRecord:hasOrHadSubjectBAGLocation 
                           ] ;
     sh:property          [ rdfs:label  "Locatie (BAG) identifier"@nl, "Location (BAG) identifier"@en ;
@@ -268,7 +268,7 @@ saa:Address
                             sh:description          "BAG identifier (alleen cijfers)"@nl, "BAG identifier, containing only numbers"@en ; 
                             sh:message              "De waarde moet een BAG identifier zijn (uitsluitend cijfers)"@nl, "Value must be a BAG ID conatining solely numbers"@en ;
                             sh:order    11.0 ;
-                            sh:maxCount 1 ;
+                            sh:maxCount 1000 ;
                             sh:path     digitalRecord:hasOrHadSubjectBAGIdentifier 
                           ] ;                          
     sh:property          [ rdfs:label  "Locatie URI (Adamlink)"@nl, "Location URI (Adamlink)"@en ;
@@ -286,7 +286,7 @@ saa:Address
                             dash:editor memorix:LocationCoordinatesEditor ;
                             sh:class    memorix:GeoCoordinates ;
                             sh:order    13.0 ;
-                            sh:maxCount 1 ;
+                            sh:maxCount 1000 ;
                             sh:path     digitalRecord:hasOrHadSubjectCoordinates
                           ] .
 
