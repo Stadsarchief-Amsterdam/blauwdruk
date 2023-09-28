@@ -89,7 +89,7 @@ rt:DigitalRecord
                                       sh:message        "Selecteer een waarde uit de lijst."@nl, "Select a value from the list"@en ;
                                       dash:editor             memorix:VocabularyEditor ;
                                       memorix:inTitleAt       1 ;
-                                      memorix:searchWeight    3.0 ;
+                                      memorix:searchWeight    5.0 ;
                                       memorix:conceptSchemeIn vocabularies:af136f00-7211-4355-a236-5a7ff7c25059 ; # Archieven - Digitaal documentsoort
                                       sh:class                skos:Concept ;
                                       sh:nodeKind             sh:IRI ;
@@ -97,6 +97,20 @@ rt:DigitalRecord
                                       sh:maxCount       1 ;
                                       sh:order          3.0 ;
                                       sh:path           rico:hasDocumentaryFormType ;
+                                    ] ;
+    sh:property                     [ rdfs:label        "WOO-categorie"@nl, "WOO category"@en ;
+                                      sh:description    "Als het een document is in het kader van de WOO, kies de categorie"@nl, "If applicable, choose a WOO category"@en ;
+                                      sh:message        "Selecteer een waarde uit de lijst."@nl, "Select a value from the list"@en ;
+                                      dash:editor             memorix:VocabularyEditor ;
+                                      memorix:inTitleAt       1 ;
+                                      memorix:searchWeight    3.0 ;
+                                      memorix:conceptSchemeIn vocabularies:7eeee4ba-87d1-4ba9-bcfe-a7278f3f27a2 ; # Raadplegen - WOO categorie
+                                      sh:class                skos:Concept ;
+                                      sh:nodeKind             sh:IRI ;
+                                      sh:group                digitalRecord:identificationGroup ;
+                                      sh:maxCount       1 ;
+                                      sh:order          5.0 ;
+                                      sh:path           digitalRecord:publicationCategory ;
                                     ] ;
     sh:property                     [ rdfs:label           "Documentnummer"@nl, "Document number"@en ;
                                       sh:description       "Vul als het kan een documentnummer in. Niet verplicht maar handig ter identificatie."@nl, "Please provide a document number if possible."@en ;
@@ -106,19 +120,19 @@ rt:DigitalRecord
                                       sh:datatype          xsd:string ;
                                       sh:group             digitalRecord:identificationGroup ;
                                       sh:maxCount          1 ;
-                                      sh:order             4.0 ;
+                                      sh:order             6.0 ;
                                       sh:path              rico:name ;
                                     ] ;                                    
     sh:property                     [ rdf:type             sh:PropertyShape ;
                                       rdfs:label           "Beschrijving"@nl, "Description"@en ;
                                       memorix:inTitleAt    2 ;
-                                      memorix:searchWeight 5.0 ;
+                                      memorix:searchWeight 7.0 ;
                                       dash:editor          dash:TextAreaEditor ;
                                       dash:singleLine      false ;
                                       sh:datatype          xsd:string ;
                                       sh:group             digitalRecord:identificationGroup ;
                                       sh:maxCount          1 ;
-                                      sh:order             5.0 ;
+                                      sh:order             7.0 ;
                                       sh:path              rico:title ;
                                     ] ;
     sh:property                     [ memorix:typeOf       memorix:Identifier ;
@@ -130,7 +144,7 @@ rt:DigitalRecord
                                       sh:datatype          xsd:string ;
                                       sh:group             digitalRecord:identificationGroup ;
                                       sh:maxCount          1 ;
-                                      sh:order             6.0 ;
+                                      sh:order             8.0 ;
                                       sh:path              rico:identifier ;
                                     ] ;    
     sh:property                     [ rdf:type            sh:PropertyShape ;
