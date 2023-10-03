@@ -181,6 +181,18 @@ rt:PersonObservation
                             sh:order    5.0 ;
                             sh:path     saa:isAssociatedWithModernAddress ;
                          ];   
+    sh:property          [ rdfs:label  "Locatie IRI"@nl, "Location IRI"@en ;
+                            sh:description "IRI naar een externe locatie identifier (BAG, Adamlink of anders)"@nl, "IRI of external location (BAG, Adamlink or other)"@en ;
+                            dash:editor             memorix:IriEditor ;
+                            sh:nodeKind             sh:IRI ;
+                            sh:message              "Waarde moet beginnen met http of https"@nl, "Value must start with http:// or https://"@en ;
+                            sh:pattern              "^https?://" ;
+                            sh:flags                "i" ;
+                            sh:group    personObservation:addressGroup ;
+                            sh:order    12.0 ;
+                            sh:maxCount 10 ;
+                            sh:path     personObservation:hasOrHadSubjectLocation ;
+    ] ;  
     sh:targetClass       rt:PersonObservation
     .
 
