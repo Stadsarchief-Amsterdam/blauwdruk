@@ -74,6 +74,18 @@ rt:Fonds
         # Field in the File recordtype with the current Fonds record as parent
         memorix:path file:fonds ;
     ] ;
+    memorix:hasInformationComponent [
+        a memorix:HasRecordsComponent ;
+        dc:title "Digitale Dossiers"@nl, "Digital Dossiers"@en ;
+        memorix:hasRecordType rt:DigitalDossier ;
+        memorix:path rico:isOrWasIncludedIn ;
+    ] ;
+    memorix:hasInformationComponent [
+        a memorix:HasRecordsComponent ;
+        dc:title "Digitale informatieobjecten"@nl, "Digital Records"@en ;
+        memorix:hasRecordType rt:DigitalRecord ;
+        memorix:path saa:isOrWasAlsoIncludedIn ;
+    ] ;
     dc:identifier        "Fonds" ;
     sh:targetClass       rt:Fonds ;
     # sh:hasValue ric-rst:Fonds ; todo implement maybe later when the Memorix interface allows hidden fields
