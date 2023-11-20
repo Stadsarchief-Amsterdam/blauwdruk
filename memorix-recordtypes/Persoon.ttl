@@ -151,7 +151,7 @@ pnv:PersonName
     sh:ignoredProperties ( rdf:type ) ;
     sh:property          [ rdfs:label        "Voornaam"@nl,
                                              "First name"@en ;
-                           memorix:inTitleAt 3.0 ;
+                           memorix:inTitleAt 2.0 ;
                            sh:datatype       xsd:string ;
                            sh:group          person:identificationGroup ;
                            sh:maxCount       1 ;
@@ -167,7 +167,7 @@ pnv:PersonName
                            sh:order                 2.0 ;
                            sh:path                  pnv:initials ] ;
     sh:property          [ rdfs:label        "Tussenvoegsel"@nl, "Surname prefix"@en ;
-                           memorix:inTitleAt 2.0 ;
+                           memorix:inTitleAt 3.0 ;
                            sh:datatype       xsd:string ;
                            sh:group          person:identificationGroup ;
                            sh:maxCount       1 ;
