@@ -196,16 +196,25 @@ rt:DigitalRecord
                                       sh:path     saa:internalRemarks ;
                                       sh:datatype xsd:string ;
                                       sh:maxCount 1 ;
-                                      sh:order    1.0 ;
+                                      sh:order    3.0 ;
                                       sh:group    digitalRecord:managementGroup ;
                                       dash:editor dash:TextAreaEditor ;
+                                      memorix:audience memorix:AudienceInternal ;
                                     ] ;
+    sh:property                     [ rdfs:label  "AIP identifier"@nl, "AIP identifier"@en ;
+                                      sh:path     digitalRecord:aipIdentifier ;
+                                      sh:order    1.0 ;
+                                      sh:group    digitalRecord:managementGroup ;
+                                      sh:maxCount 1 ;
+                                      sh:datatype xsd:string ;
+                                      memorix:audience memorix:AudienceInternal ;
+                                    ] ;                                                                
     sh:property                     [ rdfs:label   "Activiteit"@nl, "Activity"@en ;
                                       sh:class     rico:Activity ;
                                       sh:nodeKind  sh:BlankNode ;
                                       sh:group     digitalRecord:managementGroup ;
                                       sh:maxCount  1 ;
-                                      sh:order     3.0 ;
+                                      sh:order     4.0 ;
                                       sh:path      rico:isAssociatedWithEvent
                                     ] ;
 .
