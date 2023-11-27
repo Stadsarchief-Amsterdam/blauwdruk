@@ -128,6 +128,7 @@ rico:DateRange
                          ] ;
     sh:property          [ rdfs:label  "Begindatum"@nl, "Begin date"@en ;
                            memorix:inTitleAt 3 ;
+                           #memorix:inSummaryAt 1 ;
                            sh:datatype xsd:date ;
                            sh:maxCount 1 ;
                            sh:order    2.0 ;
@@ -135,6 +136,7 @@ rico:DateRange
                          ] ;
     sh:property          [ rdfs:label  "Einddatum"@nl, "End date"@en ;
                            memorix:inTitleAt  4 ;
+                           #memorix:inSummaryAt 2 ;
                            sh:datatype xsd:date ;
                            sh:maxCount 1 ;
                            sh:order    3.0 ;
