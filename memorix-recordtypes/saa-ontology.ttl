@@ -427,6 +427,9 @@ saa:hasAgent a rdf:Property ;
 	rdfs:domain saa:RelatedAgent ;
 	rdfs:range rico:Agent .
 
+saa:hasUnidentifiedAgent a rdf:Property ;
+	rdfs:domain saa:RelatedAgent .
+
 # properties bij saa:Specification
 saa:specificationType a rdf:Property ;
 	rdfs:domain saa:Specification .

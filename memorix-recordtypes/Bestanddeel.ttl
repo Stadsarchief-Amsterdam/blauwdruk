@@ -440,6 +440,14 @@ saa:RelatedAgent
                            sh:order    2.0 ;
                            sh:path     saa:hasAgent ;
                          ] ;
+    sh:property          [ rdfs:label  "Ongeïdentificeerde vervaardigers"@nl, "Unidentifeid creator"@en ;
+                        sh:message  "Voer één enkele vervaardiger in. Als er meer dan één vervaardiger is, gebruik je het herhaalbare veld."@nl, "Please type one creator. If there is more than one creator, use the recurrent field."@en ;
+                        sh:description "Veld om in tekst aangeleverde actoren in op te nemen, die niet nader geïdentificeerd zijn. Eventueel later te standaardiseren"@nl, "Field for unidentified actors, to possibly standardize afterwards"@en;
+                        sh:maxCount       1 ;
+                        sh:order    3.0 ;
+                        sh:path     saa:hasUnidentifiedAgent ;
+                        sh:datatype xsd:string ;
+                        ] ;                         
     sh:targetClass       saa:RelatedAgent
 .
 

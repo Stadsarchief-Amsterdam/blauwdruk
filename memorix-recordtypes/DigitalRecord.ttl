@@ -313,14 +313,6 @@ saa:RelatedAgent
                            sh:order                1.0 ;
                            sh:path                 saa:hasRole ;
                          ] ;
-    sh:property          [ rdfs:label  "Actor werkveld"@nl , "Actor textual value"@en;
-                           memorix:audience memorix:AudienceInternal ;
-                           sh:description "Tijdelijk veld om in tekst aangeleverde actoren in op te nemen en later te standaardiseren"@nl, "Temporary field in order to accept incoming textual values of actors and standardize afterwards"@en;
-                           sh:datatype xsd:string ;
-                           sh:maxCount 1 ;
-                           sh:order    2.0 ;
-                           sh:path     digitalRecord:agentTextualValue ;
-                         ] ;         
     sh:property          [ rdfs:label  "Actor"@nl, "Agent"@en ;
                            sh:description "Kies hier alleen geïdentificeerde personen, organisaties of families"@nl, "Only select identified agents from the person, organisation or family recordtypes"@en ;
                            dash:editor memorix:LinkedRecordEditor ;
@@ -331,6 +323,22 @@ saa:RelatedAgent
                            sh:order    3.0 ;
                            sh:path     saa:hasAgent ;
                          ] ;
+    sh:property          [ rdfs:label  "Ongeïdentificeerde actor"@nl , "Unidentified actor"@en;
+                           memorix:audience memorix:AudienceInternal ;
+                           sh:description "Veld om in tekst aangeleverde actoren in op te nemen, die niet nader geïdentificeerd zijn. Eventueel later te standaardiseren"@nl, "Field for unidentified actors, to possibly standardize afterwards"@en;
+                           sh:maxCount       1 ;
+                           sh:order    3.0 ;
+                           sh:path     saa:hasUnidentifiedAgent ;
+                           sh:datatype xsd:string ;
+                         ] ;   
+    # sh:property          [ rdfs:label  "Oud, inmiddels verwijderd werkveld actor"@nl, "Temp field actor"@en;
+    #                        memorix:audience memorix:AudienceInternal ;
+    #                        sh:datatype xsd:string ;
+    #                        memorix:hidden  true ;
+    #                        sh:maxCount 1 ;
+    #                        sh:order    2.0 ;
+    #                        sh:path     digitalRecord:agentTextualValue ;
+    #                      ] ;         
     sh:targetClass       saa:RelatedAgent
 .
 
