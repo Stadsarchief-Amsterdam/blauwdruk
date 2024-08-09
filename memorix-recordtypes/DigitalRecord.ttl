@@ -157,6 +157,16 @@ rt:DigitalRecord
                                       sh:order            1.0 ;
                                       sh:path             digitalRecord:dateRecordResource ;
                                     ] ;
+    sh:property                     [ rdfs:label      "Nadere toelichting"@nl, "Additional notes"@en ;
+                                      sh:description  "Nadere toelichting op de documenten, vaak aanvullende specifieke informatie uit het externe bronsysteem"@nl, "Addition notes coming from the original application"@en ;
+                                      dash:singleLine false ;
+                                      dash:editor     dash:TextAreaEditor ;
+                                      sh:datatype     xsd:string ;
+                                      sh:group        digitalRecord:contentDescriptionGroup ;
+                                      sh:maxCount     1 ;
+                                      sh:order        2.0 ;
+                                      sh:path         rico:scopeAndContent
+                                    ] ;
     sh:property                     [ rdfs:label  "Zie ook"@nl, "See related record"@en ;
                                       sh:description "Link naar een ander digitaal informatieobject of dossier"@nl, "Link to a different digital record or dossier"@en ;
                                       dash:editor memorix:LinkedRecordEditor ;
@@ -338,7 +348,7 @@ saa:RelatedAgent
     #                        sh:maxCount 1 ;
     #                        sh:order    2.0 ;
     #                        sh:path     digitalRecord:agentTextualValue ;
-    #                      ] ;         
+    #                      ] ; 
     sh:targetClass       saa:RelatedAgent
 .
 
