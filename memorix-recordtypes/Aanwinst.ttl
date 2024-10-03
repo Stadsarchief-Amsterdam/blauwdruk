@@ -178,4 +178,11 @@ acquisition:AcquisitionRecordSet
                            dash:editor memorix:LinkedRecordEditor ;
                            sh:nodeKind sh:IRI ;
                            sh:or       ( [ sh:class rt:Fonds ] ) ;
+                         ] ;
+    sh:property          [ rdfs:label  "Onderdeel geïnventariseerd"@nl, "Section described"@en ;
+                           sh:datatype xsd:boolean ;
+                           sh:maxCount 1 ;
+                           sh:order    5.0 ;
+                           sh:path     acquisition:thisPartIsDescribed ;
                          ] .
+                         
