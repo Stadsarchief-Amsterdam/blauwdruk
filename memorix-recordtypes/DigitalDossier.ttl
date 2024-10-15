@@ -134,16 +134,16 @@ rt:DigitalDossier
                                       sh:order            1.0 ;
                                       sh:path             digitalDossier:dateRecordResource ; # 
                                     ] ; 
-    # sh:property                     [ rdfs:label      "Nadere toelichting"@nl, "Additional notes"@en ;
-    #                                   rdfs:comment    "Een nadere toelichting op het dossier, vaak aanvullende informatie uit een specifiek extern systeem"@nl, "Addition notes coming from the original application"@en ;
-    #                                   dash:singleLine false ;
-    #                                   dash:editor     dash:TextAreaEditor ;
-    #                                   sh:datatype     xsd:string ;
-    #                                   sh:group        digitalDossier:contentDescriptionGroup ;
-    #                                   sh:maxCount     1 ;
-    #                                   sh:order        2.0 ;
-    #                                   sh:path         rico:scopeAndContent
-    #                                 ] ;                                    
+    sh:property                     [ rdfs:label      "Nadere toelichting"@nl, "Additional notes"@en ;
+                                      sh:description  "Een nadere toelichting op het dossier, vaak aanvullende informatie uit een specifiek extern systeem"@nl, "Addition notes coming from the original application"@en ;
+                                      dash:singleLine false ;
+                                      dash:editor     dash:TextAreaEditor ;
+                                      sh:datatype     xsd:string ;
+                                      sh:group        digitalDossier:contentDescriptionGroup ;
+                                      sh:maxCount     1 ;
+                                      sh:order        2.0 ;
+                                      sh:path         rico:scopeAndContent
+                                    ] ;                                    
     sh:property                     [ rdfs:label           "Publicatiedatum"@nl, "Date of publication"@en ;
                                       memorix:searchWeight 3.0 ;
                                       sh:group             digitalDossier:contentDescriptionGroup ;
