@@ -168,7 +168,7 @@ deed:HasOrHadCategoryShape
     memorix:searchWeight 2.0 ;
     memorix:inSummaryAt 1.0 ;
     sh:group    deed:identificationGroup ;
-    sh:minCount 1 ;
+    #sh:minCount 1 ;
     sh:maxCount 1 ;
     sh:order    8.0 ;
     sh:path     rico:hasOrHadCategory .
