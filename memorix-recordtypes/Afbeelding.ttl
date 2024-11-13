@@ -137,6 +137,13 @@ rt:Image
                               sh:or       ( [ sh:class rt:Person ]
                                             [ sh:class rt:Family ] ) ;
                             ] ;
+    sh:property             [ rdfs:label  "Afgebeeld ongeïdentificeerd persoon"@nl, "Unidetified depicted person"@en ;
+                              sh:path     image:isAssociatedWithUnidentifiedPerson ;
+                              sh:maxCount 100 ;
+                              sh:order    5.1 ;
+                              sh:group    image:contentDescriptionGroup ;
+                              sh:datatype xsd:string ;
+                              ] ;                       
     sh:property             [ rdfs:label              "Afgebeeld gebouw"@nl, "Depicted building"@en ;
                               sh:path                 image:isAssociatedWithBuilding ;
                               sh:order                6.0 ;
@@ -372,7 +379,7 @@ saa:RelatedAgent
                            sh:order    2.0 ;
                            sh:path     saa:hasAgent ;
                          ] ;
-    sh:property          [ rdfs:label  "Ongeïdentificeerde vervaardigers"@nl, "Unidentifeid creator"@en ;
+    sh:property          [ rdfs:label  "Ongeïdentificeerde vervaardigers"@nl, "Unidentified creator"@en ;
                            sh:message  "Voer één enkele vervaardiger in. Als er meer dan één vervaardiger is, gebruik je het herhaalbare veld."@nl, "Please type one creator. If there is more than one creator, use the recurrent field."@en ;
                            sh:description "Veld om in tekst aangeleverde actoren in op te nemen, die niet nader geïdentificeerd zijn. Eventueel later te standaardiseren"@nl, "Field for unidentified actors, to possibly standardize afterwards"@en;
                            sh:maxCount       1 ;
