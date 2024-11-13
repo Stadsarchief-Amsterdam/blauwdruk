@@ -2,7 +2,7 @@
 @prefix rdfs:            <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd:             <http://www.w3.org/2001/XMLSchema#> .
 @prefix skos:            <http://www.w3.org/2004/02/skos/core#> .
-@prefix owl:               <http://www.w3.org/2002/07/owl#> .
+@prefix owl:             <http://www.w3.org/2002/07/owl#> .
 @prefix rt:              </resources/recordtypes/> .
 @prefix deed:            </resources/recordtypes/Deed#> .
 @prefix file:            </resources/recordtypes/File#> .
@@ -55,7 +55,7 @@ rt:Deed
     sh:ignoredProperties ( rdf:type ) ;
     owl:equivalentClass  rico:Record ;
     memorix:hasInformationComponent [ rdf:type memorix:DigitalAssetComponent ] ;
-    sh:property          deed:FondsShape, deed:FileShape, deed:TitleShape, deed:DocumentaryFormShape, deed:AssociatedWithDateShape, deed:SourceShape, deed:IndexNameShape,
+    sh:property          deed:FondsShape, deed:FileShape, deed:TitleShape, deed:DocumentaryFormShape, deed:AssociatedWithDateShape, deed:SourceShape, deed:IndexNameShape, deed:HasOrHadCategoryShape,
                          deed:HasOrHadSubjectShape, deed:HasOrHadLocation1851Shape, deed:HasOrHadLocation1853Shape, deed:HasOrHadModernLocationShape,
                          deed:AddressHouseNameShape, deed:AddressPlaceShape, deed:AddressDescriptionShape, deed:LocationShape, 
                          deed:InternalRemarksShape, deed:SpecificationShape, deed:LodationIRIShape ;
@@ -135,8 +135,6 @@ deed:AssociatedWithDateShape
     sh:order    5.0 ;
     sh:path     rico:normalizedDateValue .
 
-# @todo geo component
-
 deed:SourceShape
     rdf:type    sh:PropertyShape ;
     rdfs:label  "Mention of the source"@en, "Bronverwijzing"@nl ;
@@ -149,14 +147,31 @@ deed:SourceShape
 deed:IndexNameShape
     rdf:type            sh:PropertyShape ;
     rdfs:comment        "Current name of the index"@en, "Huidige naam van de index."@nl ;
-    rdfs:label          "Index Naam"@nl, "Name of the index"@en ;
+    rdfs:label          "Index Naam (oud)"@nl, "Name of the index (old)"@en ;
     sh:datatype         xsd:string ;
-    memorix:inSummaryAt 1.0 ;
+    #memorix:inSummaryAt 2.0 ;
+    memorix:audience memorix:AudienceInternal ;
+    # memorix:hidden  true ; # opnemen als de update actie klaar is
     sh:group            deed:identificationGroup ;
     sh:maxCount         1 ;
     sh:order            7.0 ;
     sh:path             saa:indexName .
 
+deed:HasOrHadCategoryShape
+    rdf:type    sh:PropertyShape ;
+    rdfs:label  "Index"@en, "Index"@nl ;
+    rdfs:comment "Current name of the index"@en, "Huidige naam van de index."@nl ;
+    dash:editor memorix:VocabularyEditor ;
+    sh:nodeKind sh:IRI ;
+    sh:class    skos:Concept ;
+    memorix:conceptSchemeIn vocabularies:846bc006-31c6-4a58-b6c2-31d0349553c5 ;
+    memorix:searchWeight 2.0 ;
+    memorix:inSummaryAt 1.0 ;
+    sh:group    deed:identificationGroup ;
+    #sh:minCount 1 ;
+    sh:maxCount 1 ;
+    sh:order    8.0 ;
+    sh:path     rico:hasOrHadCategory .
 
 deed:HasOrHadSubjectShape
     rdf:type     sh:PropertyShape ;
