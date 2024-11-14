@@ -44,6 +44,7 @@ rt:LoanReport
     rdfs:label           "Bruikleenrapport"@nl, "Loan report"@en ;
     dc:identifier        "LoanReport" ;
     sh:targetClass       rt:LoanReport ;
+    memorix:audience memorix:AudienceInternal ;
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property          loan:FondsShape, loan:FileShape, loan:ExhibitionOrganisationNameShape, loan:ExhibitionOrganisationShape, loan:ExhibitionTitleShape, loan:ExhibitionInsuredValueShape, loan:ExhibitionApprovedShape, loan:ExhibitionBeginDateShape, loan:ExhibitionEndDateShape ;

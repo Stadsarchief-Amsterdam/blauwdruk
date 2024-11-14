@@ -165,6 +165,7 @@ rt:Fonds
     sh:property          [ rdfs:label  "Inventarisatie"@nl , "About the description"@en;
                            sh:class    fonds:FindingAid ;
                            sh:group    fonds:contentDescriptionGroup ;
+                           memorix:audience memorix:AudienceInternal ;
                            sh:maxCount 10 ;
                            sh:nodeKind sh:BlankNode ;
                            sh:order    8.0 ;
@@ -237,6 +238,7 @@ fonds:FindingAid
                            sh:datatype xsd:string ;
                            sh:maxCount 1 ;
                            sh:order    1.0 ;
+                           memorix:audience memorix:AudienceInternal ;
                            sh:path     rico:hasAuthor ] ;
     sh:property          [ rdfs:label      "Inventarisatie jaar"@nl , "Year of inventory creation"@en ;
                            sh:message      "Het jaar moet liggen tussen 1800 en 2200"@nl , "The year must be between 1800 and 2200"@en ;
@@ -245,5 +247,6 @@ fonds:FindingAid
                            sh:order        1.0 ;
                            sh:minInclusive "1800"^^xsd:gYear ;
                            sh:maxInclusive "2200"^^xsd:gYear ;
+                           memorix:audience memorix:AudienceInternal ;
                            sh:path         rico:publicationDate ] ;
 .

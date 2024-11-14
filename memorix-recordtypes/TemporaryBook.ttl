@@ -219,6 +219,7 @@ book:AcquisitionShape
     rdf:type    sh:PropertyShape ;
     rdfs:label   "Aanwinst"@nl, "Acquisition"@en ;
     dash:editor  memorix:LinkedRecordEditor ;
+    memorix:audience memorix:AudienceInternal ;
     sh:group     book:managementGroup ;
     sh:maxCount  1 ;
     sh:nodeKind  sh:IRI ;
@@ -230,6 +231,7 @@ book:InternalRemarksShape
     rdf:type    sh:PropertyShape ;
     rdfs:label  "Internal remark"@en, "Interne opmerking"@nl ;
     dash:editor dash:TextAreaEditor ;
+    memorix:audience memorix:AudienceInternal ;
     sh:datatype xsd:string ;
     sh:group    book:managementGroup ;
     sh:maxCount 1 ;

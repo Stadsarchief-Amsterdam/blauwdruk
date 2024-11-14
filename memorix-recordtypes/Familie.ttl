@@ -104,6 +104,7 @@ rt:Family
                            sh:path                  saa:copyrightsAgreement ] ;
     sh:property          [ rdfs:label               "Contractnummer"@nl, "Contract Number"@en  ;
                            dash:editor              dash:TextFieldEditor ;
+                           memorix:audience         memorix:AudienceInternal ;
                            sh:datatype              xsd:string ;
                            sh:group                 family:rightsGroup ;
                            sh:maxCount              1 ;
@@ -111,6 +112,7 @@ rt:Family
                            sh:path                  saa:copyrightsContractNr ] ;
     sh:property          [ rdfs:label               "Auteursrechtopmerkingen"@nl, "Copyright Remarks"@en  ;
                            dash:editor              dash:TextAreaEditor ;
+                           memorix:audience         memorix:AudienceInternal ;
                            sh:datatype              xsd:string ;
                            sh:group                 family:rightsGroup ;
                            sh:maxCount              1 ;

@@ -55,6 +55,7 @@ rt:ConservationReport
     rdfs:label           "Conserveringsrapport"@nl, "Conservation report"@en ;
     dc:identifier        "ConservationReport" ;
     sh:targetClass       rt:ConservationReport ;
+    memorix:audience memorix:AudienceInternal ;
     sh:closed            true ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property          report:FondsShape, report:FileShape, report:BeginDateShape, report:EndDateShape, report:ObjectDescriptionShape, report:ObjectTypeShape, report:ObjectMaterialShape,

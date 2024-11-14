@@ -143,6 +143,7 @@ rt:Organisation
                                   ] ;
     sh:property                   [ rdfs:label  "Interne opmerkingen"@nl, "Internal remarks"@en ;
                                     dash:editor dash:TextAreaEditor ;
+                                    memorix:audience memorix:AudienceInternal ;
                                     sh:datatype xsd:string ;
                                     sh:group    organisation:managementGroup ;
                                     sh:maxCount 1 ;
@@ -151,6 +152,7 @@ rt:Organisation
                                   ] ;
     sh:property          [ rdfs:label               "Auteursrechtafspraken"@nl, "Copyright Agreement"@en  ;
                            dash:editor              memorix:VocabularyEditor ;
+                           memorix:audience         memorix:AudienceInternal ;
                            sh:nodeKind              sh:IRI ;
                            sh:class                 skos:Concept ;
                            memorix:conceptSchemeIn  vocabularies:80216597-805e-4439-abab-f7a323dde6ec ; # wrong conceptscheme
@@ -161,6 +163,7 @@ rt:Organisation
                            sh:path                  saa:copyrightsAgreement ] ;
     sh:property          [ rdfs:label               "Contractnummer"@nl, "Contract Number"@en  ;
                            dash:editor              dash:TextFieldEditor ;
+                           memorix:audience         memorix:AudienceInternal ;
                            sh:datatype              xsd:string ;
                            sh:group                 organisation:rightsGroup ;
                            sh:maxCount              1 ;
@@ -168,6 +171,7 @@ rt:Organisation
                            sh:path                  saa:copyrightsContractNr ] ;
     sh:property          [ rdfs:label               "Auteursrechtopmerkingen"@nl, "Copyright Remarks"@en  ;
                            dash:editor              dash:TextAreaEditor ;
+                           memorix:audience         memorix:AudienceInternal ;
                            sh:datatype              xsd:string ;
                            sh:group                 organisation:rightsGroup ;
                            sh:maxCount              1 ;

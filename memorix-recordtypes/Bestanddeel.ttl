@@ -177,6 +177,7 @@ rt:File
     sh:property                     [ rdfs:label   "Aanwinst"@nl, "Acquisition"@en ;
                                       dash:editor  memorix:LinkedRecordEditor ;
                                       sh:group     file:managementGroup ;
+                                      memorix:audience memorix:AudienceInternal ;
                                       sh:maxCount  1 ;
                                       sh:nodeKind  sh:IRI ;
                                       sh:or        ( [ sh:class rt:Acquisition ] ) ;
@@ -195,6 +196,7 @@ rt:File
                                       rdfs:comment "Geeft aan of dit stuk gedigitaliseerd is"@nl, "Whether the records were digitized or not"@en ;
                                       sh:datatype  xsd:boolean ;
                                       sh:group     file:managementGroup ;
+                                      memorix:audience memorix:AudienceInternal ;
                                       sh:maxCount  1 ;
                                       sh:order     3.0 ;
                                       sh:path      file:digitised
@@ -461,11 +463,13 @@ file:DigitalFilename
                            sh:datatype  xsd:string ;
                            sh:maxCount  1 ;
                            sh:order     1.0 ;
+                           memorix:audience memorix:AudienceInternal ;
                            sh:path      file:originalFilename
                          ] ;      
     sh:property          [ rdfs:label   "Hernoemde Bestandsnaam"@nl, "Filename"@en ;
                            sh:description "Nieuwe (hernoemde) bestandsnaam."@nl, "New renamed filename."@en  ;
                            sh:datatype xsd:string ;
+                           memorix:audience memorix:AudienceInternal ;
                            sh:path     file:currentFilename ;
                            sh:order    2.0 ;
                            sh:maxCount 1 ;
