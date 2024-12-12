@@ -126,7 +126,8 @@ rt:PersonObservation
                            sh:group    personObservation:personListingGroup ;
                            sh:maxCount 1 ;
                            sh:order    9.0 ;
-                           sh:path     saa:deceased
+                           sh:path     saa:deceased;
+                           memorix:audience memorix:AudienceInternal
                          ] ;
     sh:property          [ rdfs:label  "Beroep"@nl, "Profession"@en ;
                            sh:datatype xsd:string ;
