@@ -1,448 +1,484 @@
-@prefix rdf:             <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix rdfs:            <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix xsd:             <http://www.w3.org/2001/XMLSchema#> .
-@prefix skos:            <http://www.w3.org/2004/02/skos/core#> .
-@prefix owl:             <http://www.w3.org/2002/07/owl#> .
-@prefix rt:              </resources/recordtypes/> .
-@prefix deed:            </resources/recordtypes/Deed#> .
-@prefix file:            </resources/recordtypes/File#> .
-@prefix saa:             <https://data.archief.amsterdam/ontology#> .
+@prefix dash:         <http://datashapes.org/dash#> .
+@prefix dc:           <http://purl.org/dc/elements/1.1/> .
+@prefix deed:         </resources/recordtypes/Deed#> .
+@prefix file:         </resources/recordtypes/File#> .
+@prefix html:         <http://www.w3.org/1999/xhtml/> .
+@prefix memorix:      <http://memorix.io/ontology#> .
+@prefix owl:          <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:          <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:         <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ric-dft:      <https://www.ica.org/standards/RiC/vocabularies/documentaryFormTypes#> .
+@prefix ric-rst:      <https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#> .
+@prefix rico:         <https://www.ica.org/standards/RiC/ontology#> .
+@prefix rt:           </resources/recordtypes/> .
+@prefix saa:          <https://data.archief.amsterdam/ontology#> .
+@prefix sh:           <http://www.w3.org/ns/shacl#> .
+@prefix skos:         <http://www.w3.org/2004/02/skos/core#> .
+@prefix vocabularies: </resources/vocabularies/conceptschemes/> .
+@prefix xsd:          <http://www.w3.org/2001/XMLSchema#> .
 
-@prefix dc:              <http://purl.org/dc/elements/1.1/> .
-@prefix sh:              <http://www.w3.org/ns/shacl#> .
-@prefix dash:            <http://datashapes.org/dash#> .
-@prefix memorix:         <http://memorix.io/ontology#> .
-@prefix html:            <http://www.w3.org/1999/xhtml/> .
-@prefix vocabularies:    </resources/vocabularies/conceptschemes/> .
+deed:identificationGroup  rdf:type  sh:PropertyGroup;
+        rdfs:label  "Deed"@en , "Akte"@nl;
+        sh:order    1.0 .
 
-@prefix rico:            <https://www.ica.org/standards/RiC/ontology#> .
-@prefix ric-rst:         <https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#> .
-@prefix ric-dft:         <https://www.ica.org/standards/RiC/vocabularies/documentaryFormTypes#> .
+deed:personGroup  rdf:type  sh:PropertyGroup;
+        rdfs:label  "People"@en , "Personen"@nl;
+        sh:order    2.0 .
 
+deed:addressGroup  rdf:type  sh:PropertyGroup;
+        rdfs:label  "Address"@en , "Adres"@nl;
+        sh:order    3.0 .
 
-deed:identificationGroup
-    rdf:type   sh:PropertyGroup ;
-    rdfs:label "Akte"@nl, "Deed"@en ;
-    sh:order   1.0 .
+deed:locationGroup  rdf:type  sh:PropertyGroup;
+        rdfs:label  "Location"@en , "Locatie"@nl;
+        sh:order    4.0 .
 
-deed:personGroup
-    rdf:type   sh:PropertyGroup ;
-    rdfs:label "Personen"@nl, "People"@en ;
-    sh:order   2.0 .
+deed:managementGroup  rdf:type  sh:PropertyGroup;
+        rdfs:label  "Manage"@en , "Beheer"@nl;
+        sh:order    5.0 .
 
-deed:addressGroup
-    rdf:type   sh:PropertyGroup ;
-    rdfs:label "Adres"@nl, "Address"@en ;
-    sh:order   3.0 .
+rt:Deed  rdf:type             sh:NodeShape , memorix:Recordtype;
+        rdfs:comment          "Deed: a record of an event, such as a change of residence or birth"@en , "Akte: registratie van een gebeurtenis, zoals een verhuizing of geboorte"@nl;
+        rdfs:label            "Akte"@nl , "Deed"@en;
+        memorix:hasInformationComponent
+                [ rdf:type  memorix:DigitalAssetComponent ];
+        dc:identifier         "Deed";
+        owl:equivalentClass   rico:Record;
+        sh:closed             true;
+        sh:ignoredProperties  ( rdf:type );
+        sh:property           deed:FondsShape , deed:HasOrHadLocation1853Shape , deed:IndexNameShape , deed:SourceShape , deed:AssociatedWithDateShape , deed:HasOrHadModernLocationShape , deed:HasOrHadLocation1851Shape , saa:hasOrHadSubjectCoordinates , deed:AddressDescriptionShape , deed:HasOrHadSubjectShape , deed:LocationShape , deed:TitleShape , deed:AssociatedWithDateTextShape , deed:LodationIRIShape , deed:DocumentaryFormShape , saa:hasOrHadSubjectBAGLocation , deed:AddressPlaceShape , deed:AddressHouseNameShape , saa:hasOrHadSubjectBAGIdentifier , deed:SpecificationShape , deed:FileShape , deed:InternalRemarksShape , deed:HasOrHadCategoryShape , saa:hasOrHadSubjectLocation;
+        sh:targetClass        rt:Deed .
 
-deed:locationGroup
-    rdf:type   sh:PropertyGroup ;
-    rdfs:label "Locatie"@nl, "Location"@en ;
-    sh:order   4.0 .
+deed:FondsShape  rdf:type  sh:PropertyShape;
+        rdfs:label      "Fonds"@en , "Archief"@nl;
+        dash:editor     memorix:LinkedRecordEditor;
+        memorix:typeOf  memorix:FondsFieldLink;
+        sh:description  "Archief waar deze akte bij hoort"@nl , "Fonds to which this deed belongs"@en;
+        sh:group        deed:identificationGroup;
+        memorix:inSummaryAt      2.0;
+        sh:maxCount     1;
+        sh:message      "Choose a fonds where this deed belongs to"@en , "Kies het archief waar deze akte uit komt"@nl;
+        sh:minCount     1;
+        sh:nodeKind     sh:IRI;
+        sh:or           ( [ sh:class  rt:Fonds ]
+                        );
+        sh:order        1.0;
+        sh:path         saa:isOrWasAlsoIncludedIn .
 
-deed:managementGroup
-    rdf:type   sh:PropertyGroup ;
-    rdfs:label "Beheer"@nl, "Manage"@en ;
-    sh:order   5.0 .
+deed:FileShape  rdf:type              sh:PropertyShape;
+        rdfs:label                    "Linked file"@en , "Bestanddeel"@nl;
+        dash:editor                   memorix:ConditionalLinkFieldEditor;
+        memorix:conditionalLinkField  saa:isOrWasAlsoIncludedIn;
+        memorix:linkField             [ memorix:hasRecordType  rt:File;
+                                        memorix:path           file:fonds
+                                      ];
+        sh:description                "The file where this deed belongs to"@en , "Bestanddeel waartoe deze akte behoort"@nl;
+        sh:group                      deed:identificationGroup;
+        sh:maxCount                   1;
+        sh:message                    "Kies een bestanddeel om aan te koppelen. Dit is verplicht."@nl , "Choose a related (inventory) file. It is required."@en;
+        sh:minCount                   1;
+        sh:nodeKind                   sh:IRI;
+        sh:or                         ( [ sh:class  rt:File ]
+                                      );
+        sh:order                      2.0;
+        sh:path                       rico:isOrWasIncludedIn .
 
-
-rt:Deed
-    rdf:type             sh:NodeShape, memorix:Recordtype ;
-    rdfs:comment         "Stadsarchief recordtype voor Akte"@nl ;
-    rdfs:label           "Deed"@en, "Akte"@nl ;
-    dc:identifier        "Deed" ;
-    sh:closed            true ;
-    sh:ignoredProperties ( rdf:type ) ;
-    owl:equivalentClass  rico:Record ;
-    memorix:hasInformationComponent [ rdf:type memorix:DigitalAssetComponent ] ;
-    sh:property          deed:FondsShape, deed:FileShape, deed:TitleShape, deed:DocumentaryFormShape, deed:AssociatedWithDateShape, deed:SourceShape, deed:IndexNameShape, deed:HasOrHadCategoryShape,
-                         deed:HasOrHadSubjectShape, deed:HasOrHadLocation1851Shape, deed:HasOrHadLocation1853Shape, deed:HasOrHadModernLocationShape,
-                         deed:AddressHouseNameShape, deed:AddressPlaceShape, deed:AddressDescriptionShape, deed:LocationShape, 
-                         deed:InternalRemarksShape, deed:SpecificationShape, deed:LodationIRIShape ;
-    sh:targetClass       rt:Deed .
-
-
-deed:FondsShape
-    rdf:type       sh:PropertyShape;
-    memorix:typeOf memorix:FondsFieldLink ;
-    rdfs:label     "Archief"@nl, "Fonds"@en ;
-    sh:description  "Archief waar deze akte bij hoort"@nl, "Fonds to which this deed belongs"@en ;
-    sh:message     "Kies het archief waar deze akte uit komt"@nl, "Choose a fonds where this deed belongs to"@en ;
-    sh:nodeKind    sh:IRI ;
-    sh:or          ( [ sh:class rt:Fonds ] ) ;
-    sh:group       deed:identificationGroup ;
-    dash:editor    memorix:LinkedRecordEditor ;
-    sh:minCount    1 ;
-    sh:maxCount    1 ;
-    sh:order       1.0 ;
-    sh:path        saa:isOrWasAlsoIncludedIn .
-
-
-deed:FileShape
-    rdf:type     sh:PropertyShape ;
-    rdfs:label   "Bestanddeel"@nl , "Linked file"@en ;
-    sh:description "Bestanddeel waartoe deze akte behoort"@nl, "The file where this deed belongs to"@en ;
-    dash:editor  memorix:ConditionalLinkFieldEditor ;
-    memorix:conditionalLinkField saa:isOrWasAlsoIncludedIn ;
-    memorix:linkField [
-        memorix:hasRecordType rt:File ;
-        memorix:path file:fonds ;
-    ];
-    sh:group     deed:identificationGroup ;
-    sh:minCount  1 ;
-    sh:maxCount  1 ;
-    sh:message   "Kies een bestanddeel om aan te koppelen. Dit is verplicht."@nl, "Choose a related (inventory) file. It is required."@en ;
-    sh:nodeKind  sh:IRI ;
-    sh:or        ( [ sh:class rt:File ] ) ;
-    sh:order     2.0 ;
-    sh:path      rico:isOrWasIncludedIn .
-
-
-deed:TitleShape
-    rdf:type          sh:PropertyShape ;
-    rdfs:comment      "Gemigreerde titel, t.b.v. de Memorix interface"@nl ;
-    rdfs:label        "Titel"@nl, "Title"@en ;
-    memorix:inTitleAt 1.0 ;
-    memorix:searchWeight 5.0 ;
-    sh:datatype       xsd:string ;
-    sh:group          deed:identificationGroup ;
-    sh:minCount       1 ;
-    sh:maxCount       1 ;
-    sh:order          3.0 ;
-    sh:path           rico:title .
+deed:TitleShape  rdf:type     sh:PropertyShape;
+        rdfs:comment          "Gemigreerde titel, t.b.v. de Memorix interface"@nl;
+        rdfs:label            "Title"@en , "Titel"@nl;
+        memorix:inTitleAt     1.0;
+        memorix:searchWeight  5.0;
+        sh:datatype           xsd:string;
+        sh:group              deed:identificationGroup;
+        sh:maxCount           1;
+        sh:minCount           1;
+        sh:order              3.0;
+        sh:path               rico:title .
 
 deed:DocumentaryFormShape
-    rdf:type    sh:PropertyShape ;
-    rdfs:label  "Type of record"@en, "Aktetype"@nl ;
-    dash:editor memorix:VocabularyEditor ;
-    sh:nodeKind sh:IRI ;
-    sh:class    skos:Concept ;
-    memorix:conceptSchemeIn vocabularies:507fab73-142b-4076-a18c-df21a21cb3b0 ;
-    memorix:searchWeight 3.0 ;
-    sh:group    deed:identificationGroup ;
-    sh:minCount 1 ;
-    sh:maxCount 1 ;
-    sh:order    4.0 ;
-    sh:path     rico:hasDocumentaryFormType .
+        rdf:type                 sh:PropertyShape;
+        rdfs:label               "Type of record"@en , "Aktetype"@nl;
+        dash:editor              memorix:VocabularyEditor;
+        memorix:conceptSchemeIn  vocabularies:507fab73-142b-4076-a18c-df21a21cb3b0;
+        memorix:searchWeight     3.0;
+        sh:class                 skos:Concept;
+        sh:group                 deed:identificationGroup;
+        sh:maxCount              1;
+        sh:minCount              1;
+        sh:nodeKind              sh:IRI;
+        sh:order                 4.0;
+        sh:path                  rico:hasDocumentaryFormType .
+
+deed:AssociatedWithDateTextShape
+        rdf:type              sh:PropertyShape;
+        sh:description        "Gebruik alleen bij incomplete datums, bijv. 22-01-19xx of 22-xx-1940"@nl , "Only use for incomplete dates, e.g., 22-01-19xx or 22-xx-1940"@en;
+        rdfs:label            "Date of the record (incomplete)"@en , "Datum van de akte (incompleet)"@nl;
+        sh:pattern   "^(\\d|x)(\\d|x)-(\\d|x)(\\d|x)-(\\d|x)(\\d|x)(\\d|x)(\\d|x)$"^^xsd:string;
+        sh:message   "Wrong format: use dd-mm-yyyy and small x where incomplete"@en , "Fout: schrijf dd-mm-yyyy en gebruik kleine x waar incompleet"@nl;
+        memorix:searchWeight  3.0;
+        sh:datatype           xsd:string;
+        sh:group              deed:identificationGroup;
+        sh:maxCount           1;
+        sh:order              5.0;
+        sh:path               rico:expressedDate .
 
 deed:AssociatedWithDateShape
-    rdf:type    sh:PropertyShape ;
-    rdfs:label  "Date of the record"@en, "Datum van de akte"@nl ;
-    memorix:searchWeight 3.0 ;
-    sh:datatype xsd:date ;
-    sh:group    deed:identificationGroup ;
-    sh:maxCount 1 ;
-    sh:order    5.0 ;
-    sh:path     rico:normalizedDateValue .
+        rdf:type              sh:PropertyShape;
+        rdfs:label            "Datum van de akte"@nl , "Date of the record"@en;
+        memorix:searchWeight  3.0;
+        sh:datatype           xsd:date;
+        sh:group              deed:identificationGroup;
+        sh:maxCount           1;
+        sh:order              6.0;
+        sh:path               rico:normalizedDateValue .
 
-deed:SourceShape
-    rdf:type    sh:PropertyShape ;
-    rdfs:label  "Mention of the source"@en, "Bronverwijzing"@nl ;
-    sh:datatype xsd:string ;
-    sh:group    deed:identificationGroup ;
-    sh:maxCount 1 ;
-    sh:order    6.0 ;
-    sh:path     saa:source .
+deed:SourceShape  rdf:type  sh:PropertyShape;
+        rdfs:label   "Bronverwijzing"@nl , "Mention of the source"@en;
+        sh:datatype  xsd:string;
+        sh:group     deed:identificationGroup;
+        sh:maxCount  1;
+        sh:order     7.0;
+        sh:path      saa:source .
 
-deed:IndexNameShape
-    rdf:type            sh:PropertyShape ;
-    rdfs:comment        "Current name of the index"@en, "Huidige naam van de index."@nl ;
-    rdfs:label          "Index Naam (oud)"@nl, "Name of the index (old)"@en ;
-    sh:datatype         xsd:string ;
-    #memorix:inSummaryAt 2.0 ;
-    memorix:audience memorix:AudienceInternal ;
-    # memorix:hidden  true ; # opnemen als de update actie klaar is
-    sh:group            deed:identificationGroup ;
-    sh:maxCount         1 ;
-    sh:order            7.0 ;
-    sh:path             saa:indexName .
+deed:IndexNameShape  rdf:type  sh:PropertyShape;
+        rdfs:comment      "Current name of the index"@en , "Huidige naam van de index."@nl;
+        rdfs:label        "Index Naam (oud)"@nl , "Name of the index (old)"@en;
+        memorix:audience  memorix:AudienceInternal;
+        memorix:hidden  true;
+        sh:datatype       xsd:string;
+        sh:group          deed:identificationGroup;
+        sh:maxCount       1;
+        sh:order          8.0;
+        sh:path           saa:indexName .
 
 deed:HasOrHadCategoryShape
-    rdf:type    sh:PropertyShape ;
-    rdfs:label  "Index"@en, "Index"@nl ;
-    rdfs:comment "Current name of the index"@en, "Huidige naam van de index."@nl ;
-    dash:editor memorix:VocabularyEditor ;
-    sh:nodeKind sh:IRI ;
-    sh:class    skos:Concept ;
-    memorix:conceptSchemeIn vocabularies:846bc006-31c6-4a58-b6c2-31d0349553c5 ;
-    memorix:searchWeight 2.0 ;
-    memorix:inSummaryAt 1.0 ;
-    sh:group    deed:identificationGroup ;
-    #sh:minCount 1 ;
-    sh:maxCount 1 ;
-    sh:order    8.0 ;
-    sh:path     rico:hasOrHadCategory .
-
-deed:HasOrHadSubjectShape
-    rdf:type     sh:PropertyShape ;
-    rdfs:comment "Personen die voorkomen op de akte."@nl, "People mentioned in the source"@en ;
-    rdfs:label   "Personen"@nl, "People"@en ;
-    dash:viewer   dash:DetailsEditor ;
-    sh:class     saa:LinkedPersonObservation ;
-    sh:group     deed:personGroup ;
-    sh:maxCount  999 ;
-    sh:nodeKind  sh:BlankNode ;
-    sh:order     3.0 ;
-    sh:path      rico:hasOrHadSubject .
-
-deed:InternalRemarksShape
-    rdf:type    sh:PropertyShape ;
-    rdfs:label  "Internal remarks"@en, "Interne opmerking"@nl ;
-    dash:editor dash:TextAreaEditor ;
-    sh:datatype xsd:string ;
-    sh:group    deed:managementGroup ;
-    sh:maxCount 1 ;
-    sh:order    8.0 ;
-    memorix:audience memorix:AudienceInternal ;
-    sh:path     saa:internalRemarks .
-
-## shapes
-saa:LinkedPersonObservation
-    rdf:type             sh:NodeShape ;
-    sh:closed            true ;
-    sh:ignoredProperties ( rdf:type ) ;
-    sh:property          [ rdfs:label      "order"@en ;
-                            memorix:hidden  true ;
-                            sh:datatype     xsd:integer ;
-                            sh:description  "This field is required for persistent order of group items" ;
-                            sh:maxCount     1 ;
-                            sh:minCount     1 ;
-                            sh:order        0.0 ;
-                            sh:path         memorix:order
-                         ] ;
-    sh:property          [ rdfs:label  "Role"@en, "Rol"@nl ;
-                           dash:editor              memorix:VocabularyEditor ;
-                           memorix:conceptSchemeIn vocabularies:a507438b-22fb-4a17-8f72-9c528cd6d1e9 ;  #Indexen - rol persoon akte
-                           sh:class                 skos:Concept ;
-                           sh:nodeKind              sh:IRI ;
-                           sh:maxCount 1 ;
-                           sh:order    1.0 ;
-                           sh:path     saa:relatedPersonObservationRole
-                         ] ;
-    sh:property          [ rdfs:label  "Person observation"@en, "Persoonsvermelding"@nl ;
-                           dash:editor memorix:LinkedRecordEditor ;
-                           sh:nodeKind sh:IRI ;
-                           sh:or       ( [ sh:class rt:PersonObservation ] ) ;
-                           sh:maxCount  1 ;
-                           sh:order    2.0 ;
-                           sh:path     saa:relatedPersonObservation
-                         ] ;
-    sh:targetClass       saa:LinkedPersonObservation .
-
-
-deed:HasOrHadLocation1851Shape
-    rdf:type     sh:PropertyShape ;
-    rdfs:label   "Address in 1851-1853"@en, "Adres uit 1851-1853"@nl ;
-    rdfs:comment "Adres zoals het voorkomt in de bron."@nl, "Address mentioned in the source"@en ;
-    sh:class     saa:HistoricalAddress1851 ;
-    sh:group     deed:addressGroup ;
-    sh:maxCount  1 ;
-    sh:nodeKind  sh:BlankNode ;
-    sh:order     3.0 ;
-    sh:path      saa:isAssociatedWithHistoricalAddress1851 .
-
-saa:HistoricalAddress1851
-    rdf:type             sh:NodeShape ;
-    rdfs:label           "Address in 1851-1853"@en, "Adres uit 1851-1853"@nl ;
-    sh:closed            true ;
-    sh:ignoredProperties ( rdf:type ) ;
-    sh:property          [ rdfs:label  "Klein number"@en, "Kleinnummer"@nl ;
-                           sh:datatype xsd:string ;
-                           sh:maxCount       1 ;
-                           sh:order    2.0 ;
-                           sh:path     saa:historicalAddressKleinNumber
-                         ] ;
-    sh:property          [ rdfs:label  "Street name (1851-53)"@en, "Straatnaam (1851-53)"@nl ;
-                           sh:datatype xsd:string ;
-                           sh:maxCount  1 ;
-                           sh:order    1.0 ;
-                           sh:path     saa:historicalAddress1851Street
-                         ] ;
-    sh:targetClass       saa:HistoricalAddress1851 .
-
-deed:HasOrHadLocation1853Shape
-    rdf:type    sh:PropertyShape ;
-    rdfs:label  "Address in 1853-1874"@en, "Adres uit 1853-1874"@nl ;
-    sh:class    saa:HistoricalAddress1853 ;
-    sh:group    deed:addressGroup ;
-    sh:maxCount 1 ;
-    sh:nodeKind sh:BlankNode ;
-    sh:order    4.0 ;
-    sh:path     saa:isAssociatedWithHistoricalAddress1853 . ## @todo of hasOrHadLocation?
-
-
-saa:HistoricalAddress1853
-    rdf:type             sh:NodeShape ;
-    sh:closed            true ;
-    sh:ignoredProperties ( rdf:type ) ;
-    sh:property          [ rdfs:label  "Neighbourhood number"@en, "Buurtnummer"@nl ;
-                           sh:datatype xsd:string ;
-                           sh:maxCount 1 ;
-                           sh:order    5.0 ;
-                           sh:path     saa:historicalAddressNeighbourhoodNumber
-                         ] ;
-    sh:property          [ rdfs:label  "Neighbourhood code"@en, "Buurtcode"@nl ;
-                           sh:datatype xsd:string ;
-                           sh:maxCount 1 ;
-                           sh:order    4.0 ;
-                           sh:path     saa:historicalAddressNeighbourhoodCode
-                         ] ;
-    sh:property          [ rdfs:label  "Street name (1853-74)"@en, "Straatnaam (1853-74)"@nl ;
-                           sh:datatype xsd:string ;
-                           sh:maxCount 1 ;
-                           sh:order    3.0 ;
-                           sh:path     saa:historicalAddress1853Street
-                         ] ;
-    sh:targetClass       saa:HistoricalAddress1853 .
-
-
-deed:HasOrHadModernLocationShape
-    rdf:type    sh:PropertyShape ;
-    rdfs:label  "Modern adres"@nl, "Modern Address"@en ;
-    sh:class    saa:Address ;
-    sh:group    deed:addressGroup ;
-    sh:maxCount 1 ;
-    sh:nodeKind sh:BlankNode ;
-    sh:order    5.0 ;
-    sh:path     saa:isAssociatedWithModernAddress .
-
-
-saa:Address
-    rdf:type             sh:NodeShape ;
-    sh:closed            true ;
-    sh:ignoredProperties ( rdf:type ) ;
-    sh:property          [ rdfs:label  "Straatnaam in bron (werkveld)"@nl, "Migrated streetname"@en;
-                           sh:description "Tijdelijk veld om huidige straten te migreren en later te standaardiseren"@nl, "Temporary field to migrate streets into"@en; ;
-                           sh:datatype xsd:string ;
-                           sh:maxCount 1 ;
-                           sh:order    5.0 ;
-                           sh:path     saa:streetTextualValue
-                         ] ;
-    sh:property          [ rdfs:label              "Straatnaam"@nl, "Street name"@en;
-                           sh:description          "Gestandaardiseerde straatnaam uit het conceptschema"@nl, "Standardized street name from concept scheme"@en;
-                           dash:editor             memorix:VocabularyEditor ;
-                           memorix:conceptSchemeIn vocabularies:a4863c0c-d9e5-3902-831a-d0960e381a41 ;
-                           sh:class                skos:Concept ;
-                           sh:maxCount             1 ;
-                           sh:nodeKind             sh:IRI ;
-                           sh:order                6.0 ;
-                           sh:path                 saa:street
-                         ] ;
-    sh:property          [ rdfs:label  "Huisnummer"@nl , "House number"@en;
-                           sh:datatype xsd:string ;
-                           sh:maxCount 1 ;
-                           sh:order    7.0 ;
-                           sh:path     saa:houseNumber
-                         ] ;
-    sh:property          [ rdfs:label  "Huisnummer toevoeging"@nl , "House number addition"@en;
-                           sh:datatype xsd:string ;
-                           sh:maxCount 1 ;
-                           sh:order    8.0 ;
-                           sh:path     saa:houseNumberAddition
-                         ] ;                     
-    sh:targetClass       saa:Address .
-
-deed:LodationIRIShape
-    rdf:type    sh:PropertyShape ;
-    rdfs:label  "Locatie IRI"@nl, "Location IRI"@en ;
-    sh:description "IRI naar een externe locatie identifier (BAG, Adamlink of anders)"@nl, "IRI of external location (BAG, Adamlink or other)"@en ;
-    dash:editor             memorix:IriEditor ;
-    sh:nodeKind             sh:IRI ;
-    sh:message              "Waarde moet beginnen met http of https"@nl, "Value must start with http:// or https://"@en ;
-    sh:pattern              "^https?://" ;
-    sh:flags                "i" ;
-    sh:group    deed:addressGroup ;
-    sh:order    12.0 ;
-    sh:maxCount 1 ;
-    sh:path     deed:hasOrHadSubjectLocation .
-
-deed:AddressHouseNameShape
-    rdf:type    sh:PropertyShape ;
-    rdfs:label  "House name"@en, "Huisnaam"@nl ;
-    sh:datatype xsd:string ;
-    sh:maxCount 1 ;
-    sh:group    deed:addressGroup ;
-    sh:order    7.0 ;
-    sh:path     saa:houseName .
-
-deed:AddressPlaceShape
-    rdf:type    sh:PropertyShape ;
-    rdfs:label  "Place (other than Amsterdam)"@en, "Plaats (anders dan Amsterdam)"@nl ;
-    sh:datatype xsd:string ;
-    sh:maxCount 1 ;
-    sh:group    deed:addressGroup ;
-    sh:order    8.0 ;
-    sh:path     saa:placeName .
-
-deed:AddressDescriptionShape
-    rdf:type    sh:PropertyShape ;
-    rdfs:label  "Location description"@en, "Locatie omschrijving"@nl ;
-    dash:editor dash:TextAreaEditor ;
-    sh:datatype xsd:string ;
-    sh:group    deed:addressGroup ;
-    sh:maxCount 1 ;
-    sh:order    9.0 ;
-    sh:path     saa:addressDescription .
+        rdf:type                 sh:PropertyShape;
+        rdfs:comment             "Current name of the index"@en , "Huidige naam van de index."@nl;
+        rdfs:label               "Index"@en , "Index"@nl;
+        dash:editor              memorix:VocabularyEditor;
+        memorix:conceptSchemeIn  vocabularies:846bc006-31c6-4a58-b6c2-31d0349553c5;
+        memorix:inSummaryAt      1.0;
+        memorix:searchWeight     2.0;
+        sh:class                 skos:Concept;
+        sh:group                 deed:identificationGroup;
+        sh:maxCount              1;
+        sh:nodeKind              sh:IRI;
+        sh:order                 9.0;
+        sh:path                  rico:hasOrHadCategory .
 
 deed:SpecificationShape
-    rdf:type    sh:PropertyShape;
-        rdfs:label  "Bijzonderheden"@nl, "Details"@en ;
-        sh:class    saa:Specification ;
-        sh:group    deed:identificationGroup ;
-        sh:maxCount 100 ;
-        sh:nodeKind sh:BlankNode ;
-        sh:order    11.0 ;
-        sh:path     saa:hasSpecification .
+        rdf:type     sh:PropertyShape;
+        rdfs:label   "Details"@en , "Bijzonderheden"@nl;
+        sh:class     saa:Specification;
+        sh:group     deed:identificationGroup;
+        sh:maxCount  100;
+        sh:nodeKind  sh:BlankNode;
+        sh:order     11.0;
+        sh:path      saa:hasSpecification .
 
-saa:Specification
-    rdf:type             sh:NodeShape ;
-    sh:closed            true ;
-    sh:ignoredProperties ( rdf:type ) ;
-    sh:property          [ rdfs:label  "Bijzonderheid - Type"@nl, "Detail type"@en ;
-                           dash:editor              memorix:VocabularyEditor ;
-                           memorix:conceptSchemeIn vocabularies:6a1549c9-dd85-44e2-8424-2df0fbdf6fdc ;  #Indexen - bijzonderheid type
-                           sh:class                 skos:Concept ;
-                           sh:nodeKind              sh:IRI ;
-                           sh:maxCount 1 ;
-                           sh:order    1.0 ;
-                           sh:path     saa:specificationType
-                         ] ;
-    sh:property          [ rdfs:label  "Bijzonderheid"@nl, "Detail"@en ;
-                           sh:datatype xsd:string ;
-                           sh:maxCount 1 ;
-                           sh:order    2.0 ;
-                           sh:path     saa:specificationTextualValue
-                         ] ;
-    sh:targetClass       saa:Specification .
+saa:Specification  rdf:type   sh:NodeShape;
+        sh:closed             true;
+        sh:ignoredProperties  ( rdf:type );
+        sh:property           [ rdfs:label   "Detail"@en , "Bijzonderheid"@nl;
+                                sh:datatype  xsd:string;
+                                sh:maxCount  1;
+                                sh:order     2.0;
+                                sh:path      saa:specificationTextualValue
+                              ];
+        sh:property           [ rdfs:label               "Detail type"@en , "Bijzonderheid - Type"@nl;
+                                dash:editor              memorix:VocabularyEditor;
+                                memorix:conceptSchemeIn  vocabularies:6a1549c9-dd85-44e2-8424-2df0fbdf6fdc;
+                                sh:class                 skos:Concept;
+                                sh:maxCount              1;
+                                sh:nodeKind              sh:IRI;
+                                sh:order                 1.0;
+                                sh:path                  saa:specificationType
+                              ];
+        sh:targetClass        saa:Specification .
 
-deed:LocationShape
-    rdf:type    sh:PropertyShape;
-        rdfs:label  "Locaties"@nl, "Locations"@en ;
-        sh:class    saa:Location ;
-        sh:group    deed:locationGroup ;
-        sh:maxCount 100 ;
-        sh:nodeKind sh:BlankNode ;
-        sh:order    1.0 ;
-        sh:path     saa:isAssociatedWithLocation .
+deed:HasOrHadSubjectShape
+        rdf:type      sh:PropertyShape;
+        rdfs:comment  "People mentioned in the source"@en , "Personen die voorkomen op de akte."@nl;
+        rdfs:label    "Personen"@nl , "People"@en;
+        dash:viewer   dash:DetailsEditor;
+        sh:class      saa:LinkedPersonObservation;
+        sh:group      deed:personGroup;
+        sh:maxCount   999;
+        sh:nodeKind   sh:BlankNode;
+        sh:order      3.0;
+        sh:path       rico:hasOrHadSubject .
 
-saa:Location
-    rdf:type             sh:NodeShape ;
-    sh:closed            true ;
-    sh:ignoredProperties ( rdf:type ) ;
-    sh:property          [ rdfs:label  "Locatie - Type"@nl, "Location type"@en ;
-                           dash:editor              memorix:VocabularyEditor ;
-                           memorix:conceptSchemeIn vocabularies:a949c76c-3b78-4755-937f-a9abdeda17a9 ;  #Indexen - locatie type
-                           sh:class                 skos:Concept ;
-                           sh:nodeKind              sh:IRI ;
-                           sh:maxCount 1 ;
-                           sh:order    1.0 ;
-                           sh:path     saa:locationType
-                         ] ;
-    sh:property          [ rdfs:label  "Locatie"@nl, "Location"@en ;
-                           sh:datatype xsd:string ;
-                           sh:maxCount 1 ;
-                           sh:order    2.0 ;
-                           sh:path     saa:locationTextualValue
-                         ] ;
-    sh:targetClass       saa:Location .
+saa:LinkedPersonObservation
+        rdf:type              sh:NodeShape;
+        sh:closed             true;
+        sh:ignoredProperties  ( rdf:type );
+        sh:property           [ rdfs:label   "Persoonsvermelding"@nl , "Person observation"@en;
+                                dash:editor  memorix:LinkedRecordEditor;
+                                sh:maxCount  1;
+                                sh:nodeKind  sh:IRI;
+                                sh:or        ( [ sh:class  rt:PersonObservation ]
+                                             );
+                                sh:order     2.0;
+                                sh:path      saa:relatedPersonObservation
+                              ];
+        sh:property           [ rdfs:label               "Rol"@nl , "Role"@en;
+                                dash:editor              memorix:VocabularyEditor;
+                                memorix:conceptSchemeIn  vocabularies:a507438b-22fb-4a17-8f72-9c528cd6d1e9;
+                                sh:class                 skos:Concept;
+                                sh:maxCount              1;
+                                sh:nodeKind              sh:IRI;
+                                sh:order                 1.0;
+                                sh:path                  saa:relatedPersonObservationRole
+                              ];
+        sh:property           [ rdfs:label      "order"@en;
+                                memorix:hidden  true;
+                                sh:datatype     xsd:integer;
+                                sh:description  "This field is required for persistent order of group items";
+                                sh:maxCount     1;
+                                sh:minCount     1;
+                                sh:order        0.0;
+                                sh:path         memorix:order
+                              ];
+        sh:targetClass        saa:LinkedPersonObservation .
 
+deed:HasOrHadLocation1851Shape
+        rdf:type      sh:PropertyShape;
+        rdfs:comment  "Adres zoals het voorkomt in de bron."@nl , "Address mentioned in the source"@en;
+        rdfs:label    "Address in 1851-1853"@en , "Adres uit 1851-1853"@nl;
+        sh:class      saa:HistoricalAddress1851;
+        sh:group      deed:addressGroup;
+        sh:maxCount   1;
+        sh:nodeKind   sh:BlankNode;
+        sh:order      3.0;
+        sh:path       saa:isAssociatedWithHistoricalAddress1851 .
+
+saa:HistoricalAddress1851
+        rdf:type              sh:NodeShape;
+        rdfs:label            "Adres uit 1851-1853"@nl , "Address in 1851-1853"@en;
+        sh:closed             true;
+        sh:ignoredProperties  ( rdf:type );
+        sh:property           [ rdfs:label   "Straatnaam (1851-53)"@nl , "Street name (1851-53)"@en;
+                                sh:datatype  xsd:string;
+                                sh:maxCount  1;
+                                sh:order     1.0;
+                                sh:path      saa:historicalAddress1851Street
+                              ];
+        sh:property           [ rdfs:label   "Kleinnummer"@nl , "Klein number"@en;
+                                sh:datatype  xsd:string;
+                                sh:maxCount  1;
+                                sh:order     2.0;
+                                sh:path      saa:historicalAddressKleinNumber
+                              ];
+        sh:targetClass        saa:HistoricalAddress1851 .
+
+deed:HasOrHadLocation1853Shape
+        rdf:type     sh:PropertyShape;
+        rdfs:label   "Adres uit 1853-1874"@nl , "Address in 1853-1874"@en;
+        sh:class     saa:HistoricalAddress1853;
+        sh:group     deed:addressGroup;
+        sh:maxCount  1;
+        sh:nodeKind  sh:BlankNode;
+        sh:order     4.0;
+        sh:path      saa:isAssociatedWithHistoricalAddress1853 .
+
+saa:HistoricalAddress1853
+        rdf:type              sh:NodeShape;
+        sh:closed             true;
+        sh:ignoredProperties  ( rdf:type );
+        sh:property           [ rdfs:label   "Straatnaam (1853-74)"@nl , "Street name (1853-74)"@en;
+                                sh:datatype  xsd:string;
+                                sh:maxCount  1;
+                                sh:order     3.0;
+                                sh:path      saa:historicalAddress1853Street
+                              ];
+        sh:property           [ rdfs:label   "Buurtcode"@nl , "Neighbourhood code"@en;
+                                sh:datatype  xsd:string;
+                                sh:maxCount  1;
+                                sh:order     4.0;
+                                sh:path      saa:historicalAddressNeighbourhoodCode
+                              ];
+        sh:property           [ rdfs:label   "Buurtnummer"@nl , "Neighbourhood number"@en;
+                                sh:datatype  xsd:string;
+                                sh:maxCount  1;
+                                sh:order     5.0;
+                                sh:path      saa:historicalAddressNeighbourhoodNumber
+                              ];
+        sh:targetClass        saa:HistoricalAddress1853 .
+
+deed:HasOrHadModernLocationShape
+        rdf:type     sh:PropertyShape;
+        rdfs:label   "Modern Address"@en , "Modern adres"@nl;
+        sh:class     saa:Address;
+        sh:group     deed:addressGroup;
+        sh:maxCount  1;
+        sh:nodeKind  sh:BlankNode;
+        sh:order     5.0;
+        sh:path      saa:isAssociatedWithModernAddress .
+
+saa:Address  rdf:type         sh:NodeShape;
+        sh:closed             true;
+        sh:ignoredProperties  ( rdf:type );
+        sh:property           [ rdfs:label   "House number addition"@en , "Huisnummer toevoeging"@nl;
+                                sh:datatype  xsd:string;
+                                sh:maxCount  1;
+                                sh:order     8.0;
+                                sh:path      saa:houseNumberAddition
+                              ];
+        sh:property           [ rdfs:label   "House number"@en , "Huisnummer"@nl;
+                                sh:datatype  xsd:string;
+                                sh:maxCount  1;
+                                sh:order     7.0;
+                                sh:path      saa:houseNumber
+                              ];
+        sh:property           [ rdfs:label               "Straatnaam"@nl , "Street name"@en;
+                                dash:editor              memorix:VocabularyEditor;
+                                memorix:conceptSchemeIn  vocabularies:a4863c0c-d9e5-3902-831a-d0960e381a41;
+                                sh:class                 skos:Concept;
+                                sh:description           "Gestandaardiseerde straatnaam uit het conceptschema"@nl , "Standardized street name from concept scheme"@en;
+                                sh:maxCount              1;
+                                sh:nodeKind              sh:IRI;
+                                sh:order                 6.0;
+                                sh:path                  saa:street
+                              ];
+        sh:property           [ rdfs:label      "Migrated streetname"@en , "Straatnaam in bron (werkveld)"@nl;
+                                sh:datatype     xsd:string;
+                                sh:description  "Temporary field to migrate streets into"@en , "Tijdelijk veld om huidige straten te migreren en later te standaardiseren"@nl;
+                                sh:maxCount     1;
+                                sh:order        5.0;
+                                sh:path         saa:streetTextualValue
+                              ];
+        sh:targetClass        saa:Address .
+
+saa:hasOrHadSubjectBAGLocation
+        rdf:type        sh:PropertyShape;
+        rdfs:label      "Locatie URI (BAG)"@nl , "Location URI (BAG)"@en;
+        dash:editor     memorix:IriEditor;
+        sh:description  "Plak hier eeen BAG URI in"@nl , "Please provide a BAG URI"@en;
+        sh:flags        "i";
+        sh:group        deed:addressGroup;
+        sh:maxCount     1000;
+        sh:message      "Waarde moet beginnen met http of https"@nl , "Value must start with http:// or https://"@en;
+        sh:nodeKind     sh:IRI;
+        sh:order        10.0;
+        sh:path         saa:hasOrHadSubjectBAGLocation;
+        sh:pattern      "^https?://" .
+
+saa:hasOrHadSubjectBAGIdentifier
+        rdf:type         sh:PropertyShape;
+        rdfs:label       "Locatie (BAG) identifier"@nl , "Location (BAG) identifier"@en;
+        dash:singleLine  true;
+        sh:datatype      xsd:string;
+        sh:description   "BAG identifier (alleen cijfers)"@nl , "BAG identifier, containing only numbers"@en;
+        sh:group         deed:addressGroup;
+        sh:maxCount      1000;
+        sh:message       "Value must be a BAG ID conatining solely numbers"@en , "De waarde moet een BAG identifier zijn (uitsluitend cijfers)"@nl;
+        sh:order         11.0;
+        sh:path          saa:hasOrHadSubjectBAGIdentifier .
+
+saa:hasOrHadSubjectLocation
+        rdf:type        sh:PropertyShape;
+        rdfs:label      "Locatie URI (Adamlink)"@nl , "Location URI (Adamlink)"@en;
+        dash:editor     memorix:IriEditor;
+        sh:description  "Plak hier eeen Adamlink URI in"@nl , "Please provide a Adamlink URI"@en;
+        sh:flags        "i";
+        sh:group        deed:addressGroup;
+        sh:maxCount     1000;
+        sh:message      "Waarde moet beginnen met http of https"@nl , "Value must start with http:// or https://"@en;
+        sh:nodeKind     sh:IRI;
+        sh:order        12.0;
+        sh:path         saa:hasOrHadSubjectLocation;
+        sh:pattern      "^https?://" .
+
+saa:hasOrHadSubjectCoordinates
+        rdf:type     sh:PropertyShape;
+        rdfs:label   "Location coordinates"@en , "Locatie coördinaten"@nl;
+        dash:editor  memorix:LocationCoordinatesEditor;
+        memorix:audience  memorix:AudienceInternal;
+        sh:class     memorix:GeoCoordinates;
+        sh:group     deed:addressGroup;
+        sh:maxCount  1;
+        sh:order     13.0;
+        sh:path      saa:hasOrHadSubjectCoordinates .
+
+deed:LocationShape  rdf:type  sh:PropertyShape;
+        rdfs:label   "Locations"@en , "Locaties"@nl;
+        sh:class     saa:Location;
+        sh:group     deed:locationGroup;
+        sh:maxCount  100;
+        sh:nodeKind  sh:BlankNode;
+        sh:order     1.0;
+        sh:path      saa:isAssociatedWithLocation .
+
+saa:Location  rdf:type        sh:NodeShape;
+        sh:closed             true;
+        sh:ignoredProperties  ( rdf:type );
+        sh:property           [ rdfs:label   "Location"@en , "Locatie"@nl;
+                                sh:datatype  xsd:string;
+                                sh:maxCount  1;
+                                sh:order     2.0;
+                                sh:path      saa:locationTextualValue
+                              ];
+        sh:property           [ rdfs:label               "Location type"@en , "Locatie - Type"@nl;
+                                dash:editor              memorix:VocabularyEditor;
+                                memorix:conceptSchemeIn  vocabularies:a949c76c-3b78-4755-937f-a9abdeda17a9;
+                                sh:class                 skos:Concept;
+                                sh:maxCount              1;
+                                sh:nodeKind              sh:IRI;
+                                sh:order                 1.0;
+                                sh:path                  saa:locationType
+                              ];
+        sh:targetClass        saa:Location .
+
+deed:AddressHouseNameShape
+        rdf:type     sh:PropertyShape;
+        rdfs:label   "Huisnaam"@nl , "House name"@en;
+        sh:datatype  xsd:string;
+        sh:group     deed:locationGroup;
+        sh:maxCount  1;
+        sh:order     7.0;
+        sh:path      saa:houseName .
+
+deed:AddressPlaceShape
+        rdf:type     sh:PropertyShape;
+        rdfs:label   "Plaats (anders dan Amsterdam)"@nl , "Place (other than Amsterdam)"@en;
+        sh:datatype  xsd:string;
+        sh:group     deed:locationGroup;
+        sh:maxCount  1;
+        sh:order     8.0;
+        sh:path      saa:placeName .
+
+deed:AddressDescriptionShape
+        rdf:type     sh:PropertyShape;
+        rdfs:label   "Locatie omschrijving"@nl , "Location description"@en;
+        dash:editor  dash:TextAreaEditor;
+        sh:datatype  xsd:string;
+        sh:group     deed:locationGroup;
+        sh:maxCount  1;
+        sh:order     9.0;
+        sh:path      saa:addressDescription .
+
+deed:LodationIRIShape
+        rdf:type        sh:PropertyShape;
+        rdfs:label      "(old) Location IRI"@en , "(oud) Locatie IRI"@nl;
+        dash:editor     memorix:IriEditor;
+        memorix:hidden  true;
+        sh:description  "IRI naar een externe locatie identifier (BAG, Adamlink of anders)"@nl , "IRI of external location (BAG, Adamlink or other)"@en;
+        sh:flags        "i";
+        sh:group        deed:locationGroup;
+        sh:maxCount     1;
+        sh:message      "Value must start with http:// or https://"@en , "Waarde moet beginnen met http of https"@nl;
+        sh:nodeKind     sh:IRI;
+        sh:order        12.0;
+        sh:path         deed:hasOrHadSubjectLocation;
+        sh:pattern      "^https?://" .
+
+deed:InternalRemarksShape
+        rdf:type          sh:PropertyShape;
+        rdfs:label        "Interne opmerking"@nl , "Internal remarks"@en;
+        dash:editor       dash:TextAreaEditor;
+        memorix:audience  memorix:AudienceInternal;
+        sh:datatype       xsd:string;
+        sh:group          deed:managementGroup;
+        sh:maxCount       1;
+        sh:order          8.0;
+        sh:path           saa:internalRemarks .

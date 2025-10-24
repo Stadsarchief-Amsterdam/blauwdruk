@@ -1,121 +1,114 @@
-@prefix rdf:            <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix rdfs:           <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix owl:            <http://www.w3.org/2002/07/owl#> .
-@prefix xsd:            <http://www.w3.org/2001/XMLSchema#> .
-@prefix skos:           <http://www.w3.org/2004/02/skos/core#> .
-
-@prefix rt:             </resources/recordtypes/> .
-@prefix family:         </resources/recordtypes/Family#> .
-@prefix vocabularies:   </resources/vocabularies/conceptschemes/> .
-
-@prefix dc:             <http://purl.org/dc/elements/1.1/> .
-@prefix sh:             <http://www.w3.org/ns/shacl#> .
-@prefix dash:           <http://datashapes.org/dash#> .
-@prefix memorix:        <http://memorix.io/ontology#> .
-@prefix html:           <http://www.w3.org/1999/xhtml/> .
-
-@prefix rico:           <https://www.ica.org/standards/RiC/ontology#> .
-@prefix ric-rst:        <https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#> .
-@prefix ric-dft:        <https://www.ica.org/standards/RiC/vocabularies/documentaryFormTypes#> .
-@prefix saa:            <https://data.archief.amsterdam/ontology#> . #TBD
-
-@prefix schema:         <http://schema.org/> .
+@prefix dash:         <http://datashapes.org/dash#> .
+@prefix dc:           <http://purl.org/dc/elements/1.1/> .
+@prefix family:       </resources/recordtypes/Family#> .
+@prefix html:         <http://www.w3.org/1999/xhtml/> .
+@prefix memorix:      <http://memorix.io/ontology#> .
+@prefix owl:          <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:          <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:         <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ric-dft:      <https://www.ica.org/standards/RiC/vocabularies/documentaryFormTypes#> .
+@prefix ric-rst:      <https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#> .
+@prefix rico:         <https://www.ica.org/standards/RiC/ontology#> .
+@prefix rt:           </resources/recordtypes/> .
+@prefix saa:          <https://data.archief.amsterdam/ontology#> .
+@prefix schema:       <http://schema.org/> .
+@prefix sh:           <http://www.w3.org/ns/shacl#> .
+@prefix skos:         <http://www.w3.org/2004/02/skos/core#> .
+@prefix vocabularies: </resources/vocabularies/conceptschemes/> .
+@prefix xsd:          <http://www.w3.org/2001/XMLSchema#> .
 
 family:identificationGroup
-    rdf:type   sh:PropertyGroup ;
-    rdfs:label "Identificatie"@nl ;
-    sh:order   1.0 .
+        rdf:type    sh:PropertyGroup;
+        rdfs:label  "Identificatie"@nl;
+        sh:order    1.0 .
 
 family:alternativeGroup
-    rdf:type   sh:PropertyGroup ;
-    rdfs:label "Ook bekend als"@nl, "Also known as"@en ;
-    sh:order   2.0 ;
-.
+        rdf:type    sh:PropertyGroup;
+        rdfs:label  "Ook bekend als"@nl , "Also known as"@en;
+        sh:order    2.0 .
 
 family:managementGroup
-    rdf:type   sh:PropertyGroup ;
-    rdfs:label "Beheer"@nl, "Management"@en ; ;
-    sh:order   3.0 .
+        rdf:type    sh:PropertyGroup;
+        rdfs:label  "Beheer"@nl , "Management"@en;
+        sh:order    3.0 .
 
-family:rightsGroup
-    rdf:type   sh:PropertyGroup ;
-    rdfs:label "Rechtenafspraken"@nl, "Rights Agreements"@en  ;
-    sh:order   4.0 ;
-.
-
-
-rt:Family
-    rdf:type                      memorix:Recordtype, sh:NodeShape ;
-    rdfs:label                    "Familie"@nl, "Family"@en ;
-    rdfs:comment                  "Stadsarchief recordtype voor Familie"@nl, "Amsterdam City Archives record type for Family"@en ;
-    dc:identifier                 "Family" ;
-    sh:targetClass                rt:Family ;
-    memorix:copyrightHolderSource true ;
-    sh:closed                     true ;
-    sh:ignoredProperties          ( rdf:type ) ;
-    sh:property                   [ rdfs:label           "Naam"@nl, "Name"@en ;
-                                    rdfs:comment         "Naam van de gehele familie"@nl, "Name of a family"@en ;
-                                    dash:singleLine      true ;
-                                    memorix:inTitleAt    1.0 ;
-                                    memorix:searchWeight 3.0 ;
-                                    sh:datatype          xsd:string ;
-                                    sh:group             family:identificationGroup ;
-                                    sh:maxCount          1 ;
-                                    sh:order             1.0 ;
-                                    sh:path              schema:name
-                                  ] ;
-    sh:property                   [ rdfs:label           "Alternatieve namen"@nl, "Alternate names"@en ;
-                                    memorix:searchWeight 2.0 ;
-                                    sh:datatype          xsd:string ;
-                                    sh:group             family:alternativeGroup ;
-                                    sh:maxCount          10 ;
-                                    sh:order             1.0 ;
-                                    sh:path              schema:alternateName
-                                  ] ;
-    sh:property                   [ rdfs:label              "Identiek aan (extern)"@nl, "Is same as (external)"@en ;
-                                    rdfs:comment            "Is identiek aan familie in andere terminologiebron"@nl, "Is same as family in external vocabulary"@en ;
-                                    dash:editor             memorix:VocabularyEditor ;
-                                    memorix:searchWeight    2.0 ;
-                                    sh:class                skos:Concept ;
-                                    sh:group                family:alternativeGroup ;
-                                    sh:maxCount             100 ;
-                                    sh:nodeKind             sh:IRI ;
-                                    sh:order                2.0 ;
-                                    sh:path                 owl:sameAs
-                                  ] ;
-    sh:property                   [ rdfs:label       "Interne opmerking"@nl, "Internal remarks"@en ;
-                                    dash:editor      dash:TextAreaEditor ;
-                                    memorix:audience memorix:AudienceInternal ;
-                                    sh:datatype      xsd:string ;
-                                    sh:group         family:managementGroup ;
-                                    sh:maxCount      1 ;
-                                    sh:order         1.0 ;
-                                    sh:path          family:internalRemarks ;
-                                  ] ;
-    sh:property          [ rdfs:label               "Auteursrechtafspraken"@nl, "Copyright Agreement"@en  ;
-                           dash:editor              memorix:VocabularyEditor ;
-                           sh:nodeKind              sh:IRI ;
-                           sh:class                 skos:Concept ;
-                           memorix:conceptSchemeIn  vocabularies:80216597-805e-4439-abab-f7a323dde6ec ; # wrong conceptscheme
-                           memorix:hidden           true ; # tijdelijk niet zichtbaar
-                           sh:group                 family:rightsGroup ;
-                           sh:maxCount              1 ;
-                           sh:order                 7.0 ;
-                           sh:path                  saa:copyrightsAgreement ] ;
-    sh:property          [ rdfs:label               "Contractnummer"@nl, "Contract Number"@en  ;
-                           dash:editor              dash:TextFieldEditor ;
-                           memorix:audience         memorix:AudienceInternal ;
-                           sh:datatype              xsd:string ;
-                           sh:group                 family:rightsGroup ;
-                           sh:maxCount              1 ;
-                           sh:order                 8.0 ;
-                           sh:path                  saa:copyrightsContractNr ] ;
-    sh:property          [ rdfs:label               "Auteursrechtopmerkingen"@nl, "Copyright Remarks"@en  ;
-                           dash:editor              dash:TextAreaEditor ;
-                           memorix:audience         memorix:AudienceInternal ;
-                           sh:datatype              xsd:string ;
-                           sh:group                 family:rightsGroup ;
-                           sh:maxCount              1 ;
-                           sh:order                 9.0 ;
-                           sh:path                  saa:copyrightsRemarks ] ;
-.
+family:rightsGroup  rdf:type  sh:PropertyGroup;
+        rdfs:label  "Rechtenafspraken"@nl , "Rights Agreements"@en;
+        sh:order    4.0 .
+        
+rt:Family  rdf:type                    memorix:Recordtype , sh:NodeShape;
+        rdfs:comment                   "Family: an established family (name) of a family that has created an archive"@en , "Familie: vastgestelde familie(naam) van een familie die een archief heeft gevormd"@nl;
+        rdfs:label                     "Familie"@nl , "Family"@en;
+        memorix:copyrightHolderSource  true;
+        dc:identifier                  "Family";
+        sh:closed                      true;
+        sh:ignoredProperties           ( rdf:type );
+        sh:property                    [ rdfs:label        "Auteursrechtopmerkingen"@nl , "Copyright Remarks"@en;
+                                         dash:editor       dash:TextAreaEditor;
+                                         memorix:audience  memorix:AudienceInternal;
+                                         sh:datatype       xsd:string;
+                                         sh:group          family:rightsGroup;
+                                         sh:maxCount       1;
+                                         sh:order          9.0;
+                                         sh:path           saa:copyrightsRemarks
+                                       ];
+        sh:property                    [ rdfs:label        "Interne opmerking"@nl , "Internal remarks"@en;
+                                         dash:editor       dash:TextAreaEditor;
+                                         memorix:audience  memorix:AudienceInternal;
+                                         sh:datatype       xsd:string;
+                                         sh:group          family:managementGroup;
+                                         sh:maxCount       1;
+                                         sh:order          1.0;
+                                         sh:path           family:internalRemarks
+                                       ];
+        sh:property                    [ rdfs:label        "Contractnummer"@nl , "Contract Number"@en;
+                                         dash:editor       dash:TextFieldEditor;
+                                         memorix:audience  memorix:AudienceInternal;
+                                         sh:datatype       xsd:string;
+                                         sh:group          family:rightsGroup;
+                                         sh:maxCount       1;
+                                         sh:order          8.0;
+                                         sh:path           saa:copyrightsContractNr
+                                       ];
+        sh:property                    [ rdfs:label            "Alternatieve namen"@nl , "Alternate names"@en;
+                                         memorix:searchWeight  2.0;
+                                         sh:datatype           xsd:string;
+                                         sh:group              family:alternativeGroup;
+                                         sh:maxCount           10;
+                                         sh:order              1.0;
+                                         sh:path               schema:alternateName
+                                       ];
+        sh:property                    [ rdfs:comment          "Name of a family"@en , "Naam van de gehele familie"@nl;
+                                         rdfs:label            "Name"@en , "Naam"@nl;
+                                         dash:singleLine       true;
+                                         memorix:inTitleAt     1.0;
+                                         memorix:searchWeight  3.0;
+                                         sh:datatype           xsd:string;
+                                         sh:group              family:identificationGroup;
+                                         sh:maxCount           1;
+                                         sh:order              1.0;
+                                         sh:path               schema:name
+                                       ];
+        sh:property                    [ rdfs:comment          "Is same as family in external vocabulary"@en , "Is identiek aan familie in andere terminologiebron"@nl;
+                                         rdfs:label            "Identiek aan (extern)"@nl , "Is same as (external)"@en;
+                                         dash:editor           memorix:VocabularyEditor;
+                                         memorix:searchWeight  2.0;
+                                         sh:class              skos:Concept;
+                                         sh:group              family:alternativeGroup;
+                                         sh:maxCount           100;
+                                         sh:nodeKind           sh:IRI;
+                                         sh:order              2.0;
+                                         sh:path               owl:sameAs
+                                       ];
+        sh:property                    [ rdfs:label               "Auteursrechtafspraken"@nl , "Copyright Agreement"@en;
+                                         dash:editor              memorix:VocabularyEditor;
+                                         memorix:conceptSchemeIn  vocabularies:80216597-805e-4439-abab-f7a323dde6ec;
+                                         memorix:hidden           true;
+                                         sh:class                 skos:Concept;
+                                         sh:group                 family:rightsGroup;
+                                         sh:maxCount              1;
+                                         sh:nodeKind              sh:IRI;
+                                         sh:order                 7.0;
+                                         sh:path                  saa:copyrightsAgreement
+                                       ];
+        sh:targetClass                 rt:Family .

@@ -1,392 +1,359 @@
-@prefix rdf:             <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix rdfs:            <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix owl:             <http://www.w3.org/2002/07/owl#> .
-@prefix xsd:             <http://www.w3.org/2001/XMLSchema#> .
-@prefix skos:            <http://www.w3.org/2004/02/skos/core#> .
-@prefix schema:          <http://schema.org/> .
-@prefix rt:              </resources/recordtypes/> .
-@prefix report:          </resources/recordtypes/ConservationReport#> .
-@prefix file:            </resources/recordtypes/File#> .
-@prefix saa:             <https://data.archief.amsterdam/ontology#> .
-@prefix dc:              <http://purl.org/dc/elements/1.1/> .
-@prefix sh:              <http://www.w3.org/ns/shacl#> .
-@prefix dash:            <http://datashapes.org/dash#> .
-@prefix memorix:         <http://memorix.io/ontology#> .
-@prefix html:            <http://www.w3.org/1999/xhtml/> .
-@prefix vocabularies:    </resources/vocabularies/conceptschemes/> .
-@prefix rico:            <https://www.ica.org/standards/RiC/ontology#> .
-@prefix ric-rst:         <https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#> .
-@prefix ric-dft:         <https://www.ica.org/standards/RiC/vocabularies/documentaryFormTypes#> .
+@prefix conservationReport: </resources/recordtypes/ConservationReport#> .
+@prefix dash:               <http://datashapes.org/dash#> .
+@prefix dc:                 <http://purl.org/dc/elements/1.1/> .
+@prefix file:               </resources/recordtypes/File#> .
+@prefix html:               <http://www.w3.org/1999/xhtml/> .
+@prefix memorix:            <http://memorix.io/ontology#> .
+@prefix owl:                <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:                <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:               <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ric-dft:            <https://www.ica.org/standards/RiC/vocabularies/documentaryFormTypes#> .
+@prefix ric-rst:            <https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#> .
+@prefix rico:               <https://www.ica.org/standards/RiC/ontology#> .
+@prefix rt:                 </resources/recordtypes/> .
+@prefix saa:                <https://data.archief.amsterdam/ontology#> .
+@prefix schema:             <http://schema.org/> .
+@prefix sh:                 <http://www.w3.org/ns/shacl#> .
+@prefix skos:               <http://www.w3.org/2004/02/skos/core#> .
+@prefix vocabularies:       </resources/vocabularies/conceptschemes/> .
+@prefix xsd:                <http://www.w3.org/2001/XMLSchema#> .
 
+conservationReport:identificationGroup
+        rdf:type    sh:PropertyGroup;
+        rdfs:label  "Identification"@en , "Identificatie"@nl;
+        sh:order    1.0 .
 
-report:identificationGroup
-    rdf:type   sh:PropertyGroup ;
-    rdfs:label "Identificatie"@nl, "Identification"@en ;
-    sh:order   1.0 .
+conservationReport:descriptionGroup
+        rdf:type    sh:PropertyGroup;
+        rdfs:label  "Object Description"@en , "Objectbeschrijving"@nl;
+        sh:order    2.0 .
 
-report:descriptionGroup
-    rdf:type   sh:PropertyGroup ;
-    rdfs:label "Objectbeschrijving"@nl, "Object Description"@en ;
-    sh:order   2.0 .
+conservationReport:conditionGroup
+        rdf:type    sh:PropertyGroup;
+        rdfs:label  "Condition"@en , "Conditie"@nl;
+        sh:order    3.0 .
 
-report:conditionGroup
-    rdf:type   sh:PropertyGroup ;
-    rdfs:label "Conditie"@nl, "Condition"@en ;
-    sh:order   3.0 .
+conservationReport:investigationGroup
+        rdf:type    sh:PropertyGroup;
+        rdfs:label  "Preliminary Investigation"@en , "Vooronderzoek"@nl;
+        sh:order    4.0 .
 
-report:investigationGroup
-    rdf:type   sh:PropertyGroup ;
-    rdfs:label "Vooronderzoek"@nl, "Preliminary Investigation"@en ;
-    sh:order   4.0 .
-
-report:treatmentGroup
-    rdf:type   sh:PropertyGroup ;
-    rdfs:label "Behandeling"@nl, "Treatment"@en ;
-    sh:order   5.0 .
-
-report:managementGroup
-    rdf:type   sh:PropertyGroup ;
-    rdfs:label "Beheer"@nl, "Manage"@en ;
-    sh:order   6.0 .
+conservationReport:treatmentGroup
+        rdf:type    sh:PropertyGroup;
+        rdfs:label  "Treatment"@en , "Behandeling"@nl;
+        sh:order    5.0 .
+        
+conservationReport:managementGroup
+        rdf:type    sh:PropertyGroup;
+        rdfs:label  "Manage"@en , "Beheer"@nl;
+        sh:order    6.0 .
 
 rt:ConservationReport
-    a                    memorix:Recordtype, sh:NodeShape ;
-    rdfs:comment         "Stadsarchief recordtype voor Conserveringsrapport"@nl ;
-    rdfs:label           "Conserveringsrapport"@nl, "Conservation report"@en ;
-    dc:identifier        "ConservationReport" ;
-    sh:targetClass       rt:ConservationReport ;
-    memorix:audience memorix:AudienceInternal ;
-    sh:closed            true ;
-    sh:ignoredProperties ( rdf:type ) ;
-    sh:property          report:FondsShape, report:FileShape, report:BeginDateShape, report:EndDateShape, report:ObjectDescriptionShape, report:ObjectTypeShape, report:ObjectMaterialShape,
-                         report:ObjectTechniqueShape ;
-    sh:property          report:PrimaryCarrierShape, report:MediumShape, report:SecondaryAdditionShape, report:DamageShape, report:HasCarriedOutTestsShape ;
-    sh:property          report:AcidityShape, report:OtherFindingsShape ;
-    sh:property          report:HasDamageTreatmentShape, report:OtherTreatmentShape, report:ExternalConservatorShape ;
-    sh:property          report:InternalRemarksShape ;
-.
+        rdf:type              sh:NodeShape , memorix:Recordtype;
+        rdfs:comment          "Stadsarchief recordtype voor Conserveringsrapport"@nl;
+        rdfs:label            "Conservation report"@en , "Conserveringsrapport"@nl;
+        memorix:audience      memorix:AudienceInternal;
+        dc:identifier         "ConservationReport";
+        sh:closed             true;
+        sh:ignoredProperties  ( rdf:type );
+        sh:property           conservationReport:SecondaryAdditionShape , conservationReport:ObjectTypeShape , conservationReport:InternalRemarksShape , conservationReport:ObjectTechniqueShape , conservationReport:HasCarriedOutTestsShape , conservationReport:BeginDateShape , conservationReport:DamageShape , conservationReport:AcidityShape , conservationReport:EndDateShape , conservationReport:ObjectDescriptionShape , conservationReport:OtherFindingsShape , conservationReport:PrimaryCarrierShape , conservationReport:ExternalConservatorShape , conservationReport:HasDamageTreatmentShape , conservationReport:FondsShape , conservationReport:FileShape , conservationReport:OtherTreatmentShape , conservationReport:ObjectMaterialShape , conservationReport:MediumShape;
+        sh:targetClass        rt:ConservationReport .
+        
+conservationReport:OtherFindingsShape
+        rdf:type     sh:PropertyShape;
+        rdfs:label   "Other preliminary results"@en , "Vooronderzoek overig"@nl;
+        dash:editor  dash:TextAreaEditor;
+        sh:datatype  xsd:string;
+        sh:group     conservationReport:investigationGroup;
+        sh:maxCount  1;
+        sh:order     9.0;
+        sh:path      conservationReport:otherFindings .
 
-report:FondsShape
-    rdf:type       sh:PropertyShape;
-    memorix:typeOf memorix:FondsFieldLink ;
-    rdfs:label     "Archief"@nl, "Fonds"@en ;
-    sh:description  "Archief waar dit rapport bij hoort"@nl, "Fonds to which this report belongs"@en ;
-    sh:message     "Kies het archief waar dit rapport uit komt"@nl, "Choose a fonds where this report belongs to"@en ;
-    sh:nodeKind    sh:IRI ;
-    sh:or          ( [ sh:class rt:Fonds ] ) ;
-    sh:group       report:identificationGroup ;
-    dash:editor    memorix:LinkedRecordEditor ;
-    sh:minCount    1 ;
-    sh:maxCount    1 ;
-    sh:order       1.0 ;
-    sh:path        saa:isOrWasAlsoIncludedIn .
+conservationReport:ExternalConservatorShape
+        rdf:type          sh:PropertyShape;
+        rdfs:label        "External conservator"@en , "Externe behandelaar"@nl;
+        memorix:audience  memorix:AudienceInternal;
+        sh:datatype       xsd:string;
+        sh:group          conservationReport:treatmentGroup;
+        sh:maxCount       1;
+        sh:order          3.0;
+        sh:path           conservationReport:externalConservator .
 
+conservationReport:OtherTreatmentShape
+        rdf:type          sh:PropertyShape;
+        rdfs:label        "Treatment other"@en , "Behandeling overig"@nl;
+        dash:editor       dash:TextAreaEditor;
+        memorix:audience  memorix:AudienceInternal;
+        sh:datatype       xsd:string;
+        sh:group          conservationReport:treatmentGroup;
+        sh:maxCount       1;
+        sh:order          2.0;
+        sh:path           conservationReport:otherTreatment .
 
-report:FileShape
-    rdf:type     sh:PropertyShape ;
-    rdfs:label   "Bestanddeel"@nl , "Linked file"@en ;
-    sh:description "Bestanddeel waartoe dit rapport behoort"@nl, "The file where this report belongs to"@en ;
-    sh:message   "Kies een bestanddeel om aan te koppelen. Dit is verplicht."@nl, "Choose a related (inventory) file. It is required."@en ;
-    dash:editor  memorix:ConditionalLinkFieldEditor ;
-    memorix:conditionalLinkField saa:isOrWasAlsoIncludedIn ;
-    memorix:linkField [
-        memorix:hasRecordType rt:File ;
-        memorix:path file:fonds ;
-    ];
-    sh:group     report:identificationGroup ;
-    sh:minCount  1 ;
-    sh:maxCount  1 ;
-    sh:message   "Kies een bestanddeel om aan te koppelen. Dit is verplicht."@nl, "Choose a related (inventory) file. It is required."@en ;
-    sh:nodeKind  sh:IRI ;
-    sh:or        ( [ sh:class rt:File ] ) ;
-    sh:order     2.0 ;
-    sh:path      rico:isOrWasIncludedIn .
+conservationReport:MediumShape
+        rdf:type                 sh:PropertyShape;
+        rdfs:label               "Conditie medium"@nl , "Condition Medium"@en;
+        dash:editor              memorix:VocabularyEditor;
+        memorix:conceptSchemeIn  vocabularies:d3538eb3-e234-4c41-99f5-38ddbfce7e36;
+        sh:class                 skos:Concept;
+        sh:group                 conservationReport:conditionGroup;
+        sh:maxCount              50;
+        sh:message               "Kies een term uit de keuzelijst."@nl , "Please choose from the list."@en;
+        sh:nodeKind              sh:IRI;
+        sh:order                 2.0;
+        sh:path                  conservationReport:medium .
 
+conservationReport:ObjectDescriptionShape
+        rdf:type              sh:PropertyShape;
+        rdfs:label            "Specificatie bestanddeel"@nl , "Specification of the record"@en;
+        dash:editor           dash:TextAreaEditor;
+        memorix:searchWeight  3.0;
+        sh:datatype           xsd:string;
+        sh:group              conservationReport:descriptionGroup;
+        sh:maxCount           1;
+        sh:order              1.0;
+        sh:path               rico:title .
 
-report:BeginDateShape
-    a                    sh:PropertyShape ;
-    rdfs:label           "Begindatum"@nl, "Begin date"@en ;
-    memorix:inTitleAt    1.0 ;
-    memorix:searchWeight 5.0 ;
-    sh:datatype          xsd:date ;
-    sh:group             report:identificationGroup ;
-    sh:minCount          1 ;
-    sh:maxCount          1 ;
-    sh:message          "Vul tenminste een begindatum in. Dit is verplicht."@nl, "Please provide a begin date. This is mandatory."@en ;
-    sh:order             3.0 ;
-    sh:path              rico:hasBeginningDate ;
-.
+conservationReport:EndDateShape
+        rdf:type     sh:PropertyShape;
+        rdfs:label   "End date"@en , "Einddatum"@nl;
+        sh:datatype  xsd:date;
+        sh:group     conservationReport:identificationGroup;
+        sh:maxCount  1;
+        sh:order     4.0;
+        sh:path      rico:hasEndDate .
 
-report:EndDateShape
-    a                    sh:PropertyShape ;
-    rdfs:label           "Einddatum"@nl, "End date"@en ;
-    sh:datatype          xsd:date ;
-    sh:group             report:identificationGroup ;
-    sh:maxCount          1 ;
-    sh:order             4.0 ;
-    sh:path              rico:hasEndDate ;
-.
+conservationReport:HasDamageTreatmentShape
+        rdf:type     sh:PropertyShape;
+        rdfs:label   "Treatments"@en , "Behandelingen"@nl;
+        sh:class     conservationReport:DamageTreatment;
+        sh:group     conservationReport:treatmentGroup;
+        sh:maxCount  50;
+        sh:nodeKind  sh:BlankNode;
+        sh:order     1.0;
+        sh:path      conservationReport:hasDamageTreatment .
 
-report:ObjectDescriptionShape
-    a                    sh:PropertyShape ;
-    rdfs:label           "Specificatie bestanddeel"@nl, "Specification of the record"@en ;
-    dash:editor          dash:TextAreaEditor ;
-    memorix:searchWeight 3.0 ;
-    sh:datatype          xsd:string ;
-    sh:group             report:descriptionGroup ;
-    sh:maxCount          1 ;
-    sh:order             1.0 ;
-    sh:path              rico:title ;
-.
+conservationReport:FileShape
+        rdf:type                      sh:PropertyShape;
+        rdfs:label                    "Linked file"@en , "Bestanddeel"@nl;
+        dash:editor                   memorix:ConditionalLinkFieldEditor;
+        memorix:conditionalLinkField  saa:isOrWasAlsoIncludedIn;
+        memorix:linkField             [ memorix:hasRecordType  rt:File;
+                                        memorix:path           file:fonds
+                                      ];
+        sh:description                "Bestanddeel waartoe dit rapport behoort"@nl , "The file where this report belongs to"@en;
+        sh:group                      conservationReport:identificationGroup;
+        sh:maxCount                   1;
+        sh:message                    "Choose a related (inventory) file. It is required."@en , "Kies een bestanddeel om aan te koppelen. Dit is verplicht."@nl;
+        sh:minCount                   1;
+        sh:nodeKind                   sh:IRI;
+        sh:or                         ( [ sh:class  rt:File ]
+                                      );
+        sh:order                      2.0;
+        sh:path                       rico:isOrWasIncludedIn .
 
-report:ObjectTypeShape
-    a                       sh:PropertyShape ;
-    rdfs:label              "Objecttype"@nl, "Object type"@en ;
-    sh:message              "Kies een objecttype uit de keuzelijst."@nl, "Please choose a object type from the list."@en ;
-    dash:editor             memorix:VocabularyEditor ;
-    memorix:conceptSchemeIn vocabularies:1cc20db0-62dc-45cf-b7f7-c7b2fb2074a2 ;
-    memorix:inSummaryAt     1.0 ;
-    sh:class                skos:Concept ;
-    sh:group                report:descriptionGroup ;
-    #sh:minCount             1 ; Dit kan nu nog niet bij de migratie
-    sh:maxCount             1 ;
-    sh:nodeKind             sh:IRI ;
-    sh:order                2.0 ;
-    sh:path                 rico:hasDocumentaryFormType ;
-.
+conservationReport:ObjectTypeShape
+        rdf:type                 sh:PropertyShape;
+        rdfs:label               "Object type"@en , "Objecttype"@nl;
+        dash:editor              memorix:VocabularyEditor;
+        memorix:conceptSchemeIn  vocabularies:1cc20db0-62dc-45cf-b7f7-c7b2fb2074a2;
+        memorix:inSummaryAt      1.0;
+        sh:class                 skos:Concept;
+        sh:group                 conservationReport:descriptionGroup;
+        sh:maxCount              1;
+        sh:message               "Please choose a object type from the list."@en , "Kies een objecttype uit de keuzelijst."@nl;
+        sh:nodeKind              sh:IRI;
+        sh:order                 2.0;
+        sh:path                  rico:hasDocumentaryFormType .
 
-report:ObjectMaterialShape
-    a                       sh:PropertyShape ;
-    rdfs:label              "Materiaal drager"@nl, "Material of carrier"@en ;
-    sh:message              "Kies een materiaal uit de keuzelijst."@nl, "Please choose a type of material from the list."@en ;
-    dash:editor             memorix:VocabularyEditor ;
-    memorix:conceptSchemeIn vocabularies:ae2e509f-ad1b-4dc3-bf0d-0fb9bc7e7863 ;
-    sh:class                skos:Concept ;
-    sh:group                report:descriptionGroup ;
-    sh:maxCount             50 ;
-    sh:nodeKind             sh:IRI ;
-    sh:order                3.0 ;
-    sh:path                 saa:material ;
-.
+conservationReport:CarriedOutTests
+        rdf:type              sh:NodeShape;
+        rdfs:label            "Test that was carried out"@en , "Uitgevoerde test"@nl;
+        sh:closed             true;
+        sh:ignoredProperties  ( rdf:type );
+        sh:property           [ rdfs:label        "Result"@en , "Uitslag"@nl;
+                                html:placeholder  "positief/negatief"@nl;
+                                sh:datatype       xsd:string;
+                                sh:maxCount       1;
+                                sh:order          2.0;
+                                sh:path           conservationReport:resultOfTest
+                              ];
+        sh:property           [ rdfs:label               "Type of test"@en , "Soort test"@nl;
+                                dash:editor              memorix:VocabularyEditor;
+                                memorix:conceptSchemeIn  vocabularies:acf7fe80-0bb0-4411-8870-eb008830c55f;
+                                sh:class                 skos:Concept;
+                                sh:maxCount              1;
+                                sh:nodeKind              sh:IRI;
+                                sh:order                 1.0;
+                                sh:path                  conservationReport:typeOfTest
+                              ];
+        sh:targetClass        conservationReport:CarriedOutTests .
 
-report:ObjectTechniqueShape
-    a                       sh:PropertyShape ;
-    rdfs:label              "Techniek of procedé"@nl, "Technique"@en ;
-    sh:message              "Kies een techniek uit de keuzelijst."@nl, "Please choose a technique from the list."@en ;
-    dash:editor             memorix:VocabularyEditor ;
-    memorix:conceptSchemeIn vocabularies:d0fc28e9-e1c0-47c0-ad66-f496c8d12f90 ;
-    sh:class                skos:Concept ;
-    sh:group                report:descriptionGroup ;
-    sh:maxCount             50 ;
-    sh:nodeKind             sh:IRI ;
-    sh:order                4.0 ;
-    sh:path                 saa:technique ;
-.
+conservationReport:HasCarriedOutTestsShape
+        rdf:type     sh:PropertyShape;
+        rdfs:label   "Carried out tests"@en , "Uitgevoerde tests"@nl;
+        sh:class     conservationReport:CarriedOutTests;
+        sh:group     conservationReport:investigationGroup;
+        sh:maxCount  50;
+        sh:nodeKind  sh:BlankNode;
+        sh:order     6.0;
+        sh:path      conservationReport:hasCarriedOutTests .
 
-#Condition
-report:PrimaryCarrierShape
-    a                       sh:PropertyShape ;
-    rdfs:label              "Conditie primaire drager"@nl, "Condition Primary carrier"@en ;
-    sh:message              "Kies een term uit de keuzelijst."@nl, "Please choose from the list."@en ;
-    dash:editor             memorix:VocabularyEditor ;
-    memorix:conceptSchemeIn vocabularies:d3538eb3-e234-4c41-99f5-38ddbfce7e36 ;
-    sh:class                skos:Concept ;
-    sh:group                report:conditionGroup ;
-    sh:maxCount             50 ;
-    sh:nodeKind             sh:IRI ;
-    sh:order                1.0 ;
-    sh:path                 report:primaryCarrier ;
-.
+conservationReport:DamageShape
+        rdf:type     sh:PropertyShape;
+        rdfs:label   "Condition (other)"@en , "Conditie overig"@nl;
+        dash:editor  dash:TextAreaEditor;
+        sh:datatype  xsd:string;
+        sh:group     conservationReport:conditionGroup;
+        sh:maxCount  1;
+        sh:order     4.0;
+        sh:path      conservationReport:otherDamage .
 
-report:MediumShape
-    a                       sh:PropertyShape ;
-    rdfs:label              "Conditie medium"@nl, "Condition Medium"@en ;
-    sh:message              "Kies een term uit de keuzelijst."@nl, "Please choose from the list."@en ;
-    dash:editor             memorix:VocabularyEditor ;
-    memorix:conceptSchemeIn vocabularies:d3538eb3-e234-4c41-99f5-38ddbfce7e36 ;
-    sh:class                skos:Concept ;
-    sh:group                report:conditionGroup ;
-    sh:maxCount             50 ;
-    sh:nodeKind             sh:IRI ;
-    sh:order                2.0 ;
-    sh:path                 report:medium ;
-.
+conservationReport:InternalRemarksShape
+        rdf:type          sh:PropertyShape;
+        rdfs:label        "Interne opmerking"@nl , "Internal remarks"@en;
+        dash:editor       dash:TextAreaEditor;
+        memorix:audience  memorix:AudienceInternal;
+        sh:datatype       xsd:string;
+        sh:group          conservationReport:managementGroup;
+        sh:maxCount       1;
+        sh:order          1.0;
+        sh:path           saa:internalRemarks .
 
-report:SecondaryAdditionShape
-    a                       sh:PropertyShape ;
-    rdfs:label              "Conditie toevoeging"@nl, "Condition addition"@en ;
-    sh:message              "Kies een term uit de keuzelijst."@nl, "Please choose from the list."@en ;
-    dash:editor             memorix:VocabularyEditor ;
-    memorix:conceptSchemeIn vocabularies:d3538eb3-e234-4c41-99f5-38ddbfce7e36 ;
-    sh:class                skos:Concept ;
-    sh:group                report:conditionGroup ;
-    sh:maxCount             50 ;
-    sh:nodeKind             sh:IRI ;
-    sh:order                3.0 ;
-    sh:path                 report:secondaryAddition ;
-.
+conservationReport:DamageTreatment
+        rdf:type              sh:NodeShape;
+        rdfs:label            "Treatment"@en , "Behandeling"@nl;
+        sh:closed             true;
+        sh:ignoredProperties  ( rdf:type );
+        sh:property           [ rdfs:label               "Treated with"@en , "Middel behandeling"@nl;
+                                dash:editor              memorix:VocabularyEditor;
+                                memorix:conceptSchemeIn  vocabularies:99cef907-bfbd-47b3-a277-895ee6b608f8;
+                                sh:class                 skos:Concept;
+                                sh:maxCount              20;
+                                sh:nodeKind              sh:IRI;
+                                sh:order                 3.0;
+                                sh:path                  conservationReport:typeOfMaterial
+                              ];
+        sh:property           [ rdfs:label               "Treatment"@en , "Behandeling"@nl;
+                                dash:editor              memorix:VocabularyEditor;
+                                memorix:conceptSchemeIn  vocabularies:3f4bdac4-51af-497a-af8f-24e86bc30c55;
+                                sh:class                 skos:Concept;
+                                sh:maxCount              20;
+                                sh:nodeKind              sh:IRI;
+                                sh:order                 2.0;
+                                sh:path                  conservationReport:typeOfTreatment
+                              ];
+        sh:property           [ rdfs:label               "Treated part"@en , "Onderdeel behandeling"@nl;
+                                dash:editor              memorix:VocabularyEditor;
+                                memorix:conceptSchemeIn  vocabularies:d3538eb3-e234-4c41-99f5-38ddbfce7e36;
+                                sh:class                 skos:Concept;
+                                sh:maxCount              20;
+                                sh:nodeKind              sh:IRI;
+                                sh:order                 1.0;
+                                sh:path                  conservationReport:typeOfDamage
+                              ];
+        sh:targetClass        conservationReport:DamageTreatment .
 
-report:DamageShape
-    a           sh:PropertyShape ;
-    rdfs:label  "Conditie overig"@nl, "Condition (other)"@en ;
-    dash:editor  dash:TextAreaEditor ;
-    sh:datatype xsd:string ;
-    sh:group    report:conditionGroup ;
-    sh:maxCount 1 ;
-    sh:order    4.0 ;
-    sh:path     report:otherDamage
-.
+conservationReport:ObjectMaterialShape
+        rdf:type                 sh:PropertyShape;
+        rdfs:label               "Material of carrier"@en , "Materiaal drager"@nl;
+        dash:editor              memorix:VocabularyEditor;
+        memorix:conceptSchemeIn  vocabularies:ae2e509f-ad1b-4dc3-bf0d-0fb9bc7e7863;
+        sh:class                 skos:Concept;
+        sh:group                 conservationReport:descriptionGroup;
+        sh:maxCount              50;
+        sh:message               "Please choose a type of material from the list."@en , "Kies een materiaal uit de keuzelijst."@nl;
+        sh:nodeKind              sh:IRI;
+        sh:order                 3.0;
+        sh:path                  saa:material .
 
-report:WorkloadShape
-    a           sh:PropertyShape ;
-    rdfs:label  "Werkvoorraad?"@nl, "Workload?"@en ;
-    sh:datatype xsd:boolean ;
-    sh:group    report:conditionGroup ;
-    sh:maxCount 1 ;
-    sh:order    5.0 ;
-    sh:path     report:workload
-.
+conservationReport:PrimaryCarrierShape
+        rdf:type                 sh:PropertyShape;
+        rdfs:label               "Conditie primaire drager"@nl , "Condition Primary carrier"@en;
+        dash:editor              memorix:VocabularyEditor;
+        memorix:conceptSchemeIn  vocabularies:d3538eb3-e234-4c41-99f5-38ddbfce7e36;
+        sh:class                 skos:Concept;
+        sh:group                 conservationReport:conditionGroup;
+        sh:maxCount              50;
+        sh:message               "Kies een term uit de keuzelijst."@nl , "Please choose from the list."@en;
+        sh:nodeKind              sh:IRI;
+        sh:order                 1.0;
+        sh:path                  conservationReport:primaryCarrier .
 
-# #InvestigationGroup
-report:HasCarriedOutTestsShape
-    a           sh:PropertyShape ;
-    rdfs:label  "Uitgevoerde tests"@nl, "Carried out tests"@en ;
-    sh:class    report:CarriedOutTests ;
-    sh:group    report:investigationGroup ;
-    sh:maxCount 50 ;
-    sh:nodeKind sh:BlankNode ;
-    sh:order    6.0 ;
-    sh:path     report:hasCarriedOutTests
-.
+conservationReport:SecondaryAdditionShape
+        rdf:type                 sh:PropertyShape;
+        rdfs:label               "Condition addition"@en , "Conditie toevoeging"@nl;
+        dash:editor              memorix:VocabularyEditor;
+        memorix:conceptSchemeIn  vocabularies:d3538eb3-e234-4c41-99f5-38ddbfce7e36;
+        sh:class                 skos:Concept;
+        sh:group                 conservationReport:conditionGroup;
+        sh:maxCount              50;
+        sh:message               "Kies een term uit de keuzelijst."@nl , "Please choose from the list."@en;
+        sh:nodeKind              sh:IRI;
+        sh:order                 3.0;
+        sh:path                  conservationReport:secondaryAddition .
 
-report:CarriedOutTests
-    rdf:type             sh:NodeShape ;
-    rdfs:label           "Uitgevoerde test"@nl, "Test that was carried out"@en ;
-    sh:closed            true ;
-    sh:ignoredProperties ( rdf:type ) ;
-    sh:property          [ rdfs:label              "Soort test"@nl, "Type of test"@en ;
-                           dash:editor             memorix:VocabularyEditor ;
-                           memorix:conceptSchemeIn vocabularies:acf7fe80-0bb0-4411-8870-eb008830c55f ;
-                           sh:class                skos:Concept ;
-                           sh:maxCount             1 ;
-                           sh:nodeKind             sh:IRI ;
-                           sh:order                1.0 ;
-                           sh:path                 report:typeOfTest
-                         ] ;
-    sh:property          [ rdfs:label  "Uitslag"@nl, "Result"@en ;
-                           html:placeholder  "positief/negatief"@nl ;
-                           sh:datatype xsd:string ;
-                           sh:maxCount 1 ;
-                           sh:order    2.0 ;
-                           sh:path     report:resultOfTest
-                         ] ;
-    sh:targetClass       report:CarriedOutTests
-.
+conservationReport:AcidityShape
+        rdf:type          sh:PropertyShape;
+        rdfs:label        "Acidity (A-D strips)"@en , "Azijnzuurgas (A-D strips)"@nl;
+        html:placeholder  "0,1,2,3 of 4"@nl , "0,1,2,3 or 4"@en;
+        sh:datatype       xsd:integer;
+        sh:group          conservationReport:investigationGroup;
+        sh:maxCount       1;
+        sh:maxInclusive   4;
+        sh:message        "Zuurgraad moet liggen tussen 0 en 4"@nl , "Acidity must be between 0 and 4"@en;
+        sh:minInclusive   0;
+        sh:order          6.0;
+        sh:path           conservationReport:acidity .
 
-report:AcidityShape
-    a           sh:PropertyShape ;
-    rdfs:label  "Azijnzuurgas (A-D strips)"@nl, "Acidity (A-D strips)"@en ;
-    html:placeholder  "0,1,2,3 of 4"@nl, "0,1,2,3 or 4"@en ;
-    sh:datatype xsd:integer ;
-    sh:group    report:investigationGroup ;
-    sh:order    6.0 ;
-    sh:maxCount 1 ;
-    sh:minInclusive 0 ;
-    sh:maxInclusive 4 ;
-    sh:message  "Zuurgraad moet liggen tussen 0 en 4"@nl, "Acidity must be between 0 and 4"@en ;
-    sh:path     report:acidity
-.
+conservationReport:WorkloadShape
+        rdf:type     sh:PropertyShape;
+        rdfs:label   "Workload?"@en , "Werkvoorraad?"@nl;
+        sh:datatype  xsd:boolean;
+        sh:group     conservationReport:conditionGroup;
+        sh:maxCount  1;
+        sh:order     5.0;
+        sh:path      conservationReport:workload .
 
-report:OtherFindingsShape
-    a           sh:PropertyShape ;
-    rdfs:label  "Vooronderzoek overig"@nl, "Other preliminary results"@en ;
-    dash:editor dash:TextAreaEditor ;
-    sh:datatype xsd:string ;
-    sh:group    report:investigationGroup ;
-    sh:maxCount 1 ;
-    sh:order    9.0 ;
-    sh:path     report:otherFindings
-.
+conservationReport:FondsShape
+        rdf:type        sh:PropertyShape;
+        rdfs:label      "Archief"@nl , "Fonds"@en;
+        dash:editor     memorix:LinkedRecordEditor;
+        memorix:typeOf  memorix:FondsFieldLink;
+        sh:description  "Archief waar dit rapport bij hoort"@nl , "Fonds to which this report belongs"@en;
+        sh:group        conservationReport:identificationGroup;
+        sh:maxCount     1;
+        sh:message      "Choose a fonds where this report belongs to"@en , "Kies het archief waar dit rapport uit komt"@nl;
+        sh:minCount     1;
+        sh:nodeKind     sh:IRI;
+        sh:or           ( [ sh:class  rt:Fonds ]
+                        );
+        sh:order        1.0;
+        sh:path         saa:isOrWasAlsoIncludedIn .
 
-# treatmentGroup
-report:HasDamageTreatmentShape
-    a           sh:PropertyShape ;
-    rdfs:label  "Behandelingen"@nl, "Treatments"@en ;
-    sh:class    report:DamageTreatment ;
-    sh:group    report:treatmentGroup ;
-    sh:nodeKind sh:BlankNode ;
-    sh:maxCount 50 ;
-    sh:order    1.0 ;
-    sh:path     report:hasDamageTreatment
-.
+conservationReport:ObjectTechniqueShape
+        rdf:type                 sh:PropertyShape;
+        rdfs:label               "Technique"@en , "Techniek of procedé"@nl;
+        dash:editor              memorix:VocabularyEditor;
+        memorix:conceptSchemeIn  vocabularies:d0fc28e9-e1c0-47c0-ad66-f496c8d12f90;
+        sh:class                 skos:Concept;
+        sh:group                 conservationReport:descriptionGroup;
+        sh:maxCount              50;
+        sh:message               "Kies een techniek uit de keuzelijst."@nl , "Please choose a technique from the list."@en;
+        sh:nodeKind              sh:IRI;
+        sh:order                 4.0;
+        sh:path                  saa:technique .
 
-report:DamageTreatment
-    rdf:type             sh:NodeShape ;
-    rdfs:label           "Behandeling"@nl, "Treatment"@en ;
-    sh:closed            true ;
-    sh:ignoredProperties ( rdf:type ) ;
-    sh:property          [ rdfs:label              "Onderdeel behandeling"@nl, "Treated part"@en ;
-                           dash:editor             memorix:VocabularyEditor ;
-                           memorix:conceptSchemeIn vocabularies:d3538eb3-e234-4c41-99f5-38ddbfce7e36 ;
-                           sh:class                skos:Concept ;
-                           sh:maxCount             20 ;
-                           sh:nodeKind             sh:IRI ;
-                           sh:order                1.0 ;
-                           sh:path                 report:typeOfDamage
-                         ] ;
-    sh:property          [ rdfs:label              "Behandeling"@nl, "Treatment"@en ;
-                           dash:editor             memorix:VocabularyEditor ;
-                           memorix:conceptSchemeIn vocabularies:3f4bdac4-51af-497a-af8f-24e86bc30c55 ;
-                           sh:class                skos:Concept ;
-                           sh:maxCount             20 ;
-                           sh:nodeKind             sh:IRI ;
-                           sh:order                2.0 ;
-                           sh:path                 report:typeOfTreatment
-                         ] ;
-    sh:property          [ rdfs:label              "Middel behandeling"@nl, "Treated with"@en ;
-                           dash:editor             memorix:VocabularyEditor ;
-                           memorix:conceptSchemeIn vocabularies:99cef907-bfbd-47b3-a277-895ee6b608f8 ;
-                           sh:class                skos:Concept ;
-                           sh:maxCount             20 ;
-                           sh:nodeKind             sh:IRI ;
-                           sh:order                3.0 ;
-                           sh:path                 report:typeOfMaterial
-                         ] ;
-    sh:targetClass       report:DamageTreatment
-.
-
-report:OtherTreatmentShape
-    a                sh:PropertyShape ;
-    rdfs:label       "Behandeling overig"@nl, "Treatment other"@en ;
-    dash:editor      dash:TextAreaEditor ;
-    memorix:audience memorix:AudienceInternal ;
-    sh:datatype      xsd:string ;
-    sh:group         report:treatmentGroup ;
-    sh:order         2.0 ;
-    sh:maxCount      1 ;
-    sh:path          report:otherTreatment
-.
-
-report:ExternalConservatorShape
-    a                sh:PropertyShape ;
-    rdfs:label       "Externe behandelaar"@nl, "External conservator"@en ;
-    memorix:audience memorix:AudienceInternal ;
-    sh:datatype      xsd:string ;
-    sh:group         report:treatmentGroup ;
-    sh:maxCount      1 ;
-    sh:order         3.0 ;
-    sh:path          report:externalConservator
-.
-
-report:InternalRemarksShape
-    a                sh:PropertyShape ;
-    rdfs:label       "Interne opmerking"@nl, "Internal remarks"@en ;
-    dash:editor      dash:TextAreaEditor ;
-    memorix:audience memorix:AudienceInternal ;
-    sh:datatype      xsd:string ;
-    sh:group         report:managementGroup ;
-    sh:maxCount      1 ;
-    sh:order         1.0 ;
-    sh:path          saa:internalRemarks
-.
+conservationReport:BeginDateShape
+        rdf:type              sh:PropertyShape;
+        rdfs:label            "Begindatum"@nl , "Begin date"@en;
+        memorix:inTitleAt     1.0;
+        memorix:searchWeight  5.0;
+        sh:datatype           xsd:date;
+        sh:group              conservationReport:identificationGroup;
+        sh:maxCount           1;
+        sh:message            "Vul tenminste een begindatum in. Dit is verplicht."@nl , "Please provide a begin date. This is mandatory."@en;
+        sh:minCount           1;
+        sh:order              3.0;
+        sh:path               rico:hasBeginningDate .
 
