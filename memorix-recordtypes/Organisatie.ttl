@@ -23,10 +23,10 @@ organisation:identificationGroup
         rdfs:label  "Identificatie"@nl;
         sh:order    1.0 .
 
-organisation:alternativeGroup
+organisation:rightsGroup
         rdf:type    sh:PropertyGroup;
-        rdfs:label  "Ook bekend als"@nl , "Also known as"@en;
-        sh:order    2.0 .
+        rdfs:label  "Rechtenafspraken"@nl , "Rights Agreements"@en;
+        sh:order    5.0 .
 
 organisation:managementGroup
         rdf:type    sh:PropertyGroup;
@@ -37,11 +37,11 @@ organisation:historyGroup
         rdf:type    sh:PropertyGroup;
         rdfs:label  "Geschiedenis"@nl , "History"@en;
         sh:order    4.0 .
-  
-organisation:rightsGroup
+
+organisation:alternativeGroup
         rdf:type    sh:PropertyGroup;
-        rdfs:label  "Rechtenafspraken"@nl , "Rights Agreements"@en;
-        sh:order    5.0 .
+        rdfs:label  "Ook bekend als"@nl , "Also known as"@en;
+        sh:order    2.0 .
 
 rt:Organisation  rdf:type              sh:NodeShape , memorix:Recordtype;
         rdfs:comment                   "Organisation: an established entity, such as a company or a part of the municipality"@en , "Organisatie: vastgestelde organisaties, zoals bedrijven of onderdelen van de gemeente"@nl;
@@ -50,11 +50,68 @@ rt:Organisation  rdf:type              sh:NodeShape , memorix:Recordtype;
         dc:identifier                  "Organisation";
         sh:closed                      true;
         sh:ignoredProperties           ( rdf:type );
-        sh:property                    [ rdfs:label   "Onderdeel van organisatie"@nl , "Part of organisation"@en;
+        sh:property                    [ rdfs:label   "Bron Opheffingsdatum"@nl , "Source of Date of dissolution"@en;
+                                         sh:datatype  xsd:string;
+                                         sh:group     organisation:historyGroup;
+                                         sh:maxCount  1;
+                                         sh:order     4.5;
+                                         sh:path      saa:dissolutionDateSource
+                                       ];
+        sh:property                    [ rdfs:comment             "Is identiek aan organisatie in andere terminologiebron"@nl , "Is same as organisation in external vocabulary"@en;
+                                         rdfs:label               "Is same as (external)"@en , "Identiek aan (extern)"@nl;
+                                         dash:editor              memorix:VocabularyEditor;
+                                         memorix:conceptSchemeIn  <https://data.rkd.nl/rkdartists>;
+                                         memorix:searchWeight     1.0;
+                                         sh:class                 skos:Concept;
+                                         sh:group                 organisation:alternativeGroup;
+                                         sh:maxCount              100;
+                                         sh:nodeKind              sh:IRI;
+                                         sh:order                 4.0;
+                                         sh:path                  owl:sameAs
+                                       ];
+        sh:property                    [ rdfs:label           "Oprichtingsdatum"@nl , "Date of establishment"@en;
+                                         memorix:inSummaryAt  1.0;
+                                         sh:datatype          xsd:date;
+                                         sh:group             organisation:historyGroup;
+                                         sh:maxCount          1;
+                                         sh:order             3.0;
+                                         sh:path              schema:foundingDate
+                                       ];
+        sh:property                    [ rdfs:comment          "Naam van de organisatie"@nl , "Name of the organisation"@en;
+                                         rdfs:label            "Naam"@nl , "Name"@en;
+                                         dash:singleLine       true;
+                                         memorix:inTitleAt     1.0;
+                                         memorix:searchWeight  3.0;
+                                         sh:datatype           xsd:string;
+                                         sh:group              organisation:identificationGroup;
+                                         sh:maxCount           1;
+                                         sh:order              1.0;
+                                         sh:path               schema:name
+                                       ];
+        sh:property                    [ rdfs:label               "Copyright Agreement"@en , "Auteursrechtafspraken"@nl;
+                                         dash:editor              memorix:VocabularyEditor;
+                                         memorix:audience         memorix:AudienceInternal;
+                                         memorix:conceptSchemeIn  vocabularies:80216597-805e-4439-abab-f7a323dde6ec;
+                                         memorix:hidden           true;
+                                         sh:class                 skos:Concept;
+                                         sh:group                 organisation:rightsGroup;
+                                         sh:maxCount              1;
+                                         sh:nodeKind              sh:IRI;
+                                         sh:order                 7.0;
+                                         sh:path                  saa:copyrightsAgreement
+                                       ];
+        sh:property                    [ rdfs:label   "Bron Oprichtingsdatum"@nl , "Source of Date of establishment"@en;
+                                         sh:datatype  xsd:string;
+                                         sh:group     organisation:historyGroup;
+                                         sh:maxCount  1;
+                                         sh:order     3.5;
+                                         sh:path      saa:foundingDateSource
+                                       ];
+        sh:property                    [ rdfs:label   "Part of organisation"@en , "Onderdeel van organisatie"@nl;
                                          dash:editor  memorix:LinkedRecordEditor;
                                          sh:group     organisation:identificationGroup;
                                          sh:maxCount  1;
-                                         sh:message   "Kies een organisatie uit de lijst."@nl , "Please choose an organisation."@en;
+                                         sh:message   "Please choose an organisation."@en , "Kies een organisatie uit de lijst."@nl;
                                          sh:nodeKind  sh:IRI;
                                          sh:or        ( [ sh:class  rt:Organisation ]
                                                       );
@@ -70,96 +127,14 @@ rt:Organisation  rdf:type              sh:NodeShape , memorix:Recordtype;
                                          sh:order          5.0;
                                          sh:path           organisation:internalRemarks
                                        ];
-        sh:property                    [ rdfs:label        "Contractnummer"@nl , "Contract Number"@en;
-                                         dash:editor       dash:TextFieldEditor;
-                                         memorix:audience  memorix:AudienceInternal;
-                                         sh:datatype       xsd:string;
-                                         sh:group          organisation:rightsGroup;
-                                         sh:maxCount       1;
-                                         sh:order          8.0;
-                                         sh:path           saa:copyrightsContractNr
-                                       ];
-        sh:property                    [ rdfs:label               "Auteursrechtafspraken"@nl , "Copyright Agreement"@en;
-                                         dash:editor              memorix:VocabularyEditor;
-                                         memorix:audience         memorix:AudienceInternal;
-                                         memorix:conceptSchemeIn  vocabularies:80216597-805e-4439-abab-f7a323dde6ec;
-                                         memorix:hidden           true;
-                                         sh:class                 skos:Concept;
-                                         sh:group                 organisation:rightsGroup;
-                                         sh:maxCount              1;
-                                         sh:nodeKind              sh:IRI;
-                                         sh:order                 7.0;
-                                         sh:path                  saa:copyrightsAgreement
-                                       ];
-        sh:property                    [ rdfs:comment          "Name of the organisation"@en , "Naam van de organisatie"@nl;
-                                         rdfs:label            "Name"@en , "Naam"@nl;
-                                         dash:singleLine       true;
-                                         memorix:inTitleAt     1.0;
-                                         memorix:searchWeight  3.0;
-                                         sh:datatype           xsd:string;
-                                         sh:group              organisation:identificationGroup;
-                                         sh:maxCount           1;
-                                         sh:order              1.0;
-                                         sh:path               schema:name
-                                       ];
-        sh:property                    [ rdfs:label        "Auteursrechtopmerkingen"@nl , "Copyright Remarks"@en;
-                                         dash:editor       dash:TextAreaEditor;
-                                         memorix:audience  memorix:AudienceInternal;
-                                         sh:datatype       xsd:string;
-                                         sh:group          organisation:rightsGroup;
-                                         sh:maxCount       1;
-                                         sh:order          9.0;
-                                         sh:path           saa:copyrightsRemarks
-                                       ];
-        sh:property                    [ rdfs:label   "Bron Opheffingsdatum"@nl , "Source of Date of dissolution"@en;
-                                         sh:datatype  xsd:string;
-                                         sh:group     organisation:historyGroup;
-                                         sh:maxCount  1;
-                                         sh:order     4.5;
-                                         sh:path      saa:dissolutionDateSource
-                                       ];
-        sh:property                    [ rdfs:label           "Oprichtingsdatum"@nl , "Date of establishment"@en;
-                                         memorix:inSummaryAt  1.0;
-                                         sh:datatype          xsd:date;
-                                         sh:group             organisation:historyGroup;
-                                         sh:maxCount          1;
-                                         sh:order             3.0;
-                                         sh:path              schema:foundingDate
-                                       ];
         sh:property                    [ rdfs:label            "Alternatieve namen"@nl , "Alternate names"@en;
+                                         memorix:inSummaryAt   3.0;
                                          memorix:searchWeight  2.0;
                                          sh:datatype           xsd:string;
                                          sh:group              organisation:alternativeGroup;
                                          sh:maxCount           10;
                                          sh:order              3.0;
                                          sh:path               schema:alternateName
-                                       ];
-        sh:property                    [ rdfs:label           "Opheffingsdatum"@nl , "Date of dissolution"@en;
-                                         memorix:inSummaryAt  2.0;
-                                         sh:datatype          xsd:date;
-                                         sh:group             organisation:historyGroup;
-                                         sh:maxCount          1;
-                                         sh:order             4.0;
-                                         sh:path              schema:dissolutionDate
-                                       ];
-        sh:property                    [ rdfs:comment             "Is same as organisation in external vocabulary"@en , "Is identiek aan organisatie in andere terminologiebron"@nl;
-                                         rdfs:label               "Identiek aan (extern)"@nl , "Is same as (external)"@en;
-                                         dash:editor              memorix:VocabularyEditor;
-                                         memorix:conceptSchemeIn  <https://data.rkd.nl/rkdartists>;
-                                         memorix:searchWeight     1.0;
-                                         sh:class                 skos:Concept;
-                                         sh:group                 organisation:alternativeGroup;
-                                         sh:maxCount              100;
-                                         sh:nodeKind              sh:IRI;
-                                         sh:order                 4.0;
-                                         sh:path                  owl:sameAs
-                                       ];
-        sh:property                    [ rdfs:label   "Bron Oprichtingsdatum"@nl , "Source of Date of establishment"@en;
-                                         sh:datatype  xsd:string;
-                                         sh:group     organisation:historyGroup;
-                                         sh:maxCount  1;
-                                         sh:order     3.5;
-                                         sh:path      saa:foundingDateSource
                                        ];
         sh:property                    [ rdfs:label   "Successor of"@en , "Rechtsopvolger van"@nl;
                                          dash:editor  memorix:LinkedRecordEditor;
@@ -171,6 +146,32 @@ rt:Organisation  rdf:type              sh:NodeShape , memorix:Recordtype;
                                                       );
                                          sh:order     2.0;
                                          sh:path      rico:isSuccessorOf
+                                       ];
+        sh:property                    [ rdfs:label        "Auteursrechtopmerkingen"@nl , "Copyright Remarks"@en;
+                                         dash:editor       dash:TextAreaEditor;
+                                         memorix:audience  memorix:AudienceInternal;
+                                         sh:datatype       xsd:string;
+                                         sh:group          organisation:rightsGroup;
+                                         sh:maxCount       1;
+                                         sh:order          9.0;
+                                         sh:path           saa:copyrightsRemarks
+                                       ];
+        sh:property                    [ rdfs:label           "Opheffingsdatum"@nl , "Date of dissolution"@en;
+                                         memorix:inSummaryAt  2.0;
+                                         sh:datatype          xsd:date;
+                                         sh:group             organisation:historyGroup;
+                                         sh:maxCount          1;
+                                         sh:order             4.0;
+                                         sh:path              schema:dissolutionDate
+                                       ];
+        sh:property                    [ rdfs:label        "Contractnummer"@nl , "Contract Number"@en;
+                                         dash:editor       dash:TextFieldEditor;
+                                         memorix:audience  memorix:AudienceInternal;
+                                         sh:datatype       xsd:string;
+                                         sh:group          organisation:rightsGroup;
+                                         sh:maxCount       1;
+                                         sh:order          8.0;
+                                         sh:path           saa:copyrightsContractNr
                                        ];
         sh:targetClass                 rt:Organisation .
 

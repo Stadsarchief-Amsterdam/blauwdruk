@@ -10,79 +10,50 @@
 @prefix ric-rst: <https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#> .
 @prefix rico:    <https://www.ica.org/standards/RiC/ontology#> .
 @prefix rt:      </resources/recordtypes/> .
+@prefix saa:     <https://data.archief.amsterdam/ontology#> .
 @prefix schema:  <http://schema.org/> .
 @prefix series:  </resources/recordtypes/Series#> .
-@prefix saa:     <https://data.archief.amsterdam/ontology#> .
 @prefix sh:      <http://www.w3.org/ns/shacl#> .
 @prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
 
-series:identificationGroup
-        rdf:type    sh:PropertyGroup;
-        rdfs:label  "Identification"@en , "Identificatie"@nl;
-        sh:order    1.0 .
-
 series:contentDescriptionGroup
         rdf:type    sh:PropertyGroup;
-        rdfs:label  "Description"@en , "Beschrijving"@nl;
+        rdfs:label  "Beschrijving"@nl , "Description"@en;
         sh:order    2.0 .
-
-series:managementGroup
-        rdf:type    sh:PropertyGroup;
-        rdfs:label  "Manage"@en , "Beheer"@nl;
-        sh:order    3.0 .
 
 rt:Series  rdf:type           sh:NodeShape , memorix:Recordtype;
         rdfs:comment          "Series: a description of a grouped set of archival items, for example organized by theme, task, or date"@en , "Groep: beschrijving van een gegroepeerde set archiefstukken, bijvoorbeeld op thema, taakuitvoering of datering"@nl;
         rdfs:label            "Series"@en , "Groep"@nl;
         memorix:hasInformationComponent
-                [ rdf:type               memorix:TreePathComponent;
-                  memorix:hasRecordtype  rt:Series , rt:Fonds
-                ];
-        memorix:hasInformationComponent
                 [ rdf:type  memorix:DepotLocationComponent ];
+        memorix:hasInformationComponent
+                [ rdf:type               memorix:TreePathComponent;
+                  memorix:hasRecordtype  rt:Fonds , rt:Series
+                ];
         dc:identifier         "Series";
         sh:closed             true;
         sh:ignoredProperties  ( rdf:type );
-        sh:property           [ rdfs:comment  "Kan een exacte datum of een periode zijn"@nl , "Exact date or date range"@en;
-                                rdfs:label    "Dated"@en , "Datering VB"@nl;
-                                sh:class      rico:DateRange;
-                                sh:group      series:contentDescriptionGroup;
-                                sh:maxCount   1;
-                                sh:nodeKind   sh:BlankNode;
-                                sh:order      1.0;
-                                sh:path       rico:isAssociatedWithDate
-                              ];
-        sh:property           [ rdfs:label           "Archief"@nl , "Fonds"@en;
-                                dash:editor          memorix:LinkedRecordEditor;
-                                memorix:inSummaryAt  2;
-                                memorix:typeOf       memorix:FondsFieldLink;
-                                sh:group             series:identificationGroup;
-                                sh:maxCount          1;
-                                sh:nodeKind          sh:IRI;
-                                sh:or                ( [ sh:class  rt:Fonds ]
-                                                     );
-                                sh:order             1.0;
-                                sh:path              saa:isOrWasAlsoIncludedIn
+        sh:property           [ rdfs:comment          "Code used by government archives"@en , "Voor het vastleggen van o.a. de basis archiefcode"@nl;
+                                rdfs:label            "Archival (government) code"@en , "Groepscode"@nl;
+                                dash:singleLine       true;
+                                memorix:inTitleAt     1.0;
+                                memorix:searchWeight  3.0;
+                                memorix:typeOf        memorix:Identifier;
+                                sh:datatype           xsd:string;
+                                sh:group              series:identificationGroup;
+                                sh:maxCount           1;
+                                sh:order              1.0;
+                                sh:path               rico:identifier
                               ];
         sh:property           [ rdfs:label           "Resource extent"@en , "Uiterlijke vorm VB"@nl;
                                 dash:editor          dash:TextFieldEditor;
-                                memorix:inSummaryAt  1;
                                 html:placeholder     "Bv 2 pakken"@nl , "eg 2 photographs";
                                 sh:datatype          xsd:string;
                                 sh:group             series:contentDescriptionGroup;
                                 sh:maxCount          1;
                                 sh:order             3.0;
                                 sh:path              rico:physicalOrLogicalExtent
-                              ];
-        sh:property           [ rdfs:label        "Internal remarks"@en , "Interne opmerking"@nl;
-                                dash:editor       dash:TextAreaEditor;
-                                memorix:audience  memorix:AudienceInternal;
-                                sh:datatype       xsd:string;
-                                sh:group          series:managementGroup;
-                                sh:maxCount       1;
-                                sh:order          4.0;
-                                sh:path           series:internalRemarks
                               ];
         sh:property           [ rdfs:label            "Title"@en , "Beschrijving"@nl;
                                 dash:editor           dash:TextAreaEditor;
@@ -96,6 +67,27 @@ rt:Series  rdf:type           sh:NodeShape , memorix:Recordtype;
                                 sh:order              2.0;
                                 sh:path               rico:title
                               ];
+        sh:property           [ rdfs:label           "Archief"@nl , "Fonds"@en;
+                                dash:editor          memorix:LinkedRecordEditor;
+                                memorix:inSummaryAt  1;
+                                memorix:typeOf       memorix:FondsFieldLink;
+                                sh:group             series:identificationGroup;
+                                sh:maxCount          1;
+                                sh:nodeKind          sh:IRI;
+                                sh:or                ( [ sh:class  rt:Fonds ]
+                                                     );
+                                sh:order             1.0;
+                                sh:path              saa:isOrWasAlsoIncludedIn
+                              ];
+        sh:property           [ rdfs:comment  "Kan een exacte datum of een periode zijn"@nl , "Exact date or date range"@en;
+                                rdfs:label    "Datering VB"@nl , "Dated"@en;
+                                sh:class      rico:DateRange;
+                                sh:group      series:contentDescriptionGroup;
+                                sh:maxCount   1;
+                                sh:nodeKind   sh:BlankNode;
+                                sh:order      1.0;
+                                sh:path       rico:isAssociatedWithDate
+                              ];
         sh:property           [ rdfs:comment          "Uitgebreidere beschrijving, afkomstig uit NB velden"@nl , "A more descriptive note"@en;
                                 rdfs:label            "Nota bene"@nl , "Note"@en;
                                 dash:editor           dash:TextAreaEditor;
@@ -107,41 +99,49 @@ rt:Series  rdf:type           sh:NodeShape , memorix:Recordtype;
                                 sh:order              4.0;
                                 sh:path               rico:scopeAndContent
                               ];
-        sh:property           [ rdfs:comment          "Code used by government archives"@en , "Voor het vastleggen van o.a. de basis archiefcode"@nl;
-                                rdfs:label            "Groepscode"@nl , "Archival (government) code"@en;
-                                dash:singleLine       true;
-                                memorix:inTitleAt     1.0;
-                                memorix:searchWeight  3.0;
-                                memorix:typeOf        memorix:Identifier;
-                                sh:datatype           xsd:string;
-                                sh:group              series:identificationGroup;
-                                sh:maxCount           1;
-                                sh:order              1.0;
-                                sh:path               rico:identifier
+        sh:property           [ rdfs:label        "Interne opmerking"@nl , "Internal remarks"@en;
+                                dash:editor       dash:TextAreaEditor;
+                                memorix:audience  memorix:AudienceInternal;
+                                sh:datatype       xsd:string;
+                                sh:group          series:managementGroup;
+                                sh:maxCount       1;
+                                sh:order          4.0;
+                                sh:path           series:internalRemarks
                               ];
         sh:targetClass        rt:Series .
+
+series:managementGroup
+        rdf:type    sh:PropertyGroup;
+        rdfs:label  "Beheer"@nl , "Manage"@en;
+        sh:order    3.0 .
 
 rico:DateRange  rdf:type      sh:NodeShape;
         sh:closed             true;
         sh:ignoredProperties  ( rdf:type );
-        sh:property           [ rdfs:label         "End date"@en , "Einddatum"@nl;
-                                memorix:inTitleAt  4;
-                                sh:datatype        xsd:date;
-                                sh:maxCount        1;
-                                sh:order           3.0;
-                                sh:path            rico:hasEndDate
+        sh:property           [ rdfs:label   "Datum (tekst)"@nl , "Date (text)"@en;
+                                sh:datatype  xsd:string;
+                                sh:maxCount  1;
+                                sh:order     1.0;
+                                sh:path      rico:expressedDate
                               ];
-        sh:property           [ rdfs:label         "Begin date"@en , "Begindatum"@nl;
+        sh:property           [ rdfs:label         "Begindatum"@nl , "Begin date"@en;
                                 memorix:inTitleAt  3;
                                 sh:datatype        xsd:date;
                                 sh:maxCount        1;
                                 sh:order           2.0;
                                 sh:path            rico:hasBeginningDate
                               ];
-        sh:property           [ rdfs:label   "Date (text)"@en , "Datum (tekst)"@nl;
-                                sh:datatype  xsd:string;
-                                sh:maxCount  1;
-                                sh:order     1.0;
-                                sh:path      rico:expressedDate
+        sh:property           [ rdfs:label         "Einddatum"@nl , "End date"@en;
+                                memorix:inTitleAt  4;
+                                sh:datatype        xsd:date;
+                                sh:maxCount        1;
+                                sh:order           3.0;
+                                sh:path            rico:hasEndDate
                               ];
         sh:targetClass        rico:DateRange .
+
+series:identificationGroup
+        rdf:type    sh:PropertyGroup;
+        rdfs:label  "Identificatie"@nl , "Identification"@en;
+        sh:order    1.0 .
+
