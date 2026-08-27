@@ -1,240 +1,251 @@
-@prefix dash:          <http://datashapes.org/dash#> .
-@prefix dc:            <http://purl.org/dc/elements/1.1/> .
-@prefix html:          <http://www.w3.org/1999/xhtml/> .
-@prefix libraryfonds:  </resources/recordtypes/LibraryFonds#> .
-@prefix memorix:       <http://memorix.io/ontology#> .
-@prefix owl:           <http://www.w3.org/2002/07/owl#> .
-@prefix rdf:           <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix rdfs:          <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix ric-dft:       <https://www.ica.org/standards/RiC/vocabularies/documentaryFormTypes#> .
-@prefix ric-rst:       <https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#> .
-@prefix rico:          <https://www.ica.org/standards/RiC/ontology#> .
-@prefix rt:            </resources/recordtypes/> .
-@prefix saa:           <https://data.archief.amsterdam/ontology#> .
-@prefix schema:        <http://schema.org/> .
-@prefix sh:            <http://www.w3.org/ns/shacl#> .
-@prefix skos:          <http://www.w3.org/2004/02/skos/core#> .
-@prefix temporaryBook: </resources/recordtypes/TemporaryBook#> .
-@prefix vocabularies:  </resources/vocabularies/conceptschemes/> .
-@prefix xsd:           <http://www.w3.org/2001/XMLSchema#> .
+PREFIX dash: <http://datashapes.org/dash#>
+PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX html: <http://www.w3.org/1999/xhtml/>
+PREFIX libraryfonds: <https://stadsarchiefamsterdam.memorix.io/resources/recordtypes/LibraryFonds#>
+PREFIX memorix: <http://memorix.io/ontology#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX ric-dft: <https://www.ica.org/standards/RiC/vocabularies/documentaryFormTypes#>
+PREFIX ric-rst: <https://www.ica.org/standards/RiC/vocabularies/recordSetTypes#>
+PREFIX rico: <https://www.ica.org/standards/RiC/ontology#>
+PREFIX rt: <https://stadsarchiefamsterdam.memorix.io/resources/recordtypes/>
+PREFIX saa: <https://data.archief.amsterdam/ontology#>
+PREFIX schema: <http://schema.org/>
+PREFIX sh: <http://www.w3.org/ns/shacl#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX temporaryBook: <https://stadsarchiefamsterdam.memorix.io/resources/recordtypes/TemporaryBook#>
+PREFIX vocabularies: <https://stadsarchiefamsterdam.memorix.io/resources/vocabularies/conceptschemes/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
 temporaryBook:identificationGroup
-        rdf:type    sh:PropertyGroup;
-        rdfs:label  "Identification"@en , "Identificatie"@nl;
-        sh:order    1.0 .
-
-temporaryBook:managementGroup
-        rdf:type    sh:PropertyGroup;
-        rdfs:label  "Beheer"@nl , "Manage"@en;
-        sh:order    3.0 .
-
-rt:TemporaryBook  rdf:type    memorix:Recordtype , sh:NodeShape;
-        rdfs:comment          "Stadsarchief tijdelijk recordtype voor Boek"@nl , "Amsterdam City Archives record type for TemporaryBook"@en;
-        rdfs:label            "TemporaryBook"@en , "Tijdelijk Boek"@nl;
-        memorix:hasInformationComponent
-                [ rdf:type  memorix:DigitalAssetComponent , memorix:DepotLocationComponent ];
-        memorix:typeOf        memorix:File;
-        dc:identifier         "TemporaryBook";
-        sh:closed             true;
-        sh:ignoredProperties  ( rdf:type );
-        sh:property           temporaryBook:ISBNShape , temporaryBook:InternalRemarksShape , temporaryBook:editionShape , temporaryBook:sameAsShape , temporaryBook:HasPublicationShape , temporaryBook:IsOrWasIncludedInShape , temporaryBook:TitleShape , temporaryBook:AuthorShape , temporaryBook:InventorynumberShape , temporaryBook:AcquisitionShape , temporaryBook:typeOfPublicationShape , temporaryBook:NotaBeneShape , temporaryBook:SeriesTitleShape , temporaryBook:physicalDescriptionShape;
-        sh:targetClass        rt:TemporaryBook .
-        
-temporaryBook:TitleShape
-        rdf:type              sh:PropertyShape;
-        rdfs:label            "Title"@en , "Titel"@nl;
-        memorix:inTitleAt     2.0;
-        memorix:searchWeight  8.0;
-        sh:datatype           xsd:string;
-        sh:group              temporaryBook:identificationGroup;
-        sh:maxCount           1;
-        sh:order              3.0;
-        sh:path               schema:name .
-
-temporaryBook:typeOfPublicationShape
-        rdf:type                 sh:PropertyShape;
-        rdfs:label               "Type of publication"@en , "Type publicatie"@nl;
-        dash:editor              memorix:VocabularyEditor;
-        memorix:conceptSchemeIn  vocabularies:d9859e1d-de72-4604-b794-5e0be9f74664;
-        memorix:searchWeight     3.0;
-        sh:class                 skos:Concept;
-        sh:group                 temporaryBook:descriptionGroup;
-        sh:maxCount              1;
-        sh:nodeKind              sh:IRI;
-        sh:order                 11.0;
-        sh:path                  schema:additionalType .
-
-temporaryBook:AuthorShape
-        rdf:type      sh:PropertyShape;
-        rdfs:comment  "Een of meerdere auteurs."@nl , "One or more authors."@en;
-        rdfs:label    "Auteur(s)"@nl , "Author(s)"@en;
-        dash:editor   memorix:LinkedRecordEditor;
-        sh:group      temporaryBook:descriptionGroup;
-        sh:maxCount   100;
-        sh:message    "Choose an author."@en , "Kies een auteur."@nl;
-        sh:nodeKind   sh:IRI;
-        sh:or         ( [ sh:class  rt:Person ]
-                        [ sh:class  rt:Organisation ]
-                        [ sh:class  rt:Author ]
-                        [ sh:class  rt:CooperativeAuthor ]
-                      );
-        sh:order      10.0;
-        sh:path       schema:author .
-
-temporaryBook:InternalRemarksShape
-        rdf:type          sh:PropertyShape;
-        rdfs:label        "Interne opmerking"@nl , "Internal remark"@en;
-        dash:editor       dash:TextAreaEditor;
-        memorix:audience  memorix:AudienceInternal;
-        sh:datatype       xsd:string;
-        sh:group          temporaryBook:managementGroup;
-        sh:maxCount       1;
-        sh:order          2.0;
-        sh:path           temporaryBook:internalRemarks .
-
-temporaryBook:editionShape
-        rdf:type     sh:PropertyShape;
-        rdfs:label   "Edition"@en , "Editie"@nl;
-        sh:datatype  xsd:string;
-        sh:group     temporaryBook:descriptionGroup;
-        sh:maxCount  1;
-        sh:order     10.0;
-        sh:path      schema:bookEdition .
-
-temporaryBook:SeriesTitleShape
-        rdf:type              sh:PropertyShape;
-        rdfs:label            "Title of series"@en , "Serietitel"@nl;
-        memorix:searchWeight  5.0;
-        sh:datatype           xsd:string;
-        sh:description        "If this book is part of a series, also enter the Serie title"@en , "Als de titel onderdeel uitmaakt van een serie, geef ook de serietitel"@nl;
-        sh:group              temporaryBook:identificationGroup;
-        sh:maxCount           1;
-        sh:order              4.0;
-        sh:path               temporaryBook:seriesTitle .
-
-temporaryBook:ISBNShape
-        rdf:type              sh:PropertyShape;
-        rdfs:label            "ISBN"@nl , "ISBN"@en;
-        memorix:inSummaryAt   1.0;
-        memorix:searchWeight  5.0;
-        sh:datatype           xsd:string;
-        sh:group              temporaryBook:identificationGroup;
-        sh:maxCount           1;
-        sh:order              7.0;
-        sh:path               schema:isbn .
+    rdf:type sh:PropertyGroup ;
+    rdfs:label "Identificatie"@nl , "Identification"@en ;
+    sh:order 1.0 .
 
 temporaryBook:descriptionGroup
-        rdf:type    sh:PropertyGroup;
-        rdfs:label  "Beschrijving"@nl , "Description"@en;
-        sh:order    2.0 .
+    rdf:type sh:PropertyGroup ;
+    rdfs:label "Beschrijving"@nl , "Description"@en ;
+    sh:order 2.0 .
 
-temporaryBook:physicalDescriptionShape
-        rdf:type     sh:PropertyShape;
-        rdfs:label   "Physical description"@en , "Collatie"@nl;
-        sh:datatype  xsd:string;
-        sh:group     temporaryBook:descriptionGroup;
-        sh:maxCount  1;
-        sh:order     12.0;
-        sh:path      saa:physicalDescription .
+temporaryBook:managementGroup
+    rdf:type sh:PropertyGroup ;
+    rdfs:label "Beheer"@nl , "Manage"@en ;
+    sh:order 3.0 .
 
-temporaryBook:HasPublicationShape
-        rdf:type     sh:PropertyShape;
-        rdfs:label   "Publication"@en , "Uitgave"@nl;
-        sh:class     schema:PublicationEvent;
-        sh:group     temporaryBook:descriptionGroup;
-        sh:maxCount  1;
-        sh:nodeKind  sh:BlankNode;
-        sh:order     2.0;
-        sh:path      schema:publication .
-
-temporaryBook:InventorynumberShape
-        rdf:type              sh:PropertyShape;
-        rdfs:label            "Inventarisnummer"@nl , "Inventory number"@en;
-        memorix:inTitleAt     1.0;
-        memorix:searchWeight  5.0;
-        sh:datatype           xsd:string;
-        sh:group              temporaryBook:identificationGroup;
-        sh:maxCount           1;
-        sh:order              2.0;
-        sh:path               rico:Identifier .
-
-temporaryBook:sameAsShape
-        rdf:type        sh:PropertyShape;
-        rdfs:label      "Identiek aan (worldcat)"@nl , "Is same as (worldcat)"@en;
-        dash:editor     memorix:IriEditor;
-        sh:description  "Please provide a worldcat URI"@en , "Plak hier eeen worldcat URI in"@nl;
-        sh:flags        "i";
-        sh:group        temporaryBook:descriptionGroup;
-        sh:maxCount     1;
-        sh:message      "Value must start with http:// or https:// consist of a valid IRI"@en , "Waarde moet beginnen met http of https"@nl;
-        sh:nodeKind     sh:IRI;
-        sh:order        15.0;
-        sh:path         owl:sameAs;
-        sh:pattern      "^https?://" .
-
-schema:PublicationEvent
-        rdf:type              sh:NodeShape;
-        sh:closed             true;
-        sh:ignoredProperties  ( rdf:type );
-        sh:property           [ rdfs:label   "Publisher"@en , "Uitgever"@nl;
-                                sh:datatype  xsd:string;
-                                sh:maxCount  1;
-                                sh:order     3.0;
-                                sh:path      schema:name
-                              ];
-        sh:property           [ rdfs:label           "Publication place"@en , "Plaats van uitgave"@nl;
-                                memorix:inSummaryAt  2.0;
-                                sh:datatype          xsd:string;
-                                sh:maxCount          1;
-                                sh:order             3.0;
-                                sh:path              schema:location
-                              ];
-        sh:property           [ rdfs:label           "Year of publication"@en , "Jaar van uitgave"@nl;
-                                memorix:inSummaryAt  3.0;
-                                sh:datatype          xsd:gYear;
-                                sh:maxCount          1;
-                                sh:order             1.0;
-                                sh:path              schema:startDate
-                              ];
-        sh:targetClass        schema:PublicationEvent .
+rt:TemporaryBook
+    rdf:type memorix:Recordtype , sh:NodeShape ;
+    rdfs:comment "Stadsarchief tijdelijk recordtype voor Boek"@nl , "Amsterdam City Archives record type for TemporaryBook"@en ;
+    rdfs:label "Tijdelijk Boek"@nl , "TemporaryBook"@en ;
+    dc:identifier "TemporaryBook" ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property temporaryBook:IsOrWasIncludedInShape ;
+    sh:property temporaryBook:InventorynumberShape ;
+    sh:property temporaryBook:TitleShape ;
+    sh:property temporaryBook:SeriesTitleShape ;
+    sh:property temporaryBook:NotaBeneShape ;
+    sh:property temporaryBook:ISBNShape ;
+    sh:property temporaryBook:HasPublicationShape ;
+    sh:property temporaryBook:AuthorShape ;
+    sh:property temporaryBook:editionShape ;
+    sh:property temporaryBook:typeOfPublicationShape ;
+    sh:property temporaryBook:physicalDescriptionShape ;
+    sh:property temporaryBook:sameAsShape ;
+    sh:property temporaryBook:AcquisitionShape ;
+    sh:property temporaryBook:InternalRemarksShape ;
+    sh:targetClass rt:TemporaryBook ;
+    memorix:hasInformationComponent [
+        rdf:type memorix:DepotLocationComponent , memorix:DigitalAssetComponent
+    ] ;
+    memorix:typeOf memorix:File .
 
 temporaryBook:IsOrWasIncludedInShape
-        rdf:type        sh:PropertyShape;
-        rdfs:comment    "Fonds to which this book belongs."@en , "Archief waar dit boek bij hoort."@nl;
-        rdfs:label      "Fonds"@en , "Archief"@nl;
-        dash:editor     memorix:LinkedRecordEditor;
-        memorix:typeOf  memorix:FondsFieldLink;
-        sh:group        temporaryBook:identificationGroup;
-        sh:maxCount     1;
-        sh:message      "Choose a fonds where this book belongs to."@en , "Kies een archief waar dit boek uit komt."@nl;
-        sh:nodeKind     sh:IRI;
-        sh:or           ( [ sh:class  rt:Fonds ]
-                        );
-        sh:order        1.0;
-        sh:path         rico:isOrWasIncludedIn .
+    rdf:type sh:PropertyShape ;
+    rdfs:comment "Archief waar dit boek bij hoort."@nl , "Fonds to which this book belongs."@en ;
+    rdfs:label "Archief"@nl , "Fonds"@en ;
+    dash:editor memorix:LinkedRecordEditor ;
+    memorix:typeOf memorix:FondsFieldLink ;
+    sh:maxCount 1 ;
+    sh:message "Kies een archief waar dit boek uit komt."@nl , "Choose a fonds where this book belongs to."@en ;
+    sh:nodeKind sh:IRI ;
+    sh:or ( [ sh:class rt:Fonds ] ) ;
+    sh:group temporaryBook:identificationGroup ;
+    sh:order 1.0 ;
+    sh:path rico:isOrWasIncludedIn .
+
+temporaryBook:InventorynumberShape
+    rdf:type sh:PropertyShape ;
+    rdfs:label "Inventarisnummer"@nl , "Inventory number"@en ;
+    memorix:inTitleAt 1.0 ;
+    memorix:searchWeight 5.0 ;
+    sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:group temporaryBook:identificationGroup ;
+    sh:order 2.0 ;
+    sh:path rico:Identifier .
+
+temporaryBook:TitleShape
+    rdf:type sh:PropertyShape ;
+    rdfs:label "Titel"@nl , "Title"@en ;
+    memorix:inTitleAt 2.0 ;
+    memorix:searchWeight 8.0 ;
+    sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:group temporaryBook:identificationGroup ;
+    sh:order 3.0 ;
+    sh:path schema:name .
+
+temporaryBook:SeriesTitleShape
+    rdf:type sh:PropertyShape ;
+    rdfs:label "Serietitel"@nl , "Title of series"@en ;
+    memorix:searchWeight 5.0 ;
+    sh:datatype xsd:string ;
+    sh:description "Als de titel onderdeel uitmaakt van een serie, geef ook de serietitel"@nl , "If this book is part of a series, also enter the Serie title"@en ;
+    sh:maxCount 1 ;
+    sh:group temporaryBook:identificationGroup ;
+    sh:order 4.0 ;
+    sh:path temporaryBook:seriesTitle .
 
 temporaryBook:NotaBeneShape
-        rdf:type         sh:PropertyShape;
-        rdfs:comment     "A more descriptive note"@en , "Uitgebreidere beschrijving, afkomstig uit NB velden"@nl;
-        rdfs:label       "Nota bene"@nl , "Note"@en;
-        dash:editor      dash:TextAreaEditor;
-        dash:singleLine  false;
-        sh:datatype      xsd:string;
-        sh:group         temporaryBook:identificationGroup;
-        sh:maxCount      1;
-        sh:order         6.0;
-        sh:path          schema:description .
+    rdf:type sh:PropertyShape ;
+    rdfs:comment "Uitgebreidere beschrijving, afkomstig uit NB velden"@nl , "A more descriptive note"@en ;
+    rdfs:label "Nota bene"@nl , "Note"@en ;
+    dash:editor dash:TextAreaEditor ;
+    dash:singleLine false ;
+    sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:group temporaryBook:identificationGroup ;
+    sh:order 6.0 ;
+    sh:path schema:description .
+
+temporaryBook:ISBNShape
+    rdf:type sh:PropertyShape ;
+    rdfs:label "ISBN"@nl , "ISBN"@en ;
+    memorix:inSummaryAt 1.0 ;
+    memorix:searchWeight 5.0 ;
+    sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:group temporaryBook:identificationGroup ;
+    sh:order 7.0 ;
+    sh:path schema:isbn .
+
+temporaryBook:HasPublicationShape
+    rdf:type sh:PropertyShape ;
+    rdfs:label "Uitgave"@nl , "Publication"@en ;
+    sh:class schema:PublicationEvent ;
+    sh:maxCount 1 ;
+    sh:nodeKind sh:BlankNode ;
+    sh:group temporaryBook:descriptionGroup ;
+    sh:order 2.0 ;
+    sh:path schema:publication .
+
+temporaryBook:AuthorShape
+    rdf:type sh:PropertyShape ;
+    rdfs:comment "Een of meerdere auteurs."@nl , "One or more authors."@en ;
+    rdfs:label "Auteur(s)"@nl , "Author(s)"@en ;
+    dash:editor memorix:LinkedRecordEditor ;
+    sh:maxCount 100 ;
+    sh:message "Kies een auteur."@nl , "Choose an author."@en ;
+    sh:nodeKind sh:IRI ;
+    sh:or ( [ sh:class rt:Person ] [ sh:class rt:Organisation ] [ sh:class rt:Author ] [ sh:class rt:CooperativeAuthor ] ) ;
+    sh:group temporaryBook:descriptionGroup ;
+    sh:order 10.0 ;
+    sh:path schema:author .
+
+temporaryBook:editionShape
+    rdf:type sh:PropertyShape ;
+    rdfs:label "Editie"@nl , "Edition"@en ;
+    sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:group temporaryBook:descriptionGroup ;
+    sh:order 10.0 ;
+    sh:path schema:bookEdition .
+
+temporaryBook:typeOfPublicationShape
+    rdf:type sh:PropertyShape ;
+    rdfs:label "Type publicatie"@nl , "Type of publication"@en ;
+    dash:editor memorix:VocabularyEditor ;
+    memorix:conceptSchemeIn vocabularies:d9859e1d-de72-4604-b794-5e0be9f74664 ;
+    memorix:searchWeight 3.0 ;
+    sh:class skos:Concept ;
+    sh:maxCount 1 ;
+    sh:nodeKind sh:IRI ;
+    sh:group temporaryBook:descriptionGroup ;
+    sh:order 11.0 ;
+    sh:path schema:additionalType .
+
+temporaryBook:physicalDescriptionShape
+    rdf:type sh:PropertyShape ;
+    rdfs:label "Collatie"@nl , "Physical description"@en ;
+    sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:group temporaryBook:descriptionGroup ;
+    sh:order 12.0 ;
+    sh:path saa:physicalDescription .
+
+temporaryBook:sameAsShape
+    rdf:type sh:PropertyShape ;
+    rdfs:label "Identiek aan (worldcat)"@nl , "Is same as (worldcat)"@en ;
+    dash:editor memorix:IriEditor ;
+    sh:description "Plak hier eeen worldcat URI in"@nl , "Please provide a worldcat URI"@en ;
+    sh:flags "i" ;
+    sh:maxCount 1 ;
+    sh:message "Waarde moet beginnen met http of https"@nl , "Value must start with http:// or https:// consist of a valid IRI"@en ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "^https?://" ;
+    sh:group temporaryBook:descriptionGroup ;
+    sh:order 15.0 ;
+    sh:path owl:sameAs .
 
 temporaryBook:AcquisitionShape
-        rdf:type          sh:PropertyShape;
-        rdfs:label        "Aanwinst"@nl , "Acquisition"@en;
-        dash:editor       memorix:LinkedRecordEditor;
-        memorix:audience  memorix:AudienceInternal;
-        sh:group          temporaryBook:managementGroup;
-        sh:maxCount       1;
-        sh:nodeKind       sh:IRI;
-        sh:or             ( [ sh:class  rt:Acquisition ]
-                          );
-        sh:order          1.0;
-        sh:path           saa:isIncludedInAcquisition .
+    rdf:type sh:PropertyShape ;
+    rdfs:label "Aanwinst"@nl , "Acquisition"@en ;
+    dash:editor memorix:LinkedRecordEditor ;
+    memorix:audience memorix:AudienceInternal ;
+    sh:maxCount 1 ;
+    sh:nodeKind sh:IRI ;
+    sh:or ( [ sh:class rt:Acquisition ] ) ;
+    sh:group temporaryBook:managementGroup ;
+    sh:order 1.0 ;
+    sh:path saa:isIncludedInAcquisition .
 
+temporaryBook:InternalRemarksShape
+    rdf:type sh:PropertyShape ;
+    rdfs:label "Interne opmerking"@nl , "Internal remark"@en ;
+    dash:editor dash:TextAreaEditor ;
+    memorix:audience memorix:AudienceInternal ;
+    sh:datatype xsd:string ;
+    sh:maxCount 1 ;
+    sh:group temporaryBook:managementGroup ;
+    sh:order 2.0 ;
+    sh:path temporaryBook:internalRemarks .
+
+schema:PublicationEvent
+    rdf:type sh:NodeShape ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [
+        rdfs:label "Jaar van uitgave"@nl , "Year of publication"@en ;
+        memorix:inSummaryAt 3.0 ;
+        sh:datatype xsd:gYear ;
+        sh:maxCount 1 ;
+        sh:order 1.0 ;
+        sh:path schema:startDate
+    ] ;
+    sh:property [
+        rdfs:label "Plaats van uitgave"@nl , "Publication place"@en ;
+        memorix:inSummaryAt 2.0 ;
+        sh:datatype xsd:string ;
+        sh:maxCount 1 ;
+        sh:order 3.0 ;
+        sh:path schema:location
+    ] ;
+    sh:property [
+        rdfs:label "Uitgever"@nl , "Publisher"@en ;
+        sh:datatype xsd:string ;
+        sh:maxCount 1 ;
+        sh:order 3.0 ;
+        sh:path schema:name
+    ] ;
+    sh:targetClass schema:PublicationEvent .
