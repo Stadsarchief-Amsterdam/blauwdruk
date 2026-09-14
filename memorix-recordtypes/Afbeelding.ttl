@@ -137,11 +137,11 @@ rt:Image
         sh:path rico:scopeAndContent
     ] ;
     sh:property [
-        rdfs:label "Afgebeeld persoon"@nl , "Depicted person"@en ;
+        rdfs:label "Afgebeelde actor"@nl , "Depicted actor"@en ;
         dash:editor memorix:LinkedRecordEditor ;
         sh:maxCount 100 ;
         sh:nodeKind sh:IRI ;
-        sh:or ( [ sh:class rt:Person ] [ sh:class rt:Family ] ) ;
+        sh:or ( [ sh:class rt:Person ] [ sh:class rt:Family ] [ sh:class rt:Organisation ] ) ;
         sh:group image:contentDescriptionGroup ;
         sh:order 5.0 ;
         sh:path image:isAssociatedWithPerson
